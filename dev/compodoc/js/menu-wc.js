@@ -285,13 +285,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/FooterPoweredbyComponent.html" data-type="entity-link" >FooterPoweredbyComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ForceGraphCanvasComponent.html" data-type="entity-link" >ForceGraphCanvasComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ForceGraphComponent.html" data-type="entity-link" >ForceGraphComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ForceGraphLimitComponent.html" data-type="entity-link" >ForceGraphLimitComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/ForceGraphSvgComponent.html" data-type="entity-link" >ForceGraphSvgComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/FormSwitchComponent.html" data-type="entity-link" >FormSwitchComponent</a>
@@ -569,6 +569,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/FolioConvoluteList.html" data-type="entity-link" >FolioConvoluteList</a>
                             </li>
                             <li class="link">
+                                <a href="classes/ForceGraphSimulationPin.html" data-type="entity-link" >ForceGraphSimulationPin</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Graph.html" data-type="entity-link" >Graph</a>
                             </li>
                             <li class="link">
@@ -696,7 +699,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/EditionViewService.html" data-type="entity-link" >EditionViewService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ForceGraphDrawingService.html" data-type="entity-link" >ForceGraphDrawingService</a>
+                                    <a href="injectables/ForceGraphCanvasService.html" data-type="entity-link" >ForceGraphCanvasService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ForceGraphSimulationService.html" data-type="entity-link" >ForceGraphSimulationService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/FullscreenService.html" data-type="entity-link" >FullscreenService</a>
@@ -926,6 +932,60 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/FolioSystemsLayout.html" data-type="entity-link" >FolioSystemsLayout</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/ForceGraphBounds.html" data-type="entity-link" >ForceGraphBounds</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasEdgeLabel.html" data-type="entity-link" >ForceGraphCanvasEdgeLabel</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasHoveredNode.html" data-type="entity-link" >ForceGraphCanvasHoveredNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasLimits.html" data-type="entity-link" >ForceGraphCanvasLimits</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasStyles.html" data-type="entity-link" >ForceGraphCanvasStyles</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasView.html" data-type="entity-link" >ForceGraphCanvasView</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphD3SimulationNode.html" data-type="entity-link" >ForceGraphD3SimulationNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphData.html" data-type="entity-link" >ForceGraphData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphEdge.html" data-type="entity-link" >ForceGraphEdge</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphNode.html" data-type="entity-link" >ForceGraphNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphPoint.html" data-type="entity-link" >ForceGraphPoint</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulation.html" data-type="entity-link" >ForceGraphSimulation</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationConfig.html" data-type="entity-link" >ForceGraphSimulationConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationForces.html" data-type="entity-link" >ForceGraphSimulationForces</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationInput.html" data-type="entity-link" >ForceGraphSimulationInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationProgress.html" data-type="entity-link" >ForceGraphSimulationProgress</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationScheduler.html" data-type="entity-link" >ForceGraphSimulationScheduler</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphVisibleNode.html" data-type="entity-link" >ForceGraphVisibleNode</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/FullscreenToggleConfig.html" data-type="entity-link" >FullscreenToggleConfig</a>
                             </li>
                             <li class="link">
@@ -980,9 +1040,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/NavbarItems.html" data-type="entity-link" >NavbarItems</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Point.html" data-type="entity-link" >Point</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/Preface.html" data-type="entity-link" >Preface</a>
                             </li>
                             <li class="link">
@@ -1026,15 +1083,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/SelectTableCell.html" data-type="entity-link" >SelectTableCell</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SimEdge.html" data-type="entity-link" >SimEdge</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SimNode.html" data-type="entity-link" >SimNode</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SimulationData.html" data-type="entity-link" >SimulationData</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Source.html" data-type="entity-link" >Source</a>
@@ -1110,9 +1158,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/StatisticsSummaryCardData.html" data-type="entity-link" >StatisticsSummaryCardData</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SvgSize.html" data-type="entity-link" >SvgSize</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/TableRows.html" data-type="entity-link" >TableRows</a>

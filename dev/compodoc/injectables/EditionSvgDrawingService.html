@@ -1098,8 +1098,8 @@ and returns a promise of the selection.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
 import { D3Selection } from &#x27;../models/d3-selection.model&#x27;;
-import { ViewBox } from &#x27;../models/view-box.model&#x27;;
 import { DATA_TKK_ID } from &#x27;../models/edition-svg-overlay.model&#x27;;
+import { ViewBox } from &#x27;../models/view-box.model&#x27;;
 
 import * as D3_FETCH from &#x27;d3-fetch&#x27;;
 import * as D3_SELECTION from &#x27;d3-selection&#x27;;
@@ -1140,7 +1140,7 @@ export class EditionSvgDrawingService {
         // Get the SVG XML DOM tree and its content (svg-root)
         const fetchedSvgXML: SVGSVGElement | undefined &#x3D; fetchedSvgFile.getElementsByTagName(&#x27;svg&#x27;)[0];
         if (!fetchedSvgXML) {
-            console.error(&#x27;[EditionSvgDrawingService]: The fetched file does not contain a valid &lt;svg&gt; element.&#x27;);
+            console.error(&#x27;[EditionSvgDrawingService] The fetched file does not contain a valid &lt;svg&gt; element.&#x27;);
             return undefined;
         }
 

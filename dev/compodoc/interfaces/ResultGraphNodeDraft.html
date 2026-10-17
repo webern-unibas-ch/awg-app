@@ -402,7 +402,7 @@ import {
     ResultGraph,
     ResultGraphEdge,
     ResultGraphNode,
-    ResultNodeKind,
+    ResultGraphNodeKind,
 } from &#x27;@awg-graph/graph-visualizer/models/result-graph.model&#x27;;
 import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from &#x27;@awg-graph/graph-visualizer/utils/term.utils&#x27;;
 
@@ -440,9 +440,9 @@ interface ResultGraphNodeDraft {
  * It determines the kind of a graph node from its draft.
  *
  * @param {ResultGraphNodeDraft} draft The given draft.
- * @returns {ResultNodeKind} The kind of the node.
+ * @returns {ResultGraphNodeKind} The kind of the node.
  */
-function _toNodeKind(draft: ResultGraphNodeDraft): ResultNodeKind {
+function _toNodeKind(draft: ResultGraphNodeDraft): ResultGraphNodeKind {
     if (draft.isClass) {
         return &#x27;class&#x27;;
     }

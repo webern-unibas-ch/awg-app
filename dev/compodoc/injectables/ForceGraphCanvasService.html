@@ -1,0 +1,1552 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ForceGraphCanvasService</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The ForceGraphCanvas service.</p>
+<p>It draws the data of a force graph onto a canvas in a given view (by level of detail).</p>
+<p>Provided in: <code>root</code>.</p>
+
+            </p>
+
+
+        <section data-compodoc="block-metadata">
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
+                    <tr>
+                        <td class="col-md-3">providedIn</td>
+                        <td class="col-md-9"><code>root</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api">
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawArrows" >_drawArrows</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawEdgeLabels" >_drawEdgeLabels</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawEdges" >_drawEdges</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawNodeCircles" >_drawNodeCircles</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawNodeLabels" >_drawNodeLabels</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawNodes" >_drawNodes</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawNodeSquares" >_drawNodeSquares</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_prepareCanvas" >_prepareCanvas</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#drawGraph" >drawGraph</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawArrows"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawArrows</b></span>
+                        <a href="#_drawArrows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawArrows(ctx: CanvasRenderingContext2D, edges: <a href="../interfaces/ForceGraphEdge.html" target="_self">ForceGraphEdge[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawArrows.</p>
+<p>It draws an arrowhead at the target of each given (non-self) force graph edge, touching the target circle.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                        <code>CanvasRenderingContext2D</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given 2D context of the canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>edges</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphEdge.html" target="_self" >ForceGraphEdge[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given force graph edges.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the arrowheads.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawEdgeLabels"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawEdgeLabels</b></span>
+                        <a href="#_drawEdgeLabels"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawEdgeLabels(ctx: CanvasRenderingContext2D, edgeLabels: <a href="../interfaces/ForceGraphCanvasEdgeLabel.html" target="_self">ForceGraphCanvasEdgeLabel[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="185"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts:185</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawEdgeLabels.</p>
+<p>It draws the given edge labels (the labels of the force graph edges at their positions).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                        <code>CanvasRenderingContext2D</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given 2D context of the canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>edgeLabels</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphCanvasEdgeLabel.html" target="_self" >ForceGraphCanvasEdgeLabel[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given edge labels.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the edge labels.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawEdges"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawEdges</b></span>
+                        <a href="#_drawEdges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawEdges(ctx: CanvasRenderingContext2D, edges: <a href="../interfaces/ForceGraphEdge.html" target="_self">ForceGraphEdge[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawEdges.</p>
+<p>It draws all force graph edges as one path: straight lines from source to target
+and loops (rotated ellipses) for self edges.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                        <code>CanvasRenderingContext2D</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given 2D context of the canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>edges</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphEdge.html" target="_self" >ForceGraphEdge[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given force graph edges.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the edges.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawNodeCircles"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawNodeCircles</b></span>
+                        <a href="#_drawNodeCircles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawNodeCircles(ctx: CanvasRenderingContext2D, nodes: <a href="../interfaces/ForceGraphVisibleNode.html" target="_self">ForceGraphVisibleNode[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="241"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts:241</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawNodeCircles.</p>
+<p>It draws the given nodes as one path of circles, filled and stroked with the current styles.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                        <code>CanvasRenderingContext2D</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given 2D context of the canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>nodes</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphVisibleNode.html" target="_self" >ForceGraphVisibleNode[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given nodes (not empty).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the circles.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawNodeLabels"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawNodeLabels</b></span>
+                        <a href="#_drawNodeLabels"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawNodeLabels(ctx: CanvasRenderingContext2D, nodes: <a href="../interfaces/ForceGraphVisibleNode.html" target="_self">ForceGraphVisibleNode[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="261"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts:261</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawNodeLabels.</p>
+<p>It draws the label of each given node next to it: its short name
+(the <code>label</code> of the result node is shown in the tooltip).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                        <code>CanvasRenderingContext2D</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given 2D context of the canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>nodes</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphVisibleNode.html" target="_self" >ForceGraphVisibleNode[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given nodes.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the node labels.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawNodes"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawNodes</b></span>
+                        <a href="#_drawNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawNodes(ctx: CanvasRenderingContext2D, nodes: <a href="../interfaces/ForceGraphVisibleNode.html" target="_self">ForceGraphVisibleNode[]</a>, minCircleRadius: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="206"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts:206</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawNodes.</p>
+<p>It draws the given nodes, batched by fill color: as circles from the given minimum radius,
+smaller ones as squares of the same area.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                        <code>CanvasRenderingContext2D</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given 2D context of the canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>nodes</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphVisibleNode.html" target="_self" >ForceGraphVisibleNode[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given nodes.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>minCircleRadius</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given minimum radius of a circle (in graph units; 0: only circles).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the nodes.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawNodeSquares"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawNodeSquares</b></span>
+                        <a href="#_drawNodeSquares"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawNodeSquares(ctx: CanvasRenderingContext2D, nodes: <a href="../interfaces/ForceGraphVisibleNode.html" target="_self">ForceGraphVisibleNode[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="280"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts:280</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawNodeSquares.</p>
+<p>It draws the given nodes as one path of squares with the area of their circles, filled with the current style.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                        <code>CanvasRenderingContext2D</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given 2D context of the canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>nodes</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphVisibleNode.html" target="_self" >ForceGraphVisibleNode[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given nodes (not empty).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the squares.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_prepareCanvas"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_prepareCanvas</b></span>
+                        <a href="#_prepareCanvas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_prepareCanvas(ctx: CanvasRenderingContext2D, view: <a href="../interfaces/ForceGraphCanvasView.html" target="_self">ForceGraphCanvasView</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="300"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts:300</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _prepareCanvas.</p>
+<p>It clears the canvas and maps graph coordinates to canvas pixels:
+graph origin in the viewport center, then zoom, then device pixel ratio.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                        <code>CanvasRenderingContext2D</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given 2D context of the canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>view</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphCanvasView.html" target="_self" >ForceGraphCanvasView</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given view (zoom transform and viewport of the canvas).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Prepares the canvas for drawing.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="drawGraph"></a>
+                    <span class="name">
+                        <span ><b>drawGraph</b></span>
+                        <a href="#drawGraph"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>drawGraph(ctx: CanvasRenderingContext2D, graphData: <a href="../interfaces/ForceGraphData.html" target="_self">ForceGraphData</a>, view: <a href="../interfaces/ForceGraphCanvasView.html" target="_self">ForceGraphCanvasView</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.service.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: drawGraph.</p>
+<p>It draws the items of the given force graph data touching the given view (also partly visible ones),
+by level of detail: arrowheads and labels only if not too many or too small, small nodes as squares.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ctx</td>
+                                            <td>
+                                                        <code>CanvasRenderingContext2D</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given 2D context of the canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>graphData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphData.html" target="_self" >ForceGraphData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given force graph data (with positions).</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>view</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphCanvasView.html" target="_self" >ForceGraphCanvasView</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given view (zoom transform and viewport of the canvas).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the graph.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+import { ForceGraphData, ForceGraphEdge, ForceGraphVisibleNode } from &#x27;../force-graph.model&#x27;;
+import { FORCE_GRAPH_UTILS } from &#x27;../force-graph.utils&#x27;;
+
+import { ForceGraphCanvasEdgeLabel, ForceGraphCanvasView } from &#x27;./force-graph-canvas.model&#x27;;
+import {
+    FORCE_GRAPH_CANVAS_LIMITS,
+    FORCE_GRAPH_CANVAS_STYLES,
+    FORCE_GRAPH_CANVAS_UTILS,
+} from &#x27;./force-graph-canvas.utils&#x27;;
+
+/**
+ * The ForceGraphCanvas service.
+ *
+ * It draws the data of a force graph onto a canvas in a given view (by level of detail).
+ *
+ * Provided in: &#x60;root&#x60;.
+ */
+@Injectable({
+    providedIn: &#x27;root&#x27;,
+})
+export class ForceGraphCanvasService {
+    /**
+     * Public method: drawGraph.
+     *
+     * It draws the items of the given force graph data touching the given view (also partly visible ones),
+     * by level of detail: arrowheads and labels only if not too many or too small, small nodes as squares.
+     *
+     * @param {CanvasRenderingContext2D} ctx The given 2D context of the canvas.
+     * @param {ForceGraphData} graphData The given force graph data (with positions).
+     * @param {ForceGraphCanvasView} view The given view (zoom transform and viewport of the canvas).
+     * @returns {void} Draws the graph.
+     */
+    drawGraph(ctx: CanvasRenderingContext2D, graphData: ForceGraphData, view: ForceGraphCanvasView): void {
+        const { edges, nodes, visibleNodes } &#x3D; graphData;
+        const { k } &#x3D; view.transform;
+        const {
+            MAX_ARROWS,
+            MAX_LABELS,
+            MIN_ARROW_SCREEN_LENGTH,
+            MIN_EDGE_LABEL_SCREEN_SIZE,
+            MIN_NODE_LABEL_SCREEN_SIZE,
+        } &#x3D; FORCE_GRAPH_CANVAS_LIMITS;
+        const { ARROW_LENGTH, EDGE_LABEL_FONT_SIZE, NODE_LABEL_FONT_SIZE } &#x3D; FORCE_GRAPH_CANVAS_STYLES;
+
+        // Cleared canvas and area in view
+        this._prepareCanvas(ctx, view);
+        const viewBounds &#x3D; FORCE_GRAPH_CANVAS_UTILS.toViewBounds(view);
+
+        // Level of detail by size on the screen (css pixels: graph units times the zoom factor)
+        const isArrowVisible &#x3D; ARROW_LENGTH * k &gt;&#x3D; MIN_ARROW_SCREEN_LENGTH;
+        const isNodeLabelVisible &#x3D; NODE_LABEL_FONT_SIZE * k &gt;&#x3D; MIN_NODE_LABEL_SCREEN_SIZE;
+        const isEdgeLabelVisible &#x3D; EDGE_LABEL_FONT_SIZE * k &gt;&#x3D; MIN_EDGE_LABEL_SCREEN_SIZE;
+        const minCircleRadius &#x3D; FORCE_GRAPH_CANVAS_UTILS.minCircleRadius(nodes.length, k);
+
+        // Collect items touching the view
+        const edgesInView &#x3D; edges.filter(edge &#x3D;&gt; FORCE_GRAPH_CANVAS_UTILS.isEdgeInView(edge, viewBounds));
+        const edgesWithArrowInView &#x3D; isArrowVisible
+            ? edgesInView.filter(edge &#x3D;&gt; FORCE_GRAPH_CANVAS_UTILS.isArrowInView(edge, viewBounds))
+            : [];
+        const nodesInView &#x3D; visibleNodes.filter(node &#x3D;&gt; FORCE_GRAPH_CANVAS_UTILS.isNodeInView(node, viewBounds));
+        // A label lies to the right of its node or edge, so it may reach into the view from outside
+        const nodeLabelsInView &#x3D; isNodeLabelVisible
+            ? visibleNodes.filter(node &#x3D;&gt; FORCE_GRAPH_CANVAS_UTILS.isNodeLabelInView(node, viewBounds))
+            : [];
+        const edgeLabelsInView &#x3D; isEdgeLabelVisible
+            ? edges
+                  .map(edge &#x3D;&gt; ({ edge, position: FORCE_GRAPH_CANVAS_UTILS.edgeLabelPosition(edge) }))
+                  .filter(edgeLabel &#x3D;&gt; FORCE_GRAPH_CANVAS_UTILS.isEdgeLabelInView(edgeLabel, viewBounds))
+            : [];
+
+        // Draw the items (later ones on top): edges, arrowheads, nodes, labels (up to their maximum number)
+        this._drawEdges(ctx, edgesInView);
+        if (isArrowVisible &amp;&amp; edgesWithArrowInView.length &lt;&#x3D; MAX_ARROWS) {
+            this._drawArrows(ctx, edgesWithArrowInView);
+        }
+
+        this._drawNodes(ctx, nodesInView, minCircleRadius);
+        if (isEdgeLabelVisible &amp;&amp; edgeLabelsInView.length &lt;&#x3D; MAX_LABELS) {
+            this._drawEdgeLabels(ctx, edgeLabelsInView);
+        }
+        if (isNodeLabelVisible &amp;&amp; nodeLabelsInView.length &lt;&#x3D; MAX_LABELS) {
+            this._drawNodeLabels(ctx, nodeLabelsInView);
+        }
+    }
+
+    /**
+     * Private method: _drawArrows.
+     *
+     * It draws an arrowhead at the target of each given (non-self) force graph edge, touching the target circle.
+     *
+     * @param {CanvasRenderingContext2D} ctx The given 2D context of the canvas.
+     * @param {ForceGraphEdge[]} edges The given force graph edges.
+     * @returns {void} Draws the arrowheads.
+     */
+    private _drawArrows(ctx: CanvasRenderingContext2D, edges: ForceGraphEdge[]): void {
+        const { ARROW_FILL, ARROW_LENGTH, ARROW_WIDTH } &#x3D; FORCE_GRAPH_CANVAS_STYLES;
+
+        ctx.beginPath();
+        edges.forEach(edge &#x3D;&gt; {
+            if (FORCE_GRAPH_UTILS.isSelfEdge(edge)) {
+                return;
+            }
+            const { source, target } &#x3D; edge;
+            const { x: sx, y: sy } &#x3D; source;
+            const { x: tx, y: ty } &#x3D; target;
+            const length &#x3D; Math.hypot(tx - sx, ty - sy);
+            // The source lies within the target circle: no room for an arrowhead
+            if (length &lt;&#x3D; target.radius) {
+                return;
+            }
+            // Unit direction from source to target
+            const dirX &#x3D; (tx - sx) / length;
+            const dirY &#x3D; (ty - sy) / length;
+            const tipX &#x3D; tx - dirX * target.radius;
+            const tipY &#x3D; ty - dirY * target.radius;
+            const baseX &#x3D; tipX - dirX * ARROW_LENGTH;
+            const baseY &#x3D; tipY - dirY * ARROW_LENGTH;
+
+            ctx.moveTo(tipX, tipY);
+            ctx.lineTo(baseX - dirY * ARROW_WIDTH, baseY + dirX * ARROW_WIDTH);
+            ctx.lineTo(baseX + dirY * ARROW_WIDTH, baseY - dirX * ARROW_WIDTH);
+            ctx.closePath();
+        });
+        ctx.fillStyle &#x3D; ARROW_FILL;
+        ctx.fill();
+    }
+
+    /**
+     * Private method: _drawEdges.
+     *
+     * It draws all force graph edges as one path: straight lines from source to target
+     * and loops (rotated ellipses) for self edges.
+     *
+     * @param {CanvasRenderingContext2D} ctx The given 2D context of the canvas.
+     * @param {ForceGraphEdge[]} edges The given force graph edges.
+     * @returns {void} Draws the edges.
+     */
+    private _drawEdges(ctx: CanvasRenderingContext2D, edges: ForceGraphEdge[]): void {
+        const { EDGE_STROKE, EDGE_STROKE_WIDTH, LOOP_RADIUS_X, LOOP_RADIUS_Y, LOOP_ROTATION } &#x3D;
+            FORCE_GRAPH_CANVAS_STYLES;
+
+        ctx.beginPath();
+        edges.forEach(edge &#x3D;&gt; {
+            const { source, target } &#x3D; edge;
+            const { x: sx, y: sy } &#x3D; source;
+            ctx.moveTo(sx, sy);
+            if (FORCE_GRAPH_UTILS.isSelfEdge(edge)) {
+                // The loop starts and ends at the node, its major axis points to the upper right
+                const loopCenterX &#x3D; sx + LOOP_RADIUS_X * Math.cos(LOOP_ROTATION);
+                const loopCenterY &#x3D; sy + LOOP_RADIUS_X * Math.sin(LOOP_ROTATION);
+                ctx.ellipse(
+                    loopCenterX,
+                    loopCenterY,
+                    LOOP_RADIUS_X,
+                    LOOP_RADIUS_Y,
+                    LOOP_ROTATION,
+                    Math.PI,
+                    3 * Math.PI
+                );
+            } else {
+                ctx.lineTo(target.x, target.y);
+            }
+        });
+        ctx.strokeStyle &#x3D; EDGE_STROKE;
+        ctx.lineWidth &#x3D; EDGE_STROKE_WIDTH;
+        ctx.stroke();
+    }
+
+    /**
+     * Private method: _drawEdgeLabels.
+     *
+     * It draws the given edge labels (the labels of the force graph edges at their positions).
+     *
+     * @param {CanvasRenderingContext2D} ctx The given 2D context of the canvas.
+     * @param {ForceGraphCanvasEdgeLabel[]} edgeLabels The given edge labels.
+     * @returns {void} Draws the edge labels.
+     */
+    private _drawEdgeLabels(ctx: CanvasRenderingContext2D, edgeLabels: ForceGraphCanvasEdgeLabel[]): void {
+        const { EDGE_LABEL_FILL, EDGE_LABEL_FONT } &#x3D; FORCE_GRAPH_CANVAS_STYLES;
+
+        ctx.font &#x3D; EDGE_LABEL_FONT;
+        ctx.fillStyle &#x3D; EDGE_LABEL_FILL;
+        edgeLabels.forEach(({ edge, position }) &#x3D;&gt; {
+            ctx.fillText(edge.resultEdge.label, position.x, position.y);
+        });
+    }
+
+    /**
+     * Private method: _drawNodes.
+     *
+     * It draws the given nodes, batched by fill color: as circles from the given minimum radius,
+     * smaller ones as squares of the same area.
+     *
+     * @param {CanvasRenderingContext2D} ctx The given 2D context of the canvas.
+     * @param {ForceGraphVisibleNode[]} nodes The given nodes.
+     * @param {number} minCircleRadius The given minimum radius of a circle (in graph units; 0: only circles).
+     * @returns {void} Draws the nodes.
+     */
+    private _drawNodes(ctx: CanvasRenderingContext2D, nodes: ForceGraphVisibleNode[], minCircleRadius: number): void {
+        const { NODE_FILL, NODE_STROKE, NODE_STROKE_WIDTH } &#x3D; FORCE_GRAPH_CANVAS_STYLES;
+
+        const fills &#x3D; new Set(Object.values(NODE_FILL));
+
+        ctx.strokeStyle &#x3D; NODE_STROKE;
+        ctx.lineWidth &#x3D; NODE_STROKE_WIDTH;
+        fills.forEach(fill &#x3D;&gt; {
+            // The nodes of this fill color, as circles or (if too small) as squares
+            const circleNodes: ForceGraphVisibleNode[] &#x3D; [];
+            const squareNodes: ForceGraphVisibleNode[] &#x3D; [];
+            nodes.forEach(node &#x3D;&gt; {
+                if (NODE_FILL[node.resultNode.kind] &#x3D;&#x3D;&#x3D; fill) {
+                    (node.radius &gt;&#x3D; minCircleRadius ? circleNodes : squareNodes).push(node);
+                }
+            });
+            ctx.fillStyle &#x3D; fill;
+            if (squareNodes.length) {
+                this._drawNodeSquares(ctx, squareNodes);
+            }
+            if (circleNodes.length) {
+                this._drawNodeCircles(ctx, circleNodes);
+            }
+        });
+    }
+
+    /**
+     * Private method: _drawNodeCircles.
+     *
+     * It draws the given nodes as one path of circles, filled and stroked with the current styles.
+     *
+     * @param {CanvasRenderingContext2D} ctx The given 2D context of the canvas.
+     * @param {ForceGraphVisibleNode[]} nodes The given nodes (not empty).
+     * @returns {void} Draws the circles.
+     */
+    private _drawNodeCircles(ctx: CanvasRenderingContext2D, nodes: ForceGraphVisibleNode[]): void {
+        ctx.beginPath();
+        nodes.forEach(({ x, y, radius }) &#x3D;&gt; {
+            ctx.moveTo(x + radius, y);
+            ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        });
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    /**
+     * Private method: _drawNodeLabels.
+     *
+     * It draws the label of each given node next to it: its short name
+     * (the &#x60;label&#x60; of the result node is shown in the tooltip).
+     *
+     * @param {CanvasRenderingContext2D} ctx The given 2D context of the canvas.
+     * @param {ForceGraphVisibleNode[]} nodes The given nodes.
+     * @returns {void} Draws the node labels.
+     */
+    private _drawNodeLabels(ctx: CanvasRenderingContext2D, nodes: ForceGraphVisibleNode[]): void {
+        const { NODE_LABEL_FILL, NODE_LABEL_FONT, NODE_LABEL_OFFSET } &#x3D; FORCE_GRAPH_CANVAS_STYLES;
+
+        ctx.font &#x3D; NODE_LABEL_FONT;
+        ctx.fillStyle &#x3D; NODE_LABEL_FILL;
+        nodes.forEach(({ resultNode, x, y }) &#x3D;&gt; {
+            ctx.fillText(resultNode.shortName, x + NODE_LABEL_OFFSET.x, y + NODE_LABEL_OFFSET.y);
+        });
+    }
+
+    /**
+     * Private method: _drawNodeSquares.
+     *
+     * It draws the given nodes as one path of squares with the area of their circles, filled with the current style.
+     *
+     * @param {CanvasRenderingContext2D} ctx The given 2D context of the canvas.
+     * @param {ForceGraphVisibleNode[]} nodes The given nodes (not empty).
+     * @returns {void} Draws the squares.
+     */
+    private _drawNodeSquares(ctx: CanvasRenderingContext2D, nodes: ForceGraphVisibleNode[]): void {
+        ctx.beginPath();
+        nodes.forEach(({ x, y, radius }) &#x3D;&gt; {
+            // A square with the area of the circle (side r * √π), so that the switch keeps the weight
+            const halfSide &#x3D; (radius * Math.sqrt(Math.PI)) / 2;
+            ctx.rect(x - halfSide, y - halfSide, 2 * halfSide, 2 * halfSide);
+        });
+        ctx.fill();
+    }
+
+    /**
+     * Private method: _prepareCanvas.
+     *
+     * It clears the canvas and maps graph coordinates to canvas pixels:
+     * graph origin in the viewport center, then zoom, then device pixel ratio.
+     *
+     * @param {CanvasRenderingContext2D} ctx The given 2D context of the canvas.
+     * @param {ForceGraphCanvasView} view The given view (zoom transform and viewport of the canvas).
+     * @returns {void} Prepares the canvas for drawing.
+     */
+    private _prepareCanvas(ctx: CanvasRenderingContext2D, view: ForceGraphCanvasView): void {
+        const { width, height, dpr } &#x3D; view.viewport;
+        const { k, x, y } &#x3D; view.transform;
+
+        // The backing store has whole pixels (rounded at a fractional device pixel ratio)
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        const scale &#x3D; dpr * k;
+        const translateX &#x3D; dpr * (x + (k * width) / 2);
+        const translateY &#x3D; dpr * (y + (k * height) / 2);
+        ctx.setTransform(scale, 0, 0, scale, translateX, translateY);
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ForceGraphCanvasService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

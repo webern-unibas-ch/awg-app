@@ -153,8 +153,8 @@
             </p>
             <p class="comment">
                 <p>The CanvasDrag directive.</p>
-<p>It binds a d3 drag behaviour to the host canvas: only gestures starting on a <code>dragSubject</code> are drags
-(others are left, e.g., to a pan). It emits every move and the end of a drag.</p>
+<p>It binds a d3 drag behaviour to the host canvas and emits every move and the end of a drag.
+Only gestures starting on a <code>dragSubject</code> are drags (others are left, e.g., to a pan), one touch at a time.</p>
 
             </p>
 
@@ -187,7 +187,26 @@
             </table>
         </section>
 
-        
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/ForceGraphCanvasComponent.html" target="_self" >ForceGraphCanvasComponent</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <div class="tab-pane fade " id="api">
@@ -201,6 +220,11 @@
                     </td>
                     <td class="col-md-9">
                         <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_activeGesture" >_activeGesture</a>
+                            </li>
                             <li>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
@@ -296,7 +320,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/shared/canvas/drag/canvas-drag.directive.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/shared/canvas/drag/canvas-drag.directive.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -437,8 +461,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/app/shared/canvas/drag/canvas-drag.directive.ts:92</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/shared/canvas/drag/canvas-drag.directive.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -447,7 +471,7 @@
                 <td class="col-md-4">
                         <div class="io-description"><p>Private method: _findGesture.</p>
 <p>It finds the drag subject at the start point of a given gesture and wraps it (not moved yet).
-Without a subject, d3-drag ignores the gesture.</p>
+D3-drag ignores a gesture without subject, or a further touch during a drag (a mouse gesture replaces it).</p>
 </div>
 
                             <div class="io-description">
@@ -501,6 +525,40 @@ Without a subject, d3-drag ignores the gesture.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_activeGesture"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_activeGesture</b></span>
+                        <a href="#_activeGesture"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/CanvasDragGesture.html" target="_self" >CanvasDragGesture&lt;T&gt; | undefined</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/shared/canvas/drag/canvas-drag.directive.ts:58</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private variable: _activeGesture.</p>
+<p>It keeps the gesture of the running drag, if any.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -606,11 +664,15 @@ Without a subject, d3-drag ignores the gesture.</p>
         .container(() &#x3D;&gt; this._canvasEl)
         // A gesture without subject is ignored by d3-drag, but its typings require a subject
         .subject((event: CanvasDragEvent&lt;T&gt;) &#x3D;&gt; this._findGesture(event) as CanvasDragGesture&lt;T&gt;)
+        .on(&#x27;start&#x27;, (event: CanvasDragEvent&lt;T&gt;) &#x3D;&gt; {
+            this._activeGesture &#x3D; event.subject;
+        })
         .on(&#x27;drag&#x27;, (event: CanvasDragEvent&lt;T&gt;) &#x3D;&gt; {
             event.subject.isMoved &#x3D; true;
             this.dragMove.emit({ subject: event.subject.subject, point: { x: event.x, y: event.y } });
         })
         .on(&#x27;end&#x27;, (event: CanvasDragEvent&lt;T&gt;) &#x3D;&gt; {
+            this._activeGesture &#x3D; undefined;
             // D3-drag also ends a gesture without move (a click), which is no drag
             if (event.subject.isMoved) {
                 this.dragEnd.emit(event.subject.subject);
@@ -620,7 +682,7 @@ Without a subject, d3-drag ignores the gesture.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/canvas/drag/canvas-drag.directive.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/shared/canvas/drag/canvas-drag.directive.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -651,8 +713,8 @@ import { CanvasDragEvent, CanvasDragGesture, CanvasDragMove, CanvasDragSubjectAc
 /**
  * The CanvasDrag directive.
  *
- * It binds a d3 drag behaviour to the host canvas: only gestures starting on a &#x60;dragSubject&#x60; are drags
- * (others are left, e.g., to a pan). It emits every move and the end of a drag.
+ * It binds a d3 drag behaviour to the host canvas and emits every move and the end of a drag.
+ * Only gestures starting on a &#x60;dragSubject&#x60; are drags (others are left, e.g., to a pan), one touch at a time.
  */
 @Directive({
     selector: &#x27;canvas[awgCanvasDrag]&#x27;,
@@ -694,6 +756,13 @@ export class CanvasDragDirective&lt;T&gt; {
     private readonly _canvas &#x3D; D3_SELECTION.select&lt;HTMLCanvasElement, unknown&gt;(this._canvasEl);
 
     /**
+     * Private variable: _activeGesture.
+     *
+     * It keeps the gesture of the running drag, if any.
+     */
+    private _activeGesture: CanvasDragGesture&lt;T&gt; | undefined;
+
+    /**
      * Private readonly variable: _dragBehaviour.
      *
      * It keeps the D3 drag behaviour bound to the host canvas element
@@ -703,11 +772,15 @@ export class CanvasDragDirective&lt;T&gt; {
         .container(() &#x3D;&gt; this._canvasEl)
         // A gesture without subject is ignored by d3-drag, but its typings require a subject
         .subject((event: CanvasDragEvent&lt;T&gt;) &#x3D;&gt; this._findGesture(event) as CanvasDragGesture&lt;T&gt;)
+        .on(&#x27;start&#x27;, (event: CanvasDragEvent&lt;T&gt;) &#x3D;&gt; {
+            this._activeGesture &#x3D; event.subject;
+        })
         .on(&#x27;drag&#x27;, (event: CanvasDragEvent&lt;T&gt;) &#x3D;&gt; {
             event.subject.isMoved &#x3D; true;
             this.dragMove.emit({ subject: event.subject.subject, point: { x: event.x, y: event.y } });
         })
         .on(&#x27;end&#x27;, (event: CanvasDragEvent&lt;T&gt;) &#x3D;&gt; {
+            this._activeGesture &#x3D; undefined;
             // D3-drag also ends a gesture without move (a click), which is no drag
             if (event.subject.isMoved) {
                 this.dragEnd.emit(event.subject.subject);
@@ -727,12 +800,15 @@ export class CanvasDragDirective&lt;T&gt; {
      * Private method: _findGesture.
      *
      * It finds the drag subject at the start point of a given gesture and wraps it (not moved yet).
-     * Without a subject, d3-drag ignores the gesture.
+     * D3-drag ignores a gesture without subject, or a further touch during a drag (a mouse gesture replaces it).
      *
      * @param {CanvasDragEvent&lt;T&gt;} event The given d3 drag event (before the start).
      * @returns {CanvasDragGesture&lt;T&gt; | undefined} The wrapped drag subject (undefined if none is found).
      */
     private _findGesture(event: CanvasDragEvent&lt;T&gt;): CanvasDragGesture&lt;T&gt; | undefined {
+        if (this._activeGesture &amp;&amp; event.identifier !&#x3D;&#x3D; &#x27;mouse&#x27;) {
+            return undefined;
+        }
         const subject &#x3D; this.dragSubject()({ x: event.x, y: event.y });
         return subject &#x3D;&#x3D;&#x3D; undefined ? undefined : { subject, isMoved: false };
     }

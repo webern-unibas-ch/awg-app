@@ -345,7 +345,7 @@ used as view model for the force graph.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export type ResultNodeKind &#x3D; &#x27;resource&#x27; | &#x27;class&#x27; | &#x27;instance&#x27; | &#x27;blank&#x27; | &#x27;literal&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export type ResultGraphNodeKind &#x3D; &#x27;resource&#x27; | &#x27;class&#x27; | &#x27;instance&#x27; | &#x27;blank&#x27; | &#x27;literal&#x27;;
 
 /**
  * The ResultGraphNode interface.
@@ -372,7 +372,7 @@ export interface ResultGraphNode {
     /**
      * The kind of the node.
      */
-    readonly kind: ResultNodeKind;
+    readonly kind: ResultGraphNodeKind;
 }
 
 /**
