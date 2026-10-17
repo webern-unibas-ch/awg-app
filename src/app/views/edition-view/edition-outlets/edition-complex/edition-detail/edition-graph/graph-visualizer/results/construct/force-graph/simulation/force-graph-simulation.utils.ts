@@ -70,52 +70,15 @@ const DEFAULT_SIMULATION_SCHEDULER: ForceGraphSimulationScheduler = {
 };
 
 /**
- * Private utils method: _toAlphaDecay.
+ * Private utils method: _alpha.
  *
- * It gets the alpha decay that cools a simulation down from the given start alpha
- * to the minimum alpha within the given number of ticks.
+ * It gets the alpha of the given simulation; an empty simulation has nothing to move (alpha 0: settled from the start).
  *
- * @param {number} alphaStart The given start alpha.
- * @param {number} ticks The given number of ticks.
- * @returns {number} The alpha decay.
+ * @param {ForceGraphD3Simulation} d3Simulation The given D3 simulation.
+ * @returns {number} The alpha.
  */
-function _toAlphaDecay(alphaStart: number, ticks: number): number {
-    return 1 - Math.pow(FORCE_GRAPH_SIMULATION_CONFIG.ALPHA_MIN / alphaStart, 1 / ticks);
-}
-
-/**
- * Private utils method: _toD3SimulationNodes.
- *
- * It creates the simulation nodes from the given radii and positions;
- * nodes without a known position (NaN) are placed by d3 (phyllotaxis arrangement).
- *
- * @param {Float32Array} radii The given radius of each node.
- * @param {Float32Array} positions The given positions as pairs (x, y, x, y, ...).
- * @returns {ForceGraphD3SimulationNode[]} The simulation nodes.
- */
-function _toD3SimulationNodes(radii: Float32Array, positions: Float32Array): ForceGraphD3SimulationNode[] {
-    return Array.from(radii, (radius, index) => {
-        const point = FORCE_GRAPH_SIMULATION_TRANSFER_UTILS.getPosition(positions, index);
-        return FORCE_GRAPH_UTILS.isPositioned(point) ? { radius, ...point } : { radius };
-    });
-}
-
-/**
- * Private utils method: _toD3SimulationLinks.
- *
- * It creates the links of the simulation from the given pairs of node indices.
- *
- * @param {Int32Array} links The given links as pairs of node indices (source, target, ...).
- * @returns {ForceGraphD3SimulationLink[]} The links (by node index).
- */
-function _toD3SimulationLinks(links: Int32Array): ForceGraphD3SimulationLink[] {
-    const d3Links: ForceGraphD3SimulationLink[] = [];
-    for (let index = 0; index < links.length; index += 2) {
-        const sourceIndex = links[index];
-        const targetIndex = links[index + 1];
-        d3Links.push({ source: sourceIndex, target: targetIndex });
-    }
-    return d3Links;
+function _alpha(d3Simulation: ForceGraphD3Simulation): number {
+    return d3Simulation.nodes().length === 0 ? 0 : d3Simulation.alpha();
 }
 
 /**
@@ -183,14 +146,14 @@ function _createD3Simulation(
  * @returns {ForceGraphD3SimulationNode | undefined} The simulation node, if any.
  */
 function _findD3Node(d3Nodes: ForceGraphD3SimulationNode[], index: number): ForceGraphD3SimulationNode | undefined {
-    return Number.isInteger(index) && index >= 0 && index < d3Nodes.length ? d3Nodes[index] : undefined;
+    const isValidIndex = Number.isInteger(index) && index >= 0 && index < d3Nodes.length;
+    return isValidIndex ? d3Nodes.at(index) : undefined;
 }
 
 /**
  * Private utils method: _fixNode.
  *
- * It fixes the simulation node at the given index at the given point, or frees it without a point,
- * if the index is valid (see `_findD3Node`).
+ * It fixes the node at the given index (if valid) at once at the given point, or frees it without a point.
  *
  * @param {ForceGraphD3SimulationNode[]} d3Nodes The given simulation nodes.
  * @param {number} index The given index of the node.
@@ -202,21 +165,15 @@ function _fixNode(d3Nodes: ForceGraphD3SimulationNode[], index: number, point?: 
     if (!d3Node) {
         return false;
     }
+    if (point) {
+        d3Node.x = point.x;
+        d3Node.y = point.y;
+        d3Node.vx = 0;
+        d3Node.vy = 0;
+    }
     d3Node.fx = point?.x ?? null;
     d3Node.fy = point?.y ?? null;
     return true;
-}
-
-/**
- * Private utils method: _alpha.
- *
- * It gets the alpha of the given simulation; an empty simulation has nothing to move (alpha 0: settled from the start).
- *
- * @param {ForceGraphD3Simulation} d3Simulation The given D3 simulation.
- * @returns {number} The alpha.
- */
-function _alpha(d3Simulation: ForceGraphD3Simulation): number {
-    return d3Simulation.nodes().length === 0 ? 0 : d3Simulation.alpha();
 }
 
 /**
@@ -260,6 +217,55 @@ function _runTicks(
     } while (!_isSettled(d3Simulation) && hasTicksLeft() && hasTimeLeft());
 
     return scheduler.now() - startTime;
+}
+
+/**
+ * Private utils method: _toAlphaDecay.
+ *
+ * It gets the alpha decay that cools a simulation down from the given start alpha
+ * to the minimum alpha within the given number of ticks.
+ *
+ * @param {number} alphaStart The given start alpha.
+ * @param {number} ticks The given number of ticks.
+ * @returns {number} The alpha decay.
+ */
+function _toAlphaDecay(alphaStart: number, ticks: number): number {
+    return 1 - Math.pow(FORCE_GRAPH_SIMULATION_CONFIG.ALPHA_MIN / alphaStart, 1 / ticks);
+}
+
+/**
+ * Private utils method: _toD3SimulationLinks.
+ *
+ * It creates the links of the simulation from the given pairs of node indices.
+ *
+ * @param {Int32Array} links The given links as pairs of node indices (source, target, ...).
+ * @returns {ForceGraphD3SimulationLink[]} The links (by node index).
+ */
+function _toD3SimulationLinks(links: Int32Array): ForceGraphD3SimulationLink[] {
+    const d3Links: ForceGraphD3SimulationLink[] = [];
+    for (let index = 0; index < links.length; index += 2) {
+        const sourceIndex = links[index];
+        const targetIndex = links[index + 1];
+        d3Links.push({ source: sourceIndex, target: targetIndex });
+    }
+    return d3Links;
+}
+
+/**
+ * Private utils method: _toD3SimulationNodes.
+ *
+ * It creates the simulation nodes from the given radii and positions;
+ * nodes without a known position (NaN) are placed by d3 (phyllotaxis arrangement).
+ *
+ * @param {Float32Array} radii The given radius of each node.
+ * @param {Float32Array} positions The given positions as pairs (x, y, x, y, ...).
+ * @returns {ForceGraphD3SimulationNode[]} The simulation nodes.
+ */
+function _toD3SimulationNodes(radii: Float32Array, positions: Float32Array): ForceGraphD3SimulationNode[] {
+    return Array.from(radii, (radius, index) => {
+        const point = FORCE_GRAPH_SIMULATION_TRANSFER_UTILS.getPosition(positions, index);
+        return FORCE_GRAPH_UTILS.isPositioned(point) ? { radius, ...point } : { radius };
+    });
 }
 
 /**

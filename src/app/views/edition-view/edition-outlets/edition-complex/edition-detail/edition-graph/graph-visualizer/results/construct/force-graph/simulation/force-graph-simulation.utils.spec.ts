@@ -580,6 +580,23 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                     }
                 );
 
+                it('... should release the node from its last pin point without a tick in between', () => {
+                    const scheduler = new FakeScheduler();
+                    const { simulation, results } = startSimulationWith(createSimulationInput(10), scheduler);
+                    scheduler.runUntilSettled();
+                    const restPositions = results[results.length - 1].positions;
+                    const restDistanceToPinPoint = Math.hypot(restPositions[0] - 500, restPositions[1] - 600);
+
+                    simulation.pin(0, { x: 500, y: 600 });
+                    simulation.release(0);
+                    scheduler.runStep();
+                    const { positions } = results[results.length - 1];
+                    const distanceToPinPoint = Math.hypot(positions[0] - 500, positions[1] - 600);
+
+                    // The released node starts from its last pin point (not from its rest position) and moves one tick
+                    expect(distanceToPinPoint).toBeLessThan(restDistanceToPinPoint / 2);
+                });
+
                 it('... should not release a node at an invalid index (the pinned node stays at its point)', () => {
                     const scheduler = new FakeScheduler();
                     const { simulation, results } = startSimulationWith(createSimulationInput(10), scheduler);
