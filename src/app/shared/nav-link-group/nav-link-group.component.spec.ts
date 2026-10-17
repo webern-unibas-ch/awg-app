@@ -98,7 +98,7 @@ describe('NavLinkGroupComponent (DONE)', () => {
             });
 
             it('... should not have been called', () => {
-                expect(component.selectNavLink).not.toHaveBeenCalled();
+                expectSpyCall(selectNavLinkSpy, 0);
             });
         });
 

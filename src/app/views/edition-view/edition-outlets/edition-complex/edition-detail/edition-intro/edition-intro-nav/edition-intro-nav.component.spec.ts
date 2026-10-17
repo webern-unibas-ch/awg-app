@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToEqual,
     getAndExpectDebugElementByCss,
@@ -264,7 +265,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
 
                     await clickAndAwaitChanges(linkDe, fixture);
 
-                    expect(navigateSpy).toHaveBeenCalled();
+                    expectSpyCall(navigateSpy, 1);
                     const actualUrl = navigateSpy.mock.calls[0][0].toString();
 
                     expectToBe(actualUrl, expected.url);

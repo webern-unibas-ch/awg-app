@@ -237,10 +237,10 @@ describe('EditionViewService (DONE)', () => {
 
                 service[signalName]();
 
-                expect(buildViewDataSpy).toHaveBeenCalledWith(
+                expectSpyCall(buildViewDataSpy, 1, [
                     viewName,
-                    expect.arrayContaining([[dataKey, expect.any(Function)]])
-                );
+                    expect.arrayContaining([[dataKey, expect.any(Function)]]),
+                ]);
             });
 
             it('... should hold the loading fallback if the view is inactive', () => {
@@ -340,7 +340,7 @@ describe('EditionViewService (DONE)', () => {
 
                 service[signalName]();
 
-                expect(buildViewDataSpy).toHaveBeenCalled();
+                expectSpyCall(buildViewDataSpy, 1);
 
                 const [calledViewKey, calledSignalMap, calledCallback] = buildViewDataSpy.mock.calls[0];
 

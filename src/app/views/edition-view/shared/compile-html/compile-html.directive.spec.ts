@@ -307,7 +307,7 @@ describe('CompileHtmlDirective (DONE)', () => {
 
                     (directive as any).onHostKeydown(mockEvent);
 
-                    expect(handleInteractionSpy).not.toHaveBeenCalled();
+                    expectSpyCall(handleInteractionSpy, 0);
                 });
             });
         });
@@ -369,9 +369,8 @@ describe('CompileHtmlDirective (DONE)', () => {
 
                     const foundElement = mockNativeElement.querySelector(expectedSelector);
 
-                    expectSpyCall(rendererSetAttributeSpy, 2);
-                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundElement, 'tabindex', '0');
-                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundElement, 'role', expectedRole);
+                    expect(rendererSetAttributeSpy).toHaveBeenNthCalledWith(1, foundElement, 'tabindex', '0');
+                    expectSpyCall(rendererSetAttributeSpy, 2, [foundElement, 'role', expectedRole]);
                 });
             });
 
@@ -558,13 +557,12 @@ describe('CompileHtmlDirective (DONE)', () => {
                         dataset: mockDataset,
                     } as unknown as HTMLAnchorElement;
 
-                    const mockEvent = {
-                        preventDefault: vi.fn(),
-                    } as unknown as Event;
+                    const preventDefaultSpy = vi.fn();
+                    const mockEvent = { preventDefault: preventDefaultSpy } as unknown as Event;
 
                     (directive as any)._handleAnchorNavigation(mockAnchor, mockEvent);
 
-                    expect(mockEvent.preventDefault).toHaveBeenCalledTimes(1);
+                    expectSpyCall(preventDefaultSpy, 1);
 
                     expectSpyCall(targetSpy, 1, [expectedArgs]);
 
@@ -611,13 +609,12 @@ describe('CompileHtmlDirective (DONE)', () => {
                         dataset: mockDataset,
                     } as unknown as HTMLAnchorElement;
 
-                    const mockEvent = {
-                        preventDefault: vi.fn(),
-                    } as unknown as Event;
+                    const preventDefaultSpy = vi.fn();
+                    const mockEvent = { preventDefault: preventDefaultSpy } as unknown as Event;
 
                     (directive as any)._handleAnchorNavigation(mockAnchor, mockEvent);
 
-                    expect(mockEvent.preventDefault).not.toHaveBeenCalled();
+                    expectSpyCall(preventDefaultSpy, 0);
 
                     expectSpyCall(serviceNavigateToIntroSpy, 0);
                     expectSpyCall(serviceNavigateToSheetSpy, 0);
@@ -643,11 +640,12 @@ describe('CompileHtmlDirective (DONE)', () => {
                         },
                     } as unknown as HTMLImageElement;
 
-                    const mockEvent = { preventDefault: vi.fn() } as unknown as Event;
+                    const preventDefaultSpy = vi.fn();
+                    const mockEvent = { preventDefault: preventDefaultSpy } as unknown as Event;
 
                     (directive as any)._handleImageNavigation(mockImg, mockEvent);
 
-                    expect(mockEvent.preventDefault).toHaveBeenCalledTimes(1);
+                    expectSpyCall(preventDefaultSpy, 1);
                     expectSpyCall(serviceOpenImageModalSpy, 1, [mockId, mockSrc]);
                 });
             });
@@ -674,11 +672,12 @@ describe('CompileHtmlDirective (DONE)', () => {
                         },
                     } as unknown as HTMLImageElement;
 
-                    const mockEvent = { preventDefault: vi.fn() } as unknown as Event;
+                    const preventDefaultSpy = vi.fn();
+                    const mockEvent = { preventDefault: preventDefaultSpy } as unknown as Event;
 
                     (directive as any)._handleImageNavigation(mockImg, mockEvent);
 
-                    expect(mockEvent.preventDefault).not.toHaveBeenCalled();
+                    expectSpyCall(preventDefaultSpy, 0);
                     expectSpyCall(serviceOpenImageModalSpy, 0);
                 });
             });
@@ -723,7 +722,7 @@ describe('CompileHtmlDirective (DONE)', () => {
                     expectToBe(result, getExpectedOutput());
 
                     if (shouldCallService) {
-                        expect(serviceGetGlyphSpy).toHaveBeenCalledTimes(expectedServiceArgs.length);
+                        expectSpyCall(serviceGetGlyphSpy, expectedServiceArgs.length);
 
                         expectedServiceArgs.forEach((arg, index) => {
                             expect(serviceGetGlyphSpy).toHaveBeenNthCalledWith(index + 1, arg);

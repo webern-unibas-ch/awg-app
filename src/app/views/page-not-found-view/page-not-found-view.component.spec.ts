@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     getAndExpectDebugElementByCss,
@@ -277,7 +278,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
                 await clickAndAwaitChanges(homeLinkDe, fixture);
 
-                expect(navigateSpy).toHaveBeenCalled();
+                expectSpyCall(navigateSpy, 1);
                 const firstCallArg = navigateSpy.mock.calls[0][0];
                 const actualUrl = firstCallArg.toString();
 

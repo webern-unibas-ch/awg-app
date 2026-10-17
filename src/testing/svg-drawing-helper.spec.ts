@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import * as D3_SELECTION from 'd3-selection';
 import * as D3_ZOOM from 'd3-zoom';
@@ -154,7 +154,7 @@ describe('svg-drawing-helper', () => {
             new ResizeObserver(vi.fn()).observe(element);
 
             expectToEqual(mockResizeObservers[0].observedElements, [element]);
-            expect(mockResizeObservers[0].observe).toHaveBeenCalledWith(element);
+            expectSpyCall(mockResizeObservers[0].observe, 1, element);
         });
 
         it('... should call the callback on trigger', () => {
@@ -164,7 +164,7 @@ describe('svg-drawing-helper', () => {
             new ResizeObserver(callback);
             mockResizeObservers[0].trigger();
 
-            expect(callback).toHaveBeenCalledWith([], mockResizeObservers[0]);
+            expectSpyCall(callback, 1, [[], mockResizeObservers[0]]);
         });
     });
 });

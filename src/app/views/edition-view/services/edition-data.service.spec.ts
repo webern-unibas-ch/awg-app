@@ -706,7 +706,7 @@ describe('EditionDataService (DONE)', () => {
                     const result$ = service['_getIntroDataStream'](mockState);
                     await lastValueFrom(result$);
 
-                    expect(fetchJsonDataSpy).toHaveBeenCalledTimes(2);
+                    expectSpyCall(fetchJsonDataSpy, 2);
                     expect(fetchJsonDataSpy).toHaveBeenNthCalledWith(
                         1,
                         expectedSectionPath,
@@ -749,7 +749,7 @@ describe('EditionDataService (DONE)', () => {
                     const result$ = service['_getIntroDataStream'](mockState);
                     const res = await lastValueFrom(result$);
 
-                    expect(filterIntroDataSpy).not.toHaveBeenCalled();
+                    expectSpyCall(filterIntroDataSpy, 0);
                     expectToEqual(res, expectedIntroSectionData);
                 });
             });

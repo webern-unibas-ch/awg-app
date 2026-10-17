@@ -9,6 +9,7 @@ import { NgbDropdown, NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap/dropd
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -243,7 +244,7 @@ describe('NavbarItemComponent (DONE)', () => {
 
                                     await clickAndAwaitChanges(linkDe, hostFixture);
 
-                                    expect(navigateSpy).toHaveBeenCalled();
+                                    expectSpyCall(navigateSpy, 1);
                                     const firstCallArg = navigateSpy.mock.calls[0][0];
                                     const actualUrl = firstCallArg.toString();
 

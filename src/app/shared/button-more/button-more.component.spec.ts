@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToNotContain,
@@ -196,7 +197,7 @@ describe('ButtonMoreComponent', () => {
 
                 await clickAndAwaitChanges(linkDes[0], fixture);
 
-                expect(navigateSpy).toHaveBeenCalled();
+                expectSpyCall(navigateSpy, 1);
                 expectToBe(navigateSpy.mock.calls[0][0].toString(), expectedRoute);
 
                 navigateSpy.mockRestore();

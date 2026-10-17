@@ -279,10 +279,10 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
 
                 scheduler.runStep();
 
-                expect(scheduler.schedule).toHaveBeenLastCalledWith(
+                expectSpyCall(scheduler.schedule, 2, [
                     expect.any(Function),
-                    FORCE_GRAPH_SIMULATION_CONFIG.PROGRESS_INTERVAL_MS
-                );
+                    FORCE_GRAPH_SIMULATION_CONFIG.PROGRESS_INTERVAL_MS,
+                ]);
             });
 
             // A real layout of a large graph takes several seconds with coverage instrumentation
@@ -476,10 +476,10 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                     scheduler.runStep();
 
                     expectToBe(results.length, 1);
-                    expect(scheduler.schedule).toHaveBeenLastCalledWith(
+                    expectSpyCall(scheduler.schedule, 2, [
                         expect.any(Function),
-                        FORCE_GRAPH_SIMULATION_CONFIG.PROGRESS_INTERVAL_MS
-                    );
+                        FORCE_GRAPH_SIMULATION_CONFIG.PROGRESS_INTERVAL_MS,
+                    ]);
                 });
 
                 it('... should start the next step right away if a tick takes longer than PROGRESS_INTERVAL_MS', () => {
@@ -490,7 +490,7 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                     simulation.pin(0, pinPoint);
                     scheduler.runStep();
 
-                    expect(scheduler.schedule).toHaveBeenLastCalledWith(expect.any(Function), 0);
+                    expectSpyCall(scheduler.schedule, 2, [expect.any(Function), 0]);
                 });
 
                 it('... should keep the simulation running while a node is pinned', () => {

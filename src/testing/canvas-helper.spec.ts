@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectToBe, expectToEqual } from './expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from './expect-helper';
 
 import { createFakeCanvasContext, MockMediaQueryList, stubMatchMedia } from './canvas-helper';
 
@@ -108,7 +108,7 @@ describe('CanvasHelper (DONE)', () => {
             window.matchMedia('(resolution: 1dppx)').addEventListener('change', listener);
             mockMediaQueryLists[0].trigger();
 
-            expect(listener).toHaveBeenCalledTimes(1);
+            expectSpyCall(listener, 1);
         });
 
         it('... should call a listener added with `once` only on the first trigger', () => {
@@ -119,7 +119,7 @@ describe('CanvasHelper (DONE)', () => {
             mockMediaQueryLists[0].trigger();
             mockMediaQueryLists[0].trigger();
 
-            expect(listener).toHaveBeenCalledTimes(1);
+            expectSpyCall(listener, 1);
         });
 
         it('... should not call the removed listeners on trigger', () => {
@@ -131,7 +131,7 @@ describe('CanvasHelper (DONE)', () => {
             mediaQueryList.removeEventListener('change', listener);
             mockMediaQueryLists[0].trigger();
 
-            expect(listener).not.toHaveBeenCalled();
+            expectSpyCall(listener, 0);
         });
     });
 });
