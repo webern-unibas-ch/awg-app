@@ -88,14 +88,14 @@ describe('EditionOutlineService (DONE)', () => {
         expectToEqual(service['_rawOutlineDataSignal'](), []);
     });
 
-    describe('#editionOutline()', () => {
-        it('... should have computed signal `getEditionOutline` to hold an empty array', () => {
+    describe('... computed signal `editionOutline`', () => {
+        it('... should have computed signal `editionOutline` to hold an empty array', () => {
             expectToBe(isSignal(service.editionOutline), true);
 
             expectToEqual(service.editionOutline(), []);
         });
 
-        it('... should compute the edition outline from raw data', () => {
+        it('... should hold the edition outline of the raw data', () => {
             const expectedOutline: EditionOutlineSeries[] = new EditionOutline(expectedRawOutlineData, id =>
                 editionComplexesService.getEditionComplexById(id)
             ).outline;
@@ -107,7 +107,7 @@ describe('EditionOutlineService (DONE)', () => {
             expectToEqual(outline, expectedOutline);
         });
 
-        it('... should filter out unknown complexes during instantiation via the computed signal', () => {
+        it('... should hold the edition outline without unknown complexes', () => {
             const getComplexSpy = vi
                 .spyOn(editionComplexesService, 'getEditionComplexById')
                 .mockReturnValueOnce(undefined);
@@ -141,7 +141,7 @@ describe('EditionOutlineService (DONE)', () => {
             getComplexSpy.mockRestore();
         });
 
-        describe('... should compute an empty array if the given raw edition data is', () => {
+        describe('... should hold an empty array if the given raw edition data is', () => {
             it.each([
                 { desc: 'empty array', rawData: [] },
                 { desc: 'null', rawData: null },

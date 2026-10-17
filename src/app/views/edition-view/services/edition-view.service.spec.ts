@@ -83,7 +83,7 @@ describe('EditionViewService (DONE)', () => {
         expect(service).toBeTruthy();
     });
 
-    describe('#_currentViewName()', () => {
+    describe('... signal `_currentViewName`', () => {
         let harness: RouterTestingHarness;
 
         const createFreshServiceWithUrl = async (url: string): Promise<EditionViewService> => {
@@ -116,7 +116,7 @@ describe('EditionViewService (DONE)', () => {
             expectToBe(isSignal(service['_currentViewName']), true);
         });
 
-        it('... should start with holding the parsed view name based on the current router URL', async () => {
+        it('... should hold the parsed view name of the current router URL initially', async () => {
             const freshService = await createFreshServiceWithUrl('/edition/preface');
 
             const result = freshService['_currentViewName']();
@@ -134,7 +134,7 @@ describe('EditionViewService (DONE)', () => {
             expectToBe(freshService['_currentViewName'](), 'sheets');
         });
 
-        it('... should return an empty string if the navigation destination has no primary segments', async () => {
+        it('... should hold an empty string if the navigation destination has no primary segments', async () => {
             const freshService = await createFreshServiceWithUrl('/edition/preface');
 
             await harness.navigateByUrl('/(sidebar:help)');
@@ -143,14 +143,14 @@ describe('EditionViewService (DONE)', () => {
         });
     });
 
-    describe('#viewContext()', () => {
-        it('... should have a signal `viewContext`', () => {
+    describe('... computed signal `viewContext`', () => {
+        it('... should have a computed signal `viewContext`', () => {
             expect(service.viewContext).toBeDefined();
 
             expectToBe(isSignal(service.viewContext), true);
         });
 
-        it('... should return correct context for `intro`', () => {
+        it('... should hold the correct context for `intro`', () => {
             currentViewNameSpy.mockImplementation(() => 'intro');
 
             const context = service.viewContext();
@@ -161,7 +161,7 @@ describe('EditionViewService (DONE)', () => {
             expectToBe(context.isRowtables, false);
         });
 
-        it('... should return correct context for `preface`', () => {
+        it('... should hold the correct context for `preface`', () => {
             currentViewNameSpy.mockImplementation(() => 'preface');
 
             const context = service.viewContext();
@@ -172,7 +172,7 @@ describe('EditionViewService (DONE)', () => {
             expectToBe(context.isRowtables, false);
         });
 
-        it('... should return correct context for `rowtables`', () => {
+        it('... should hold the correct context for `rowtables`', () => {
             currentViewNameSpy.mockImplementation(() => 'rowtables');
 
             const context = service.viewContext();
@@ -183,7 +183,7 @@ describe('EditionViewService (DONE)', () => {
             expectToBe(context.isRowtables, true);
         });
 
-        it('... should handle other view names gracefully', () => {
+        it('... should hold other view names without view flags', () => {
             currentViewNameSpy.mockImplementation(() => 'other-view');
 
             const context = service.viewContext();

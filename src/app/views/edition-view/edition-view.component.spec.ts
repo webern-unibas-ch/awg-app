@@ -197,14 +197,14 @@ describe('EditionViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#breadcrumbItems()', () => {
+        describe('... signal `breadcrumbItems`', () => {
             it('... should have a signal `breadcrumbItems`', () => {
                 expect(component.breadcrumbItems).toBeDefined();
 
                 expectToBe(isSignal(component.breadcrumbItems), true);
             });
 
-            it('... should have triggered the breadcrumb service to get the items for the breadcrumb', () => {
+            it('... should get the items from the breadcrumb service with the view context and the selections', () => {
                 component.breadcrumbItems();
 
                 expectSpyCall(getBreadcrumbItemsSpy, 1, [
@@ -215,7 +215,7 @@ describe('EditionViewComponent (DONE)', () => {
                 ]);
             });
 
-            it('... should return the items from the breadcrumb service', () => {
+            it('... should hold the items of the breadcrumb service', () => {
                 const expectedBreadcrumbs: LabeledRoute[] = [
                     { label: 'Edition', route: ['/edition'] },
                     { label: 'Serie', route: [] },
@@ -229,8 +229,8 @@ describe('EditionViewComponent (DONE)', () => {
             });
         });
 
-        describe('#jumbotronTitle()', () => {
-            it('... should have a signal `jumbotronTitle`', () => {
+        describe('... computed signal `jumbotronTitle`', () => {
+            it('... should have a computed signal `jumbotronTitle`', () => {
                 expect(component.jumbotronTitle).toBeDefined();
                 expectToBe(isSignal(component.jumbotronTitle), true);
             });
