@@ -1,5 +1,5 @@
 /**
- * The ResultNodeKind type.
+ * The ResultGraphNodeKind type.
  *
  * It represents the kind of a graph node, derived from the RDF terms:
  * - `class`: object of an `rdf:type` statement,
@@ -8,7 +8,7 @@
  * - `literal`: literal value,
  * - `resource`: any other IRI.
  */
-export type ResultNodeKind = 'resource' | 'class' | 'instance' | 'blank' | 'literal';
+export type ResultGraphNodeKind = 'resource' | 'class' | 'instance' | 'blank' | 'literal';
 
 /**
  * The ResultGraphNode interface.
@@ -35,7 +35,7 @@ export interface ResultGraphNode {
     /**
      * The kind of the node.
      */
-    readonly kind: ResultNodeKind;
+    readonly kind: ResultGraphNodeKind;
 }
 
 /**

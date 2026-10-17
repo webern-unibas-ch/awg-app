@@ -5,7 +5,9 @@
             class="awg-force-graph-zoom-slider float-start mb-3"
             [zoomConfig]="zoomConfig"
             [(zoomValue)]="zoomValue"
-            (resetRequest)="graphSvg.resetZoom()" />
+            [hasFitButton]="true"
+            (fitRequest)="graphCanvas.zoomToFit()"
+            (resetRequest)="graphCanvas.resetZoom()" />
 
         <!-- Limit -->
         <awg-force-graph-limit
@@ -15,9 +17,9 @@
     </div>
 
     <!-- Graph -->
-    <awg-force-graph-svg
-        #graphSvg
-        class="awg-force-graph-svg-container"
+    <awg-force-graph-canvas
+        #graphCanvas
+        class="awg-force-graph-canvas-container"
         [resultGraph]="limitedResultGraph()"
         [zoomConfig]="zoomConfig"
         [(zoomValue)]="zoomValue"

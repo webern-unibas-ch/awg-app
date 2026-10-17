@@ -158,7 +158,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 expectSpyCall(fetchSvgFileSpy, 1);
                 expectToEqual(
                     mockConsole.get(0),
-                    '[EditionSvgDrawingService]: The fetched file does not contain a valid <svg> element.'
+                    '[EditionSvgDrawingService] The fetched file does not contain a valid <svg> element.'
                 );
                 expect(result).toBeUndefined();
             });

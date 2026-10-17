@@ -88,6 +88,13 @@ Here, we verify the state after test data has been supplied via `setInput`.
 - **Avoid Deeply Nested `describe` Blocks for single Edge Cases:** Instead of nesting `describe('should return null if') { it('url is missing') }`, flatten the test cases into clean, readable sentences:  
   `it('... should have computed signal `versionData` to hold null if awgAppGithubUrl is missing')`
 - **Avoid Redundant Array Assertions:** A single `expectToEqual(array, expectedArray)` (Deep Equal) validates content, structure, and length simultaneously. A separate `expectToBe(array.length, X)` is redundant and should be removed.
+- **Extract Complex Expressions Before the Assertion:** Do not nest method calls with several arguments or inline transforms inside `expect…(...)`. Assign them to descriptively named `const`s first (arrange), then assert on them, separated by a blank line:
+    ```ts
+    const zoomTransform = D3_ZOOM.zoomIdentity.translate(10, 20).scale(2);
+    const zoomedPoint = service.toCanvasPoint({ x: 100, y: 0 }, { transform: zoomTransform, viewport });
+
+    expectToEqual(zoomedPoint, { x: 610, y: 220 });
+    ```
 - **Avoid Router State Mixing:** If a `beforeEach` initializes a specific route, do not navigate away and back within a single `it` block. Create separate, isolated `it` statements for different routing states instead (e.g., `... to hold false when route is not /edition`).
 
 ---
@@ -143,4 +150,4 @@ await TestBed.configureTestingModule({
 - **Wording:** mark them as `(hollow)` instead of `(stubbed)` in test descriptions, e.g. `'... should contain one EditionSheetsPanelComponent (hollow)'`.
 - The hollow children's own coverage does not count in this spec; it comes from their own specs.
 - **Content projection:** children that project content of the component under test (e.g. `ConditionalLinkComponent`, `FormSwitchComponent`) are hollowed with `template: '<ng-content />'`. Assert the projected content on the child's host element and interactions via its API (`childCmp.clicked.emit()`, `childCmp.isClickable()`), not via its internal DOM.
-- **Exception:** children with required view queries stay real, since hollowed their effects throw `NG0951` (child query result is required). For heavy ones (e.g. `EditionSheetViewerSvgComponent` with `viewChild.required(SvgZoomDirective)`), mock their direct injections. Comment why; their test descriptions carry no `(hollow)` mark.
+- **Exception:** children with required view queries stay real, since hollowed their effects throw `NG0951` (child query result is required). Light ones need no mocks (e.g. `CanvasTooltipComponent` with `viewChild.required(NgbTooltip)`); for heavy ones (e.g. `EditionSheetViewerSvgComponent` with `viewChild.required(SvgZoomDirective)`), mock their direct injections. Comment why; their test descriptions carry no `(hollow)` mark.

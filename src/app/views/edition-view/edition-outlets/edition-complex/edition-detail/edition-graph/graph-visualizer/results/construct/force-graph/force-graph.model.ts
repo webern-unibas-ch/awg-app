@@ -1,132 +1,117 @@
-import type { Simulation, SimulationLinkDatum, SimulationNodeDatum } from 'd3-force';
-
-import { ResultGraphEdge, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
+import type { ResultGraphEdge, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
 
 /**
- * The SimNode interface.
+ * The ForceGraphBounds interface.
  *
- * It represents a node of the D3 force simulation.
- * Besides the visible graph nodes, the simulation contains an invisible
- * middle node per edge (without `graphNode`) to space out parallel edges
- * and to position the edge labels.
+ * It represents an area in graph coordinates (e.g., the area in view) by its smallest and largest corner.
  */
-export interface SimNode extends SimulationNodeDatum {
+export interface ForceGraphBounds {
+    /**
+     * The corner with the smallest coordinates (top left).
+     */
+    readonly min: ForceGraphPoint;
+
+    /**
+     * The corner with the largest coordinates (bottom right).
+     */
+    readonly max: ForceGraphPoint;
+}
+
+/**
+ * The ForceGraphData interface.
+ *
+ * It represents the data of a force graph: the nodes (with their positions) and edges to be laid out and drawn.
+ */
+export interface ForceGraphData {
+    /**
+     * All nodes (the visible nodes and the middle nodes of edges that have one).
+     */
+    readonly nodes: ForceGraphNode[];
+
+    /**
+     * The visible nodes, i.e. the nodes of the result graph (without the middle nodes of edges).
+     */
+    readonly visibleNodes: ForceGraphVisibleNode[];
+
+    /**
+     * The edges with their nodes.
+     */
+    readonly edges: ForceGraphEdge[];
+}
+
+/**
+ * The ForceGraphEdge interface.
+ *
+ * It represents an edge of the result graph with its force graph nodes.
+ */
+export interface ForceGraphEdge {
+    /**
+     * The edge of the result graph.
+     */
+    readonly resultEdge: ResultGraphEdge;
+
+    /**
+     * The visible node of the source.
+     */
+    readonly source: ForceGraphVisibleNode;
+
+    /**
+     * The invisible middle node of the edge
+     * (only for self edges and repeated edges between the same two nodes).
+     */
+    readonly mid?: ForceGraphNode;
+
+    /**
+     * The visible node of the target.
+     */
+    readonly target: ForceGraphVisibleNode;
+}
+
+/**
+ * The ForceGraphNode interface.
+ *
+ * It represents a node of the force simulation: a visible node or the invisible middle node of an edge.
+ */
+export interface ForceGraphNode extends ForceGraphPoint {
     /**
      * The unique id of the node.
      */
     readonly id: string;
 
     /**
-     * The graph node (undefined for the middle node of an edge).
+     * The radius of the node (drawn for a visible node); the charge force of the simulation uses `radius - 1`.
      */
-    readonly graphNode?: ResultGraphNode;
+    readonly radius: number;
 
     /**
-     * The radius of the drawn node; the charge force uses `r - 1`.
+     * The x coordinate (writable, unlike that of a point; NaN until the node is laid out).
      */
-    readonly r: number;
+    x: number;
+
+    /**
+     * The y coordinate (writable, unlike that of a point; NaN until the node is laid out).
+     */
+    y: number;
 }
 
 /**
- * The GraphSimNode type.
+ * The ForceGraphVisibleNode interface.
  *
- * It represents a visible node of the D3 force simulation,
- * i.e. a simulation node with its graph node.
+ * It represents a drawn node of the force graph that stands for a node of the result graph.
  */
-export type GraphSimNode = SimNode & {
+export interface ForceGraphVisibleNode extends ForceGraphNode {
     /**
-     * The graph node.
+     * The node of the result graph that the visible node stands for.
      */
-    readonly graphNode: ResultGraphNode;
-};
-
-/**
- * The SimLink type.
- *
- * It represents a link of the D3 force simulation
- * (from the source to the middle node or from the middle node to the target of an edge).
- */
-export type SimLink = SimulationLinkDatum<SimNode>;
-
-/**
- * The ForceSimulation type.
- *
- * It represents the D3 force simulation of a graph.
- */
-export type ForceSimulation = Simulation<SimNode, SimLink>;
-
-/**
- * The SimEdge interface.
- *
- * It represents a graph edge with its simulation nodes.
- */
-export interface SimEdge {
-    /**
-     * The graph edge.
-     */
-    readonly edge: ResultGraphEdge;
-
-    /**
-     * The simulation node of the source.
-     */
-    readonly source: SimNode;
-
-    /**
-     * The invisible middle node of the edge.
-     */
-    readonly mid: SimNode;
-
-    /**
-     * The simulation node of the target.
-     */
-    readonly target: SimNode;
+    readonly resultNode: ResultGraphNode;
 }
 
 /**
- * The SimulationData interface.
+ * The ForceGraphPoint interface.
  *
- * It represents the data of the D3 force simulation of a graph.
+ * It represents a point in graph coordinates (origin in the center of the graph).
  */
-export interface SimulationData {
-    /**
-     * All simulation nodes (graph nodes and middle nodes).
-     */
-    readonly nodes: SimNode[];
-
-    /**
-     * All simulation links (two per edge).
-     */
-    readonly links: SimLink[];
-
-    /**
-     * The edges with their simulation nodes.
-     */
-    readonly edges: SimEdge[];
-}
-
-/**
- * The SvgSize interface.
- *
- * It represents the rendered size (in px) of the svg of the graph.
- */
-export interface SvgSize {
-    /**
-     * The width of the svg.
-     */
-    readonly width: number;
-
-    /**
-     * The height of the svg.
-     */
-    readonly height: number;
-}
-
-/**
- * The Point interface.
- *
- * It represents a point in the coordinate system of the graph.
- */
-export interface Point {
+export interface ForceGraphPoint {
     /**
      * The x coordinate.
      */
