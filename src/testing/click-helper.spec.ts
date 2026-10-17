@@ -14,7 +14,7 @@ describe('click-helper', () => {
             expectToBe(typeof clickAndAwaitChanges, 'function');
         });
 
-        it('... should return early when element is disabled', async () => {
+        it('... should do nothing when element is disabled', async () => {
             const mockHtmlElement = {
                 disabled: true,
                 click: vi.fn(),
@@ -77,7 +77,7 @@ describe('click-helper', () => {
             expectToBe(typeof clickDispatchAndAwaitChanges, 'function');
         });
 
-        it('... should return early when target element is disabled', async () => {
+        it('... should do nothing when target element is disabled', async () => {
             const disabledButton = document.createElement('button');
             disabledButton.disabled = true;
 

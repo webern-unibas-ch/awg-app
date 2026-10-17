@@ -10,17 +10,17 @@ describe('CanvasHelper (DONE)', () => {
             expect(createFakeCanvasContext).toBeDefined();
         });
 
-        it('... should hold no calls initially', () => {
+        it('... should return a context without calls', () => {
             expectToEqual(createFakeCanvasContext().calls, []);
         });
 
-        it('... should hold a canvas with the default size of the backing store', () => {
+        it('... should return a context with a canvas of the default size of the backing store', () => {
             const ctx = createFakeCanvasContext();
 
             expectToEqual({ width: ctx.canvas.width, height: ctx.canvas.height }, { width: 300, height: 150 });
         });
 
-        it('... should hold a canvas with a given size of the backing store', () => {
+        it('... should return a context with a canvas of a given size of the backing store', () => {
             const ctx = createFakeCanvasContext({ width: 800, height: 400 });
 
             expectToEqual({ width: ctx.canvas.width, height: ctx.canvas.height }, { width: 800, height: 400 });
@@ -91,7 +91,7 @@ describe('CanvasHelper (DONE)', () => {
             expectToBe(mediaQueryList.media, '(resolution: 2dppx)');
         });
 
-        it('... should hold all created media query lists', () => {
+        it('... should return all created media query lists', () => {
             const mockMediaQueryLists = stubMatchMedia();
 
             const mediaQueryList1 = window.matchMedia('(resolution: 1dppx)');

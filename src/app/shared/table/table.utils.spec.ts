@@ -213,19 +213,19 @@ describe('TableUtils (DONE)', () => {
                 expect(paginateTableRows).toBeDefined();
             });
 
-            it('... should hold the rows of the first page', () => {
+            it('... should return the rows of the first page', () => {
                 expectToEqual(paginateTableRows(rows, 1, 10), rows.slice(0, 10));
             });
 
-            it('... should hold the rows of a middle page', () => {
+            it('... should return the rows of a middle page', () => {
                 expectToEqual(paginateTableRows(rows, 2, 10), rows.slice(10, 20));
             });
 
-            it('... should hold the remaining rows of the last page', () => {
+            it('... should return the remaining rows of the last page', () => {
                 expectToEqual(paginateTableRows(rows, 3, 10), rows.slice(20, 23));
             });
 
-            it('... should hold no rows for a page out of range', () => {
+            it('... should return no rows for a page out of range', () => {
                 expectToEqual(paginateTableRows(rows, 4, 10), []);
             });
         });

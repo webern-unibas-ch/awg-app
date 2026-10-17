@@ -137,7 +137,7 @@ describe('svg-drawing-helper', () => {
             expect(observer).toBeInstanceOf(MockResizeObserver);
         });
 
-        it('... should hold all created observers', () => {
+        it('... should return all created observers', () => {
             const mockResizeObservers = stubResizeObserver();
 
             const observer1 = new ResizeObserver(vi.fn());
