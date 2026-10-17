@@ -365,10 +365,10 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 expectToBe(canvasZoom.zoomValue(), expectedZoomConfig.initial);
             });
 
-            it('... should pass down `findVisibleNodeAtPoint` as `dragSubject` to the CanvasDragDirective', () => {
+            it('... should pass down `dragSubject` to the CanvasDragDirective', () => {
                 const canvasDrag = getCanvasDrag();
 
-                expectToBe(canvasDrag.dragSubject(), component.findVisibleNodeAtPoint);
+                expectToBe(canvasDrag.dragSubject(), component.dragSubject);
             });
 
             it('... should trigger `onNodeDrag` on a drag move of the CanvasDragDirective', () => {
@@ -871,21 +871,26 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 });
             });
 
-            describe('#findVisibleNodeAtPoint()', () => {
-                it('... should have a method `findVisibleNodeAtPoint`', () => {
-                    expect(component.findVisibleNodeAtPoint).toBeDefined();
+            describe('#dragSubject()', () => {
+                it('... should have a method `dragSubject`', () => {
+                    expect(component.dragSubject).toBeDefined();
                 });
 
-                it('... should find the node at a given point of the canvas', () => {
-                    const foundNode = component.findVisibleNodeAtPoint({ x: 300, y: 100 });
+                it('... should find the node at a given point of the canvas once the layout is calm', () => {
+                    const foundNode = component.dragSubject({ x: 300, y: 100 });
 
                     expectToBe(foundNode?.resultNode, expectedNodes[1]);
                 });
 
-                it('... should find no node in empty space', () => {
-                    const foundNode = component.findVisibleNodeAtPoint({ x: 10, y: 10 });
+                it('... should find no node while a new layout runs (no drag while loading)', async () => {
+                    fixture.componentRef.setInput('resultGraph', expectedNextResultGraph);
+                    await detectChangesOnPush(fixture);
+
+                    const foundNode = component.dragSubject({ x: 300, y: 100 });
+                    const visibleNode = component['_findVisibleNodeAtPoint']({ x: 300, y: 100 });
 
                     expect(foundNode).toBeUndefined();
+                    expect(visibleNode).toBeDefined();
                 });
             });
 
@@ -929,6 +934,24 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 it('... should find no node for a touch event without touches', () => {
                     const touchWithoutTouches = { touches: [] } as unknown as TouchEvent;
                     const foundNode = component['_findVisibleNodeAtEvent'](touchWithoutTouches);
+
+                    expect(foundNode).toBeUndefined();
+                });
+            });
+
+            describe('#_findVisibleNodeAtPoint()', () => {
+                it('... should have a method `_findVisibleNodeAtPoint`', () => {
+                    expect(component['_findVisibleNodeAtPoint']).toBeDefined();
+                });
+
+                it('... should find the node at a given point of the canvas', () => {
+                    const foundNode = component['_findVisibleNodeAtPoint']({ x: 300, y: 100 });
+
+                    expectToBe(foundNode?.resultNode, expectedNodes[1]);
+                });
+
+                it('... should find no node in empty space', () => {
+                    const foundNode = component['_findVisibleNodeAtPoint']({ x: 10, y: 10 });
 
                     expect(foundNode).toBeUndefined();
                 });

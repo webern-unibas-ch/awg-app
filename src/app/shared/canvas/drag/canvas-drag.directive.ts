@@ -95,8 +95,7 @@ export class CanvasDragDirective<T> {
      * Private method: _findGesture.
      *
      * It finds the drag subject at the start point of a given gesture and wraps it (not moved yet).
-     * Without a subject, or for a further touch while another drag is running, d3-drag ignores the gesture
-     * (a new mouse gesture replaces a stale one, e.g. after a mouseup outside the window).
+     * D3-drag ignores a gesture without subject, or a further touch during a drag (a mouse gesture replaces it).
      *
      * @param {CanvasDragEvent<T>} event The given d3 drag event (before the start).
      * @returns {CanvasDragGesture<T> | undefined} The wrapped drag subject (undefined if none is found).

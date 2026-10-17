@@ -20,6 +20,7 @@ import { finalize, Subscription } from 'rxjs';
 
 import * as D3_ZOOM from 'd3-zoom';
 
+import { CanvasPoint } from '@awg-shared/canvas/canvas.model';
 import { CANVAS_UTILS } from '@awg-shared/canvas/canvas.utils';
 import { CanvasDragDirective } from '@awg-shared/canvas/drag/canvas-drag.directive';
 import { CanvasDragMove, CanvasDragSubjectAccessor } from '@awg-shared/canvas/drag/canvas-drag.model';
@@ -46,8 +47,7 @@ import { FORCE_GRAPH_CANVAS_UTILS } from './force-graph-canvas.utils';
  * The ForceGraphCanvas component.
  *
  * It contains the canvas of the {@link ForceGraphComponent}:
- * it lays out the result graph, draws it,
- * and supports zoom, node drag and node clicks.
+ * it lays out the result graph, draws it, and supports zoom, node drag and node clicks.
  */
 @Component({
     selector: 'awg-force-graph-canvas',
@@ -182,12 +182,12 @@ export class ForceGraphCanvasComponent {
     }));
 
     /**
-     * Readonly variable: findVisibleNodeAtPoint.
+     * Readonly variable: dragSubject.
      *
-     * It keeps the drag subject accessor: the visible node at a point of the canvas, if any, is the node to drag.
+     * It keeps the drag subject accessor of the canvas drag: the visible node at a point, if any (none while loading).
      */
-    readonly findVisibleNodeAtPoint: CanvasDragSubjectAccessor<ForceGraphVisibleNode> = point =>
-        FORCE_GRAPH_CANVAS_UTILS.findVisibleNode(this.forceGraphData(), point, this._canvasView());
+    readonly dragSubject: CanvasDragSubjectAccessor<ForceGraphVisibleNode> = point =>
+        this.isLayoutLoading() ? undefined : this._findVisibleNodeAtPoint(point);
 
     /**
      * Readonly variable: zoomFilter.
@@ -393,7 +393,19 @@ export class ForceGraphCanvasComponent {
      */
     private _findVisibleNodeAtEvent(event: MouseEvent | TouchEvent): ForceGraphVisibleNode | undefined {
         const point = CANVAS_UTILS.eventToCanvasPoint(event, this.canvas().nativeElement);
-        return point && this.findVisibleNodeAtPoint(point);
+        return point && this._findVisibleNodeAtPoint(point);
+    }
+
+    /**
+     * Private method: _findVisibleNodeAtPoint.
+     *
+     * It finds the visible node at a given point of the canvas (in css pixels), if any.
+     *
+     * @param {CanvasPoint} point The given point of the canvas.
+     * @returns {ForceGraphVisibleNode | undefined} The found node or undefined.
+     */
+    private _findVisibleNodeAtPoint(point: CanvasPoint): ForceGraphVisibleNode | undefined {
+        return FORCE_GRAPH_CANVAS_UTILS.findVisibleNode(this.forceGraphData(), point, this._canvasView());
     }
 
     /**

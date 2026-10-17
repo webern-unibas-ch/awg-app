@@ -8,7 +8,7 @@
     role="img"
     [attr.aria-label]="ariaLabel()"
     awgCanvasDrag
-    [dragSubject]="findVisibleNodeAtPoint"
+    [dragSubject]="dragSubject"
     (dragMove)="onNodeDrag($event)"
     (dragEnd)="onNodeDragEnd($event)"
     awgCanvasViewport

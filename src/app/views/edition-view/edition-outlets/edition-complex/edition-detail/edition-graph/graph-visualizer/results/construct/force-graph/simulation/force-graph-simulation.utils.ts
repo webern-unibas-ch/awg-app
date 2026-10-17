@@ -272,9 +272,8 @@ function _toD3SimulationNodes(radii: Float32Array, positions: Float32Array): For
 /**
  * Utils method: startSimulation.
  *
- * It starts the D3 force simulation of the given input and runs it in steps (about one per frame),
- * reporting the positions after each step. Once settled, it rests until a node is pinned.
- * A failing step stops the simulation and is reported to the given error callback.
+ * It runs the D3 force simulation of the given input in steps (about one per frame) and reports the positions
+ * after each; settled, it rests until the next pin. A failing step stops it and is reported as error.
  *
  * @param {ForceGraphSimulationInput} input The given simulation input.
  * @param {(progress: ForceGraphSimulationProgress) => void} onProgress The callback for the progress of each step.
