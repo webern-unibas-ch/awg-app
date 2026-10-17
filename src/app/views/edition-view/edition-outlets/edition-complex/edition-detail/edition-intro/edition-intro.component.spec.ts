@@ -190,7 +190,7 @@ describe('IntroComponent (DONE)', () => {
             expectToEqual(component.viewData(), createMockViewData(expectedViewDataContent));
         });
 
-        it('... should have re-computed signal `notesSectionLabel` to hold the expected label when `selectedLanguage` changes', () => {
+        it('... should have recomputed signal `notesSectionLabel` to hold the expected label when `selectedLanguage` changes', () => {
             component.selectedLanguage.set(LanguageId.EN);
 
             expectToEqual(component.notesSectionLabel(), 'Notes');

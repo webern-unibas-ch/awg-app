@@ -241,21 +241,21 @@ describe('StatisticsViewComponent', () => {
                 fixture.detectChanges();
             });
 
-            it('... should have re-computed signal `statisticsData` to hold null', () => {
+            it('... should have recomputed signal `statisticsData` to hold null', () => {
                 expectToEqual(component.statisticsData(), null);
 
                 expectSpyCall(getStatisticsFromOutlineSpy, 0);
             });
 
-            it('... should have re-computed signal `complexBreakdownData` to hold null', () => {
+            it('... should have recomputed signal `complexBreakdownData` to hold null', () => {
                 expectToBe(component.complexBreakdownData(), null);
             });
 
-            it('... should have re-computed signal `overallProgressData` to hold null', () => {
+            it('... should have recomputed signal `overallProgressData` to hold null', () => {
                 expectToBe(component.overallProgressData(), null);
             });
 
-            it('... should have re-computed signal `summaryData` to hold null', () => {
+            it('... should have recomputed signal `summaryData` to hold null', () => {
                 expectToBe(component.summaryData(), null);
             });
         });

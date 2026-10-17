@@ -89,14 +89,14 @@ describe('HeadingComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have updated `id` on div.para', () => {
+            it('... should render the provided `id` on div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
                 const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                 expectToBe(divEl.id, expectedId);
             });
 
-            it('... should have updated `title` on h3', () => {
+            it('... should render the provided `title` in h3', () => {
                 const hDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 

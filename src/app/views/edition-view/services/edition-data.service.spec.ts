@@ -556,6 +556,10 @@ describe('EditionDataService (DONE)', () => {
                     .mockReturnValue(observableOf(new IntroList()));
             });
 
+            it('... should have a method `_getIntroData`', () => {
+                expect(service['_getIntroData']).toBeDefined();
+            });
+
             it('... should return a signal initialized with an empty IntroList fallback', () => {
                 const resultSignal = TestBed.runInInjectionContext(
                     () => service['_getIntroData']() as Signal<IntroList>

@@ -200,19 +200,19 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.height(), expectedHeight);
         });
 
-        it('... should have updated `showPercentageLabel` to hold the provided value', () => {
+        it('... should have input signal `showPercentageLabel` to hold the provided value', () => {
             expectToBe(component.showPercentageLabel(), expectedShowPercentageLabel);
         });
 
-        it('... should have updated `boldPercentageLabel` to hold the provided value', () => {
+        it('... should have input signal `boldPercentageLabel` to hold the provided value', () => {
             expectToBe(component.boldPercentageLabel(), expectedBoldPercentageLabel);
         });
 
-        it('... should have updated `customType` to hold the provided type', () => {
+        it('... should have input signal `customType` to hold the provided type', () => {
             expectToBe(component.customType(), expectedCustomType);
         });
 
-        it('... should have updated `useCustomTypeOnly` to hold the provided value', () => {
+        it('... should have input signal `useCustomTypeOnly` to hold the provided value', () => {
             expectToBe(component.useCustomTypeOnly(), expectedUseCustomTypeOnly);
         });
 

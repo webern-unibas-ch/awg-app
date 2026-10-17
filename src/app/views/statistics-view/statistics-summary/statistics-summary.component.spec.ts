@@ -120,7 +120,7 @@ describe('StatisticsSummaryComponent', () => {
             });
         });
 
-        it('... should have re-computed signal `summaryCards` to hold empty array if no summaryData is provided', () => {
+        it('... should have recomputed signal `summaryCards` to hold empty array if no summaryData is provided', () => {
             fixture.componentRef.setInput('summaryData', null);
 
             fixture.detectChanges();
