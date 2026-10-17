@@ -93,28 +93,20 @@ describe('GraphEditorActionButtonsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should emit only `queryRequest` on click of the Query button', async () => {
-                await clickAndAwaitChanges(btnDes[0], fixture);
+            describe('... should emit only', () => {
+                it.each([
+                    { desc: '`queryRequest` on click of the Query button', index: 0, calls: [1, 0, 0] },
+                    { desc: '`resetRequest` on click of the Reset button', index: 1, calls: [0, 1, 0] },
+                    { desc: '`clearRequest` on click of the Clear button', index: 2, calls: [0, 0, 1] },
+                ])('... $desc', async ({ index, calls }) => {
+                    const [queryCalls, resetCalls, clearCalls] = calls;
 
-                expectSpyCall(emitQueryRequestSpy, 1);
-                expectSpyCall(emitResetRequestSpy, 0);
-                expectSpyCall(emitClearRequestSpy, 0);
-            });
+                    await clickAndAwaitChanges(btnDes[index], fixture);
 
-            it('... should emit only `resetRequest` on click of the Reset button', async () => {
-                await clickAndAwaitChanges(btnDes[1], fixture);
-
-                expectSpyCall(emitQueryRequestSpy, 0);
-                expectSpyCall(emitResetRequestSpy, 1);
-                expectSpyCall(emitClearRequestSpy, 0);
-            });
-
-            it('... should emit only `clearRequest` on click of the Clear button', async () => {
-                await clickAndAwaitChanges(btnDes[2], fixture);
-
-                expectSpyCall(emitQueryRequestSpy, 0);
-                expectSpyCall(emitResetRequestSpy, 0);
-                expectSpyCall(emitClearRequestSpy, 1);
+                    expectSpyCall(emitQueryRequestSpy, queryCalls);
+                    expectSpyCall(emitResetRequestSpy, resetCalls);
+                    expectSpyCall(emitClearRequestSpy, clearCalls);
+                });
             });
         });
     });

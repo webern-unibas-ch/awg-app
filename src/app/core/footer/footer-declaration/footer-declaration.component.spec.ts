@@ -150,30 +150,10 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 expectToBe(component.versionData(), null);
             });
 
-            it('... `awgAppGithubUrl` is empty', () => {
+            it.each(['awgAppGithubUrl', 'awgAppVersion', 'awgAppVersionReleaseDate'])('... `%s` is empty', key => {
                 const incompletePageMetaData = {
                     ...expectedPageMetaData,
-                    awgAppGithubUrl: '',
-                } as MetaPage;
-                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
-
-                expectToBe(component.versionData(), null);
-            });
-
-            it('... `awgAppVersion` is empty', () => {
-                const incompletePageMetaData = {
-                    ...expectedPageMetaData,
-                    awgAppVersion: '',
-                } as MetaPage;
-                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
-
-                expectToBe(component.versionData(), null);
-            });
-
-            it('... `awgAppVersionReleaseDate` is empty', () => {
-                const incompletePageMetaData = {
-                    ...expectedPageMetaData,
-                    awgAppVersionReleaseDate: '',
+                    [key]: '',
                 } as MetaPage;
                 fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
 

@@ -87,16 +87,14 @@ describe('ClickDirective (DONE)', () => {
             expectToBe(isSignal(getDirective('div.test-div').clickOnSpace), true);
         });
 
-        it('... should hold true by default for elements that are no links', () => {
-            expectToBe(getDirective('div.test-div').clickOnSpace(), true);
-        });
-
-        it('... should hold false by default for anchors', () => {
-            expectToBe(getDirective('a.test-link').clickOnSpace(), false);
-        });
-
-        it('... should hold false by default for elements with role `link`', () => {
-            expectToBe(getDirective('span.test-role-link').clickOnSpace(), false);
+        describe('... should hold by default', () => {
+            it.each([
+                { desc: 'true for elements that are no links', selector: 'div.test-div', expected: true },
+                { desc: 'false for anchors', selector: 'a.test-link', expected: false },
+                { desc: 'false for elements with role `link`', selector: 'span.test-role-link', expected: false },
+            ])('... $desc', ({ selector, expected }) => {
+                expectToBe(getDirective(selector).clickOnSpace(), expected);
+            });
         });
 
         it('... should hold the provided value', async () => {

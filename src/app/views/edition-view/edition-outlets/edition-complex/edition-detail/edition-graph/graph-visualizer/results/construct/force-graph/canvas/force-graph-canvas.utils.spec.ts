@@ -435,23 +435,27 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(isLabelInView).toBeDefined();
             });
 
-            it('... should return true for a label reaching into the view from a start outside it', () => {
-                // An estimated width of 5 * 10 * LABEL_CHAR_WIDTH (0.7) = 35
-                const isInView = isLabelInView(-20, 50, 'abcde', 10, squareViewBounds);
+            // An estimated width of 5 * 10 * LABEL_CHAR_WIDTH (0.7) = 35 for 'abcde', 70 for 'abcdefghij'
+            describe('... should return', () => {
+                it.each([
+                    {
+                        desc: 'true for a label reaching into the view from a start outside it',
+                        x: -20,
+                        label: 'abcde',
+                        expected: true,
+                    },
+                    { desc: 'false for a label ending before the view', x: -40, label: 'abcde', expected: false },
+                    {
+                        desc: 'true for a longer label from the same start reaching into the view',
+                        x: -40,
+                        label: 'abcdefghij',
+                        expected: true,
+                    },
+                ])('... $desc', ({ x, label, expected }) => {
+                    const isInView = isLabelInView(x, 50, label, 10, squareViewBounds);
 
-                expectToBe(isInView, true);
-            });
-
-            it('... should return false for a label ending before the view', () => {
-                const isInView = isLabelInView(-40, 50, 'abcde', 10, squareViewBounds);
-
-                expectToBe(isInView, false);
-            });
-
-            it('... should return true for a longer label from the same start reaching into the view', () => {
-                const isInView = isLabelInView(-40, 50, 'abcdefghij', 10, squareViewBounds);
-
-                expectToBe(isInView, true);
+                    expectToBe(isInView, expected);
+                });
             });
         });
 

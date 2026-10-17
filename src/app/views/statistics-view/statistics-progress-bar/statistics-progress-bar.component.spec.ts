@@ -738,59 +738,37 @@ describe('StatisticsProgressBarComponent', () => {
         });
 
         describe('... should have recomputed signal `progressHeaderValue` when input changes', () => {
-            it('... should hold empty string when mode is percentage', () => {
-                fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 75 });
-                fixture.detectChanges();
-
-                expectToBe(component.progressHeaderValue(), '');
-            });
-
-            it('... should hold active/total ratio as string in ratio mode', () => {
-                const config: StatisticsProgressBarConfig = {
-                    mode: 'ratio',
-                    active: 75,
-                    total: 120,
-                };
+            it.each<{ desc: string; config: StatisticsProgressBarConfig; expected: string }>([
+                {
+                    desc: 'an empty string in percentage mode',
+                    config: { mode: 'percentage', percentage: 75 },
+                    expected: '',
+                },
+                {
+                    desc: 'the active/total ratio as string in ratio mode',
+                    config: { mode: 'ratio', active: 75, total: 120 },
+                    expected: '75 / 120',
+                },
+                {
+                    desc: '"0 / 0" in ratio mode when active and total are 0',
+                    config: { mode: 'ratio', active: 0, total: 0 },
+                    expected: '0 / 0',
+                },
+                {
+                    desc: 'the active value as string in absolute mode',
+                    config: { mode: 'absolute', active: 75, total: 120 },
+                    expected: '75',
+                },
+                {
+                    desc: '"0" in absolute mode when active is 0',
+                    config: { mode: 'absolute', active: 0, total: 0 },
+                    expected: '0',
+                },
+            ])('... should hold $desc', ({ config, expected }) => {
                 fixture.componentRef.setInput('config', config);
                 fixture.detectChanges();
 
-                expectToBe(component.progressHeaderValue(), '75 / 120');
-            });
-
-            it('... should hold "0 / 0" in ratio mode when active and total are 0', () => {
-                const config: StatisticsProgressBarConfig = {
-                    mode: 'ratio',
-                    active: 0,
-                    total: 0,
-                };
-                fixture.componentRef.setInput('config', config);
-                fixture.detectChanges();
-
-                expectToBe(component.progressHeaderValue(), '0 / 0');
-            });
-
-            it('... should hold active value as string in absolute mode', () => {
-                const config: StatisticsProgressBarConfig = {
-                    mode: 'absolute',
-                    active: 75,
-                    total: 120,
-                };
-                fixture.componentRef.setInput('config', config);
-                fixture.detectChanges();
-
-                expectToBe(component.progressHeaderValue(), '75');
-            });
-
-            it('... should hold "0" in absolute mode when active is 0', () => {
-                const config: StatisticsProgressBarConfig = {
-                    mode: 'absolute',
-                    active: 0,
-                    total: 0,
-                };
-                fixture.componentRef.setInput('config', config);
-                fixture.detectChanges();
-
-                expectToBe(component.progressHeaderValue(), '0');
+                expectToBe(component.progressHeaderValue(), expected);
             });
         });
 

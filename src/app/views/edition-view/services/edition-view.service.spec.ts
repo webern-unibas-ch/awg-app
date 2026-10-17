@@ -150,48 +150,28 @@ describe('EditionViewService (DONE)', () => {
             expectToBe(isSignal(service.viewContext), true);
         });
 
-        it('... should hold the correct context for `intro`', () => {
-            currentViewNameSpy.mockImplementation(() => 'intro');
+        describe('... should hold the correct context for', () => {
+            it.each<{ desc: string; viewName: string; isIntro: boolean; isPreface: boolean; isRowtables: boolean }>([
+                { desc: '`intro`', viewName: 'intro', isIntro: true, isPreface: false, isRowtables: false },
+                { desc: '`preface`', viewName: 'preface', isIntro: false, isPreface: true, isRowtables: false },
+                { desc: '`rowtables`', viewName: 'rowtables', isIntro: false, isPreface: false, isRowtables: true },
+                {
+                    desc: 'other views (without view flags)',
+                    viewName: 'other-view',
+                    isIntro: false,
+                    isPreface: false,
+                    isRowtables: false,
+                },
+            ])('... $desc', ({ viewName, isIntro, isPreface, isRowtables }) => {
+                currentViewNameSpy.mockImplementation(() => viewName);
 
-            const context = service.viewContext();
+                const context = service.viewContext();
 
-            expectToBe(context.name, 'intro');
-            expectToBe(context.isIntro, true);
-            expectToBe(context.isPreface, false);
-            expectToBe(context.isRowtables, false);
-        });
-
-        it('... should hold the correct context for `preface`', () => {
-            currentViewNameSpy.mockImplementation(() => 'preface');
-
-            const context = service.viewContext();
-
-            expectToBe(context.name, 'preface');
-            expectToBe(context.isIntro, false);
-            expectToBe(context.isPreface, true);
-            expectToBe(context.isRowtables, false);
-        });
-
-        it('... should hold the correct context for `rowtables`', () => {
-            currentViewNameSpy.mockImplementation(() => 'rowtables');
-
-            const context = service.viewContext();
-
-            expectToBe(context.name, 'rowtables');
-            expectToBe(context.isIntro, false);
-            expectToBe(context.isPreface, false);
-            expectToBe(context.isRowtables, true);
-        });
-
-        it('... should hold other view names without view flags', () => {
-            currentViewNameSpy.mockImplementation(() => 'other-view');
-
-            const context = service.viewContext();
-
-            expectToBe(context.name, 'other-view');
-            expectToBe(context.isIntro, false);
-            expectToBe(context.isPreface, false);
-            expectToBe(context.isRowtables, false);
+                expectToBe(context.name, viewName);
+                expectToBe(context.isIntro, isIntro);
+                expectToBe(context.isPreface, isPreface);
+                expectToBe(context.isRowtables, isRowtables);
+            });
         });
     });
 

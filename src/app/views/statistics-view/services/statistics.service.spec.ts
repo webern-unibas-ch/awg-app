@@ -190,16 +190,12 @@ describe('StatisticsService', () => {
         });
 
         describe('... should return 0 when ...', () => {
-            it('... total is 0', () => {
-                expectToBe(service['_calculateProgressRate'](10, 0), 0);
-            });
-
-            it('... active is 0', () => {
-                expectToBe(service['_calculateProgressRate'](0, 10), 0);
-            });
-
-            it('... both active and total are 0', () => {
-                expectToBe(service['_calculateProgressRate'](0, 0), 0);
+            it.each([
+                { desc: 'total is 0', active: 10, total: 0 },
+                { desc: 'active is 0', active: 0, total: 10 },
+                { desc: 'both active and total are 0', active: 0, total: 0 },
+            ])('... $desc', ({ active, total }) => {
+                expectToBe(service['_calculateProgressRate'](active, total), 0);
             });
         });
 

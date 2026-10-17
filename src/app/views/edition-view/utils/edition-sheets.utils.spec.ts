@@ -138,16 +138,12 @@ describe('EditionSheetsUtils (DONE)', () => {
             });
 
             describe('... should return undefined if', () => {
-                it('... no sheet id is given', () => {
-                    expect(findSvgSheet(expectedSheets, '')).toBeUndefined();
-                });
-
-                it('... the given sheet id is not in the given sheet list', () => {
-                    expect(findSvgSheet(expectedSheets, 'unknown-id')).toBeUndefined();
-                });
-
-                it('... the given partial is not in the given sheet', () => {
-                    expect(findSvgSheet(expectedSheets, 'test-2z')).toBeUndefined();
+                it.each([
+                    { desc: 'no sheet id is given', sheetId: '' },
+                    { desc: 'the given sheet id is not in the given sheet list', sheetId: 'unknown-id' },
+                    { desc: 'the given partial is not in the given sheet', sheetId: 'test-2z' },
+                ])('... $desc', ({ sheetId }) => {
+                    expect(findSvgSheet(expectedSheets, sheetId)).toBeUndefined();
                 });
 
                 it('... the found sheet has no content', () => {

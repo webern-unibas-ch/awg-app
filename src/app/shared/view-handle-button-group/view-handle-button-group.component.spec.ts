@@ -301,22 +301,14 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             describe('... output `viewChangeRequest`', () => {
-                it('... should emit GRAPH by change event from GRAPH radio button', () => {
-                    getInputEls()[0].dispatchEvent(new Event('change'));
+                it.each([
+                    { desc: 'GRAPH', index: 0, viewType: ViewHandleTypes.GRAPH },
+                    { desc: 'TABLE', index: 1, viewType: ViewHandleTypes.TABLE },
+                    { desc: 'GRID', index: 2, viewType: ViewHandleTypes.GRID },
+                ])('... should emit $desc by change event from $desc radio button', ({ index, viewType }) => {
+                    getInputEls()[index].dispatchEvent(new Event('change'));
 
-                    expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.GRAPH);
-                });
-
-                it('... should emit TABLE by change event from TABLE radio button', () => {
-                    getInputEls()[1].dispatchEvent(new Event('change'));
-
-                    expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.TABLE);
-                });
-
-                it('... should emit GRID by change event from GRID radio button', () => {
-                    getInputEls()[2].dispatchEvent(new Event('change'));
-
-                    expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.GRID);
+                    expectSpyCall(viewChangeRequestSpy, 1, viewType);
                 });
             });
 

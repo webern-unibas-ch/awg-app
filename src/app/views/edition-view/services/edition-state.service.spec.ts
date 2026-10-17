@@ -66,22 +66,16 @@ describe('EditionStateService (DONE)', () => {
         expect(editionStateService).toBeTruthy();
     });
 
-    it('... should have signal `_selectedEditionComplexSignal`', () => {
-        expectToBe(isSignal(editionStateService['_selectedEditionComplexSignal']), true);
+    describe('... should have a private selection signal to hold null', () => {
+        it.each([
+            '_selectedEditionComplexSignal',
+            '_selectedEditionSeriesSignal',
+            '_selectedEditionSectionSignal',
+        ] as const)('... `%s`', signalName => {
+            expectToBe(isSignal(editionStateService[signalName]), true);
 
-        expectToBe(editionStateService['_selectedEditionComplexSignal'](), null);
-    });
-
-    it('... should have signal `_selectedEditionSeriesSignal`', () => {
-        expectToBe(isSignal(editionStateService['_selectedEditionSeriesSignal']), true);
-
-        expectToBe(editionStateService['_selectedEditionSeriesSignal'](), null);
-    });
-
-    it('... should have signal `_selectedEditionSectionSignal`', () => {
-        expectToBe(isSignal(editionStateService['_selectedEditionSectionSignal']), true);
-
-        expectToBe(editionStateService['_selectedEditionSectionSignal'](), null);
+            expectToBe(editionStateService[signalName](), null);
+        });
     });
 
     it('... should have signal `selectedEditionComplex` to hold null', () => {

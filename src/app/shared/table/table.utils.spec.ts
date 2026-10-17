@@ -213,20 +213,15 @@ describe('TableUtils (DONE)', () => {
                 expect(paginateTableRows).toBeDefined();
             });
 
-            it('... should return the rows of the first page', () => {
-                expectToEqual(paginateTableRows(rows, 1, 10), rows.slice(0, 10));
-            });
-
-            it('... should return the rows of a middle page', () => {
-                expectToEqual(paginateTableRows(rows, 2, 10), rows.slice(10, 20));
-            });
-
-            it('... should return the remaining rows of the last page', () => {
-                expectToEqual(paginateTableRows(rows, 3, 10), rows.slice(20, 23));
-            });
-
-            it('... should return no rows for a page out of range', () => {
-                expectToEqual(paginateTableRows(rows, 4, 10), []);
+            describe('... should return', () => {
+                it.each([
+                    { desc: 'the rows of the first page', page: 1, expected: rows.slice(0, 10) },
+                    { desc: 'the rows of a middle page', page: 2, expected: rows.slice(10, 20) },
+                    { desc: 'the remaining rows of the last page', page: 3, expected: rows.slice(20, 23) },
+                    { desc: 'no rows for a page out of range', page: 4, expected: [] },
+                ])('... $desc', ({ page, expected }) => {
+                    expectToEqual(paginateTableRows(rows, page, 10), expected);
+                });
             });
         });
     });
