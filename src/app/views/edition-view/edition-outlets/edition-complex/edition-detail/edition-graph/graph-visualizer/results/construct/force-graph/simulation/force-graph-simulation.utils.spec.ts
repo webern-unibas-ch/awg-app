@@ -505,6 +505,18 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                     expectToBe(results.length, 2 * SMALL_GRAPH.TICKS);
                     expect(scheduler.pendingStep).toBeDefined();
                 });
+
+                it('... should not pin a node at an invalid index (nor wake up a settled simulation)', () => {
+                    const scheduler = new FakeScheduler();
+                    const { simulation } = startSimulationWith(createSimulationInput(10), scheduler);
+                    scheduler.runUntilSettled();
+                    const invalidIndices = [-1, 10, 1.5, '__proto__' as unknown as number];
+
+                    invalidIndices.forEach(index => simulation.pin(index, pinPoint));
+
+                    expect(scheduler.pendingStep).toBeUndefined();
+                    expectToBe(Object.hasOwn(Array.prototype, 'fx'), false);
+                });
             });
 
             describe('... release', () => {
@@ -567,6 +579,19 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                         expect(ticksAfterRelease).toBeLessThanOrEqual(LARGE_GRAPH.RELEASE_TICKS + 1);
                     }
                 );
+
+                it('... should not release a node at an invalid index (the pinned node stays at its point)', () => {
+                    const scheduler = new FakeScheduler();
+                    const { simulation, results } = startSimulationWith(createSimulationInput(10), scheduler);
+                    simulation.pin(0, { x: 500, y: 600 });
+
+                    simulation.release(10);
+                    scheduler.runStep();
+                    const { positions } = results[results.length - 1];
+                    const pinnedNodePosition = [positions[0], positions[1]];
+
+                    expectToEqual(pinnedNodePosition, [500, 600]);
+                });
             });
 
             describe('... dispose', () => {

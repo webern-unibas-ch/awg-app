@@ -173,17 +173,38 @@ function _createD3Simulation(
 }
 
 /**
+ * Private utils method: _findD3Node.
+ *
+ * It finds the simulation node at the given index, if it is a valid index of the given simulation nodes
+ * (the index of a command comes from a worker message).
+ *
+ * @param {ForceGraphD3SimulationNode[]} d3Nodes The given simulation nodes.
+ * @param {number} index The given index.
+ * @returns {ForceGraphD3SimulationNode | undefined} The simulation node, if any.
+ */
+function _findD3Node(d3Nodes: ForceGraphD3SimulationNode[], index: number): ForceGraphD3SimulationNode | undefined {
+    return Number.isInteger(index) && index >= 0 && index < d3Nodes.length ? d3Nodes[index] : undefined;
+}
+
+/**
  * Private utils method: _fixNode.
  *
- * It fixes the given simulation node at the given point, or frees it without a point.
+ * It fixes the simulation node at the given index at the given point, or frees it without a point,
+ * if the index is valid (see `_findD3Node`).
  *
- * @param {ForceGraphD3SimulationNode} node The given simulation node.
+ * @param {ForceGraphD3SimulationNode[]} d3Nodes The given simulation nodes.
+ * @param {number} index The given index of the node.
  * @param {ForceGraphPoint} [point] The given point (in graph coordinates).
- * @returns {void} Sets the fixed position of the node.
+ * @returns {boolean} The flag if the node has been fixed or freed (false for an invalid index).
  */
-function _fixNode(node: ForceGraphD3SimulationNode, point?: ForceGraphPoint): void {
-    node.fx = point?.x ?? null;
-    node.fy = point?.y ?? null;
+function _fixNode(d3Nodes: ForceGraphD3SimulationNode[], index: number, point?: ForceGraphPoint): boolean {
+    const d3Node = _findD3Node(d3Nodes, index);
+    if (!d3Node) {
+        return false;
+    }
+    d3Node.fx = point?.x ?? null;
+    d3Node.fy = point?.y ?? null;
+    return true;
 }
 
 /**
@@ -308,14 +329,20 @@ export function startSimulation(
 
     return {
         pin: (index, point) => {
-            _fixNode(d3Nodes[index], point);
+            const isPinned = _fixNode(d3Nodes, index, point);
+            if (!isPinned) {
+                return;
+            }
             d3Simulation.alphaTarget(ALPHA_TARGET_DRAG).alphaDecay(alphaDecay);
             isInitialLayout = false;
             // Wakes up a resting simulation
             cancelStep ??= scheduler.schedule(step, PROGRESS_INTERVAL_MS);
         },
         release: index => {
-            _fixNode(d3Nodes[index]);
+            const isReleased = _fixNode(d3Nodes, index);
+            if (!isReleased) {
+                return;
+            }
             d3Simulation.alphaTarget(0).alphaDecay(releaseAlphaDecay);
         },
         dispose: () => cancelStep?.(),
