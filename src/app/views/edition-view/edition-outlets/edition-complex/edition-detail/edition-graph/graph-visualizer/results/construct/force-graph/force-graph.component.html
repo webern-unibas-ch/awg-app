@@ -1,8 +1,8 @@
 <div class="awg-force-graph-container" [style.height.px]="height()">
     <div class="awg-force-graph-icon-bar">
         <!-- Slider -->
-        <awg-slider-zoom
-            class="awg-force-graph-slider-zoom float-start mb-3"
+        <awg-zoom-slider
+            class="awg-force-graph-zoom-slider float-start mb-3"
             [zoomConfig]="zoomConfig"
             [(zoomValue)]="zoomValue"
             (resetRequest)="graphSvg.resetZoom()" />

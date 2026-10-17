@@ -129,7 +129,7 @@ describe('SvgZoomDirective (DONE)', () => {
             });
 
             it('... should set the rounded scale and the target transform on zoom by d3', () => {
-                directive['_svg'].call(directive['_zoomBehaviour'].scaleTo, 2.345);
+                directive['_selection'].call(directive['_zoomBehaviour'].scaleTo, 2.345);
 
                 expectToBe(directive.zoomValue(), 2.35);
                 expectToBe(host.scale(), 2.35);
@@ -137,7 +137,7 @@ describe('SvgZoomDirective (DONE)', () => {
             });
 
             it('... should not zoom again for a scale set by d3 itself', () => {
-                directive['_svg'].call(directive['_zoomBehaviour'].scaleTo, 2.345);
+                directive['_selection'].call(directive['_zoomBehaviour'].scaleTo, 2.345);
                 const scaleToSpy = vi.spyOn(directive['_zoomBehaviour'], 'scaleTo');
 
                 fixture.detectChanges();
@@ -154,8 +154,8 @@ describe('SvgZoomDirective (DONE)', () => {
                 });
 
                 it('... should reset scale and translation to the initial zoom and the origin', () => {
-                    directive['_svg'].call(directive['_zoomBehaviour'].scaleTo, 3);
-                    directive['_svg'].call(directive['_zoomBehaviour'].translateBy, 20, 30);
+                    directive['_selection'].call(directive['_zoomBehaviour'].scaleTo, 3);
+                    directive['_selection'].call(directive['_zoomBehaviour'].translateBy, 20, 30);
 
                     directive.reset();
 

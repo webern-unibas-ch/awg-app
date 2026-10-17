@@ -16,7 +16,7 @@ import {
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 import { createTestTkkOverlay, patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
 
-import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
+import { ZoomSliderComponent } from '@awg-shared/zoom/zoom-slider.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
@@ -80,7 +80,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             ],
         })
             .overrideComponent(EditionSheetViewerNavComponent, { set: { template: '', imports: [] } })
-            .overrideComponent(SliderZoomComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ZoomSliderComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -163,37 +163,37 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             });
 
             describe('... icon bar', () => {
-                it('... should contain one SliderZoomComponent (hollow) with `zoomConfig` and `zoomValue`', async () => {
+                it('... should contain one ZoomSliderComponent (hollow) with `zoomConfig` and `zoomValue`', async () => {
                     component.zoomValue.set(2.5);
                     await detectChangesOnPush(fixture);
 
-                    const sliderZoomDes = getAndExpectDebugElementByDirective(
+                    const zoomSliderDes = getAndExpectDebugElementByDirective(
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-viewer-icon-bar', 1, 1)[0],
-                        SliderZoomComponent,
+                        ZoomSliderComponent,
                         1,
                         1
                     );
-                    const sliderZoomCmp = sliderZoomDes[0].injector.get(SliderZoomComponent);
+                    const zoomSliderCmp = zoomSliderDes[0].injector.get(ZoomSliderComponent);
 
-                    expectToEqual(sliderZoomCmp.zoomConfig(), expectedZoomConfig);
-                    expectToBe(sliderZoomCmp.zoomValue(), 2.5);
+                    expectToEqual(zoomSliderCmp.zoomConfig(), expectedZoomConfig);
+                    expectToBe(zoomSliderCmp.zoomValue(), 2.5);
                 });
 
-                it('... should sync a value change of the SliderZoomComponent (hollow) to `zoomValue` and the sheet svg', async () => {
-                    const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
+                it('... should sync a value change of the ZoomSliderComponent (hollow) to `zoomValue` and the sheet svg', async () => {
+                    const zoomSliderDes = getAndExpectDebugElementByDirective(compDe, ZoomSliderComponent, 1, 1);
 
-                    sliderZoomDes[0].injector.get(SliderZoomComponent).zoomValue.set(7.5);
+                    zoomSliderDes[0].injector.get(ZoomSliderComponent).zoomValue.set(7.5);
                     await detectChangesOnPush(fixture);
 
                     expectToBe(component.zoomValue(), 7.5);
                     expectToBe(getSheetSvgCmp().zoomValue(), 7.5);
                 });
 
-                it('... should trigger `resetZoom` of the sheet svg on reset request of the SliderZoomComponent (hollow)', async () => {
+                it('... should trigger `resetZoom` of the sheet svg on reset request of the ZoomSliderComponent (hollow)', async () => {
                     const resetZoomSpy = vi.spyOn(getSheetSvgCmp(), 'resetZoom');
-                    const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
+                    const zoomSliderDes = getAndExpectDebugElementByDirective(compDe, ZoomSliderComponent, 1, 1);
 
-                    sliderZoomDes[0].injector.get(SliderZoomComponent).resetRequest.emit();
+                    zoomSliderDes[0].injector.get(ZoomSliderComponent).resetRequest.emit();
 
                     expectSpyCall(resetZoomSpy, 1);
                 });
