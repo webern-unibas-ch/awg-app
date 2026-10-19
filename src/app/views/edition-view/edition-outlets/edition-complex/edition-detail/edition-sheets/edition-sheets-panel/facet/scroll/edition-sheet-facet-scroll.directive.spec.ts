@@ -74,7 +74,8 @@ describe('EditionSheetFacetScrollDirective (DONE)', () => {
 
         fixture.detectChanges();
 
-        listEl = getAndExpectDebugElementByCss(compDe, 'div.test-list', 1, 1)[0].nativeElement;
+        const listDes = getAndExpectDebugElementByCss(compDe, 'div.test-list', 1, 1);
+        listEl = listDes[0].nativeElement;
 
         // Mock scrollTop: real browsers clamp it to the (here tiny) scrollable height, jsdom does not
         let mockScrollTop = 0;

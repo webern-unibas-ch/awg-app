@@ -31,10 +31,10 @@ describe('FormSwitchComponent (DONE)', () => {
     let expectedInputId: string;
 
     const getFormSwitchDes = () => getAndExpectDebugElementByCss(compDe, 'div.form-check.form-switch', 1, 1);
-    const getInputEl = (): HTMLInputElement =>
-        getAndExpectDebugElementByCss(getFormSwitchDes()[0], 'input.form-check-input', 1, 1)[0].nativeElement;
-    const getLabelEl = (): HTMLLabelElement =>
-        getAndExpectDebugElementByCss(getFormSwitchDes()[0], 'label.form-check-label', 1, 1)[0].nativeElement;
+    const getInputDes = () => getAndExpectDebugElementByCss(getFormSwitchDes()[0], 'input.form-check-input', 1, 1);
+    const getInputEl = (): HTMLInputElement => getInputDes()[0].nativeElement;
+    const getLabelDes = () => getAndExpectDebugElementByCss(getFormSwitchDes()[0], 'label.form-check-label', 1, 1);
+    const getLabelEl = (): HTMLLabelElement => getLabelDes()[0].nativeElement;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -137,8 +137,9 @@ describe('FormSwitchComponent (DONE)', () => {
                 );
                 const labelDes = getAndExpectDebugElementByCss(switchDes[0], 'label.form-check-label', 1, 1);
                 const projectedDes = getAndExpectDebugElementByCss(labelDes[0], 'span.test-label', 1, 1);
+                const projectedEl: HTMLSpanElement = projectedDes[0].nativeElement;
 
-                expectToBe(projectedDes[0].nativeElement.textContent, 'Label');
+                expectToBe(projectedEl.textContent, 'Label');
             });
         });
     });

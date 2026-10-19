@@ -127,14 +127,18 @@ describe('rdfstore-helper', () => {
         });
 
         it('... should create a node with interface name and nominal value', () => {
-            expectToEqual(createRdfStoreNode('NamedNode', 'http://example.org/a'), {
+            const rdfStoreNode = createRdfStoreNode('NamedNode', 'http://example.org/a');
+
+            expectToEqual(rdfStoreNode, {
                 interfaceName: 'NamedNode',
                 nominalValue: 'http://example.org/a',
             });
         });
 
         it('... should add the given extra properties', () => {
-            expectToEqual(createRdfStoreNode('Literal', 'x', { language: 'de' }), {
+            const rdfStoreNode = createRdfStoreNode('Literal', 'x', { language: 'de' });
+
+            expectToEqual(rdfStoreNode, {
                 interfaceName: 'Literal',
                 nominalValue: 'x',
                 language: 'de',
@@ -148,14 +152,20 @@ describe('rdfstore-helper', () => {
         });
 
         it('... should create a token with type and value', () => {
-            expectToEqual(createRdfStoreToken('uri', 'http://example.org/a'), {
+            const rdfStoreToken = createRdfStoreToken('uri', 'http://example.org/a');
+
+            expectToEqual(rdfStoreToken, {
                 token: 'uri',
                 value: 'http://example.org/a',
             });
         });
 
         it('... should add the given extra properties', () => {
-            expectToEqual(createRdfStoreToken('literal', 5, { type: 'http://www.w3.org/2001/XMLSchema#integer' }), {
+            const rdfStoreToken = createRdfStoreToken('literal', 5, {
+                type: 'http://www.w3.org/2001/XMLSchema#integer',
+            });
+
+            expectToEqual(rdfStoreToken, {
                 token: 'literal',
                 value: 5,
                 type: 'http://www.w3.org/2001/XMLSchema#integer',

@@ -8,6 +8,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -149,30 +150,10 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 expectToBe(component.versionData(), null);
             });
 
-            it('... `awgAppGithubUrl` is empty', () => {
+            it.each(['awgAppGithubUrl', 'awgAppVersion', 'awgAppVersionReleaseDate'])('... `%s` is empty', key => {
                 const incompletePageMetaData = {
                     ...expectedPageMetaData,
-                    awgAppGithubUrl: '',
-                } as MetaPage;
-                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
-
-                expectToBe(component.versionData(), null);
-            });
-
-            it('... `awgAppVersion` is empty', () => {
-                const incompletePageMetaData = {
-                    ...expectedPageMetaData,
-                    awgAppVersion: '',
-                } as MetaPage;
-                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
-
-                expectToBe(component.versionData(), null);
-            });
-
-            it('... `awgAppVersionReleaseDate` is empty', () => {
-                const incompletePageMetaData = {
-                    ...expectedPageMetaData,
-                    awgAppVersionReleaseDate: '',
+                    [key]: '',
                 } as MetaPage;
                 fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
 
@@ -241,7 +222,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
                 await clickAndAwaitChanges(imprintLinkDe, fixture);
 
-                expect(navigateSpy).toHaveBeenCalled();
+                expectSpyCall(navigateSpy, 1);
                 const firstCallArg = navigateSpy.mock.calls[0][0];
                 const actualUrl = firstCallArg.toString();
 
@@ -258,7 +239,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
                 await clickAndAwaitChanges(documentationLinkDe, fixture);
 
-                expect(navigateSpy).toHaveBeenCalled();
+                expectSpyCall(navigateSpy, 1);
                 const firstCallArg = navigateSpy.mock.calls[0][0];
                 const actualUrl = firstCallArg.toString();
 

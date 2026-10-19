@@ -56,11 +56,14 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
                 expect(getPosition).toBeDefined();
             });
 
-            it('... should hold the position of the node with the given index', () => {
+            it('... should return the position of the node with the given index', () => {
                 const positions = Float32Array.from([1, 2, 3, 4]);
 
-                expectToEqual(getPosition(positions, 0), { x: 1, y: 2 });
-                expectToEqual(getPosition(positions, 1), { x: 3, y: 4 });
+                const firstPosition = getPosition(positions, 0);
+                const secondPosition = getPosition(positions, 1);
+
+                expectToEqual(firstPosition, { x: 1, y: 2 });
+                expectToEqual(secondPosition, { x: 3, y: 4 });
             });
         });
 
@@ -69,14 +72,16 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
                 expect(packPositions).toBeDefined();
             });
 
-            it('... should hold the positions of the given nodes as pairs and NaN for unknown (missing or NaN) positions', () => {
+            it('... should return the positions of the given nodes as pairs and NaN for unknown (missing or NaN) positions', () => {
                 const nodes: Partial<ForceGraphPoint>[] = [{ x: 1, y: 2 }, {}, { x: NaN, y: NaN }, { x: 5, y: 6 }];
 
                 expectToEqual(Array.from(packPositions(nodes)), [1, 2, NaN, NaN, NaN, NaN, 5, 6]);
             });
 
-            it('... should hold empty positions for no nodes', () => {
-                expectToBe(packPositions([]).length, 0);
+            it('... should return empty positions for no nodes', () => {
+                const packedPositions = packPositions([]);
+
+                expectToBe(packedPositions.length, 0);
             });
         });
 
@@ -85,7 +90,7 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
                 expect(setPosition).toBeDefined();
             });
 
-            it('... should hold the given position at the node with the given index', () => {
+            it('... should set the given position at the node with the given index', () => {
                 const positions = new Float32Array(4);
 
                 setPosition(positions, 1, { x: 3, y: 4 });
@@ -99,20 +104,20 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
                 expect(toSimulationInput).toBeDefined();
             });
 
-            it('... should hold the radius of each force graph node', () => {
+            it('... should return the radius of each force graph node', () => {
                 const { radii } = toSimulationInput(forceGraphData);
 
                 expectToEqual(Array.from(radii), [11, 10, 8, 9]);
             });
 
-            it('... should hold the links derived from the edges as pairs of node indices (two via a middle node)', () => {
+            it('... should return the links derived from the edges as pairs of node indices (two via a middle node)', () => {
                 const { links } = toSimulationInput(forceGraphData);
 
                 // Links a -> b, a -> c, c -> middle node of a/c, middle node of a/c -> a
                 expectToEqual(Array.from(links), [0, 1, 0, 2, 2, 3, 3, 0]);
             });
 
-            it('... should hold the known positions and NaN for unknown positions', () => {
+            it('... should return the known positions and NaN for unknown positions', () => {
                 forceGraphData.nodes[1].x = 5;
                 forceGraphData.nodes[1].y = 6;
 
@@ -121,7 +126,7 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
                 expectToEqual(Array.from(positions), [NaN, NaN, 5, 6, NaN, NaN, NaN, NaN]);
             });
 
-            it('... should hold the relayout flag if at least half of the nodes have a position', () => {
+            it('... should return the relayout flag if at least half of the nodes have a position', () => {
                 // One of four force graph nodes with a position: a new layout
                 forceGraphData.nodes[0].x = 1;
                 forceGraphData.nodes[0].y = 2;
@@ -164,7 +169,7 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
                 expect(unpackPositions).toBeDefined();
             });
 
-            it('... should hold the given positions in the force graph nodes of the same index', () => {
+            it('... should set the given positions in the force graph nodes of the same index', () => {
                 unpackPositions(Float32Array.from([1, 2, 3, 4, 5, 6, 7, 8]), forceGraphData.nodes);
 
                 const nodePositions = forceGraphData.nodes.map(node => [node.x, node.y]);

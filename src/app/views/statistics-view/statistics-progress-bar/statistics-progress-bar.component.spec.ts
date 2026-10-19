@@ -200,19 +200,19 @@ describe('StatisticsProgressBarComponent', () => {
             expectToBe(component.height(), expectedHeight);
         });
 
-        it('... should have updated `showPercentageLabel` to hold the provided value', () => {
+        it('... should have input signal `showPercentageLabel` to hold the provided value', () => {
             expectToBe(component.showPercentageLabel(), expectedShowPercentageLabel);
         });
 
-        it('... should have updated `boldPercentageLabel` to hold the provided value', () => {
+        it('... should have input signal `boldPercentageLabel` to hold the provided value', () => {
             expectToBe(component.boldPercentageLabel(), expectedBoldPercentageLabel);
         });
 
-        it('... should have updated `customType` to hold the provided type', () => {
+        it('... should have input signal `customType` to hold the provided type', () => {
             expectToBe(component.customType(), expectedCustomType);
         });
 
-        it('... should have updated `useCustomTypeOnly` to hold the provided value', () => {
+        it('... should have input signal `useCustomTypeOnly` to hold the provided value', () => {
             expectToBe(component.useCustomTypeOnly(), expectedUseCustomTypeOnly);
         });
 
@@ -226,7 +226,7 @@ describe('StatisticsProgressBarComponent', () => {
                     fixture.componentRef.setInput('useCustomTypeOnly', true);
                 });
 
-                describe('... should return custom type (if provided) regardless of values', () => {
+                describe('... should hold custom type (if provided) regardless of values', () => {
                     it('... in percentage mode', () => {
                         const config: StatisticsProgressBarConfig = {
                             mode: 'percentage',
@@ -260,7 +260,7 @@ describe('StatisticsProgressBarComponent', () => {
                     });
                 });
 
-                describe('... should return light regardless of values if custom type is not provided', () => {
+                describe('... should hold light regardless of values if custom type is not provided', () => {
                     beforeEach(() => {
                         fixture.componentRef.setInput('customType', '');
                     });
@@ -304,7 +304,7 @@ describe('StatisticsProgressBarComponent', () => {
                     fixture.componentRef.setInput('useCustomTypeOnly', false);
                 });
 
-                describe('... should return `success` for width >= 80', () => {
+                describe('... should hold `success` for width >= 80', () => {
                     it('... in percentage mode', () => {
                         const successCases: StatisticsProgressBarConfig[] = [
                             { mode: 'percentage', percentage: 80 },
@@ -348,7 +348,7 @@ describe('StatisticsProgressBarComponent', () => {
                     });
                 });
 
-                describe('... should return `warning` for width >= 50 and < 80', () => {
+                describe('... should hold `warning` for width >= 50 and < 80', () => {
                     it('... in percentage mode', () => {
                         const warningCases: StatisticsProgressBarConfig[] = [
                             { mode: 'percentage', percentage: 50 },
@@ -392,7 +392,7 @@ describe('StatisticsProgressBarComponent', () => {
                     });
                 });
 
-                describe('... should return `danger` for width >= 1 and < 50', () => {
+                describe('... should hold `danger` for width >= 1 and < 50', () => {
                     it('... in percentage mode', () => {
                         const dangerCases: StatisticsProgressBarConfig[] = [
                             { mode: 'percentage', percentage: 1 },
@@ -436,7 +436,7 @@ describe('StatisticsProgressBarComponent', () => {
                     });
                 });
 
-                describe('... should return light for width === 0', () => {
+                describe('... should hold light for width === 0', () => {
                     it('... in percantage mode', () => {
                         const config: StatisticsProgressBarConfig = {
                             mode: 'percentage',
@@ -478,7 +478,7 @@ describe('StatisticsProgressBarComponent', () => {
 
         describe('... should have recomputed signal `progressBarWidth` when input changes', () => {
             describe('... in percentage mode', () => {
-                describe('... should return 0 if ...', () => {
+                describe('... should hold 0 if ...', () => {
                     it('... percentage is undefined', () => {
                         fixture.componentRef.setInput('config', { mode: 'percentage' });
                         fixture.detectChanges();
@@ -494,7 +494,7 @@ describe('StatisticsProgressBarComponent', () => {
                     });
                 });
 
-                it('... should return the given percentage value directly', () => {
+                it('... should hold the given percentage value directly', () => {
                     fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 0 });
                     fixture.detectChanges();
 
@@ -543,7 +543,7 @@ describe('StatisticsProgressBarComponent', () => {
             });
 
             describe('... in ratio mode', () => {
-                describe('... should return 0 if ...', () => {
+                describe('... should hold 0 if ...', () => {
                     it('... total is 0', () => {
                         const config: StatisticsProgressBarConfig = {
                             mode: 'ratio',
@@ -632,7 +632,7 @@ describe('StatisticsProgressBarComponent', () => {
             });
 
             describe('... in absolute mode', () => {
-                describe('... should return 0 if ...', () => {
+                describe('... should hold 0 if ...', () => {
                     it('... total is 0', () => {
                         const config: StatisticsProgressBarConfig = {
                             mode: 'absolute',
@@ -720,7 +720,7 @@ describe('StatisticsProgressBarComponent', () => {
                 });
             });
 
-            it('... should return 0 for unknown mode (default)', () => {
+            it('... should hold 0 for unknown mode (default)', () => {
                 const config: StatisticsProgressBarConfig = {
                     mode: 'unknown' as any,
                     active: 30,
@@ -738,59 +738,37 @@ describe('StatisticsProgressBarComponent', () => {
         });
 
         describe('... should have recomputed signal `progressHeaderValue` when input changes', () => {
-            it('... should return empty string when mode is percentage', () => {
-                fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 75 });
-                fixture.detectChanges();
-
-                expectToBe(component.progressHeaderValue(), '');
-            });
-
-            it('... should return active/total ratio as string in ratio mode', () => {
-                const config: StatisticsProgressBarConfig = {
-                    mode: 'ratio',
-                    active: 75,
-                    total: 120,
-                };
+            it.each<{ desc: string; config: StatisticsProgressBarConfig; expected: string }>([
+                {
+                    desc: 'an empty string in percentage mode',
+                    config: { mode: 'percentage', percentage: 75 },
+                    expected: '',
+                },
+                {
+                    desc: 'the active/total ratio as string in ratio mode',
+                    config: { mode: 'ratio', active: 75, total: 120 },
+                    expected: '75 / 120',
+                },
+                {
+                    desc: '"0 / 0" in ratio mode when active and total are 0',
+                    config: { mode: 'ratio', active: 0, total: 0 },
+                    expected: '0 / 0',
+                },
+                {
+                    desc: 'the active value as string in absolute mode',
+                    config: { mode: 'absolute', active: 75, total: 120 },
+                    expected: '75',
+                },
+                {
+                    desc: '"0" in absolute mode when active is 0',
+                    config: { mode: 'absolute', active: 0, total: 0 },
+                    expected: '0',
+                },
+            ])('... should hold $desc', ({ config, expected }) => {
                 fixture.componentRef.setInput('config', config);
                 fixture.detectChanges();
 
-                expectToBe(component.progressHeaderValue(), '75 / 120');
-            });
-
-            it('... should return "0 / 0" in ratio mode when active and total are 0', () => {
-                const config: StatisticsProgressBarConfig = {
-                    mode: 'ratio',
-                    active: 0,
-                    total: 0,
-                };
-                fixture.componentRef.setInput('config', config);
-                fixture.detectChanges();
-
-                expectToBe(component.progressHeaderValue(), '0 / 0');
-            });
-
-            it('... should return active value as string in absolute mode', () => {
-                const config: StatisticsProgressBarConfig = {
-                    mode: 'absolute',
-                    active: 75,
-                    total: 120,
-                };
-                fixture.componentRef.setInput('config', config);
-                fixture.detectChanges();
-
-                expectToBe(component.progressHeaderValue(), '75');
-            });
-
-            it('... should return "0" in absolute mode when active is 0', () => {
-                const config: StatisticsProgressBarConfig = {
-                    mode: 'absolute',
-                    active: 0,
-                    total: 0,
-                };
-                fixture.componentRef.setInput('config', config);
-                fixture.detectChanges();
-
-                expectToBe(component.progressHeaderValue(), '0');
+                expectToBe(component.progressHeaderValue(), expected);
             });
         });
 
@@ -799,14 +777,14 @@ describe('StatisticsProgressBarComponent', () => {
         });
 
         describe('... should have recomputed signal `hasHeaderValue` when input changes', () => {
-            it('... should return false when mode is percentage', () => {
+            it('... should hold false when mode is percentage', () => {
                 fixture.componentRef.setInput('config', { mode: 'percentage', percentage: 75 });
                 fixture.detectChanges();
 
                 expectToBe(component.hasHeaderValue(), false);
             });
 
-            it('... should return true when mode is ratio and active is defined', () => {
+            it('... should hold true when mode is ratio and active is defined', () => {
                 const config: StatisticsProgressBarConfig = {
                     mode: 'ratio',
                     active: 75,
@@ -818,7 +796,7 @@ describe('StatisticsProgressBarComponent', () => {
                 expectToBe(component.hasHeaderValue(), true);
             });
 
-            it('... should return true when mode is absolute and active is defined', () => {
+            it('... should hold true when mode is absolute and active is defined', () => {
                 const config: StatisticsProgressBarConfig = {
                     mode: 'absolute',
                     active: 75,

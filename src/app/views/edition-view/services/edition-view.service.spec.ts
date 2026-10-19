@@ -83,7 +83,7 @@ describe('EditionViewService (DONE)', () => {
         expect(service).toBeTruthy();
     });
 
-    describe('#_currentViewName()', () => {
+    describe('... signal `_currentViewName`', () => {
         let harness: RouterTestingHarness;
 
         const createFreshServiceWithUrl = async (url: string): Promise<EditionViewService> => {
@@ -116,7 +116,7 @@ describe('EditionViewService (DONE)', () => {
             expectToBe(isSignal(service['_currentViewName']), true);
         });
 
-        it('... should start with holding the parsed view name based on the current router URL', async () => {
+        it('... should hold the parsed view name of the current router URL initially', async () => {
             const freshService = await createFreshServiceWithUrl('/edition/preface');
 
             const result = freshService['_currentViewName']();
@@ -134,7 +134,7 @@ describe('EditionViewService (DONE)', () => {
             expectToBe(freshService['_currentViewName'](), 'sheets');
         });
 
-        it('... should return an empty string if the navigation destination has no primary segments', async () => {
+        it('... should hold an empty string if the navigation destination has no primary segments', async () => {
             const freshService = await createFreshServiceWithUrl('/edition/preface');
 
             await harness.navigateByUrl('/(sidebar:help)');
@@ -143,55 +143,35 @@ describe('EditionViewService (DONE)', () => {
         });
     });
 
-    describe('#viewContext()', () => {
-        it('... should have a signal `viewContext`', () => {
+    describe('... computed signal `viewContext`', () => {
+        it('... should have a computed signal `viewContext`', () => {
             expect(service.viewContext).toBeDefined();
 
             expectToBe(isSignal(service.viewContext), true);
         });
 
-        it('... should return correct context for `intro`', () => {
-            currentViewNameSpy.mockImplementation(() => 'intro');
+        describe('... should hold the correct context for', () => {
+            it.each<{ desc: string; viewName: string; isIntro: boolean; isPreface: boolean; isRowtables: boolean }>([
+                { desc: '`intro`', viewName: 'intro', isIntro: true, isPreface: false, isRowtables: false },
+                { desc: '`preface`', viewName: 'preface', isIntro: false, isPreface: true, isRowtables: false },
+                { desc: '`rowtables`', viewName: 'rowtables', isIntro: false, isPreface: false, isRowtables: true },
+                {
+                    desc: 'other views (without view flags)',
+                    viewName: 'other-view',
+                    isIntro: false,
+                    isPreface: false,
+                    isRowtables: false,
+                },
+            ])('... $desc', ({ viewName, isIntro, isPreface, isRowtables }) => {
+                currentViewNameSpy.mockImplementation(() => viewName);
 
-            const context = service.viewContext();
+                const context = service.viewContext();
 
-            expectToBe(context.name, 'intro');
-            expectToBe(context.isIntro, true);
-            expectToBe(context.isPreface, false);
-            expectToBe(context.isRowtables, false);
-        });
-
-        it('... should return correct context for `preface`', () => {
-            currentViewNameSpy.mockImplementation(() => 'preface');
-
-            const context = service.viewContext();
-
-            expectToBe(context.name, 'preface');
-            expectToBe(context.isIntro, false);
-            expectToBe(context.isPreface, true);
-            expectToBe(context.isRowtables, false);
-        });
-
-        it('... should return correct context for `rowtables`', () => {
-            currentViewNameSpy.mockImplementation(() => 'rowtables');
-
-            const context = service.viewContext();
-
-            expectToBe(context.name, 'rowtables');
-            expectToBe(context.isIntro, false);
-            expectToBe(context.isPreface, false);
-            expectToBe(context.isRowtables, true);
-        });
-
-        it('... should handle other view names gracefully', () => {
-            currentViewNameSpy.mockImplementation(() => 'other-view');
-
-            const context = service.viewContext();
-
-            expectToBe(context.name, 'other-view');
-            expectToBe(context.isIntro, false);
-            expectToBe(context.isPreface, false);
-            expectToBe(context.isRowtables, false);
+                expectToBe(context.name, viewName);
+                expectToBe(context.isIntro, isIntro);
+                expectToBe(context.isPreface, isPreface);
+                expectToBe(context.isRowtables, isRowtables);
+            });
         });
     });
 
@@ -221,8 +201,8 @@ describe('EditionViewService (DONE)', () => {
                 viewName: 'graph' as EditionViewKey,
                 mockData: { graph: [{ id: 'graph-1' }] },
             },
-        ])('#$signalName()', ({ signalName, dataKey, viewName, mockData }) => {
-            it(`... should have a signal ${signalName}`, () => {
+        ])('... computed signal `$signalName`', ({ signalName, dataKey, viewName, mockData }) => {
+            it(`... should have a computed signal \`${signalName}\``, () => {
                 expect(service[signalName]).toBeDefined();
 
                 expectToBe(isSignal(service[signalName]), true);
@@ -237,13 +217,13 @@ describe('EditionViewService (DONE)', () => {
 
                 service[signalName]();
 
-                expect(buildViewDataSpy).toHaveBeenCalledWith(
+                expectSpyCall(buildViewDataSpy, 1, [
                     viewName,
-                    expect.arrayContaining([[dataKey, expect.any(Function)]])
-                );
+                    expect.arrayContaining([[dataKey, expect.any(Function)]]),
+                ]);
             });
 
-            it(`... should return loading fallback for ${signalName} if view is inactive`, () => {
+            it('... should hold the loading fallback if the view is inactive', () => {
                 currentViewNameSpy.mockReturnValue('any-other-view');
 
                 const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
@@ -253,7 +233,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.error, null);
             });
 
-            it(`... should reactively update ${signalName} if ${dataKey} emits`, () => {
+            it(`... should hold the data of ${dataKey} if it emits`, () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
@@ -268,7 +248,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.error, null);
             });
 
-            it(`... should set \`isLoading=true\` on ${signalName} if loading is active`, () => {
+            it('... should hold `isLoading=true` if loading is active', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
 
@@ -280,7 +260,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.isLoading, true);
             });
 
-            it(`... should propagate errors to ${signalName} from the EditionDataService`, () => {
+            it('... should hold the error of the EditionDataService', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
@@ -324,8 +304,8 @@ describe('EditionViewService (DONE)', () => {
                     { dataKey: 'textcriticsData', mockValue: { textcritics: [{ id: 'tc-2' }] } },
                 ],
             },
-        ])('#$signalName()', ({ signalName, viewName, signalsSetup }) => {
-            it(`... should have a signal ${signalName}`, () => {
+        ])('... computed signal `$signalName`', ({ signalName, viewName, signalsSetup }) => {
+            it(`... should have a computed signal \`${signalName}\``, () => {
                 expect(service[signalName]).toBeDefined();
 
                 expectToBe(isSignal(service[signalName]), true);
@@ -340,7 +320,7 @@ describe('EditionViewService (DONE)', () => {
 
                 service[signalName]();
 
-                expect(buildViewDataSpy).toHaveBeenCalled();
+                expectSpyCall(buildViewDataSpy, 1);
 
                 const [calledViewKey, calledSignalMap, calledCallback] = buildViewDataSpy.mock.calls[0];
 
@@ -357,7 +337,7 @@ describe('EditionViewService (DONE)', () => {
                 }
             });
 
-            it(`... should return loading fallback for ${signalName} if view is inactive`, () => {
+            it('... should hold the loading fallback if the view is inactive', () => {
                 currentViewNameSpy.mockReturnValue('any-other-view');
 
                 const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
@@ -370,7 +350,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.error, null);
             });
 
-            it(`... should reactively update ${signalName} if all source signals emit`, () => {
+            it('... should hold the data of all source signals if they emit', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
@@ -389,7 +369,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.error, null);
             });
 
-            it(`... should set \`isLoading=true\` on ${signalName} if loading is active`, () => {
+            it('... should hold `isLoading=true` if loading is active', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
 
@@ -403,7 +383,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.isLoading, true);
             });
 
-            it(`... should propagate errors to ${signalName} from the EditionDataService`, () => {
+            it('... should hold the error of the EditionDataService', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
@@ -422,7 +402,7 @@ describe('EditionViewService (DONE)', () => {
 
             if (signalName === 'sheetsViewData') {
                 describe('... `extraContentCheck` specific to sheetsViewData', () => {
-                    it('... should keep `isLoading=true` if all edition arrays (work, text, sketch) are empty', () => {
+                    it('... should hold `isLoading=true` if all edition arrays (work, text, sketch) are empty', () => {
                         currentViewNameSpy.mockReturnValue(viewName);
                         service['_previousViewName'].set(viewName);
                         mockIsLoadingSignal.set(false);
@@ -438,7 +418,7 @@ describe('EditionViewService (DONE)', () => {
                         expectToBe(result.isLoading, true);
                     });
 
-                    it('... should set `isLoading=false` if at least one edition array (e.g., sketchEditions) contains data', () => {
+                    it('... should hold `isLoading=false` if at least one edition array (e.g., sketchEditions) contains data', () => {
                         currentViewNameSpy.mockReturnValue(viewName);
                         service['_previousViewName'].set(viewName);
                         mockIsLoadingSignal.set(false);
@@ -981,7 +961,7 @@ describe('EditionViewService (DONE)', () => {
 
                 const result = service['_parseViewFromUrl'](url);
 
-                expect(result).toBe('sheets');
+                expectToBe(result, 'sheets');
             });
 
             it('... should return the single segment path if the URL has only one segment', () => {

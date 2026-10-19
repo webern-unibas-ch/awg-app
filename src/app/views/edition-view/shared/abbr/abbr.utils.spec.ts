@@ -25,13 +25,13 @@ describe('AbbrUtils (DONE)', () => {
 
                 const abbreviations = root.querySelectorAll('abbr');
                 expect(abbreviations).toHaveLength(3);
-                expect(abbreviations[0].textContent).toBe('T.');
-                expect(abbreviations[0].title).toBe('Takt');
-                expect(abbreviations[1].textContent).toBe('Klav.');
-                expect(abbreviations[1].title).toBe('Klavier');
-                expect(abbreviations[2].textContent).toBe('Ges.');
-                expect(abbreviations[2].title).toBe('Gesang');
-                expect(root.textContent).toBe('T. 9 enthält Klav. und Ges.');
+                expectToBe(abbreviations[0].textContent, 'T.');
+                expectToBe(abbreviations[0].title, 'Takt');
+                expectToBe(abbreviations[1].textContent, 'Klav.');
+                expectToBe(abbreviations[1].title, 'Klavier');
+                expectToBe(abbreviations[2].textContent, 'Ges.');
+                expectToBe(abbreviations[2].title, 'Gesang');
+                expectToBe(root.textContent, 'T. 9 enthält Klav. und Ges.');
             });
 
             it('... should prefer the longest matching abbreviation', () => {
@@ -42,10 +42,10 @@ describe('AbbrUtils (DONE)', () => {
 
                 const abbreviations = root.querySelectorAll('abbr');
                 expect(abbreviations).toHaveLength(2);
-                expect(abbreviations[0].textContent).toBe('Klav. o.');
-                expect(abbreviations[0].title).toBe('Klavier oben');
-                expect(abbreviations[1].textContent).toBe('Klav. u.');
-                expect(abbreviations[1].title).toBe('Klavier unten');
+                expectToBe(abbreviations[0].textContent, 'Klav. o.');
+                expectToBe(abbreviations[0].title, 'Klavier oben');
+                expectToBe(abbreviations[1].textContent, 'Klav. u.');
+                expectToBe(abbreviations[1].title, 'Klavier unten');
             });
 
             it('... should not replace abbreviations that occur inside words', () => {
@@ -78,7 +78,7 @@ describe('AbbrUtils (DONE)', () => {
                 ABBR_UTILS.applyAbbreviations(root);
 
                 expect(root.querySelectorAll('abbr')).toHaveLength(2);
-                expect(root.querySelector('abbr')?.getAttribute('title')).toBe('Custom title');
+                expectToBe(root.querySelector('abbr')?.getAttribute('title'), 'Custom title');
                 expectToBe(root.querySelectorAll('abbr')[1].title, 'Klavier');
             });
 

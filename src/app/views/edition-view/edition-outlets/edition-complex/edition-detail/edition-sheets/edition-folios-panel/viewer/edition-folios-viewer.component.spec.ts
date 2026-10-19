@@ -160,11 +160,11 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
 
             it('... should contain one EditionFoliosViewerSvgComponent with bootstrap grid classes per folio', () => {
                 getFolioSvgDes(2).forEach(folioSvgDe => {
-                    const classList = folioSvgDe.nativeElement.classList;
+                    const folioSvgEl: HTMLElement = folioSvgDe.nativeElement;
 
-                    expectToContain(classList, 'svgCol');
-                    expectToContain(classList, 'col-sm-6');
-                    expectToContain(classList, 'col-lg-6');
+                    expectToContain(folioSvgEl.classList, 'svgCol');
+                    expectToContain(folioSvgEl.classList, 'col-sm-6');
+                    expectToContain(folioSvgEl.classList, 'col-lg-6');
                 });
             });
 
@@ -172,7 +172,10 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 fixture.componentRef.setInput('folios', [expectedFolios[0]]);
                 await detectChangesOnPush(fixture);
 
-                expectToContain(getFolioSvgDes(1)[0].nativeElement.classList, 'col-lg-12');
+                const folioSvgDes = getFolioSvgDes(1);
+                const folioSvgEl: HTMLElement = folioSvgDes[0].nativeElement;
+
+                expectToContain(folioSvgEl.classList, 'col-lg-12');
             });
 
             it('... should use a valid bootstrap grid class (rows of 4) for 8 folios', async () => {
@@ -180,7 +183,9 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 getFolioSvgDes(8).forEach(folioSvgDe => {
-                    expectToContain(folioSvgDe.nativeElement.classList, 'col-lg-3');
+                    const folioSvgEl: HTMLElement = folioSvgDe.nativeElement;
+
+                    expectToContain(folioSvgEl.classList, 'col-lg-3');
                 });
             });
 

@@ -138,17 +138,24 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
 
                 it('... should limit the label font size to 80 % of the space per system if the space is small', () => {
                     // 10.72 px per system * 0.8
-                    expectToBe(calculate(expectedFolio).systems.labelFontSize, 8.58);
+                    const calculation = calculate(expectedFolio);
+
+                    expectToBe(calculation.systems.labelFontSize, 8.58);
                 });
 
                 it('... should keep the maximum label font size if the space per system is large enough', () => {
                     // 21.44 px per system * 0.8 > 16
-                    expectToBe(calculate({ ...expectedFolio, systems: '9' }).systems.labelFontSize, 16);
+                    const calculation = calculate({ ...expectedFolio, systems: '9' });
+
+                    expectToBe(calculation.systems.labelFontSize, 16);
                 });
 
                 it('... should set the reversed flag of the systems', () => {
-                    expectToBe(calculate(expectedFolio).systems.reversed, false);
-                    expectToBe(calculate(expectedReversedFolio).systems.reversed, true);
+                    const calculation = calculate(expectedFolio);
+                    const reversedCalculation = calculate(expectedReversedFolio);
+
+                    expectToBe(calculation.systems.reversed, false);
+                    expectToBe(reversedCalculation.systems.reversed, true);
                 });
 
                 it('... should not calculate any system for a folio without systems', () => {

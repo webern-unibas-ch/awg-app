@@ -138,8 +138,11 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
                 folioDrawingService.renderFolio(rootGroupSelection, expectedFolioSvgData);
 
-                expectToBe(rootGroupSelection.selectAll('rect.previous-content').size(), 0);
-                expectToBe(svgSelection.selectAll('g.root-group').size(), 1);
+                const previousContents = rootGroupSelection.selectAll('rect.previous-content');
+                const rootGroups = svgSelection.selectAll('g.root-group');
+
+                expectToBe(previousContents.size(), 0);
+                expectToBe(rootGroups.size(), 1);
             });
 
             it('... should draw exactly one sheet group into the root group when rendering twice', () => {
@@ -147,7 +150,9 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
                 folioDrawingService.renderFolio(rootGroupSelection, expectedFolioSvgData);
 
-                expectToBe(rootGroupSelection.selectAll(':scope > g.sheet-group').size(), 1);
+                const sheetGroups = rootGroupSelection.selectAll(':scope > g.sheet-group');
+
+                expectToBe(sheetGroups.size(), 1);
             });
         });
 
@@ -155,10 +160,9 @@ describe('EditionFolioDrawingService (DONE)', () => {
             it('... should draw the sheet title with the folio id', () => {
                 const rootGroupSelection = render(expectedFolioSvgData);
 
-                expectToBe(
-                    rootGroupSelection.select('g.sheet-group > title.sheet-group-title').text(),
-                    `Bl. ${expectedDefaultFolio.folioId}`
-                );
+                const sheetTitle = rootGroupSelection.select('g.sheet-group > title.sheet-group-title');
+
+                expectToBe(sheetTitle.text(), `Bl. ${expectedDefaultFolio.folioId}`);
             });
 
             it('... should draw the sheet rectangle', () => {
@@ -189,13 +193,12 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 const rootGroupSelection = render(expectedFolioSvgData);
                 const symbolSelection = rootGroupSelection.select('g.trademark-group > path.trademark-symbol');
 
+                const trademarkTitle = rootGroupSelection.select('g.trademark-group > title.trademark-title');
+
                 expectToBe(symbolSelection.attr('d').startsWith('M 10 39 Q 12 36 14 39'), true);
                 expectToBe(symbolSelection.attr('transform').includes('scale(0.5)'), true);
                 expectToBe(symbolSelection.attr('transform').includes('rotate('), false);
-                expectToBe(
-                    rootGroupSelection.select('g.trademark-group > title.trademark-title').text(),
-                    'Firmenzeichen'
-                );
+                expectToBe(trademarkTitle.text(), 'Firmenzeichen');
             });
 
             it('... should rotate the trademark symbol if the systems are reversed', () => {
@@ -217,7 +220,9 @@ describe('EditionFolioDrawingService (DONE)', () => {
                     createSvgData({ ...expectedDefaultFolio, trademarkPosition: undefined })
                 );
 
-                expectToBe(rootGroupSelection.selectAll('g.trademark-group').size(), 0);
+                const trademarkGroups = rootGroupSelection.selectAll('g.trademark-group');
+
+                expectToBe(trademarkGroups.size(), 0);
             });
         });
 
@@ -227,8 +232,11 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
                 const rootGroupSelection = render(expectedFolioSvgData);
 
-                expectToBe(rootGroupSelection.selectAll('g.sheet-group > g.systems-group').size(), systemCount);
-                expectToBe(rootGroupSelection.selectAll('g.systems-group > g.system-line-group').size(), systemCount);
+                const systemsGroups = rootGroupSelection.selectAll('g.sheet-group > g.systems-group');
+                const systemLineGroups = rootGroupSelection.selectAll('g.systems-group > g.system-line-group');
+
+                expectToBe(systemsGroups.size(), systemCount);
+                expectToBe(systemLineGroups.size(), systemCount);
             });
 
             it('... should draw the system labels numbered from top to bottom with the calculated font size', () => {
@@ -279,7 +287,9 @@ describe('EditionFolioDrawingService (DONE)', () => {
             it('... should not draw any system for a folio without systems', () => {
                 const rootGroupSelection = render(createSvgData({ ...expectedReversedFolio, systems: '' }));
 
-                expectToBe(rootGroupSelection.selectAll('g.systems-group').size(), 0);
+                const systemsGroups = rootGroupSelection.selectAll('g.systems-group');
+
+                expectToBe(systemsGroups.size(), 0);
             });
         });
 

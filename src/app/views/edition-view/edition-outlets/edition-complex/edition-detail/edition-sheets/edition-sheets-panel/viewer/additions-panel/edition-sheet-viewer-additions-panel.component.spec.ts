@@ -273,16 +273,22 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
 
             describe('... FormSwitchComponent (hollow) for all', () => {
                 it('... should be checked with label `Alle ausblenden`', () => {
-                    expectToBe(getFormSwitchCmp('all').checked(), true);
-                    expectToBe(getLabelText('all'), 'Alle ausblenden');
+                    const formSwitchCmp = getFormSwitchCmp('all');
+                    const labelText = getLabelText('all');
+
+                    expectToBe(formSwitchCmp.checked(), true);
+                    expectToBe(labelText, 'Alle ausblenden');
                 });
 
                 it('... should be unchecked with label `Alle einblenden` if not all are visible', async () => {
                     setVisibility(expectedClass1, false);
                     await detectChangesOnPush(fixture);
 
-                    expectToBe(getFormSwitchCmp('all').checked(), false);
-                    expectToBe(getLabelText('all'), 'Alle einblenden');
+                    const formSwitchCmp = getFormSwitchCmp('all');
+                    const labelText = getLabelText('all');
+
+                    expectToBe(formSwitchCmp.checked(), false);
+                    expectToBe(labelText, 'Alle einblenden');
                 });
 
                 it('... should trigger `toggleAll` when the FormSwitchComponent (hollow) changes', () => {
@@ -294,7 +300,9 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
 
             describe('... FormSwitchComponents (hollow) for switch keys', () => {
                 it.each(['class1', 'class2', EditionSvgOverlayTypes.tkk])('... should be checked for `%s`', key => {
-                    expectToBe(getFormSwitchCmp(key).checked(), true);
+                    const formSwitchCmp = getFormSwitchCmp(key);
+
+                    expectToBe(formSwitchCmp.checked(), true);
                 });
 
                 it.each(['class1', 'class2', EditionSvgOverlayTypes.tkk])(
@@ -303,7 +311,9 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                         setVisibility(key, false);
                         await detectChangesOnPush(fixture);
 
-                        expectToBe(getFormSwitchCmp(key).checked(), false);
+                        const formSwitchCmp = getFormSwitchCmp(key);
+
+                        expectToBe(formSwitchCmp.checked(), false);
                     }
                 );
 
@@ -313,14 +323,18 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                         fixture.componentRef.setInput('suppliedClasses', [suppliedClass]);
                         await detectChangesOnPush(fixture);
 
-                        expectToBe(getLabelText(suppliedClass), expectedLabel);
+                        const labelText = getLabelText(suppliedClass);
+
+                        expectToBe(labelText, expectedLabel);
                     }
                 );
 
                 it.each(['class1', 'class2'])(
                     '... should display the class name `%s` as label without a known label',
                     key => {
-                        expectToBe(getLabelText(key), key);
+                        const labelText = getLabelText(key);
+
+                        expectToBe(labelText, key);
                         getAndExpectDebugElementByDirective(getFormSwitchDe(key), EditionTkaLabelComponent, 0, 0);
                     }
                 );
@@ -347,7 +361,9 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     getFormSwitchDes(expectedSuppliedClasses.length + 1);
-                    expect(findFormSwitchDe(expectedTkkKey)).toBeUndefined();
+                    const foundFormSwitchDe = findFormSwitchDe(expectedTkkKey);
+
+                    expect(foundFormSwitchDe).toBeUndefined();
                     getAndExpectDebugElementByDirective(compDe, EditionTkaLabelComponent, 0, 0);
                 });
 

@@ -47,7 +47,7 @@ describe('EditionIntroScrollDirective (DONE)', () => {
 
         directiveDes = fixture.debugElement.queryAll(By.directive(EditionIntroScrollDirective));
         directiveInstance = directiveDes[0].injector.get(EditionIntroScrollDirective);
-        const directiveEl = directiveDes[0].nativeElement as HTMLElement;
+        const directiveEl: HTMLElement = directiveDes[0].nativeElement;
 
         section1 = directiveEl.querySelector('#section1') as HTMLElement;
         section2 = directiveEl.querySelector('#section2') as HTMLElement;

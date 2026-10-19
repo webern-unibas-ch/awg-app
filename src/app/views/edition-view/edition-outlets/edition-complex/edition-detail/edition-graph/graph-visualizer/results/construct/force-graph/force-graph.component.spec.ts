@@ -175,8 +175,9 @@ describe('ForceGraphComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should set the height of the container', () => {
                 const containerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-container', 1, 1);
+                const containerEl: HTMLDivElement = containerDes[0].nativeElement;
 
-                expectToBe(containerDes[0].nativeElement.style.height, `${expectedHeight}px`);
+                expectToBe(containerEl.style.height, `${expectedHeight}px`);
             });
 
             describe('... ZoomSliderComponent', () => {

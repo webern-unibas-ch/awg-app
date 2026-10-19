@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToNotContain,
@@ -84,9 +85,9 @@ describe('ButtonMoreComponent', () => {
 
     describe('AFTER initial data binding', () => {
         const getAnchorDes = () => getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-        const getAnchorEl = () => getAnchorDes()[0].nativeElement as HTMLAnchorElement;
+        const getAnchorEl = (): HTMLAnchorElement => getAnchorDes()[0].nativeElement;
         const getButtonDes = () => getAndExpectDebugElementByCss(compDe, 'button', 1, 1);
-        const getButtonEl = () => getButtonDes()[0].nativeElement as HTMLButtonElement;
+        const getButtonEl = (): HTMLButtonElement => getButtonDes()[0].nativeElement;
 
         beforeEach(() => {
             // Set the initial values for the signal inputs
@@ -196,7 +197,7 @@ describe('ButtonMoreComponent', () => {
 
                 await clickAndAwaitChanges(linkDes[0], fixture);
 
-                expect(navigateSpy).toHaveBeenCalled();
+                expectSpyCall(navigateSpy, 1);
                 expectToBe(navigateSpy.mock.calls[0][0].toString(), expectedRoute);
 
                 navigateSpy.mockRestore();

@@ -340,7 +340,9 @@ describe('AppComponent (DONE)', () => {
                         children: [],
                     } as any;
 
-                    expectToBe(component['_hasSideOutlet'](mockRoute), true);
+                    const hasSideOutlet = component['_hasSideOutlet'](mockRoute);
+
+                    expectToBe(hasSideOutlet, true);
                 });
 
                 it('... should detect a side outlet in any child route', () => {
@@ -354,7 +356,9 @@ describe('AppComponent (DONE)', () => {
                         ],
                     } as any;
 
-                    expectToBe(component['_hasSideOutlet'](mockRoute), true);
+                    const hasSideOutlet = component['_hasSideOutlet'](mockRoute);
+
+                    expectToBe(hasSideOutlet, true);
                 });
 
                 it('... should not detect a side outlet if there is none', () => {
@@ -368,7 +372,9 @@ describe('AppComponent (DONE)', () => {
                         ],
                     } as any;
 
-                    expectToBe(component['_hasSideOutlet'](mockRoute), false);
+                    const hasSideOutlet = component['_hasSideOutlet'](mockRoute);
+
+                    expectToBe(hasSideOutlet, false);
                 });
             });
         });

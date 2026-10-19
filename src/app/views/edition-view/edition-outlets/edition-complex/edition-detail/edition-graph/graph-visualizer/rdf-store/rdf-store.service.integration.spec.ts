@@ -90,7 +90,9 @@ describe(
 
                 const quads = await service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }');
 
-                expectToEqual(quadKeys(quads), quadKeys(expectedQuads));
+                const keys = quadKeys(quads);
+
+                expectToEqual(keys, quadKeys(expectedQuads));
             });
 
             it('... should keep the identity of a blank node across quads', async () => {
@@ -106,7 +108,7 @@ describe(
         });
 
         describe('#select()', () => {
-            it('... should hold the variables and omit unbound variables (OPTIONAL)', async () => {
+            it('... should return the variables and omit unbound variables (OPTIONAL)', async () => {
                 const query = `${PREFIXES}\nSELECT ?s ?label WHERE { ?s a ex:Class OPTIONAL { ?s rdfs:label ?label } }`;
 
                 const { variables, bindings } = await service.select(TURTLE, query);

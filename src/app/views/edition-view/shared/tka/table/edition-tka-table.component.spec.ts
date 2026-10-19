@@ -163,7 +163,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             expectToEqual(component.tableHeaders(), expectedTableHeaders['default']);
         });
 
-        describe('... should have re-computed signal `tableHeaders` to hold the expected data for ...', () => {
+        describe('... should have recomputed signal `tableHeaders` to hold the expected data for ...', () => {
             it.each([
                 // Rowtable Tests
                 {

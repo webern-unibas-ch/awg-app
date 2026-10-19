@@ -190,7 +190,8 @@ describe('SourceListComponent (DONE)', () => {
 
                         sourceSiglumDes.forEach((sourceSiglumDe, index) => {
                             const source = sources[index];
-                            const sourceRowHeader = (sourceSiglumDe.nativeElement as HTMLElement).closest('th');
+                            const sourceSiglumEl: HTMLElement = sourceSiglumDe.nativeElement;
+                            const sourceRowHeader = sourceSiglumEl.closest('th');
 
                             expectToBe(sourceRowHeader?.id, source.siglum + (source.siglumAddendum ?? ''));
                         });
@@ -527,7 +528,7 @@ describe('SourceListComponent (DONE)', () => {
                 component.onSourceClick(source);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: source.linkTo });
-                expect(openModalSpy).not.toHaveBeenCalled();
+                expectSpyCall(openModalSpy, 0);
             });
 
             it('... should call `_openModal` if `source.hasDescription` is not given', () => {
@@ -537,14 +538,14 @@ describe('SourceListComponent (DONE)', () => {
                 component.onSourceClick(source);
 
                 expectSpyCall(openModalSpy, 1, source.linkTo);
-                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
+                expectSpyCall(navigateToReportFragmentSpy, 0);
 
                 source = expectedSourceListData.sources[2];
 
                 component.onSourceClick(source);
 
                 expectSpyCall(openModalSpy, 2, source.linkTo);
-                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
+                expectSpyCall(navigateToReportFragmentSpy, 0);
             });
         });
 
@@ -605,14 +606,14 @@ describe('SourceListComponent (DONE)', () => {
                 component.onSourceClick(source);
 
                 expectSpyCall(openModalSpy, 1, source.linkTo);
-                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
+                expectSpyCall(navigateToReportFragmentSpy, 0);
 
                 source = expectedSourceListData.sources[2];
 
                 component.onSourceClick(source);
 
                 expectSpyCall(openModalSpy, 2, source.linkTo);
-                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
+                expectSpyCall(navigateToReportFragmentSpy, 0);
             });
 
             it('... should do nothing if id is empty string', () => {

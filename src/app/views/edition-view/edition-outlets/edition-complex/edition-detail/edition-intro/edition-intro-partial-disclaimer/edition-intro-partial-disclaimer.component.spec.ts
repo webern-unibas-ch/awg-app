@@ -7,6 +7,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -154,7 +155,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
 
                 await clickAndAwaitChanges(linkDe, fixture);
 
-                expect(navigateSpy).toHaveBeenCalled();
+                expectSpyCall(navigateSpy, 1);
                 const actualUrl = navigateSpy.mock.calls[0][0].toString();
 
                 expectToBe(actualUrl, expectedRouterLink);

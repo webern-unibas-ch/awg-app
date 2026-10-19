@@ -109,8 +109,9 @@ describe('CodeMirrorComponent (DONE)', () => {
 
         it('... should have view child signal `codemirrorhost` to hold the host element', () => {
             const hostDes = getAndExpectDebugElementByCss(compDe, 'div.codemirrorhost', 1, 1);
+            const hostEl: HTMLDivElement = hostDes[0].nativeElement;
 
-            expectToBe(component.codemirrorhost().nativeElement, hostDes[0].nativeElement);
+            expectToBe(component.codemirrorhost().nativeElement, hostEl);
         });
 
         describe('... editor sync on content change', () => {

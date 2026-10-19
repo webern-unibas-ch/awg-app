@@ -40,7 +40,9 @@ describe('SourceDescWritingMaterialsUtils (DONE)', () => {
                     { desc: 'null', variant: null as any },
                     { desc: 'undefined', variant: undefined as any },
                 ])('... $desc', ({ variant }) => {
-                    expectToEqual(getTrademark(variant), expectedUnknownTrademark);
+                    const trademark = getTrademark(variant);
+
+                    expectToEqual(trademark, expectedUnknownTrademark);
                 });
             });
         });
@@ -56,7 +58,9 @@ describe('SourceDescWritingMaterialsUtils (DONE)', () => {
                     { desc: 'an empty array', locus: { folios: [] } },
                     { desc: 'an array of empty strings', locus: { folios: ['', ''] } },
                 ])('... $desc', ({ locus }) => {
-                    expectToBe(getItemLocus(locus), '');
+                    const itemLocus = getItemLocus(locus);
+
+                    expectToBe(itemLocus, '');
                 });
             });
 
@@ -109,7 +113,9 @@ describe('SourceDescWritingMaterialsUtils (DONE)', () => {
                 ])(
                     '... $desc',
                     ({ locus, expected }: { locus: SourceDescWritingMaterialItemLocus; expected: string }) => {
-                        expectToBe(getItemLocus(locus), expected);
+                        const itemLocus = getItemLocus(locus);
+
+                        expectToBe(itemLocus, expected);
                     }
                 );
             });
@@ -128,7 +134,9 @@ describe('SourceDescWritingMaterialsUtils (DONE)', () => {
                         dimensions: { orientation: 'hoch', height: undefined, width: undefined, unit: 'mm' },
                     },
                 ])('... $desc', ({ dimensions }) => {
-                    expectToBe(getDimensions(dimensions), '');
+                    const dimensionsText = getDimensions(dimensions);
+
+                    expectToBe(dimensionsText, '');
                 });
             });
 
@@ -202,7 +210,9 @@ describe('SourceDescWritingMaterialsUtils (DONE)', () => {
                         dimensions: SourceDescWritingMaterialDimensions;
                         expected: string;
                     }) => {
-                        expectToBe(getDimensions(dimensions), expected);
+                        const dimensionsText = getDimensions(dimensions);
+
+                        expectToBe(dimensionsText, expected);
                     }
                 );
             });
@@ -218,7 +228,9 @@ describe('SourceDescWritingMaterialsUtils (DONE)', () => {
                     { desc: 'systems is undefined', systems: undefined },
                     { desc: 'totalSystems is 0', systems: { totalSystems: 0 } },
                 ])('... $desc', ({ systems }) => {
-                    expectToBe(getSystems(systems), '');
+                    const systemsText = getSystems(systems);
+
+                    expectToBe(systemsText, '');
                 });
             });
 
@@ -256,7 +268,9 @@ describe('SourceDescWritingMaterialsUtils (DONE)', () => {
                 ])(
                     '... $desc',
                     ({ systems, expected }: { systems: SourceDescWritingMaterialSystems; expected: string }) => {
-                        expectToBe(getSystems(systems), expected);
+                        const systemsText = getSystems(systems);
+
+                        expectToBe(systemsText, expected);
                     }
                 );
             });

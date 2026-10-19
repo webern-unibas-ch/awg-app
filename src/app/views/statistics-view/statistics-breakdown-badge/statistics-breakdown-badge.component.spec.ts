@@ -134,7 +134,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
         });
 
         describe('... should have recomputed signal `displayedBadges` when input changes', () => {
-            it('... should return an empty array if breakdown is empty and showEmptyBadges is false', () => {
+            it('... should hold an empty array if breakdown is empty and showEmptyBadges is false', () => {
                 fixture.componentRef.setInput(
                     'breakdown',
                     new StatisticsComplexBreakdown({ opus: 0, mnr: 0, mnrX: 0 })
@@ -146,7 +146,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                 expectToEqual(badges, []);
             });
 
-            describe('... should return all badges if', () => {
+            describe('... should hold all badges if', () => {
                 it('... showEmptyBadges is false, but all values are > 0', () => {
                     fixture.componentRef.setInput(
                         'breakdown',

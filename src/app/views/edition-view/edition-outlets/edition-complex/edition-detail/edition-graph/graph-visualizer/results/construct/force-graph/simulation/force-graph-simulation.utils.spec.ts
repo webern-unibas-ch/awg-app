@@ -300,7 +300,7 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                 }
             );
 
-            it('... should hold finite positions for all nodes', () => {
+            it('... should report finite positions for all nodes', () => {
                 const results = collectProgress(toSimulationInput(forceGraphData));
                 const { positions } = results[results.length - 1];
                 const hasFinitePositions = Array.from(positions).every(Number.isFinite);
@@ -440,7 +440,7 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
             describe('... pin', () => {
                 const pinPoint = { x: 500, y: 600 };
 
-                it('... should hold the pinned node at the given point', () => {
+                it('... should report the pinned node at the given point', () => {
                     const scheduler = new FakeScheduler();
                     const { simulation, results } = startSimulationWith(createSimulationInput(10), scheduler);
 

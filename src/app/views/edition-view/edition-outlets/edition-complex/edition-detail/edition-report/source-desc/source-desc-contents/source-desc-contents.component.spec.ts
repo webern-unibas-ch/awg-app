@@ -231,7 +231,9 @@ describe('SourceDescContentsComponent (DONE)', () => {
 
                     it('... should have all content details open by default', () => {
                         getDetailsDes().forEach(detailsDe => {
-                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                            const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+
+                            expectToBe(detailsEl.hasAttribute('open'), true);
                         });
                     });
 
@@ -241,7 +243,9 @@ describe('SourceDescContentsComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
 
                         getDetailsDes().forEach(detailsDe => {
-                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
+                            const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+
+                            expectToBe(detailsEl.hasAttribute('open'), false);
                         });
 
                         // Open all details
@@ -249,14 +253,18 @@ describe('SourceDescContentsComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
 
                         getDetailsDes().forEach(detailsDe => {
-                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                            const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+
+                            expectToBe(detailsEl.hasAttribute('open'), true);
                         });
                     });
 
                     it('... should switch the button to closed when one details element is closed individually', async () => {
                         await toggleDetails(getDetailsDes()[0], false);
 
-                        expectToBe(component.contentsState.isOpen(0), false);
+                        const isOpen = component.contentsState.isOpen(0);
+
+                        expectToBe(isOpen, false);
                         expectToBe(component.contentsState.allOpen(), false);
                         expectToBe(getButtonCmp().isOpen(), false);
                     });

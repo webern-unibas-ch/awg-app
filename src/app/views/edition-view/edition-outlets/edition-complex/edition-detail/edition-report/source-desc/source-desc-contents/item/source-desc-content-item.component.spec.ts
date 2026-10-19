@@ -111,8 +111,8 @@ describe('SourceDescContentItemComponent (DONE)', () => {
             expectToEqual(component.content(), expectedContent);
         });
 
-        describe('#sheetTarget', () => {
-            it('... should be a computed signal', () => {
+        describe('... computed signal `sheetTarget`', () => {
+            it('... should have a computed signal `sheetTarget`', () => {
                 expectToBe(isSignal(component.sheetTarget), true);
             });
 
@@ -128,16 +128,16 @@ describe('SourceDescContentItemComponent (DONE)', () => {
             });
         });
 
-        describe('#isClickable', () => {
-            it('... should be a computed signal', () => {
+        describe('... computed signal `isClickable`', () => {
+            it('... should have a computed signal `isClickable`', () => {
                 expectToBe(isSignal(component.isClickable), true);
             });
 
-            it('... should be true if complexId and sheetId are given', () => {
+            it('... should hold true if complexId and sheetId are given', () => {
                 expectToBe(component.isClickable(), true);
             });
 
-            describe('... should be false if', () => {
+            describe('... should hold false if', () => {
                 it.each([
                     {
                         desc: 'complexId is missing',
@@ -278,7 +278,9 @@ describe('SourceDescContentItemComponent (DONE)', () => {
                         );
 
                         if (expectedDescription) {
-                            expectToBe(descriptionDes[0].nativeElement.textContent.trim(), expectedDescription);
+                            const descriptionEl: HTMLSpanElement = descriptionDes[0].nativeElement;
+
+                            expectToBe(descriptionEl.textContent.trim(), expectedDescription);
                         }
                     }
                 );

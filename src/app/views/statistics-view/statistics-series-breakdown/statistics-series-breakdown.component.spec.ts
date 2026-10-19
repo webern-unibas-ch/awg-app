@@ -624,7 +624,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             // Prefix
                             const spanDes = getAndExpectDebugElementByCss(tdDes[0], 'span', 1, 1);
-                            expectToContain(spanDes[0].nativeElement.classList, 'text-muted');
+                            const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+                            expectToContain(spanEl.classList, 'text-muted');
 
                             // Section Label
                             const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);

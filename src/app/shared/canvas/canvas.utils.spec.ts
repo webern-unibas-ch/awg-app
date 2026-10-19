@@ -117,27 +117,27 @@ describe('CanvasUtils (DONE)', () => {
                 expect(eventToCanvasPoint).toBeDefined();
             });
 
-            it('... should hold the point of a mouse event relative to the canvas', () => {
+            it('... should return the point of a mouse event relative to the canvas', () => {
                 const event = new MouseEvent('click', { clientX: 110, clientY: 70 });
                 const point = eventToCanvasPoint(event, canvas);
 
                 expectToEqual(point, { x: 10, y: 20 });
             });
 
-            it('... should hold the point of the first touch of a touch event relative to the canvas', () => {
+            it('... should return the point of the first touch of a touch event relative to the canvas', () => {
                 const event = createTouchEvent({ clientX: 130, clientY: 90 }, { clientX: 500, clientY: 500 });
                 const point = eventToCanvasPoint(event, canvas);
 
                 expectToEqual(point, { x: 30, y: 40 });
             });
 
-            it('... should hold undefined for a touch event without touches', () => {
+            it('... should return undefined for a touch event without touches', () => {
                 const point = eventToCanvasPoint(createTouchEvent(), canvas);
 
                 expect(point).toBeUndefined();
             });
 
-            it('... should hold the point relative to the content of the canvas (without its border, like d3-drag)', () => {
+            it('... should return the point relative to the content of the canvas (without its border, like d3-drag)', () => {
                 Object.defineProperty(canvas, 'clientLeft', { value: 2 });
                 Object.defineProperty(canvas, 'clientTop', { value: 3 });
                 const event = new MouseEvent('click', { clientX: 110, clientY: 70 });

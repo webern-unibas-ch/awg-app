@@ -8,6 +8,7 @@ import { faArrowRight, IconDefinition } from '@fortawesome/free-solid-svg-icons'
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -302,7 +303,7 @@ describe('HomeViewCardComponent (DONE)', () => {
 
                 await clickAndAwaitChanges(linkDe, fixture);
 
-                expect(navigateSpy).toHaveBeenCalled();
+                expectSpyCall(navigateSpy, 1);
                 const firstCallArgs = navigateSpy.mock.calls[0][0];
                 const actualUrl = firstCallArgs.toString();
 

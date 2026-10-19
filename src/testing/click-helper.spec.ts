@@ -4,15 +4,16 @@ import { ComponentFixture } from '@angular/core/testing';
 import { describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges, clickDispatchAndAwaitChanges } from './click-helper';
+import { expectToBe } from './expect-helper';
 
 describe('click-helper', () => {
     describe('#clickAndAwaitChanges()', () => {
         it('... should have a method `clickAndAwaitChanges`', () => {
             expect(clickAndAwaitChanges).toBeDefined();
-            expect(typeof clickAndAwaitChanges).toBe('function');
+            expectToBe(typeof clickAndAwaitChanges, 'function');
         });
 
-        it('... should return early when element is disabled', async () => {
+        it('... should do nothing when element is disabled', async () => {
             const mockHtmlElement = {
                 disabled: true,
                 click: vi.fn(),
@@ -72,10 +73,10 @@ describe('click-helper', () => {
     describe('#clickDispatchAndAwaitChanges()', () => {
         it('... should have a method `clickDispatchAndAwaitChanges`', () => {
             expect(clickDispatchAndAwaitChanges).toBeDefined();
-            expect(typeof clickDispatchAndAwaitChanges).toBe('function');
+            expectToBe(typeof clickDispatchAndAwaitChanges, 'function');
         });
 
-        it('... should return early when target element is disabled', async () => {
+        it('... should do nothing when target element is disabled', async () => {
             const disabledButton = document.createElement('button');
             disabledButton.disabled = true;
 

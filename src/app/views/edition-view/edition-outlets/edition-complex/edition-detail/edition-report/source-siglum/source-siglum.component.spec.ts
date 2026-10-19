@@ -336,7 +336,8 @@ describe('SourceSiglumComponent (DONE)', () => {
                         expectToContain(siglumAddendumSpanEl.classList, 'awg-source-list-siglum-addendum');
 
                         const supDes = getAndExpectDebugElementByCss(siglumAddendumSpanDes, 'sup', 1, 1);
-                        expectToBe(supDes[0].nativeElement.textContent.trim(), addendum);
+                        const supEl: HTMLElement = supDes[0].nativeElement;
+                        expectToBe(supEl.textContent.trim(), addendum);
                     });
                 });
 

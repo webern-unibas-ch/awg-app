@@ -43,8 +43,8 @@ describe('ClickDirective (DONE)', () => {
     let fixture: ComponentFixture<TestClickComponent>;
     let compDe: DebugElement;
 
-    const getEl = (selector: string): HTMLElement =>
-        getAndExpectDebugElementByCss(compDe, selector, 1, 1)[0].nativeElement;
+    const getDes = (selector: string) => getAndExpectDebugElementByCss(compDe, selector, 1, 1);
+    const getEl = (selector: string): HTMLElement => getDes(selector)[0].nativeElement;
     const getDirective = (selector: string): ClickDirective =>
         getAndExpectDebugElementByCss(compDe, selector, 1, 1)[0].injector.get(ClickDirective);
     const keydown = (key: string): KeyboardEvent => new KeyboardEvent('keydown', { key, bubbles: true });
@@ -70,16 +70,22 @@ describe('ClickDirective (DONE)', () => {
         vi.clearAllMocks();
     });
 
-    it('... should create the directive on each host element', () => {
-        expect(getDirective('div.test-div')).toBeTruthy();
-        expect(getDirective('a.test-link')).toBeTruthy();
-        expect(getDirective('span.test-role-link')).toBeTruthy();
-        expect(getDirective('div.test-div-no-space')).toBeTruthy();
-        expect(getDirective('button.test-button')).toBeTruthy();
-        expect(getDirective('a.test-href-link')).toBeTruthy();
-        expect(getDirective('div.test-delegating-div')).toBeTruthy();
-        expect(getDirective('a.test-href-link-with-child')).toBeTruthy();
-        expect(getDirective('span.test-inner-host')).toBeTruthy();
+    describe('... should create the directive on each host element', () => {
+        it.each([
+            { desc: 'div.test-div', value: 'div.test-div' },
+            { desc: 'a.test-link', value: 'a.test-link' },
+            { desc: 'span.test-role-link', value: 'span.test-role-link' },
+            { desc: 'div.test-div-no-space', value: 'div.test-div-no-space' },
+            { desc: 'button.test-button', value: 'button.test-button' },
+            { desc: 'a.test-href-link', value: 'a.test-href-link' },
+            { desc: 'div.test-delegating-div', value: 'div.test-delegating-div' },
+            { desc: 'a.test-href-link-with-child', value: 'a.test-href-link-with-child' },
+            { desc: 'span.test-inner-host', value: 'span.test-inner-host' },
+        ])('... $desc', ({ value }) => {
+            const directive = getDirective(value);
+
+            expect(directive).toBeTruthy();
+        });
     });
 
     describe('... input signal `clickOnSpace`', () => {
@@ -87,25 +93,27 @@ describe('ClickDirective (DONE)', () => {
             expectToBe(isSignal(getDirective('div.test-div').clickOnSpace), true);
         });
 
-        it('... should hold true by default for elements that are no links', () => {
-            expectToBe(getDirective('div.test-div').clickOnSpace(), true);
-        });
+        describe('... should hold by default', () => {
+            it.each([
+                { desc: 'true for elements that are no links', selector: 'div.test-div', expected: true },
+                { desc: 'false for anchors', selector: 'a.test-link', expected: false },
+                { desc: 'false for elements with role `link`', selector: 'span.test-role-link', expected: false },
+            ])('... $desc', ({ selector, expected }) => {
+                const directive = getDirective(selector);
 
-        it('... should hold false by default for anchors', () => {
-            expectToBe(getDirective('a.test-link').clickOnSpace(), false);
-        });
-
-        it('... should hold false by default for elements with role `link`', () => {
-            expectToBe(getDirective('span.test-role-link').clickOnSpace(), false);
+                expectToBe(directive.clickOnSpace(), expected);
+            });
         });
 
         it('... should hold the provided value', async () => {
-            expectToBe(getDirective('div.test-div-no-space').clickOnSpace(), false);
+            const directive = getDirective('div.test-div-no-space');
+
+            expectToBe(directive.clickOnSpace(), false);
 
             hostComponent.clickOnSpace.set(true);
             await detectChangesOnPush(fixture);
 
-            expectToBe(getDirective('div.test-div-no-space').clickOnSpace(), true);
+            expectToBe(directive.clickOnSpace(), true);
         });
     });
 
@@ -228,7 +236,9 @@ describe('ClickDirective (DONE)', () => {
 
         describe('#onEnter()', () => {
             it('... should have a method `onEnter`', () => {
-                expect(getDirective('div.test-div').onEnter).toBeDefined();
+                const directive = getDirective('div.test-div');
+
+                expect(directive.onEnter).toBeDefined();
             });
 
             describe('... should emit `awgClick` with the given event', () => {
@@ -285,7 +295,9 @@ describe('ClickDirective (DONE)', () => {
 
         describe('#onSpace()', () => {
             it('... should have a method `onSpace`', () => {
-                expect(getDirective('div.test-div').onSpace).toBeDefined();
+                const directive = getDirective('div.test-div');
+
+                expect(directive.onSpace).toBeDefined();
             });
 
             describe('... should emit `awgClick` with the given event if enabled', () => {

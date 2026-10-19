@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectToBe, expectToEqual } from './expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from './expect-helper';
 
 import { createFakeCanvasContext, MockMediaQueryList, stubMatchMedia } from './canvas-helper';
 
@@ -10,17 +10,17 @@ describe('CanvasHelper (DONE)', () => {
             expect(createFakeCanvasContext).toBeDefined();
         });
 
-        it('... should hold no calls initially', () => {
+        it('... should return a context without calls', () => {
             expectToEqual(createFakeCanvasContext().calls, []);
         });
 
-        it('... should hold a canvas with the default size of the backing store', () => {
+        it('... should return a context with a canvas of the default size of the backing store', () => {
             const ctx = createFakeCanvasContext();
 
             expectToEqual({ width: ctx.canvas.width, height: ctx.canvas.height }, { width: 300, height: 150 });
         });
 
-        it('... should hold a canvas with a given size of the backing store', () => {
+        it('... should return a context with a canvas of a given size of the backing store', () => {
             const ctx = createFakeCanvasContext({ width: 800, height: 400 });
 
             expectToEqual({ width: ctx.canvas.width, height: ctx.canvas.height }, { width: 800, height: 400 });
@@ -91,14 +91,14 @@ describe('CanvasHelper (DONE)', () => {
             expectToBe(mediaQueryList.media, '(resolution: 2dppx)');
         });
 
-        it('... should hold all created media query lists', () => {
+        it('... should return all created media query lists', () => {
             const mockMediaQueryLists = stubMatchMedia();
 
             const mediaQueryList1 = window.matchMedia('(resolution: 1dppx)');
             const mediaQueryList2 = window.matchMedia('(resolution: 2dppx)');
 
-            expect(mockMediaQueryLists).toEqual([mediaQueryList1, mediaQueryList2]);
-            expect(mockMediaQueryLists[0]).toBe(mediaQueryList1);
+            expectToEqual<object[]>(mockMediaQueryLists, [mediaQueryList1, mediaQueryList2]);
+            expectToBe<object>(mockMediaQueryLists[0], mediaQueryList1);
         });
 
         it('... should call the added listeners on trigger', () => {
@@ -108,7 +108,7 @@ describe('CanvasHelper (DONE)', () => {
             window.matchMedia('(resolution: 1dppx)').addEventListener('change', listener);
             mockMediaQueryLists[0].trigger();
 
-            expect(listener).toHaveBeenCalledTimes(1);
+            expectSpyCall(listener, 1);
         });
 
         it('... should call a listener added with `once` only on the first trigger', () => {
@@ -119,7 +119,7 @@ describe('CanvasHelper (DONE)', () => {
             mockMediaQueryLists[0].trigger();
             mockMediaQueryLists[0].trigger();
 
-            expect(listener).toHaveBeenCalledTimes(1);
+            expectSpyCall(listener, 1);
         });
 
         it('... should not call the removed listeners on trigger', () => {
@@ -131,7 +131,7 @@ describe('CanvasHelper (DONE)', () => {
             mediaQueryList.removeEventListener('change', listener);
             mockMediaQueryLists[0].trigger();
 
-            expect(listener).not.toHaveBeenCalled();
+            expectSpyCall(listener, 0);
         });
     });
 });

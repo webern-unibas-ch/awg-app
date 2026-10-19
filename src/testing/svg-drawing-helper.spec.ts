@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as D3_SELECTION from 'd3-selection';
 import * as D3_ZOOM from 'd3-zoom';
 
+import { expectSpyCall, expectToBe, expectToEqual } from './expect-helper';
 import { MockResizeObserver, patchSvgSizeForD3Zoom, stubResizeObserver } from './svg-drawing-helper';
 
 describe('svg-drawing-helper', () => {
@@ -40,12 +41,12 @@ describe('svg-drawing-helper', () => {
 
         it('... should have a method `patchSvgSizeForD3Zoom`', () => {
             expect(patchSvgSizeForD3Zoom).toBeDefined();
-            expect(typeof patchSvgSizeForD3Zoom).toBe('function');
+            expectToBe(typeof patchSvgSizeForD3Zoom, 'function');
         });
 
         it('... should start without width and height on the SVGSVGElement prototype (jsdom)', () => {
             sizeKeys.forEach(key => {
-                expect(key in SVGSVGElement.prototype).toBe(false);
+                expectToBe(key in SVGSVGElement.prototype, false);
             });
         });
 
@@ -54,15 +55,17 @@ describe('svg-drawing-helper', () => {
 
             const svgEl = createSvgEl();
 
-            expect(svgEl.width.baseVal.value).toBe(100);
-            expect(svgEl.height.baseVal.value).toBe(100);
+            expectToBe(svgEl.width.baseVal.value, 100);
+            expectToBe(svgEl.height.baseVal.value, 100);
         });
 
         it('... should define configurable properties (removable after a test)', () => {
             patchSvgSizeForD3Zoom();
 
             sizeKeys.forEach(key => {
-                expect(Object.getOwnPropertyDescriptor(SVGSVGElement.prototype, key)?.configurable).toBe(true);
+                const descriptor = Object.getOwnPropertyDescriptor(SVGSVGElement.prototype, key);
+
+                expectToBe(descriptor?.configurable, true);
             });
         });
 
@@ -77,15 +80,18 @@ describe('svg-drawing-helper', () => {
 
             const svgEl = createSvgEl();
 
-            expect(svgEl.width).toBe(existingWidth);
-            expect(svgEl.height.baseVal.value).toBe(100);
+            expectToBe(svgEl.width, existingWidth);
+            expectToBe(svgEl.height.baseVal.value, 100);
         });
 
         it('... should not fail when called repeatedly', () => {
             patchSvgSizeForD3Zoom();
 
             expect(() => patchSvgSizeForD3Zoom()).not.toThrow();
-            expect(createSvgEl().width.baseVal.value).toBe(100);
+
+            const svgEl = createSvgEl();
+
+            expectToBe(svgEl.width.baseVal.value, 100);
         });
 
         it('... should do nothing without SVGSVGElement (non-DOM environment)', () => {
@@ -95,7 +101,7 @@ describe('svg-drawing-helper', () => {
 
             vi.unstubAllGlobals();
             sizeKeys.forEach(key => {
-                expect(key in SVGSVGElement.prototype).toBe(false);
+                expectToBe(key in SVGSVGElement.prototype, false);
             });
         });
 
@@ -108,7 +114,9 @@ describe('svg-drawing-helper', () => {
 
             svgSelection.call(zoomBehaviour.scaleTo, 2);
 
-            expect(D3_ZOOM.zoomTransform(svgSelection.node() as SVGSVGElement).k).toBe(2);
+            const zoomTransform = D3_ZOOM.zoomTransform(svgSelection.node() as SVGSVGElement);
+
+            expectToBe(zoomTransform.k, 2);
         });
     });
 
@@ -129,14 +137,14 @@ describe('svg-drawing-helper', () => {
             expect(observer).toBeInstanceOf(MockResizeObserver);
         });
 
-        it('... should hold all created observers', () => {
+        it('... should return all created observers', () => {
             const mockResizeObservers = stubResizeObserver();
 
             const observer1 = new ResizeObserver(vi.fn());
             const observer2 = new ResizeObserver(vi.fn());
 
-            expect(mockResizeObservers).toEqual([observer1, observer2]);
-            expect(mockResizeObservers[0]).toBe(observer1);
+            expectToEqual<object[]>(mockResizeObservers, [observer1, observer2]);
+            expectToBe<object>(mockResizeObservers[0], observer1);
         });
 
         it('... should keep the observed elements', () => {
@@ -145,8 +153,8 @@ describe('svg-drawing-helper', () => {
 
             new ResizeObserver(vi.fn()).observe(element);
 
-            expect(mockResizeObservers[0].observedElements).toEqual([element]);
-            expect(mockResizeObservers[0].observe).toHaveBeenCalledWith(element);
+            expectToEqual(mockResizeObservers[0].observedElements, [element]);
+            expectSpyCall(mockResizeObservers[0].observe, 1, element);
         });
 
         it('... should call the callback on trigger', () => {
@@ -156,7 +164,7 @@ describe('svg-drawing-helper', () => {
             new ResizeObserver(callback);
             mockResizeObservers[0].trigger();
 
-            expect(callback).toHaveBeenCalledWith([], mockResizeObservers[0]);
+            expectSpyCall(callback, 1, [[], mockResizeObservers[0]]);
         });
     });
 });

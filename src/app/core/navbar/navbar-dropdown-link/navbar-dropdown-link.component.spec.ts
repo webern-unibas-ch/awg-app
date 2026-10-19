@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToEqual,
     getAndExpectDebugElementByCss,
@@ -98,7 +99,7 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
 
             it('... should display correct label in dropdown item link', () => {
                 const aDes = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 1, 1);
-                const aEl = aDes[0].nativeElement as HTMLAnchorElement;
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 expectToBe(aEl.textContent?.trim(), expectedLabel);
             });
@@ -144,7 +145,7 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
 
                 await clickAndAwaitChanges(linkDe, fixture);
 
-                expect(navigateSpy).toHaveBeenCalled();
+                expectSpyCall(navigateSpy, 1);
                 const firstCallArg = navigateSpy.mock.calls[0][0];
                 const actualUrl = firstCallArg.toString();
 

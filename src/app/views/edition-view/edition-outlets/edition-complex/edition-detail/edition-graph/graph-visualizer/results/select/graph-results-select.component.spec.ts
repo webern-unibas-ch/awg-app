@@ -430,13 +430,17 @@ describe('GraphResultsSelectComponent (DONE)', () => {
                             query: createSelectResult([], []),
                         },
                     ])('... $desc', ({ query }) => {
-                        expectToBe(component.isValidSelectQueryResult(query), false);
+                        const isValid = component.isValidSelectQueryResult(query);
+
+                        expectToBe(isValid, false);
                     });
                 });
 
                 describe('... should be true if', () => {
                     it('... queryResult is a select result with variables and bindings', () => {
-                        expectToBe(component.isValidSelectQueryResult(expectedQueryResult), true);
+                        const isValid = component.isValidSelectQueryResult(expectedQueryResult);
+
+                        expectToBe(isValid, true);
                     });
                 });
             });

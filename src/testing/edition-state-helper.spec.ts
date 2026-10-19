@@ -6,6 +6,10 @@ import { EditionStateHelper } from './edition-state-helper';
 
 describe('EditionStateHelper (DONE)', () => {
     describe('#getOutline()', () => {
+        it('... should have a method `getOutline`', () => {
+            expect(EditionStateHelper.getOutline).toBeDefined();
+        });
+
         it('... should return the complete edition outline array', () => {
             const outline = EditionStateHelper.getOutline();
 
@@ -35,6 +39,10 @@ describe('EditionStateHelper (DONE)', () => {
     });
 
     describe('#getSeries()', () => {
+        it('... should have a method `getSeries`', () => {
+            expect(EditionStateHelper.getSeries).toBeDefined();
+        });
+
         it('... should return the series with the default id "1" if no id is provided', () => {
             const series = EditionStateHelper.getSeries();
 
@@ -78,6 +86,10 @@ describe('EditionStateHelper (DONE)', () => {
     });
 
     describe('#getSection()', () => {
+        it('... should have a method `getSection`', () => {
+            expect(EditionStateHelper.getSection).toBeDefined();
+        });
+
         it('... should return the default section (series "1", section "5") if no parameters are provided', () => {
             const section = EditionStateHelper.getSection();
 
@@ -135,11 +147,15 @@ describe('EditionStateHelper (DONE)', () => {
     });
 
     describe('#getComplexesList()', () => {
+        it('... should have a method `getComplexesList`', () => {
+            expect(EditionStateHelper.getComplexesList).toBeDefined();
+        });
+
         it('... should return the complete complexes list object', () => {
             const list = EditionStateHelper.getComplexesList();
 
             expect(list).toBeTruthy();
-            expect(typeof list).toBe('object');
+            expectToBe(typeof list, 'object');
             expect(Object.keys(list).length).toBeGreaterThan(0);
         });
 
@@ -169,6 +185,10 @@ describe('EditionStateHelper (DONE)', () => {
     });
 
     describe('#getComplex()', () => {
+        it('... should have a method `getComplex`', () => {
+            expect(EditionStateHelper.getComplex).toBeDefined();
+        });
+
         it('... should return the correct complex for a valid complexId', () => {
             const validComplexId = 'op12';
 

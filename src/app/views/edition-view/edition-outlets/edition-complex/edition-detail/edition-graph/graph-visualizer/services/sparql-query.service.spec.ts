@@ -58,20 +58,20 @@ describe('SparqlQueryService (DONE)', () => {
             expect(service.parseTurtle).toBeDefined();
         });
 
-        it('... should hold the number of quads and the declared prefixes', async () => {
+        it('... should return the number of quads and the declared prefixes', async () => {
             const result = await service.parseTurtle(TURTLE);
 
             expectToBe(result.quadCount, 2);
             expectToEqual(result.prefixes, { ex: EX });
         });
 
-        it('... should hold frozen prefixes', async () => {
+        it('... should return frozen prefixes', async () => {
             const { prefixes } = await service.parseTurtle(TURTLE);
 
             expectToBe(Object.isFrozen(prefixes), true);
         });
 
-        it('... should hold no quads and no prefixes for empty turtle data', async () => {
+        it('... should return no quads and no prefixes for empty turtle data', async () => {
             expectToEqual(await service.parseTurtle(''), { quadCount: 0, prefixes: {} });
         });
 
@@ -127,7 +127,7 @@ describe('SparqlQueryService (DONE)', () => {
         });
 
         describe('... for other queries', () => {
-            it('... should hold an unsupported result with the query type', async () => {
+            it('... should return an unsupported result with the query type', async () => {
                 const run = await service.run('ASK { ?s ?p ?o }', TURTLE);
 
                 expectToEqual(run.result, { kind: 'unsupported', queryType: 'ask' });
@@ -135,7 +135,7 @@ describe('SparqlQueryService (DONE)', () => {
                 expectSpyCall(mockRdfStoreService.select, 0);
             });
 
-            it('... should hold an unsupported result with null if the query type is unknown', async () => {
+            it('... should return an unsupported result with null if the query type is unknown', async () => {
                 const run = await service.run('WHERE { ?s ?p ?o }', TURTLE);
 
                 expectToEqual(run.result, { kind: 'unsupported', queryType: null });
@@ -193,7 +193,7 @@ describe('SparqlQueryService (DONE)', () => {
         });
 
         describe('... duration', () => {
-            it('... should hold the duration of the run in milliseconds', async () => {
+            it('... should return the duration of the run in milliseconds', async () => {
                 vi.spyOn(performance, 'now').mockReturnValueOnce(100).mockReturnValueOnce(142.5);
 
                 const run = await service.run('SELECT ?s WHERE { ?s ?p ?o }', TURTLE);
@@ -254,11 +254,15 @@ describe('SparqlQueryService (DONE)', () => {
         });
 
         it('... should convert namespaces given as strings or named nodes', () => {
-            expectToEqual(service['_toPrefixMap']({ ex: EX, awg: namedNode(AWG) }), { ex: EX, awg: AWG });
+            const prefixMap = service['_toPrefixMap']({ ex: EX, awg: namedNode(AWG) });
+
+            expectToEqual(prefixMap, { ex: EX, awg: AWG });
         });
 
-        it('... should hold an empty map for missing prefixes', () => {
-            expectToEqual(service['_toPrefixMap'](undefined), {});
+        it('... should return an empty map for missing prefixes', () => {
+            const prefixMap = service['_toPrefixMap'](undefined);
+
+            expectToEqual(prefixMap, {});
         });
     });
 
@@ -276,7 +280,9 @@ describe('SparqlQueryService (DONE)', () => {
         });
 
         it('... should not set a cause if none is given', () => {
-            expect(service['_error']('Something failed.').cause).toBeUndefined();
+            const errorResult = service['_error']('Something failed.');
+
+            expect(errorResult.cause).toBeUndefined();
         });
     });
 });

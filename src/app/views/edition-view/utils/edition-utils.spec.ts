@@ -32,7 +32,9 @@ describe('EditionUtils (DONE)', () => {
                     { desc: 'includes SkRT identifier in wrong mixed case (sKrt)', id: 'id_sKrt_mixedcase' },
                     { desc: 'includes no `_Sk` or `SkRT` at all', id: 'test-1' },
                 ])('... $desc', ({ id }) => {
-                    expectToBe(isSketchId(id), false);
+                    const isSketch = isSketchId(id);
+
+                    expectToBe(isSketch, false);
                 });
             });
 
@@ -41,7 +43,9 @@ describe('EditionUtils (DONE)', () => {
                     { desc: 'includes `_Sk`', id: 'test-1_Sk1' },
                     { desc: 'includes `SkRT`', id: 'SkRT' },
                 ])('... $desc', ({ id }) => {
-                    expectToBe(isSketchId(id), true);
+                    const isSketch = isSketchId(id);
+
+                    expectToBe(isSketch, true);
                 });
             });
         });
@@ -65,13 +69,17 @@ describe('EditionUtils (DONE)', () => {
                     { desc: 'includes work edition identifier without underscore (WE)', id: 'op12WE' },
                     { desc: 'includes no `_WE` at all', id: 'test-1' },
                 ])('... $desc', ({ id }) => {
-                    expectToBe(isWorkEditionId(id), false);
+                    const isWorkEdition = isWorkEditionId(id);
+
+                    expectToBe(isWorkEdition, false);
                 });
             });
 
             describe('... should return true if the ID', () => {
                 it.each([{ desc: 'includes `_WE`', id: 'op12_WE' }])('... $desc', ({ id }) => {
-                    expectToBe(isWorkEditionId(id), true);
+                    const isWorkEdition = isWorkEditionId(id);
+
+                    expectToBe(isWorkEdition, true);
                 });
             });
         });

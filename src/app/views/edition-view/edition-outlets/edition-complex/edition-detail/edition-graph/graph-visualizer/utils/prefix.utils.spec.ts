@@ -48,21 +48,25 @@ describe('PrefixUtils (DONE)', () => {
             });
 
             it('... should merge the given prefix maps with later maps overriding earlier ones', () => {
-                expectToEqual(
-                    mergePrefixes({ a: 'http://a/', b: 'http://b/' }, { b: 'http://other-b/', c: 'http://c/' }),
-                    {
-                        a: 'http://a/',
-                        b: 'http://other-b/',
-                        c: 'http://c/',
-                    }
+                const mergedPrefixes = mergePrefixes(
+                    { a: 'http://a/', b: 'http://b/' },
+                    { b: 'http://other-b/', c: 'http://c/' }
                 );
+
+                expectToEqual(mergedPrefixes, {
+                    a: 'http://a/',
+                    b: 'http://other-b/',
+                    c: 'http://c/',
+                });
             });
 
             it('... should ignore null and undefined maps', () => {
-                expectToEqual(mergePrefixes(null, { a: 'http://a/' }, undefined), { a: 'http://a/' });
+                const mergedPrefixes = mergePrefixes(null, { a: 'http://a/' }, undefined);
+
+                expectToEqual(mergedPrefixes, { a: 'http://a/' });
             });
 
-            it('... should hold a frozen map', () => {
+            it('... should return a frozen map', () => {
                 expectToBe(Object.isFrozen(mergePrefixes({ a: 'http://a/' })), true);
             });
         });
@@ -72,31 +76,43 @@ describe('PrefixUtils (DONE)', () => {
                 expect(compactIri).toBeDefined();
             });
 
-            it('... should compact an IRI with a matching namespace', () => {
-                expectToBe(compactIri(`${AWG}Sketch`, DEFAULT_PREFIXES), 'awg:Sketch');
-                expectToBe(compactIri(`${RDFS}label`, DEFAULT_PREFIXES), 'rdfs:label');
+            describe('... should compact an IRI with a matching namespace', () => {
+                it.each([
+                    { desc: 'awg:Sketch', iri: `${AWG}Sketch`, expected: 'awg:Sketch' },
+                    { desc: 'rdfs:label', iri: `${RDFS}label`, expected: 'rdfs:label' },
+                ])('... $desc', ({ iri, expected }) => {
+                    const compactedIri = compactIri(iri, DEFAULT_PREFIXES);
+
+                    expectToBe(compactedIri, expected);
+                });
             });
 
             it('... should keep an IRI without a matching namespace', () => {
-                expectToBe(compactIri('http://example.org/x', DEFAULT_PREFIXES), 'http://example.org/x');
+                const compactedIri = compactIri('http://example.org/x', DEFAULT_PREFIXES);
+
+                expectToBe(compactedIri, 'http://example.org/x');
             });
 
             it('... should only match namespaces at the start of the IRI', () => {
-                expectToBe(
-                    compactIri(`http://example.org/?ref=${AWG}x`, DEFAULT_PREFIXES),
-                    `http://example.org/?ref=${AWG}x`
-                );
+                const compactedIri = compactIri(`http://example.org/?ref=${AWG}x`, DEFAULT_PREFIXES);
+
+                expectToBe(compactedIri, `http://example.org/?ref=${AWG}x`);
             });
 
             it('... should use the longest matching namespace', () => {
                 const prefixes = { ex: 'http://example.org/', exs: 'http://example.org/sub/' };
 
-                expectToBe(compactIri('http://example.org/sub/x', prefixes), 'exs:x');
-                expectToBe(compactIri('http://example.org/x', prefixes), 'ex:x');
+                const compactedSubIri = compactIri('http://example.org/sub/x', prefixes);
+                const compactedIri = compactIri('http://example.org/x', prefixes);
+
+                expectToBe(compactedSubIri, 'exs:x');
+                expectToBe(compactedIri, 'ex:x');
             });
 
             it('... should ignore empty namespaces', () => {
-                expectToBe(compactIri('http://example.org/x', { empty: '' }), 'http://example.org/x');
+                const compactedIri = compactIri('http://example.org/x', { empty: '' });
+
+                expectToBe(compactedIri, 'http://example.org/x');
             });
         });
 
@@ -108,31 +124,43 @@ describe('PrefixUtils (DONE)', () => {
             it('... should extract the declared prefixes (case-insensitive keyword)', () => {
                 const query = `PREFIX awg: <${AWG}>\nprefix rdfs:<${RDFS}>\nSELECT * WHERE { ?s ?p ?o }`;
 
-                expectToEqual(extractSparqlPrefixes(query), { awg: AWG, rdfs: RDFS });
+                const extractedSparqlPrefixes = extractSparqlPrefixes(query);
+
+                expectToEqual(extractedSparqlPrefixes, { awg: AWG, rdfs: RDFS });
             });
 
             it('... should extract the empty prefix', () => {
-                expectToEqual(extractSparqlPrefixes('PREFIX : <http://example.org/>'), { '': 'http://example.org/' });
+                const extractedSparqlPrefixes = extractSparqlPrefixes('PREFIX : <http://example.org/>');
+
+                expectToEqual(extractedSparqlPrefixes, { '': 'http://example.org/' });
             });
 
-            it('... should hold an empty map without declarations', () => {
-                expectToEqual(extractSparqlPrefixes('SELECT * WHERE { ?s ?p ?o }'), {});
+            it('... should return an empty map without declarations', () => {
+                const extractedSparqlPrefixes = extractSparqlPrefixes('SELECT * WHERE { ?s ?p ?o }');
+
+                expectToEqual(extractedSparqlPrefixes, {});
             });
 
             it('... should ignore commented-out declarations', () => {
                 const query = `# PREFIX ex: <http://example.org/>\nPREFIX awg: <${AWG}>\nSELECT * WHERE { ?s ?p ?o }`;
 
-                expectToEqual(extractSparqlPrefixes(query), { awg: AWG });
+                const extractedSparqlPrefixes = extractSparqlPrefixes(query);
+
+                expectToEqual(extractedSparqlPrefixes, { awg: AWG });
             });
 
             it('... should ignore declarations within string literals', () => {
                 const query = `SELECT * WHERE { ?s ?p "PREFIX ex: <http://example.org/>" , 'PREFIX ex2: <http://example.org/2>' }`;
 
-                expectToEqual(extractSparqlPrefixes(query), {});
+                const extractedSparqlPrefixes = extractSparqlPrefixes(query);
+
+                expectToEqual(extractedSparqlPrefixes, {});
             });
 
             it('... should extract declarations with a `#` in the namespace IRI', () => {
-                expectToEqual(extractSparqlPrefixes(`PREFIX awg: <${AWG}>`), { awg: AWG });
+                const extractedSparqlPrefixes = extractSparqlPrefixes(`PREFIX awg: <${AWG}>`);
+
+                expectToEqual(extractedSparqlPrefixes, { awg: AWG });
             });
         });
 
@@ -144,17 +172,23 @@ describe('PrefixUtils (DONE)', () => {
             it('... should find the prefixes used in template and where clause', () => {
                 const query = 'CONSTRUCT { ?s dc:title ?t } WHERE { ?s a awg:Sketch ; rdfs:label ?t . }';
 
-                expectToEqual(findUsedPrefixes(query), ['dc', 'awg', 'rdfs']);
+                const foundUsedPrefixes = findUsedPrefixes(query);
+
+                expectToEqual(foundUsedPrefixes, ['dc', 'awg', 'rdfs']);
             });
 
             it('... should find each prefix only once', () => {
-                expectToEqual(findUsedPrefixes('SELECT * WHERE { ?s awg:a ?o . ?o awg:b ?x }'), ['awg']);
+                const foundUsedPrefixes = findUsedPrefixes('SELECT * WHERE { ?s awg:a ?o . ?o awg:b ?x }');
+
+                expectToEqual(foundUsedPrefixes, ['awg']);
             });
 
             it('... should ignore prefix declarations', () => {
                 const query = `PREFIX owl: <http://www.w3.org/2002/07/owl#>\nSELECT * WHERE { ?s rdf:type ?o }`;
 
-                expectToEqual(findUsedPrefixes(query), ['rdf']);
+                const foundUsedPrefixes = findUsedPrefixes(query);
+
+                expectToEqual(foundUsedPrefixes, ['rdf']);
             });
 
             it('... should ignore IRIs, string literals and comments', () => {
@@ -165,11 +199,15 @@ describe('PrefixUtils (DONE)', () => {
                     '}',
                 ].join('\n');
 
-                expectToEqual(findUsedPrefixes(query), ['rdfs']);
+                const foundUsedPrefixes = findUsedPrefixes(query);
+
+                expectToEqual(foundUsedPrefixes, ['rdfs']);
             });
 
             it('... should ignore variables', () => {
-                expectToEqual(findUsedPrefixes('SELECT ?x WHERE { ?x ?p $o }'), []);
+                const foundUsedPrefixes = findUsedPrefixes('SELECT ?x WHERE { ?x ?p $o }');
+
+                expectToEqual(foundUsedPrefixes, []);
             });
         });
 
@@ -199,7 +237,9 @@ describe('PrefixUtils (DONE)', () => {
             it('... should keep a query with all prefixes declared', () => {
                 const query = `PREFIX awg: <${AWG}>\nSELECT * WHERE { ?s a awg:Sketch }`;
 
-                expectToBe(addMissingPrefixes(query, DEFAULT_PREFIXES).query, query);
+                const prefixed = addMissingPrefixes(query, DEFAULT_PREFIXES);
+
+                expectToBe(prefixed.query, query);
             });
 
             it('... should report used prefixes that are unknown', () => {
@@ -214,10 +254,9 @@ describe('PrefixUtils (DONE)', () => {
             it('... should prefer the given prefixes over nothing (e.g. from the turtle data)', () => {
                 const query = 'SELECT * WHERE { ?s ex:p ?o }';
 
-                expectToBe(
-                    addMissingPrefixes(query, { ex: 'http://example.org/' }).query,
-                    `PREFIX ex: <http://example.org/>\n${query}`
-                );
+                const prefixed = addMissingPrefixes(query, { ex: 'http://example.org/' });
+
+                expectToBe(prefixed.query, `PREFIX ex: <http://example.org/>\n${query}`);
             });
         });
     });

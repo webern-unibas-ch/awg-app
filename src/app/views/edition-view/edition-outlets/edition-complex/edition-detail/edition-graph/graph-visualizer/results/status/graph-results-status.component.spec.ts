@@ -24,8 +24,8 @@ describe('GraphResultsStatusComponent (DONE)', () => {
     let expectedSelectResult: SparqlSelectResult;
     let expectedQueryTime: number;
 
-    const getStatusEl = (): HTMLOutputElement =>
-        getAndExpectDebugElementByCss(compDe, 'output.awg-graph-results-status', 1, 1)[0].nativeElement;
+    const getStatusDes = () => getAndExpectDebugElementByCss(compDe, 'output.awg-graph-results-status', 1, 1);
+    const getStatusEl = (): HTMLOutputElement => getStatusDes()[0].nativeElement;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -143,17 +143,29 @@ describe('GraphResultsStatusComponent (DONE)', () => {
                     expect(component['_formatDuration']).toBeDefined();
                 });
 
-                it('... should format durations below one second as rounded milliseconds', () => {
-                    expectToBe(component['_formatDuration'](0), '0 ms');
-                    expectToBe(component['_formatDuration'](34.5), '35 ms');
-                    expectToBe(component['_formatDuration'](999.4), '999 ms');
-                    expectToBe(component['_formatDuration'](999.6), '1 s');
+                describe('... should format durations below one second as rounded milliseconds', () => {
+                    it.each([
+                        { desc: '0', durationMs: 0, expected: '0 ms' },
+                        { desc: '34.5', durationMs: 34.5, expected: '35 ms' },
+                        { desc: '999.4', durationMs: 999.4, expected: '999 ms' },
+                        { desc: '999.6', durationMs: 999.6, expected: '1 s' },
+                    ])('... $desc', ({ durationMs, expected }) => {
+                        const formattedDuration = component['_formatDuration'](durationMs);
+
+                        expectToBe(formattedDuration, expected);
+                    });
                 });
 
-                it('... should format durations from one second as seconds with one decimal place', () => {
-                    expectToBe(component['_formatDuration'](1000), '1 s');
-                    expectToBe(component['_formatDuration'](1240), '1,2 s');
-                    expectToBe(component['_formatDuration'](12345), '12,3 s');
+                describe('... should format durations from one second as seconds with one decimal place', () => {
+                    it.each([
+                        { desc: '1000', durationMs: 1000, expected: '1 s' },
+                        { desc: '1240', durationMs: 1240, expected: '1,2 s' },
+                        { desc: '12345', durationMs: 12345, expected: '12,3 s' },
+                    ])('... $desc', ({ durationMs, expected }) => {
+                        const formattedDuration = component['_formatDuration'](durationMs);
+
+                        expectToBe(formattedDuration, expected);
+                    });
                 });
             });
         });

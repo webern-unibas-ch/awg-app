@@ -11,6 +11,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -528,7 +529,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
 
                     await clickAndAwaitChanges(linkDe, fixture);
 
-                    expect(navigateSpy).toHaveBeenCalled();
+                    expectSpyCall(navigateSpy, 1);
                     const actualUrl = navigateSpy.mock.calls[0][0].toString();
 
                     expectToBe(actualUrl, expectedRouterLink);

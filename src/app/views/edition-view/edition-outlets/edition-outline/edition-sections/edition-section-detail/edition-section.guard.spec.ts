@@ -103,10 +103,11 @@ describe('editionSectionGuard (DONE)', () => {
             },
         ])('... $desc', ({ parentParams, params, expectedLookupIds }) => {
             const result = runGuard(parentParams as Record<string, string> | null, params as Record<string, string>);
+            const serializedUrl = router.serializeUrl(result as UrlTree);
 
             expectSpyCall(outlineServiceGetEditionSectionByIdSpy, 1, expectedLookupIds);
             expect(result).toBeInstanceOf(UrlTree);
-            expectToBe(router.serializeUrl(result as UrlTree), expectedNotFoundUrl);
+            expectToBe(serializedUrl, expectedNotFoundUrl);
         });
     });
 });

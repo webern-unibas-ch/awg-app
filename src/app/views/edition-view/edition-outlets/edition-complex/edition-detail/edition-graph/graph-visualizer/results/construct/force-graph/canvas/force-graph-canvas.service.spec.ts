@@ -550,7 +550,9 @@ describe('ForceGraphCanvasService (DONE)', () => {
             const fillCalls = ctx.callsOf('fill');
             const strokeCalls = ctx.callsOf('stroke');
 
-            expectToEqual(nodeIdsPerCall(drawNodeCirclesSpy), [['_:c'], ['b'], ['a'], ['"x"']]);
+            const nodeIds = nodeIdsPerCall(drawNodeCirclesSpy);
+
+            expectToEqual(nodeIds, [['_:c'], ['b'], ['a'], ['"x"']]);
             expectSpyCall(drawNodeSquaresSpy, 0);
             expectToEqual(
                 fillCalls.map(call => call.fillStyle),
@@ -567,8 +569,11 @@ describe('ForceGraphCanvasService (DONE)', () => {
             // Radii: c 8, x 9 (squares), b 10, a 11 (circles)
             service['_drawNodes'](ctx, forceGraphData.visibleNodes, 10);
 
-            expectToEqual(nodeIdsPerCall(drawNodeCirclesSpy), [['b'], ['a']]);
-            expectToEqual(nodeIdsPerCall(drawNodeSquaresSpy), [['_:c'], ['"x"']]);
+            const circleNodeIds = nodeIdsPerCall(drawNodeCirclesSpy);
+            const squareNodeIds = nodeIdsPerCall(drawNodeSquaresSpy);
+
+            expectToEqual(circleNodeIds, [['b'], ['a']]);
+            expectToEqual(squareNodeIds, [['_:c'], ['"x"']]);
         });
 
         it('... should draw neither circles nor squares without nodes', () => {

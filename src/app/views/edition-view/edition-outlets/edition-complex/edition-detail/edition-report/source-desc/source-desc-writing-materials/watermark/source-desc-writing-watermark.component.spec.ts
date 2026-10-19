@@ -129,8 +129,9 @@ describe('SourceDescWritingWatermarkComponent (DONE)', () => {
                     1
                 );
                 const emDes = getAndExpectDebugElementByCss(watermarkSpanDes[0], 'em', 1, 1);
+                const emEl: HTMLElement = emDes[0].nativeElement;
 
-                expectToBe(emDes[0].nativeElement.textContent.trim(), expectedWatermark.variant);
+                expectToBe(emEl.textContent.trim(), expectedWatermark.variant);
             });
 
             it('... should start the watermark statement with a comma', () => {
@@ -140,8 +141,9 @@ describe('SourceDescWritingWatermarkComponent (DONE)', () => {
                     1,
                     1
                 );
+                const watermarkSpanEl: HTMLSpanElement = watermarkSpanDes[0].nativeElement;
 
-                expectToBe(watermarkSpanDes[0].nativeElement.textContent.startsWith(', Wasserzeichen:'), true);
+                expectToBe(watermarkSpanEl.textContent.startsWith(', Wasserzeichen:'), true);
             });
 
             it('... should contain a span for each watermark locus', () => {
@@ -170,7 +172,9 @@ describe('SourceDescWritingWatermarkComponent (DONE)', () => {
             });
 
             it('... should end the watermark statement with `lesbar`', () => {
-                expectToBe(compDe.nativeElement.textContent.trimEnd().endsWith(' lesbar'), true);
+                const compEl: HTMLElement = compDe.nativeElement;
+
+                expectToBe(compEl.textContent.trimEnd().endsWith(' lesbar'), true);
             });
 
             describe('... should render nothing if watermark is', () => {
@@ -181,7 +185,9 @@ describe('SourceDescWritingWatermarkComponent (DONE)', () => {
                     fixture.componentRef.setInput('watermark', watermark);
                     await detectChangesOnPush(fixture);
 
-                    expectToBe(compDe.nativeElement.textContent.trim(), '');
+                    const compEl: HTMLElement = compDe.nativeElement;
+
+                    expectToBe(compEl.textContent.trim(), '');
                 });
             });
         });

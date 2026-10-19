@@ -512,23 +512,35 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should pass down a force graph height of 1000 to GraphResultsConstructComponent (hollow)', () => {
-                    expectToBe(getChildCmp(GraphResultsConstructComponent).defaultForceGraphHeight(), 1000);
+                    const childCmp = getChildCmp(GraphResultsConstructComponent);
+
+                    expectToBe(childCmp.defaultForceGraphHeight(), 1000);
                 });
 
-                it('... should pass down `isFullscreenMode` to all children (hollow)', () => {
-                    expectToBe(getChildCmp(GraphEditorTriplesComponent).isFullscreenMode(), true);
-                    expectToBe(getChildCmp(GraphEditorSparqlComponent).isFullscreenMode(), true);
-                    expectToBe(getChildCmp(GraphResultsConstructComponent).isFullscreenMode(), true);
+                describe('... should pass down `isFullscreenMode` to all children (hollow)', () => {
+                    it.each<{ desc: string; value: Type<{ isFullscreenMode: () => boolean }> }>([
+                        { desc: 'GraphEditorTriplesComponent', value: GraphEditorTriplesComponent },
+                        { desc: 'GraphEditorSparqlComponent', value: GraphEditorSparqlComponent },
+                        { desc: 'GraphResultsConstructComponent', value: GraphResultsConstructComponent },
+                    ])('... $desc', ({ value }) => {
+                        const childCmp = getChildCmp(value);
+
+                        expectToBe(childCmp.isFullscreenMode(), true);
+                    });
                 });
             });
 
             describe('GraphEditorTriplesComponent (hollow)', () => {
                 it('... should have `triples` passed down from main component', () => {
-                    expectToBe(getChildCmp(GraphEditorTriplesComponent).triples(), expectedRdfData.triples);
+                    const childCmp = getChildCmp(GraphEditorTriplesComponent);
+
+                    expectToBe(childCmp.triples(), expectedRdfData.triples);
                 });
 
                 it('... should have `isFullscreenMode` passed down from main component', () => {
-                    expectToBe(getChildCmp(GraphEditorTriplesComponent).isFullscreenMode(), false);
+                    const childCmp = getChildCmp(GraphEditorTriplesComponent);
+
+                    expectToBe(childCmp.isFullscreenMode(), false);
                 });
 
                 it('... should have linked signal `triples` to hold the two-way bound triples', () => {
@@ -568,7 +580,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should have `isFullscreenMode` passed down from main component', () => {
-                    expectToBe(getChildCmp(GraphEditorSparqlComponent).isFullscreenMode(), false);
+                    const childCmp = getChildCmp(GraphEditorSparqlComponent);
+
+                    expectToBe(childCmp.isFullscreenMode(), false);
                 });
 
                 it('... should have linked signal `query` to hold the two-way bound query', () => {
@@ -606,15 +620,21 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             describe('GraphResultsConstructComponent (hollow)', () => {
                 it('... should have `queryResult` passed down from main component', () => {
-                    expectToEqual(getChildCmp(GraphResultsConstructComponent).queryResult(), expectedConstructResult);
+                    const childCmp = getChildCmp(GraphResultsConstructComponent);
+
+                    expectToEqual(childCmp.queryResult(), expectedConstructResult);
                 });
 
                 it('... should have `defaultForceGraphHeight` passed down from main component', () => {
-                    expectToBe(getChildCmp(GraphResultsConstructComponent).defaultForceGraphHeight(), 500);
+                    const childCmp = getChildCmp(GraphResultsConstructComponent);
+
+                    expectToBe(childCmp.defaultForceGraphHeight(), 500);
                 });
 
                 it('... should have `isFullscreenMode` passed down from main component', () => {
-                    expectToBe(getChildCmp(GraphResultsConstructComponent).isFullscreenMode(), false);
+                    const childCmp = getChildCmp(GraphResultsConstructComponent);
+
+                    expectToBe(childCmp.isFullscreenMode(), false);
                 });
 
                 it('... should trigger `onGraphNodeClick()` on clickedNodeRequest event', () => {
@@ -636,11 +656,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should have `queryResult` passed down from main component', () => {
-                    expectToEqual(getChildCmp(GraphResultsSelectComponent).queryResult(), expectedSelectResult);
+                    const childCmp = getChildCmp(GraphResultsSelectComponent);
+
+                    expectToEqual(childCmp.queryResult(), expectedSelectResult);
                 });
 
                 it('... should have `isFullscreenMode` passed down from main component', () => {
-                    expectToBe(getChildCmp(GraphResultsSelectComponent).isFullscreenMode(), false);
+                    const childCmp = getChildCmp(GraphResultsSelectComponent);
+
+                    expectToBe(childCmp.isFullscreenMode(), false);
                 });
 
                 it('... should trigger `onTableNodeClick()` on clickedTableRequest event', () => {
@@ -668,17 +692,23 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should have `queryType` passed down from main component', () => {
-                    expectToBe(getChildCmp(GraphResultsUnsupportedComponent).queryType(), 'ask');
+                    const childCmp = getChildCmp(GraphResultsUnsupportedComponent);
+
+                    expectToBe(childCmp.queryType(), 'ask');
                 });
 
                 it('... should pass down an empty string if queryType is missing', async () => {
                     await setQueryType(null);
 
-                    expectToBe(getChildCmp(GraphResultsUnsupportedComponent).queryType(), '');
+                    const childCmp = getChildCmp(GraphResultsUnsupportedComponent);
+
+                    expectToBe(childCmp.queryType(), '');
                 });
 
                 it('... should have `isFullscreenMode` passed down from main component', () => {
-                    expectToBe(getChildCmp(GraphResultsUnsupportedComponent).isFullscreenMode(), false);
+                    const childCmp = getChildCmp(GraphResultsUnsupportedComponent);
+
+                    expectToBe(childCmp.isFullscreenMode(), false);
                 });
             });
         });
@@ -907,7 +937,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component['_createQueryRequest']).toBeDefined();
                 });
 
-                it('... should hold a request of the current query against the current triples', () => {
+                it('... should return a request of the current query against the current triples', () => {
                     const currentQuery = { ...expectedRdfData.queryList[2], queryType: 'select' as const };
                     component.triples.set(expectedChangedTriples);
                     component.query.set(currentQuery);
@@ -949,7 +979,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectSpyCall(serviceRunSpy, 1, [expectedRequest.queryString, expectedRequest.triples]);
                 });
 
-                it('... should hold the run of the query service on success', async () => {
+                it('... should return the run of the query service on success', async () => {
                     const run = await component['_runQuery'](expectedRequest, new AbortController().signal);
 
                     expectToEqual(run, {
@@ -1022,7 +1052,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
                     });
 
-                    it('... should hold a run with an empty result of the query type', async () => {
+                    it('... should return a run with an empty result of the query type', async () => {
                         serviceRunSpy.mockRejectedValue({ status: 404, statusText: 'error' });
 
                         const run = await component['_runQuery'](expectedRequest, new AbortController().signal);

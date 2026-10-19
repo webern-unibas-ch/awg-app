@@ -24,7 +24,9 @@ describe('ObjectUtils (DONE)', () => {
                     { desc: 'is empty', value: [] },
                     { desc: 'is not an array (string)', value: 'string' },
                 ])('... $desc', ({ value }) => {
-                    expectToBe(isEmptyArray(value as any), true);
+                    const isEmpty = isEmptyArray(value as any);
+
+                    expectToBe(isEmpty, true);
                 });
             });
 
@@ -35,7 +37,9 @@ describe('ObjectUtils (DONE)', () => {
                     { desc: 'contains an empty object as an element', value: [{}] },
                     { desc: 'contains null as an element', value: [null] },
                 ])('... $desc', ({ value }) => {
-                    expectToBe(isEmptyArray(value), false);
+                    const isEmpty = isEmptyArray(value);
+
+                    expectToBe(isEmpty, false);
                 });
             });
         });
@@ -56,7 +60,9 @@ describe('ObjectUtils (DONE)', () => {
                     { desc: 'is an empty array (treated as empty/invalid)', value: [] },
                     { desc: 'is a filled array (treated as empty/invalid)', value: ['test'] },
                 ])('... $desc', ({ value }) => {
-                    expectToBe(isEmptyObject(value), true);
+                    const isEmpty = isEmptyObject(value);
+
+                    expectToBe(isEmpty, true);
                 });
             });
 
@@ -66,7 +72,9 @@ describe('ObjectUtils (DONE)', () => {
                     { desc: 'contains properties with empty string values', value: { name: '' } },
                     { desc: 'contains a nested empty object', value: { nested: {} } },
                 ])('... $desc', ({ value }) => {
-                    expectToBe(isEmptyObject(value), false);
+                    const isEmpty = isEmptyObject(value);
+
+                    expectToBe(isEmpty, false);
                 });
             });
         });

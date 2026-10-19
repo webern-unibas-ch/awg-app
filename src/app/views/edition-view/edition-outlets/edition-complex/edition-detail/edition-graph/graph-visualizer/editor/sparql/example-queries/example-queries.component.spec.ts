@@ -158,9 +158,11 @@ describe('ExampleQueriesComponent (DONE)', () => {
             it('... should contain one dropdown menu with a header per query type and a divider in between', () => {
                 const menuDes = getAndExpectDebugElementByCss(compDe, 'div.dropdown-menu', 1, 1);
                 const headerDes = getAndExpectDebugElementByCss(menuDes[0], 'h6.dropdown-header', 2, 2);
+                const firstHeaderEl: HTMLHeadingElement = headerDes[0].nativeElement;
+                const secondHeaderEl: HTMLHeadingElement = headerDes[1].nativeElement;
 
-                expectToBe(headerDes[0].nativeElement.textContent, 'Graph-Ansicht (CONSTRUCT)');
-                expectToBe(headerDes[1].nativeElement.textContent, 'Tabellen-Ansicht (SELECT)');
+                expectToBe(firstHeaderEl.textContent, 'Graph-Ansicht (CONSTRUCT)');
+                expectToBe(secondHeaderEl.textContent, 'Tabellen-Ansicht (SELECT)');
 
                 getAndExpectDebugElementByCss(menuDes[0], 'div.dropdown-divider', 1, 1);
             });
@@ -173,10 +175,10 @@ describe('ExampleQueriesComponent (DONE)', () => {
                     expectedQueryList.length
                 );
 
-                expectToEqual(
-                    aDes.map(aDe => aDe.nativeElement.textContent.trim()),
-                    expectedQueryList.map(q => q.queryLabel)
-                );
+                const linkLabels = aDes.map(aDe => aDe.nativeElement.textContent.trim());
+                const expectedLabels = expectedQueryList.map(q => q.queryLabel);
+
+                expectToEqual(linkLabels, expectedLabels);
             });
 
             it('... should contain only the construct header and no divider if there are no SELECT queries', async () => {
@@ -185,8 +187,9 @@ describe('ExampleQueriesComponent (DONE)', () => {
 
                 const menuDes = getAndExpectDebugElementByCss(compDe, 'div.dropdown-menu', 1, 1);
                 const headerDes = getAndExpectDebugElementByCss(menuDes[0], 'h6.dropdown-header', 1, 1);
+                const headerEl: HTMLHeadingElement = headerDes[0].nativeElement;
 
-                expectToBe(headerDes[0].nativeElement.textContent, 'Graph-Ansicht (CONSTRUCT)');
+                expectToBe(headerEl.textContent, 'Graph-Ansicht (CONSTRUCT)');
                 getAndExpectDebugElementByCss(menuDes[0], 'div.dropdown-divider', 0, 0);
                 getAndExpectDebugElementByCss(menuDes[0], 'a.dropdown-item', 2, 2);
             });
@@ -197,8 +200,9 @@ describe('ExampleQueriesComponent (DONE)', () => {
 
                 const menuDes = getAndExpectDebugElementByCss(compDe, 'div.dropdown-menu', 1, 1);
                 const headerDes = getAndExpectDebugElementByCss(menuDes[0], 'h6.dropdown-header', 1, 1);
+                const headerEl: HTMLHeadingElement = headerDes[0].nativeElement;
 
-                expectToBe(headerDes[0].nativeElement.textContent, 'Tabellen-Ansicht (SELECT)');
+                expectToBe(headerEl.textContent, 'Tabellen-Ansicht (SELECT)');
                 getAndExpectDebugElementByCss(menuDes[0], 'div.dropdown-divider', 0, 0);
                 getAndExpectDebugElementByCss(menuDes[0], 'a.dropdown-item', 2, 2);
             });
@@ -211,10 +215,9 @@ describe('ExampleQueriesComponent (DONE)', () => {
                     expectedQueryList.length
                 );
 
-                expectToEqual(
-                    aDes.map(aDe => aDe.nativeElement.classList.contains('disabled')),
-                    [true, false, false, false]
-                );
+                const disabledStates = aDes.map(aDe => aDe.nativeElement.classList.contains('disabled'));
+
+                expectToEqual(disabledStates, [true, false, false, false]);
             });
 
             it('... should disable the dropdown item of an active query copy (same label and type)', async () => {
@@ -227,9 +230,11 @@ describe('ExampleQueriesComponent (DONE)', () => {
                     expectedQueryList.length,
                     expectedQueryList.length
                 );
+                const firstAEl: HTMLAnchorElement = aDes[0].nativeElement;
+                const thirdAEl: HTMLAnchorElement = aDes[2].nativeElement;
 
-                expectToNotContain(aDes[0].nativeElement.classList, 'disabled');
-                expectToContain(aDes[2].nativeElement.classList, 'disabled');
+                expectToNotContain(firstAEl.classList, 'disabled');
+                expectToContain(thirdAEl.classList, 'disabled');
             });
 
             it('... should have `awgClick` on each dropdown item', () => {
@@ -266,7 +271,9 @@ describe('ExampleQueriesComponent (DONE)', () => {
                 });
 
                 it('... should be true for a query with the label and type of the active query', () => {
-                    expectToBe(component.isActive({ ...expectedConstructQuery1, queryString: 'changed' }), true);
+                    const isActive = component.isActive({ ...expectedConstructQuery1, queryString: 'changed' });
+
+                    expectToBe(isActive, true);
                 });
 
                 it.each([
@@ -276,14 +283,18 @@ describe('ExampleQueriesComponent (DONE)', () => {
                         query: { ...expectedConstructQuery1, queryType: 'select' } as GraphQuery,
                     },
                 ])('... should be false for a query with $desc', ({ query }) => {
-                    expectToBe(component.isActive(query), false);
+                    const isActive = component.isActive(query);
+
+                    expectToBe(isActive, false);
                 });
 
                 it('... should be false if there is no active query', async () => {
                     fixture.componentRef.setInput('activeQuery', undefined);
                     await detectChangesOnPush(fixture);
 
-                    expectToBe(component.isActive(expectedConstructQuery1), false);
+                    const isActive = component.isActive(expectedConstructQuery1);
+
+                    expectToBe(isActive, false);
                 });
             });
         });

@@ -398,8 +398,11 @@ describe('StatisticsComplexBreakdownComponent', () => {
                         const items = expectedComplexBreakdownItems;
 
                         items.forEach(item => {
-                            expectToEqual(component.getProgressBarConfig(item.key, 'ratio'), expectedConfig);
-                            expectToEqual(component.getProgressBarConfig(item.key, 'absolute'), expectedConfig);
+                            const ratioConfig = component.getProgressBarConfig(item.key, 'ratio');
+                            const absoluteConfig = component.getProgressBarConfig(item.key, 'absolute');
+
+                            expectToEqual(ratioConfig, expectedConfig);
+                            expectToEqual(absoluteConfig, expectedConfig);
                         });
                     });
 
@@ -414,7 +417,9 @@ describe('StatisticsComplexBreakdownComponent', () => {
                                 total: data.complexBreakdown[item.key],
                             };
 
-                            expectToEqual(component.getProgressBarConfig(item.key, 'ratio'), expectedConfig);
+                            const progressBarConfig = component.getProgressBarConfig(item.key, 'ratio');
+
+                            expectToEqual(progressBarConfig, expectedConfig);
                         });
                     });
 
@@ -429,7 +434,9 @@ describe('StatisticsComplexBreakdownComponent', () => {
                                 total: data.totalComplexes,
                             };
 
-                            expectToEqual(component.getProgressBarConfig(item.key, 'absolute'), expectedConfig);
+                            const progressBarConfig = component.getProgressBarConfig(item.key, 'absolute');
+
+                            expectToEqual(progressBarConfig, expectedConfig);
                         });
                     });
                 });

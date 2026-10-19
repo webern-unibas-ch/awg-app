@@ -8,6 +8,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToEqual,
     expectToNotContain,
@@ -421,7 +422,7 @@ describe('HomeViewComponent (DONE)', () => {
 
                     await clickAndAwaitChanges(linkDe, fixture);
 
-                    expect(navigateSpy).toHaveBeenCalled();
+                    expectSpyCall(navigateSpy, 1);
                     const firstCallArg = navigateSpy.mock.calls[0][0];
                     const actualUrl = firstCallArg.toString();
 

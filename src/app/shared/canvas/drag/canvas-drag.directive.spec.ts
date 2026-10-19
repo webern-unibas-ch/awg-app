@@ -174,13 +174,13 @@ describe('CanvasDragDirective (DONE)', () => {
                     expectToEqual(gesture, { subject: 'a', isMoved: false });
                 });
 
-                it('... should hold undefined without a found subject', () => {
+                it('... should return undefined without a found subject', () => {
                     const gesture = directive['_findGesture']({ x: 60, y: 20 } as never);
 
                     expect(gesture).toBeUndefined();
                 });
 
-                it('... should hold undefined for a further touch while another drag is running', () => {
+                it('... should return undefined for a further touch while another drag is running', () => {
                     canvasEl.dispatchEvent(mouseEvent('mousedown', 10, 20));
                     const gesture = directive['_findGesture']({ x: 10, y: 20, identifier: 1 } as never);
                     window.dispatchEvent(mouseEvent('mouseup', 10, 20));

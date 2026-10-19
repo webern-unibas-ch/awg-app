@@ -46,8 +46,8 @@ describe('EditionComplexesService (DONE)', () => {
         expectToEqual(service['_editionComplexesListSignal'](), {});
     });
 
-    describe('#editionComplexesList()', () => {
-        it('... should have signal `getEditionComplexesList` to hold an empty object', () => {
+    describe('... signal `editionComplexesList`', () => {
+        it('... should have signal `editionComplexesList` to hold an empty object', () => {
             expectToBe(isSignal(service.editionComplexesList), true);
 
             expectToEqual(service.editionComplexesList(), {});

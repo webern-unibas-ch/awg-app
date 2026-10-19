@@ -9,6 +9,7 @@ import { NgbDropdown, NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap/dropd
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -168,7 +169,7 @@ describe('NavbarItemComponent (DONE)', () => {
 
                             const expectedClasses = hostComponent.testItem.spanClass.split(' ');
                             expectedClasses.forEach(className => {
-                                expect(navItemLinkSpanEl1.classList.contains(className)).toBe(true);
+                                expectToBe(navItemLinkSpanEl1.classList.contains(className), true);
                             });
                         });
 
@@ -186,7 +187,7 @@ describe('NavbarItemComponent (DONE)', () => {
                                 const navItemLinkDes = getAndExpectDebugElementByCss(compDe, 'a.nav-link', 1, 1);
                                 const navItemLinkEl: HTMLAnchorElement = navItemLinkDes[0].nativeElement;
 
-                                expect(navItemLinkEl.id).toBe(hostComponent.testId);
+                                expectToBe(navItemLinkEl.id, hostComponent.testId);
                             });
 
                             it('... should have no RouterLink, but NgbDropdownToggle', () => {
@@ -198,7 +199,7 @@ describe('NavbarItemComponent (DONE)', () => {
                                 const navItemLinkDes = getAndExpectDebugElementByCss(compDe, 'a.nav-link', 1, 1);
                                 const navItemLinkEl: HTMLAnchorElement = navItemLinkDes[0].nativeElement;
 
-                                expect(navItemLinkEl.id).toBe('');
+                                expectToBe(navItemLinkEl.id, '');
                             });
 
                             it('... should have RouterLink, but no NgbDropdownToggle', () => {
@@ -243,7 +244,7 @@ describe('NavbarItemComponent (DONE)', () => {
 
                                     await clickAndAwaitChanges(linkDe, hostFixture);
 
-                                    expect(navigateSpy).toHaveBeenCalled();
+                                    expectSpyCall(navigateSpy, 1);
                                     const firstCallArg = navigateSpy.mock.calls[0][0];
                                     const actualUrl = firstCallArg.toString();
 

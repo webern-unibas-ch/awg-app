@@ -214,7 +214,9 @@ describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
                         writingInstruments: SourceDescWritingInstruments | undefined;
                         expected: string;
                     }) => {
-                        expectToBe(component.getWritingInstruments(writingInstruments), expected);
+                        const writingInstrumentsText = component.getWritingInstruments(writingInstruments);
+
+                        expectToBe(writingInstrumentsText, expected);
                     }
                 );
             });

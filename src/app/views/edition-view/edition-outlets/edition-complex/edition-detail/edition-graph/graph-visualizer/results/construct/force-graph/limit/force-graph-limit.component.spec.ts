@@ -23,10 +23,10 @@ describe('ForceGraphLimitComponent (DONE)', () => {
     const expectedTripleCount = 60;
     const expectedLimit = 50;
 
-    const getCountButtonText = (): string =>
-        getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-limit > button[disabled]', 1, 1)[0]
-            .nativeElement.textContent.trim()
-            .replace(/\s+/g, ' ');
+    const getCountButtonDes = () =>
+        getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-limit > button[disabled]', 1, 1);
+    const getCountButtonEl = (): HTMLButtonElement => getCountButtonDes()[0].nativeElement;
+    const getCountButtonText = (): string => getCountButtonEl().textContent.trim().replace(/\s+/g, ' ');
     const getItemDes = (expectedCount: number): DebugElement[] =>
         getAndExpectDebugElementByCss(compDe, 'div.dropdown-menu > button', expectedCount, expectedCount);
 
@@ -75,18 +75,10 @@ describe('ForceGraphLimitComponent (DONE)', () => {
             });
 
             it('... should label the button group and the toggle button for screen readers', () => {
-                const btnGroupEl: HTMLDivElement = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.btn-group.awg-force-graph-limit',
-                    1,
-                    1
-                )[0].nativeElement;
-                const toggleBtnEl: HTMLButtonElement = getAndExpectDebugElementByCss(
-                    compDe,
-                    'button.dropdown-toggle-split',
-                    1,
-                    1
-                )[0].nativeElement;
+                const btnGroupDes = getAndExpectDebugElementByCss(compDe, 'div.btn-group.awg-force-graph-limit', 1, 1);
+                const btnGroupEl: HTMLDivElement = btnGroupDes[0].nativeElement;
+                const toggleBtnDes = getAndExpectDebugElementByCss(compDe, 'button.dropdown-toggle-split', 1, 1);
+                const toggleBtnEl: HTMLButtonElement = toggleBtnDes[0].nativeElement;
 
                 expectToBe(btnGroupEl.getAttribute('aria-label'), 'Limit der angezeigten Triples');
                 expectToBe(toggleBtnEl.getAttribute('aria-label'), 'Limit auswählen');
@@ -157,8 +149,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
 
             it('... should enable the toggle button', () => {
                 const toggleDes = getAndExpectDebugElementByCss(compDe, 'button.dropdown-toggle-split', 1, 1);
+                const toggleEl: HTMLButtonElement = toggleDes[0].nativeElement;
 
-                expectToBe(toggleDes[0].nativeElement.disabled, false);
+                expectToBe(toggleEl.disabled, false);
             });
 
             it('... should disable the toggle button without triples', async () => {
@@ -166,8 +159,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const toggleDes = getAndExpectDebugElementByCss(compDe, 'button.dropdown-toggle-split', 1, 1);
+                const toggleEl: HTMLButtonElement = toggleDes[0].nativeElement;
 
-                expectToBe(toggleDes[0].nativeElement.disabled, true);
+                expectToBe(toggleEl.disabled, true);
             });
 
             it('... should contain one item per limit value and one item without limit', () => {
@@ -184,8 +178,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const itemDes = getItemDes(1);
+                const itemEl: HTMLElement = itemDes[0].nativeElement;
 
-                expectToBe(itemDes[0].nativeElement.textContent.trim(), 'Kein Limit');
+                expectToBe(itemEl.textContent.trim(), 'Kein Limit');
             });
 
             it('... should set `limit` to the limit value of a clicked item', async () => {

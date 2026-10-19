@@ -474,7 +474,9 @@ describe('EditionDataService (DONE)', () => {
                         expectToEqual(resultSignal(), expectedFallback);
                         await new Promise(resolve => setTimeout(resolve, 0));
 
-                        expect(getClearErrorCountByKey(assetsKey)).toBe(2);
+                        const clearErrorCountByKey = getClearErrorCountByKey(assetsKey);
+
+                        expectToBe(clearErrorCountByKey, 2);
 
                         // No fetch request should be triggered since no complex is selected
                         expectSpyCall(fetchJsonDataSpy, 0);
@@ -503,7 +505,9 @@ describe('EditionDataService (DONE)', () => {
 
                         await new Promise(resolve => setTimeout(resolve, 0));
 
-                        expect(getClearErrorCountByKey(assetsKey)).toBe(2);
+                        const clearErrorCountByKey = getClearErrorCountByKey(assetsKey);
+
+                        expectToBe(clearErrorCountByKey, 2);
 
                         // The fetch request should be triggered
                         expect(getAssetPathSpy).toHaveBeenCalledWith(expectedComplex);
@@ -554,6 +558,10 @@ describe('EditionDataService (DONE)', () => {
                 streamSpy = vi
                     .spyOn(service, '_getIntroDataStream' as any)
                     .mockReturnValue(observableOf(new IntroList()));
+            });
+
+            it('... should have a method `_getIntroData`', () => {
+                expect(service['_getIntroData']).toBeDefined();
             });
 
             it('... should return a signal initialized with an empty IntroList fallback', () => {
@@ -706,7 +714,7 @@ describe('EditionDataService (DONE)', () => {
                     const result$ = service['_getIntroDataStream'](mockState);
                     await lastValueFrom(result$);
 
-                    expect(fetchJsonDataSpy).toHaveBeenCalledTimes(2);
+                    expectSpyCall(fetchJsonDataSpy, 2);
                     expect(fetchJsonDataSpy).toHaveBeenNthCalledWith(
                         1,
                         expectedSectionPath,
@@ -749,7 +757,7 @@ describe('EditionDataService (DONE)', () => {
                     const result$ = service['_getIntroDataStream'](mockState);
                     const res = await lastValueFrom(result$);
 
-                    expect(filterIntroDataSpy).not.toHaveBeenCalled();
+                    expectSpyCall(filterIntroDataSpy, 0);
                     expectToEqual(res, expectedIntroSectionData);
                 });
             });
