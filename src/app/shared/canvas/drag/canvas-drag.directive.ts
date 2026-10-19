@@ -58,13 +58,6 @@ export class CanvasDragDirective<T> {
     private readonly _canvas = D3_SELECTION.select<HTMLCanvasElement, unknown>(this._canvasEl);
 
     /**
-     * Private variable: _activeGesture.
-     *
-     * It keeps the gesture of the running drag, if any.
-     */
-    private _activeGesture: CanvasDragGesture<T> | undefined;
-
-    /**
      * Private readonly variable: _dragBehaviour.
      *
      * It keeps the D3 drag behaviour bound to the host canvas element
@@ -88,6 +81,13 @@ export class CanvasDragDirective<T> {
                 this.dragEnd.emit(event.subject.subject);
             }
         });
+
+    /**
+     * Private variable: _activeGesture.
+     *
+     * It keeps the gesture of the running drag, if any.
+     */
+    private _activeGesture: CanvasDragGesture<T> | undefined;
 
     /**
      * Constructor of the CanvasDragDirective.

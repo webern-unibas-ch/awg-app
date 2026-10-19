@@ -37,13 +37,6 @@ export class AnalyticsService {
     private readonly _doc = inject(DOCUMENT);
 
     /**
-     * Private variable: _isInitialized.
-     *
-     * It stores a boolean flag for successful initialization.
-     */
-    private _isInitialized = false;
-
-    /**
      * Private readonly variable: _analyticsId.
      *
      * It stores the analytics id.
@@ -67,6 +60,13 @@ export class AnalyticsService {
      * PRODUCTION: TRUE
      */
     private readonly _sendPageView = environment.GA_SEND_PAGE_VIEW;
+
+    /**
+     * Private variable: _isInitialized.
+     *
+     * It stores a boolean flag for successful initialization.
+     */
+    private _isInitialized = false;
 
     /**
      * Public method: initializeAnalytics.

@@ -144,14 +144,6 @@ export class EditionSheetViewerSvgComponent {
     readonly suppliedClasses = signal<string[]>([]);
 
     /**
-     * Private variable: _renderQueue.
-     *
-     * It keeps the promise chain of the sheet renderings
-     * (renderings never overlap, outdated sheets are skipped).
-     */
-    private _renderQueue: Promise<void> = Promise.resolve();
-
-    /**
      * Private readonly computed signal: _svgRootGroupSelection.
      *
      * It holds the d3 selection of the svg root group (the element is stable across renderings).
@@ -159,6 +151,14 @@ export class EditionSheetViewerSvgComponent {
     private readonly _svgRootGroupSelection = computed<D3Selection>(
         () => D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
     );
+
+    /**
+     * Private variable: _renderQueue.
+     *
+     * It keeps the promise chain of the sheet renderings
+     * (renderings never overlap, outdated sheets are skipped).
+     */
+    private _renderQueue: Promise<void> = Promise.resolve();
 
     /**
      * Constructor of the EditionSheetViewerSvgComponent.

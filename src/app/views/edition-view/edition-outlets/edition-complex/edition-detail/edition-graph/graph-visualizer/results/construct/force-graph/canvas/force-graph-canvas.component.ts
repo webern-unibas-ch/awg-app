@@ -64,18 +64,18 @@ import { FORCE_GRAPH_CANVAS_UTILS } from './force-graph-canvas.utils';
 })
 export class ForceGraphCanvasComponent {
     /**
-     * Private readonly injection variable: _destroyRef.
-     *
-     * It keeps the instance of the injected DestroyRef.
-     */
-    private readonly _destroyRef = inject(DestroyRef);
-
-    /**
      * Private readonly injection variable: _canvasService.
      *
      * It keeps the instance of the injected ForceGraphCanvasService.
      */
     private readonly _canvasService = inject(ForceGraphCanvasService);
+
+    /**
+     * Private readonly injection variable: _destroyRef.
+     *
+     * It keeps the instance of the injected DestroyRef.
+     */
+    private readonly _destroyRef = inject(DestroyRef);
 
     /**
      * Private readonly injection variable: _simulationService.

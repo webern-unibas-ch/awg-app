@@ -39,6 +39,13 @@ import { EditionNavigationService } from '@awg-views/edition-view/services/editi
 })
 export class EditionFoliosViewerSvgComponent {
     /**
+     * Private readonly injection variable: _editionModalService.
+     *
+     * It keeps the instance of the injected EditionModalService.
+     */
+    private readonly _editionModalService = inject(EditionModalService);
+
+    /**
      * Private readonly injection variable: _folioDrawingService.
      *
      * It keeps the instance of the injected EditionFolioDrawingService.
@@ -51,13 +58,6 @@ export class EditionFoliosViewerSvgComponent {
      * It keeps the instance of the injected EditionFolioSegmentService.
      */
     private readonly _folioSegmentService = inject(EditionFolioSegmentService);
-
-    /**
-     * Private readonly injection variable: _editionModalService.
-     *
-     * It keeps the instance of the injected EditionModalService.
-     */
-    private readonly _editionModalService = inject(EditionModalService);
 
     /**
      * Private readonly injection variable: _navigationService.

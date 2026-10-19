@@ -42,18 +42,18 @@ import { EditionStateService } from './edition-state.service';
 })
 export class EditionDataService {
     /**
-     * Private readonly injection variable: _http.
-     *
-     * It keeps the instance of the Angular HttpClient.
-     */
-    private readonly _http = inject(HttpClient);
-
-    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _http.
+     *
+     * It keeps the instance of the Angular HttpClient.
+     */
+    private readonly _http = inject(HttpClient);
 
     /**
      * Private readonly signal holding the data error state.
