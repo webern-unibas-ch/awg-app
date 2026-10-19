@@ -47,7 +47,7 @@ const QNAME_PREFIX_REGEX = /(?:^|[^\w?$.:-])([A-Za-z][\w-]*(?:\.[\w-]+)*):/g;
  * @returns {PrefixMap} The merged prefix map.
  */
 export function mergePrefixes(...prefixMaps: (PrefixMap | null | undefined)[]): PrefixMap {
-    return Object.freeze(Object.assign({}, ...prefixMaps.filter(Boolean)));
+    return Object.freeze(prefixMaps.reduce<PrefixMap>((merged, prefixMap) => ({ ...merged, ...prefixMap }), {}));
 }
 
 /**

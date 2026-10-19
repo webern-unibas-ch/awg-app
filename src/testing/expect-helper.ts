@@ -132,7 +132,7 @@ export function expectToBe<T>(actual: T, expected: T): void {
  * @param {any} expected The expected value that should be contained.
  * @returns {void} Throws the expectation statements.
  */
-export function expectToContain<T>(actual: T extends Function ? never : T, expected: any): void {
+export function expectToContain<T>(actual: T extends (...args: never[]) => unknown ? never : T, expected: any): void {
     expect(actual).toBeDefined();
     expect(actual, `should contain ${String(expected)}`).toContain(expected);
 }
@@ -148,7 +148,10 @@ export function expectToContain<T>(actual: T extends Function ? never : T, expec
  * @param {any} expected The expected value that should not be contained.
  * @returns {void} Throws the expectation statements.
  */
-export function expectToNotContain<T>(actual: T extends Function ? never : T, expected: any): void {
+export function expectToNotContain<T>(
+    actual: T extends (...args: never[]) => unknown ? never : T,
+    expected: any
+): void {
     expect(actual).toBeDefined();
     expect(actual, `should not contain ${String(expected)}`).not.toContain(expected);
 }

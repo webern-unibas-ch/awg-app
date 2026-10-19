@@ -7,11 +7,7 @@
             } @else {
                 <strong>Error:</strong>
             }
-            @if (err.error?.message) {
-                {{ err.error.message }}
-            } @else {
-                {{ err.error }}
-            }
+            {{ errorMessage() }}
         </div>
     </div>
 </div>

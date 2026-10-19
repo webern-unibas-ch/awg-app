@@ -96,7 +96,8 @@ export class AppComponent {
                         child = child.firstChild;
                     }
 
-                    return child?.snapshot?.data?.['title'] ?? appTitle;
+                    const title: unknown = child?.snapshot.data['title'];
+                    return typeof title === 'string' ? title : appTitle;
                 }),
                 takeUntilDestroyed()
             )

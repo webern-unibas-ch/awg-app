@@ -1,3 +1,5 @@
+import { AlertError } from '@awg-shared/alert-error/alert-error.model';
+
 import { EditionSvgSheetsList } from './edition-svg-sheets.model';
 import { FolioConvoluteList } from './folio.model';
 import { GraphList } from './graph.model';
@@ -43,16 +45,11 @@ export type EditionDataAssetsKeys = EditionStaticDataAssetsKeys | EditionComplex
  *
  * It defines the structure of an error object for data assets.
  */
-export interface EditionDataAssetsError {
+export interface EditionDataAssetsError extends AlertError {
     /**
      * The key of the data asset that caused the error.
      */
     key: EditionDataAssetsKeys;
-
-    /**
-     * The error object associated with the data asset.
-     */
-    error: unknown;
 }
 
 /**

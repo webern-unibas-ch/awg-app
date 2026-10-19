@@ -7,7 +7,7 @@ import { environment } from 'environments/environment';
 /**
  * The global gtag variable for Analytics.
  */
-declare let gtag: Function;
+declare let gtag: (...args: AnalyticsConfigEvent) => void;
 
 /**
  * The AnalyticsConfigEvent type.

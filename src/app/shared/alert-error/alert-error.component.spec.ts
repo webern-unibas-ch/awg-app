@@ -7,6 +7,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { AlertErrorComponent } from './alert-error.component';
+import { AlertError } from './alert-error.model';
 
 describe('AlertErrorComponent', () => {
     let component: AlertErrorComponent;
@@ -15,9 +16,9 @@ describe('AlertErrorComponent', () => {
 
     const titlecasePipe = new TitleCasePipe();
 
-    let expectedErrorObjectWithKey: any;
-    let expectedErrorObjectWithoutKey: any;
-    let expectedErrorObjectWithStringError: any;
+    let expectedErrorObjectWithKey: AlertError;
+    let expectedErrorObjectWithoutKey: AlertError;
+    let expectedErrorObjectWithStringError: AlertError;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -59,6 +60,12 @@ describe('AlertErrorComponent', () => {
             expect(() => component.errorObject()).toThrow();
         });
 
+        it('... should throw due to missing required input signal for computed signal `errorMessage`', () => {
+            expectToBe(isSignal(component.errorMessage), true);
+
+            expect(() => component.errorMessage()).toThrow();
+        });
+
         describe('VIEW', () => {
             it('... should have an outer `div.awg-error-message`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-error-message', 1, 1);
@@ -88,6 +95,37 @@ describe('AlertErrorComponent', () => {
             fixture.detectChanges();
         });
 
+        describe('... should have computed signal `errorMessage` to hold', () => {
+            it.each<{ desc: string; error: unknown; expected: string }>([
+                {
+                    desc: 'the message of an error object',
+                    error: { status: 404, message: 'Data not found' },
+                    expected: 'Data not found',
+                },
+                {
+                    desc: 'the message of an Error',
+                    error: new Error('Connection refused'),
+                    expected: 'Connection refused',
+                },
+                {
+                    desc: 'a string error',
+                    error: 'Server is currently offline.',
+                    expected: 'Server is currently offline.',
+                },
+                {
+                    desc: 'an empty string if the error has no message',
+                    error: { status: 500 },
+                    expected: '',
+                },
+                { desc: 'an empty string if the error is null', error: null, expected: '' },
+                { desc: 'an empty string if the error is undefined', error: undefined, expected: '' },
+            ])('... $desc', ({ error, expected }) => {
+                fixture.componentRef.setInput('errorObject', { key: 'preface', error });
+
+                expectToBe(component.errorMessage(), expected);
+            });
+        });
+
         describe('VIEW', () => {
             describe('with key', () => {
                 it('... should display the formatted key and the error message', () => {
@@ -98,7 +136,7 @@ describe('AlertErrorComponent', () => {
                     const expectedKeyText = titlecasePipe.transform(expectedErrorObjectWithKey.key);
                     expectToContain(content, expectedKeyText);
 
-                    expectToContain(content, expectedErrorObjectWithKey.error.message);
+                    expectToContain(content, 'Data not found');
                 });
             });
 
@@ -111,7 +149,7 @@ describe('AlertErrorComponent', () => {
                 const content = alertEl.textContent || '';
 
                 expectToContain(content, 'Error:');
-                expectToContain(content, expectedErrorObjectWithoutKey.error.message);
+                expectToContain(content, 'Connection refused');
             });
 
             it('... should display the raw string error if no nested message property exists', () => {
@@ -125,7 +163,7 @@ describe('AlertErrorComponent', () => {
                 const expectedKeyText = titlecasePipe.transform(expectedErrorObjectWithStringError.key);
                 expectToContain(content, expectedKeyText);
 
-                expectToContain(content, expectedErrorObjectWithStringError.error);
+                expectToContain(content, 'Server is currently offline.');
             });
         });
     });
