@@ -96,21 +96,14 @@ describe('ForceGraphSimulationService (DONE)', () => {
 
     describe('FORCE_GRAPH_SIMULATION_WORKER_FACTORY', () => {
         it('... should hold a default factory that creates a module worker of the simulation', () => {
-            const workerSpy = vi.fn();
-            vi.stubGlobal(
-                'Worker',
-                class {
-                    constructor(workerUrl: URL, workerOptions: WorkerOptions) {
-                        workerSpy(workerUrl, workerOptions);
-                    }
-                }
-            );
+            const workerMock = vi.fn<(workerUrl: URL, workerOptions: WorkerOptions) => void>(function () {});
+            vi.stubGlobal('Worker', workerMock);
 
             const worker = TestBed.inject(FORCE_GRAPH_SIMULATION_WORKER_FACTORY)();
 
             expect(worker).toBeDefined();
-            expectSpyCall(workerSpy, 1);
-            const [url, options] = workerSpy.mock.calls[0];
+            expectSpyCall(workerMock, 1);
+            const [url, options] = workerMock.mock.calls[0];
             // The url of the bundled worker script (its name is set by the builder)
             expect(url).toBeInstanceOf(URL);
             expectToEqual(options, { type: 'module' });
@@ -127,11 +120,9 @@ describe('ForceGraphSimulationService (DONE)', () => {
         it('... should hold a default factory that creates no worker if the worker cannot be created', () => {
             vi.stubGlobal(
                 'Worker',
-                class {
-                    constructor() {
-                        throw new Error('SecurityError');
-                    }
-                }
+                vi.fn(function () {
+                    throw new Error('SecurityError');
+                })
             );
 
             const worker = TestBed.inject(FORCE_GRAPH_SIMULATION_WORKER_FACTORY)();

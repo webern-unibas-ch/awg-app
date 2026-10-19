@@ -22,7 +22,9 @@ import { EditionIntroScrollDirective } from './edition-intro-scroll.directive';
         </div>
     `,
 })
-class TestHostComponent {}
+class TestHostComponent {
+    // Intentionally left empty
+}
 
 describe('EditionIntroScrollDirective (DONE)', () => {
     let fixture: ComponentFixture<TestHostComponent>;

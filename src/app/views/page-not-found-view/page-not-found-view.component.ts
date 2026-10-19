@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { AppConstants } from '@awg-app/app.constants';
+import { APP_CONSTANTS } from '@awg-app/app.constants';
 import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 
@@ -54,5 +54,5 @@ export class PageNotFoundViewComponent {
      *
      * It keeps the url to the contact page of the Webern project homepage.
      */
-    readonly awgContactUrl = AppConstants.AWG_PROJECT_URL + 'de/info/kontakt.html';
+    readonly awgContactUrl = APP_CONSTANTS.AWG_PROJECT_URL + 'de/info/kontakt.html';
 }

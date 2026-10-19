@@ -19,7 +19,9 @@ import { FormSwitchComponent } from './form-switch.component';
     >`,
     imports: [FormSwitchComponent],
 })
-class FormSwitchTestHostComponent {}
+class FormSwitchTestHostComponent {
+    // Intentionally left empty
+}
 
 describe('FormSwitchComponent (DONE)', () => {
     let component: FormSwitchComponent;

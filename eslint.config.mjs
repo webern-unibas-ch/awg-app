@@ -164,6 +164,8 @@ export default defineConfig(
             ],
             '@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
             '@typescript-eslint/no-deprecated': 'warn',
+            // Angular decorators need a class, even if it is empty (e.g., routing shells or test hosts)
+            '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
             '@typescript-eslint/no-inferrable-types': [
                 'error',
                 {
@@ -287,7 +289,6 @@ export default defineConfig(
             '@typescript-eslint/adjacent-overload-signatures': 'warn',
             '@typescript-eslint/no-empty-object-type': 'warn',
             '@typescript-eslint/no-explicit-any': 'warn',
-            '@typescript-eslint/no-extraneous-class': 'warn',
             '@typescript-eslint/no-implied-eval': 'warn',
             '@typescript-eslint/no-misused-spread': 'warn',
             '@typescript-eslint/no-unsafe-argument': 'warn',
