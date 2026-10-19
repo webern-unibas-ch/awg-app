@@ -15,13 +15,6 @@ import {
 } from './rdf-store.model';
 
 /**
- * Constants: blankNode, literal, namedNode, quad.
- *
- * They keep the RDF/JS term factory methods destructured from the N3 `DataFactory`.
- */
-const { blankNode, literal, namedNode, quad } = DataFactory;
-
-/**
  * String constant: ERROR_LOCATION.
  *
  * It keeps the location prefix of all error messages of the service.
@@ -54,7 +47,7 @@ export class RdfStoreService {
         const response = await this._execute<RdfStoreConstructResponse | null>(turtle, query);
 
         return (response?.triples ?? []).map(triple =>
-            quad(
+            DataFactory.quad(
                 this._toSubject(this._nodeToTerm(triple.subject)),
                 this._toPredicate(this._nodeToTerm(triple.predicate)),
                 this._nodeToTerm(triple.object) as Quad_Object
@@ -182,9 +175,9 @@ export class RdfStoreService {
     private _nodeToTerm(node: RdfStoreNode): RdfTerm {
         switch (node.interfaceName) {
             case 'NamedNode':
-                return namedNode(node.nominalValue);
+                return DataFactory.namedNode(node.nominalValue);
             case 'BlankNode':
-                return blankNode(String(node.bnodeId ?? this._stripBlankNodePrefix(node.nominalValue)));
+                return DataFactory.blankNode(String(node.bnodeId ?? this._stripBlankNodePrefix(node.nominalValue)));
             case 'Literal': {
                 const datatype = typeof node.datatype === 'string' ? node.datatype : node.datatype?.nominalValue;
                 return this._literal(node.nominalValue, node.language, datatype);
@@ -207,9 +200,9 @@ export class RdfStoreService {
 
         switch (token.token) {
             case 'uri':
-                return namedNode(value);
+                return DataFactory.namedNode(value);
             case 'blank':
-                return blankNode(this._stripBlankNodePrefix(value));
+                return DataFactory.blankNode(this._stripBlankNodePrefix(value));
             case 'literal':
                 return this._literal(value, token.lang, token.type);
             default:
@@ -229,9 +222,9 @@ export class RdfStoreService {
      */
     private _literal(value: string, language?: string, datatype?: string): RdfTerm {
         if (language) {
-            return literal(value, language);
+            return DataFactory.literal(value, language);
         }
-        return datatype ? literal(value, namedNode(datatype)) : literal(value);
+        return datatype ? DataFactory.literal(value, DataFactory.namedNode(datatype)) : DataFactory.literal(value);
     }
 
     /**

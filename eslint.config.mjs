@@ -299,7 +299,6 @@ export default defineConfig(
             '@typescript-eslint/no-unsafe-return': 'warn',
             '@typescript-eslint/prefer-promise-reject-errors': 'warn',
             '@typescript-eslint/related-getter-setter-pairs': 'warn',
-            '@typescript-eslint/unbound-method': 'warn',
         },
     },
 

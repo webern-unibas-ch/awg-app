@@ -82,7 +82,7 @@ export abstract class ZoomBaseDirective<E extends Element> {
             );
 
             if (scale && scale !== currentScale) {
-                this._selection.call(this._zoomBehaviour.scaleTo, scale);
+                this._zoomBehaviour.scaleTo(this._selection, scale);
             }
         });
     }
@@ -95,7 +95,10 @@ export abstract class ZoomBaseDirective<E extends Element> {
      * @returns {void} Resets the zoom.
      */
     reset(): void {
-        this._selection.call(this._zoomBehaviour.transform, D3_ZOOM.zoomIdentity.scale(this.zoomConfig().initial));
+        const { initial } = this.zoomConfig();
+        const initialTransform = D3_ZOOM.zoomIdentity.scale(initial);
+
+        this._zoomBehaviour.transform(this._selection, initialTransform);
     }
 
     /**
