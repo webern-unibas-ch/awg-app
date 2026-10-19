@@ -41,7 +41,6 @@ export class EditionSheetFacetItemLinkDirective {
      * Readonly input signal: isActive.
      *
      * It holds a boolean flag if the linked svg sheet is selected.
-     * @default false
      */
     readonly isActive = input<boolean>(false);
 

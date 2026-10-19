@@ -42,7 +42,6 @@ export class EditionSheetFacetComponent {
      * Readonly model signal: isMinimized.
      *
      * It holds the toggle state of the sheet facet.
-     * @default false
      */
     readonly isMinimized = model<boolean>(false);
 

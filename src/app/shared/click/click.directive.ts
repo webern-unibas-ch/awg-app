@@ -53,8 +53,7 @@ export class ClickDirective {
     /**
      * Readonly input signal: clickOnSpace.
      *
-     * It holds a boolean flag if the Space key emits a click.
-     * @default true (false for links)
+     * It holds a boolean flag if the Space key emits a click (by default not for links).
      */
     readonly clickOnSpace = input(!isLinkElement(this._elementRef.nativeElement), { transform: booleanAttribute });
 

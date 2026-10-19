@@ -28,7 +28,6 @@ export class AlertInfoComponent {
      * Readonly model signal: isOpen.
      *
      * It holds the state of the alert (open or closed).
-     * @default true
      */
     readonly isOpen = model<boolean>(true);
 

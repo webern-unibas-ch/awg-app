@@ -40,7 +40,6 @@ export class ViewHandle {
      * @param {string} label The label of the view handle.
      * @param {ViewHandleTypes} type The type of the view handle.
      * @param {IconDefinition} icon The icon of the view handle.
-     *
      */
     constructor(label: string, type: ViewHandleTypes, icon: IconDefinition) {
         this.label = label;

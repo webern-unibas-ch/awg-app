@@ -9,7 +9,6 @@ import { HttpInterceptor } from '@angular/common/http';
  *
  * @param {HttpInterceptor[]} interceptors The given array of HTTP interceptors (e.g. TestBed.inject(HTTP_INTERCEPTORS))
  * @param {new (...args: any[]) => T} type The given type of the Interceptor.
- *
  * @returns {HttpInterceptor} An instance of the searched Interceptor.
  */
 export function getInterceptorInstance<T extends HttpInterceptor>(

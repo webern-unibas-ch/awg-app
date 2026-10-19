@@ -43,7 +43,6 @@ export class TableComponent {
      * Readonly input signal: tableTitle.
      *
      * It holds the title of the table.
-     * @default ''
      */
     readonly tableTitle = input<string>('');
 
@@ -51,7 +50,6 @@ export class TableComponent {
      * Readonly input signal: headerInputData.
      *
      * It holds the header labels of the table.
-     * @default []
      */
     readonly headerInputData = input<readonly string[]>([]);
 
@@ -59,7 +57,6 @@ export class TableComponent {
      * Readonly input signal: rowInputData.
      *
      * It holds the rows of the table.
-     * @default []
      */
     readonly rowInputData = input<TableRows[]>([]);
 
@@ -162,7 +159,6 @@ export class TableComponent {
      * Sorting by the current key again reverses the sort order.
      *
      * @param {string} key The given key to sort by.
-     *
      * @returns {void} Sets the sort state.
      */
     onSort(key: string): void {
@@ -181,7 +177,6 @@ export class TableComponent {
      * It sets the given search term and resets the page.
      *
      * @param {string} term The given search term.
-     *
      * @returns {void} Sets the search filter.
      */
     onSearchFilterChange(term: string): void {
@@ -195,7 +190,6 @@ export class TableComponent {
      * It sets the given page size and resets the page.
      *
      * @param {number} pageSize The given page size.
-     *
      * @returns {void} Sets the page size.
      */
     onPageSizeChange(pageSize: number): void {
@@ -209,7 +203,6 @@ export class TableComponent {
      * It emits the value of a clicked table cell.
      *
      * @param {string} value The given value.
-     *
      * @returns {void} Emits the value.
      */
     onTableValueClick(value: string): void {
@@ -225,7 +218,6 @@ export class TableComponent {
      * It emits the event of a clicked table row.
      *
      * @param {Event} event The given event.
-     *
      * @returns {void} Emits the event.
      */
     onTableRowClick(event: Event): void {

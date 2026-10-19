@@ -10,7 +10,6 @@ import { expect } from 'vitest';
  * @param {DebugElement} headerDe The accordion header DebugElement.
  * @param {string} msg The msg to be displayed in Expectation.
  * @param {boolean} collapsed The boolean value if the accordion item is collapsed.
- *
  * @returns {void} Evaluates the expectation.
  */
 function expectAccordionItem(headerDe: DebugElement, msg: string, collapsed?: boolean): void {
@@ -28,7 +27,6 @@ function expectAccordionItem(headerDe: DebugElement, msg: string, collapsed?: bo
  *
  * @param {DebugElement} headerDe The accordion header DebugElement.
  * @param {string} msg The msg to be displayed in Expectation.
- *
  * @returns {void} Sends the given values to expectAccordionItem helper.
  */
 export function expectCollapsedAccordionItem(headerDe: DebugElement, msg: string): void {
@@ -42,7 +40,6 @@ export function expectCollapsedAccordionItem(headerDe: DebugElement, msg: string
  *
  * @param {DebugElement} headerDe The accordion header DebugElement.
  * @param {string} msg The msg to be displayed in Expectation.
- *
  * @returns {void} Sends the given values to expectAccordionItem helper.
  */
 export function expectOpenAccordionItem(headerDe: DebugElement, msg: string): void {

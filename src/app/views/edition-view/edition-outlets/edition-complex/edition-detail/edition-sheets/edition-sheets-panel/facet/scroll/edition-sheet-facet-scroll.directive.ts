@@ -38,7 +38,6 @@ export class EditionSheetFacetScrollDirective {
      * Readonly input signal: activeSelector.
      *
      * It holds the css selector of the active facet item inside the list.
-     * @default the active facet item link or dropdown toggle
      */
     readonly activeSelector = input<string>(
         '.awg-edition-sheet-facet-item-link.active, .awg-edition-sheet-facet-item-link-dropdown-toggle.active'
@@ -49,7 +48,6 @@ export class EditionSheetFacetScrollDirective {
      *
      * It holds the css selector of the facet items inside the list
      * that are counted for the visible range.
-     * @default the facet item components
      */
     readonly itemSelector = input<string>('awg-edition-sheet-facet-item');
 

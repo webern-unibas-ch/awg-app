@@ -22,7 +22,6 @@ export class TablePaginationComponent {
      * Readonly input signal: collectionSize.
      *
      * It holds the number of items to paginate.
-     * @default 0
      */
     readonly collectionSize = input<number>(0);
 
@@ -30,7 +29,6 @@ export class TablePaginationComponent {
      * Readonly input signal: pageSize.
      *
      * It holds the number of items per page.
-     * @default 10
      */
     readonly pageSize = input<number>(TABLE_DEFAULT_PAGE_SIZE);
 
@@ -39,7 +37,6 @@ export class TablePaginationComponent {
      *
      * It holds the current page of the pagination.
      * Changes are emitted via `pageChange`.
-     * @default 1
      */
     readonly page = model<number>(1);
 
@@ -56,7 +53,6 @@ export class TablePaginationComponent {
      * It replaces all non-number input values with empty string.
      *
      * @param {HTMLInputElement} inputEl The given input element.
-     *
      * @returns {void} Replaces the value of the input element.
      */
     replaceNonNumberInput(inputEl: HTMLInputElement): void {
@@ -69,7 +65,6 @@ export class TablePaginationComponent {
      * It sets the given page on the page model signal.
      *
      * @param {number} newPage The given page.
-     *
      * @returns {void} Sets the page.
      */
     onPageChange(newPage: number): void {
@@ -86,7 +81,6 @@ export class TablePaginationComponent {
      * Values that cannot be parsed fall back to page 1.
      *
      * @param {string} page The given input value.
-     *
      * @returns {void} Selects the page.
      */
     selectPage(page: string): void {

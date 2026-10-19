@@ -17,7 +17,6 @@ export class ButtonExpandAllComponent {
      * Readonly model signal: isOpen.
      *
      * It holds the state of the button to expand or collapse all details.
-     * @default false
      */
     readonly isOpen = model<boolean>(false);
 

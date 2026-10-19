@@ -48,7 +48,6 @@ export class StatisticsComplexBreakdownComponent {
      *
      * @param key The key corresponding to the complex type in the breakdown.
      * @param mode The mode for the progress bar, either 'ratio' or 'absolute'.
-     *
      * @returns The config object for the progress bar.
      */
     getProgressBarConfig(key: StatisticsComplexType, mode: 'ratio' | 'absolute'): StatisticsProgressBarConfig {

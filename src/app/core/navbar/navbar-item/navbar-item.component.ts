@@ -30,7 +30,6 @@ export class NavbarItemComponent {
      * Readonly input signal: id.
      *
      * It holds the id of the navigation item in the navbar.
-     * @default ''
      */
     readonly id = input<string>('');
 
@@ -38,7 +37,6 @@ export class NavbarItemComponent {
      * Readonly input signal: isDropdown.
      *
      * It holds a boolean value indicating whether the navigation item is a dropdown or not.
-     * @default false
      */
     readonly isDropdown = input<boolean>(false);
 }

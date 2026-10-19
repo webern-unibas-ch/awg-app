@@ -52,7 +52,6 @@ export class SourceListComponent {
      * on a source click event.
      *
      * @param {Source} source The given source.
-     *
      * @returns {void} Navigates to a report fragment or opens a modal.
      */
     onSourceClick(source: Source): void {

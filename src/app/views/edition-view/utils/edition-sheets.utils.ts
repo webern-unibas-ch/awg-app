@@ -26,7 +26,6 @@ import { TextcriticalCommentary, Textcritics } from '../models/textcritics.model
  *
  * @param {string | undefined} id The given sheet id.
  * @param {string} [partial] The given (optional) partial id.
- *
  * @returns {string} The full sheet id.
  */
 export function toFullSheetId(id: string | undefined, partial?: string): string {
@@ -39,7 +38,6 @@ export function toFullSheetId(id: string | undefined, partial?: string): string 
  * It gets all full sheet ids of a given svg sheet (one per partial).
  *
  * @param {EditionSvgSheet} sheet The given svg sheet.
- *
  * @returns {string[]} The full sheet ids of the svg sheet.
  */
 export function getFullSheetIds(sheet: EditionSvgSheet): string[] {
@@ -55,7 +53,6 @@ export function getFullSheetIds(sheet: EditionSvgSheet): string[] {
  *
  * @param {EditionSvgSheet} sheet The given svg sheet.
  * @param {EditionSvgSheetContent} content The given selected content (partial) of the svg sheet.
- *
  * @returns {EditionSvgSheetSelection} The selection of the svg sheet.
  */
 export function toSvgSheetSelection(sheet: EditionSvgSheet, content: EditionSvgSheetContent): EditionSvgSheetSelection {
@@ -72,7 +69,6 @@ export function toSvgSheetSelection(sheet: EditionSvgSheet, content: EditionSvgS
  *
  * @param {EditionSvgSheetsList['sheets']} sheets The given sheets object.
  * @param {string} fullId The given full sheet id.
- *
  * @returns {EditionSvgSheetContext | undefined} The selection of the found svg sheet and its edition type, or undefined.
  */
 export function findSvgSheet(
@@ -117,7 +113,6 @@ export function findSvgSheet(
  * i.e. the first text edition or, as fallback, the first sketch edition.
  *
  * @param {EditionSvgSheetsList['sheets']} sheets The given sheets object.
- *
  * @returns {string} The full id of the default svg sheet, or an empty string.
  */
 export function getDefaultSheetId(sheets: EditionSvgSheetsList['sheets']): string {
@@ -135,7 +130,6 @@ export function getDefaultSheetId(sheets: EditionSvgSheetsList['sheets']): strin
  * @param {EditionSvgSheet[]} sheetArray The given svg sheet array.
  * @param {string} currentFullId The full id of the currently selected svg sheet.
  * @param {1 | -1} direction The given direction (-1 for previous, 1 for next).
- *
  * @returns {string} The full id of the previous or next svg sheet,
  * or the current full id if there is none.
  */
@@ -157,7 +151,6 @@ export function getNextSheetId(sheetArray: EditionSvgSheet[], currentFullId: str
  *
  * @param {Textcritics[]} textcritics The given textcritics array.
  * @param {string} sheetId The given sheet id.
- *
  * @returns {Textcritics | undefined} The found textcritics, or undefined.
  */
 export function findTextcritics(textcritics: Textcritics[], sheetId: string): Textcritics | undefined {
@@ -173,7 +166,6 @@ export function findTextcritics(textcritics: Textcritics[], sheetId: string): Te
  * @param {FolioConvolute[]} convolutes The given folio convolutes.
  * @param {EditionSvgSheetSelection} selection The given selected svg sheet.
  * @param {EditionTypeKey} editionType The edition type of the given selected svg sheet.
- *
  * @returns {FolioConvolute | undefined} The found convolute, or undefined.
  */
 export function findConvolute(
@@ -196,7 +188,6 @@ export function findConvolute(
  *
  * @param {TextcriticalCommentary} commentary The given textcritical commentary.
  * @param {EditionSvgOverlayTkk[]} overlays The given tkk overlays.
- *
  * @returns {TextcriticalCommentary} The filtered textcritical commentary.
  */
 export function filterCommentaryForOverlays(

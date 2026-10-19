@@ -35,7 +35,6 @@ export class ExternalLinkDirective {
      * Readonly input signal: rel.
      *
      * It holds the (optional) existing rel value of a link.
-     * @default ''
      */
     readonly rel = input<string>('');
 

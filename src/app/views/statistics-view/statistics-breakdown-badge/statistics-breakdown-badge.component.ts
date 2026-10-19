@@ -25,7 +25,6 @@ export class StatisticsBreakdownBadgeComponent {
      * Readonly input signal: containerClasses.
      *
      * It holds additional CSS classes to apply to the container.
-     * @default 'small text-muted'
      */
     readonly containerClasses = input<string>('small text-muted');
 
@@ -33,7 +32,6 @@ export class StatisticsBreakdownBadgeComponent {
      * Readonly input signal: showEmptyBadges.
      *
      * It holds a flag whether to show badges when their value is zero.
-     * @default false
      */
     readonly showEmptyBadges = input<boolean>(false);
 

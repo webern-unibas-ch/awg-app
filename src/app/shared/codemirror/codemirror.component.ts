@@ -62,7 +62,6 @@ export class CodeMirrorComponent {
      *
      * It holds the content of the codemirror editor.
      * Changes from the editor are emitted via `contentChange`.
-     * @default ''
      */
     readonly content = model<string>('');
 
@@ -114,7 +113,6 @@ export class CodeMirrorComponent {
      * It initializes the CodeMirror editor view with a given state.
      *
      * @param {EditorState} state The given editor state.
-     *
      * @returns {void} Inits the editor view.
      */
     init(state: EditorState): void {
@@ -131,7 +129,6 @@ export class CodeMirrorComponent {
      * and sets it on the content model signal.
      *
      * @param {string} content The given content.
-     *
      * @returns {void} Sets the changed content.
      */
     onContentChange(content: string): void {

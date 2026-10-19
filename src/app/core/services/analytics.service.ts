@@ -92,8 +92,7 @@ export class AnalyticsService {
      *
      * It tracks a page view for Analytics.
      *
-     * @params {string} page The given page string.
-     *
+     * @param {string} page The given page string.
      * @returns {void} Configures and sends the page view to Analytics.
      */
     trackPageView(page: string): void {

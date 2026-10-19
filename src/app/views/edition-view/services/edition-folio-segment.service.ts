@@ -25,7 +25,6 @@ export class EditionFolioSegmentService {
      * (bound to its content segment group).
      *
      * @param {EventTarget | null} target The given event target.
-     *
      * @returns {FolioSvgContentSegment | undefined} The hit content segment, or undefined.
      */
     getContentSegment(target: EventTarget | null): FolioSvgContentSegment | undefined {

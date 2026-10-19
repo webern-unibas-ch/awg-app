@@ -226,7 +226,6 @@ export class EditionComplex {
      * It maps the catalogue type to the corresponding route constant.
      *
      * @param {string} catalogueType The given catalogue type.
-     *
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
@@ -242,7 +241,6 @@ export class EditionComplex {
      * to their corresponding MetaPerson from PERSONS_DATA.
      *
      * @param {{ editors: EditionComplexJsonPersonRef[]; lastModified: string }} respStatement The given responsibility statement.
-     *
      * @returns {EditionComplexRespStatement} The resolved EditionComplexRespStatement.
      */
     private _mapRespStatement(respStatement: {

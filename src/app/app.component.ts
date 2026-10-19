@@ -118,7 +118,6 @@ export class AppComponent {
      * It checks if a route has a side outlet.
      *
      * @param {ActivatedRouteSnapshot} route The route to check.
-     *
      * @returns {boolean} The result of the check.
      */
     private _hasSideOutlet(route: ActivatedRouteSnapshot): boolean {

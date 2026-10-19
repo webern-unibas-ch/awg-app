@@ -31,7 +31,6 @@ export class ViewHandleButtonGroupComponent {
      * Readonly input signal: viewHandles.
      *
      * It holds the list of view handles.
-     * @default []
      */
     readonly viewHandles = input<ViewHandle[]>([]);
 
@@ -73,7 +72,6 @@ export class ViewHandleButtonGroupComponent {
      * (an accepted change updates the checked state via the input binding).
      *
      * @param {ViewHandleTypes} viewType The given view type.
-     *
      * @returns {void} Emits the view type.
      */
     onViewChange(viewType: ViewHandleTypes): void {

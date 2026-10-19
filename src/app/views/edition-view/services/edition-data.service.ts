@@ -379,7 +379,6 @@ export class EditionDataService {
      * It logs an error message to the console.
      *
      * @param {string} message The given error message to be logged.
-     *
      * @returns {void} Logs the error message to the console.
      */
     private _logError(message: string): void {

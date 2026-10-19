@@ -108,6 +108,7 @@ export class ActivatedRouteStub {
 
     /**
      * Getter for test route parameters.
+     *
      * @returns The latest test route parameters.
      */
     get testParams() {

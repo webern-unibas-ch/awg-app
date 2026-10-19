@@ -231,6 +231,8 @@ export default defineConfig(
             'import/no-cycle': 'error',
             'import/no-deprecated': 'warn',
             'jsdoc/no-types': 'off',
+            'jsdoc/sort-tags': 'error',
+            'jsdoc/tag-lines': ['error', 'never', { startLines: 1 }],
             'max-len': [
                 'off',
                 {

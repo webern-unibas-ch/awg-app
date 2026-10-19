@@ -93,7 +93,6 @@ export class EditionSvgOverlayService {
      * and returns the available tkk overlays.
      *
      * @param {D3Selection | undefined} rootGroupSelection The given D3 selection of the SVG root group, or undefined.
-     *
      * @returns {EditionSvgOverlayTkk[]} The available tkk overlays.
      */
     createSvgOverlays(rootGroupSelection: D3Selection | undefined): EditionSvgOverlayTkk[] {
@@ -136,7 +135,6 @@ export class EditionSvgOverlayService {
      * It resolves the svg overlay (tkk overlay or link box overlay) hit by a given event target.
      *
      * @param {EventTarget | null} target The given event target.
-     *
      * @returns {EditionSvgOverlay | undefined} The hit svg overlay, or undefined.
      */
     getSvgOverlay(target: EventTarget | null): EditionSvgOverlay | undefined {
@@ -167,7 +165,6 @@ export class EditionSvgOverlayService {
      * It returns the data id of the tkk overlay hit by a given event target, if any.
      *
      * @param {EventTarget | null} target The given event target.
-     *
      * @returns {string | undefined} The data id of the hit tkk overlay, or undefined.
      */
     getTkkDataId(target: EventTarget | null): string | undefined {
@@ -182,7 +179,6 @@ export class EditionSvgOverlayService {
      * (nothing selected or hovered, highlighted).
      *
      * @param {EditionSvgOverlayTkk[]} [tkkOverlays] The given tkk overlays (default: none).
-     *
      * @returns {EditionSvgOverlaysState} The initial state of the svg overlays.
      */
     createSvgOverlaysState(tkkOverlays: EditionSvgOverlayTkk[] = []): EditionSvgOverlaysState {
@@ -196,7 +192,6 @@ export class EditionSvgOverlayService {
      * (including all parts of multi-part overlays) in their original order.
      *
      * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
-     *
      * @returns {EditionSvgOverlayTkk[]} The selected tkk overlays.
      */
     getSelectedTkkOverlays(state: EditionSvgOverlaysState): EditionSvgOverlayTkk[] {
@@ -211,7 +206,6 @@ export class EditionSvgOverlayService {
      *
      * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
      * @param {string | undefined} dataId The given data id of the hovered tkk overlay, or undefined.
-     *
      * @returns {EditionSvgOverlaysState} The updated state of the svg overlays.
      */
     setTkkOverlayHover(state: EditionSvgOverlaysState, dataId: string | undefined): EditionSvgOverlaysState {
@@ -226,7 +220,6 @@ export class EditionSvgOverlayService {
      *
      * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
      * @param {boolean} isHighlighted The given flag whether the tkk overlays are highlighted.
-     *
      * @returns {EditionSvgOverlaysState} The updated state of the svg overlays.
      */
     setTkkOverlaysHighlight(state: EditionSvgOverlaysState, isHighlighted: boolean): EditionSvgOverlaysState {
@@ -246,7 +239,6 @@ export class EditionSvgOverlayService {
      *
      * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
      * @param {string} dataId The given data id to toggle.
-     *
      * @returns {EditionSvgOverlaysState} The updated state of the svg overlays.
      */
     toggleTkkOverlaySelection(state: EditionSvgOverlaysState, dataId: string): EditionSvgOverlaysState {
@@ -267,7 +259,6 @@ export class EditionSvgOverlayService {
      *
      * @param {D3Selection | undefined} rootGroupSelection The given D3 selection of the SVG root group, or undefined.
      * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
-     *
      * @returns {void} Updates the tkk overlay boxes.
      */
     updateTkkOverlays(rootGroupSelection: D3Selection | undefined, state: EditionSvgOverlaysState): void {
@@ -296,7 +287,6 @@ export class EditionSvgOverlayService {
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
      * @param {string} id The given id.
      * @param {DOMRect} dim The given dimensions of the SVG element.
-     *
      * @returns {void} Creates the overlay group.
      */
     private _createTkkOverlayGroup(svgRootGroup: D3Selection, id: string, dim: DOMRect): void {
@@ -330,7 +320,6 @@ export class EditionSvgOverlayService {
      *
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
      * @param {string} dataId The given data id.
-     *
      * @returns {D3Selection} The D3 selection of the found overlay boxes.
      */
     private _getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string): D3Selection {
@@ -352,7 +341,6 @@ export class EditionSvgOverlayService {
      * otherwise uses group id (default).
      *
      * @param {SVGGElement} group The SVG group element.
-     *
      * @returns {string} The resolved data id.
      */
     private _getSvgGroupDataId(group: SVGGElement): string {
@@ -366,7 +354,6 @@ export class EditionSvgOverlayService {
      *
      * @param {string} dataId The given data id.
      * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
-     *
      * @returns {string} The color of the tkk overlays.
      */
     private _getTkkOverlayColor(dataId: string, state: EditionSvgOverlaysState): string {
