@@ -29,7 +29,6 @@ export class ActivatedRouteStub {
      * Readonly ActivatedRoute.params test double (stub)
      * as observable (`BehaviorSubject`).
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly params = this._paramSubject.asObservable();
 
     /**
@@ -45,7 +44,6 @@ export class ActivatedRouteStub {
     /**
      * Observable that contains a map of the test parameters
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly paramMap = this._paramMapSubject.asObservable();
 
     /**
@@ -61,7 +59,6 @@ export class ActivatedRouteStub {
     /**
      * Observable that contains a map of the query parameters
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly queryParamMap = this._queryParamMapSubject.asObservable();
 
     /**
@@ -77,7 +74,6 @@ export class ActivatedRouteStub {
     /**
      * Observable that contains a map of the children parameters
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly children = this._childrenSubject.asObservable();
 
     /**
@@ -93,7 +89,6 @@ export class ActivatedRouteStub {
     /**
      * Observable that contains a map of the urls
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly url = this._urlSubject.asObservable();
 
     /**

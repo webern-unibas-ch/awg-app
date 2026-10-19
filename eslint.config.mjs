@@ -72,13 +72,17 @@ export default defineConfig(
         rules: {
             '@angular-eslint/component-class-suffix': 'error',
             '@angular-eslint/directive-class-suffix': 'error',
+            '@angular-eslint/inject-at-top': 'error',
             '@angular-eslint/no-input-rename': 'error',
             '@angular-eslint/no-inputs-metadata-property': 'error',
             '@angular-eslint/no-output-on-prefix': 'error',
             '@angular-eslint/no-output-rename': 'error',
             '@angular-eslint/no-outputs-metadata-property': 'error',
             '@angular-eslint/no-uncalled-signals': 'error',
+            '@angular-eslint/prefer-output-readonly': 'error',
+            '@angular-eslint/prefer-signals': 'error',
             '@angular-eslint/prefer-standalone': 'off',
+            '@angular-eslint/sort-lifecycle-methods': 'error',
             '@angular-eslint/use-lifecycle-interface': 'error',
             '@angular-eslint/use-pipe-transform-interface': 'error',
             '@typescript-eslint/consistent-type-definitions': 'error',
@@ -103,7 +107,29 @@ export default defineConfig(
                     },
                 },
             ],
-            '@typescript-eslint/member-ordering': 'warn',
+            // Class layout: fields (inject → input/model → output → queries → state) → constructor → accessors → methods
+            '@typescript-eslint/member-ordering': [
+                'error',
+                {
+                    default: {
+                        memberTypes: [
+                            'signature',
+                            'call-signature',
+                            'static-field',
+                            'static-initialization',
+                            ['static-get', 'static-set'],
+                            'field',
+                            'constructor',
+                            ['get', 'set'],
+                            'static-method',
+                            'public-method',
+                            'protected-method',
+                            'private-method',
+                            '#private-method',
+                        ],
+                    },
+                },
+            ],
             '@typescript-eslint/naming-convention': [
                 'error',
                 {
@@ -113,16 +139,36 @@ export default defineConfig(
                     trailingUnderscore: 'allow',
                 },
                 {
-                    selector: ['classProperty'],
-                    modifiers: ['private', 'readonly'],
-                    format: ['camelCase', 'UPPER_CASE'],
+                    selector: 'classProperty',
+                    format: ['camelCase'],
+                },
+                {
+                    selector: 'classProperty',
+                    modifiers: ['protected'],
+                    format: ['camelCase'],
                     leadingUnderscore: 'allow',
+                },
+                {
+                    selector: 'classProperty',
+                    modifiers: ['static', 'readonly'],
+                    format: ['UPPER_CASE'],
+                },
+                {
+                    selector: 'classicAccessor',
+                    modifiers: ['static'],
+                    format: ['UPPER_CASE'],
                 },
                 {
                     selector: ['classProperty', 'classMethod'],
                     modifiers: ['private'],
                     format: ['camelCase'],
                     leadingUnderscore: 'require',
+                },
+                {
+                    selector: 'classProperty',
+                    modifiers: ['private', 'static', 'readonly'],
+                    format: ['UPPER_CASE'],
+                    leadingUnderscore: 'allow',
                 },
                 {
                     selector: 'objectLiteralProperty',
@@ -234,6 +280,13 @@ export default defineConfig(
                             message: 'Import from the concrete file instead of the barrel.',
                         })),
                     ],
+                },
+            ],
+            'no-restricted-syntax': [
+                'error',
+                {
+                    selector: "PropertyDefinition :not(PropertyDefinition) > CallExpression[callee.name='inject']",
+                    message: 'Inject as a separate field at the top of the class.',
                 },
             ],
             'no-throw-literal': 'error',
