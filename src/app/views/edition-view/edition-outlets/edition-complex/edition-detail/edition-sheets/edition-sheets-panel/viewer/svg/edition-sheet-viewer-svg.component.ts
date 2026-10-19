@@ -189,7 +189,7 @@ export class EditionSheetViewerSvgComponent {
      * @returns {void} Sets the visibility of the editorial addition.
      */
     onAdditionVisibilityChange({ key, isVisible }: EditionSheetViewerAdditionsPanelChange): void {
-        if (key === EditionSvgOverlayTypes.tkk) {
+        if ((key as EditionSvgOverlayTypes) === EditionSvgOverlayTypes.tkk) {
             this._updateTkkOverlaysSelection(state =>
                 this._svgOverlayService.setTkkOverlaysHighlight(state, isVisible)
             );
@@ -278,7 +278,7 @@ export class EditionSheetViewerSvgComponent {
     private _queueRendering(sheet: EditionSvgSheetSelection): void {
         this._renderQueue = this._renderQueue
             .then(() => (sheet === this.selectedSvgSheet() ? this._renderSheet(sheet) : undefined))
-            .catch(error => console.error('[EditionSheetViewerSvg] Failed to render svg sheet', error));
+            .catch((error: unknown) => console.error('[EditionSheetViewerSvg] Failed to render svg sheet', error));
     }
 
     /**

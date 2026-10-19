@@ -166,10 +166,10 @@ describe('EditionDataHelper (DONE)', () => {
         });
 
         describe('... when assetKey starts with `source`', () => {
-            it.each([
-                { assetKey: 'sourceList' as EditionDataAssetsKeys },
-                { assetKey: 'sourceDesc' as EditionDataAssetsKeys },
-                { assetKey: 'sourceEvaluation' as EditionDataAssetsKeys },
+            it.each<{ assetKey: EditionDataAssetsKeys }>([
+                { assetKey: 'sourceList' },
+                { assetKey: 'sourceDesc' },
+                { assetKey: 'sourceEvaluation' },
             ])('... should populate the sources property for $assetKey with a test entry', ({ assetKey }) => {
                 const fallback = {};
 
@@ -182,12 +182,12 @@ describe('EditionDataHelper (DONE)', () => {
         });
 
         describe('... when assetKey is any other standard key', () => {
-            it.each([
-                { assetKey: 'graph' as EditionDataAssetsKeys, expectedKey: 'graph' },
-                { assetKey: 'intro' as EditionDataAssetsKeys, expectedKey: 'intro' },
-                { assetKey: 'preface' as EditionDataAssetsKeys, expectedKey: 'preface' },
-                { assetKey: 'rowtables' as EditionDataAssetsKeys, expectedKey: 'rowtables' },
-                { assetKey: 'textcritics' as EditionDataAssetsKeys, expectedKey: 'textcritics' },
+            it.each<{ assetKey: EditionDataAssetsKeys; expectedKey: string }>([
+                { assetKey: 'graph', expectedKey: 'graph' },
+                { assetKey: 'intro', expectedKey: 'intro' },
+                { assetKey: 'preface', expectedKey: 'preface' },
+                { assetKey: 'rowtables', expectedKey: 'rowtables' },
+                { assetKey: 'textcritics', expectedKey: 'textcritics' },
             ])('... should use the assetKey $assetKey as the property name directly', ({ assetKey, expectedKey }) => {
                 const fallback = {};
 

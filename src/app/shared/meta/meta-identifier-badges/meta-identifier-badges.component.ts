@@ -44,11 +44,11 @@ export class MetaIdentifierBadgesComponent {
         return validKeys
             .filter(key => !!currentIds[key]?.trim() && !!LOGOS_DATA[key])
             .map(key => {
-                const idValue = currentIds[key];
+                const idValue = currentIds[key] ?? '';
                 const logo = LOGOS_DATA[key];
                 return {
                     key,
-                    fullUrl: logo.href + idValue,
+                    fullUrl: `${logo.href}${idValue}`,
                     src: logo.src,
                     label: logo.alt,
                     titleText: `${key.toUpperCase()}: ${idValue}`,

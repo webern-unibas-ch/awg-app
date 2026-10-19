@@ -34,7 +34,7 @@ export function getErrorMessage(err: unknown): string {
     }
 
     if (typeof err === 'string' || typeof err === 'number' || typeof err === 'boolean') {
-        return `${err}`;
+        return String(err);
     }
 
     return 'Unknown error format';

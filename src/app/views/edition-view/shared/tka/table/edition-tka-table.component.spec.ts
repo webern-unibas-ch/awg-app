@@ -512,7 +512,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     expectedCommentary.comments.forEach(block => {
                         block.blockComments.forEach(comment => {
                             const trEl: HTMLTableRowElement = trDes[rowIndex].nativeElement;
-                            expectToBe(trEl.getAttribute('id'), comment.svgGroupId + '-entry');
+                            expectToBe(trEl.getAttribute('id'), `${comment.svgGroupId ?? ''}-entry`);
                             rowIndex++;
                         });
                     });

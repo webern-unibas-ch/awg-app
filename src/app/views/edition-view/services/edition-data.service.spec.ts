@@ -949,9 +949,7 @@ describe('EditionDataService (DONE)', () => {
 
                 const errorHandlerFn = service['_handleError'](expectedKey, undefined);
                 const result$ = errorHandlerFn(mockError);
-                const res = await lastValueFrom(result$);
-
-                expect(res).toBeUndefined();
+                await expect(lastValueFrom(result$)).resolves.toBeUndefined();
                 expectToEqual(service['_dataError'](), {
                     key: expectedKey,
                     error: mockError,

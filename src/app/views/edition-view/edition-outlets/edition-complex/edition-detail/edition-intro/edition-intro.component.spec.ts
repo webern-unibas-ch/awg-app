@@ -312,12 +312,12 @@ describe('IntroComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
                     });
 
-                    it('... should contain one EditionComplexPlaceholderComponent (hollow)', async () => {
+                    it('... should contain one EditionComplexPlaceholderComponent (hollow)', () => {
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                         getAndExpectDebugElementByDirective(divDes[0], EditionComplexPlaceholderComponent, 1, 1);
                     });
 
-                    it('... should pass down `type` and `editionComplex` to EditionComplexPlaceholderComponent (hollow)', async () => {
+                    it('... should pass down `type` and `editionComplex` to EditionComplexPlaceholderComponent (hollow)', () => {
                         const placeholderDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionComplexPlaceholderComponent,

@@ -26,7 +26,7 @@ export const TABLE_DEFAULT_PAGE_SIZE = 10;
  * @returns {TableRows[]} The filtered rows.
  */
 export function filterTableRows(rows: TableRows[], term: string): TableRows[] {
-    const searchTerm = term.toString().toLowerCase();
+    const searchTerm = term.toLowerCase();
 
     return rows.filter(row =>
         Object.values(row).some(rowEntry => rowEntry?.label?.toString().toLowerCase().includes(searchTerm))

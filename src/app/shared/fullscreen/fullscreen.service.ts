@@ -52,7 +52,7 @@ export class FullscreenService {
      */
     closeFullscreen(): void {
         if (this._document.exitFullscreen) {
-            this._document.exitFullscreen().catch((err: Error) => console.error(err));
+            this._document.exitFullscreen().catch((err: unknown) => console.error(err));
         }
     }
 
@@ -66,7 +66,7 @@ export class FullscreenService {
      */
     openFullscreen(element: HTMLElement): void {
         if (!this._document.fullscreenElement) {
-            element.requestFullscreen().catch((err: Error) => console.error(err));
+            element.requestFullscreen().catch((err: unknown) => console.error(err));
         }
     }
 }

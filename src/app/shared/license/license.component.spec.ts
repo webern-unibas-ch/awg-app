@@ -126,7 +126,7 @@ describe('LicenseComponent', () => {
                 expectToContain(aEl.textContent, expectedLicenseText);
             });
 
-            it('... should have expected href and rel attributes on anchor', async () => {
+            it('... should have expected href and rel attributes on anchor', () => {
                 const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-license-link', 1, 1);
                 const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 

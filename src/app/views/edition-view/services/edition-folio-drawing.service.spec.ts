@@ -96,8 +96,8 @@ describe('EditionFolioDrawingService (DONE)', () => {
         beforeEach(() => {
             expectedFolioSettingsWithDimensions = {
                 ...expectedFolioSettings,
-                formatX: +expectedDefaultFolio.dimensions.width,
-                formatY: +expectedDefaultFolio.dimensions.height,
+                formatX: expectedDefaultFolio.dimensions.width,
+                formatY: expectedDefaultFolio.dimensions.height,
             };
         });
 
@@ -414,7 +414,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 expect(reversedSegment).toBeDefined();
                 expectToBe(
                     labelSelection.attr('transform'),
-                    `rotate(180, ${reversedSegment?.center.x}, ${reversedSegment?.center.y})`
+                    `rotate(180, ${String(reversedSegment?.center.x)}, ${String(reversedSegment?.center.y)})`
                 );
             });
         });

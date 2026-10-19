@@ -21,7 +21,7 @@ describe('svg-drawing-helper', () => {
                 const descriptor = Object.getOwnPropertyDescriptor(SVGSVGElement.prototype, key);
                 if (descriptor) {
                     originalDescriptors[key] = descriptor;
-                    delete (SVGSVGElement.prototype as any)[key];
+                    Reflect.deleteProperty(SVGSVGElement.prototype, key);
                 }
             });
         });
@@ -31,7 +31,7 @@ describe('svg-drawing-helper', () => {
 
             // Restore the original state of the prototype
             sizeKeys.forEach(key => {
-                delete (SVGSVGElement.prototype as any)[key];
+                Reflect.deleteProperty(SVGSVGElement.prototype, key);
                 const descriptor = originalDescriptors[key];
                 if (descriptor) {
                     Object.defineProperty(SVGSVGElement.prototype, key, descriptor);

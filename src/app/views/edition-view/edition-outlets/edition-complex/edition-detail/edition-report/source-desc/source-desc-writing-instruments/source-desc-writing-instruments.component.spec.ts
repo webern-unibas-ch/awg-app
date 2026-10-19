@@ -158,8 +158,7 @@ describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
 
                 // Process HTML expression of expected text content
                 const expectedHtmlTextContent = mockDocument.createElement('p');
-                expectedHtmlTextContent.innerHTML =
-                    '<span>' + expectedWritingInstruments.main + secondaryString + '.</span>';
+                expectedHtmlTextContent.innerHTML = `<span>${expectedWritingInstruments.main ?? ''}${secondaryString}.</span>`;
 
                 expectToBe(spanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
             });

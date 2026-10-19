@@ -194,7 +194,7 @@ describe('ButtonScrollToTopComponent (DONE)', () => {
                 });
 
                 it('... should request scrolling to top of page', () => {
-                    const baselineCallCount = windowScrollToSpy.mock.calls.length;
+                    const baselineCallCount: number = windowScrollToSpy.mock.calls.length;
 
                     windowScrollYSpy.mockReturnValue(expectedScrollThreshold + 1);
 

@@ -190,7 +190,7 @@ describe('SourceDescWritingMaterialComponent (DONE)', () => {
 
                 // Process HTML expression of expected text content
                 const expectedHtmlTextContent = mockDocument.createElement('span');
-                expectedHtmlTextContent.innerHTML = '&nbsp;(Bl. ' + expectedMaterial.folioAddendum + ')';
+                expectedHtmlTextContent.innerHTML = `&nbsp;(Bl. ${expectedMaterial.folioAddendum ?? ''})`;
 
                 expectToBe(folioAddendumSpanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
             });

@@ -24,21 +24,19 @@ export interface EditionComplexJsonPersonRef {
 }
 
 /**
- * The EditionComplexJsonData interface.
+ * The EditionComplexJsonData type.
  *
  * It is used in the context of the edition view
  * to describe the structure of a JSON data for an edition complex.
  */
-export interface EditionComplexJsonData {
-    /**
-     * The edition complex data.
-     */
-    [key: string]: {
+export type EditionComplexJsonData = Record<
+    string,
+    {
         titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
         respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
         pubStatement: { series: string; section: string };
-    };
-}
+    }
+>;
 
 /**
  * The EditionComplexesJsonData interface.

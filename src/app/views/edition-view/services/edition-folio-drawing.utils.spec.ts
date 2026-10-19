@@ -331,7 +331,7 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                     const { contentSegments } = calculate(withContent(content));
 
                     expectToEqual(contentSegments, []);
-                    expectToBe(String(mockConsole.get(0)).startsWith('[FolioCalculation]'), true);
+                    expectToBe(mockConsole.get(0).startsWith('[FolioCalculation]'), true);
                 });
 
                 it('... should skip and log all folio contents of a folio without systems', () => {

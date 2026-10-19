@@ -90,8 +90,8 @@ export class EditionFolioDrawingService {
     getFolioSvgData(folio: Folio): FolioSvgData {
         const folioSettings: FolioSettings = {
             ...this._folioSettings,
-            formatX: +folio.dimensions.width,
-            formatY: +folio.dimensions.height,
+            formatX: folio.dimensions.width,
+            formatY: folio.dimensions.height,
         };
 
         return calculateFolioSvgData(folioSettings, folio, this._contentSegmentOffsetCorrection);

@@ -39,9 +39,4 @@ export type LogoKeys =
  * It defines a dictionary of logo objects,
  * mapped by the valid LogoKeys.
  */
-export type Logos = {
-    /**
-     * The collection of logos mapped by their keys.
-     */
-    [key in LogoKeys]: Logo;
-};
+export type Logos = Record<LogoKeys, Logo>;

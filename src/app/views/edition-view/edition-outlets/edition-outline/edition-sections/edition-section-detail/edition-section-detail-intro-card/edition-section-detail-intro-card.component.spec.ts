@@ -135,7 +135,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(getCardBodyDes()[0], 'p.card-text', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.textContent.trim(), expectedSection.content.intro.preview + ' …');
+                expectToBe(pEl.textContent.trim(), `${expectedSection.content.intro.preview ?? ''} …`);
             });
 
             it('... should have text-end paragraph in div.card-footer', () => {

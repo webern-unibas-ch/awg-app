@@ -23,8 +23,8 @@ import {
  * @returns {TableRows} The created row.
  */
 const createRow = (label1: unknown, label2: unknown = 'x'): TableRows => ({
-    column1: { value: `value-${label1}`, label: label1, type: 'literal' },
-    column2: { value: `value-${label2}`, label: label2, type: 'literal' },
+    column1: { value: `value-${String(label1)}`, label: label1, type: 'literal' },
+    column2: { value: `value-${String(label2)}`, label: label2, type: 'literal' },
 });
 
 describe('TableUtils (DONE)', () => {

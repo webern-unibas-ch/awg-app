@@ -449,7 +449,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
                         expectToBe(
                             itemEl.textContent.trim(),
-                            `${expectedSvgSheetWithPartials.label} [${partial} · ${index + 1}/${count}]`
+                            `${expectedSvgSheetWithPartials.label ?? ''} [${partial ?? ''} · ${index + 1}/${count}]`
                         );
                     });
                 });

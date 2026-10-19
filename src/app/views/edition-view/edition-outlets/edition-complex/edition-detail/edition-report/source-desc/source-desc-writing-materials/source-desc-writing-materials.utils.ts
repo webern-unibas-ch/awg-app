@@ -55,7 +55,7 @@ export function getItemLocus(locus: SourceDescWritingMaterialItemLocus): string 
         if (folios.length === 1) {
             foliosStr = folios[0].includes('all') ? 'auf allen Blättern' : `auf Bl. ${folios[0]}`;
         } else if (folios.length > 1) {
-            foliosStr = `auf Bl. ${folios.slice(0, -1).join(', ')} und ${folios.slice(-1)}`;
+            foliosStr = `auf Bl. ${folios.slice(0, -1).join(', ')} und ${folios.at(-1) ?? ''}`;
         }
     }
 

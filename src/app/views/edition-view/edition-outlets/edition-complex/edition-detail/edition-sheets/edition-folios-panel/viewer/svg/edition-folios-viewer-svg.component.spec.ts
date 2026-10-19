@@ -111,8 +111,8 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
 
         const expectedFolioSettings: FolioSettings = {
             factor: 1.5,
-            formatX: +expectedFolio.dimensions.width,
-            formatY: +expectedFolio.dimensions.height,
+            formatX: expectedFolio.dimensions.width,
+            formatY: expectedFolio.dimensions.height,
             initialOffsetX: 5,
             initialOffsetY: 5,
         };

@@ -136,7 +136,9 @@ describe('EditionSvgOverlayService (DONE)', () => {
 
         it('... should return an empty array if no tkk groups can be selected', () => {
             serviceGetGroupsBySelectorSpy.mockImplementation((rootGroup: D3Selection, selector: string) =>
-                selector === EditionSvgOverlayTypes.tkk ? undefined : rootGroup.selectAll('g.' + selector)
+                (selector as EditionSvgOverlayTypes) === EditionSvgOverlayTypes.tkk
+                    ? undefined
+                    : rootGroup.selectAll('g.' + selector)
             );
 
             const createdSvgOverlays = service.createSvgOverlays(expectedSvgRootGroup);

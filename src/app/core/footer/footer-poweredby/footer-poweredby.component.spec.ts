@@ -134,7 +134,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             ])('... $desc', ({ missingKey }) => {
                 const incompleteLogos = structuredClone(expectedLogosData);
 
-                delete incompleteLogos[missingKey as keyof typeof expectedLogosData];
+                Reflect.deleteProperty(incompleteLogos, missingKey);
 
                 fixture.componentRef.setInput('logosData', incompleteLogos);
                 fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
