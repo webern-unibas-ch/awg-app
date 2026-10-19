@@ -263,10 +263,9 @@ describe('TableComponent (DONE)', () => {
             it('... should display the title and the number of results', () => {
                 const titleEl = getTitleEl();
 
-                expectToBe(
-                    titleEl.textContent.replaceAll(/\s+/g, ' ').trim(),
-                    `${expectedTableTitle} (12 von 12 Ergebnissen)`
-                );
+                const titleText = titleEl.textContent.replaceAll(/\s+/g, ' ').trim();
+
+                expectToBe(titleText, `${expectedTableTitle} (12 von 12 Ergebnissen)`);
             });
 
             it('... should display the number of filtered results', async () => {
@@ -340,12 +339,13 @@ describe('TableComponent (DONE)', () => {
                 });
 
                 it('... should render the top panel before and the bottom panel after the table', () => {
-                    const hostChildren = Array.from((compDe.nativeElement as HTMLElement).children);
-
-                    expectToEqual(
-                        hostChildren.map(el => el.className.split(' ')[0] || el.tagName.toLowerCase()),
-                        ['form-group', 'awg-pagination', 'table', 'awg-pagination']
+                    const compEl: HTMLElement = compDe.nativeElement;
+                    const hostChildren = Array.from(compEl.children);
+                    const hostChildClasses = hostChildren.map(
+                        el => el.className.split(' ')[0] || el.tagName.toLowerCase()
                     );
+
+                    expectToEqual(hostChildClasses, ['form-group', 'awg-pagination', 'table', 'awg-pagination']);
                 });
 
                 it('... should label each dropdown menu by the toggle of its own panel', () => {
@@ -366,7 +366,9 @@ describe('TableComponent (DONE)', () => {
                     const btnDes = getAndExpectDebugElementByCss(compDe, 'button.awg-pagesize-dropdown-button', 2, 2);
 
                     btnDes.forEach(btnDe => {
-                        expectToBe(btnDe.nativeElement.textContent.trim(), '10 Ergebnisse pro Seite');
+                        const btnEl: HTMLButtonElement = btnDe.nativeElement;
+
+                        expectToBe(btnEl.textContent.trim(), '10 Ergebnisse pro Seite');
                     });
                 });
 
@@ -396,7 +398,9 @@ describe('TableComponent (DONE)', () => {
             describe('... table header', () => {
                 it('... should display one header cell per header label', () => {
                     getHeaderCellDes().forEach((thDe, i) => {
-                        expectToBe(thDe.nativeElement.textContent.trim(), expectedHeaderInputData[i]);
+                        const thEl: HTMLTableCellElement = thDe.nativeElement;
+
+                        expectToBe(thEl.textContent.trim(), expectedHeaderInputData[i]);
                     });
                 });
 
@@ -455,11 +459,12 @@ describe('TableComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     const tdDes = getAndExpectDebugElementByCss(getBodyRowDes(1)[0], 'td', 3, 3);
+                    const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
                     getAndExpectDebugElementByCss(tdDes[2], 'a', 0, 0);
                     const highlightDes = getAndExpectDebugElementByDirective(tdDes[2], NgbHighlight, 1, 1);
 
                     expect(highlightDes[0].injector.get(NgbHighlight).result).toBeUndefined();
-                    expectToBe(tdDes[2].nativeElement.textContent.trim(), '');
+                    expectToBe(tdEl.textContent.trim(), '');
                 });
 
                 it('... should display an icon badge in search cells if an icon is given', async () => {
@@ -469,8 +474,9 @@ describe('TableComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     const imgDes = getAndExpectDebugElementByCss(compDe, 'tbody td span.badge > img', 1, 1);
+                    const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
-                    expectToBe(imgDes[0].nativeElement.getAttribute('src'), 'assets/img/test.png');
+                    expectToBe(imgEl.getAttribute('src'), 'assets/img/test.png');
                 });
 
                 it('... should pass down label and search filter to NgbHighlight', async () => {

@@ -230,15 +230,21 @@ describe('GraphResultsConstructComponent (DONE)', () => {
                 });
 
                 it('... should toggle item body on click', async () => {
-                    expectToContain(getItemCollapseEl('open').classList, 'show');
+                    const openCollapseEl = getItemCollapseEl('open');
+
+                    expectToContain(openCollapseEl.classList, 'show');
 
                     await clickAndAwaitChanges(getItemHeaderButtonDe(), fixture);
 
-                    expectToContain(getItemCollapseEl('collapsed').classList, 'collapse');
+                    const collapsedCollapseEl = getItemCollapseEl('collapsed');
+
+                    expectToContain(collapsedCollapseEl.classList, 'collapse');
 
                     await clickAndAwaitChanges(getItemHeaderButtonDe(), fixture);
 
-                    expectToContain(getItemCollapseEl('open').classList, 'show');
+                    const reopenedCollapseEl = getItemCollapseEl('open');
+
+                    expectToContain(reopenedCollapseEl.classList, 'show');
                 });
 
                 it('... should contain TwelveToneSpinnerComponent (hollow) in item body while loading (queryResult is undefined)', async () => {
@@ -290,11 +296,15 @@ describe('GraphResultsConstructComponent (DONE)', () => {
                 });
 
                 it('... should not toggle item body on click', async () => {
-                    expectToContain(getItemCollapseEl('open').classList, 'show');
+                    const openCollapseEl = getItemCollapseEl('open');
+
+                    expectToContain(openCollapseEl.classList, 'show');
 
                     await clickAndAwaitChanges(getItemHeaderButtonDe(), fixture);
 
-                    expectToContain(getItemCollapseEl('open').classList, 'show');
+                    const stillOpenCollapseEl = getItemCollapseEl('open');
+
+                    expectToContain(stillOpenCollapseEl.classList, 'show');
                 });
 
                 it('... should contain ForceGraphComponent (hollow) in item body if results are available', () => {
@@ -319,13 +329,17 @@ describe('GraphResultsConstructComponent (DONE)', () => {
                         { desc: 'resultGraph is null', resultGraph: null },
                         { desc: 'resultGraph has no edges', resultGraph: { nodes: [], edges: [], tripleCount: 0 } },
                     ])('... $desc', ({ resultGraph }) => {
-                        expectToBe(component.isValidResultGraph(resultGraph), false);
+                        const isValid = component.isValidResultGraph(resultGraph);
+
+                        expectToBe(isValid, false);
                     });
                 });
 
                 describe('... should be true if', () => {
                     it('... resultGraph has edges', () => {
-                        expectToBe(component.isValidResultGraph(expectedResultGraph), true);
+                        const isValid = component.isValidResultGraph(expectedResultGraph);
+
+                        expectToBe(isValid, true);
                     });
                 });
             });

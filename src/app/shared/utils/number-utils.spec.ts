@@ -44,12 +44,16 @@ describe('NumberUtils (DONE)', () => {
                 },
             ])('... for $decimals decimal places', ({ decimals, cases }) => {
                 it.each(cases)('... should round %s to %s', (value, expected) => {
-                    expectToBe(roundToDecimals(value, decimals), expected);
+                    const roundedToDecimals = roundToDecimals(value, decimals);
+
+                    expectToBe(roundedToDecimals, expected);
                 });
             });
 
             it('... should keep NaN for NaN', () => {
-                expectToBe(roundToDecimals(Number.NaN, 2), Number.NaN);
+                const roundedToDecimals = roundToDecimals(Number.NaN, 2);
+
+                expectToBe(roundedToDecimals, Number.NaN);
             });
         });
 
@@ -103,7 +107,9 @@ describe('NumberUtils (DONE)', () => {
                 },
             ])('... for the step size $stepSize', ({ stepSize, cases }) => {
                 it.each(cases)('... should round %s to %s', (value, expected) => {
-                    expectToBe(roundToStepPrecision(value, stepSize), expected);
+                    const roundedToStepPrecision = roundToStepPrecision(value, stepSize);
+
+                    expectToBe(roundedToStepPrecision, expected);
                 });
             });
         });

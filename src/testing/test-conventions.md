@@ -80,7 +80,7 @@ Every component spec is split into a `BEFORE initial data binding` and an `AFTER
 - **Expect helpers:** use `expectToBe` and `expectToEqual` (`expect-helper.ts`) instead of raw expects. Negations and expectations of `undefined` stay raw (the helpers also assert `toBeDefined()`).
 - **No redundant length checks:** a deep-equal `expectToEqual(array, expectedArray)` already covers the length.
 - **Spy calls:** use `expectSpyCall(spy, times, mostRecentArgs?)` instead of `toHaveBeenCalled…()`; it checks the exact number of calls and, optionally, the arguments of the most recent call (an array for several arguments): `expectSpyCall(navigateSpy, 1, [['/edition'], { fragment }])`, `expectSpyCall(clickSpy, 0)`. Raw matchers stay for checks of an earlier call (`toHaveBeenNthCalledWith`), for call counts that depend on the run (change detection, timers, simulation ticks), and for inline `vi.fn()` mocks of a casted object (e.g. the fixture mock in `click-helper.spec.ts`).
-- **Extract complex expressions:** assign nested calls or inline transforms to named `const`s first, then assert, separated by a blank line:
+- **No calls inside expectations:** assign the result of a call with arguments to a named `const` first, then assert, separated by a blank line. Reads stay inline (signals, properties, `isSignal`, DOM accessors like `getAttribute`). Several inputs of the same function become an `it.each`:
 
     ```ts
     const zoomTransform = D3_ZOOM.zoomIdentity.translate(10, 20).scale(2);

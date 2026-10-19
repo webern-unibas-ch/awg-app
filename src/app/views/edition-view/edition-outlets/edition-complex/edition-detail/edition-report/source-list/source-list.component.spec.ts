@@ -190,7 +190,8 @@ describe('SourceListComponent (DONE)', () => {
 
                         sourceSiglumDes.forEach((sourceSiglumDe, index) => {
                             const source = sources[index];
-                            const sourceRowHeader = (sourceSiglumDe.nativeElement as HTMLElement).closest('th');
+                            const sourceSiglumEl: HTMLElement = sourceSiglumDe.nativeElement;
+                            const sourceRowHeader = sourceSiglumEl.closest('th');
 
                             expectToBe(sourceRowHeader?.id, source.siglum + (source.siglumAddendum ?? ''));
                         });

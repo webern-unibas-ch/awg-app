@@ -47,31 +47,43 @@ describe('TableUtils (DONE)', () => {
             });
 
             it('... should keep all rows for an empty term', () => {
-                expectToEqual(filterTableRows(rows, ''), rows);
+                const filteredTableRows = filterTableRows(rows, '');
+
+                expectToEqual(filteredTableRows, rows);
             });
 
             it('... should keep rows with a matching label in any column', () => {
-                expectToEqual(filterTableRows(rows, 'red'), [rows[0], rows[2]]);
+                const filteredTableRows = filterTableRows(rows, 'red');
+
+                expectToEqual(filteredTableRows, [rows[0], rows[2]]);
             });
 
             it('... should match case-insensitively', () => {
-                expectToEqual(filterTableRows(rows, 'BANANA'), [rows[1]]);
+                const filteredTableRows = filterTableRows(rows, 'BANANA');
+
+                expectToEqual(filteredTableRows, [rows[1]]);
             });
 
             it('... should match number labels', () => {
                 const numberRows = [createRow(42), createRow(7)];
 
-                expectToEqual(filterTableRows(numberRows, '4'), [numberRows[0]]);
+                const filteredTableRows = filterTableRows(numberRows, '4');
+
+                expectToEqual(filteredTableRows, [numberRows[0]]);
             });
 
             it('... should ignore null and undefined entries', () => {
                 const sparseRows: TableRows[] = [{ column1: null, column2: undefined }, createRow('Apple')];
 
-                expectToEqual(filterTableRows(sparseRows, 'apple'), [sparseRows[1]]);
+                const filteredTableRows = filterTableRows(sparseRows, 'apple');
+
+                expectToEqual(filteredTableRows, [sparseRows[1]]);
             });
 
             it('... should keep no rows if nothing matches', () => {
-                expectToEqual(filterTableRows(rows, 'kiwi'), []);
+                const filteredTableRows = filterTableRows(rows, 'kiwi');
+
+                expectToEqual(filteredTableRows, []);
             });
         });
 
@@ -80,17 +92,29 @@ describe('TableUtils (DONE)', () => {
                 expect(isMissingTableValue).toBeDefined();
             });
 
-            it('... should be true for null, undefined and NaN', () => {
-                expectToBe(isMissingTableValue(null), true);
-                expectToBe(isMissingTableValue(undefined), true);
-                expectToBe(isMissingTableValue(Number.NaN), true);
+            describe('... should be true for null, undefined and NaN', () => {
+                it.each([
+                    { desc: 'null', value: null },
+                    { desc: 'undefined', value: undefined },
+                    { desc: 'Number.NaN', value: Number.NaN },
+                ])('... $desc', ({ value }) => {
+                    const isMissing = isMissingTableValue(value);
+
+                    expectToBe(isMissing, true);
+                });
             });
 
-            it('... should be false for strings and numbers (also empty and 0)', () => {
-                expectToBe(isMissingTableValue('a'), false);
-                expectToBe(isMissingTableValue(''), false);
-                expectToBe(isMissingTableValue(1), false);
-                expectToBe(isMissingTableValue(0), false);
+            describe('... should be false for strings and numbers (also empty and 0)', () => {
+                it.each([
+                    { desc: 'a', value: 'a' },
+                    { desc: '', value: '' },
+                    { desc: '1', value: 1 },
+                    { desc: '0', value: 0 },
+                ])('... $desc', ({ value }) => {
+                    const isMissing = isMissingTableValue(value);
+
+                    expectToBe(isMissing, false);
+                });
             });
         });
 
@@ -99,46 +123,93 @@ describe('TableUtils (DONE)', () => {
                 expect(compareTableValues).toBeDefined();
             });
 
-            it('... should be 0 for equal values', () => {
-                expectToBe(compareTableValues('a', 'a'), 0);
-                expectToBe(compareTableValues(1, 1), 0);
-                expectToBe(compareTableValues(null, undefined), 0);
+            describe('... should be 0 for equal values', () => {
+                it.each([
+                    { desc: "'a', 'a'", a: 'a', b: 'a' },
+                    { desc: '1, 1', a: 1, b: 1 },
+                    { desc: 'null, undefined', a: null, b: undefined },
+                ])('... $desc', ({ a, b }) => {
+                    const comparison = compareTableValues(a, b);
+
+                    expectToBe(comparison, 0);
+                });
             });
 
-            it('... should order strings alphabetically', () => {
-                expectToBe(compareTableValues('a', 'b'), -1);
-                expectToBe(compareTableValues('b', 'a'), 1);
+            describe('... should order strings alphabetically', () => {
+                it.each([
+                    { desc: "'a', 'b'", a: 'a', b: 'b', expected: -1 },
+                    { desc: "'b', 'a'", a: 'b', b: 'a', expected: 1 },
+                ])('... $desc', ({ a, b, expected }) => {
+                    const comparison = compareTableValues(a, b);
+
+                    expectToBe(comparison, expected);
+                });
             });
 
-            it('... should order strings case-insensitively', () => {
-                expectToBe(compareTableValues('B', 'a'), 1);
-                expectToBe(compareTableValues('a', 'B'), -1);
-                expectToBe(compareTableValues('awg:Sketch', 'awg:concomitates'), 1);
-                expectToBe(compareTableValues('A', 'a'), 0);
+            describe('... should order strings case-insensitively', () => {
+                it.each([
+                    { desc: "'B', 'a'", a: 'B', b: 'a', expected: 1 },
+                    { desc: "'a', 'B'", a: 'a', b: 'B', expected: -1 },
+                    { desc: "'awg:Sketch', 'awg:concomitates'", a: 'awg:Sketch', b: 'awg:concomitates', expected: 1 },
+                    { desc: "'A', 'a'", a: 'A', b: 'a', expected: 0 },
+                ])('... $desc', ({ a, b, expected }) => {
+                    const comparison = compareTableValues(a, b);
+
+                    expectToBe(comparison, expected);
+                });
             });
 
-            it('... should order numbers in strings naturally', () => {
-                expectToBe(compareTableValues('awg:PT_SB4_2r_1', 'awg:PT_SB4_11r_9'), -1);
-                expectToBe(compareTableValues('m10', 'm2'), 1);
+            describe('... should order numbers in strings naturally', () => {
+                it.each([
+                    {
+                        desc: "'awg:PT_SB4_2r_1', 'awg:PT_SB4_11r_9'",
+                        a: 'awg:PT_SB4_2r_1',
+                        b: 'awg:PT_SB4_11r_9',
+                        expected: -1,
+                    },
+                    { desc: "'m10', 'm2'", a: 'm10', b: 'm2', expected: 1 },
+                ])('... $desc', ({ a, b, expected }) => {
+                    const comparison = compareTableValues(a, b);
+
+                    expectToBe(comparison, expected);
+                });
             });
 
-            it('... should order numbers numerically', () => {
-                expectToBe(compareTableValues(2, 10), -1);
-                expectToBe(compareTableValues(10, 2), 1);
-                expectToBe(compareTableValues(-1, 0), -1);
+            describe('... should order numbers numerically', () => {
+                it.each([
+                    { desc: '2, 10', a: 2, b: 10, expected: -1 },
+                    { desc: '10, 2', a: 10, b: 2, expected: 1 },
+                    { desc: '-1, 0', a: -1, b: 0, expected: -1 },
+                ])('... $desc', ({ a, b, expected }) => {
+                    const comparison = compareTableValues(a, b);
+
+                    expectToBe(comparison, expected);
+                });
             });
 
-            it('... should order numbers before strings', () => {
-                expectToBe(compareTableValues(10, 'a'), -1);
-                expectToBe(compareTableValues('1', 2), 1);
+            describe('... should order numbers before strings', () => {
+                it.each([
+                    { desc: "10, 'a'", a: 10, b: 'a', expected: -1 },
+                    { desc: "'1', 2", a: '1', b: 2, expected: 1 },
+                ])('... $desc', ({ a, b, expected }) => {
+                    const comparison = compareTableValues(a, b);
+
+                    expectToBe(comparison, expected);
+                });
             });
 
-            it('... should order null, undefined and NaN at the end', () => {
-                expectToBe(compareTableValues(null, 'a'), 1);
-                expectToBe(compareTableValues(undefined, 'a'), 1);
-                expectToBe(compareTableValues(Number.NaN, 1), 1);
-                expectToBe(compareTableValues('a', null), -1);
-                expectToBe(compareTableValues(1, Number.NaN), -1);
+            describe('... should order null, undefined and NaN at the end', () => {
+                it.each([
+                    { desc: "null, 'a'", a: null, b: 'a', expected: 1 },
+                    { desc: "undefined, 'a'", a: undefined, b: 'a', expected: 1 },
+                    { desc: 'Number.NaN, 1', a: Number.NaN, b: 1, expected: 1 },
+                    { desc: "'a', null", a: 'a', b: null, expected: -1 },
+                    { desc: '1, Number.NaN', a: 1, b: Number.NaN, expected: -1 },
+                ])('... $desc', ({ a, b, expected }) => {
+                    const comparison = compareTableValues(a, b);
+
+                    expectToBe(comparison, expected);
+                });
             });
         });
 
@@ -149,13 +220,21 @@ describe('TableUtils (DONE)', () => {
                 expect(sortTableRows).toBeDefined();
             });
 
-            it('... should sort by the label of the given key', () => {
-                expectToEqual(sortTableRows(rows, 'column1', false), [rows[3], rows[0], rows[1], rows[2]]);
-                expectToEqual(sortTableRows(rows, 'column2', false), [rows[1], rows[0], rows[2], rows[3]]);
+            describe('... should sort by the label of the given key', () => {
+                it.each([
+                    { desc: 'column1', key: 'column1', expected: [rows[3], rows[0], rows[1], rows[2]] },
+                    { desc: 'column2', key: 'column2', expected: [rows[1], rows[0], rows[2], rows[3]] },
+                ])('... $desc', ({ key, expected }) => {
+                    const sortedTableRows = sortTableRows(rows, key, false);
+
+                    expectToEqual(sortedTableRows, expected);
+                });
             });
 
             it('... should sort in reverse order with missing values still at the end', () => {
-                expectToEqual(sortTableRows(rows, 'column1', true), [rows[1], rows[0], rows[3], rows[2]]);
+                const sortedTableRows = sortTableRows(rows, 'column1', true);
+
+                expectToEqual(sortedTableRows, [rows[1], rows[0], rows[3], rows[2]]);
             });
 
             it('... should sort mixed-case labels with numbers naturally', () => {
@@ -167,34 +246,25 @@ describe('TableUtils (DONE)', () => {
                     createRow('awg:concomitates', '5'),
                 ];
 
-                expectToEqual(sortTableRows(labelRows, 'column1', false), [
-                    labelRows[4],
-                    labelRows[0],
-                    labelRows[3],
-                    labelRows[1],
-                    labelRows[2],
-                ]);
+                const sortedTableRows = sortTableRows(labelRows, 'column1', false);
+
+                expectToEqual(sortedTableRows, [labelRows[4], labelRows[0], labelRows[3], labelRows[1], labelRows[2]]);
             });
 
             it('... should keep the input order of equal values in both directions', () => {
                 const equalRows = [createRow('a', '1'), createRow('b', '2'), createRow('a', '3'), createRow('A', '4')];
 
-                expectToEqual(sortTableRows(equalRows, 'column1', false), [
-                    equalRows[0],
-                    equalRows[2],
-                    equalRows[3],
-                    equalRows[1],
-                ]);
-                expectToEqual(sortTableRows(equalRows, 'column1', true), [
-                    equalRows[1],
-                    equalRows[0],
-                    equalRows[2],
-                    equalRows[3],
-                ]);
+                const ascendingRows = sortTableRows(equalRows, 'column1', false);
+                const descendingRows = sortTableRows(equalRows, 'column1', true);
+
+                expectToEqual(ascendingRows, [equalRows[0], equalRows[2], equalRows[3], equalRows[1]]);
+                expectToEqual(descendingRows, [equalRows[1], equalRows[0], equalRows[2], equalRows[3]]);
             });
 
             it('... should keep the order if no key is given', () => {
-                expectToEqual(sortTableRows(rows, '', false), rows);
+                const sortedTableRows = sortTableRows(rows, '', false);
+
+                expectToEqual(sortedTableRows, rows);
             });
 
             it('... should not mutate the given rows', () => {
@@ -220,7 +290,9 @@ describe('TableUtils (DONE)', () => {
                     { desc: 'the remaining rows of the last page', page: 3, expected: rows.slice(20, 23) },
                     { desc: 'no rows for a page out of range', page: 4, expected: [] },
                 ])('... $desc', ({ page, expected }) => {
-                    expectToEqual(paginateTableRows(rows, page, 10), expected);
+                    const paginatedTableRows = paginateTableRows(rows, page, 10);
+
+                    expectToEqual(paginatedTableRows, expected);
                 });
             });
         });

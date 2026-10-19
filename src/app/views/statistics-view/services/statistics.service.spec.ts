@@ -195,18 +195,28 @@ describe('StatisticsService', () => {
                 { desc: 'active is 0', active: 0, total: 10 },
                 { desc: 'both active and total are 0', active: 0, total: 0 },
             ])('... $desc', ({ active, total }) => {
-                expectToBe(service['_calculateProgressRate'](active, total), 0);
+                const progressRate = service['_calculateProgressRate'](active, total);
+
+                expectToBe(progressRate, 0);
             });
         });
 
         it('... should return 100 when active equals total', () => {
-            expectToBe(service['_calculateProgressRate'](5, 5), 100);
+            const progressRate = service['_calculateProgressRate'](5, 5);
+
+            expectToBe(progressRate, 100);
         });
 
-        it('... should return the rounded percentage of active over total', () => {
-            expectToBe(service['_calculateProgressRate'](1, 3), 33);
-            expectToBe(service['_calculateProgressRate'](2, 3), 67);
-            expectToBe(service['_calculateProgressRate'](1, 4), 25);
+        describe('... should return the rounded percentage of active over total', () => {
+            it.each([
+                { desc: '1, 3', active: 1, total: 3, expected: 33 },
+                { desc: '2, 3', active: 2, total: 3, expected: 67 },
+                { desc: '1, 4', active: 1, total: 4, expected: 25 },
+            ])('... $desc', ({ active, total, expected }) => {
+                const progressRate = service['_calculateProgressRate'](active, total);
+
+                expectToBe(progressRate, expected);
+            });
         });
     });
 
@@ -217,22 +227,34 @@ describe('StatisticsService', () => {
 
         describe('... should return 0 when ...', () => {
             it('... the input array is empty', () => {
-                expectToBe(service['_calculateCombinedProgressRate']([]), 0);
+                const combinedProgressRate = service['_calculateCombinedProgressRate']([]);
+
+                expectToBe(combinedProgressRate, 0);
             });
 
             it('... all values in the array are 0', () => {
-                expectToBe(service['_calculateCombinedProgressRate']([0, 0, 0]), 0);
+                const combinedProgressRate = service['_calculateCombinedProgressRate']([0, 0, 0]);
+
+                expectToBe(combinedProgressRate, 0);
             });
         });
 
         it('... should return the single value for a one-element array', () => {
-            expectToBe(service['_calculateCombinedProgressRate']([75]), 75);
+            const combinedProgressRate = service['_calculateCombinedProgressRate']([75]);
+
+            expectToBe(combinedProgressRate, 75);
         });
 
-        it('... should return the rounded average for multiple values', () => {
-            expectToBe(service['_calculateCombinedProgressRate']([0, 100]), 50);
-            expectToBe(service['_calculateCombinedProgressRate']([0, 100, 0]), 33);
-            expectToBe(service['_calculateCombinedProgressRate']([33, 67, 100]), 67);
+        describe('... should return the rounded average for multiple values', () => {
+            it.each([
+                { desc: '[0, 100]', progressRates: [0, 100], expected: 50 },
+                { desc: '[0, 100, 0]', progressRates: [0, 100, 0], expected: 33 },
+                { desc: '[33, 67, 100]', progressRates: [33, 67, 100], expected: 67 },
+            ])('... $desc', ({ progressRates, expected }) => {
+                const combinedProgressRate = service['_calculateCombinedProgressRate'](progressRates);
+
+                expectToBe(combinedProgressRate, expected);
+            });
         });
     });
 
@@ -269,13 +291,17 @@ describe('StatisticsService', () => {
             it('... route starts with `/mx`', () => {
                 const complex = { complex: { complexId: { route: '/mx403' } } } as EditionOutlineComplexItem;
 
-                expectToBe(service['_isMnrX'](complex), true);
+                const isMnrX = service['_isMnrX'](complex);
+
+                expectToBe(isMnrX, true);
             });
 
             it('... route is exactly `/mx`', () => {
                 const complex = { complex: { complexId: { route: '/mx' } } } as EditionOutlineComplexItem;
 
-                expectToBe(service['_isMnrX'](complex), true);
+                const isMnrX = service['_isMnrX'](complex);
+
+                expectToBe(isMnrX, true);
             });
         });
 
@@ -283,19 +309,25 @@ describe('StatisticsService', () => {
             it('... route does not start with `/mx`', () => {
                 const complex = { complex: { complexId: { route: '/m403' } } } as EditionOutlineComplexItem;
 
-                expectToBe(service['_isMnrX'](complex), false);
+                const isMnrX = service['_isMnrX'](complex);
+
+                expectToBe(isMnrX, false);
             });
 
             it('... route is undefined', () => {
                 const complex = { complex: { complexId: {} } } as EditionOutlineComplexItem;
 
-                expectToBe(service['_isMnrX'](complex), false);
+                const isMnrX = service['_isMnrX'](complex);
+
+                expectToBe(isMnrX, false);
             });
 
             it('... complex object is missing complexId', () => {
                 const complex = { complex: {} } as EditionOutlineComplexItem;
 
-                expectToBe(service['_isMnrX'](complex), false);
+                const isMnrX = service['_isMnrX'](complex);
+
+                expectToBe(isMnrX, false);
             });
         });
     });

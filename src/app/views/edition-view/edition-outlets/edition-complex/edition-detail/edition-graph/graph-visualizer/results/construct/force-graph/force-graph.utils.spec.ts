@@ -105,13 +105,17 @@ describe('ForceGraphUtils (DONE)', () => {
             it('... should return source, middle node and target for an edge with middle node', () => {
                 const edge = createEdge({}, {}, {});
 
-                expectToEqual(edgePath(edge), [edge.source, edge.mid, edge.target]);
+                const path = edgePath(edge);
+
+                expectToEqual(path, [edge.source, edge.mid, edge.target]);
             });
 
             it('... should return source and target for an edge without middle node', () => {
                 const edge = createEdge({}, undefined, {});
 
-                expectToEqual(edgePath(edge), [edge.source, edge.target]);
+                const path = edgePath(edge);
+
+                expectToEqual(path, [edge.source, edge.target]);
             });
 
             it('... should return the same node as source and target for a self edge', () => {
@@ -127,9 +131,19 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(isLargeGraph).toBeDefined();
             });
 
-            it('... should return true from FORCE_GRAPH_LARGE_NODE_COUNT force graph nodes', () => {
-                expectToBe(isLargeGraph(FORCE_GRAPH_LARGE_NODE_COUNT - 1), false);
-                expectToBe(isLargeGraph(FORCE_GRAPH_LARGE_NODE_COUNT), true);
+            describe('... should return true from FORCE_GRAPH_LARGE_NODE_COUNT force graph nodes', () => {
+                it.each([
+                    {
+                        desc: 'FORCE_GRAPH_LARGE_NODE_COUNT - 1',
+                        nodeCount: FORCE_GRAPH_LARGE_NODE_COUNT - 1,
+                        expected: false,
+                    },
+                    { desc: 'FORCE_GRAPH_LARGE_NODE_COUNT', nodeCount: FORCE_GRAPH_LARGE_NODE_COUNT, expected: true },
+                ])('... $desc', ({ nodeCount, expected }) => {
+                    const isLarge = isLargeGraph(nodeCount);
+
+                    expectToBe(isLarge, expected);
+                });
             });
         });
 
@@ -139,13 +153,21 @@ describe('ForceGraphUtils (DONE)', () => {
             });
 
             it('... should return true for a point with finite coordinates', () => {
-                expectToBe(isPositioned({ x: 0, y: -3.5 }), true);
+                const hasPosition = isPositioned({ x: 0, y: -3.5 });
+
+                expectToBe(hasPosition, true);
             });
 
-            it('... should return false for a point with a NaN or infinite coordinate', () => {
-                expectToBe(isPositioned({ x: NaN, y: 0 }), false);
-                expectToBe(isPositioned({ x: 0, y: NaN }), false);
-                expectToBe(isPositioned({ x: Infinity, y: 0 }), false);
+            describe('... should return false for a point with a NaN or infinite coordinate', () => {
+                it.each([
+                    { desc: '{ x: NaN, y: 0 }', point: { x: NaN, y: 0 } },
+                    { desc: '{ x: 0, y: NaN }', point: { x: 0, y: NaN } },
+                    { desc: '{ x: Infinity, y: 0 }', point: { x: Infinity, y: 0 } },
+                ])('... $desc', ({ point }) => {
+                    const hasPosition = isPositioned(point);
+
+                    expectToBe(hasPosition, false);
+                });
             });
         });
 
@@ -162,24 +184,40 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(isRelayout).toBeDefined();
             });
 
-            it('... should return true if at least half of the nodes have a position', () => {
-                expectToBe(isRelayout(createNodes(2, 2)), true);
-                expectToBe(isRelayout(createNodes(3, 1)), true);
+            describe('... should return true if at least half of the nodes have a position', () => {
+                it.each([
+                    { desc: '2 of 4 nodes positioned', nodes: createNodes(2, 2) },
+                    { desc: '3 of 4 nodes positioned', nodes: createNodes(3, 1) },
+                ])('... $desc', ({ nodes }) => {
+                    const needsRelayout = isRelayout(nodes);
+
+                    expectToBe(needsRelayout, true);
+                });
             });
 
             it('... should return false if less than half of the nodes have a position', () => {
-                expectToBe(isRelayout(createNodes(1, 3)), false);
+                const needsRelayout = isRelayout(createNodes(1, 3));
+
+                expectToBe(needsRelayout, false);
             });
 
-            it('... should return false without positioned nodes', () => {
-                expectToBe(isRelayout(createNodes(0, 2)), false);
-                expectToBe(isRelayout([]), false);
+            describe('... should return false without positioned nodes', () => {
+                it.each([
+                    { desc: '0 of 2 nodes positioned', nodes: createNodes(0, 2) },
+                    { desc: 'no nodes', nodes: [] },
+                ])('... $desc', ({ nodes }) => {
+                    const needsRelayout = isRelayout(nodes);
+
+                    expectToBe(needsRelayout, false);
+                });
             });
 
             it('... should count only nodes with both coordinates as positioned', () => {
                 const nodes: ForceGraphNode[] = [{ id: 'a', radius: 9, x: 1, y: NaN }];
 
-                expectToBe(isRelayout(nodes), false);
+                const needsRelayout = isRelayout(nodes);
+
+                expectToBe(needsRelayout, false);
             });
         });
 
@@ -191,13 +229,17 @@ describe('ForceGraphUtils (DONE)', () => {
             it('... should return true for an edge from a node to itself', () => {
                 const edge = createSelfEdge({}, {});
 
-                expectToBe(isSelfEdge(edge), true);
+                const isSelf = isSelfEdge(edge);
+
+                expectToBe(isSelf, true);
             });
 
             it('... should return false for an edge between two nodes (also at the same position)', () => {
                 const edge = createEdge({ x: 10, y: 10 }, undefined, { x: 10, y: 10 });
 
-                expectToBe(isSelfEdge(edge), false);
+                const isSelf = isSelfEdge(edge);
+
+                expectToBe(isSelf, false);
             });
         });
 
@@ -213,14 +255,19 @@ describe('ForceGraphUtils (DONE)', () => {
                     { id: 'c', radius: 9, x: NaN, y: NaN },
                 ];
 
-                expectToEqual(nodeBounds(nodes), { min: { x: -10, y: -55 }, max: { x: 105, y: 10 } });
+                const bounds = nodeBounds(nodes);
+
+                expectToEqual(bounds, { min: { x: -10, y: -55 }, max: { x: 105, y: 10 } });
             });
 
             it('... should return undefined without positioned nodes', () => {
                 const nodes: ForceGraphNode[] = [{ id: 'a', radius: 9, x: NaN, y: NaN }];
 
-                expect(nodeBounds(nodes)).toBeUndefined();
-                expect(nodeBounds([])).toBeUndefined();
+                const unpositionedBounds = nodeBounds(nodes);
+                const emptyBounds = nodeBounds([]);
+
+                expect(unpositionedBounds).toBeUndefined();
+                expect(emptyBounds).toBeUndefined();
             });
         });
 

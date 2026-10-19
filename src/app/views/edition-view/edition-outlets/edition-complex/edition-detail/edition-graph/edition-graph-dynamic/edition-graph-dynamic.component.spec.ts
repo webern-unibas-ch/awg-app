@@ -176,8 +176,9 @@ describe('EditionGraphDynamicComponent (DONE)', () => {
                 const fsToggleCmp = fsToggleDes[0].injector.get(FullscreenToggleComponent);
 
                 const wrapperDes = getAndExpectDebugElementByCss(compDe, 'div.awg-fullscreen-wrapper', 1, 1);
+                const wrapperEl: HTMLDivElement = wrapperDes[0].nativeElement;
 
-                expectToBe(fsToggleCmp.fsElement(), wrapperDes[0].nativeElement);
+                expectToBe(fsToggleCmp.fsElement(), wrapperEl);
             });
         });
     });

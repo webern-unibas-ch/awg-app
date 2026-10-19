@@ -90,11 +90,15 @@ describe('AnalyticsService (DONE)', () => {
         it('... should use mock analytics', () => {
             (window as any).gtag('test', 'analytics', {});
 
-            expectToEqual(mockAnalytics.getGtag(0), ['test', 'analytics', {}]);
+            const gtagCall = mockAnalytics.getGtag(0);
+
+            expectToEqual(gtagCall, ['test', 'analytics', {}]);
         });
 
         it('... should clear mock analytics store after each run', () => {
-            expectToBe(mockAnalytics.getGtag(0), null);
+            const gtagCall = mockAnalytics.getGtag(0);
+
+            expectToBe(gtagCall, null);
         });
     });
 
@@ -225,7 +229,9 @@ describe('AnalyticsService (DONE)', () => {
             analyticsService.trackPageView(expectedPage);
 
             expectSpyCall(gtagSpy, 1, expectedAnalyticsEvent);
-            expectToEqual(mockAnalytics.getGtag(0), expectedAnalyticsEvent);
+            const gtagCall = mockAnalytics.getGtag(0);
+
+            expectToEqual(gtagCall, expectedAnalyticsEvent);
         });
 
         it('... should track page changes', () => {
@@ -256,8 +262,11 @@ describe('AnalyticsService (DONE)', () => {
             expectToEqual(gtagSpy.mock.calls[1], otherAnalyticsEvent);
             expectToEqual(gtagSpy.mock.lastCall, otherAnalyticsEvent);
 
-            expectToEqual(mockAnalytics.getGtag(0), expectedAnalyticsEvent);
-            expectToEqual(mockAnalytics.getGtag(1), otherAnalyticsEvent);
+            const firstGtagCall = mockAnalytics.getGtag(0);
+            const secondGtagCall = mockAnalytics.getGtag(1);
+
+            expectToEqual(firstGtagCall, expectedAnalyticsEvent);
+            expectToEqual(secondGtagCall, otherAnalyticsEvent);
         });
     });
 });

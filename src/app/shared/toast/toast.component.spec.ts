@@ -199,11 +199,15 @@ describe('ToastComponent (DONE)', () => {
                 });
 
                 it('... should be false if the given toast value is a string', () => {
-                    expectToBe(component.isTemplate(expectedToast.textOrTpl), false);
+                    const isTemplate = component.isTemplate(expectedToast.textOrTpl);
+
+                    expectToBe(isTemplate, false);
                 });
 
                 it('... should be true if the given toast value is a template', () => {
-                    expectToBe(component.isTemplate(createTemplateToast().textOrTpl), true);
+                    const isTemplate = component.isTemplate(createTemplateToast().textOrTpl);
+
+                    expectToBe(isTemplate, true);
                 });
             });
 

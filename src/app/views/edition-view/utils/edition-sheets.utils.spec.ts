@@ -67,7 +67,9 @@ describe('EditionSheetsUtils (DONE)', () => {
             });
 
             it('... should join the sheet id and the partial id', () => {
-                expectToBe(toFullSheetId('test-2', 'a'), 'test-2a');
+                const fullSheetId = toFullSheetId('test-2', 'a');
+
+                expectToBe(fullSheetId, 'test-2a');
             });
 
             it.each([
@@ -76,7 +78,9 @@ describe('EditionSheetsUtils (DONE)', () => {
                 ['without id', undefined, 'a', 'a'],
                 ['without id and partial', undefined, undefined, ''],
             ])('... should handle a sheet id %s', (_label, id, partial, expected) => {
-                expectToBe(toFullSheetId(id, partial), expected);
+                const fullSheetId = toFullSheetId(id, partial);
+
+                expectToBe(fullSheetId, expected);
             });
         });
 
@@ -86,17 +90,23 @@ describe('EditionSheetsUtils (DONE)', () => {
             });
 
             it('... should return the sheet id for a sheet without partials', () => {
-                expectToEqual(getFullSheetIds(mockEditionData.mockSvgSheet_Sk1), ['test-1']);
+                const fullSheetIds = getFullSheetIds(mockEditionData.mockSvgSheet_Sk1);
+
+                expectToEqual(fullSheetIds, ['test-1']);
             });
 
             it('... should return one full id per partial for a sheet with partials', () => {
-                expectToEqual(getFullSheetIds(mockEditionData.mockSvgSheet_Sk3), ['test-3a', 'test-3b', 'test-3c']);
+                const fullSheetIds = getFullSheetIds(mockEditionData.mockSvgSheet_Sk3);
+
+                expectToEqual(fullSheetIds, ['test-3a', 'test-3b', 'test-3c']);
             });
 
             it('... should return the sheet id for a sheet without content', () => {
                 const sheet = { ...mockEditionData.mockSvgSheet_Sk1, content: [] } as EditionSvgSheet;
 
-                expectToEqual(getFullSheetIds(sheet), ['test-1']);
+                const fullSheetIds = getFullSheetIds(sheet);
+
+                expectToEqual(fullSheetIds, ['test-1']);
             });
         });
 
@@ -108,7 +118,9 @@ describe('EditionSheetsUtils (DONE)', () => {
             it('... should create the selection of a sheet without partials', () => {
                 const sheet = mockEditionData.mockSvgSheet_Sk1;
 
-                expectToEqual(toSvgSheetSelection(sheet, sheet.content[0]), {
+                const svgSheetSelection = toSvgSheetSelection(sheet, sheet.content[0]);
+
+                expectToEqual(svgSheetSelection, {
                     id: 'test-1',
                     fullId: 'test-1',
                     content: sheet.content[0],
@@ -118,7 +130,9 @@ describe('EditionSheetsUtils (DONE)', () => {
             it('... should create the selection of a given partial of a sheet with partials', () => {
                 const sheet = mockEditionData.mockSvgSheet_Sk2;
 
-                expectToEqual(toSvgSheetSelection(sheet, sheet.content[1]), {
+                const svgSheetSelection = toSvgSheetSelection(sheet, sheet.content[1]);
+
+                expectToEqual(svgSheetSelection, {
                     id: 'test-2',
                     fullId: 'test-2b',
                     content: sheet.content[1],
@@ -128,7 +142,9 @@ describe('EditionSheetsUtils (DONE)', () => {
             it('... should keep the reference of the given content', () => {
                 const sheet = mockEditionData.mockSvgSheet_Sk2;
 
-                expectToBe(toSvgSheetSelection(sheet, sheet.content[0]).content, sheet.content[0]);
+                const svgSheetSelection = toSvgSheetSelection(sheet, sheet.content[0]);
+
+                expectToBe(svgSheetSelection.content, sheet.content[0]);
             });
         });
 
@@ -143,7 +159,9 @@ describe('EditionSheetsUtils (DONE)', () => {
                     { desc: 'the given sheet id is not in the given sheet list', sheetId: 'unknown-id' },
                     { desc: 'the given partial is not in the given sheet', sheetId: 'test-2z' },
                 ])('... $desc', ({ sheetId }) => {
-                    expect(findSvgSheet(expectedSheets, sheetId)).toBeUndefined();
+                    const foundSvgSheet = findSvgSheet(expectedSheets, sheetId);
+
+                    expect(foundSvgSheet).toBeUndefined();
                 });
 
                 it('... the found sheet has no content', () => {
@@ -152,7 +170,9 @@ describe('EditionSheetsUtils (DONE)', () => {
                         sketchEditions: [{ ...expectedSheets.sketchEditions[0], content: [] }],
                     };
 
-                    expect(findSvgSheet(sheets, 'test-1')).toBeUndefined();
+                    const foundSvgSheet = findSvgSheet(sheets, 'test-1');
+
+                    expect(foundSvgSheet).toBeUndefined();
                 });
             });
 
@@ -167,7 +187,9 @@ describe('EditionSheetsUtils (DONE)', () => {
                         expect.fail(`Expected sheet ${id} to be in ${editionType}`);
                     }
 
-                    expectToEqual(findSvgSheet(expectedSheets, id), {
+                    const foundSvgSheet = findSvgSheet(expectedSheets, id);
+
+                    expectToEqual(foundSvgSheet, {
                         selection: toSvgSheetSelection(sheet, sheet.content[0]),
                         editionType,
                     });
@@ -238,11 +260,15 @@ describe('EditionSheetsUtils (DONE)', () => {
             });
 
             it('... should return the full id of the first text edition', () => {
-                expectToBe(getDefaultSheetId(expectedSheets), 'test-TF1a');
+                const defaultSheetId = getDefaultSheetId(expectedSheets);
+
+                expectToBe(defaultSheetId, 'test-TF1a');
             });
 
             it('... should return the full id of the first sketch edition without text editions', () => {
-                expectToBe(getDefaultSheetId({ ...expectedSheets, textEditions: [] }), 'test-1');
+                const defaultSheetId = getDefaultSheetId({ ...expectedSheets, textEditions: [] });
+
+                expectToBe(defaultSheetId, 'test-1');
             });
 
             it('... should return the first partial of the first sketch edition with partials', () => {
@@ -252,19 +278,25 @@ describe('EditionSheetsUtils (DONE)', () => {
                     sketchEditions: [mockEditionData.mockSvgSheet_Sk3],
                 };
 
-                expectToBe(getDefaultSheetId(sheets), 'test-3a');
+                const defaultSheetId = getDefaultSheetId(sheets);
+
+                expectToBe(defaultSheetId, 'test-3a');
             });
 
             it('... should ignore work editions', () => {
                 const sheets = { ...expectedSheets, textEditions: [], sketchEditions: [] };
 
-                expectToBe(getDefaultSheetId(sheets), '');
+                const defaultSheetId = getDefaultSheetId(sheets);
+
+                expectToBe(defaultSheetId, '');
             });
 
             it('... should return an empty string without text and sketch editions', () => {
                 const sheets = { workEditions: [], textEditions: [], sketchEditions: [] };
 
-                expectToBe(getDefaultSheetId(sheets), '');
+                const defaultSheetId = getDefaultSheetId(sheets);
+
+                expectToBe(defaultSheetId, '');
             });
         });
 
@@ -286,34 +318,43 @@ describe('EditionSheetsUtils (DONE)', () => {
 
             it('... should return the id of the next sheet (incl. partials) for direction 1', () => {
                 expectedOrderOfIds.slice(0, -1).forEach((currentId, index) => {
-                    expectToBe(
-                        getNextSheetId(expectedSheets.sketchEditions, currentId, 1),
-                        expectedOrderOfIds[index + 1]
-                    );
+                    const nextSheetId = getNextSheetId(expectedSheets.sketchEditions, currentId, 1);
+
+                    expectToBe(nextSheetId, expectedOrderOfIds[index + 1]);
                 });
             });
 
             it('... should return the id of the previous sheet (incl. partials) for direction -1', () => {
                 expectedOrderOfIds.slice(1).forEach((currentId, index) => {
-                    expectToBe(getNextSheetId(expectedSheets.sketchEditions, currentId, -1), expectedOrderOfIds[index]);
+                    const nextSheetId = getNextSheetId(expectedSheets.sketchEditions, currentId, -1);
+
+                    expectToBe(nextSheetId, expectedOrderOfIds[index]);
                 });
             });
 
             describe('... should return the current id if', () => {
                 it('... there is no next sheet for direction 1', () => {
-                    expectToBe(getNextSheetId(expectedSheets.sketchEditions, 'test-5', 1), 'test-5');
+                    const nextSheetId = getNextSheetId(expectedSheets.sketchEditions, 'test-5', 1);
+
+                    expectToBe(nextSheetId, 'test-5');
                 });
 
                 it('... there is no previous sheet for direction -1', () => {
-                    expectToBe(getNextSheetId(expectedSheets.sketchEditions, 'test-1', -1), 'test-1');
+                    const nextSheetId = getNextSheetId(expectedSheets.sketchEditions, 'test-1', -1);
+
+                    expectToBe(nextSheetId, 'test-1');
                 });
 
                 it('... the current id is not in the given sheet array', () => {
-                    expectToBe(getNextSheetId(expectedSheets.sketchEditions, 'unknown-id', 1), 'unknown-id');
+                    const nextSheetId = getNextSheetId(expectedSheets.sketchEditions, 'unknown-id', 1);
+
+                    expectToBe(nextSheetId, 'unknown-id');
                 });
 
                 it('... the given sheet array is empty', () => {
-                    expectToBe(getNextSheetId([], 'test-1', 1), 'test-1');
+                    const nextSheetId = getNextSheetId([], 'test-1', 1);
+
+                    expectToBe(nextSheetId, 'test-1');
                 });
             });
         });
@@ -324,15 +365,21 @@ describe('EditionSheetsUtils (DONE)', () => {
             });
 
             it('... should return the textcritics of the given sheet id', () => {
-                expectToEqual(findTextcritics(expectedTextcriticsArray, 'test-1'), expectedTextcriticsArray[0]);
+                const foundTextcritics = findTextcritics(expectedTextcriticsArray, 'test-1');
+
+                expectToEqual(foundTextcritics, expectedTextcriticsArray[0]);
             });
 
             it('... should return undefined if no textcritics are found for the given sheet id', () => {
-                expect(findTextcritics(expectedTextcriticsArray, 'unknown-id')).toBeUndefined();
+                const foundTextcritics = findTextcritics(expectedTextcriticsArray, 'unknown-id');
+
+                expect(foundTextcritics).toBeUndefined();
             });
 
             it('... should return undefined for an empty textcritics array', () => {
-                expect(findTextcritics([], 'test-1')).toBeUndefined();
+                const foundTextcritics = findTextcritics([], 'test-1');
+
+                expect(foundTextcritics).toBeUndefined();
             });
         });
 
@@ -345,8 +392,10 @@ describe('EditionSheetsUtils (DONE)', () => {
                 toSvgSheetSelection(mockEditionData.mockSvgSheet_Sk1, mockEditionData.mockSvgSheet_Sk1.content[0]);
 
             it('... should return the convolute of the selected content of a sketch edition', () => {
+                const foundConvolute = findConvolute(expectedConvolutes, sk1Selection(), 'sketchEditions');
+
                 expectToEqual(
-                    findConvolute(expectedConvolutes, sk1Selection(), 'sketchEditions'),
+                    foundConvolute,
                     expectedConvolutes.find(convolute => convolute.convoluteId === 'A')
                 );
             });
@@ -357,11 +406,15 @@ describe('EditionSheetsUtils (DONE)', () => {
                     mockEditionData.mockSvgSheet_TF1.content[0]
                 );
 
-                expect(findConvolute(expectedConvolutes, tf1Selection, editionType)).toBeUndefined();
+                const foundConvolute = findConvolute(expectedConvolutes, tf1Selection, editionType);
+
+                expect(foundConvolute).toBeUndefined();
             });
 
             it('... should return undefined if the convolute of the sketch edition is not found', () => {
-                expect(findConvolute([], sk1Selection(), 'sketchEditions')).toBeUndefined();
+                const foundConvolute = findConvolute([], sk1Selection(), 'sketchEditions');
+
+                expect(foundConvolute).toBeUndefined();
             });
         });
 
@@ -383,14 +436,20 @@ describe('EditionSheetsUtils (DONE)', () => {
 
             describe('... should return the preamble with an empty comments array if', () => {
                 it('... no overlays are given', () => {
-                    expectToEqual(filterCommentaryForOverlays(expectedCommentary, []), {
+                    const filteredCommentary = filterCommentaryForOverlays(expectedCommentary, []);
+
+                    expectToEqual(filteredCommentary, {
                         preamble: expectedCommentary.preamble,
                         comments: [],
                     });
                 });
 
                 it('... no comments match the given overlays', () => {
-                    expectToEqual(filterCommentaryForOverlays(expectedCommentary, [createTestTkkOverlay('unknown')]), {
+                    const filteredCommentary = filterCommentaryForOverlays(expectedCommentary, [
+                        createTestTkkOverlay('unknown'),
+                    ]);
+
+                    expectToEqual(filteredCommentary, {
                         preamble: expectedCommentary.preamble,
                         comments: [],
                     });
@@ -399,7 +458,9 @@ describe('EditionSheetsUtils (DONE)', () => {
                 it('... no comment blocks are given', () => {
                     const commentary = { preamble: 'preamble', comments: [] };
 
-                    expectToEqual(filterCommentaryForOverlays(commentary, [createTestTkkOverlay('g1114')]), commentary);
+                    const filteredCommentary = filterCommentaryForOverlays(commentary, [createTestTkkOverlay('g1114')]);
+
+                    expectToEqual(filteredCommentary, commentary);
                 });
             });
 
@@ -408,7 +469,9 @@ describe('EditionSheetsUtils (DONE)', () => {
                     block.blockComments.map(comment => createTestTkkOverlay(comment.svgGroupId ?? ''))
                 );
 
-                expectToEqual(filterCommentaryForOverlays(expectedCommentary, overlays), expectedCommentary);
+                const filteredCommentary = filterCommentaryForOverlays(expectedCommentary, overlays);
+
+                expectToEqual(filteredCommentary, expectedCommentary);
             });
 
             it('... should find the comment of a single selected overlay', () => {
@@ -416,7 +479,9 @@ describe('EditionSheetsUtils (DONE)', () => {
                     block.blockComments.forEach(comment => {
                         const overlays = [createTestTkkOverlay(comment.svgGroupId ?? '')];
 
-                        expectToEqual(filterCommentaryForOverlays(expectedCommentary, overlays), {
+                        const filteredCommentary = filterCommentaryForOverlays(expectedCommentary, overlays);
+
+                        expectToEqual(filteredCommentary, {
                             preamble: expectedCommentary.preamble,
                             comments: [{ ...block, blockComments: [comment] }],
                         });
@@ -437,7 +502,9 @@ describe('EditionSheetsUtils (DONE)', () => {
                     createTestTkkOverlay(lastBlock.blockComments[0].svgGroupId ?? ''),
                 ];
 
-                expectToEqual(filterCommentaryForOverlays(expectedCommentary, overlays), {
+                const filteredCommentary = filterCommentaryForOverlays(expectedCommentary, overlays);
+
+                expectToEqual(filteredCommentary, {
                     preamble: expectedCommentary.preamble,
                     comments: [
                         { ...firstBlock, blockComments: [firstBlock.blockComments[0]] },
@@ -454,7 +521,9 @@ describe('EditionSheetsUtils (DONE)', () => {
                     ],
                 };
 
-                expectToEqual(filterCommentaryForOverlays(commentary, [createTestTkkOverlay('')]), {
+                const filteredCommentary = filterCommentaryForOverlays(commentary, [createTestTkkOverlay('')]);
+
+                expectToEqual(filteredCommentary, {
                     preamble: 'preamble',
                     comments: [],
                 });

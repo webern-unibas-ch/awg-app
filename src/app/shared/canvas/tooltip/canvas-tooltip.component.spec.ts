@@ -59,9 +59,11 @@ describe('CanvasTooltipComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should contain one tooltip anchor with one NgbTooltip', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-canvas-tooltip-anchor', 1, 1);
+                const anchorEl: HTMLSpanElement = anchorDes[0].nativeElement;
                 const tooltipDes = getAndExpectDebugElementByDirective(compDe, NgbTooltip, 1, 1);
+                const tooltipEl: HTMLElement = tooltipDes[0].nativeElement;
 
-                expectToBe(tooltipDes[0].nativeElement, anchorDes[0].nativeElement);
+                expectToBe(tooltipEl, anchorEl);
             });
 
             it('... should not contain an open tooltip yet', () => {

@@ -211,7 +211,9 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         describe('... rendering', () => {
             it('... should render the svg data into the root group via the EditionFolioDrawingService', () => {
                 expectSpyCall(renderFolioSpy, 1);
-                expectToBe(getSelectionNode(renderFolioSpy, 0), getRootGroupEl());
+                const selectionNode = getSelectionNode(renderFolioSpy, 0);
+
+                expectToBe(selectionNode, getRootGroupEl());
                 expectToEqual(renderFolioSpy.mock.calls[0][1], expectedFolioSvgData);
             });
 
@@ -246,7 +248,9 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(updateActiveContentSegmentSpy, 1);
-                expectToBe(getSelectionNode(updateActiveContentSegmentSpy, 0), getRootGroupEl());
+                const selectionNode = getSelectionNode(updateActiveContentSegmentSpy, 0);
+
+                expectToBe(selectionNode, getRootGroupEl());
                 expectToBe(updateActiveContentSegmentSpy.mock.calls[0][1], 'M212_Sk3');
             });
 
@@ -283,8 +287,9 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should display the folio id in one span.text-muted', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span.text-muted', 1, 1);
+                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                expectToBe(spanDes[0].nativeElement.textContent, `[${expectedFolio.folioId}]`);
+                expectToBe(spanEl.textContent, `[${expectedFolio.folioId}]`);
             });
 
             it('... should contain one svg.awg-edition-folios-viewer-svg with the root group', () => {

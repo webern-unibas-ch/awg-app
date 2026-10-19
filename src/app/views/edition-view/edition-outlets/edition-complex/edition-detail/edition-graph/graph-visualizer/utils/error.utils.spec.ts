@@ -81,7 +81,9 @@ describe('ErrorUtils (DONE)', () => {
                         expectedMessage: 'Unknown error format',
                     },
                 ])('... $desc', ({ error, expectedMessage }) => {
-                    expectToBe(getErrorMessage(error), expectedMessage);
+                    const errorMessage = getErrorMessage(error);
+
+                    expectToBe(errorMessage, expectedMessage);
                 });
             });
         });

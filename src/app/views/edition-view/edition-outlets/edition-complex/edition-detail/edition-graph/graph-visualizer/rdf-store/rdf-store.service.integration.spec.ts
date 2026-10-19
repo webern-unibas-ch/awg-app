@@ -90,7 +90,9 @@ describe(
 
                 const quads = await service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }');
 
-                expectToEqual(quadKeys(quads), quadKeys(expectedQuads));
+                const keys = quadKeys(quads);
+
+                expectToEqual(keys, quadKeys(expectedQuads));
             });
 
             it('... should keep the identity of a blank node across quads', async () => {

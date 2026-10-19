@@ -278,7 +278,9 @@ describe('SourceDescContentItemComponent (DONE)', () => {
                         );
 
                         if (expectedDescription) {
-                            expectToBe(descriptionDes[0].nativeElement.textContent.trim(), expectedDescription);
+                            const descriptionEl: HTMLSpanElement = descriptionDes[0].nativeElement;
+
+                            expectToBe(descriptionEl.textContent.trim(), expectedDescription);
                         }
                     }
                 );

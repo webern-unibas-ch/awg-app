@@ -249,8 +249,9 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
 
         it('... should have view child signals for svg element, root group and svg zoom', () => {
             const svgDe = getAndExpectDebugElementByCss(compDe, 'svg.awg-edition-sheet-viewer-svg', 1, 1)[0];
+            const svgEl: SVGSVGElement = svgDe.nativeElement;
 
-            expectToBe(component.svg().nativeElement, svgDe.nativeElement);
+            expectToBe(component.svg().nativeElement, svgEl);
             expectToBe(component.svgRootGroup().nativeElement, getRootGroupEl());
             expectToBe(component.svgZoom(), svgDe.injector.get(SvgZoomDirective));
         });

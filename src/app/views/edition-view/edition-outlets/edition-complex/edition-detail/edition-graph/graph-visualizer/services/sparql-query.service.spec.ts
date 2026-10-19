@@ -254,11 +254,15 @@ describe('SparqlQueryService (DONE)', () => {
         });
 
         it('... should convert namespaces given as strings or named nodes', () => {
-            expectToEqual(service['_toPrefixMap']({ ex: EX, awg: namedNode(AWG) }), { ex: EX, awg: AWG });
+            const prefixMap = service['_toPrefixMap']({ ex: EX, awg: namedNode(AWG) });
+
+            expectToEqual(prefixMap, { ex: EX, awg: AWG });
         });
 
         it('... should return an empty map for missing prefixes', () => {
-            expectToEqual(service['_toPrefixMap'](undefined), {});
+            const prefixMap = service['_toPrefixMap'](undefined);
+
+            expectToEqual(prefixMap, {});
         });
     });
 
@@ -276,7 +280,9 @@ describe('SparqlQueryService (DONE)', () => {
         });
 
         it('... should not set a cause if none is given', () => {
-            expect(service['_error']('Something failed.').cause).toBeUndefined();
+            const errorResult = service['_error']('Something failed.');
+
+            expect(errorResult.cause).toBeUndefined();
         });
     });
 });

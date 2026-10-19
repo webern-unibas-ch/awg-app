@@ -161,9 +161,18 @@ describe('CanvasZoomDirective (DONE)', () => {
                 expectToBe(filter({ type: 'wheel', button: 0, ctrlKey: true }), true);
             });
 
-            it('... should accept primary pointer events that the zoom filter accepts', () => {
-                expectToBe(filter({ type: 'mousedown', button: 0, ctrlKey: false }), true);
-                expectToBe(filter({ type: 'touchstart', ctrlKey: false }), true);
+            describe('... should accept primary pointer events that the zoom filter accepts', () => {
+                it.each([
+                    {
+                        desc: "{ type: 'mousedown', button: 0, ctrlKey: false }",
+                        event: { type: 'mousedown', button: 0, ctrlKey: false },
+                    },
+                    { desc: "{ type: 'touchstart', ctrlKey: false }", event: { type: 'touchstart', ctrlKey: false } },
+                ])('... $desc', ({ event }) => {
+                    const isZoomAllowed = filter(event);
+
+                    expectToBe(isZoomAllowed, true);
+                });
             });
 
             it('... should reject pointer events that the zoom filter rejects', () => {
@@ -177,9 +186,21 @@ describe('CanvasZoomDirective (DONE)', () => {
                 expectSpyCall(zoomFilterSpy, 1, event);
             });
 
-            it('... should reject secondary buttons and ctrl+drag (d3 default)', () => {
-                expectToBe(filter({ type: 'mousedown', button: 2, ctrlKey: false }), false);
-                expectToBe(filter({ type: 'mousedown', button: 0, ctrlKey: true }), false);
+            describe('... should reject secondary buttons and ctrl+drag (d3 default)', () => {
+                it.each([
+                    {
+                        desc: "{ type: 'mousedown', button: 2, ctrlKey: false }",
+                        event: { type: 'mousedown', button: 2, ctrlKey: false },
+                    },
+                    {
+                        desc: "{ type: 'mousedown', button: 0, ctrlKey: true }",
+                        event: { type: 'mousedown', button: 0, ctrlKey: true },
+                    },
+                ])('... $desc', ({ event }) => {
+                    const isZoomAllowed = filter(event);
+
+                    expectToBe(isZoomAllowed, false);
+                });
             });
         });
 

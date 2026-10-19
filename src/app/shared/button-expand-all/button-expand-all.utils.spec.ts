@@ -2,7 +2,7 @@ import { isSignal, signal, WritableSignal } from '@angular/core';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe } from '@testing/expect-helper';
+import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { createExpandAllState, ExpandAllState } from './button-expand-all.utils';
 
@@ -30,16 +30,22 @@ describe('ButtonExpandAllUtils (DONE)', () => {
                 });
 
                 it('... should have all items closed initially', () => {
-                    keys().forEach(key => expectToBe(state.isOpen(key), false));
+                    const openStates = keys().map(key => state.isOpen(key));
+
+                    expectToEqual(openStates, [false, false, false]);
                     expectToBe(state.allOpen(), false);
                 });
 
                 it('... should open a single item with `setOpen`', () => {
                     state.setOpen('b', true);
 
-                    expectToBe(state.isOpen('a'), false);
-                    expectToBe(state.isOpen('b'), true);
-                    expectToBe(state.isOpen('c'), false);
+                    const isAOpen = state.isOpen('a');
+                    const isBOpen = state.isOpen('b');
+                    const isCOpen = state.isOpen('c');
+
+                    expectToBe(isAOpen, false);
+                    expectToBe(isBOpen, true);
+                    expectToBe(isCOpen, false);
                     expectToBe(state.allOpen(), false);
                 });
 
@@ -53,24 +59,32 @@ describe('ButtonExpandAllUtils (DONE)', () => {
                     keys().forEach(key => state.setOpen(key, true));
                     state.setOpen('a', false);
 
-                    expectToBe(state.isOpen('a'), false);
+                    const isAOpen = state.isOpen('a');
+
+                    expectToBe(isAOpen, false);
                     expectToBe(state.allOpen(), false);
                 });
 
                 it('... should ignore `setOpen` calls that do not change the state', () => {
                     state.setOpen('a', false);
-                    expectToBe(state.isOpen('a'), false);
+                    const isAOpenAfterClose = state.isOpen('a');
+
+                    expectToBe(isAOpenAfterClose, false);
 
                     state.setOpen('a', true);
                     state.setOpen('a', true);
-                    expectToBe(state.isOpen('a'), true);
+                    const isAOpenAfterOpen = state.isOpen('a');
+
+                    expectToBe(isAOpenAfterOpen, true);
                 });
 
                 it('... should open all items with `setAll(true)` and reset individual toggles', () => {
                     state.setOpen('a', true);
                     state.setAll(true);
 
-                    keys().forEach(key => expectToBe(state.isOpen(key), true));
+                    const openStates = keys().map(key => state.isOpen(key));
+
+                    expectToEqual(openStates, [true, true, true]);
                     expectToBe(state.allOpen(), true);
                 });
 
@@ -79,7 +93,9 @@ describe('ButtonExpandAllUtils (DONE)', () => {
                     state.setOpen('b', false);
                     state.setAll(false);
 
-                    keys().forEach(key => expectToBe(state.isOpen(key), false));
+                    const openStates = keys().map(key => state.isOpen(key));
+
+                    expectToEqual(openStates, [false, false, false]);
                     expectToBe(state.allOpen(), false);
                 });
 
@@ -87,7 +103,9 @@ describe('ButtonExpandAllUtils (DONE)', () => {
                     state.setAll(true);
                     keys.set([...keys(), 'd']);
 
-                    expectToBe(state.isOpen('d'), true);
+                    const isDOpen = state.isOpen('d');
+
+                    expectToBe(isDOpen, true);
                     expectToBe(state.allOpen(), true);
                 });
 
@@ -97,8 +115,11 @@ describe('ButtonExpandAllUtils (DONE)', () => {
                     state.setOpen('b', true);
                     keys.set(['a', 'b', 'c']);
 
-                    expectToBe(state.isOpen('a'), false);
-                    expectToBe(state.isOpen('b'), true);
+                    const isAOpen = state.isOpen('a');
+                    const isBOpen = state.isOpen('b');
+
+                    expectToBe(isAOpen, false);
+                    expectToBe(isBOpen, true);
                     expectToBe(state.allOpen(), false);
                 });
 
@@ -115,14 +136,18 @@ describe('ButtonExpandAllUtils (DONE)', () => {
                 });
 
                 it('... should have all items open initially', () => {
-                    keys().forEach(key => expectToBe(state.isOpen(key), true));
+                    const openStates = keys().map(key => state.isOpen(key));
+
+                    expectToEqual(openStates, [true, true, true]);
                     expectToBe(state.allOpen(), true);
                 });
 
                 it('... should close a single item with `setOpen` and switch `allOpen` to false', () => {
                     state.setOpen('c', false);
 
-                    expectToBe(state.isOpen('c'), false);
+                    const isCOpen = state.isOpen('c');
+
+                    expectToBe(isCOpen, false);
                     expectToBe(state.allOpen(), false);
                 });
 

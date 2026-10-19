@@ -207,13 +207,17 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should contain one canvas with one CanvasDragDirective, CanvasViewportDirective and CanvasZoomDirective', () => {
                 const canvasDes = getAndExpectDebugElementByCss(compDe, 'canvas.awg-force-graph-canvas', 1, 1);
+                const canvasEl: HTMLCanvasElement = canvasDes[0].nativeElement;
                 const canvasDragDes = getAndExpectDebugElementByDirective(compDe, CanvasDragDirective, 1, 1);
+                const canvasDragEl: HTMLElement = canvasDragDes[0].nativeElement;
                 const canvasViewportDes = getAndExpectDebugElementByDirective(compDe, CanvasViewportDirective, 1, 1);
+                const canvasViewportEl: HTMLElement = canvasViewportDes[0].nativeElement;
                 const canvasZoomDes = getAndExpectDebugElementByDirective(compDe, CanvasZoomDirective, 1, 1);
+                const canvasZoomEl: HTMLElement = canvasZoomDes[0].nativeElement;
 
-                expectToBe(canvasDragDes[0].nativeElement, canvasDes[0].nativeElement);
-                expectToBe(canvasViewportDes[0].nativeElement, canvasDes[0].nativeElement);
-                expectToBe(canvasZoomDes[0].nativeElement, canvasDes[0].nativeElement);
+                expectToBe(canvasDragEl, canvasEl);
+                expectToBe(canvasViewportEl, canvasEl);
+                expectToBe(canvasZoomEl, canvasEl);
             });
 
             it('... should contain one CanvasTooltipComponent', () => {
@@ -285,8 +289,9 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
 
         it('... should have view child signals for canvas element, canvas viewport and canvas zoom', () => {
             const canvasDe = getAndExpectDebugElementByCss(compDe, 'canvas.awg-force-graph-canvas', 1, 1)[0];
+            const canvasEl: HTMLCanvasElement = canvasDe.nativeElement;
 
-            expectToBe(component.canvas().nativeElement, canvasDe.nativeElement);
+            expectToBe(component.canvas().nativeElement, canvasEl);
             expectToBe(component.canvasViewport(), canvasDe.injector.get(CanvasViewportDirective));
             expectToBe(component.canvasZoom(), canvasDe.injector.get(CanvasZoomDirective));
         });
@@ -902,21 +907,28 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 it('... should reject a pointer-down on a node (it starts a drag instead of a pan)', () => {
                     const pointerDownOnNode = mouseEvent('mousedown', 300, 100);
 
-                    expectToBe(component.zoomFilter(pointerDownOnNode), false);
+                    const isZoomAllowed = component.zoomFilter(pointerDownOnNode);
+
+                    expectToBe(isZoomAllowed, false);
                 });
 
                 it('... should accept a pointer-down in empty space', () => {
                     const pointerDownInEmptySpace = mouseEvent('mousedown', 10, 10);
 
-                    expectToBe(component.zoomFilter(pointerDownInEmptySpace), true);
+                    const isZoomAllowed = component.zoomFilter(pointerDownInEmptySpace);
+
+                    expectToBe(isZoomAllowed, true);
                 });
 
                 it('... should use the first touch of a touch event', () => {
                     const touchOnNode = { touches: [{ clientX: 300, clientY: 100 }] } as unknown as TouchEvent;
                     const touchWithoutTouches = { touches: [] } as unknown as TouchEvent;
 
-                    expectToBe(component.zoomFilter(touchOnNode), false);
-                    expectToBe(component.zoomFilter(touchWithoutTouches), true);
+                    const isZoomAllowedOnNode = component.zoomFilter(touchOnNode);
+                    const isZoomAllowedWithoutTouches = component.zoomFilter(touchWithoutTouches);
+
+                    expectToBe(isZoomAllowedOnNode, false);
+                    expectToBe(isZoomAllowedWithoutTouches, true);
                 });
             });
 

@@ -10,6 +10,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -243,7 +244,9 @@ describe('SourceDescContentGridComponent (DONE)', () => {
                 );
 
                 folioDes.forEach(folioDe => {
-                    expectToBe(folioDe.nativeElement.classList.contains('span-full'), false);
+                    const folioEl: HTMLDivElement = folioDe.nativeElement;
+
+                    expectToNotContain(folioEl.classList, 'span-full');
                 });
             });
 

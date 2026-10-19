@@ -131,7 +131,9 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
         it('... should have all corrections closed by default', () => {
             expectedCorrections.forEach(correction => {
-                expectToBe(component.correctionsState.isOpen(correction.id), false);
+                const isOpen = component.correctionsState.isOpen(correction.id);
+
+                expectToBe(isOpen, false);
             });
         });
 
@@ -212,7 +214,9 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
                     it('... should have all correction details closed by default', () => {
                         getDetailsDes().forEach(detailsDe => {
-                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
+                            const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+
+                            expectToBe(detailsEl.hasAttribute('open'), false);
                         });
                     });
 
@@ -222,7 +226,9 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
 
                         getDetailsDes().forEach(detailsDe => {
-                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                            const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+
+                            expectToBe(detailsEl.hasAttribute('open'), true);
                         });
 
                         // Close all details
@@ -230,14 +236,18 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
 
                         getDetailsDes().forEach(detailsDe => {
-                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
+                            const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+
+                            expectToBe(detailsEl.hasAttribute('open'), false);
                         });
                     });
 
                     it('... should update the open state of a single correction when its details are toggled', async () => {
                         await toggleDetails(getDetailsDes()[0], true);
 
-                        expectToBe(component.correctionsState.isOpen(expectedCorrections[0].id), true);
+                        const isOpen = component.correctionsState.isOpen(expectedCorrections[0].id);
+
+                        expectToBe(isOpen, true);
                     });
 
                     it('... should switch the button to open when all details are opened individually', async () => {

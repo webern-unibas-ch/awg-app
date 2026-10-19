@@ -59,8 +59,11 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
             it('... should return the position of the node with the given index', () => {
                 const positions = Float32Array.from([1, 2, 3, 4]);
 
-                expectToEqual(getPosition(positions, 0), { x: 1, y: 2 });
-                expectToEqual(getPosition(positions, 1), { x: 3, y: 4 });
+                const firstPosition = getPosition(positions, 0);
+                const secondPosition = getPosition(positions, 1);
+
+                expectToEqual(firstPosition, { x: 1, y: 2 });
+                expectToEqual(secondPosition, { x: 3, y: 4 });
             });
         });
 
@@ -76,7 +79,9 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
             });
 
             it('... should return empty positions for no nodes', () => {
-                expectToBe(packPositions([]).length, 0);
+                const packedPositions = packPositions([]);
+
+                expectToBe(packedPositions.length, 0);
             });
         });
 

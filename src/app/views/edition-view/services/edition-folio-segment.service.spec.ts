@@ -69,22 +69,25 @@ describe('EditionFolioSegmentService (DONE)', () => {
 
         describe('... should return the content segment of the hit content segment group if the target is', () => {
             it('... the content segment group', () => {
-                expectToEqual(
-                    folioSegmentService.getContentSegment(contentSegmentGroupEl),
-                    expectedFolioSvgData.contentSegments[0]
-                );
+                const contentSegment = folioSegmentService.getContentSegment(contentSegmentGroupEl);
+
+                expectToEqual(contentSegment, expectedFolioSvgData.contentSegments[0]);
             });
 
             it('... the polygon of the content segment link', () => {
                 const polygon = contentSegmentGroupEl.querySelector('g.content-segment polygon');
 
-                expectToEqual(folioSegmentService.getContentSegment(polygon), expectedFolioSvgData.contentSegments[0]);
+                const contentSegment = folioSegmentService.getContentSegment(polygon);
+
+                expectToEqual(contentSegment, expectedFolioSvgData.contentSegments[0]);
             });
 
             it('... the label text of the content segment link', () => {
                 const text = contentSegmentGroupEl.querySelector('g.content-segment text');
 
-                expectToEqual(folioSegmentService.getContentSegment(text), expectedFolioSvgData.contentSegments[0]);
+                const contentSegment = folioSegmentService.getContentSegment(text);
+
+                expectToEqual(contentSegment, expectedFolioSvgData.contentSegments[0]);
             });
         });
 
@@ -92,15 +95,21 @@ describe('EditionFolioSegmentService (DONE)', () => {
             it('... outside of a content segment group', () => {
                 const sheetGroupEl = rootGroupSelection.select('g.sheet-group').node() as Element;
 
-                expect(folioSegmentService.getContentSegment(sheetGroupEl)).toBeUndefined();
+                const contentSegment = folioSegmentService.getContentSegment(sheetGroupEl);
+
+                expect(contentSegment).toBeUndefined();
             });
 
             it('... not an element', () => {
-                expect(folioSegmentService.getContentSegment(new EventTarget())).toBeUndefined();
+                const contentSegment = folioSegmentService.getContentSegment(new EventTarget());
+
+                expect(contentSegment).toBeUndefined();
             });
 
             it('... null', () => {
-                expect(folioSegmentService.getContentSegment(null)).toBeUndefined();
+                const contentSegment = folioSegmentService.getContentSegment(null);
+
+                expect(contentSegment).toBeUndefined();
             });
         });
     });

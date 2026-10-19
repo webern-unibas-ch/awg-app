@@ -27,7 +27,9 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return a uri cell with the compacted IRI as label', () => {
-                expectToEqual(toTableCell(namedNode(`${AWG}M317_Sk1`), DEFAULT_PREFIXES), {
+                const tableCell = toTableCell(namedNode(`${AWG}M317_Sk1`), DEFAULT_PREFIXES);
+
+                expectToEqual(tableCell, {
                     type: 'uri',
                     value: `${AWG}M317_Sk1`,
                     label: 'awg:M317_Sk1',
@@ -35,7 +37,9 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return a uri cell with the full IRI as label if no prefix matches', () => {
-                expectToEqual(toTableCell(namedNode('http://example.org/x'), DEFAULT_PREFIXES), {
+                const tableCell = toTableCell(namedNode('http://example.org/x'), DEFAULT_PREFIXES);
+
+                expectToEqual(tableCell, {
                     type: 'uri',
                     value: 'http://example.org/x',
                     label: 'http://example.org/x',
@@ -43,7 +47,9 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return a bnode cell with `_:id` as label', () => {
-                expectToEqual(toTableCell(blankNode('b0'), DEFAULT_PREFIXES), {
+                const tableCell = toTableCell(blankNode('b0'), DEFAULT_PREFIXES);
+
+                expectToEqual(tableCell, {
                     type: 'bnode',
                     value: 'b0',
                     label: '_:b0',
@@ -51,7 +57,9 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return a literal cell with the lexical value as label for integer literals', () => {
-                expectToEqual(toTableCell(literal('75', namedNode(`${XSD}integer`)), DEFAULT_PREFIXES), {
+                const tableCell = toTableCell(literal('75', namedNode(`${XSD}integer`)), DEFAULT_PREFIXES);
+
+                expectToEqual(tableCell, {
                     type: 'literal',
                     value: '75',
                     label: '75',
@@ -61,27 +69,34 @@ describe('SelectTableUtils (DONE)', () => {
             it('... should keep the exact lexical value of integer literals beyond the safe-integer range', () => {
                 const bigInteger = '9007199254740993';
 
-                expectToBe(
-                    toTableCell(literal(bigInteger, namedNode(`${XSD}integer`)), DEFAULT_PREFIXES).label,
-                    bigInteger
-                );
+                const tableCell = toTableCell(literal(bigInteger, namedNode(`${XSD}integer`)), DEFAULT_PREFIXES);
+
+                expectToBe(tableCell.label, bigInteger);
             });
 
-            it('... should return a literal cell with the unrounded value as label for other literals', () => {
-                expectToEqual(toTableCell(literal('3.14159', namedNode(`${XSD}decimal`)), DEFAULT_PREFIXES), {
-                    type: 'literal',
-                    value: '3.14159',
-                    label: '3.14159',
-                });
-                expectToEqual(toTableCell(literal('Seitenzahl: 75', 'de'), DEFAULT_PREFIXES), {
-                    type: 'literal',
-                    value: 'Seitenzahl: 75',
-                    label: 'Seitenzahl: 75',
+            describe('... should return a literal cell with the unrounded value as label for other literals', () => {
+                it.each([
+                    {
+                        desc: "literal('3.14159', namedNode(xsd:decimal))",
+                        term: literal('3.14159', namedNode(`${XSD}decimal`)),
+                        expected: { type: 'literal', value: '3.14159', label: '3.14159' },
+                    },
+                    {
+                        desc: "literal('Seitenzahl: 75', 'de')",
+                        term: literal('Seitenzahl: 75', 'de'),
+                        expected: { type: 'literal', value: 'Seitenzahl: 75', label: 'Seitenzahl: 75' },
+                    },
+                ])('... $desc', ({ term, expected }) => {
+                    const tableCell = toTableCell(term, DEFAULT_PREFIXES);
+
+                    expectToEqual(tableCell, expected);
                 });
             });
 
             it('... should not compact IRIs within literal values', () => {
-                expectToBe(toTableCell(literal(`${AWG}Sketch`), DEFAULT_PREFIXES).label, `${AWG}Sketch`);
+                const tableCell = toTableCell(literal(`${AWG}Sketch`), DEFAULT_PREFIXES);
+
+                expectToBe(tableCell.label, `${AWG}Sketch`);
             });
         });
 
@@ -101,7 +116,9 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return one row per binding with one cell per bound variable', () => {
-                expectToEqual(toTableRows(result), [
+                const tableRows = toTableRows(result);
+
+                expectToEqual(tableRows, [
                     {
                         s: { type: 'uri', value: `${AWG}a`, label: 'awg:a' },
                         label: { type: 'literal', value: 'A', label: 'A' },
@@ -138,7 +155,9 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return no rows for no bindings', () => {
-                expectToEqual(toTableRows({ ...result, bindings: [] }), []);
+                const tableRows = toTableRows({ ...result, bindings: [] });
+
+                expectToEqual(tableRows, []);
             });
         });
     });

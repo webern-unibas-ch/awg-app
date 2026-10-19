@@ -120,8 +120,9 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
 
             it('... should contain the header title in the header button', () => {
                 const buttonDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-header button', 1, 1);
+                const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
-                expectToBe(buttonDes[0].nativeElement.textContent.trim(), 'Konvolutübersicht');
+                expectToBe(buttonEl.textContent.trim(), 'Konvolutübersicht');
             });
         });
     });
@@ -170,8 +171,9 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                     1,
                     1
                 );
+                const collapseEl: HTMLDivElement = collapseDes[0].nativeElement;
 
-                expectToContain(collapseDes[0].nativeElement.classList, 'show');
+                expectToContain(collapseEl.classList, 'show');
             });
 
             describe('... label', () => {
@@ -183,8 +185,9 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                         1
                     );
                     const linkDes = getAndExpectDebugElementByCss(labelDes[0], 'a', 1, 1);
+                    const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
 
-                    expectToBe(linkDes[0].nativeElement.textContent.trim(), expectedConvolute.convoluteLabel);
+                    expectToBe(linkEl.textContent.trim(), expectedConvolute.convoluteLabel);
                 });
             });
 
@@ -215,8 +218,9 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                         1,
                         1
                     );
+                    const legendEl: HTMLElement = legendDes[0].nativeElement;
 
-                    expectToContain(legendDes[0].nativeElement.classList, 'col-12');
+                    expectToContain(legendEl.classList, 'col-12');
                 });
             });
         });

@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
-import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery, GraphQueryType } from '@awg-views/edition-view/models/graph.model';
 
 import {
     emptyResult,
@@ -62,7 +62,9 @@ describe('GraphQueryUtils (DONE)', () => {
             it('... should return the first query of the given query list with its derived query type', () => {
                 const queryList: GraphQuery[] = [{ ...expectedQueryList[2], queryType: null }, expectedQueryList[0]];
 
-                expectToEqual(initialQuery(queryList), expectedQueryList[2]);
+                const query = initialQuery(queryList);
+
+                expectToEqual(query, expectedQueryList[2]);
             });
 
             it('... should return a copy of the first query without changing the original query', () => {
@@ -76,7 +78,9 @@ describe('GraphQueryUtils (DONE)', () => {
             });
 
             it('... should return an empty query for an empty query list', () => {
-                expectToEqual(initialQuery([]), new GraphQuery());
+                const query = initialQuery([]);
+
+                expectToEqual(query, new GraphQuery());
             });
         });
 
@@ -88,11 +92,15 @@ describe('GraphQueryUtils (DONE)', () => {
             it('... should return the query from the query list if queryLabel and queryType are known', () => {
                 const changedQuery = { ...expectedQueryList[1], queryString: 'CONSTRUCT {}' };
 
-                expectToBe(findQuery(expectedQueryList, changedQuery), expectedQueryList[1]);
+                const foundQuery = findQuery(expectedQueryList, changedQuery);
+
+                expectToBe(foundQuery, expectedQueryList[1]);
             });
 
             it('... should return the first query of the query list if no query is given', () => {
-                expectToBe(findQuery(expectedQueryList), expectedQueryList[0]);
+                const foundQuery = findQuery(expectedQueryList);
+
+                expectToBe(foundQuery, expectedQueryList[0]);
             });
 
             describe('... should return the given query as is, if', () => {
@@ -103,13 +111,17 @@ describe('GraphQueryUtils (DONE)', () => {
                         queryString: expectedQueryList[2].queryString,
                     };
 
-                    expectToBe(findQuery(expectedQueryList, changedQuery), changedQuery);
+                    const foundQuery = findQuery(expectedQueryList, changedQuery);
+
+                    expectToBe(foundQuery, changedQuery);
                 });
 
                 it('... only queryType is known but not queryLabel', () => {
                     const changedQuery: GraphQuery = { ...expectedQueryList[1], queryLabel: 'select all tests' };
 
-                    expectToBe(findQuery(expectedQueryList, changedQuery), changedQuery);
+                    const foundQuery = findQuery(expectedQueryList, changedQuery);
+
+                    expectToBe(foundQuery, changedQuery);
                 });
 
                 it('... given query is not in queryList', () => {
@@ -120,7 +132,9 @@ describe('GraphQueryUtils (DONE)', () => {
                             'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test4 ?has ?success4 . }',
                     };
 
-                    expectToBe(findQuery(expectedQueryList, changedQuery), changedQuery);
+                    const foundQuery = findQuery(expectedQueryList, changedQuery);
+
+                    expectToBe(foundQuery, changedQuery);
                 });
             });
         });
@@ -130,15 +144,27 @@ describe('GraphQueryUtils (DONE)', () => {
                 expect(isRunnableQueryType).toBeDefined();
             });
 
-            it('... should return true for construct and select queries', () => {
-                expectToBe(isRunnableQueryType('construct'), true);
-                expectToBe(isRunnableQueryType('select'), true);
+            describe('... should return true for construct and select queries', () => {
+                it.each<{ desc: string; queryType: GraphQueryType }>([
+                    { desc: 'construct', queryType: 'construct' },
+                    { desc: 'select', queryType: 'select' },
+                ])('... $desc', ({ queryType }) => {
+                    const isRunnable = isRunnableQueryType(queryType);
+
+                    expectToBe(isRunnable, true);
+                });
             });
 
-            it('... should return false for other query types', () => {
-                expectToBe(isRunnableQueryType('ask'), false);
-                expectToBe(isRunnableQueryType('update'), false);
-                expectToBe(isRunnableQueryType(null), false);
+            describe('... should return false for other query types', () => {
+                it.each<{ desc: string; queryType: GraphQueryType }>([
+                    { desc: 'ask', queryType: 'ask' },
+                    { desc: 'update', queryType: 'update' },
+                    { desc: 'null', queryType: null },
+                ])('... $desc', ({ queryType }) => {
+                    const isRunnable = isRunnableQueryType(queryType);
+
+                    expectToBe(isRunnable, false);
+                });
             });
         });
 
@@ -159,7 +185,9 @@ describe('GraphQueryUtils (DONE)', () => {
             });
 
             it('... should switch a construct query to a select query for the table view', () => {
-                expectToEqual(switchQueryType(constructQuery, ViewHandleTypes.TABLE), {
+                const switchedQuery = switchQueryType(constructQuery, ViewHandleTypes.TABLE);
+
+                expectToEqual(switchedQuery, {
                     ...constructQuery,
                     queryType: 'select',
                     queryString: 'SELECT *\nWHERE { ?test ?has ?success }',
@@ -167,7 +195,9 @@ describe('GraphQueryUtils (DONE)', () => {
             });
 
             it('... should switch a select query to a construct query for the graph view', () => {
-                expectToEqual(switchQueryType(selectQuery, ViewHandleTypes.GRAPH), {
+                const switchedQuery = switchQueryType(selectQuery, ViewHandleTypes.GRAPH);
+
+                expectToEqual(switchedQuery, {
                     ...selectQuery,
                     queryType: 'construct',
                     queryString: 'CONSTRUCT\nWHERE { ?test ?has ?success }',
@@ -181,7 +211,9 @@ describe('GraphQueryUtils (DONE)', () => {
                     queryString: 'construct { ?s ?p ?o } where { ?s ?p ?o }',
                 };
 
-                expectToEqual(switchQueryType(query, ViewHandleTypes.TABLE), {
+                const switchedQuery = switchQueryType(query, ViewHandleTypes.TABLE);
+
+                expectToEqual(switchedQuery, {
                     ...query,
                     queryType: 'select',
                     queryString: 'SELECT * where { ?s ?p ?o }',
@@ -239,7 +271,9 @@ describe('GraphQueryUtils (DONE)', () => {
             ] as { desc: string; query: GraphQuery; viewType: ViewHandleTypes }[])(
                 '... should keep $desc unchanged',
                 ({ query, viewType }) => {
-                    expectToBe(switchQueryType(query, viewType), query);
+                    const switchedQuery = switchQueryType(query, viewType);
+
+                    expectToBe(switchedQuery, query);
                 }
             );
         });
@@ -250,11 +284,15 @@ describe('GraphQueryUtils (DONE)', () => {
             });
 
             it('... should return an empty construct result for construct queries', () => {
-                expectToEqual(emptyResult('construct'), { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES });
+                const result = emptyResult('construct');
+
+                expectToEqual(result, { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES });
             });
 
             it('... should return an empty select result for select queries', () => {
-                expectToEqual(emptyResult('select'), {
+                const result = emptyResult('select');
+
+                expectToEqual(result, {
                     kind: 'select',
                     variables: [],
                     bindings: [],
@@ -262,9 +300,15 @@ describe('GraphQueryUtils (DONE)', () => {
                 });
             });
 
-            it('... should return an unsupported result for other query types', () => {
-                expectToEqual(emptyResult('ask'), { kind: 'unsupported', queryType: 'ask' });
-                expectToEqual(emptyResult(null), { kind: 'unsupported', queryType: null });
+            describe('... should return an unsupported result for other query types', () => {
+                it.each<{ desc: string; queryType: GraphQueryType }>([
+                    { desc: 'ask', queryType: 'ask' },
+                    { desc: 'null', queryType: null },
+                ])('... $desc', ({ queryType }) => {
+                    const result = emptyResult(queryType);
+
+                    expectToEqual(result, { kind: 'unsupported', queryType });
+                });
             });
         });
     });

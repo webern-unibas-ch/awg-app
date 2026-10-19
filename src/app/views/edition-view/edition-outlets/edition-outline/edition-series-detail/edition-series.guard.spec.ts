@@ -74,10 +74,11 @@ describe('editionSeriesGuard (DONE)', () => {
             { desc: 'a missing series id segment', paths: ['series'], expectedLookupId: '' },
         ])('... $desc', ({ paths, expectedLookupId }) => {
             const result = runGuard(paths);
+            const serializedUrl = router.serializeUrl(result as UrlTree);
 
             expectSpyCall(outlineServiceGetEditionSeriesByIdSpy, 1, expectedLookupId);
             expect(result).toBeInstanceOf(UrlTree);
-            expectToBe(router.serializeUrl(result as UrlTree), expectedNotFoundUrl);
+            expectToBe(serializedUrl, expectedNotFoundUrl);
         });
     });
 });

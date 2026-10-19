@@ -129,7 +129,9 @@ describe('EditionSvgOverlayService (DONE)', () => {
         });
 
         it('... should return an empty array without a root group selection', () => {
-            expectToEqual(service.createSvgOverlays(undefined), []);
+            const createdSvgOverlays = service.createSvgOverlays(undefined);
+
+            expectToEqual(createdSvgOverlays, []);
         });
 
         it('... should return an empty array if no tkk groups can be selected', () => {
@@ -137,11 +139,15 @@ describe('EditionSvgOverlayService (DONE)', () => {
                 selector === EditionSvgOverlayTypes.tkk ? undefined : rootGroup.selectAll('g.' + selector)
             );
 
-            expectToEqual(service.createSvgOverlays(expectedSvgRootGroup), []);
+            const createdSvgOverlays = service.createSvgOverlays(expectedSvgRootGroup);
+
+            expectToEqual(createdSvgOverlays, []);
         });
 
         it('... should return the available tkk overlays (not selected)', () => {
-            expectToEqual(service.createSvgOverlays(expectedSvgRootGroup), expectedTkkOverlays);
+            const createdSvgOverlays = service.createSvgOverlays(expectedSvgRootGroup);
+
+            expectToEqual(createdSvgOverlays, expectedTkkOverlays);
             expectSpyCall(serviceGetGroupsBySelectorSpy, 2, [expectedSvgRootGroup, EditionSvgOverlayTypes.tkk]);
         });
 
@@ -162,13 +168,17 @@ describe('EditionSvgOverlayService (DONE)', () => {
         it('... should skip tkk groups without id', () => {
             expectedSvgRootGroup.append('g').attr('class', 'tkk');
 
-            expectToBe(service.createSvgOverlays(expectedSvgRootGroup).length, expectedTkkOverlays.length);
+            const createdSvgOverlays = service.createSvgOverlays(expectedSvgRootGroup);
+
+            expectToBe(createdSvgOverlays.length, expectedTkkOverlays.length);
         });
 
         it('... should not add a tkk overlay twice for duplicate group ids', () => {
             expectedSvgRootGroup.append('g').attr('class', 'tkk').attr('id', 'tkk-1');
 
-            expectToBe(service.createSvgOverlays(expectedSvgRootGroup).length, expectedTkkOverlays.length);
+            const createdSvgOverlays = service.createSvgOverlays(expectedSvgRootGroup);
+
+            expectToBe(createdSvgOverlays.length, expectedTkkOverlays.length);
         });
 
         it('... should draw an overlay box for each tkk group (around its bounding box)', () => {
@@ -232,8 +242,10 @@ describe('EditionSvgOverlayService (DONE)', () => {
 
             const overlays = service.createSvgOverlays(expectedSvgRootGroup);
 
+            const tkkRect = getTkkRect('tkk-1');
+
             expectToBe(overlays.length, expectedTkkOverlays.length);
-            expect(getTkkRect('tkk-1')).toBeNull();
+            expect(tkkRect).toBeNull();
         });
     });
 
@@ -243,7 +255,9 @@ describe('EditionSvgOverlayService (DONE)', () => {
         });
 
         it('... should create the initial state for the given overlays', () => {
-            expectToEqual(service.createSvgOverlaysState(expectedTkkOverlays), {
+            const createdSvgOverlaysState = service.createSvgOverlaysState(expectedTkkOverlays);
+
+            expectToEqual(createdSvgOverlaysState, {
                 tkkOverlays: expectedTkkOverlays,
                 selectedDataIds: new Set<string>(),
                 hoveredDataId: undefined,
@@ -275,11 +289,9 @@ describe('EditionSvgOverlayService (DONE)', () => {
         it('... should return all parts of the selected data ids in their original order', () => {
             const state = createState({ tkkOverlays: multiPartOverlays, selectedDataIds: new Set(['tkk-2', 'tkk-1']) });
 
-            expectToEqual(service.getSelectedTkkOverlays(state), [
-                multiPartOverlays[0],
-                multiPartOverlays[1],
-                multiPartOverlays[3],
-            ]);
+            const selectedTkkOverlays = service.getSelectedTkkOverlays(state);
+
+            expectToEqual(selectedTkkOverlays, [multiPartOverlays[0], multiPartOverlays[1], multiPartOverlays[3]]);
         });
 
         it('... should return the same overlay instances (no copies)', () => {
@@ -291,7 +303,9 @@ describe('EditionSvgOverlayService (DONE)', () => {
         });
 
         it('... should return an empty array without a selection', () => {
-            expectToEqual(service.getSelectedTkkOverlays(createState({ tkkOverlays: multiPartOverlays })), []);
+            const selectedTkkOverlays = service.getSelectedTkkOverlays(createState({ tkkOverlays: multiPartOverlays }));
+
+            expectToEqual(selectedTkkOverlays, []);
         });
     });
 
@@ -303,13 +317,17 @@ describe('EditionSvgOverlayService (DONE)', () => {
         it.each(['tkk-1', undefined])('... should set the hovered data id to %s', dataId => {
             const state = createState({ hoveredDataId: 'tkk-2' });
 
-            expectToEqual(service.setTkkOverlayHover(state, dataId), { ...state, hoveredDataId: dataId });
+            const nextState = service.setTkkOverlayHover(state, dataId);
+
+            expectToEqual(nextState, { ...state, hoveredDataId: dataId });
         });
 
         it('... should keep the same state for an unchanged hovered data id', () => {
             const state = createState({ hoveredDataId: 'tkk-1' });
 
-            expectToBe(service.setTkkOverlayHover(state, 'tkk-1'), state);
+            const nextState = service.setTkkOverlayHover(state, 'tkk-1');
+
+            expectToBe(nextState, state);
         });
     });
 
@@ -321,13 +339,17 @@ describe('EditionSvgOverlayService (DONE)', () => {
         it.each([true, false])('... should keep the same state for an unchanged highlighting (%s)', isHighlighted => {
             const state = createState({ isHighlighted });
 
-            expectToBe(service.setTkkOverlaysHighlight(state, isHighlighted), state);
+            const nextState = service.setTkkOverlaysHighlight(state, isHighlighted);
+
+            expectToBe(nextState, state);
         });
 
         it('... should clear the selection when hiding the tkk overlays', () => {
             const state = createState({ selectedDataIds: new Set(['tkk-1']) });
 
-            expectToEqual(service.setTkkOverlaysHighlight(state, false), {
+            const nextState = service.setTkkOverlaysHighlight(state, false);
+
+            expectToEqual(nextState, {
                 ...state,
                 isHighlighted: false,
                 selectedDataIds: new Set<string>(),
@@ -337,7 +359,9 @@ describe('EditionSvgOverlayService (DONE)', () => {
         it('... should keep the same (empty) selection when hiding the tkk overlays without a selection', () => {
             const state = createState();
 
-            expectToBe(service.setTkkOverlaysHighlight(state, false).selectedDataIds, state.selectedDataIds);
+            const nextState = service.setTkkOverlaysHighlight(state, false);
+
+            expectToBe(nextState.selectedDataIds, state.selectedDataIds);
         });
 
         it('... should keep the same selection when showing the tkk overlays', () => {
@@ -358,7 +382,9 @@ describe('EditionSvgOverlayService (DONE)', () => {
         it('... should add a not yet selected data id', () => {
             const state = createState({ selectedDataIds: new Set(['tkk-1']) });
 
-            expectToEqual(service.toggleTkkOverlaySelection(state, 'tkk-2'), {
+            const nextState = service.toggleTkkOverlaySelection(state, 'tkk-2');
+
+            expectToEqual(nextState, {
                 ...state,
                 selectedDataIds: new Set(['tkk-1', 'tkk-2']),
             });
@@ -367,7 +393,9 @@ describe('EditionSvgOverlayService (DONE)', () => {
         it('... should remove an already selected data id', () => {
             const state = createState({ selectedDataIds: new Set(['tkk-1', 'tkk-2']) });
 
-            expectToEqual(service.toggleTkkOverlaySelection(state, 'tkk-1').selectedDataIds, new Set(['tkk-2']));
+            const nextState = service.toggleTkkOverlaySelection(state, 'tkk-1');
+
+            expectToEqual(nextState.selectedDataIds, new Set(['tkk-2']));
         });
 
         it('... should not mutate the given state', () => {
@@ -390,14 +418,18 @@ describe('EditionSvgOverlayService (DONE)', () => {
         });
 
         it('... should return the data id for a tkk overlay box', () => {
-            expectToBe(service.getTkkDataId(getTkkRect('tkk-1')), 'tkk-1');
+            const tkkDataId = service.getTkkDataId(getTkkRect('tkk-1'));
+
+            expectToBe(tkkDataId, 'tkk-1');
         });
 
         it.each([
             ['a link box', () => expectedSvgRootGroup.select('#link-box-1 path').node()],
             ['null', () => null],
         ])('... should return undefined for %s', (_label, getTarget) => {
-            expect(service.getTkkDataId(getTarget() as unknown as EventTarget | null)).toBeUndefined();
+            const tkkDataId = service.getTkkDataId(getTarget() as unknown as EventTarget | null);
+
+            expect(tkkDataId).toBeUndefined();
         });
     });
 
@@ -412,19 +444,25 @@ describe('EditionSvgOverlayService (DONE)', () => {
         });
 
         it('... should return the tkk overlay for a tkk overlay box', () => {
-            expectToEqual(service.getSvgOverlay(getTkkRect('tkk-1')), createTestTkkOverlay('tkk-1'));
+            const svgOverlay = service.getSvgOverlay(getTkkRect('tkk-1'));
+
+            expectToEqual(svgOverlay, createTestTkkOverlay('tkk-1'));
         });
 
         it('... should return the tkk overlay with the data-tkk-id as data id if present', () => {
             expectedSvgRootGroup.select('#tkk-2').attr('data-tkk-id', 'tkk-shared');
 
-            expectToEqual(service.getSvgOverlay(getTkkRect('tkk-2')), createTestTkkOverlay('tkk-2', 'tkk-shared'));
+            const svgOverlay = service.getSvgOverlay(getTkkRect('tkk-2'));
+
+            expectToEqual(svgOverlay, createTestTkkOverlay('tkk-2', 'tkk-shared'));
         });
 
         it('... should return the link box overlay for an element inside a link box group', () => {
             const pathEl = expectedSvgRootGroup.select('#link-box-1 path').node() as Element;
 
-            expectToEqual(service.getSvgOverlay(pathEl), {
+            const svgOverlay = service.getSvgOverlay(pathEl);
+
+            expectToEqual(svgOverlay, {
                 type: EditionSvgOverlayTypes.linkBox,
                 id: 'link-box-1',
             });
@@ -436,13 +474,17 @@ describe('EditionSvgOverlayService (DONE)', () => {
             ['the root group', () => expectedSvgRootGroup.node()],
             ['a tkk group without overlay box', () => expectedSvgRootGroup.select('#tkk-1').node()],
         ])('... should return undefined for %s', (_label, getTarget) => {
-            expect(service.getSvgOverlay(getTarget() as unknown as EventTarget | null)).toBeUndefined();
+            const svgOverlay = service.getSvgOverlay(getTarget() as unknown as EventTarget | null);
+
+            expect(svgOverlay).toBeUndefined();
         });
 
         it('... should return undefined for a link box group without id', () => {
             const groupEl = expectedSvgRootGroup.append('g').attr('class', 'link-box').append('path').node() as Element;
 
-            expect(service.getSvgOverlay(groupEl)).toBeUndefined();
+            const svgOverlay = service.getSvgOverlay(groupEl);
+
+            expect(svgOverlay).toBeUndefined();
         });
     });
 

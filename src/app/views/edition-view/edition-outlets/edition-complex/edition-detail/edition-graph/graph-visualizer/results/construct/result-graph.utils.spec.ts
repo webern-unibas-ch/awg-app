@@ -49,7 +49,9 @@ describe('ResultGraphUtils (DONE)', () => {
             });
 
             it('... should ignore rdfs:label statements with non-literal objects', () => {
-                expectToBe(extractLabels([q(awg('Sk1'), RDFS_LABEL, awg('Label'))]).size, 0);
+                const extractedLabels = extractLabels([q(awg('Sk1'), RDFS_LABEL, awg('Label'))]);
+
+                expectToBe(extractedLabels.size, 0);
             });
 
             it('... should keep the last label of a subject', () => {
@@ -159,7 +161,9 @@ describe('ResultGraphUtils (DONE)', () => {
             });
 
             it('... should return an empty graph for no quads', () => {
-                expectToEqual(toResultGraph([], DEFAULT_PREFIXES), { nodes: [], edges: [], tripleCount: 0 });
+                const resultGraph = toResultGraph([], DEFAULT_PREFIXES);
+
+                expectToEqual(resultGraph, { nodes: [], edges: [], tripleCount: 0 });
             });
         });
 
@@ -191,17 +195,31 @@ describe('ResultGraphUtils (DONE)', () => {
             });
 
             it('... should keep the triple count of the original graph', () => {
-                expectToBe(limitResultGraph(graph, 1).tripleCount, 3);
+                const limitedGraph = limitResultGraph(graph, 1);
+
+                expectToBe(limitedGraph.tripleCount, 3);
             });
 
-            it('... should return the original graph if the limit is not exceeded', () => {
-                expectToBe(limitResultGraph(graph, 3), graph);
-                expectToBe(limitResultGraph(graph, 100), graph);
+            describe('... should return the original graph if the limit is not exceeded', () => {
+                it.each([
+                    { desc: '3', limit: 3 },
+                    { desc: '100', limit: 100 },
+                ])('... $desc', ({ limit }) => {
+                    const limitedGraph = limitResultGraph(graph, limit);
+
+                    expectToBe(limitedGraph, graph);
+                });
             });
 
-            it('... should return no edges and nodes for a limit of 0 or less', () => {
-                expectToEqual(limitResultGraph(graph, 0), { nodes: [], edges: [], tripleCount: 3 });
-                expectToEqual(limitResultGraph(graph, -1), { nodes: [], edges: [], tripleCount: 3 });
+            describe('... should return no edges and nodes for a limit of 0 or less', () => {
+                it.each([
+                    { desc: '0', limit: 0 },
+                    { desc: '-1', limit: -1 },
+                ])('... $desc', ({ limit }) => {
+                    const limitedGraph = limitResultGraph(graph, limit);
+
+                    expectToEqual(limitedGraph, { nodes: [], edges: [], tripleCount: 3 });
+                });
             });
         });
     });

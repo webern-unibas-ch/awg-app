@@ -114,8 +114,9 @@ describe('EditionComplexPlaceholderComponent (DONE)', () => {
             it('... should contain one `p.awg-edition-complex-placeholder` with one small, text-muted element', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-edition-complex-placeholder', 1, 1);
                 const smallDes = getAndExpectDebugElementByCss(pDes[0], 'small', 1, 1);
+                const smallEl: HTMLElement = smallDes[0].nativeElement;
 
-                expectToContain(smallDes[0].nativeElement.classList, 'text-muted');
+                expectToContain(smallEl.classList, 'text-muted');
             });
 
             it.each(Object.keys(EDITION_COMPLEX_PLACEHOLDER_SUBJECTS) as EditionComplexPlaceholderType[])(
@@ -136,8 +137,9 @@ describe('EditionComplexPlaceholderComponent (DONE)', () => {
                         1,
                         1
                     );
+                    const smallEl: HTMLElement = smallDes[0].nativeElement;
 
-                    expectToBe(smallDes[0].nativeElement.textContent.trim(), expectedText);
+                    expectToBe(smallEl.textContent.trim(), expectedText);
                 }
             );
 

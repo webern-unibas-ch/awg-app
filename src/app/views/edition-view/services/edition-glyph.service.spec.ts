@@ -27,7 +27,9 @@ describe('EditionGlyphService (DONE)', () => {
     describe('#getGlyph()', () => {
         const expectGlyphMappings = (glyphMappings: Array<[string, string]>): void => {
             glyphMappings.forEach(([alt, hex]) => {
-                expectToBe(editionGlyphService.getGlyph(alt), hex);
+                const glyph = editionGlyphService.getGlyph(alt);
+
+                expectToBe(glyph, hex);
             });
         };
 
@@ -82,10 +84,16 @@ describe('EditionGlyphService (DONE)', () => {
             expectGlyphMappings([['[ped]', '\uE650']]);
         });
 
-        it('... should return an empty string for an invalid glyph alt value', () => {
-            expectToBe(editionGlyphService.getGlyph(''), '');
-            expectToBe(editionGlyphService.getGlyph('[invalid]'), '');
-            expectToBe(editionGlyphService.getGlyph('[not found]'), '');
+        describe('... should return an empty string for an invalid glyph alt value', () => {
+            it.each([
+                { desc: '', glyphString: '' },
+                { desc: '[invalid]', glyphString: '[invalid]' },
+                { desc: '[not found]', glyphString: '[not found]' },
+            ])('... $desc', ({ glyphString }) => {
+                const glyph = editionGlyphService.getGlyph(glyphString);
+
+                expectToBe(glyph, '');
+            });
         });
     });
 });

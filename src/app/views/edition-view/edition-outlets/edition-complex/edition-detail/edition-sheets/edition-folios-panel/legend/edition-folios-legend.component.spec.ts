@@ -55,8 +55,9 @@ describe('EditionFoliosLegendComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should contain one div.awg-edition-folios-legend with the legend title', () => {
                 const legendDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-folios-legend', 1, 1);
+                const legendEl: HTMLDivElement = legendDes[0].nativeElement;
 
-                expectToBe(legendDes[0].nativeElement.textContent.trim().startsWith('Legende:'), true);
+                expectToBe(legendEl.textContent.trim().startsWith('Legende:'), true);
             });
 
             it('... should not contain legend entries yet', () => {

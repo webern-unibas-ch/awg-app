@@ -149,8 +149,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
 
             it('... should enable the toggle button', () => {
                 const toggleDes = getAndExpectDebugElementByCss(compDe, 'button.dropdown-toggle-split', 1, 1);
+                const toggleEl: HTMLButtonElement = toggleDes[0].nativeElement;
 
-                expectToBe(toggleDes[0].nativeElement.disabled, false);
+                expectToBe(toggleEl.disabled, false);
             });
 
             it('... should disable the toggle button without triples', async () => {
@@ -158,8 +159,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const toggleDes = getAndExpectDebugElementByCss(compDe, 'button.dropdown-toggle-split', 1, 1);
+                const toggleEl: HTMLButtonElement = toggleDes[0].nativeElement;
 
-                expectToBe(toggleDes[0].nativeElement.disabled, true);
+                expectToBe(toggleEl.disabled, true);
             });
 
             it('... should contain one item per limit value and one item without limit', () => {
@@ -176,8 +178,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const itemDes = getItemDes(1);
+                const itemEl: HTMLElement = itemDes[0].nativeElement;
 
-                expectToBe(itemDes[0].nativeElement.textContent.trim(), 'Kein Limit');
+                expectToBe(itemEl.textContent.trim(), 'Kein Limit');
             });
 
             it('... should set `limit` to the limit value of a clicked item', async () => {

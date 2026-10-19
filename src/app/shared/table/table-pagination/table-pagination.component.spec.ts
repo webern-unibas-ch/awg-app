@@ -145,11 +145,15 @@ describe('TablePaginationComponent (DONE)', () => {
 
             it('... should disable the first two li.page-item on the first page', () => {
                 const liDes = getAndExpectDebugElementByCss(compDe, 'ul.pagination > li.page-item', 4, 4);
+                const firstLiEl: HTMLLIElement = liDes[0].nativeElement;
+                const secondLiEl: HTMLLIElement = liDes[1].nativeElement;
+                const thirdLiEl: HTMLLIElement = liDes[2].nativeElement;
+                const fourthLiEl: HTMLLIElement = liDes[3].nativeElement;
 
-                expectToContain(liDes[0].nativeElement.classList, 'disabled');
-                expectToContain(liDes[1].nativeElement.classList, 'disabled');
-                expectToNotContain(liDes[2].nativeElement.classList, 'disabled');
-                expectToNotContain(liDes[3].nativeElement.classList, 'disabled');
+                expectToContain(firstLiEl.classList, 'disabled');
+                expectToContain(secondLiEl.classList, 'disabled');
+                expectToNotContain(thirdLiEl.classList, 'disabled');
+                expectToNotContain(fourthLiEl.classList, 'disabled');
             });
 
             it('... should contain a.page-link in all li.page-item', () => {
@@ -178,8 +182,9 @@ describe('TablePaginationComponent (DONE)', () => {
 
             it('... should display `Seite` in label', () => {
                 const labelDes = getAndExpectDebugElementByCss(compDe, 'label#paginationInputLabel', 1, 1);
+                const labelEl: HTMLLabelElement = labelDes[0].nativeElement;
 
-                expectToBe(labelDes[0].nativeElement.textContent, 'Seite');
+                expectToBe(labelEl.textContent, 'Seite');
             });
 
             it('... should display the current page in input', () => {
@@ -220,8 +225,9 @@ describe('TablePaginationComponent (DONE)', () => {
 
                 it('... should display the number of pages for the provided page size in span', () => {
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span#paginationDescription', 1, 1);
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                    expectToBe(spanDes[0].nativeElement.textContent.trim(), `von ${expectedCollectionSize / 25}`);
+                    expectToBe(spanEl.textContent.trim(), `von ${expectedCollectionSize / 25}`);
                 });
             });
 

@@ -137,8 +137,9 @@ describe('FormSwitchComponent (DONE)', () => {
                 );
                 const labelDes = getAndExpectDebugElementByCss(switchDes[0], 'label.form-check-label', 1, 1);
                 const projectedDes = getAndExpectDebugElementByCss(labelDes[0], 'span.test-label', 1, 1);
+                const projectedEl: HTMLSpanElement = projectedDes[0].nativeElement;
 
-                expectToBe(projectedDes[0].nativeElement.textContent, 'Label');
+                expectToBe(projectedEl.textContent, 'Label');
             });
         });
     });

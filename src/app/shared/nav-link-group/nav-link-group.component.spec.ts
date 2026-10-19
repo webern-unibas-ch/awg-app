@@ -143,11 +143,14 @@ describe('NavLinkGroupComponent (DONE)', () => {
 
             it('... should mark first and last link', () => {
                 const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-nav-link', 3, 3);
+                const firstAEl: HTMLAnchorElement = aDes[0].nativeElement;
+                const secondAEl: HTMLAnchorElement = aDes[1].nativeElement;
+                const thirdAEl: HTMLAnchorElement = aDes[2].nativeElement;
 
-                expectToContain(aDes[0].nativeElement.classList, 'first');
-                expectToNotContain(aDes[1].nativeElement.classList, 'first');
-                expectToNotContain(aDes[1].nativeElement.classList, 'last');
-                expectToContain(aDes[2].nativeElement.classList, 'last');
+                expectToContain(firstAEl.classList, 'first');
+                expectToNotContain(secondAEl.classList, 'first');
+                expectToNotContain(secondAEl.classList, 'last');
+                expectToContain(thirdAEl.classList, 'last');
             });
 
             it('... should disable links if necessary', () => {

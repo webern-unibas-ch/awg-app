@@ -195,9 +195,8 @@ describe('ZoomSliderComponent (DONE)', () => {
                 });
 
                 it('... should contain a fit button after the reset button', () => {
-                    const buttonEls = getAndExpectDebugElementByCss(getContainerDes()[0], 'button.btn', 2, 2).map(
-                        buttonDe => buttonDe.nativeElement as HTMLButtonElement
-                    );
+                    const buttonDes = getAndExpectDebugElementByCss(getContainerDes()[0], 'button.btn', 2, 2);
+                    const buttonEls = buttonDes.map((buttonDe): HTMLButtonElement => buttonDe.nativeElement);
 
                     expectToBe(buttonEls[0].title, 'Zoom zurücksetzen');
                     expectToBe(buttonEls[1].title, 'Einpassen');

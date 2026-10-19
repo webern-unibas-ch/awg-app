@@ -150,6 +150,7 @@ describe('SourceDescWritingTrademarkComponent (DONE)', () => {
                     1,
                     1
                 );
+                const trademarkSpanEl: HTMLSpanElement = trademarkSpanDes[0].nativeElement;
                 const imgDes = getAndExpectDebugElementByCss(trademarkSpanDes[0], 'img.img-thumbnail', 1, 1);
                 const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
@@ -158,7 +159,7 @@ describe('SourceDescWritingTrademarkComponent (DONE)', () => {
                 expectToBe(imgEl.getAttribute('src'), expectedTrademarkConstant.route);
                 expectToBe(imgEl.title, expectedTrademarkConstant.full);
                 expectToBe(imgEl.alt, expectedTrademarkConstant.short);
-                expectToBe(trademarkSpanDes[0].nativeElement.textContent.trim(), 'Firmenzeichen:');
+                expectToBe(trademarkSpanEl.textContent.trim(), 'Firmenzeichen:');
             });
 
             it('... should contain a trademark span with CompileHtmlDirective if an alt text is available instead of a variant', async () => {

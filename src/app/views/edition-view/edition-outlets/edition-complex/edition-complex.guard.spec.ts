@@ -74,10 +74,11 @@ describe('editionComplexGuard (DONE)', () => {
             { desc: 'a missing complex id segment', paths: ['complex'], expectedLookupId: '' },
         ])('... $desc', ({ paths, expectedLookupId }) => {
             const result = runGuard(paths);
+            const serializedUrl = router.serializeUrl(result as UrlTree);
 
             expectSpyCall(complexesServiceGetEditionComplexByIdSpy, 1, expectedLookupId);
             expect(result).toBeInstanceOf(UrlTree);
-            expectToBe(router.serializeUrl(result as UrlTree), expectedNotFoundUrl);
+            expectToBe(serializedUrl, expectedNotFoundUrl);
         });
     });
 });

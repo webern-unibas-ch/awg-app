@@ -474,7 +474,9 @@ describe('EditionDataService (DONE)', () => {
                         expectToEqual(resultSignal(), expectedFallback);
                         await new Promise(resolve => setTimeout(resolve, 0));
 
-                        expectToBe(getClearErrorCountByKey(assetsKey), 2);
+                        const clearErrorCountByKey = getClearErrorCountByKey(assetsKey);
+
+                        expectToBe(clearErrorCountByKey, 2);
 
                         // No fetch request should be triggered since no complex is selected
                         expectSpyCall(fetchJsonDataSpy, 0);
@@ -503,7 +505,9 @@ describe('EditionDataService (DONE)', () => {
 
                         await new Promise(resolve => setTimeout(resolve, 0));
 
-                        expectToBe(getClearErrorCountByKey(assetsKey), 2);
+                        const clearErrorCountByKey = getClearErrorCountByKey(assetsKey);
+
+                        expectToBe(clearErrorCountByKey, 2);
 
                         // The fetch request should be triggered
                         expect(getAssetPathSpy).toHaveBeenCalledWith(expectedComplex);
