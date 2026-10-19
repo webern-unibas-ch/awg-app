@@ -297,7 +297,6 @@ export default defineConfig(
             '@typescript-eslint/no-unsafe-function-type': 'warn',
             '@typescript-eslint/no-unsafe-member-access': 'warn',
             '@typescript-eslint/no-unsafe-return': 'warn',
-            '@typescript-eslint/prefer-promise-reject-errors': 'warn',
             '@typescript-eslint/related-getter-setter-pairs': 'warn',
         },
     },
@@ -320,6 +319,8 @@ export default defineConfig(
             '@typescript-eslint/no-unsafe-call': 'off',
             '@typescript-eslint/no-unsafe-member-access': 'off',
             '@typescript-eslint/no-unsafe-return': 'off',
+            // Test doubles pass on rejection values of mocked APIs unchanged (typed unknown)
+            '@typescript-eslint/prefer-promise-reject-errors': ['error', { allowThrowingUnknown: true }],
             '@typescript-eslint/unbound-method': 'off',
         },
     },
