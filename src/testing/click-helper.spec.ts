@@ -3,9 +3,8 @@ import { ComponentFixture } from '@angular/core/testing';
 
 import { describe, expect, it, vi } from 'vitest';
 
-import { expectToBe } from '@testing/expect-helper';
-
 import { clickAndAwaitChanges, clickDispatchAndAwaitChanges } from './click-helper';
+import { expectToBe } from './expect-helper';
 
 describe('click-helper', () => {
     describe('#clickAndAwaitChanges()', () => {

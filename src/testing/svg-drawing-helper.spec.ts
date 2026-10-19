@@ -1,10 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
-
 import * as D3_SELECTION from 'd3-selection';
 import * as D3_ZOOM from 'd3-zoom';
 
+import { expectSpyCall, expectToBe, expectToEqual } from './expect-helper';
 import { MockResizeObserver, patchSvgSizeForD3Zoom, stubResizeObserver } from './svg-drawing-helper';
 
 describe('svg-drawing-helper', () => {
@@ -88,9 +87,10 @@ describe('svg-drawing-helper', () => {
         it('... should not fail when called repeatedly', () => {
             patchSvgSizeForD3Zoom();
 
+            expect(() => patchSvgSizeForD3Zoom()).not.toThrow();
+
             const svgEl = createSvgEl();
 
-            expect(() => patchSvgSizeForD3Zoom()).not.toThrow();
             expectToBe(svgEl.width.baseVal.value, 100);
         });
 

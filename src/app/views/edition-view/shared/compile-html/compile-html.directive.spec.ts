@@ -369,8 +369,9 @@ describe('CompileHtmlDirective (DONE)', () => {
 
                     const foundElement = mockNativeElement.querySelector(expectedSelector);
 
-                    expect(rendererSetAttributeSpy).toHaveBeenNthCalledWith(1, foundElement, 'tabindex', '0');
-                    expectSpyCall(rendererSetAttributeSpy, 2, [foundElement, 'role', expectedRole]);
+                    expectSpyCall(rendererSetAttributeSpy, 2);
+                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundElement, 'tabindex', '0');
+                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundElement, 'role', expectedRole);
                 });
             });
 
