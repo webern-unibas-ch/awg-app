@@ -1,61 +1,55 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code in this repository.
 
 ## Project
 
-Angular 22 web app for the online edition of the Anton Webern Gesamtausgabe (AWG), deployed to GitHub Pages at https://edition.anton-webern.ch. Package manager is Yarn 4 (via corepack); Node ^22.22.3 or >= 24.15.0.
+Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), deployed to GitHub Pages (https://edition.anton-webern.ch). Yarn 4 (corepack); Node ^22.22.3 or >= 24.15.0.
 
 ## Commands
 
-- `yarn start`: dev server on http://localhost:4200
-- `yarn test`: Vitest via the Angular `@angular/build:unit-test` builder (watch mode, jsdom)
-- `yarn test --include=src/app/path/to/foo.component.spec.ts --no-watch`: run a single spec file
-- `yarn test:local`: run tests in a real Chromium browser (Playwright)
-- `yarn test:cov`: headless run with coverage (used in CI)
-- `yarn lint` / `yarn lint:fix`: ESLint for the whole project
+- `yarn start`: dev server (http://localhost:4200)
+- `yarn test`: Vitest via `@angular/build:unit-test` (watch, jsdom); single spec: `yarn test --include=<path> --no-watch`
+- `yarn test:local`: tests in Chromium (Playwright)
+- `yarn test:cov`: jsdom run with coverage (CI via `yarn test:ci`)
+- `yarn lint` / `yarn lint:fix`: ESLint
 - `yarn format-files:check` / `yarn format-files:fix`: Prettier for `src/**`
 - `yarn build:prod`: production build to `dist/awg-app`
-- `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition JSON data exist
+- `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
 
-Husky and lint-staged run ESLint and Prettier fixes on staged files at commit time.
+Husky and lint-staged run ESLint and Prettier on staged files.
 
-## Commit conventions
+## Git
 
-Conventional Commits, enforced by commitlint (`@commitlint/config-angular`). **A scope is mandatory** and must be one of the following: `app, assets, contact, core, deps, deps-dev, edition, gh-actions, home, page-not-found, search, shared, side-info, statistics, structure, testing, views, CHANGELOG, CONTRIBUTING, LICENSE, README`. Example: `refactor(edition): migrate sourceList`. The CHANGELOG and version bumps are generated from commit messages.
+- Conventional Commits (commitlint, `@commitlint/config-angular`), header **at most 72 characters** (also PR titles, since PRs are squash-merged). **Scope is mandatory**: `app, assets, contact, core, deps, deps-dev, edition, gh-actions, home, page-not-found, search, shared, side-info, statistics, structure, testing, views, CHANGELOG, CONTRIBUTING, LICENSE, README`. CHANGELOG and versions are generated from commits.
+- Gitflow: feature branches from `develop`, PRs to `develop`; `main` holds releases.
+- **Never commit, push or create PRs unless explicitly asked, and don't offer to.** Leave changes in the working tree and propose a commit message. Don't stage or unstage (delete in the working tree, no `git rm`; `git mv` is fine). For multi-step work, stop at each buildable step with its files and message.
 
-Branching follows Gitflow: feature branches start from `develop` and PRs target `develop`. `main` holds releases only.
+## Working style
 
-**Never commit, push, or create PRs without asking first.** Leave changes in the working tree, and propose a commit message instead.
+- Answer design questions (e.g. "utils or service?") with a recommendation and ask before implementing, even alongside a general go-ahead. Mention extra design changes up front.
+- Docs and comments stay general: describe what something does and why, not every branch or use case; only the current code, no references to previous behaviour.
 
 ## Architecture
 
-- **Bootstrap**: standalone, without NgModules (`src/main.ts` → `bootstrapApplication(AppComponent, appConfig)`), zoneless (`provideZonelessChangeDetection()`). State shown in templates must be signals (or change via template/host listeners or the `async` pipe); plain fields changed in callbacks, timers or third-party listeners don't trigger change detection. App-wide providers live in `app.config.ts`, the top-level routes in `app.routes.ts`, and app-wide constants (URLs, IDs, version) in `app.constants.ts` (`AppConstants`). Views are lazy-loaded via route files (`views/*-view/*-view.routes.ts`, `loadChildren`).
-- **Path aliases** (tsconfig): `@awg-app/*`, `@awg-core/*`, `@awg-shared/*`, `@awg-side-info/*`, `@awg-views/*`, `@testing/*`, plus the outlet aliases `@awg-graph/*` for `edition-graph/` and `@awg-report/*` for `edition-report/` (further outlet aliases only when needed). Relative imports only with `./` or a single `../`, deeper paths use an alias.
-- **Layout**: `core/` (navbar, footer, view-container, analytics), `shared/` (reusable standalone components, directives, models, utils; imported directly, no SharedModule), `views/` (one folder per top-level route).
-- **Edition view** (`views/edition-view/`) is the bulk of the app. Routes go `edition/series/:seriesId/...` → `complex/:complexId/{intro,sheets,report,graph}`, plus `preface` and `rowtables`. The components that make up these pages live in `edition-outlets/`, and the matching models are in `edition-view/models/`.
-- **Data**: no backend. All edition content is static JSON under `src/assets/data/edition/` (global files such as `edition-complexes.json` and `edition-outline.json`, plus per-complex folders under `series/`). `EditionDataService` fetches it with `HttpClient` and exposes it as signals (`toSignal`). It uses `EDITION_ASSETS_DATA` (`edition-view/data/`) to map asset keys to file names, and `EditionStateService` to decide which complex is current. Complex-specific data signals recompute when the selected complex changes.
-- **Rendering**: HTML strings from the data are rendered through `CompileHtmlDirective`. Score sheets are SVGs with D3-driven overlays and zoom (`EditionSvgDrawingService`, `EditionSvgOverlayService`). The graph view uses an RDF store (`rdfstore`, `n3`) with a CodeMirror SPARQL editor.
+- **Bootstrap:** standalone, zoneless (`provideZonelessChangeDetection()`). Template state must be signals (or change via template/host listeners or `async`). Providers in `app.config.ts`, routes in `app.routes.ts`, constants in `app.constants.ts`; views lazy-loaded via `views/*-view/*-view.routes.ts`.
+- **Layout:** `core/` (navbar, footer, view-container, analytics), `shared/` (reusable components, directives, models, utils), `views/` (one folder per route).
+- **Edition view** (`views/edition-view/`), the bulk of the app: `edition/series/:seriesId/...` → `complex/:complexId/{intro,sheets,report,graph}`, plus `preface` and `rowtables`. Page components in `edition-outlets/`, models in `edition-view/models/`.
+- **Data:** no backend; static JSON under `src/assets/data/edition/`. `EditionDataService` loads it as signals, using `EDITION_ASSETS_DATA` (file names) and `EditionStateService` (current complex).
+- **Rendering:** HTML strings via `CompileHtmlDirective`; score sheets as SVGs with D3 overlays and zoom; graph view with RDF store (`rdfstore`, `n3`), CodeMirror SPARQL editor and a canvas force graph simulated in a web worker. D3 only draws (stateless drawing services); interaction runs through template listeners, state lives in signals.
 
-## Component conventions (modern Angular)
+## Code conventions
 
-The whole app is standalone (no NgModules). New and changed code follows these rules:
+- Standalone components with own `imports`, `OnPush`, `@if`/`@for`; `input()`/`model()`/`output()`/`signal()`/`computed()` (doc comments: "Readonly input signal: x. It holds ...").
+- Every component has ts, html, scss (also when empty, with `styleUrls`) and spec.
+- Reuse shared UI components where useful (e.g. `ButtonExpandAllComponent`, `ConditionalLinkComponent`).
+- **Imports:** full file paths, no barrels (exception for now: `@testing/mock-data`, `@testing/mock-helper`). Relative only `./` or one `../`, otherwise aliases: `@awg-app`, `@awg-core`, `@awg-shared`, `@awg-views`, `@testing`, and outlet aliases `@awg-graph` (edition-graph), `@awg-report` (edition-report). New outlet aliases only for deep imports, in all four tsconfigs (base, `.app`, `.spec`, `.doc`); once an outlet has one, imports into it use it.
+- **Import blocks** (blank line between, sorted by path): `@angular` → third party → `@testing` → `@awg-app`/`@awg-core` → `@awg-shared` → `@awg-views` → outlet aliases → relative. Move lines when a path changes its block; re-sort `imports: [...]` after renames.
+- Empty checks: `if (array.length)` / `if (!array.length)`. A helper that only gets non-empty lists is guarded at the call site ("(not empty)" in its JSDoc).
+- Destructure all used entries of a config/style constant at the top of a function, consistently across the file.
 
-- standalone components, directives and pipes that list their own `imports`
-- `input()` / `input.required()` / `model()` / `output()` / `signal()` / `computed()` instead of `@Input`/`@Output` and plain fields; doc comments say "Readonly input signal: x. It holds ..."
-- `@if` / `@for` control flow in templates
-- no barrel `index.ts` files; importers use the full file path (e.g. `./foo/foo.component`, `@awg-views/edition-view/models/textcritics.model`)
-- repeated UI logic extracted into shared components where useful (e.g. `ButtonExpandAllComponent`, `ConditionalLinkComponent`)
-- `ChangeDetectionStrategy.OnPush`
+## Testing
 
-## Testing conventions
-
-- Vitest with `globals: false`, so import `describe`, `it`, `expect`, `beforeEach`, and so on from `vitest` explicitly.
-- Use the helpers in `src/testing/` instead of raw expects: `expectToBe` and `expectToEqual` (`expect-helper.ts`), `getAndExpectDebugElementByCss` and `getAndExpectDebugElementByDirective`, `detectChangesOnPush`, `clickAndAwaitChanges`, the component and router stubs, and the mock data in `src/testing/mock-data/`.
-- **Test wording and spec structure follow `src/testing/test-wording.md`.** In short:
-    - Every component spec is split into `BEFORE initial data binding` and `AFTER initial data binding`, also without inputs. No `fixture.detectChanges()` in the top-level `beforeEach`; static view tests go in BEFORE. Inputs are provided with `fixture.componentRef.setInput(...)`.
-    - Capitalized `describe` blocks only for `VIEW` and `METHODS` (no `INPUTS`/`OUTPUTS`/`SIGNALS`/`HOST`); lowercase sub-describes like `'... with partials'` are fine.
-    - Every `describe('#method()')` starts with `it('... should have a method `method`')`, also for private methods (`component['_method']`).
-    - Describe state, not process ("should have input signal `x` to hold the provided x", "should have computed signal `y` to hold the expected config", "should throw due to missing required input signal `z`"). Never use "should return" or "should be updated to". Don't repeat BEFORE-block assertions in the AFTER block, and avoid redundant length checks next to deep-equal checks.
-- To check what a child component receives, get the child instance through `debugElement.injector.get(ChildComponent)` and assert on its signal values.
-- Never `overrideComponent` the component under test (it drops its template coverage, angular/angular-cli#30127). Hollow out the direct children instead: `overrideComponent(ChildComponent, { set: { template: '', imports: [] } })`, marked `(hollow)` in test descriptions. `vi.mock` is not supported by the unit-test builder. Details in `src/testing/test-wording.md`, section 6.
+- Vitest with `globals: false`: import `describe`, `it`, `expect` etc. from `vitest`.
+- Use the helpers, stubs and mock data in `src/testing/`.
+- **Read `src/testing/test-conventions.md` before writing or changing specs:** titles describe results, specs split into `BEFORE`/`AFTER initial data binding`, children hollowed out (never the component under test), jsdom limits.
