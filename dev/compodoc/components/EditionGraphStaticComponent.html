@@ -259,7 +259,7 @@ of the edition view of the app.</p>
                             <li>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#GRAPH_IMAGES" >GRAPH_IMAGES</a>
+                                <a href="#graphImages" >graphImages</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
@@ -341,11 +341,11 @@ of the edition view of the app.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="GRAPH_IMAGES"></a>
+                    <a name="graphImages"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>GRAPH_IMAGES</b></span>
-                        <a href="#GRAPH_IMAGES"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>graphImages</b></span>
+                        <a href="#graphImages"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -371,7 +371,7 @@ of the edition view of the app.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Readonly variable: GRAPH_IMAGES.</p>
+                    <div class="io-description"><p>Readonly variable: graphImages.</p>
 <p>It keeps the paths to static graph images.</p>
 </div>
                 </td>
@@ -401,11 +401,11 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed&lt;string | null&gt;(() &#x3D;&gt; {
         const imageKey &#x3D; this.imageKey();
-        if (!imageKey || !Object.hasOwn(this.GRAPH_IMAGES, imageKey)) {
+        if (!imageKey || !Object.hasOwn(this.graphImages, imageKey)) {
             return null;
         }
 
-        return this.GRAPH_IMAGES[imageKey as keyof typeof this.GRAPH_IMAGES] || null;
+        return this.graphImages[imageKey as keyof typeof this.graphImages] || null;
     })</code>
                     </td>
                 </tr>
@@ -458,11 +458,11 @@ export class EditionGraphStaticComponent {
     readonly imageKey &#x3D; input&lt;string | undefined&gt;();
 
     /**
-     * Readonly variable: GRAPH_IMAGES.
+     * Readonly variable: graphImages.
      *
      * It keeps the paths to static graph images.
      */
-    readonly GRAPH_IMAGES &#x3D; {
+    readonly graphImages &#x3D; {
         OP12: &#x27;&#x27;,
         OP25: EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route,
     } satisfies Record&lt;string, string&gt;;
@@ -475,11 +475,11 @@ export class EditionGraphStaticComponent {
      */
     readonly imageSrc &#x3D; computed&lt;string | null&gt;(() &#x3D;&gt; {
         const imageKey &#x3D; this.imageKey();
-        if (!imageKey || !Object.hasOwn(this.GRAPH_IMAGES, imageKey)) {
+        if (!imageKey || !Object.hasOwn(this.graphImages, imageKey)) {
             return null;
         }
 
-        return this.GRAPH_IMAGES[imageKey as keyof typeof this.GRAPH_IMAGES] || null;
+        return this.graphImages[imageKey as keyof typeof this.graphImages] || null;
     });
 }
 </code></pre>

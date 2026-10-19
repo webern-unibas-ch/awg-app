@@ -394,8 +394,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/app/app.component.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/app.component.ts:123</a></div>
                         </td>
                     </tr>
 
@@ -483,7 +483,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/app.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/app.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -523,7 +523,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/app.component.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/app.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -563,7 +563,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/app.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/app.component.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -603,7 +603,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/app.component.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/app.component.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -643,7 +643,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/app.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/app.component.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -682,7 +682,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/app.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/app.component.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -731,13 +731,6 @@ import { ViewContainerComponent } from &#x27;./core/view-container/view-containe
 })
 export class AppComponent {
     /**
-     * Readonly signal: activateSideOutlet.
-     *
-     * It holds the state of the side outlet.
-     */
-    readonly activateSideOutlet &#x3D; signal(false);
-
-    /**
      * Private readonly injection variable: _activatedRoute.
      *
      * It keeps the instance of the injected Angular ActivatedRoute.
@@ -771,6 +764,13 @@ export class AppComponent {
      * It keeps the instance of the injected Angular Title.
      */
     private readonly _titleService &#x3D; inject(Title);
+
+    /**
+     * Readonly signal: activateSideOutlet.
+     *
+     * It holds the state of the side outlet.
+     */
+    readonly activateSideOutlet &#x3D; signal(false);
 
     /**
      * Constructor of the AppComponent.
@@ -822,7 +822,6 @@ export class AppComponent {
      * It checks if a route has a side outlet.
      *
      * @param {ActivatedRouteSnapshot} route The route to check.
-     *
      * @returns {boolean} The result of the check.
      */
     private _hasSideOutlet(route: ActivatedRouteSnapshot): boolean {

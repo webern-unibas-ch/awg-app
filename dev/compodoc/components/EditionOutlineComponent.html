@@ -267,6 +267,12 @@ during the navigation.</p>
                         <ul class="index-list">
                             <li>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionOutlineService" >_editionOutlineService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#editionOutline" >editionOutline</a>
                             </li>
@@ -298,6 +304,46 @@ during the navigation.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_editionOutlineService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionOutlineService</b></span>
+                        <a href="#_editionOutlineService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionOutlineService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-outline/edition-outline.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionOutlineService.</p>
+<p>It keeps the instance of the injected EditionOutlineService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="editionOutline"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
@@ -314,18 +360,18 @@ during the navigation.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(EditionOutlineService).editionOutline</code>
+                        <i>Default value : </i><code>this._editionOutlineService.editionOutline</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-outline/edition-outline.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-outline/edition-outline.component.ts:36</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public signal: editionOutline.</p>
+                    <div class="io-description"><p>Readonly signal: editionOutline.</p>
 <p>It holds the outline of the edition as an array of routes.</p>
 </div>
                 </td>
@@ -363,11 +409,18 @@ import { EditionSeriesCardComponent } from &#x27;./edition-series-card/edition-s
 })
 export class EditionOutlineComponent {
     /**
-     * Public signal: editionOutline.
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService &#x3D; inject(EditionOutlineService);
+
+    /**
+     * Readonly signal: editionOutline.
      *
      * It holds the outline of the edition as an array of routes.
      */
-    readonly editionOutline &#x3D; inject(EditionOutlineService).editionOutline;
+    readonly editionOutline &#x3D; this._editionOutlineService.editionOutline;
 }
 </code></pre>
     </div>

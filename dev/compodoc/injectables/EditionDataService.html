@@ -369,8 +369,8 @@ and edition report view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="397"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:397</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="396"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:396</a></div>
                         </td>
                     </tr>
 
@@ -1275,8 +1275,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="385"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:385</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="384"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:384</a></div>
                         </td>
                     </tr>
 
@@ -1480,7 +1480,7 @@ for the given data assets.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -1520,7 +1520,7 @@ for the given data assets.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -1974,18 +1974,18 @@ import { EditionStateService } from &#x27;./edition-state.service&#x27;;
 })
 export class EditionDataService {
     /**
-     * Private readonly injection variable: _http.
-     *
-     * It keeps the instance of the Angular HttpClient.
-     */
-    private readonly _http &#x3D; inject(HttpClient);
-
-    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService &#x3D; inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _http.
+     *
+     * It keeps the instance of the Angular HttpClient.
+     */
+    private readonly _http &#x3D; inject(HttpClient);
 
     /**
      * Private readonly signal holding the data error state.
@@ -2311,7 +2311,6 @@ export class EditionDataService {
      * It logs an error message to the console.
      *
      * @param {string} message The given error message to be logged.
-     *
      * @returns {void} Logs the error message to the console.
      */
     private _logError(message: string): void {

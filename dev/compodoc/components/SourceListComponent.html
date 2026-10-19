@@ -422,8 +422,8 @@ of the edition view of the app.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="78"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:78</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -501,8 +501,8 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -577,8 +577,8 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -667,7 +667,7 @@ on a source click event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -707,7 +707,7 @@ on a source click event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -754,18 +754,18 @@ import { SourceSiglumComponent } from &#x27;../source-siglum/source-siglum.compo
 })
 export class SourceListComponent {
     /**
-     * Private readonly injection variable: _navigationService
-     *
-     * It keeps the instance of the injected EditionNavigationService.
-     */
-    private readonly _navigationService &#x3D; inject(EditionNavigationService);
-
-    /**
      * Private readonly injection variable: _editionModalService
      *
      * It keeps the instance of the injected EditionModalService.
      */
     private readonly _editionModalService &#x3D; inject(EditionModalService);
+
+    /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService &#x3D; inject(EditionNavigationService);
 
     /**
      * Input variable: sourceListData.
@@ -781,7 +781,6 @@ export class SourceListComponent {
      * on a source click event.
      *
      * @param {Source} source The given source.
-     *
      * @returns {void} Navigates to a report fragment or opens a modal.
      */
     onSourceClick(source: Source): void {

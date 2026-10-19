@@ -438,21 +438,21 @@ export class ButtonMoreComponent {
      *
      * It holds the target route for the button.
      */
-    targetRoute &#x3D; input.required&lt;string[]&gt;();
+    readonly targetRoute &#x3D; input.required&lt;string[]&gt;();
 
     /**
      * Readonly input signal: queryParams.
      *
      * It holds the query parameters for the button&#x27;s target route.
      */
-    queryParams &#x3D; input&lt;Record&lt;string, string&gt; | null&gt;(null);
+    readonly queryParams &#x3D; input&lt;Record&lt;string, string&gt; | null&gt;(null);
 
     /**
      * Readonly input signal: disabled.
      *
      * It holds the disabled state of the button.
      */
-    disabled &#x3D; input&lt;boolean&gt;(false);
+    readonly disabled &#x3D; input&lt;boolean&gt;(false);
 }
 </code></pre>
     </div>

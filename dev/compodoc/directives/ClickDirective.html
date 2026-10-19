@@ -245,7 +245,7 @@ emit only once through their synthesized click.</p>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_hostElement" >_hostElement</a>
+                                <a href="#_elementRef" >_elementRef</a>
                             </li>
                         </ul>
                     </td>
@@ -331,19 +331,18 @@ emit only once through their synthesized click.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>!isLinkElement(this._hostElement)</code>
+                        <i>Default value : </i><code>!isLinkElement(this._elementRef.nativeElement)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/click/click.directive.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/shared/click/click.directive.ts:58</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Readonly input signal: clickOnSpace.</p>
-<p>It holds a boolean flag if the Space key emits a click.
-true (false for links)</p>
+<p>It holds a boolean flag if the Space key emits a click (by default not for links).</p>
 </div>
                     </td>
                 </tr>
@@ -369,7 +368,7 @@ true (false for links)</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/shared/click/click.directive.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/shared/click/click.directive.ts:65</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -412,8 +411,8 @@ true (false for links)</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/app/shared/click/click.directive.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/shared/click/click.directive.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -489,8 +488,8 @@ on the keyboard. Only ancestors within the host element are considered.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/app/shared/click/click.directive.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/shared/click/click.directive.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -566,8 +565,8 @@ unless the browser activates the target itself.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/app/shared/click/click.directive.ts:92</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/shared/click/click.directive.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -634,24 +633,24 @@ and unless the browser activates the target itself.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_hostElement"></a>
+                    <a name="_elementRef"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_hostElement</b></span>
-                        <a href="#_hostElement"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_elementRef</b></span>
+                        <a href="#_elementRef"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Element</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(ElementRef).nativeElement</code>
+                        <i>Default value : </i><code>inject&lt;ElementRef&lt;Element&gt;&gt;(ElementRef)</code>
                     </td>
                 </tr>
                     <tr>
@@ -662,8 +661,8 @@ and unless the browser activates the target itself.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly injection variable: _hostElement.</p>
-<p>It keeps the host element of the directive.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _elementRef.</p>
+<p>It keeps the reference to the host element of the directive.</p>
 </div>
                 </td>
             </tr>
@@ -722,19 +721,18 @@ function isLinkElement(element: Element): boolean {
 })
 export class ClickDirective {
     /**
-     * Private readonly injection variable: _hostElement.
+     * Private readonly injection variable: _elementRef.
      *
-     * It keeps the host element of the directive.
+     * It keeps the reference to the host element of the directive.
      */
-    private readonly _hostElement: Element &#x3D; inject(ElementRef).nativeElement;
+    private readonly _elementRef &#x3D; inject&lt;ElementRef&lt;Element&gt;&gt;(ElementRef);
 
     /**
      * Readonly input signal: clickOnSpace.
      *
-     * It holds a boolean flag if the Space key emits a click.
-     * @default true (false for links)
+     * It holds a boolean flag if the Space key emits a click (by default not for links).
      */
-    readonly clickOnSpace &#x3D; input(!isLinkElement(this._hostElement), { transform: booleanAttribute });
+    readonly clickOnSpace &#x3D; input(!isLinkElement(this._elementRef.nativeElement), { transform: booleanAttribute });
 
     /**
      * Readonly output signal: awgClick.
@@ -786,7 +784,7 @@ export class ClickDirective {
         const nativeElement &#x3D; target instanceof Element ? target.closest(NATIVE_ACTIVATION_SELECTOR) : null;
 
         // &#x60;contains&#x60; includes the host element itself
-        return !!nativeElement &amp;&amp; this._hostElement.contains(nativeElement);
+        return !!nativeElement &amp;&amp; this._elementRef.nativeElement.contains(nativeElement);
     }
 }
 </code></pre>

@@ -691,7 +691,7 @@ selecting any other content segment opens its text modal.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -731,7 +731,7 @@ selecting any other content segment opens its text modal.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -771,7 +771,7 @@ selecting any other content segment opens its text modal.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -1032,6 +1032,13 @@ import { EditionNavigationService } from &#x27;@awg-views/edition-view/services/
 })
 export class EditionFoliosViewerSvgComponent {
     /**
+     * Private readonly injection variable: _editionModalService.
+     *
+     * It keeps the instance of the injected EditionModalService.
+     */
+    private readonly _editionModalService &#x3D; inject(EditionModalService);
+
+    /**
      * Private readonly injection variable: _folioDrawingService.
      *
      * It keeps the instance of the injected EditionFolioDrawingService.
@@ -1044,13 +1051,6 @@ export class EditionFoliosViewerSvgComponent {
      * It keeps the instance of the injected EditionFolioSegmentService.
      */
     private readonly _folioSegmentService &#x3D; inject(EditionFolioSegmentService);
-
-    /**
-     * Private readonly injection variable: _editionModalService.
-     *
-     * It keeps the instance of the injected EditionModalService.
-     */
-    private readonly _editionModalService &#x3D; inject(EditionModalService);
 
     /**
      * Private readonly injection variable: _navigationService.

@@ -338,7 +338,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Model signal: selectedLanguage.</p>
+                        <div class="io-description"><p>Readonly model signal: selectedLanguage.</p>
 <p>It holds the selected language id.</p>
 </div>
                     </td>
@@ -370,7 +370,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Model signal: selectedLanguage.</p>
+                        <div class="io-description"><p>Readonly model signal: selectedLanguage.</p>
 <p>It holds the selected language id.</p>
 </div>
                     </td>
@@ -455,11 +455,11 @@ import { LanguageId } from &#x27;./language.model&#x27;;
 })
 export class LanguageSwitcherComponent {
     /**
-     * Model signal: selectedLanguage.
+     * Readonly model signal: selectedLanguage.
      *
      * It holds the selected language id.
      */
-    selectedLanguage &#x3D; model.required&lt;LanguageId&gt;();
+    readonly selectedLanguage &#x3D; model.required&lt;LanguageId&gt;();
 
     /**
      * Protected readonly variable: languages.

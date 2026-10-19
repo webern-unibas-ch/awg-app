@@ -297,6 +297,13 @@ of the edition view of the app.</p>
                         <ul class="index-list">
                             <li>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionViewService" >_editionViewService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#selectedLanguage" >selectedLanguage</a>
                             </li>
                             <li>
@@ -332,8 +339,49 @@ of the edition view of the app.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_editionViewService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionViewService</b></span>
+                        <a href="#_editionViewService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionViewService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionViewService.</p>
+<p>It keeps the instance of the injected EditionViewService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="selectedLanguage"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>selectedLanguage</b></span>
                         <a href="#selectedLanguage"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -352,13 +400,13 @@ of the edition view of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:44</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public signal: selectedLanguage.</p>
+                    <div class="io-description"><p>Readonly signal: selectedLanguage.</p>
 <p>It holds the selected language of the edition preface.</p>
 </div>
                 </td>
@@ -386,12 +434,12 @@ of the edition view of the app.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(EditionViewService).prefaceViewData</code>
+                        <i>Default value : </i><code>this._editionViewService.prefaceViewData</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -436,18 +484,25 @@ import { LanguageId } from &#x27;@awg-views/edition-view/shared/language-switche
 })
 export class EditionPrefaceComponent {
     /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService &#x3D; inject(EditionViewService);
+
+    /**
      * Readonly signal: viewData.
      *
      * It holds the state of the preface view data.
      */
-    readonly viewData &#x3D; inject(EditionViewService).prefaceViewData;
+    readonly viewData &#x3D; this._editionViewService.prefaceViewData;
 
     /**
-     * Public signal: selectedLanguage.
+     * Readonly signal: selectedLanguage.
      *
      * It holds the selected language of the edition preface.
      */
-    selectedLanguage &#x3D; signal&lt;LanguageId&gt;(LanguageId.DE);
+    readonly selectedLanguage &#x3D; signal&lt;LanguageId&gt;(LanguageId.DE);
 }
 </code></pre>
     </div>

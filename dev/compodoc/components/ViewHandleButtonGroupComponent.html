@@ -371,7 +371,7 @@ to switch between the given view types.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:42</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -404,14 +404,13 @@ to switch between the given view types.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:35</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Readonly input signal: viewHandles.</p>
-<p>It holds the list of view handles.
-[]</p>
+<p>It holds the list of view handles.</p>
 </div>
                     </td>
                 </tr>
@@ -437,7 +436,7 @@ to switch between the given view types.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:49</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -478,8 +477,8 @@ to switch between the given view types.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:79</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -569,7 +568,7 @@ so that a rejected change does not leave the clicked radio button checked
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -609,7 +608,7 @@ also used as prefix of the ids of its radio buttons.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/shared/view-handle-button-group/view-handle-button-group.component.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -659,18 +658,9 @@ let nextGroupId &#x3D; 0;
 })
 export class ViewHandleButtonGroupComponent {
     /**
-     * Readonly variable: groupName.
-     *
-     * It keeps the unique name of the radio group of this instance,
-     * also used as prefix of the ids of its radio buttons.
-     */
-    readonly groupName &#x3D; &#x60;awg-view-handle-${nextGroupId++}&#x60;;
-
-    /**
      * Readonly input signal: viewHandles.
      *
      * It holds the list of view handles.
-     * @default []
      */
     readonly viewHandles &#x3D; input&lt;ViewHandle[]&gt;([]);
 
@@ -696,6 +686,14 @@ export class ViewHandleButtonGroupComponent {
     readonly radioInputs &#x3D; viewChildren&lt;ElementRef&lt;HTMLInputElement&gt;&gt;(&#x27;radioInput&#x27;);
 
     /**
+     * Readonly variable: groupName.
+     *
+     * It keeps the unique name of the radio group of this instance,
+     * also used as prefix of the ids of its radio buttons.
+     */
+    readonly groupName &#x3D; &#x60;awg-view-handle-${nextGroupId++}&#x60;;
+
+    /**
      * Public method: onViewChange.
      *
      * It emits a given view type to the {@link viewChangeRequest}
@@ -704,7 +702,6 @@ export class ViewHandleButtonGroupComponent {
      * (an accepted change updates the checked state via the input binding).
      *
      * @param {ViewHandleTypes} viewType The given view type.
-     *
      * @returns {void} Emits the view type.
      */
     onViewChange(viewType: ViewHandleTypes): void {

@@ -586,7 +586,7 @@ and it updates the tkk overlays according to their state.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Model signal: zoomValue.</p>
+                        <div class="io-description"><p>Readonly model signal: zoomValue.</p>
 <p>It holds the current zoom factor of the svg sheet (two-way bound).</p>
 </div>
                     </td>
@@ -674,7 +674,7 @@ and it updates the tkk overlays according to their state.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Model signal: zoomValue.</p>
+                        <div class="io-description"><p>Readonly model signal: zoomValue.</p>
 <p>It holds the current zoom factor of the svg sheet (two-way bound).</p>
 </div>
                     </td>
@@ -1278,7 +1278,7 @@ and emits the selected tkk overlays.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:152</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:161</a></div>
                         </td>
                     </tr>
 
@@ -1401,7 +1401,7 @@ and emits the selected tkk overlays.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:159</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:151</a></div>
                         </td>
                     </tr>
 
@@ -1738,7 +1738,7 @@ export class EditionSheetViewerSvgComponent {
     readonly zoomConfig &#x3D; input.required&lt;ZoomConfig&gt;();
 
     /**
-     * Model signal: zoomValue.
+     * Readonly model signal: zoomValue.
      *
      * It holds the current zoom factor of the svg sheet (two-way bound).
      */
@@ -1804,14 +1804,6 @@ export class EditionSheetViewerSvgComponent {
     readonly suppliedClasses &#x3D; signal&lt;string[]&gt;([]);
 
     /**
-     * Private variable: _renderQueue.
-     *
-     * It keeps the promise chain of the sheet renderings
-     * (renderings never overlap, outdated sheets are skipped).
-     */
-    private _renderQueue: Promise&lt;void&gt; &#x3D; Promise.resolve();
-
-    /**
      * Private readonly computed signal: _svgRootGroupSelection.
      *
      * It holds the d3 selection of the svg root group (the element is stable across renderings).
@@ -1819,6 +1811,14 @@ export class EditionSheetViewerSvgComponent {
     private readonly _svgRootGroupSelection &#x3D; computed&lt;D3Selection&gt;(
         () &#x3D;&gt; D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
     );
+
+    /**
+     * Private variable: _renderQueue.
+     *
+     * It keeps the promise chain of the sheet renderings
+     * (renderings never overlap, outdated sheets are skipped).
+     */
+    private _renderQueue: Promise&lt;void&gt; &#x3D; Promise.resolve();
 
     /**
      * Constructor of the EditionSheetViewerSvgComponent.

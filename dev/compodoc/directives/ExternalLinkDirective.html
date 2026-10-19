@@ -265,11 +265,13 @@ adds specific attributes if href has an external target.</p>
                             <li>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#isExternal" >isExternal</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#resolvedRel" >resolvedRel</a>
                             </li>
                         </ul>
@@ -361,14 +363,13 @@ adds specific attributes if href has an external target.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:39</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Readonly input signal: rel.</p>
-<p>It holds the (optional) existing rel value of a link.
-&#39;&#39;</p>
+<p>It holds the (optional) existing rel value of a link.</p>
 </div>
                     </td>
                 </tr>
@@ -432,6 +433,7 @@ adds specific attributes if href has an external target.</p>
                     <a name="isExternal"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>isExternal</b></span>
                         <a href="#isExternal"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -465,13 +467,13 @@ adds specific attributes if href has an external target.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:48</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Protected computed signal: isExternal.</p>
+                    <div class="io-description"><p>Protected readonly computed signal: isExternal.</p>
 <p>It checks if the href value is an external link.</p>
 </div>
                 </td>
@@ -486,6 +488,7 @@ adds specific attributes if href has an external target.</p>
                     <a name="resolvedRel"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>resolvedRel</b></span>
                         <a href="#resolvedRel"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -516,13 +519,13 @@ adds specific attributes if href has an external target.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:73</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Protected computed signal: resolvedRel.</p>
+                    <div class="io-description"><p>Protected readonly computed signal: resolvedRel.</p>
 <p>It merges existing rel inputs with security attributes (&#39;noopener noreferrer&#39;)
 for external links, or returns the original rel value for internal links.</p>
 </div>
@@ -574,18 +577,17 @@ export class ExternalLinkDirective {
      * Readonly input signal: rel.
      *
      * It holds the (optional) existing rel value of a link.
-     * @default &#x27;&#x27;
      */
     readonly rel &#x3D; input&lt;string&gt;(&#x27;&#x27;);
 
     /**
-     * Protected computed signal: isExternal.
+     * Protected readonly computed signal: isExternal.
      *
      * It checks if the href value is an external link.
      *
      * @returns {boolean} True if href is an external link, false otherwise.
      */
-    protected isExternal &#x3D; computed&lt;boolean&gt;(() &#x3D;&gt; {
+    protected readonly isExternal &#x3D; computed&lt;boolean&gt;(() &#x3D;&gt; {
         const url &#x3D; this.href()?.trim();
         if (!url || !isPlatformBrowser(this._platformId)) {
             return false;
@@ -603,14 +605,14 @@ export class ExternalLinkDirective {
     });
 
     /**
-     * Protected computed signal: resolvedRel.
+     * Protected readonly computed signal: resolvedRel.
      *
      * It merges existing rel inputs with security attributes (&#x27;noopener noreferrer&#x27;)
      * for external links, or returns the original rel value for internal links.
      *
      * @returns {string | null} The resolved rel value or null if not applicable.
      */
-    protected resolvedRel &#x3D; computed&lt;string | null&gt;(() &#x3D;&gt; {
+    protected readonly resolvedRel &#x3D; computed&lt;string | null&gt;(() &#x3D;&gt; {
         const baseRel &#x3D; this.rel();
 
         if (!this.isExternal()) {

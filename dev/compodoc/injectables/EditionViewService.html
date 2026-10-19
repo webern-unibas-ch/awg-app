@@ -1132,7 +1132,7 @@ It is also updated on every URL change of the ActivatedRoute.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -1172,7 +1172,7 @@ It is also updated on every URL change of the ActivatedRoute.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -1560,18 +1560,18 @@ export class EditionViewService {
     private readonly _loadingService &#x3D; inject(LoadingService);
 
     /**
-     * Private readonly injection variable: _router.
-     *
-     * It keeps the instance of the injected Angular Router.
-     */
-    private readonly _router &#x3D; inject(Router);
-
-    /**
      * Private readonly injection variable: _route.
      *
      * It keeps the instance of the injected ActivatedRoute.
      */
     private readonly _route &#x3D; inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router &#x3D; inject(Router);
 
     /**
      * Private readonly signal holding the last active view state.

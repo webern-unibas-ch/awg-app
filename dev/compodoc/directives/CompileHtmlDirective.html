@@ -1049,7 +1049,7 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/edition-view/shared/compile-html/compile-html.directive.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/shared/compile-html/compile-html.directive.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -1089,7 +1089,7 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/shared/compile-html/compile-html.directive.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/shared/compile-html/compile-html.directive.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -1169,7 +1169,7 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/views/edition-view/shared/compile-html/compile-html.directive.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/edition-view/shared/compile-html/compile-html.directive.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -1209,7 +1209,7 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/shared/compile-html/compile-html.directive.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/views/edition-view/shared/compile-html/compile-html.directive.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -1252,18 +1252,18 @@ import { ABBR_UTILS } from &#x27;../abbr/abbr.utils&#x27;;
 })
 export class CompileHtmlDirective {
     /**
+     * Private readonly injection variable: _editionModalService
+     *
+     * It keeps the instance of the injected EditionModalService.
+     */
+    private readonly _editionModalService &#x3D; inject(EditionModalService);
+
+    /**
      * Private readonly injection variable: _el
      *
      * It keeps the instance of the injected ElementRef.
      */
     private readonly _el &#x3D; inject(ElementRef);
-
-    /**
-     * Private readonly injection variable: _renderer
-     *
-     * It keeps the instance of the injected Renderer2.
-     */
-    private readonly _renderer &#x3D; inject(Renderer2);
 
     /**
      * Private readonly injection variable: _glyphService
@@ -1273,18 +1273,18 @@ export class CompileHtmlDirective {
     private readonly _glyphService &#x3D; inject(EditionGlyphService);
 
     /**
-     * Private readonly injection variable: _editionModalService
-     *
-     * It keeps the instance of the injected EditionModalService.
-     */
-    private readonly _editionModalService &#x3D; inject(EditionModalService);
-
-    /**
      * Private readonly injection variable: _navigationService
      *
      * It keeps the instance of the injected EditionNavigationService.
      */
     private readonly _navigationService &#x3D; inject(EditionNavigationService);
+
+    /**
+     * Private readonly injection variable: _renderer
+     *
+     * It keeps the instance of the injected Renderer2.
+     */
+    private readonly _renderer &#x3D; inject(Renderer2);
 
     /**
      * Readonly input signal: htmlContent.

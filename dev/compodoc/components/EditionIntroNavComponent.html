@@ -422,7 +422,7 @@ of the edition view of the app.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Model signal: selectedLanguage.</p>
+                        <div class="io-description"><p>Readonly model signal: selectedLanguage.</p>
 <p>It holds the selected language id.</p>
 </div>
                     </td>
@@ -454,7 +454,7 @@ of the edition view of the app.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Model signal: selectedLanguage.</p>
+                        <div class="io-description"><p>Readonly model signal: selectedLanguage.</p>
 <p>It holds the selected language id.</p>
 </div>
                     </td>
@@ -507,11 +507,11 @@ export class EditionIntroNavComponent {
     readonly notesLabel &#x3D; input.required&lt;string&gt;();
 
     /**
-     * Model signal: selectedLanguage.
+     * Readonly model signal: selectedLanguage.
      *
      * It holds the selected language id.
      */
-    selectedLanguage &#x3D; model.required&lt;LanguageId&gt;();
+    readonly selectedLanguage &#x3D; model.required&lt;LanguageId&gt;();
 }
 </code></pre>
     </div>

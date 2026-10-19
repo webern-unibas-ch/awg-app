@@ -476,7 +476,7 @@ If true, the accordion item is open and disabled.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Model signal: query.</p>
+                        <div class="io-description"><p>Readonly model signal: query.</p>
 <p>It holds the SPARQL query (two-way bound with the editor).</p>
 </div>
                     </td>
@@ -597,7 +597,7 @@ If true, the accordion item is open and disabled.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Model signal: query.</p>
+                        <div class="io-description"><p>Readonly model signal: query.</p>
 <p>It holds the SPARQL query (two-way bound with the editor).</p>
 </div>
                     </td>
@@ -705,8 +705,8 @@ If true, the accordion item is open and disabled.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="141"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/editor/sparql/graph-editor-sparql.component.ts:141</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/editor/sparql/graph-editor-sparql.component.ts:140</a></div>
                         </td>
                     </tr>
 
@@ -781,8 +781,8 @@ If true, the accordion item is open and disabled.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="155"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/editor/sparql/graph-editor-sparql.component.ts:155</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="153"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/editor/sparql/graph-editor-sparql.component.ts:153</a></div>
                         </td>
                     </tr>
 
@@ -858,8 +858,8 @@ and performs the switched query.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="169"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/editor/sparql/graph-editor-sparql.component.ts:169</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/editor/sparql/graph-editor-sparql.component.ts:167</a></div>
                         </td>
                     </tr>
 
@@ -904,8 +904,8 @@ to the <a href="errorMessageRequest">errorMessageRequest</a>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="186"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/editor/sparql/graph-editor-sparql.component.ts:186</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="183"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/editor/sparql/graph-editor-sparql.component.ts:183</a></div>
                         </td>
                     </tr>
 
@@ -1186,7 +1186,7 @@ export class GraphEditorSparqlComponent {
     readonly queryList &#x3D; input&lt;GraphQuery[]&gt;([]);
 
     /**
-     * Model signal: query.
+     * Readonly model signal: query.
      *
      * It holds the SPARQL query (two-way bound with the editor).
      */
@@ -1275,7 +1275,6 @@ export class GraphEditorSparqlComponent {
      * It updates the query with a given query string.
      *
      * @param {string} queryString The given query string.
-     *
      * @returns {void} Updates the query.
      */
     onQueryStringChange(queryString: string): void {
@@ -1289,7 +1288,6 @@ export class GraphEditorSparqlComponent {
      * and performs the switched query.
      *
      * @param {ViewHandleTypes} viewType The given view type.
-     *
      * @returns {void} Performs a new query with switched query type.
      */
     onViewChange(viewType: ViewHandleTypes): void {
@@ -1320,7 +1318,6 @@ export class GraphEditorSparqlComponent {
      * It emits a given query to the {@link resetQueryRequest}.
      *
      * @param {GraphQuery} query The given query.
-     *
      * @returns {void} Triggers the request.
      */
     resetQuery(query: GraphQuery): void {
