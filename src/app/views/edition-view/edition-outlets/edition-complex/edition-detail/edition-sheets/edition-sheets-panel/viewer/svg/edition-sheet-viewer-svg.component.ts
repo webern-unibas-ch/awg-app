@@ -189,7 +189,8 @@ export class EditionSheetViewerSvgComponent {
      * @returns {void} Sets the visibility of the editorial addition.
      */
     onAdditionVisibilityChange({ key, isVisible }: EditionSheetViewerAdditionsPanelChange): void {
-        if ((key as EditionSvgOverlayTypes) === EditionSvgOverlayTypes.tkk) {
+        const tkkKey: string = EditionSvgOverlayTypes.tkk;
+        if (key === tkkKey) {
             this._updateTkkOverlaysSelection(state =>
                 this._svgOverlayService.setTkkOverlaysHighlight(state, isVisible)
             );

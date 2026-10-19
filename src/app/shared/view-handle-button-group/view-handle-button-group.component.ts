@@ -77,9 +77,9 @@ export class ViewHandleButtonGroupComponent {
     onViewChange(viewType: ViewHandleTypes): void {
         this.viewChangeRequest.emit(viewType);
 
-        const selectedViewType = this.selectedViewType();
+        const selectedViewType: string = this.selectedViewType();
         this.radioInputs().forEach(({ nativeElement }) => {
-            nativeElement.checked = (nativeElement.value as ViewHandleTypes) === selectedViewType;
+            nativeElement.checked = nativeElement.value === selectedViewType;
         });
     }
 }

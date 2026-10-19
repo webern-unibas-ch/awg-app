@@ -44,6 +44,12 @@ export default defineConfig(
         ...config,
         files: ['**/*.ts'],
     })),
+    ...[...typescriptEslint.configs.strictTypeChecked, ...typescriptEslint.configs.stylisticTypeChecked].map(
+        config => ({
+            ...config,
+            files: ['**/*.ts'],
+        })
+    ),
     {
         files: ['**/*.ts'],
 
@@ -156,6 +162,7 @@ export default defineConfig(
                     format: null,
                 },
             ],
+            '@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
             '@typescript-eslint/no-deprecated': 'warn',
             '@typescript-eslint/no-inferrable-types': [
                 'error',
@@ -165,15 +172,31 @@ export default defineConfig(
             ],
             '@typescript-eslint/no-misused-new': 'error',
             '@typescript-eslint/no-non-null-assertion': 'error',
+            // Conflicts with no-non-null-assertion (it would turn assertions into `!`)
+            '@typescript-eslint/non-nullable-type-assertion-style': 'off',
             '@typescript-eslint/no-shadow': [
                 'error',
                 {
                     hoist: 'all',
                 },
             ],
+            // Defensive checks are deliberate: the edition data is unvalidated static JSON despite non-nullable types
+            '@typescript-eslint/no-unnecessary-condition': 'off',
             '@typescript-eslint/no-unused-expressions': 'error',
             '@typescript-eslint/no-use-before-define': 'error',
             '@typescript-eslint/prefer-function-type': 'error',
+            // Strict preset options, but numbers are allowed in template literals
+            '@typescript-eslint/restrict-template-expressions': [
+                'error',
+                {
+                    allowAny: false,
+                    allowBoolean: false,
+                    allowNever: false,
+                    allowNullish: false,
+                    allowNumber: true,
+                    allowRegExp: false,
+                },
+            ],
             '@typescript-eslint/unified-signatures': 'error',
             'arrow-body-style': 'error',
             'capitalized-comments': [
@@ -253,6 +276,52 @@ export default defineConfig(
                     markers: [',/'],
                 },
             ],
+        },
+    },
+
+    // TODO(lint-audit): transitional warnings for preset rules that still have findings;
+    // each entry is removed together with the commit that fixes its findings
+    {
+        files: ['**/*.ts'],
+        rules: {
+            '@typescript-eslint/adjacent-overload-signatures': 'warn',
+            '@typescript-eslint/no-empty-object-type': 'warn',
+            '@typescript-eslint/no-explicit-any': 'warn',
+            '@typescript-eslint/no-extraneous-class': 'warn',
+            '@typescript-eslint/no-implied-eval': 'warn',
+            '@typescript-eslint/no-misused-spread': 'warn',
+            '@typescript-eslint/no-unsafe-argument': 'warn',
+            '@typescript-eslint/no-unsafe-assignment': 'warn',
+            '@typescript-eslint/no-unsafe-call': 'warn',
+            '@typescript-eslint/no-unsafe-function-type': 'warn',
+            '@typescript-eslint/no-unsafe-member-access': 'warn',
+            '@typescript-eslint/no-unsafe-return': 'warn',
+            '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+            '@typescript-eslint/prefer-promise-reject-errors': 'warn',
+            '@typescript-eslint/related-getter-setter-pairs': 'warn',
+            '@typescript-eslint/unbound-method': 'warn',
+        },
+    },
+
+    // Specs and test helpers: test doubles are loosely typed, mock data is copied by spread,
+    // and methods are referenced unbound in expectations
+    {
+        files: ['**/*.spec.ts', 'src/testing/**/*.ts'],
+        rules: {
+            // Bracket access to private and protected members is the test convention (`component['_method']`)
+            '@typescript-eslint/dot-notation': [
+                'error',
+                { allowPrivateClassPropertyAccess: true, allowProtectedClassPropertyAccess: true },
+            ],
+            '@typescript-eslint/no-empty-function': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-misused-spread': 'off',
+            '@typescript-eslint/no-unsafe-argument': 'off',
+            '@typescript-eslint/no-unsafe-assignment': 'off',
+            '@typescript-eslint/no-unsafe-call': 'off',
+            '@typescript-eslint/no-unsafe-member-access': 'off',
+            '@typescript-eslint/no-unsafe-return': 'off',
+            '@typescript-eslint/unbound-method': 'off',
         },
     },
 
