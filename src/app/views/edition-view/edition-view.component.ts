@@ -46,11 +46,25 @@ export class EditionViewComponent {
     private readonly _destroyRef = inject(DestroyRef);
 
     /**
+     * Private readonly injection variable: _editionBreadcrumbService.
+     *
+     * It keeps the instance of the injected EditionBreadcrumbService.
+     */
+    private readonly _editionBreadcrumbService = inject(EditionBreadcrumbService);
+
+    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
 
     /**
      * Readonly variable: editionViewId.
@@ -71,7 +85,7 @@ export class EditionViewComponent {
      *
      * It holds the state of the view context.
      */
-    readonly viewContext = inject(EditionViewService).viewContext;
+    readonly viewContext = this._editionViewService.viewContext;
 
     /**
      * Readonly signal: selectedEditionComplex.
@@ -99,7 +113,7 @@ export class EditionViewComponent {
      *
      * It holds the labeled route items for the breadcrumb.
      */
-    readonly breadcrumbItems = inject(EditionBreadcrumbService).getBreadcrumbItems(
+    readonly breadcrumbItems = this._editionBreadcrumbService.getBreadcrumbItems(
         this.viewContext,
         this.selectedEditionComplex,
         this.selectedEditionSeries,

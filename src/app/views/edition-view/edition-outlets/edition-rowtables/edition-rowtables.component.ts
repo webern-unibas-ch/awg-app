@@ -21,9 +21,16 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
 })
 export class EditionRowtablesComponent {
     /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
+
+    /**
      * Readonly signal: viewData.
      *
      * It holds the state of the rowtables view data from the EditionViewService.
      */
-    readonly viewData = inject(EditionViewService).rowtablesViewData;
+    readonly viewData = this._editionViewService.rowtablesViewData;
 }

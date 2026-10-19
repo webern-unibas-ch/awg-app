@@ -28,14 +28,6 @@ let nextGroupId = 0;
 })
 export class ViewHandleButtonGroupComponent {
     /**
-     * Readonly variable: groupName.
-     *
-     * It keeps the unique name of the radio group of this instance,
-     * also used as prefix of the ids of its radio buttons.
-     */
-    readonly groupName = `awg-view-handle-${nextGroupId++}`;
-
-    /**
      * Readonly input signal: viewHandles.
      *
      * It holds the list of view handles.
@@ -63,6 +55,14 @@ export class ViewHandleButtonGroupComponent {
      * It holds the radio input elements of the view handles.
      */
     readonly radioInputs = viewChildren<ElementRef<HTMLInputElement>>('radioInput');
+
+    /**
+     * Readonly variable: groupName.
+     *
+     * It keeps the unique name of the radio group of this instance,
+     * also used as prefix of the ids of its radio buttons.
+     */
+    readonly groupName = `awg-view-handle-${nextGroupId++}`;
 
     /**
      * Public method: onViewChange.

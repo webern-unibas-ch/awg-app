@@ -16,6 +16,13 @@ import { CanvasDragEvent, CanvasDragGesture, CanvasDragMove, CanvasDragSubjectAc
 })
 export class CanvasDragDirective<T> {
     /**
+     * Private readonly injection variable: _elementRef.
+     *
+     * It keeps the reference to the host canvas element.
+     */
+    private readonly _elementRef = inject<ElementRef<HTMLCanvasElement>>(ElementRef);
+
+    /**
      * Readonly input signal: dragSubject.
      *
      * It holds the accessor that finds the drag subject at a given point of the canvas.
@@ -41,7 +48,7 @@ export class CanvasDragDirective<T> {
      *
      * It keeps the host canvas element.
      */
-    private readonly _canvasEl: HTMLCanvasElement = inject(ElementRef).nativeElement;
+    private readonly _canvasEl = this._elementRef.nativeElement;
 
     /**
      * Private readonly variable: _canvas.

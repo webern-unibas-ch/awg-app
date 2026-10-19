@@ -16,6 +16,13 @@ import { EditionStateService } from './edition-state.service';
 })
 export class EditionNavigationService {
     /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
      * Private readonly injection variable: _router.
      *
      * It keeps the instance of the injected Angular Router.
@@ -27,7 +34,7 @@ export class EditionNavigationService {
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
      * Public method: navigateToIntroFragment.

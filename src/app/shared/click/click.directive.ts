@@ -44,11 +44,11 @@ function isLinkElement(element: Element): boolean {
 })
 export class ClickDirective {
     /**
-     * Private readonly injection variable: _hostElement.
+     * Private readonly injection variable: _elementRef.
      *
-     * It keeps the host element of the directive.
+     * It keeps the reference to the host element of the directive.
      */
-    private readonly _hostElement: Element = inject(ElementRef).nativeElement;
+    private readonly _elementRef = inject<ElementRef<Element>>(ElementRef);
 
     /**
      * Readonly input signal: clickOnSpace.
@@ -56,7 +56,7 @@ export class ClickDirective {
      * It holds a boolean flag if the Space key emits a click.
      * @default true (false for links)
      */
-    readonly clickOnSpace = input(!isLinkElement(this._hostElement), { transform: booleanAttribute });
+    readonly clickOnSpace = input(!isLinkElement(this._elementRef.nativeElement), { transform: booleanAttribute });
 
     /**
      * Readonly output signal: awgClick.
@@ -108,6 +108,6 @@ export class ClickDirective {
         const nativeElement = target instanceof Element ? target.closest(NATIVE_ACTIVATION_SELECTOR) : null;
 
         // `contains` includes the host element itself
-        return !!nativeElement && this._hostElement.contains(nativeElement);
+        return !!nativeElement && this._elementRef.nativeElement.contains(nativeElement);
     }
 }

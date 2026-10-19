@@ -39,6 +39,13 @@ import { EditionSheetViewerComponent } from './viewer/edition-sheet-viewer.compo
 })
 export class EditionSheetsPanelComponent {
     /**
+     * Private readonly injection variable: _fullscreenService.
+     *
+     * It keeps the instance of the injected FullscreenService.
+     */
+    private readonly _fullscreenService = inject(FullscreenService);
+
+    /**
      * Model signal: isSheetFacetMinimized.
      *
      * It holds the toggle state of the sheet facet (two-way bound).
@@ -93,5 +100,5 @@ export class EditionSheetsPanelComponent {
      *
      * It holds the fullscreen status.
      */
-    readonly isFullscreen = inject(FullscreenService).isFullscreen;
+    readonly isFullscreen = this._fullscreenService.isFullscreen;
 }

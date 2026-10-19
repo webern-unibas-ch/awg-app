@@ -38,11 +38,18 @@ const EDITION_DETAIL_ROUTES = [EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT, ED
 })
 export class EditionDetailNavComponent {
     /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
      * Readonly computed signal: editionDetailNavLinks.

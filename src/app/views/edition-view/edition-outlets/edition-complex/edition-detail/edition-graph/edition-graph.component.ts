@@ -31,16 +31,30 @@ import { EditionGraphStaticComponent } from './edition-graph-static/edition-grap
 })
 export class EditionGraphComponent {
     /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
+
+    /**
      * Readonly signal: viewData.
      *
      * It holds the state of the graph view data.
      */
-    readonly viewData = inject(EditionViewService).graphViewData;
+    readonly viewData = this._editionViewService.graphViewData;
 
     /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 }

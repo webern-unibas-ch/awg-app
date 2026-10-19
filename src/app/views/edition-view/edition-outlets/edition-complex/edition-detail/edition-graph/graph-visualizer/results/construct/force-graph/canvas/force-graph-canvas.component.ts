@@ -182,21 +182,6 @@ export class ForceGraphCanvasComponent {
     }));
 
     /**
-     * Readonly variable: dragSubject.
-     *
-     * It keeps the drag subject accessor of the canvas drag: the visible node at a point, if any (none while loading).
-     */
-    readonly dragSubject: CanvasDragSubjectAccessor<ForceGraphVisibleNode> = point =>
-        this.isLayoutLoading() ? undefined : this._findVisibleNodeAtPoint(point);
-
-    /**
-     * Readonly variable: zoomFilter.
-     *
-     * It keeps the filter of the canvas zoom: a pointer-down on a node starts a drag instead of a pan.
-     */
-    readonly zoomFilter: CanvasZoomFilter = event => !this._findVisibleNodeAtEvent(event);
-
-    /**
      * Private readonly variable: _drawScheduler.
      *
      * It keeps the scheduler of the drawings (at most one per animation frame).
@@ -248,6 +233,29 @@ export class ForceGraphCanvasComponent {
             });
         });
     }
+
+    /**
+     * Public readonly method: dragSubject.
+     *
+     * It finds the drag subject of the canvas drag: the visible node at a given point, if any (none while loading).
+     *
+     * @param {CanvasPoint} point The given point on the canvas.
+     * @returns {ForceGraphVisibleNode | undefined} The visible node at the given point, if any.
+     */
+    readonly dragSubject: CanvasDragSubjectAccessor<ForceGraphVisibleNode> = (
+        point: CanvasPoint
+    ): ForceGraphVisibleNode | undefined => (this.isLayoutLoading() ? undefined : this._findVisibleNodeAtPoint(point));
+
+    /**
+     * Public readonly method: zoomFilter.
+     *
+     * It filters the start of the canvas zoom: a pointer-down on a node starts a drag instead of a pan.
+     *
+     * @param {MouseEvent | TouchEvent} event The given pointer event.
+     * @returns {boolean} The boolean value of the check result (false on a node).
+     */
+    readonly zoomFilter: CanvasZoomFilter = (event: MouseEvent | TouchEvent): boolean =>
+        !this._findVisibleNodeAtEvent(event);
 
     /**
      * Public method: onCanvasResize.
