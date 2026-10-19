@@ -20,7 +20,7 @@ describe('ResultGraphUtils (integration with the op. 25 graph data) (DONE)', () 
     let graph: ResultGraph;
 
     beforeAll(() => {
-        quads = new Parser().parse((graphDataOp25 as GraphList).graph[0].rdfData.triples) as Quad[];
+        quads = new Parser().parse((graphDataOp25 as GraphList).graph[0].rdfData.triples);
         graph = toResultGraph(quads, DEFAULT_PREFIXES);
     });
 

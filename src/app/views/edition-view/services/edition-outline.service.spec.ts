@@ -130,7 +130,7 @@ describe('EditionOutlineService (DONE)', () => {
                 ],
             };
 
-            service['_rawOutlineDataSignal'].set(rawOutlineDataWithUnknownComplex['editionOutline']);
+            service['_rawOutlineDataSignal'].set(rawOutlineDataWithUnknownComplex.editionOutline);
 
             const outline = service.editionOutline();
             const section = outline[0].sections[0];
@@ -189,7 +189,7 @@ describe('EditionOutlineService (DONE)', () => {
 
                 expectToEqual(
                     service['_rawOutlineDataSignal'](),
-                    jsonEditionOutline['editionOutline'] as EditionOutlineSeriesJsonData[]
+                    jsonEditionOutline.editionOutline as EditionOutlineSeriesJsonData[]
                 );
             });
         });

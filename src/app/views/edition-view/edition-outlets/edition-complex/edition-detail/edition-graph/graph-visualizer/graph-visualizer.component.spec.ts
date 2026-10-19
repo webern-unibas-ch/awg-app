@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -167,9 +166,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         const prefixes = { ...DEFAULT_PREFIXES, example: EXAMPLE };
         expectedConstructResult = {
             kind: 'construct',
-            quads: [
-                quad(namedNode(`${EXAMPLE}Test`), namedNode(`${EXAMPLE}has`), namedNode(`${EXAMPLE}Success`)) as Quad,
-            ],
+            quads: [quad(namedNode(`${EXAMPLE}Test`), namedNode(`${EXAMPLE}has`), namedNode(`${EXAMPLE}Success`))],
             prefixes,
         };
         expectedSelectResult = {

@@ -173,7 +173,7 @@ describe('EditionSeriesCardComponent (DONE)', () => {
                     1,
                     1
                 );
-                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                 expectToEqual(buttonMoreCmp.targetRoute(), [expectedSeries.series.route]);
             });

@@ -184,7 +184,7 @@ describe('SourceDescWritingTrademarkComponent (DONE)', () => {
                     1,
                     1
                 );
-                const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective);
 
                 expectToBe(directiveIns.htmlContent(), 'Special trademark text');
             });
@@ -200,7 +200,7 @@ describe('SourceDescWritingTrademarkComponent (DONE)', () => {
                 );
 
                 locusDes.forEach((locusDe, index) => {
-                    const directiveIns = locusDe.injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                    const directiveIns = locusDe.injector.get(CompileHtmlDirective);
 
                     expectToBe(directiveIns.htmlContent(), getItemLocus(expectedLoci[index]));
                 });

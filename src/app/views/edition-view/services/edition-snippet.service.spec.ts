@@ -26,7 +26,7 @@ describe('EditionSnippetService (DONE)', () => {
     });
 
     it('... should have static `SAFE_SNIPPET_ID_PATTERN`', () => {
-        const pattern = EditionSnippetService['SAFE_SNIPPET_ID_PATTERN'] as RegExp;
+        const pattern = EditionSnippetService['SAFE_SNIPPET_ID_PATTERN'];
 
         expect(pattern).toBeDefined();
         expectToBe(pattern.source, '^[A-Za-z0-9_-]+$');

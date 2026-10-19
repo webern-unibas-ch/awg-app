@@ -18,7 +18,7 @@ function setupAnalytics(service: AnalyticsService, endpoint: string, id: string,
         serviceMock._sendPageView = pageView;
     }
 
-    return service.initializeAnalytics();
+    service.initializeAnalytics();
 }
 
 describe('AnalyticsService (DONE)', () => {

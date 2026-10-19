@@ -195,9 +195,9 @@ describe('FooterComponent (DONE)', () => {
                     const logoCmps = logoDes.map(de => de.injector.get(LogoComponent));
 
                     expectToBe(logoCmps.length, 3);
-                    expectToEqual(logoCmps[0].logoData(), expectedLogosData['unibas']);
-                    expectToEqual(logoCmps[1].logoData(), expectedLogosData['sagw']);
-                    expectToEqual(logoCmps[2].logoData(), expectedLogosData['snf']);
+                    expectToEqual(logoCmps[0].logoData(), expectedLogosData.unibas);
+                    expectToEqual(logoCmps[1].logoData(), expectedLogosData.sagw);
+                    expectToEqual(logoCmps[2].logoData(), expectedLogosData.snf);
                 });
 
                 it('... should have default linkClass on LogoComponents (hollow)', () => {

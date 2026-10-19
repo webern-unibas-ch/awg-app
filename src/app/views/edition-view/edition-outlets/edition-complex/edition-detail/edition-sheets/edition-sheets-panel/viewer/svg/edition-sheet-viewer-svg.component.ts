@@ -148,8 +148,8 @@ export class EditionSheetViewerSvgComponent {
      *
      * It holds the d3 selection of the svg root group (the element is stable across renderings).
      */
-    private readonly _svgRootGroupSelection = computed<D3Selection>(
-        () => D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
+    private readonly _svgRootGroupSelection = computed<D3Selection>(() =>
+        D3_SELECTION.select(this.svgRootGroup().nativeElement)
     );
 
     /**

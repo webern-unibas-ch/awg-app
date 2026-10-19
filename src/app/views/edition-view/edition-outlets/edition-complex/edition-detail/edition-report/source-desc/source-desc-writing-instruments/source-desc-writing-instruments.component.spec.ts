@@ -144,7 +144,7 @@ describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
                     1,
                     1
                 );
-                const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective);
 
                 expectToBe(directiveIns.htmlContent(), component.getWritingInstruments(expectedWritingInstruments));
             });

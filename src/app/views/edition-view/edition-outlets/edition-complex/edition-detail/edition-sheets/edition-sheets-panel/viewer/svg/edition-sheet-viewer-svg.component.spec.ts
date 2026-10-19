@@ -113,7 +113,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
 
     beforeEach(async () => {
         mockSvgDrawingService = {
-            createSvg: vi.fn<CreateSvgFn>(async (_path, svgEl) => D3_SELECTION.select(svgEl as SVGSVGElement) as any),
+            createSvg: vi.fn<CreateSvgFn>(async (_path, svgEl) => D3_SELECTION.select(svgEl as SVGSVGElement)),
             getSuppliedClasses: vi.fn(() => expectedSuppliedClasses),
             toggleSuppliedClassOpacity: vi.fn(),
         };
@@ -375,7 +375,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 mockSvgDrawingService.createSvg.mockImplementationOnce(
                     (_path, svgEl) =>
                         new Promise(resolve => {
-                            resolveNextSheet = () => resolve(D3_SELECTION.select(svgEl as SVGSVGElement) as any);
+                            resolveNextSheet = () => resolve(D3_SELECTION.select(svgEl as SVGSVGElement));
                         })
                 );
 

@@ -141,14 +141,14 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
             it('... should pass down the correct isOpen state to the ButtonExpandAllComponent (hollow)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-corrections-label', 1, 1);
                 const buttonDes = getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
-                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
+                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent);
 
                 expectToEqual(buttonCmp.isOpen(), expectedOpenAllCorrectionDetails);
             });
 
             it('... should update `correctionsState` when the ButtonExpandAllComponent (hollow) model changes', async () => {
                 const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
-                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
+                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent);
 
                 buttonCmp.isOpen.set(true);
 
@@ -201,7 +201,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
                     const getButtonCmp = (): ButtonExpandAllComponent => {
                         const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
-                        return buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
+                        return buttonDes[0].injector.get(ButtonExpandAllComponent);
                     };
 
                     const getDetailsDes = (): DebugElement[] =>
@@ -385,9 +385,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const evaluationCmp = evaluationDes[0].injector.get(
-                                EditionTkaEvaluationsComponent
-                            ) as EditionTkaEvaluationsComponent;
+                            const evaluationCmp = evaluationDes[0].injector.get(EditionTkaEvaluationsComponent);
 
                             expectToEqual(evaluationCmp.evaluations(), expectedCorrections[index].evaluations);
                         });
@@ -439,9 +437,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const tableCmp = tableDes[0].injector.get(
-                                EditionTkaTableComponent
-                            ) as EditionTkaTableComponent;
+                            const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent);
 
                             expectToEqual(tableCmp.displayedCommentary(), expectedCorrections[index].commentary);
 

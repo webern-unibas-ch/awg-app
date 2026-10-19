@@ -14,10 +14,10 @@ describe('LicenseComponent', () => {
 
     let expectedLicenseLink: string;
     let expectedLicenseText: string;
-    let expectedLicenseIcons: Array<{
+    let expectedLicenseIcons: {
         src: string;
         alt: string;
-    }>;
+    }[];
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({

@@ -79,7 +79,7 @@ export class AnalyticsService {
         if (!this._analyticsEndpoint || !this._analyticsId) {
             return;
         }
-        if (this._sendPageView === false) {
+        if (!this._sendPageView) {
             console.info('Running non-production analytics replacement now');
         } else {
             this._prependAnalyticsScript();

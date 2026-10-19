@@ -88,8 +88,8 @@ describe('GraphResultsEmptyComponent (DONE)', () => {
                 const aDes3 = getAndExpectDebugElementByCss(getParagraphDes()[2], 'p > a', 1, 1);
                 const aEl3: HTMLAnchorElement = aDes3[0].nativeElement;
 
-                expectToBe(aEl3.href, expectedLogosData['sparql'].href);
-                expectToBe(aEl3.textContent, expectedLogosData['sparql'].href);
+                expectToBe(aEl3.href, expectedLogosData.sparql.href);
+                expectToBe(aEl3.textContent, expectedLogosData.sparql.href);
             });
 
             it('... should contain one LogoComponent (hollow) in 4th paragraph', () => {
@@ -108,7 +108,7 @@ describe('GraphResultsEmptyComponent (DONE)', () => {
                 const logoCmps = logoDes.map(de => de.injector.get(LogoComponent));
 
                 expectToBe(logoCmps.length, 1);
-                expectToEqual(logoCmps[0].logoData(), expectedLogosData['sparql']);
+                expectToEqual(logoCmps[0].logoData(), expectedLogosData.sparql);
             });
         });
     });

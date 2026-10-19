@@ -153,7 +153,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                     1,
                     1
                 );
-                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                 expectToEqual(buttonMoreCmp.targetRoute(), [expectedSection.labeledRoute.route.join('/'), 'intro']);
             });
@@ -165,7 +165,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                     1,
                     1
                 );
-                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                 expectToBe(buttonMoreCmp.disabled(), expectedSection.content.intro.disabled);
             });

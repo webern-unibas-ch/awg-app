@@ -169,7 +169,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 const rootGroupSelection = render(expectedFolioSvgData);
 
                 expectRectAttrs(
-                    rootGroupSelection.select('g.sheet-group > rect') as unknown as D3Selection,
+                    rootGroupSelection.select('g.sheet-group > rect'),
                     expectedFolioSvgData.sheet.rectangle,
                     'sheet-rectangle'
                 );

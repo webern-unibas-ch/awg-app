@@ -198,9 +198,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should throw due to missing required values for ViewContainerComponent', () => {
                 const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerComponent, 1, 1);
-                const viewContainerCmp = viewContainerDes[0].injector.get(
-                    ViewContainerComponent
-                ) as ViewContainerComponent;
+                const viewContainerCmp = viewContainerDes[0].injector.get(ViewContainerComponent);
 
                 // Expect the required inputs to throw if not provided
                 expect(() => viewContainerCmp.activateSideOutlet()).toThrow();
@@ -320,9 +318,7 @@ describe('AppComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerComponent, 1, 1);
-                const viewContainerCmp = viewContainerDes[0].injector.get(
-                    ViewContainerComponent
-                ) as ViewContainerComponent;
+                const viewContainerCmp = viewContainerDes[0].injector.get(ViewContainerComponent);
 
                 expectToBe(viewContainerCmp.activateSideOutlet(), expectedActivateSideOutlet);
             });

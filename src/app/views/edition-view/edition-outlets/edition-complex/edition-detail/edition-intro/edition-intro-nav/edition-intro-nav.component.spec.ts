@@ -148,7 +148,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
 
             it('... should pass down `selectedLanguage` to LanguageSwitcherComponent (hollow)', () => {
                 const switcherDes = getAndExpectDebugElementByDirective(getUlDes()[0], LanguageSwitcherComponent, 1, 1);
-                const switcherCmp = switcherDes[0].injector.get(LanguageSwitcherComponent) as LanguageSwitcherComponent;
+                const switcherCmp = switcherDes[0].injector.get(LanguageSwitcherComponent);
 
                 expectToEqual(switcherCmp.selectedLanguage(), expectedSelectedLanguage);
             });
@@ -231,7 +231,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
                     expectedIntroBlockContent.length + 1
                 );
 
-                routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 
             it('... can get correct number of routerLinks from template', () => {

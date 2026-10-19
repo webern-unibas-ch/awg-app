@@ -153,7 +153,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 );
 
                 pDes.forEach((pDe, index) => {
-                    const directiveIns = pDe.injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                    const directiveIns = pDe.injector.get(CompileHtmlDirective);
 
                     expect(directiveIns).toBeTruthy();
                     expectToBe(directiveIns.htmlContent(), expectedContent[index]);
@@ -218,9 +218,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const placeholderIns = placeholderDes[0].injector.get(
-                        EditionComplexPlaceholderComponent
-                    ) as EditionComplexPlaceholderComponent;
+                    const placeholderIns = placeholderDes[0].injector.get(EditionComplexPlaceholderComponent);
 
                     expectToBe(placeholderIns.type(), 'sourceEvaluation');
                     expectToEqual(placeholderIns.editionComplex(), expectedComplex);

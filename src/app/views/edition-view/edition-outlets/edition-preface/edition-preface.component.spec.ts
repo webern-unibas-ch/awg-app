@@ -167,7 +167,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
                 it('... should pass down error object to AlertErrorComponent (hollow)', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent);
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
@@ -192,9 +192,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
                 it('... should have default spinnerText on TwelveToneSpinnerComponent (hollow)', () => {
                     const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
-                    const spinnerCmp = spinnerDes[0].injector.get(
-                        TwelveToneSpinnerComponent
-                    ) as TwelveToneSpinnerComponent;
+                    const spinnerCmp = spinnerDes[0].injector.get(TwelveToneSpinnerComponent);
 
                     expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
@@ -225,9 +223,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
                 it('... should pass down `selectedLanguage` to LanguageSwitcherComponent (hollow)', () => {
                     const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 1, 1);
-                    const switcherCmp = switcherDes[0].injector.get(
-                        LanguageSwitcherComponent
-                    ) as LanguageSwitcherComponent;
+                    const switcherCmp = switcherDes[0].injector.get(LanguageSwitcherComponent);
 
                     expectToEqual(switcherCmp.selectedLanguage(), expectedSelectedLanguage);
                 });

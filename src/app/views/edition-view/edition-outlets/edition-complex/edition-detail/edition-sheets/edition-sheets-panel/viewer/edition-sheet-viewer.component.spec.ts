@@ -60,7 +60,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         // Mocked services for the real EditionSheetViewerSvgComponent
         // (not hollow: its required view query on the SvgZoomDirective needs the d3-driven template)
         mockSvgDrawingService = {
-            createSvg: vi.fn<CreateSvgFn>(async (_path, svgEl) => D3_SELECTION.select(svgEl as SVGSVGElement) as any),
+            createSvg: vi.fn<CreateSvgFn>(async (_path, svgEl) => D3_SELECTION.select(svgEl as SVGSVGElement)),
             getSuppliedClasses: vi.fn(() => []),
             toggleSuppliedClassOpacity: vi.fn(),
         };

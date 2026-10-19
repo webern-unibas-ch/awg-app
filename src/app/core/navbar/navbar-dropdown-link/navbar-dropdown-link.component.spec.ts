@@ -110,7 +110,7 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
 
             it('... should have correct `routerLinkActive` options in dropdown item link', () => {
                 const routerLinkActiveDes = getAndExpectDebugElementByDirective(compDe, RouterLinkActive, 1, 1);
-                const routerLinkActive = routerLinkActiveDes[0].injector.get(RouterLinkActive) as RouterLinkActive;
+                const routerLinkActive = routerLinkActiveDes[0].injector.get(RouterLinkActive);
 
                 expectToEqual(routerLinkActive.routerLinkActiveOptions, { exact: true });
             });

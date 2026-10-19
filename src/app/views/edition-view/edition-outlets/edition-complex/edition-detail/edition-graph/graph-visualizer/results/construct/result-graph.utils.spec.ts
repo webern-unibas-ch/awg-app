@@ -17,7 +17,7 @@ const XSD = 'http://www.w3.org/2001/XMLSchema#';
 
 const awg = (localName: string) => namedNode(`${AWG}${localName}`);
 const q = (subject: Quad_Subject, predicate: Quad_Predicate, object: Quad_Object): Quad =>
-    quad(subject, predicate, object) as Quad;
+    quad(subject, predicate, object);
 
 describe('ResultGraphUtils (DONE)', () => {
     describe('RESULT_GRAPH_UTILS', () => {

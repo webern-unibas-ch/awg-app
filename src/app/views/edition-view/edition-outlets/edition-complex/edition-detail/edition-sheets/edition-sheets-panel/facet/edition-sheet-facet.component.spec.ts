@@ -135,12 +135,11 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-sheet-facet', 1, 1);
             const getToggleDes = () =>
                 getAndExpectDebugElementByDirective(getFacetCardDes()[0], EditionSheetFacetToggleComponent, 1, 1);
-            const getToggleCmp = () =>
-                getToggleDes()[0].injector.get(EditionSheetFacetToggleComponent) as EditionSheetFacetToggleComponent;
+            const getToggleCmp = () => getToggleDes()[0].injector.get(EditionSheetFacetToggleComponent);
             const getCardBodyDes = () => getAndExpectDebugElementByCss(getFacetCardDes()[0], 'div.card-body', 1, 1);
             const getFacetGroupCmps = () =>
                 getAndExpectDebugElementByDirective(getCardBodyDes()[0], EditionSheetFacetGroupComponent, 3, 3).map(
-                    de => de.injector.get(EditionSheetFacetGroupComponent) as EditionSheetFacetGroupComponent
+                    de => de.injector.get(EditionSheetFacetGroupComponent)
                 );
 
             it('... should contain no facet div.card if svgSheetsData is not available', async () => {

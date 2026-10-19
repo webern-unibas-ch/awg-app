@@ -226,7 +226,7 @@ describe('TableComponent (DONE)', () => {
             });
 
             it('... should have computed signals `totalRows` and `filteredRows` to hold an empty array if `rowInputData` is missing', async () => {
-                fixture.componentRef.setInput('rowInputData', null as unknown as TableRows[]);
+                fixture.componentRef.setInput('rowInputData', null);
                 await detectChangesOnPush(fixture);
 
                 expectToEqual(component.totalRows(), []);

@@ -45,7 +45,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             EditionSheetFacetItemComponent,
             expectedSvgSheets.length,
             expectedSvgSheets.length
-        ).map(de => de.injector.get(EditionSheetFacetItemComponent) as EditionSheetFacetItemComponent);
+        ).map(de => de.injector.get(EditionSheetFacetItemComponent));
     const selectSheet = async (sheetId: EditionSvgSheetSelection) => {
         fixture.componentRef.setInput('selectedSvgSheet', sheetId);
         await detectChangesOnPush(fixture);
@@ -64,7 +64,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
         // Test data
         expectedEditionTypeKey = 'sketchEditions';
         expectedFacetGroupLabel = EDITION_TYPE_LABEL_MAP[expectedEditionTypeKey];
-        expectedSvgSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets['sketchEditions']);
+        expectedSvgSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets.sketchEditions);
         expectedSelection = {
             id: expectedSvgSheets[0].id,
             fullId: expectedSvgSheets[0].id,

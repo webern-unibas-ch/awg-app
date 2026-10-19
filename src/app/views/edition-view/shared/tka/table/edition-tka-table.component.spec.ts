@@ -288,7 +288,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     const captionDes = getAndExpectDebugElementByCss(compDe, 'table > caption', 1, 1);
 
                     const directiveDes = getAndExpectDebugElementByDirective(captionDes[0], CompileHtmlDirective, 1, 1);
-                    const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                    const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective);
 
                     expectToBe(directiveIns.htmlContent(), expectedCommentary.preamble);
                 });
@@ -494,7 +494,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     rowDes.forEach((rowDe, index) => {
                         const directiveDes = getAndExpectDebugElementByDirective(rowDe, CompileHtmlDirective, 1, 1);
-                        const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                        const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective);
 
                         expectToBe(directiveIns.htmlContent(), expectedContents[index]);
                     });
@@ -548,7 +548,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     expectedCommentary.comments.forEach(block => {
                         block.blockComments.forEach(comment => {
                             // NgbTooltip is on the tr element itself, so get it directly from its injector
-                            const tooltipCmp = trDes[rowIndex].injector.get(NgbTooltip) as NgbTooltip;
+                            const tooltipCmp = trDes[rowIndex].injector.get(NgbTooltip);
 
                             expectToBe(tooltipCmp.ngbTooltip as string, comment.svgGroupId);
                             expectToBe(tooltipCmp.tooltipClass, 'awg-group-id-tooltip');

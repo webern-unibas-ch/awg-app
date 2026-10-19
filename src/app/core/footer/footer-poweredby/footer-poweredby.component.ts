@@ -44,9 +44,9 @@ export class FooterPoweredbyComponent {
         const logos = this.logosData();
         const page = this.pageMetaData();
 
-        const githubLogo = logos?.['github'];
-        const angularLogo = logos?.['angular'];
-        const bootstrapLogo = logos?.['bootstrap'];
+        const githubLogo = logos?.github;
+        const angularLogo = logos?.angular;
+        const bootstrapLogo = logos?.bootstrap;
         const devUrl = page?.awgAppDevUrl;
 
         if (!githubLogo || !angularLogo || !bootstrapLogo || !devUrl) {

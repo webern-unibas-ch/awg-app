@@ -168,7 +168,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent) as EditionTkaLabelComponent;
+                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
 
                         expectToBe(labelCmp.id(), expectedSelectedTextcritics.id);
                         expectToBe(labelCmp.labelType(), 'evaluation');
@@ -190,9 +190,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const evaluationsCmp = evaluationsDes[0].injector.get(
-                            EditionTkaEvaluationsComponent
-                        ) as EditionTkaEvaluationsComponent;
+                        const evaluationsCmp = evaluationsDes[0].injector.get(EditionTkaEvaluationsComponent);
 
                         expectToEqual(evaluationsCmp.evaluations(), expectedSelectedTextcritics.evaluations);
                     });
@@ -229,7 +227,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent) as EditionTkaLabelComponent;
+                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
 
                         expectToBe(labelCmp.id(), mockEditionData.mockTextcriticsListData.textcritics[1].id);
                         expectToBe(labelCmp.labelType(), 'evaluation');
@@ -278,7 +276,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                 it('... should pass down `id` and `labelType` to the EditionTkaLabelComponent (hollow)', () => {
                     const pDes = getAndExpectDebugElementByCss(getCardBodyDes('textcritics')[0], 'p.smallcaps', 1, 1);
                     const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
-                    const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent) as EditionTkaLabelComponent;
+                    const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
 
                     expectToBe(labelCmp.id(), expectedSelectedTextcritics.id);
                     expectToBe(labelCmp.labelType(), 'commentary');
@@ -300,7 +298,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent) as EditionTkaTableComponent;
+                    const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent);
 
                     expectToEqual(tableCmp.displayedCommentary(), expectedSelectedTextcritics.commentary);
                     expectToBe(tableCmp.id(), expectedSelectedTextcritics.id);
@@ -320,7 +318,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent) as EditionTkaTableComponent;
+                    const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent);
 
                     expectToBe(tableCmp.isRowtable(), false);
                 });

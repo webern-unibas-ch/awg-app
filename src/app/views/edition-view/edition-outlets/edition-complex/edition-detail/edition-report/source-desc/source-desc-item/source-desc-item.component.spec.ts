@@ -260,13 +260,13 @@ describe('SourceDescItemComponent (DONE)', () => {
 
                 describe('... the second paragraph', () => {
                     it('... should have one CompileHtmlDirective', () => {
-                        const directiveIns = paragraphDes[1].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                        const directiveIns = paragraphDes[1].injector.get(CompileHtmlDirective);
 
                         expect(directiveIns).toBeTruthy();
                     });
 
                     it('... should pass down the source type to the CompileHtmlDirective', () => {
-                        const directiveIns = paragraphDes[1].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                        const directiveIns = paragraphDes[1].injector.get(CompileHtmlDirective);
 
                         expectToBe(directiveIns.htmlContent(), expectedSourceDescWithoutPhysDesc.type);
                     });
@@ -281,13 +281,13 @@ describe('SourceDescItemComponent (DONE)', () => {
 
                 describe('... the third paragraph', () => {
                     it('... should have one AbbrDirective', () => {
-                        const directiveIns = paragraphDes[2].injector.get(AbbrDirective) as AbbrDirective;
+                        const directiveIns = paragraphDes[2].injector.get(AbbrDirective);
 
                         expect(directiveIns).toBeTruthy();
                     });
 
                     it('... should pass down the source location to the AbbrDirective', () => {
-                        const directiveIns = paragraphDes[2].injector.get(AbbrDirective) as AbbrDirective;
+                        const directiveIns = paragraphDes[2].injector.get(AbbrDirective);
 
                         expectToBe(directiveIns.text(), expectedSourceDescWithoutPhysDesc.location);
                     });
@@ -324,13 +324,13 @@ describe('SourceDescItemComponent (DONE)', () => {
 
                     describe('... the second paragraph', () => {
                         it('... should have one AbbrDirective', () => {
-                            const directiveIns = paragraphDes[1].injector.get(AbbrDirective) as AbbrDirective;
+                            const directiveIns = paragraphDes[1].injector.get(AbbrDirective);
 
                             expect(directiveIns).toBeTruthy();
                         });
 
                         it('... should pass down the source location to the AbbrDirective', () => {
-                            const directiveIns = paragraphDes[1].injector.get(AbbrDirective) as AbbrDirective;
+                            const directiveIns = paragraphDes[1].injector.get(AbbrDirective);
 
                             expectToBe(directiveIns.text(), expectedSourceDescWithAllEntries.location);
                         });

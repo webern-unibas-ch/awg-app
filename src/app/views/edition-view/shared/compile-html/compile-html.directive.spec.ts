@@ -113,7 +113,7 @@ describe('CompileHtmlDirective (DONE)', () => {
         rendererSetPropertySpy = vi.spyOn(renderer, 'setProperty');
 
         const glyphService = TestBed.inject(EditionGlyphService);
-        serviceGetGlyphSpy = vi.spyOn(glyphService, 'getGlyph').mockImplementation((glyph: string) => `${glyph}`);
+        serviceGetGlyphSpy = vi.spyOn(glyphService, 'getGlyph').mockImplementation((glyph: string) => glyph);
 
         const editionModalService = TestBed.inject(EditionModalService);
         serviceOpenImageModalSpy = vi.spyOn(editionModalService, 'openImageModal');
@@ -499,18 +499,16 @@ describe('CompileHtmlDirective (DONE)', () => {
                             'data-complex-id': expectedComplexId,
                             'data-intro-fragment-id': expectedIntroFragment,
                         }),
-                        getExpectedArgs: () =>
-                            ({
-                                complexId: expectedComplexId,
-                                fragmentId: expectedIntroFragment,
-                            }) as EditionNavigationFragmentTarget,
+                        getExpectedArgs: () => ({
+                            complexId: expectedComplexId,
+                            fragmentId: expectedIntroFragment,
+                        }),
                         getExpectedSpy: () => serviceNavigateToIntroSpy,
                     },
                     {
                         desc: 'intro fragment with empty complexId if data-complex-id is missing',
                         getAttributes: () => ({ 'data-intro-fragment-id': expectedIntroFragment }),
-                        getExpectedArgs: () =>
-                            ({ complexId: '', fragmentId: expectedIntroFragment }) as EditionNavigationFragmentTarget,
+                        getExpectedArgs: () => ({ complexId: '', fragmentId: expectedIntroFragment }),
                         getExpectedSpy: () => serviceNavigateToIntroSpy,
                     },
                     {
@@ -519,11 +517,10 @@ describe('CompileHtmlDirective (DONE)', () => {
                             'data-complex-id': expectedComplexId,
                             'data-sheet-id': expectedSvgSheetId,
                         }),
-                        getExpectedArgs: () =>
-                            ({
-                                complexId: expectedComplexId,
-                                sheetId: expectedSvgSheetId,
-                            }) as EditionNavigationSheetTarget,
+                        getExpectedArgs: () => ({
+                            complexId: expectedComplexId,
+                            sheetId: expectedSvgSheetId,
+                        }),
                         getExpectedSpy: () => serviceNavigateToSheetSpy,
                     },
                     {
@@ -532,11 +529,10 @@ describe('CompileHtmlDirective (DONE)', () => {
                             'data-complex-id': expectedComplexId,
                             'data-report-fragment-id': expectedReportFragment,
                         }),
-                        getExpectedArgs: () =>
-                            ({
-                                complexId: expectedComplexId,
-                                fragmentId: expectedReportFragment,
-                            }) as EditionNavigationFragmentTarget,
+                        getExpectedArgs: () => ({
+                            complexId: expectedComplexId,
+                            fragmentId: expectedReportFragment,
+                        }),
                         getExpectedSpy: () => serviceNavigateToReportSpy,
                     },
                 ];
@@ -665,7 +661,7 @@ describe('CompileHtmlDirective (DONE)', () => {
                         desc: 'both data-snippet-id and data-snippet-src are missing',
                         attributes: {},
                     },
-                ])(`... $desc`, ({ attributes }: { attributes: { [key: string]: string | undefined } }) => {
+                ])(`... $desc`, ({ attributes }: { attributes: Record<string, string | undefined> }) => {
                     const mockImg = {
                         dataset: {
                             snippetId: attributes['data-snippet-id'],

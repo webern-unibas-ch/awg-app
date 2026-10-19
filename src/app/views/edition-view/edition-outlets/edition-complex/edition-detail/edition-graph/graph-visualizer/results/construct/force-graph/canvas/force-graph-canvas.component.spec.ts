@@ -25,7 +25,7 @@ import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
 import { ResultGraph, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
 
-import { ForceGraphData, ForceGraphVisibleNode } from '../force-graph.model';
+import { ForceGraphVisibleNode } from '../force-graph.model';
 import { FORCE_GRAPH_LARGE_NODE_COUNT, FORCE_GRAPH_UTILS } from '../force-graph.utils';
 import { ForceGraphSimulationCommand, ForceGraphSimulationProgress } from '../simulation/force-graph-simulation.model';
 import { ForceGraphSimulationService } from '../simulation/force-graph-simulation.service';
@@ -991,9 +991,7 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 it('... should have signal `hoveredNode` to hold undefined for new graph data', () => {
                     component.onMouseMove(mouseEvent('mousemove', 300, 100));
 
-                    component['_startSimulation'](
-                        FORCE_GRAPH_UTILS.toForceGraphData(expectedNextResultGraph) as ForceGraphData
-                    );
+                    component['_startSimulation'](FORCE_GRAPH_UTILS.toForceGraphData(expectedNextResultGraph));
 
                     expect(component.hoveredNode()).toBeUndefined();
                 });

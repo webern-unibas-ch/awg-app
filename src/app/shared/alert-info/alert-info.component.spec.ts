@@ -130,7 +130,7 @@ describe('AlertInfoComponent (DONE)', () => {
 
                 // 1. Das closed-Event von ngb-alert simulieren
                 const alertDes = getAndExpectDebugElementByDirective(compDe, NgbAlert, 1, 1);
-                const alertCmp = alertDes[0].injector.get(NgbAlert) as NgbAlert;
+                const alertCmp = alertDes[0].injector.get(NgbAlert);
                 alertCmp.closed.emit();
 
                 fixture.detectChanges();

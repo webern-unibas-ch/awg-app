@@ -232,7 +232,7 @@ describe('JsonViewerComponent (DONE)', () => {
 
             it('... should pass down `jsonViewerData` to ngx-json-viewer component in Formatted view', () => {
                 const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 1);
-                const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerComponent) as NgxJsonViewerComponent;
+                const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerComponent);
 
                 expectToEqual(viewerCmp.json, expectedData);
             });
@@ -246,7 +246,7 @@ describe('JsonViewerComponent (DONE)', () => {
                     fixture.detectChanges();
 
                     const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 1);
-                    const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerComponent) as NgxJsonViewerComponent;
+                    const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerComponent);
 
                     expectToEqual(viewerCmp.json, {});
                 });

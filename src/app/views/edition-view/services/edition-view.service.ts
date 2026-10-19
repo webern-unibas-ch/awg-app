@@ -194,7 +194,7 @@ export class EditionViewService {
      */
     private _buildViewData<K extends EditionViewKey>(
         viewKey: K,
-        signalMap: Array<[keyof EditionViewDataTypeMapping[K], Signal<any>]>,
+        signalMap: [keyof EditionViewDataTypeMapping[K], Signal<any>][],
         extraContentCheck?: (data: EditionViewDataTypeMapping[K]) => boolean
     ): EditionViewData<K> {
         const dataKeys = signalMap.map(([key]) => key);
@@ -233,7 +233,7 @@ export class EditionViewService {
      */
     private _isViewDataEmpty<K extends EditionViewKey>(
         typedData: EditionViewDataTypeMapping[K],
-        dataKeys: Array<keyof EditionViewDataTypeMapping[K]>,
+        dataKeys: (keyof EditionViewDataTypeMapping[K])[],
         extraContentCheck?: (data: EditionViewDataTypeMapping[K]) => boolean
     ): boolean {
         const hasEmptyContent = dataKeys.some(dataKey => {
@@ -260,7 +260,7 @@ export class EditionViewService {
      */
     private _getUniqueAssetKeys<K extends EditionViewKey>(
         viewKey: K,
-        signalMap: Array<[keyof EditionViewDataTypeMapping[K], Signal<any>]>
+        signalMap: [keyof EditionViewDataTypeMapping[K], Signal<any>][]
     ): EditionDataAssetsKeys[] {
         const assetKeys = signalMap.map(([dataKey]) =>
             signalMap.length === 1
@@ -284,7 +284,7 @@ export class EditionViewService {
      */
     private _getFallbackForInactiveView<K extends EditionViewKey>(
         viewKey: K,
-        dataKeys: Array<keyof EditionViewDataTypeMapping[K]>
+        dataKeys: (keyof EditionViewDataTypeMapping[K])[]
     ): EditionViewData<K> | null {
         const current = this._currentViewName();
         const previous = this._previousViewName();
@@ -310,7 +310,7 @@ export class EditionViewService {
      * @returns {EditionViewData<K>} The fallback EditionViewData object.
      */
     private _createFallback<K extends EditionViewKey>(
-        dataKeys: Array<keyof EditionViewDataTypeMapping[K]>
+        dataKeys: (keyof EditionViewDataTypeMapping[K])[]
     ): EditionViewData<K> {
         const nullEntries = dataKeys.map(key => [key, null]);
         const nullData = Object.fromEntries(nullEntries);
@@ -319,7 +319,7 @@ export class EditionViewService {
             data: nullData,
             isLoading: true,
             error: null,
-        } as EditionViewData<K>;
+        };
     }
 
     /**

@@ -51,14 +51,14 @@ export class GraphEditorTriplesComponent {
      *
      * It emits a request to perform a query.
      */
-    readonly performQueryRequest = output<void>();
+    readonly performQueryRequest = output();
 
     /**
      * Readonly output signal: resetTriplesRequest.
      *
      * It emits a request to reset the triples to their initial state.
      */
-    readonly resetTriplesRequest = output<void>();
+    readonly resetTriplesRequest = output();
 
     /**
      * Readonly variable: cmTurtleMode.

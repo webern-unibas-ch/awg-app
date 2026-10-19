@@ -59,8 +59,8 @@ export class EditionOutlineService {
      * @returns {void} Initializes the edition outline.
      */
     initializeEditionOutline(): void {
-        const rawOutlineData: EditionOutlineJsonData = jsonEditionOutline as EditionOutlineJsonData;
-        this._rawOutlineDataSignal.set(rawOutlineData['editionOutline']);
+        const rawOutlineData: EditionOutlineJsonData = jsonEditionOutline;
+        this._rawOutlineDataSignal.set(rawOutlineData.editionOutline);
     }
 
     /**

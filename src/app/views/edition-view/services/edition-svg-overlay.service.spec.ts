@@ -474,7 +474,7 @@ describe('EditionSvgOverlayService (DONE)', () => {
             ['the root group', () => expectedSvgRootGroup.node()],
             ['a tkk group without overlay box', () => expectedSvgRootGroup.select('#tkk-1').node()],
         ])('... should return undefined for %s', (_label, getTarget) => {
-            const svgOverlay = service.getSvgOverlay(getTarget() as unknown as EventTarget | null);
+            const svgOverlay = service.getSvgOverlay(getTarget());
 
             expect(svgOverlay).toBeUndefined();
         });

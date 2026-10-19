@@ -29,8 +29,8 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
         // Test data
         expectedIdentifiers = { gnd: '129772429', viaf: '74941235' };
 
-        const gndLogo = LOGOS_DATA['gnd'];
-        const viafLogo = LOGOS_DATA['viaf'];
+        const gndLogo = LOGOS_DATA.gnd;
+        const viafLogo = LOGOS_DATA.viaf;
         expectedActiveIdentifierBadges = [
             {
                 key: 'gnd',

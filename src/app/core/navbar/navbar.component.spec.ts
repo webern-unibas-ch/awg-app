@@ -280,7 +280,7 @@ describe('NavbarComponent (DONE)', () => {
                 logoDes.forEach(logoDe => {
                     const logoCmp = logoDe.injector.get(LogoComponent);
 
-                    expectToEqual(logoCmp.logoData(), expectedLogosData['awg']);
+                    expectToEqual(logoCmp.logoData(), expectedLogosData.awg);
                 });
             });
 

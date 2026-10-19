@@ -361,7 +361,7 @@ describe('SourceDescContentItemComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const compileHtmlIns = compileHtmlDes[0].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                    const compileHtmlIns = compileHtmlDes[0].injector.get(CompileHtmlDirective);
 
                     expectToBe(compileHtmlIns.htmlContent(), expectedContent.itemDescription);
                 });

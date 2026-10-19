@@ -29,7 +29,7 @@ describe('SparqlQueryService (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedQuads = [quad(namedNode(`${EX}a`), namedNode(`${EX}p`), namedNode(`${EX}b`)) as Quad];
+        expectedQuads = [quad(namedNode(`${EX}a`), namedNode(`${EX}p`), namedNode(`${EX}b`))];
         expectedSelectResult = { variables: ['s'], bindings: [{ s: namedNode(`${EX}a`) }] };
 
         // Mock services

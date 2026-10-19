@@ -72,7 +72,7 @@ export class GraphEditorSparqlComponent {
      *
      * It emits a request to perform a query.
      */
-    readonly performQueryRequest = output<void>();
+    readonly performQueryRequest = output();
 
     /**
      * Readonly output signal: resetQueryRequest.

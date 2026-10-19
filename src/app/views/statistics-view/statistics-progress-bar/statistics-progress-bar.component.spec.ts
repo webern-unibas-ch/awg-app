@@ -160,7 +160,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should not pass down type, height, value or ariaLabel yet', () => {
                 const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
-                const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
+                const progressCmp = progressDes[0].injector.get(NgbProgressbar);
 
                 expect(progressCmp.height).toBeUndefined();
                 expect(progressCmp.type).toBeUndefined();
@@ -822,7 +822,7 @@ describe('StatisticsProgressBarComponent', () => {
 
             it('... should pass down the correct height, value, type and ariaLabel to NgbProgressbar', () => {
                 const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
-                const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
+                const progressCmp = progressDes[0].injector.get(NgbProgressbar);
 
                 expectToBe(progressCmp.height, '20px');
                 expectToBe(progressCmp.value, 75);
@@ -894,7 +894,7 @@ describe('StatisticsProgressBarComponent', () => {
 
                     it('... should pass down the headerLabel to NgbProgressbar', () => {
                         const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
-                        const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
+                        const progressCmp = progressDes[0].injector.get(NgbProgressbar);
 
                         expectToBe(progressCmp.ariaLabel, 'Progress Label');
                     });
@@ -906,7 +906,7 @@ describe('StatisticsProgressBarComponent', () => {
                             mode: 'ratio',
                             active: 75,
                             total: 100,
-                        } as StatisticsProgressBarConfig);
+                        });
                         fixture.componentRef.setInput('headerLabel', 'Progress Label');
                         fixture.detectChanges();
                     });
@@ -962,7 +962,7 @@ describe('StatisticsProgressBarComponent', () => {
                             mode: 'absolute',
                             active: 75,
                             total: 100,
-                        } as StatisticsProgressBarConfig);
+                        });
                         fixture.detectChanges();
 
                         const headerDes = getAndExpectDebugElementByCss(
@@ -979,7 +979,7 @@ describe('StatisticsProgressBarComponent', () => {
 
                     it('... should pass down the headerLabel to NgbProgressbar', () => {
                         const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
-                        const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
+                        const progressCmp = progressDes[0].injector.get(NgbProgressbar);
 
                         expectToBe(progressCmp.ariaLabel, 'Progress Label');
                     });
@@ -998,7 +998,7 @@ describe('StatisticsProgressBarComponent', () => {
 
                 it('... should not have color types on NgbProgressbar, but custom type only', () => {
                     const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
-                    const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
+                    const progressCmp = progressDes[0].injector.get(NgbProgressbar);
 
                     expectToBe(progressCmp.type, expectedCustomType);
                 });

@@ -153,7 +153,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             fixture.componentRef.setInput('selectedConvolute', {
                 ...expectedConvolute,
                 folios: undefined,
-            } as unknown as FolioConvolute);
+            });
             await detectChangesOnPush(fixture);
 
             expectToEqual(component.folios(), []);

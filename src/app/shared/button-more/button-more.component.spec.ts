@@ -41,10 +41,7 @@ describe('ButtonMoreComponent', () => {
         // Test data
         expectedTargetRoute = ['/test-route'];
         expectedQueryParams = { param1: 'value1' };
-        expectedRoute =
-            expectedTargetRoute.join('/') +
-            '?' +
-            new URLSearchParams(expectedQueryParams as Record<string, string>).toString();
+        expectedRoute = expectedTargetRoute.join('/') + '?' + new URLSearchParams(expectedQueryParams).toString();
 
         // Create component fixture
         fixture = TestBed.createComponent(ButtonMoreComponent);
@@ -181,7 +178,7 @@ describe('ButtonMoreComponent', () => {
             beforeEach(() => {
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
 
-                routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 
             it('... can get correct number of routerLinks from template', () => {

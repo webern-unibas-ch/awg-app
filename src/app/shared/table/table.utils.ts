@@ -29,7 +29,7 @@ export function filterTableRows(rows: TableRows[], term: string): TableRows[] {
     const searchTerm = term.toString().toLowerCase();
 
     return rows.filter(row =>
-        Object.values(row).some(rowEntry => rowEntry?.['label']?.toString().toLowerCase().includes(searchTerm))
+        Object.values(row).some(rowEntry => rowEntry?.label?.toString().toLowerCase().includes(searchTerm))
     );
 }
 

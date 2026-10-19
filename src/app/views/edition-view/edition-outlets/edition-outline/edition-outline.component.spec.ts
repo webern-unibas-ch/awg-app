@@ -128,7 +128,7 @@ describe('EditionOutlineComponent (DONE)', () => {
 
                 colDes.forEach((colDe, index) => {
                     const cardDes = getAndExpectDebugElementByDirective(colDe, EditionSeriesCardComponent, 1, 1);
-                    const cardCmp = cardDes[0].injector.get(EditionSeriesCardComponent) as EditionSeriesCardComponent;
+                    const cardCmp = cardDes[0].injector.get(EditionSeriesCardComponent);
 
                     expectToEqual(cardCmp.displayedSeries(), expectedOutline[index]);
                 });

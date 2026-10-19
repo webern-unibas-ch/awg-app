@@ -352,7 +352,7 @@ describe('StatisticsService', () => {
         });
 
         it('... should do nothing if complexTypes is undefined', () => {
-            service['_processComplexes'](stats, seriesStats, sectionStats, undefined as any);
+            service['_processComplexes'](stats, seriesStats, sectionStats, undefined);
 
             expectToBe(stats.totalComplexes, 0);
             expectToBe(seriesStats.totalComplexes, 0);

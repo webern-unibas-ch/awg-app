@@ -45,7 +45,7 @@ export class SourceSiglumComponent {
      *
      * It emits an event when the source siglum is clicked.
      */
-    readonly clicked = output<void>();
+    readonly clicked = output();
 
     /**
      * Readonly computed signal: hasMissingFlag.

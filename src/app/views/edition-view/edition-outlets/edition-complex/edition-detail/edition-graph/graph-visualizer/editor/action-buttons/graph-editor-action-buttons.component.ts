@@ -19,19 +19,19 @@ export class GraphEditorActionButtonsComponent {
      *
      * It emits a request to perform a query.
      */
-    readonly queryRequest = output<void>();
+    readonly queryRequest = output();
 
     /**
      * Readonly output signal: resetRequest.
      *
      * It emits a request to reset the editor content.
      */
-    readonly resetRequest = output<void>();
+    readonly resetRequest = output();
 
     /**
      * Readonly output signal: clearRequest.
      *
      * It emits a request to clear the editor content.
      */
-    readonly clearRequest = output<void>();
+    readonly clearRequest = output();
 }

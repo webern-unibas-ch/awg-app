@@ -75,7 +75,7 @@ export class MockResizeObserver {
      * @returns {void} Calls the callback.
      */
     trigger(): void {
-        this.callback([], this as unknown as ResizeObserver);
+        this.callback([], this);
     }
 }
 
