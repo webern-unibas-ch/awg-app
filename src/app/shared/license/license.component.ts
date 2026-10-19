@@ -16,26 +16,26 @@ import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.d
 })
 export class LicenseComponent {
     /**
-     * Readonly variable: LICENSE_LINK
+     * Readonly variable: licenseLink
      *
      * It contains the link to the license.
      */
-    readonly LICENSE_LINK = 'https://creativecommons.org/licenses/by-sa/4.0/';
+    readonly licenseLink = 'https://creativecommons.org/licenses/by-sa/4.0/';
 
     /**
-     * Readonly variable: LICENSE_TEXT
+     * Readonly variable: licenseText
      *
      * It contains the short text of the license.
      */
-    readonly LICENSE_TEXT =
+    readonly licenseText =
         'Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz';
 
     /**
-     * Readonly variable: LICENSE_ICONS
+     * Readonly variable: licenseIcons
      *
      * It contains the icons of the license.
      */
-    readonly LICENSE_ICONS = [
+    readonly licenseIcons = [
         { src: 'https://mirrors.creativecommons.org/presskit/icons/cc.svg', alt: 'Creative Commons icon' },
         { src: 'https://mirrors.creativecommons.org/presskit/icons/by.svg', alt: 'Creative Commons Attribution icon' },
         { src: 'https://mirrors.creativecommons.org/presskit/icons/sa.svg', alt: 'Creative Commons ShareAlike icon' },

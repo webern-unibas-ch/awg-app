@@ -3,11 +3,11 @@
     <awg-button-scroll-to-top />
 
     <!-- heading -->
-    <awg-heading [title]="HOME_VIEW_TITLE" [id]="HOME_VIEW_ID" />
+    <awg-heading [title]="homeViewTitle" [id]="homeViewId" />
 
     <!-- content-->
     <div class="awg-home-view-content">
-        <awg-alert-info [infoMessage]="DISCLAIMER_MESSAGE" />
+        <awg-alert-info [infoMessage]="disclaimerMessage" />
 
         <div class="awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4 para">
             @for (cardData of homeViewCardData; track $index) {

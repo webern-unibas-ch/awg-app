@@ -49,11 +49,11 @@ export class EditionReportComponent {
     readonly viewData = inject(EditionViewService).reportViewData;
 
     /**
-     * Readonly variable: REPORT_TITLES.
+     * Readonly variable: reportTitles.
      *
      * It keeps an object for the titles of the report sections.
      */
-    readonly REPORT_TITLES = {
+    readonly reportTitles = {
         sourceList: '1. Quellenübersicht',
         sourceDesc: '2. Quellenbeschreibung',
         sourceEvaluation: '3. Quellenbewertung',

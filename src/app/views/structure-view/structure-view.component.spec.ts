@@ -42,20 +42,20 @@ describe('StructureViewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `STRUCTURE_VIEW_ID`', () => {
-            expectToBe(component.STRUCTURE_VIEW_ID, expectedStructureViewId);
+        it('... should have `structureViewId`', () => {
+            expectToBe(component.structureViewId, expectedStructureViewId);
         });
 
-        it('... should have `STRUCTURE_VIEW_TITLE`', () => {
-            expectToBe(component.STRUCTURE_VIEW_TITLE, expectedStructureViewTitle);
+        it('... should have `structureViewTitle`', () => {
+            expectToBe(component.structureViewTitle, expectedStructureViewTitle);
         });
 
-        it('... should have `STRUCTURE_VIEW_IMG_PATH`', () => {
-            expectToBe(component.STRUCTURE_VIEW_IMG_PATH, expectedStructureViewImgPath);
+        it('... should have `structureViewImgPath`', () => {
+            expectToBe(component.structureViewImgPath, expectedStructureViewImgPath);
         });
 
-        it('... should have `STRUCTURE_VIEW_SVG_PATH`', () => {
-            expectToBe(component.STRUCTURE_VIEW_SVG_PATH, expectedStructureViewSvgPath);
+        it('... should have `structureViewSvgPath`', () => {
+            expectToBe(component.structureViewSvgPath, expectedStructureViewSvgPath);
         });
 
         describe('VIEW', () => {

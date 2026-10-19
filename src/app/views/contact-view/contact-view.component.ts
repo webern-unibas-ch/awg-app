@@ -30,46 +30,46 @@ import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 })
 export class ContactViewComponent {
     /**
-     * Readonly variable: CITATION_ID.
+     * Readonly variable: citationId.
      *
      * It keeps the id of the citation section.
      */
-    readonly CITATION_ID = 'awg-citation';
+    readonly citationId = 'awg-citation';
 
     /**
-     * Readonly variable: CITATION_TITLE.
+     * Readonly variable: citationTitle.
      *
      * It keeps the title of the citation section.
      */
-    readonly CITATION_TITLE = 'Zitation';
+    readonly citationTitle = 'Zitation';
 
     /**
-     * Readonly variable: IMPRINT_ID.
+     * Readonly variable: imprintId.
      *
      * It keeps the id of the imprint section.
      */
-    readonly IMPRINT_ID = 'awg-imprint';
+    readonly imprintId = 'awg-imprint';
 
     /**
-     * Readonly variable: IMPRINT_TITLE.
+     * Readonly variable: imprintTitle.
      *
      * It keeps the title of the imprint section.
      */
-    readonly IMPRINT_TITLE = 'Impressum';
+    readonly imprintTitle = 'Impressum';
 
     /**
-     * Readonly variable: DOCUMENTATION_ID.
+     * Readonly variable: documentationId.
      *
      * It keeps the id of the documentation section.
      */
-    readonly DOCUMENTATION_ID = 'awg-documentation';
+    readonly documentationId = 'awg-documentation';
 
     /**
-     * Readonly variable: DOCUMENTATION_TITLE.
+     * Readonly variable: documentationTitle.
      *
      * It keeps the title of the documentation section.
      */
-    readonly DOCUMENTATION_TITLE = 'Dokumentation';
+    readonly documentationTitle = 'Dokumentation';
 
     /**
      * Readonly variable: contactMetaData.

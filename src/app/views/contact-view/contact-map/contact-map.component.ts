@@ -31,18 +31,18 @@ export class ContactMapComponent {
     readonly linkUrl = input.required<string>();
 
     /**
-     * Public readonly variable: LINK_LABEL.
+     * Public readonly variable: linkLabel.
      *
      * It keeps a label for the map link.
      */
-    readonly LINK_LABEL = 'Größere Karte anzeigen';
+    readonly linkLabel = 'Größere Karte anzeigen';
 
     /**
-     * Public readonly object: IFRAME_SETTINGS.
+     * Public readonly object: iframeSettings.
      *
      * It holds the static dimensions for the map iframe.
      */
-    readonly IFRAME_SETTINGS = {
+    readonly iframeSettings = {
         width: '100%',
         height: '350',
     } as const;

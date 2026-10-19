@@ -76,8 +76,8 @@ describe('StatisticsComplexBreakdownComponent', () => {
             expect(() => component.complexBreakdownData()).toThrow();
         });
 
-        it('... should have `COMPLEX_BREAKDOWN_ITEMS`', () => {
-            expectToEqual(component.COMPLEX_BREAKDOWN_ITEMS, expectedComplexBreakdownItems);
+        it('... should have `complexBreakdownItems`', () => {
+            expectToEqual(component.complexBreakdownItems, expectedComplexBreakdownItems);
         });
 
         describe('VIEW', () => {

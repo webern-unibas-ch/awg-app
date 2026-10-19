@@ -37,11 +37,11 @@ export class EditionSideInfoComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Readonly variable: EDITION_INFO_HEADER.
+     * Readonly variable: editionInfoHeader.
      *
      * It keeps the header for the edition-info.
      */
-    readonly EDITION_INFO_HEADER = 'Edition';
+    readonly editionInfoHeader = 'Edition';
 
     /**
      * Readonly variable: generalEditionLinks.

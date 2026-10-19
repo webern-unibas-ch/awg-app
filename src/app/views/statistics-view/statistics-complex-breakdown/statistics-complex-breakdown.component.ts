@@ -31,11 +31,11 @@ export class StatisticsComplexBreakdownComponent {
     readonly complexBreakdownData = input.required<StatisticsComplexBreakdownData | null>();
 
     /**
-     * Public readonly variable: COMPLEX_BREAKDOWN_ITEMS.
+     * Public readonly variable: complexBreakdownItems.
      *
      * It defines the items for the complex breakdown progress bars.
      */
-    readonly COMPLEX_BREAKDOWN_ITEMS: StatisticsProgressBarItem[] = [
+    readonly complexBreakdownItems: StatisticsProgressBarItem[] = [
         { key: 'opus', baseLabel: 'Opus', colorType: 'primary' },
         { key: 'mnr', baseLabel: 'M-number', colorType: 'secondary' },
         { key: 'mnrX', baseLabel: 'M*-number', colorType: 'info' },

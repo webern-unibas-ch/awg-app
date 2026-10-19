@@ -1,5 +1,5 @@
 @let type = labelType();
-@let isSketchId = EDITION_UTILS.isSketchId(id());
+@let isSketchId = editionUtils.isSketchId(id());
 
 @if (type === 'evaluation') {
     <span>{{ isSketchId ? 'Skizzenkommentar' : 'Quellenbewertung' }}</span>

@@ -21,11 +21,11 @@ import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 })
 export class StructureSideInfoComponent {
     /**
-     * Readonly variable: STRUCTURE_SIDE_INFO_HEADER.
+     * Readonly variable: structureSideInfoHeader.
      *
      * It keeps the header for the structure side info.
      */
-    readonly STRUCTURE_SIDE_INFO_HEADER = 'Strukturmodell';
+    readonly structureSideInfoHeader = 'Strukturmodell';
 
     /**
      * Readonly variable: structureMetaData.

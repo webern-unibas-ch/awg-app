@@ -77,18 +77,18 @@ describe('ContactViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have citation title and id', () => {
-            expectToBe(component.CITATION_ID, expectedCitationId);
-            expectToBe(component.CITATION_TITLE, expectedCitationTitle);
+            expectToBe(component.citationId, expectedCitationId);
+            expectToBe(component.citationTitle, expectedCitationTitle);
         });
 
         it('... should have documentation title and id', () => {
-            expectToBe(component.DOCUMENTATION_ID, expectedDocumentationId);
-            expectToBe(component.DOCUMENTATION_TITLE, expectedDocumentationTitle);
+            expectToBe(component.documentationId, expectedDocumentationId);
+            expectToBe(component.documentationTitle, expectedDocumentationTitle);
         });
 
         it('... should have imprint title and id', () => {
-            expectToBe(component.IMPRINT_ID, expectedImprintId);
-            expectToBe(component.IMPRINT_TITLE, expectedImprintTitle);
+            expectToBe(component.imprintId, expectedImprintId);
+            expectToBe(component.imprintTitle, expectedImprintTitle);
         });
 
         it('... should have `contactMetaData`', () => {

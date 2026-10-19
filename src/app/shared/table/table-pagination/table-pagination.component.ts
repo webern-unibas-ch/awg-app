@@ -44,11 +44,11 @@ export class TablePaginationComponent {
     readonly page = model<number>(1);
 
     /**
-     * Readonly variable: FILTER_PAG_REGEX.
+     * Readonly variable: filterPagRegex.
      *
      * It keeps a regex for anything else but a number value.
      */
-    readonly FILTER_PAG_REGEX = /\D/g;
+    readonly filterPagRegex = /\D/g;
 
     /**
      * Public method: replaceNonNumberInput.
@@ -60,7 +60,7 @@ export class TablePaginationComponent {
      * @returns {void} Replaces the value of the input element.
      */
     replaceNonNumberInput(inputEl: HTMLInputElement): void {
-        inputEl.value = inputEl.value.replace(this.FILTER_PAG_REGEX, '');
+        inputEl.value = inputEl.value.replace(this.filterPagRegex, '');
     }
 
     /**

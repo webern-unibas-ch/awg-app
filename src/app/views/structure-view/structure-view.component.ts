@@ -19,32 +19,32 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
 })
 export class StructureViewComponent {
     /**
-     * Public readonly variable: STRUCTURE_VIEW_ID.
+     * Public readonly variable: structureViewId.
      *
      * It keeps the id for the heading component
      * of the structure view.
      */
-    readonly STRUCTURE_VIEW_ID = 'awg-structure-view-heading';
+    readonly structureViewId = 'awg-structure-view-heading';
 
     /**
-     * Public readonly variable: STRUCTURE_VIEW_TITLE.
+     * Public readonly variable: structureViewTitle.
      *
      * It keeps the title for the heading component
      * of the structure view.
      */
-    readonly STRUCTURE_VIEW_TITLE = 'Datenstrukturmodell';
+    readonly structureViewTitle = 'Datenstrukturmodell';
 
     /**
-     * Public readonly variable: STRUCTURE_VIEW_IMG_PATH.
+     * Public readonly variable: structureViewImgPath.
      *
      * It keeps the image path to the image of the structure view.
      */
-    readonly STRUCTURE_VIEW_IMG_PATH = 'assets/img/structure/WebernGraph.png';
+    readonly structureViewImgPath = 'assets/img/structure/WebernGraph.png';
 
     /**
-     * Public readonly variable: STRUCTURE_VIEW_SVG_PATH.
+     * Public readonly variable: structureViewSvgPath.
      *
      * It keeps the svg path to the image of the structure view.
      */
-    readonly STRUCTURE_VIEW_SVG_PATH = 'assets/img/structure/WebernGraph.svg';
+    readonly structureViewSvgPath = 'assets/img/structure/WebernGraph.svg';
 }

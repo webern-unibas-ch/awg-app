@@ -53,18 +53,18 @@ export class EditionViewComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Readonly variable: EDITION_VIEW_ID.
+     * Readonly variable: editionViewId.
      *
      * It keeps the id of the edition view section.
      */
-    readonly EDITION_VIEW_ID = 'awg-edition-view';
+    readonly editionViewId = 'awg-edition-view';
 
     /**
-     * Readonly variable: EDITION_VIEW_TITLE
+     * Readonly variable: editionViewTitle
      *
      * It keeps the title of the edition view section.
      */
-    readonly EDITION_VIEW_TITLE = 'Editionsübersicht';
+    readonly editionViewTitle = 'Editionsübersicht';
 
     /**
      * Readonly signal: viewContext.
@@ -142,7 +142,7 @@ export class EditionViewComponent {
             return series.series.full;
         }
 
-        return this.EDITION_VIEW_TITLE;
+        return this.editionViewTitle;
     });
 
     /**

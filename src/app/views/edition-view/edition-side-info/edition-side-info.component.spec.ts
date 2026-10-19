@@ -140,8 +140,8 @@ describe('EditionSideInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `EDITION_INFO_HEADER`', () => {
-            expectToBe(component.EDITION_INFO_HEADER, expectedEditionInfoHeader);
+        it('... should have `editionInfoHeader`', () => {
+            expectToBe(component.editionInfoHeader, expectedEditionInfoHeader);
         });
 
         it('... should have signal `selectedEditionSection` to hold expected section', () => {

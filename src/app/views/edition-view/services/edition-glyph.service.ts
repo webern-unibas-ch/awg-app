@@ -15,13 +15,6 @@ import { EDITION_GLYPHS_DATA } from '../data/edition-glyphs.data';
 })
 export class EditionGlyphService {
     /**
-     * Readonly variable: GLYPHS.
-     *
-     * It keeps the data for musical glyphs.
-     */
-    readonly GLYPHS = EDITION_GLYPHS_DATA;
-
-    /**
      * Public method: getGlyph.
      *
      * It returns the hex value string for a glyph referenced by the given glyph string.
@@ -30,7 +23,7 @@ export class EditionGlyphService {
      * @returns {string} The hex value string of the given glyph string or empty string.
      */
     getGlyph(glyphString: string): string {
-        const glyph = Object.values(this.GLYPHS).find(g => g.alt === glyphString);
+        const glyph = Object.values(EDITION_GLYPHS_DATA).find(g => g.alt === glyphString);
         return glyph ? glyph.hex : '';
     }
 }

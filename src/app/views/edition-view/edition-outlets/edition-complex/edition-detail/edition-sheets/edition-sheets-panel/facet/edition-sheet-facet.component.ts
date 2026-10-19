@@ -47,9 +47,9 @@ export class EditionSheetFacetComponent {
     readonly isMinimized = model<boolean>(false);
 
     /**
-     * Readonly variable: EDITION_TYPE_KEYS.
+     * Readonly variable: editionTypeKeys.
      *
      * It keeps the available keys for the edition types.
      */
-    readonly EDITION_TYPE_KEYS = EDITION_TYPE_KEYS;
+    readonly editionTypeKeys = EDITION_TYPE_KEYS;
 }

@@ -9,7 +9,7 @@
                         <span [awgCompileHtml]="textcritics.label"></span>
                     </button>
                     <div class="btn-group" role="group" aria-label="Button to sheets">
-                        @let isWorkEdition = EDITION_UTILS.isWorkEditionId(textcritics.id);
+                        @let isWorkEdition = editionUtils.isWorkEditionId(textcritics.id);
                         @if (isWorkEdition) {
                             <button type="button" class="btn btn-sm btn-outline-info">
                                 <awg-edition-disclaimer-workeditions />

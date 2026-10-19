@@ -87,8 +87,8 @@ describe('TablePaginationComponent (DONE)', () => {
             expectToBe(component.page(), 1);
         });
 
-        it('... should have `FILTER_PAG_REGEX`', () => {
-            expectToEqual(component.FILTER_PAG_REGEX, /\D/g);
+        it('... should have `filterPagRegex`', () => {
+            expectToEqual(component.filterPagRegex, /\D/g);
         });
 
         describe('VIEW', () => {

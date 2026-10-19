@@ -45,27 +45,27 @@ export class HomeViewComponent {
     private readonly _editionOutlineService = inject(EditionOutlineService);
 
     /**
-     * Readonly variable: HOME_VIEW_ID.
+     * Readonly variable: homeViewId.
      *
      * It keeps the id for the heading component
      * of the home view section.
      */
-    readonly HOME_VIEW_ID = 'awg-home-view-heading';
+    readonly homeViewId = 'awg-home-view-heading';
 
     /**
-     * Readonly variable: HOME_VIEW_TITLE.
+     * Readonly variable: homeViewTitle.
      *
      * It keeps the title for the heading component
      * of the home view section.
      */
-    readonly HOME_VIEW_TITLE = 'Anton Webern Gesamtausgabe: Online-Edition';
+    readonly homeViewTitle = 'Anton Webern Gesamtausgabe: Online-Edition';
 
     /**
-     * Readonly variable: DISCLAIMER_MESSAGE.
+     * Readonly variable: disclaimerMessage.
      *
      * It keeps the disclaimer message for the home view section.
      */
-    readonly DISCLAIMER_MESSAGE =
+    readonly disclaimerMessage =
         'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
 
     /**

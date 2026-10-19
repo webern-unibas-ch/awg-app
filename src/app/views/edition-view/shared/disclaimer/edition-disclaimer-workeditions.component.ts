@@ -23,7 +23,7 @@ export class EditionDisclaimerWorkeditionsComponent {
      *
      * It keeps the disclaimer for work editions.
      */
-    readonly DISCLAIMER =
+    readonly disclaimer =
         'Werkeditionen sind aus rechtlichen Gründen frühestens ab 2049 online verfügbar. Bis dahin konsultieren Sie bitte die entsprechende Printausgabe.';
 
     /**

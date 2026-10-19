@@ -30,11 +30,11 @@ export class ContactSideInfoComponent {
     private readonly _sanitizer = inject(DomSanitizer);
 
     /**
-     * Readonly variable: CONTACT_SIDE_INFO_HEADER.
+     * Readonly variable: contactSideInfoHeader.
      *
      * It keeps the header for the contact side info.
      */
-    readonly CONTACT_SIDE_INFO_HEADER = 'Kontakt';
+    readonly contactSideInfoHeader = 'Kontakt';
 
     /**
      * Readonly variable: contactMetaData.

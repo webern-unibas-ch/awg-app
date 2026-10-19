@@ -2,9 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
-
-import { EDITION_GLYPHS_DATA } from '../data/edition-glyphs.data';
+import { expectToBe } from '@testing/expect-helper';
 
 import { EditionGlyphService } from './edition-glyph.service';
 
@@ -18,10 +16,6 @@ describe('EditionGlyphService (DONE)', () => {
 
     it('... should be created', () => {
         expect(editionGlyphService).toBeTruthy();
-    });
-
-    it('... should have `GLYPHS`', () => {
-        expectToEqual(editionGlyphService.GLYPHS, EDITION_GLYPHS_DATA);
     });
 
     describe('#getGlyph()', () => {

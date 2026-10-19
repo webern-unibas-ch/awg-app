@@ -73,12 +73,12 @@ describe('ContactMapComponent (DONE)', () => {
             expect(() => component.linkUrl()).toThrow();
         });
 
-        it('... should have `LINK_LABEL`', () => {
-            expectToBe(component.LINK_LABEL, expectedLinkLabel);
+        it('... should have `linkLabel`', () => {
+            expectToBe(component.linkLabel, expectedLinkLabel);
         });
 
-        it('... should have `IFRAME_SETTINGS`', () => {
-            expectToEqual(component.IFRAME_SETTINGS, expectedIFrameSettings);
+        it('... should have `iframeSettings`', () => {
+            expectToEqual(component.iframeSettings, expectedIFrameSettings);
         });
 
         describe('VIEW', () => {
