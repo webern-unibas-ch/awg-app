@@ -15,7 +15,6 @@ export type CmMode = StreamParser<unknown>;
  * It keeps the custom theme extension of the codemirror editor.
  */
 export const CODEMIRROR_THEME: Extension = EditorView.theme({
-    /* eslint-disable @typescript-eslint/naming-convention */
     '&': {
         fontSize: 'small',
         minHeight: '300px',
@@ -27,7 +26,6 @@ export const CODEMIRROR_THEME: Extension = EditorView.theme({
         overflow: 'auto',
         maxHeight: '300px',
     },
-    /* eslint-enable @typescript-eslint/naming-convention */
 });
 
 /**

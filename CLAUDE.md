@@ -15,6 +15,7 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn lint` / `yarn lint:fix`: ESLint
 - `yarn format-files:check` / `yarn format-files:fix`: Prettier for `src/**`
 - `yarn build:prod`: production build to `dist/awg-app`
+- `yarn check:cycles`: madge check for circular imports (incl. path aliases; runs in CI)
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
 
 Husky and lint-staged run ESLint and Prettier on staged files.

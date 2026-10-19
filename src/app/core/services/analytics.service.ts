@@ -104,9 +104,7 @@ export class AnalyticsService {
             'config',
             this._analyticsId,
             {
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 page_path: page,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 send_page_view: this._sendPageView,
             },
         ];

@@ -219,7 +219,6 @@ describe('AnalyticsService (DONE)', () => {
             const expectedAnalyticsEvent: AnalyticsConfigEvent = [
                 'config',
                 expectedAnalyticsId,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 { page_path: expectedPage, send_page_view: expectedSendPageView },
             ];
 
@@ -238,13 +237,11 @@ describe('AnalyticsService (DONE)', () => {
             const expectedAnalyticsEvent: AnalyticsConfigEvent = [
                 'config',
                 expectedAnalyticsId,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 { page_path: expectedPage, send_page_view: expectedSendPageView },
             ];
             const otherAnalyticsEvent: AnalyticsConfigEvent = [
                 'config',
                 expectedAnalyticsId,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 { page_path: otherPage, send_page_view: expectedSendPageView },
             ];
 

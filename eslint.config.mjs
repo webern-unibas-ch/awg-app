@@ -1,6 +1,5 @@
 import eslintJs from '@eslint/js';
 import angularEslint from 'angular-eslint';
-import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import prettierPlugin from 'eslint-plugin-prettier';
 import { defineConfig } from 'eslint/config';
@@ -53,17 +52,14 @@ export default defineConfig(
             sourceType: 'module',
 
             parserOptions: {
-                project: ['tsconfig.eslint.json'],
-                createDefaultProgram: true,
-                projectService: false,
+                projectService: true,
                 tsconfigRootDir: import.meta.dirname,
             },
         },
-        linterOptions: { reportUnusedDisableDirectives: 'off' },
+        linterOptions: { reportUnusedDisableDirectives: 'error' },
         processor: angularEslint.processInlineTemplates,
 
         plugins: {
-            import: importPlugin,
             jsdoc: jsdocPlugin,
             '@typescript-eslint': typescriptEslint.plugin,
             '@angular-eslint': angularEslint.tsPlugin,
@@ -81,32 +77,10 @@ export default defineConfig(
             '@angular-eslint/no-uncalled-signals': 'error',
             '@angular-eslint/prefer-output-readonly': 'error',
             '@angular-eslint/prefer-signals': 'error',
-            '@angular-eslint/prefer-standalone': 'off',
             '@angular-eslint/sort-lifecycle-methods': 'error',
             '@angular-eslint/use-lifecycle-interface': 'error',
             '@angular-eslint/use-pipe-transform-interface': 'error',
             '@typescript-eslint/consistent-type-definitions': 'error',
-            '@typescript-eslint/dot-notation': 'off',
-            '@typescript-eslint/explicit-member-accessibility': [
-                'off',
-                {
-                    accessibility: 'explicit',
-                },
-            ],
-            '@typescript-eslint/indent': 'off',
-            '@typescript-eslint/member-delimiter-style': [
-                'off',
-                {
-                    multiline: {
-                        delimiter: 'semi',
-                        requireLast: true,
-                    },
-                    singleline: {
-                        delimiter: 'semi',
-                        requireLast: false,
-                    },
-                },
-            ],
             // Class layout: fields (inject → input/model → output → queries → state) → constructor → accessors → methods
             '@typescript-eslint/member-ordering': [
                 'error',
@@ -183,8 +157,6 @@ export default defineConfig(
                 },
             ],
             '@typescript-eslint/no-deprecated': 'warn',
-            '@typescript-eslint/no-empty-function': 'off',
-            '@typescript-eslint/no-empty-interface': 'off',
             '@typescript-eslint/no-inferrable-types': [
                 'error',
                 {
@@ -202,18 +174,8 @@ export default defineConfig(
             '@typescript-eslint/no-unused-expressions': 'error',
             '@typescript-eslint/no-use-before-define': 'error',
             '@typescript-eslint/prefer-function-type': 'error',
-            '@typescript-eslint/quotes': [
-                'off',
-                'single',
-                {
-                    avoidEscape: true,
-                },
-            ],
-            '@typescript-eslint/semi': 'off',
-            '@typescript-eslint/type-annotation-spacing': 'off',
             '@typescript-eslint/unified-signatures': 'error',
             'arrow-body-style': 'error',
-            'brace-style': 'off',
             'capitalized-comments': [
                 'error',
                 'always',
@@ -223,22 +185,10 @@ export default defineConfig(
             ],
             'constructor-super': 'error',
             curly: 'error',
-            'eol-last': 'off',
             eqeqeq: ['error', 'smart'],
             'guard-for-in': 'error',
-            'id-blacklist': 'off',
-            'id-match': 'off',
-            'import/no-cycle': 'error',
-            'import/no-deprecated': 'warn',
-            'jsdoc/no-types': 'off',
             'jsdoc/sort-tags': 'error',
             'jsdoc/tag-lines': ['error', 'never', { startLines: 1 }],
-            'max-len': [
-                'off',
-                {
-                    code: 200,
-                },
-            ],
             'no-bitwise': 'error',
             'no-caller': 'error',
             'no-console': [
@@ -268,7 +218,6 @@ export default defineConfig(
                 },
             ],
             'no-debugger': 'error',
-            'no-empty': 'off',
             'no-eval': 'error',
             'no-fallthrough': 'error',
             'no-new-wrappers': 'error',
@@ -292,12 +241,9 @@ export default defineConfig(
                 },
             ],
             'no-throw-literal': 'error',
-            'no-trailing-spaces': 'off',
             'no-undef-init': 'error',
-            'no-underscore-dangle': 'off',
             'no-unused-labels': 'error',
             'no-var': 'error',
-            'object-curly-spacing': 'off',
             'prefer-const': 'error',
             radix: 'error',
             'spaced-comment': [
