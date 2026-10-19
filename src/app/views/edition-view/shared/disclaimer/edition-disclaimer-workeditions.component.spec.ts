@@ -46,8 +46,8 @@ describe('EditionDisclaimerWorkeditionsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `DISCLAIMER`', () => {
-            expectToEqual(component.DISCLAIMER, expectedDisclaimer);
+        it('... should have `disclaimer`', () => {
+            expectToEqual(component.disclaimer, expectedDisclaimer);
         });
 
         it('... should have `faCalendarXmark`', () => {

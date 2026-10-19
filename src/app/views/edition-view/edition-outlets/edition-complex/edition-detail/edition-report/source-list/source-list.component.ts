@@ -25,18 +25,18 @@ import { SourceSiglumComponent } from '../source-siglum/source-siglum.component'
 })
 export class SourceListComponent {
     /**
-     * Private readonly injection variable: _navigationService
-     *
-     * It keeps the instance of the injected EditionNavigationService.
-     */
-    private readonly _navigationService = inject(EditionNavigationService);
-
-    /**
      * Private readonly injection variable: _editionModalService
      *
      * It keeps the instance of the injected EditionModalService.
      */
     private readonly _editionModalService = inject(EditionModalService);
+
+    /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService = inject(EditionNavigationService);
 
     /**
      * Input variable: sourceListData.
@@ -52,7 +52,6 @@ export class SourceListComponent {
      * on a source click event.
      *
      * @param {Source} source The given source.
-     *
      * @returns {void} Navigates to a report fragment or opens a modal.
      */
     onSourceClick(source: Source): void {

@@ -73,12 +73,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
             expect(() => component.seriesBreakdownData()).toThrow();
         });
 
-        it('... should have `ROUTES` with edition route constants', () => {
-            expectToEqual(component.ROUTES, {
-                edition: EDITION_ROUTE_CONSTANTS.EDITION,
-                series: EDITION_ROUTE_CONSTANTS.SERIES,
-                section: EDITION_ROUTE_CONSTANTS.SECTION,
-            });
+        it('... should have `editionRouteConstants`', () => {
+            expectToEqual(component.editionRouteConstants, EDITION_ROUTE_CONSTANTS);
         });
 
         describe('VIEW', () => {
@@ -653,7 +649,11 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             if (sectionData.disabled) {
                                 expectToBe(routerLinkInstance.urlTree, null);
                             } else {
-                                const { edition, series: routeSeries, section: routeSection } = component.ROUTES;
+                                const {
+                                    EDITION: edition,
+                                    SERIES: routeSeries,
+                                    SECTION: routeSection,
+                                } = component.editionRouteConstants;
                                 const expectedLink = `${edition.route}/${routeSeries.route}/${seriesData.series.length}/${routeSection.route}/${sectionData.section}`;
 
                                 const actualUrl = routerLinkInstance.urlTree?.toString();
@@ -682,7 +682,11 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const firstCallArg = navigateSpy.mock.calls[0][0];
                             const actualUrl = firstCallArg.toString();
 
-                            const { edition, series: routeSeries, section: routeSection } = component.ROUTES;
+                            const {
+                                EDITION: edition,
+                                SERIES: routeSeries,
+                                SECTION: routeSection,
+                            } = component.editionRouteConstants;
                             const expectedLink = `${edition.route}/${routeSeries.route}/${seriesData.series.length}/${routeSection.route}/${sectionData.section}`;
 
                             expectToContain(actualUrl, expectedLink);

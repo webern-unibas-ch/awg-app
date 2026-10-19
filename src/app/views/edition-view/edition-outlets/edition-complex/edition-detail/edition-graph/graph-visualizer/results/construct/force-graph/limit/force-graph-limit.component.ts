@@ -78,7 +78,7 @@ export class ForceGraphLimitComponent {
     readonly tripleCount = input.required<number>();
 
     /**
-     * Model signal: limit.
+     * Readonly model signal: limit.
      *
      * It holds the current limit of displayed triples.
      */

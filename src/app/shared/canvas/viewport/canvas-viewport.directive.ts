@@ -20,11 +20,11 @@ export class CanvasViewportDirective {
     private readonly _destroyRef = inject(DestroyRef);
 
     /**
-     * Private readonly injection variable: _canvasEl.
+     * Private readonly injection variable: _elementRef.
      *
-     * It keeps the host canvas element.
+     * It keeps the reference to the host canvas element.
      */
-    private readonly _canvasEl: HTMLCanvasElement = inject(ElementRef).nativeElement;
+    private readonly _elementRef = inject<ElementRef<HTMLCanvasElement>>(ElementRef);
 
     /**
      * Readonly output signal: resized.
@@ -33,6 +33,13 @@ export class CanvasViewportDirective {
      * (which clears the canvas, so it should be redrawn at once, before the next paint).
      */
     readonly resized = output<CanvasViewport>();
+
+    /**
+     * Private readonly variable: _canvasEl.
+     *
+     * It keeps the host canvas element.
+     */
+    private readonly _canvasEl = this._elementRef.nativeElement;
 
     /**
      * Private readonly signal: _viewport.

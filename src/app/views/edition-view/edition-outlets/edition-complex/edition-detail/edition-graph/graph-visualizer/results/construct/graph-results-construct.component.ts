@@ -91,7 +91,6 @@ export class GraphResultsConstructComponent {
      * the {@link clickedNodeRequest}.
      *
      * @param {ResultGraphNode} node The given graph node.
-     *
      * @returns {void} Triggers the request.
      */
     onGraphNodeClick(node: ResultGraphNode): void {

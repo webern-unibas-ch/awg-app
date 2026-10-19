@@ -11,7 +11,6 @@ import { ComponentFixture } from '@angular/core/testing';
  *
  * @param {DebugElement | HTMLElement } clickTarget The DebugElement or HTMLElement to click on.
  * @param {ComponentFixture<any>} fixture The component fixture on which the changes are applied.
- *
  * @returns {Promise<void>} Triggers the click event and applies the changes to the component fixture.
  */
 export async function clickAndAwaitChanges(
@@ -40,7 +39,6 @@ export async function clickAndAwaitChanges(
  *
  * @param {DebugElement | Element} clickTarget The element or DebugElement to dispatch a click event on.
  * @param {ComponentFixture<any>} fixture The component fixture on which the changes are applied.
- *
  * @returns {Promise<void>} Dispatches the click event and applies the changes to the component fixture.
  */
 export async function clickDispatchAndAwaitChanges(

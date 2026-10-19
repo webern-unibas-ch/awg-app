@@ -71,8 +71,8 @@ describe('ContactSideInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `CONTACT_SIDE_INFO_HEADER`', () => {
-            expectToBe(component.CONTACT_SIDE_INFO_HEADER, expectedContactSideInfoHeader);
+        it('... should have `contactSideInfoHeader`', () => {
+            expectToBe(component.contactSideInfoHeader, expectedContactSideInfoHeader);
         });
 
         it('... should have `contactMetaData`', () => {
@@ -101,7 +101,7 @@ describe('ContactSideInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card-body h5#awg-contact-side-info-header', 1, 1);
             });
 
-            it('... should not render `CONTACT_SIDE_INFO_HEADER` yet', () => {
+            it('... should not render `contactSideInfoHeader` yet', () => {
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-side-info-header', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
@@ -142,7 +142,7 @@ describe('ContactSideInfoComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render `CONTACT_SIDE_INFO_HEADER`', () => {
+            it('... should render `contactSideInfoHeader`', () => {
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-side-info-header', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 

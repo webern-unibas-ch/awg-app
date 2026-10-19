@@ -15,11 +15,11 @@ import { LanguageId } from './language.model';
 })
 export class LanguageSwitcherComponent {
     /**
-     * Model signal: selectedLanguage.
+     * Readonly model signal: selectedLanguage.
      *
      * It holds the selected language id.
      */
-    selectedLanguage = model.required<LanguageId>();
+    readonly selectedLanguage = model.required<LanguageId>();
 
     /**
      * Protected readonly variable: languages.

@@ -47,7 +47,6 @@ export class EditionComplexesService {
      * in the edition complexes list.
      *
      * @param {string} id The given id (will be normalized to lowercase).
-     *
      * @returns {EditionComplex | undefined} The found edition complex, otherwise undefined.
      */
     getEditionComplexById(id: string): EditionComplex | undefined {
@@ -60,7 +59,6 @@ export class EditionComplexesService {
      * It sets the edition complexes list.
      *
      * @param {EditionComplexesList} complexesList The given edition complexes list.
-     *
      * @returns {void} Sets the edition complexes list.
      */
     setEditionComplexesList(complexesList: EditionComplexesList): void {

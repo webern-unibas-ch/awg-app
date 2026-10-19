@@ -47,7 +47,6 @@ export class SelectTableComponent {
      * It emits a uri the user clicked on in the result table.
      *
      * @param {string} uri The given uri.
-     *
      * @returns {void} Emits the uri.
      */
     onTableNodeClick(uri: string): void {

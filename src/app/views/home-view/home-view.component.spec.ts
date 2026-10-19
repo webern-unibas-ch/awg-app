@@ -129,12 +129,12 @@ describe('HomeViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have home view `id` and `title`', () => {
-            expectToBe(component.HOME_VIEW_ID, expectedHomeViewId);
-            expectToBe(component.HOME_VIEW_TITLE, expectedHomeViewTitle);
+            expectToBe(component.homeViewId, expectedHomeViewId);
+            expectToBe(component.homeViewTitle, expectedHomeViewTitle);
         });
 
-        it('... should have `DISCLAIMER_MESSAGE`', () => {
-            expectToBe(component.DISCLAIMER_MESSAGE, expectedDisclaimerMessage);
+        it('... should have `disclaimerMessage`', () => {
+            expectToBe(component.disclaimerMessage, expectedDisclaimerMessage);
         });
 
         it('... should have `homeViewCardData`', () => {

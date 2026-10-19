@@ -1,7 +1,4 @@
-/* eslint-disable @angular-eslint/no-input-rename */
-
-import { Component, Directive, HostListener, Input } from '@angular/core';
-import { ParamMap, Params, QueryParamsHandling, convertToParamMap } from '@angular/router';
+import { ParamMap, Params, convertToParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 /**
@@ -13,75 +10,6 @@ export interface UrlSegmentStub {
      */
     path: string;
 }
-
-// #docregion router-link-stub
-/**
- * A RouterLink test double (stub) with a `click` listener.
- *
- * Use the `routerLink` input to set the `navigatedTo` value
- * after click.
- */
-@Directive({
-    selector: '[routerLink]',
-    standalone: false,
-})
-export class RouterLinkStubDirective {
-    /**
-     * Input with navigation parameters.
-     */
-    @Input('routerLink')
-    linkParams: any;
-
-    /**
-     * Input with query parameters.
-     */
-    @Input('queryParams')
-    queryParams?: any;
-
-    /**
-     * Input with query param handling option.
-     */
-    @Input('queryParamsHandling')
-    queryParamsHandling?: QueryParamsHandling = '';
-
-    /**
-     * Input with fragment option.
-     */
-    @Input('fragment')
-    fragment?: string = '';
-
-    /**
-     * The router params after navigation.
-     */
-    navigatedTo: any = null;
-
-    /**
-     * The router fragment after navigation.
-     */
-    navigatedToFragment: string | null = null;
-
-    /**
-     * Listener that sets the navigation target after click.
-     */
-    @HostListener('click')
-    onClick() {
-        this.navigatedTo = this.linkParams;
-        this.navigatedToFragment = this.fragment || null;
-    }
-}
-// #enddocregion router-link-stub
-
-// #docregion router-outlet-stub
-/**
- * A RouterOutlet test double (stub).
- */
-@Component({
-    selector: 'router-outlet',
-    template: '',
-    standalone: false,
-})
-export class RouterOutletStubComponent {}
-// #enddocregion router-outlet-stub
 
 // #docregion activated-route-stub
 /**
@@ -101,7 +29,6 @@ export class ActivatedRouteStub {
      * Readonly ActivatedRoute.params test double (stub)
      * as observable (`BehaviorSubject`).
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly params = this._paramSubject.asObservable();
 
     /**
@@ -117,7 +44,6 @@ export class ActivatedRouteStub {
     /**
      * Observable that contains a map of the test parameters
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly paramMap = this._paramMapSubject.asObservable();
 
     /**
@@ -133,7 +59,6 @@ export class ActivatedRouteStub {
     /**
      * Observable that contains a map of the query parameters
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly queryParamMap = this._queryParamMapSubject.asObservable();
 
     /**
@@ -149,7 +74,6 @@ export class ActivatedRouteStub {
     /**
      * Observable that contains a map of the children parameters
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly children = this._childrenSubject.asObservable();
 
     /**
@@ -165,7 +89,6 @@ export class ActivatedRouteStub {
     /**
      * Observable that contains a map of the urls
      */
-    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
     readonly url = this._urlSubject.asObservable();
 
     /**
@@ -185,6 +108,7 @@ export class ActivatedRouteStub {
 
     /**
      * Getter for test route parameters.
+     *
      * @returns The latest test route parameters.
      */
     get testParams() {

@@ -8,21 +8,21 @@
     @if (context.isPreface) {
         <div class="awg-edition-preface-view para">
             <awg-edition-breadcrumb [items]="breadcrumbItems()" />
-            <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />
+            <awg-edition-jumbotron [id]="editionViewId" [title]="jumbotronTitle()" />
         </div>
     }
 
     @if (context.isRowtables) {
         <div class="awg-edition-rowtables-view para">
             <awg-edition-breadcrumb [items]="breadcrumbItems()" />
-            <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />
+            <awg-edition-jumbotron [id]="editionViewId" [title]="jumbotronTitle()" />
         </div>
     }
 
     @if (editionComplex) {
         <div class="awg-edition-complex-view">
             <awg-edition-breadcrumb [items]="breadcrumbItems()" />
-            <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />
+            <awg-edition-jumbotron [id]="editionViewId" [title]="jumbotronTitle()" />
 
             <!-- declamation -->
             <div class="awg-edition-responsibility mt-3 mb-5">
@@ -52,7 +52,7 @@
     @if (editionComplex === null && !context.isRowtables && !context.isPreface) {
         <div class="awg-edition-outline-view para">
             <awg-edition-breadcrumb [items]="breadcrumbItems()" />
-            <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />
+            <awg-edition-jumbotron [id]="editionViewId" [title]="jumbotronTitle()" />
         </div>
     }
 

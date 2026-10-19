@@ -46,7 +46,7 @@ export class GraphEditorSparqlComponent {
     readonly queryList = input<GraphQuery[]>([]);
 
     /**
-     * Model signal: query.
+     * Readonly model signal: query.
      *
      * It holds the SPARQL query (two-way bound with the editor).
      */
@@ -135,7 +135,6 @@ export class GraphEditorSparqlComponent {
      * It updates the query with a given query string.
      *
      * @param {string} queryString The given query string.
-     *
      * @returns {void} Updates the query.
      */
     onQueryStringChange(queryString: string): void {
@@ -149,7 +148,6 @@ export class GraphEditorSparqlComponent {
      * and performs the switched query.
      *
      * @param {ViewHandleTypes} viewType The given view type.
-     *
      * @returns {void} Performs a new query with switched query type.
      */
     onViewChange(viewType: ViewHandleTypes): void {
@@ -180,7 +178,6 @@ export class GraphEditorSparqlComponent {
      * It emits a given query to the {@link resetQueryRequest}.
      *
      * @param {GraphQuery} query The given query.
-     *
      * @returns {void} Triggers the request.
      */
     resetQuery(query: GraphQuery): void {

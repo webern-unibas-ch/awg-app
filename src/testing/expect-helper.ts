@@ -26,7 +26,6 @@ interface Spy {
  * @param {number } expected The expected number of elements in the input array.
  * @param {number | undefined} expectedFailMsg The expected number of elements in the input array in the fail message.
  * @param {string} suffixMsg A message to add at the end of the expectation statement.
- *
  * @returns {void} Throws the expectation statements.
  */
 function expectDebugElement(
@@ -61,7 +60,6 @@ function expectDebugElement(
  * @param {number} expected The expected number of elements in the result array.
  * @param {number} expectedFailMsg The expected number of elements in the result array in the fail message.
  * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
- *
  * @returns {DebugElement[]} An array of the found DebugElements.
  */
 export function getAndExpectDebugElementByCss(
@@ -96,7 +94,6 @@ export function getAndExpectDebugElementByCss(
  * @param {number } expected The expected number of elements in the result array.
  * @param {number | undefined} expectedFailMsg The expected number of elements in the result array in the fail message.
  * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
- *
  * @returns {DebugElement[]} An array of the found DebugElements.
  */
 export function getAndExpectDebugElementByDirective(
@@ -127,7 +124,6 @@ export function getAndExpectDebugElementByDirective(
  *
  * @param {T} actual The actual input value to be checked.
  * @param {T} expected The expected value.
- *
  * @returns {void} Throws the expectation statements.
  */
 export function expectToBe<T>(actual: T, expected: T): void {
@@ -144,7 +140,6 @@ export function expectToBe<T>(actual: T, expected: T): void {
  *
  * @param {T} actual The input value to be checked (Array, String, etc. - cannot be a function).
  * @param {any} expected The expected value that should be contained.
- *
  * @returns {void} Throws the expectation statements.
  */
 export function expectToContain<T>(actual: T extends Function ? never : T, expected: any): void {
@@ -161,7 +156,6 @@ export function expectToContain<T>(actual: T extends Function ? never : T, expec
  *
  * @param {T} actual The input value to be checked (Array, String, etc. - cannot be a function).
  * @param {any} expected The expected value that should not be contained.
- *
  * @returns {void} Throws the expectation statements.
  */
 export function expectToNotContain<T>(actual: T extends Function ? never : T, expected: any): void {
@@ -178,7 +172,6 @@ export function expectToNotContain<T>(actual: T extends Function ? never : T, ex
  *
  * @param {T} actual The actual input value to be checked.
  * @param {T} expected The expected value
- *
  * @returns {void} Throws the expectation statements.
  */
 export function expectToEqual<T>(actual: T, expected: T): void {
@@ -196,7 +189,6 @@ export function expectToEqual<T>(actual: T, expected: T): void {
  * @param {Spy} spy The input spy instance.
  * @param {*} expectedMostRecentValue The expected value for the most recent spy call.
  * @param {number} index The index value of the most recent arguments array of a spy call.
- *
  * @returns {void} Throws the expectation statements.
  */
 function expectRecentSpyCall(spy: Spy, expectedMostRecentValue: any, index: number): void {
@@ -221,7 +213,6 @@ function expectRecentSpyCall(spy: Spy, expectedMostRecentValue: any, index: numb
  * @param {Spy} spy The input spy instance.
  * @param {number} expectedTimes The expected number of spy calls.
  * @param {*} [expectedMostRecentValue] An optional expected value for the most recent spy call.
- *
  * @returns {void} Throws the expectation statements.
  */
 export function expectSpyCall(spy: Spy, expectedTimes: number, expectedMostRecentValue?: any): void {

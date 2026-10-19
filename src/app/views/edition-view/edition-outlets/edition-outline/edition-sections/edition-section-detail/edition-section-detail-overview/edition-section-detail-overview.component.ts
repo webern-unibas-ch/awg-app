@@ -29,9 +29,16 @@ import { EditionSectionDetailPlaceholderComponent } from '../edition-section-det
 })
 export class EditionSectionDetailOverviewComponent {
     /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
      * Readonly signal: selectedSection.
      *
      * It holds the state of the selected edition section.
      */
-    readonly selectedSection = inject(EditionStateService).selectedEditionSection;
+    readonly selectedSection = this._editionStateService.selectedEditionSection;
 }

@@ -25,7 +25,6 @@ export class EditionSvgDrawingService {
      * @param {string} svgFilePath The given path to the svg file.
      * @param {SVGSVGElement| undefined} svgEl The given SVGSVGElement, or undefined.
      * @param {SVGGElement| undefined} svgRootGroupEl The given SVGGElement, or undefined.
-     *
      * @returns {Promise<D3Selection | undefined>} A promise that resolves to the D3 selection, or undefined.
      */
     async createSvg(
@@ -76,7 +75,6 @@ export class EditionSvgDrawingService {
      *
      * @param {D3Selection} svgEl The given D3 selection.
      * @param {string} color The given color.
-     *
      * @returns {void} Fills the selection.
      */
     fillD3SelectionWithColor(svgEl: D3Selection | undefined, color: string): void {
@@ -94,7 +92,6 @@ export class EditionSvgDrawingService {
      *
      * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
      * @param {string} id The given id.
-     *
      * @returns {D3Selection | undefined} The D3 selection of the found element, or undefined.
      */
     getD3SelectionById(svgRootGroup: D3Selection | undefined, id: string): D3Selection | undefined {
@@ -113,7 +110,6 @@ export class EditionSvgDrawingService {
      * @param {D3Selection | undefined} svgRootGroup The D3 selection of the SVG root group, or undefined.
      * @param {string} dataId The data id to select.
      * @param {string} attr The data attribute name (default: 'data-tkk-id').
-     *
      * @returns {D3Selection | undefined} The D3 selection of the found element(s), or undefined.
      */
     getD3SelectionByDataId(
@@ -154,7 +150,6 @@ export class EditionSvgDrawingService {
      * (i.e., the class following `supplied` in the class attribute of a supplied group).
      *
      * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
-     *
      * @returns {string[]} The unique names of all supplied classes from the SVG sheet root group.
      */
     getSuppliedClasses(svgRootGroup: D3Selection | undefined): string[] {
@@ -187,7 +182,6 @@ export class EditionSvgDrawingService {
      * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
      * @param {string} className The given class name (or empty string for all classes).
      * @param {boolean} isVisible The given requested visibility state of the class.
-     *
      * @returns {void} Toggles the opacity of the supplied class with the given className.
      */
     toggleSuppliedClassOpacity(svgRootGroup: D3Selection | undefined, className: string, isVisible: boolean): void {
@@ -212,7 +206,6 @@ export class EditionSvgDrawingService {
      * It fetches an SVG file from the given path via fetch method from D3 library.
      *
      * @param {string} path The path to the SVG file.
-     *
      * @returns {Promise<Document>} A promise that resolves to the SVG file as Document.
      */
     private _fetchSvgFile(path: string): Promise<Document> {
@@ -225,7 +218,6 @@ export class EditionSvgDrawingService {
      * It reads out the viewBox attribute of a given SVGSVGElement and creates a ViewBox object.
      *
      * @param {SVGSVGElement} svgXML The SVGSVGElement.
-     *
      * @returns {ViewBox} The ViewBox object.
      */
     private _getViewBox(svgXML: SVGSVGElement): ViewBox {

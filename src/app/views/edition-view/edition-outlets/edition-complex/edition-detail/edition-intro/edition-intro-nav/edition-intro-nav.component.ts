@@ -34,9 +34,9 @@ export class EditionIntroNavComponent {
     readonly notesLabel = input.required<string>();
 
     /**
-     * Model signal: selectedLanguage.
+     * Readonly model signal: selectedLanguage.
      *
      * It holds the selected language id.
      */
-    selectedLanguage = model.required<LanguageId>();
+    readonly selectedLanguage = model.required<LanguageId>();
 }

@@ -21,18 +21,18 @@ import { ABBR_UTILS } from '../abbr/abbr.utils';
 })
 export class CompileHtmlDirective {
     /**
+     * Private readonly injection variable: _editionModalService
+     *
+     * It keeps the instance of the injected EditionModalService.
+     */
+    private readonly _editionModalService = inject(EditionModalService);
+
+    /**
      * Private readonly injection variable: _el
      *
      * It keeps the instance of the injected ElementRef.
      */
     private readonly _el = inject(ElementRef);
-
-    /**
-     * Private readonly injection variable: _renderer
-     *
-     * It keeps the instance of the injected Renderer2.
-     */
-    private readonly _renderer = inject(Renderer2);
 
     /**
      * Private readonly injection variable: _glyphService
@@ -42,18 +42,18 @@ export class CompileHtmlDirective {
     private readonly _glyphService = inject(EditionGlyphService);
 
     /**
-     * Private readonly injection variable: _editionModalService
-     *
-     * It keeps the instance of the injected EditionModalService.
-     */
-    private readonly _editionModalService = inject(EditionModalService);
-
-    /**
      * Private readonly injection variable: _navigationService
      *
      * It keeps the instance of the injected EditionNavigationService.
      */
     private readonly _navigationService = inject(EditionNavigationService);
+
+    /**
+     * Private readonly injection variable: _renderer
+     *
+     * It keeps the instance of the injected Renderer2.
+     */
+    private readonly _renderer = inject(Renderer2);
 
     /**
      * Readonly input signal: htmlContent.

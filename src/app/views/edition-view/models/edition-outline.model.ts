@@ -334,7 +334,6 @@ export class EditionOutline {
      * @param {string} data.series The given series string.
      * @param {EditionOutlineSectionsJsonData[]} data.sections The given sections data.
      * @param {Function} getComplexById Optional function to get an edition complex by id.
-     *
      * @returns {EditionOutlineSeries} The mapped series.
      */
     private readonly _mapSeries = (
@@ -359,7 +358,6 @@ export class EditionOutline {
      * @param {Object} data.complexTypes The given complex types data.
      * @param {boolean} data.disabled The given disabled flag.
      * @param {Function} getComplexById Optional function to get an edition complex by id.
-     *
      * @returns {EditionOutlineSection} The mapped section.
      */
     private readonly _mapSection = (
@@ -405,7 +403,6 @@ export class EditionOutline {
      * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
      * @param {LabeledRoute} labeledIntroRoute The labeled intro route for the edition section.
      * @param {Function} getComplexById Optional function to get an edition complex by id.
-     *
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
     private readonly _mapSectionContent = (
@@ -438,7 +435,6 @@ export class EditionOutline {
      *
      * @param {EditionOutlineComplexItem[]} complexItems The complex items to map.
      * @param {Function} getComplexById Optional function to get an edition complex by id.
-     *
      * @returns {EditionOutlineComplexItem[]} The mapped complex items.
      */
     private readonly _mapComplexItems = (

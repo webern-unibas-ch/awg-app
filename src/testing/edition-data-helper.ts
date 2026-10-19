@@ -15,10 +15,8 @@ import {
  * @param {Partial<EditionViewDataContent<K>>} [overrides.data] Optional partial data to override the default data.
  * @param {boolean} [overrides.isLoading] Optional boolean to override the default isLoading state.
  * @param {any} [overrides.error] Optional error object to override the default error state.
- *
- * @example  createMockViewData(defaultData, { isLoading: true });
- *
  * @returns {EditionViewData<K>} The mock edition view data for the specified EditionViewKey.
+ * @example  createMockViewData(defaultData, { isLoading: true });
  */
 export function createMockViewData<K extends EditionViewKey>(
     defaultDataContent: EditionViewDataContent<K>,
@@ -41,10 +39,8 @@ export function createMockViewData<K extends EditionViewKey>(
  *
  * @param {EditionDataAssetsKeys} assetKey The EditionDataAssetsKeys for which to create mock response data.
  * @param {T} fallback The fallback data to use for the mock response data.
- *
- * @example  createMockResponseData('svgSheets', fallbackData);
- *
  * @returns {T} The mock response data for the specified assetKey.
+ * @example  createMockResponseData('svgSheets', fallbackData);
  */
 export function createMockResponseData<T>(assetKey: EditionDataAssetsKeys, fallback: T): T {
     const baseMock = { ...(fallback as Record<string, any>) };

@@ -31,9 +31,9 @@ export class EditionTkaLabelComponent {
     readonly labelType = input.required<'evaluation' | 'commentary'>();
 
     /**
-     * Protected readonly variable: EDITION_UTILS.
+     * Protected readonly variable: editionUtils.
      *
      * It keeps the reference to the {@link EDITION_UTILS} methods.
      */
-    protected readonly EDITION_UTILS = EDITION_UTILS;
+    protected readonly editionUtils = EDITION_UTILS;
 }

@@ -41,6 +41,20 @@ import { EditionSheetsPanelComponent } from './edition-sheets-panel/edition-shee
 })
 export class EditionSheetsComponent {
     /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
+
+    /**
      * Private readonly injection variable: _navigationService
      *
      * It keeps the instance of the injected EditionNavigationService.
@@ -75,14 +89,14 @@ export class EditionSheetsComponent {
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
      * Readonly signal: viewData.
      *
      * It holds the state of the sheets view data.
      */
-    readonly viewData = inject(EditionViewService).sheetsViewData;
+    readonly viewData = this._editionViewService.sheetsViewData;
 
     /**
      * Private readonly computed signal: _viewDataContent.

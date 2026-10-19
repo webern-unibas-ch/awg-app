@@ -58,7 +58,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have structureSideInfoHeader', () => {
-            expectToBe(component.STRUCTURE_SIDE_INFO_HEADER, expectedStructureSideInfoHeader);
+            expectToBe(component.structureSideInfoHeader, expectedStructureSideInfoHeader);
         });
 
         it('... should have `structureMetaData`', () => {

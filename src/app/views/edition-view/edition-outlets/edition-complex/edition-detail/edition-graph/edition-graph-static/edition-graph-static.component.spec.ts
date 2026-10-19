@@ -39,9 +39,9 @@ describe('EditionGraphStaticComponent (DONE)', () => {
             expect(component.imageKey()).toBeUndefined();
         });
 
-        it('... should have `GRAPH_IMAGES` to hold the static graph image paths', () => {
-            expectToBe(component.GRAPH_IMAGES.OP12, '');
-            expectToBe(component.GRAPH_IMAGES.OP25, EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route);
+        it('... should have `graphImages` to hold the static graph image paths', () => {
+            expectToBe(component.graphImages.OP12, '');
+            expectToBe(component.graphImages.OP25, EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route);
         });
 
         it('... should have computed signal `imageSrc` to hold null', () => {

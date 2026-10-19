@@ -194,6 +194,7 @@ export interface MetaContact {
     phone: {
         /**
          * The label of the phone info.
+         *
          * @example Telefon:
          */
         label: string;
@@ -210,18 +211,21 @@ export interface MetaContact {
     email: {
         /**
          * The label of the email info.
+         *
          * @example Email:
          */
         label: string;
 
         /**
          * The mailto of the email info.
+         *
          * @example mailto:my_email@host.com
          */
         mailto: string;
 
         /**
          * The safe string of the email info.
+         *
          * @example my_email [at] host [dot] com
          */
         safeString: string;

@@ -46,6 +46,13 @@ export class EditionViewComponent {
     private readonly _destroyRef = inject(DestroyRef);
 
     /**
+     * Private readonly injection variable: _editionBreadcrumbService.
+     *
+     * It keeps the instance of the injected EditionBreadcrumbService.
+     */
+    private readonly _editionBreadcrumbService = inject(EditionBreadcrumbService);
+
+    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
@@ -53,25 +60,32 @@ export class EditionViewComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Readonly variable: EDITION_VIEW_ID.
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
+
+    /**
+     * Readonly variable: editionViewId.
      *
      * It keeps the id of the edition view section.
      */
-    readonly EDITION_VIEW_ID = 'awg-edition-view';
+    readonly editionViewId = 'awg-edition-view';
 
     /**
-     * Readonly variable: EDITION_VIEW_TITLE
+     * Readonly variable: editionViewTitle
      *
      * It keeps the title of the edition view section.
      */
-    readonly EDITION_VIEW_TITLE = 'Editionsübersicht';
+    readonly editionViewTitle = 'Editionsübersicht';
 
     /**
      * Readonly signal: viewContext.
      *
      * It holds the state of the view context.
      */
-    readonly viewContext = inject(EditionViewService).viewContext;
+    readonly viewContext = this._editionViewService.viewContext;
 
     /**
      * Readonly signal: selectedEditionComplex.
@@ -99,7 +113,7 @@ export class EditionViewComponent {
      *
      * It holds the labeled route items for the breadcrumb.
      */
-    readonly breadcrumbItems = inject(EditionBreadcrumbService).getBreadcrumbItems(
+    readonly breadcrumbItems = this._editionBreadcrumbService.getBreadcrumbItems(
         this.viewContext,
         this.selectedEditionComplex,
         this.selectedEditionSeries,
@@ -142,7 +156,7 @@ export class EditionViewComponent {
             return series.series.full;
         }
 
-        return this.EDITION_VIEW_TITLE;
+        return this.editionViewTitle;
     });
 
     /**

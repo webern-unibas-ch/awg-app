@@ -109,7 +109,6 @@ export function stubResizeObserver(): MockResizeObserver[] {
  * It creates a svg element with D3 library.
  *
  * @param {Document} doc The document to create the svg in.
- *
  * @returns {D3Selection} The D3 selection of the created svg element.
  */
 export function createD3TestSvg(doc: Document): D3Selection {
@@ -124,7 +123,6 @@ export function createD3TestSvg(doc: Document): D3Selection {
  * It creates a svg root group element with D3 library.
  *
  * @param {D3Selection} svg The D3 selection of the svg element to append the root group to.
- *
  * @returns {D3Selection} The D3 selection of the created root group element.
  */
 export function createD3TestRootGroup(svg: D3Selection): D3Selection {
@@ -140,7 +138,6 @@ export function createD3TestRootGroup(svg: D3Selection): D3Selection {
  *
  * @param {string} id The id of the tkk group.
  * @param {string} [dataId] The data id of the tkk overlay (default: the id).
- *
  * @returns {EditionSvgOverlayTkk} The tkk overlay.
  */
 export function createTestTkkOverlay(id: string, dataId: string = id): EditionSvgOverlayTkk {
@@ -154,7 +151,6 @@ export function createTestTkkOverlay(id: string, dataId: string = id): EditionSv
  *
  * @param {D3Selection} svgRootGroup The D3 selection of the root group element to append the overlay groups to.
  * @param {EditionSvgOverlayTkk[]} overlays The array of overlays to create groups for.
- *
  * @returns {D3Selection} The D3 selection of the root group element with the appended overlay groups.
  */
 export function createD3TestTkkGroups(svgRootGroup: D3Selection, overlays: EditionSvgOverlayTkk[]): D3Selection {
@@ -172,7 +168,6 @@ export function createD3TestTkkGroups(svgRootGroup: D3Selection, overlays: Editi
  *
  * @param {D3Selection} svgRootGroup The D3 selection of the root group element to append the link box groups to.
  * @param {EditionSvgLinkBox[]} linkBoxes The array of link boxes to create groups for.
- *
  * @returns {D3Selection} The D3 selection of the root group element with the appended link box groups.
  */
 export function createD3TestLinkBoxGroups(svgRootGroup: D3Selection, linkBoxes: EditionSvgLinkBox[]): D3Selection {
@@ -190,7 +185,6 @@ export function createD3TestLinkBoxGroups(svgRootGroup: D3Selection, linkBoxes: 
  *
  * @param {D3Selection} svgRootGroup The D3 selection of the root group element to append the supplied class groups to.
  * @param {string[]} suppliedClassNames The array of class names to create groups for.
- *
  * @returns {D3Selection} The D3 selection of the root group element with the appended supplied class groups.
  */
 export function createD3TestSuppliedClassesGroups(

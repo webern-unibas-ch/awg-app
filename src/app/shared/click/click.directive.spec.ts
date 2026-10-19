@@ -34,7 +34,7 @@ import { ClickDirective } from './click.directive';
     imports: [ClickDirective],
 })
 class TestClickComponent {
-    clickOnSpace = signal(false);
+    readonly clickOnSpace = signal(false);
     onClick = vi.fn<(event: Event) => void>();
 }
 

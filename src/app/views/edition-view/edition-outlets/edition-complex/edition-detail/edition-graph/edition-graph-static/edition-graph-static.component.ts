@@ -24,11 +24,11 @@ export class EditionGraphStaticComponent {
     readonly imageKey = input<string | undefined>();
 
     /**
-     * Readonly variable: GRAPH_IMAGES.
+     * Readonly variable: graphImages.
      *
      * It keeps the paths to static graph images.
      */
-    readonly GRAPH_IMAGES = {
+    readonly graphImages = {
         OP12: '',
         OP25: EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route,
     } satisfies Record<string, string>;
@@ -41,10 +41,10 @@ export class EditionGraphStaticComponent {
      */
     readonly imageSrc = computed<string | null>(() => {
         const imageKey = this.imageKey();
-        if (!imageKey || !Object.hasOwn(this.GRAPH_IMAGES, imageKey)) {
+        if (!imageKey || !Object.hasOwn(this.graphImages, imageKey)) {
             return null;
         }
 
-        return this.GRAPH_IMAGES[imageKey as keyof typeof this.GRAPH_IMAGES] || null;
+        return this.graphImages[imageKey as keyof typeof this.graphImages] || null;
     });
 }

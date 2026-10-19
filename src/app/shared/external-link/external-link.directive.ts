@@ -35,18 +35,17 @@ export class ExternalLinkDirective {
      * Readonly input signal: rel.
      *
      * It holds the (optional) existing rel value of a link.
-     * @default ''
      */
     readonly rel = input<string>('');
 
     /**
-     * Protected computed signal: isExternal.
+     * Protected readonly computed signal: isExternal.
      *
      * It checks if the href value is an external link.
      *
      * @returns {boolean} True if href is an external link, false otherwise.
      */
-    protected isExternal = computed<boolean>(() => {
+    protected readonly isExternal = computed<boolean>(() => {
         const url = this.href()?.trim();
         if (!url || !isPlatformBrowser(this._platformId)) {
             return false;
@@ -64,14 +63,14 @@ export class ExternalLinkDirective {
     });
 
     /**
-     * Protected computed signal: resolvedRel.
+     * Protected readonly computed signal: resolvedRel.
      *
      * It merges existing rel inputs with security attributes ('noopener noreferrer')
      * for external links, or returns the original rel value for internal links.
      *
      * @returns {string | null} The resolved rel value or null if not applicable.
      */
-    protected resolvedRel = computed<string | null>(() => {
+    protected readonly resolvedRel = computed<string | null>(() => {
         const baseRel = this.rel();
 
         if (!this.isExternal()) {

@@ -42,18 +42,18 @@ import { EditionStateService } from './edition-state.service';
 })
 export class EditionDataService {
     /**
-     * Private readonly injection variable: _http.
-     *
-     * It keeps the instance of the Angular HttpClient.
-     */
-    private readonly _http = inject(HttpClient);
-
-    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _http.
+     *
+     * It keeps the instance of the Angular HttpClient.
+     */
+    private readonly _http = inject(HttpClient);
 
     /**
      * Private readonly signal holding the data error state.
@@ -379,7 +379,6 @@ export class EditionDataService {
      * It logs an error message to the console.
      *
      * @param {string} message The given error message to be logged.
-     *
      * @returns {void} Logs the error message to the console.
      */
     private _logError(message: string): void {

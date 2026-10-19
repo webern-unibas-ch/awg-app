@@ -25,12 +25,11 @@ export class AlertInfoComponent {
     readonly infoMessage = input.required<string>();
 
     /**
-     * Model signal: isOpen.
+     * Readonly model signal: isOpen.
      *
      * It holds the state of the alert (open or closed).
-     * @default true
      */
-    isOpen = model<boolean>(true);
+    readonly isOpen = model<boolean>(true);
 
     /**
      * Readonly variable: faCircleInfo.

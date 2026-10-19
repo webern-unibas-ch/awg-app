@@ -53,16 +53,16 @@ describe('LicenseComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `LICENSE_LINK`', () => {
-            expectToBe(component.LICENSE_LINK, expectedLicenseLink);
+        it('... should have `licenseLink`', () => {
+            expectToBe(component.licenseLink, expectedLicenseLink);
         });
 
-        it('... should have `LICENSE_TEXT`', () => {
-            expectToBe(component.LICENSE_TEXT, expectedLicenseText);
+        it('... should have `licenseText`', () => {
+            expectToBe(component.licenseText, expectedLicenseText);
         });
 
-        it('... should have `LICENSE_ICONS`', () => {
-            expectToEqual(component.LICENSE_ICONS, expectedLicenseIcons);
+        it('... should have `licenseIcons`', () => {
+            expectToEqual(component.licenseIcons, expectedLicenseIcons);
         });
 
         describe('VIEW', () => {

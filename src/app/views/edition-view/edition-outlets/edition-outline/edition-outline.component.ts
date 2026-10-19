@@ -22,9 +22,16 @@ import { EditionSeriesCardComponent } from './edition-series-card/edition-series
 })
 export class EditionOutlineComponent {
     /**
-     * Public signal: editionOutline.
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
+    /**
+     * Readonly signal: editionOutline.
      *
      * It holds the outline of the edition as an array of routes.
      */
-    readonly editionOutline = inject(EditionOutlineService).editionOutline;
+    readonly editionOutline = this._editionOutlineService.editionOutline;
 }

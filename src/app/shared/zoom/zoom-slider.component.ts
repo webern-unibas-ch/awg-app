@@ -34,7 +34,7 @@ export class ZoomSliderComponent {
     readonly hasFitButton = input<boolean>(false);
 
     /**
-     * Model signal: zoomValue.
+     * Readonly model signal: zoomValue.
      *
      * It holds the current zoom factor of the slider.
      * Changes by the user are emitted via `zoomValueChange`.

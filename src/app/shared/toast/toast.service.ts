@@ -107,7 +107,6 @@ export class ToastService {
      * It adds the given toast to the toast array.
      *
      * @param {Toast} toast The given toast.
-     *
      * @returns {void} Adds the toast to the toast array.
      */
     add(toast: Toast): void {
@@ -120,7 +119,6 @@ export class ToastService {
      * It removes the given toast from the toast array.
      *
      * @param {Toast} toast The given toast.
-     *
      * @returns {void} Removes the toast from the toast array.
      */
     remove(toast: Toast): void {
@@ -135,7 +133,6 @@ export class ToastService {
      *
      * @param {ToastMessage} toastMessage The given toast message.
      * @param {'error' | 'info'} [type] The optional type of message to display (default: 'info').
-     *
      * @returns {void} Shows the message.
      */
     showMessage(toastMessage: ToastMessage, type: 'error' | 'info' = 'info'): void {

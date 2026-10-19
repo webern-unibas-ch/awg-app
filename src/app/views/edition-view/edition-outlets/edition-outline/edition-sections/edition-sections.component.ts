@@ -19,9 +19,16 @@ import { EditionSectionCardComponent } from './edition-section-card/edition-sect
 })
 export class EditionSectionsComponent {
     /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
      * Readonly signal: selectedSeries.
      *
      * It holds the state of the selected edition series.
      */
-    readonly selectedSeries = inject(EditionStateService).selectedEditionSeries;
+    readonly selectedSeries = this._editionStateService.selectedEditionSeries;
 }

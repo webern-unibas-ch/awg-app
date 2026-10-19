@@ -343,7 +343,7 @@ describe('EditionReportComponent (DONE)', () => {
                         const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                         const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
-                        expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceList);
+                        expectToBe(buttonEl.textContent?.trim(), component.reportTitles.sourceList);
                     });
 
                     it('... should contain one SourceListComponent (hollow)', () => {
@@ -375,7 +375,7 @@ describe('EditionReportComponent (DONE)', () => {
                         const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                         const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
-                        expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceDesc);
+                        expectToBe(buttonEl.textContent?.trim(), component.reportTitles.sourceDesc);
                     });
 
                     it('... should contain one source description component', () => {
@@ -409,7 +409,7 @@ describe('EditionReportComponent (DONE)', () => {
                         const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                         const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
-                        expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceEvaluation);
+                        expectToBe(buttonEl.textContent?.trim(), component.reportTitles.sourceEvaluation);
                     });
 
                     it('... should contain one SourceEvaluationComponent (hollow)', () => {
@@ -449,7 +449,7 @@ describe('EditionReportComponent (DONE)', () => {
                         const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                         const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
-                        expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.tka);
+                        expectToBe(buttonEl.textContent?.trim(), component.reportTitles.tka);
                     });
 
                     it('... should contain one TextcriticsListComponent (hollow)', () => {

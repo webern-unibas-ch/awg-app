@@ -20,39 +20,39 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
 })
 export class PageNotFoundViewComponent {
     /**
-     * Public variable: PAGE_NOT_FOUND_VIEW_ID.
+     * Public variable: pageNotFoundViewId.
      *
      * It keeps the id for the heading component
      * of the page not found view.
      */
-    readonly PAGE_NOT_FOUND_VIEW_ID = 'awg-page-not-found-view-heading';
+    readonly pageNotFoundViewId = 'awg-page-not-found-view-heading';
 
     /**
-     * Public readonly variable: PAGE_NOT_FOUND_VIEW_TITLE.
+     * Public readonly variable: pageNotFoundViewTitle.
      *
      * It keeps the title for the heading component
      * of the page not found view.
      */
-    readonly PAGE_NOT_FOUND_VIEW_TITLE = 'Entschuldigung, diese Seite gibt es hier nicht…';
+    readonly pageNotFoundViewTitle = 'Entschuldigung, diese Seite gibt es hier nicht…';
 
     /**
-     * Public readonly variable: PAGE_NOT_FOUND_VIEW_SUBTITLE.
+     * Public readonly variable: pageNotFoundViewSubtitle.
      *
      * It keeps the subtitle of the page not found.
      */
-    readonly PAGE_NOT_FOUND_VIEW_SUBTITLE = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
+    readonly pageNotFoundViewSubtitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
 
     /**
-     * Public readonly variable: PAGE_NOT_FOUND_VIEW_IMG_PATH.
+     * Public readonly variable: pageNotFoundViewImgPath.
      *
      * It keeps the path to the image of the page not found view.
      */
-    readonly PAGE_NOT_FOUND_VIEW_IMG_PATH = 'assets/img/page-not-found/Webern_Books.jpg';
+    readonly pageNotFoundViewImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
 
     /**
-     * Public readonly variable: AWG_CONTACT_URL.
+     * Public readonly variable: awgContactUrl.
      *
      * It keeps the url to the contact page of the Webern project homepage.
      */
-    readonly AWG_CONTACT_URL = AppConstants.AWG_PROJECT_URL + 'de/info/kontakt.html';
+    readonly awgContactUrl = AppConstants.AWG_PROJECT_URL + 'de/info/kontakt.html';
 }

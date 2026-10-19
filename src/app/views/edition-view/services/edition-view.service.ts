@@ -39,18 +39,18 @@ export class EditionViewService {
     private readonly _loadingService = inject(LoadingService);
 
     /**
-     * Private readonly injection variable: _router.
-     *
-     * It keeps the instance of the injected Angular Router.
-     */
-    private readonly _router = inject(Router);
-
-    /**
      * Private readonly injection variable: _route.
      *
      * It keeps the instance of the injected ActivatedRoute.
      */
     private readonly _route = inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router = inject(Router);
 
     /**
      * Private readonly signal holding the last active view state.

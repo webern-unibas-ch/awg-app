@@ -23,11 +23,18 @@ import { GraphVisualizerComponent } from '../graph-visualizer/graph-visualizer.c
 })
 export class EditionGraphDynamicComponent {
     /**
+     * Private readonly injection variable: _fullscreenService.
+     *
+     * It keeps the instance of the injected FullscreenService.
+     */
+    private readonly _fullscreenService = inject(FullscreenService);
+
+    /**
      * Readonly signal: isFullscreen.
      *
      * It holds the fullscreen status.
      */
-    readonly isFullscreen = inject(FullscreenService).isFullscreen;
+    readonly isFullscreen = this._fullscreenService.isFullscreen;
 
     /**
      * Readonly input signal: rdfData.

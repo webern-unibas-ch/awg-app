@@ -23,16 +23,23 @@ import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/lan
 })
 export class EditionPrefaceComponent {
     /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
+
+    /**
      * Readonly signal: viewData.
      *
      * It holds the state of the preface view data.
      */
-    readonly viewData = inject(EditionViewService).prefaceViewData;
+    readonly viewData = this._editionViewService.prefaceViewData;
 
     /**
-     * Public signal: selectedLanguage.
+     * Readonly signal: selectedLanguage.
      *
      * It holds the selected language of the edition preface.
      */
-    selectedLanguage = signal<LanguageId>(LanguageId.DE);
+    readonly selectedLanguage = signal<LanguageId>(LanguageId.DE);
 }

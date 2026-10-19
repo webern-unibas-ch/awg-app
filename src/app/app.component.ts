@@ -27,13 +27,6 @@ import { ViewContainerComponent } from './core/view-container/view-container.com
 })
 export class AppComponent {
     /**
-     * Readonly signal: activateSideOutlet.
-     *
-     * It holds the state of the side outlet.
-     */
-    readonly activateSideOutlet = signal(false);
-
-    /**
      * Private readonly injection variable: _activatedRoute.
      *
      * It keeps the instance of the injected Angular ActivatedRoute.
@@ -67,6 +60,13 @@ export class AppComponent {
      * It keeps the instance of the injected Angular Title.
      */
     private readonly _titleService = inject(Title);
+
+    /**
+     * Readonly signal: activateSideOutlet.
+     *
+     * It holds the state of the side outlet.
+     */
+    readonly activateSideOutlet = signal(false);
 
     /**
      * Constructor of the AppComponent.
@@ -118,7 +118,6 @@ export class AppComponent {
      * It checks if a route has a side outlet.
      *
      * @param {ActivatedRouteSnapshot} route The route to check.
-     *
      * @returns {boolean} The result of the check.
      */
     private _hasSideOutlet(route: ActivatedRouteSnapshot): boolean {

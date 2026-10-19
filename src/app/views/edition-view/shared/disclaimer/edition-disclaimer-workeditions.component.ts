@@ -19,11 +19,18 @@ import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap/p
 })
 export class EditionDisclaimerWorkeditionsComponent {
     /**
+     * Readonly injection variable: config.
+     *
+     * It injects the NgbPopoverConfig service to configure the popover.
+     */
+    readonly config: NgbPopoverConfig = inject(NgbPopoverConfig);
+
+    /**
      * Readonly variable: disclaimer.
      *
      * It keeps the disclaimer for work editions.
      */
-    readonly DISCLAIMER =
+    readonly disclaimer =
         'Werkeditionen sind aus rechtlichen Gründen frühestens ab 2049 online verfügbar. Bis dahin konsultieren Sie bitte die entsprechende Printausgabe.';
 
     /**
@@ -32,13 +39,6 @@ export class EditionDisclaimerWorkeditionsComponent {
      * It instantiates fontawesome's faCalendarXmark icon.
      */
     readonly faCalendarXmark = faCalendarXmark;
-
-    /**
-     * Readonly injection variable: config.
-     *
-     * It injects the NgbPopoverConfig service to configure the popover.
-     */
-    readonly config: NgbPopoverConfig = inject(NgbPopoverConfig);
 
     /**
      * Constructor of the EditionDisclaimerWorkeditionsComponent.

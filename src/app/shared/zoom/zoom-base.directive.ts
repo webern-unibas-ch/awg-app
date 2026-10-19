@@ -17,6 +17,13 @@ import { ZoomConfig } from './zoom.model';
 @Directive()
 export abstract class ZoomBaseDirective<E extends Element> {
     /**
+     * Private readonly injection variable: _elementRef.
+     *
+     * It keeps the reference to the host element.
+     */
+    private readonly _elementRef = inject<ElementRef<E>>(ElementRef);
+
+    /**
      * Readonly input signal: zoomConfig.
      *
      * It holds the zoom configuration (initial, min, max, step size).
@@ -24,7 +31,7 @@ export abstract class ZoomBaseDirective<E extends Element> {
     readonly zoomConfig = input.required<ZoomConfig>();
 
     /**
-     * Model signal: zoomValue.
+     * Readonly model signal: zoomValue.
      *
      * It holds the current zoom factor (rounded to the step size of the zoom configuration).
      */
@@ -35,7 +42,7 @@ export abstract class ZoomBaseDirective<E extends Element> {
      *
      * It keeps the host element.
      */
-    protected readonly _hostEl: E = inject(ElementRef).nativeElement;
+    protected readonly _hostEl = this._elementRef.nativeElement;
 
     /**
      * Protected readonly variable: _selection.
@@ -92,6 +99,16 @@ export abstract class ZoomBaseDirective<E extends Element> {
     }
 
     /**
+     * Protected abstract method: _applyTransform.
+     *
+     * It applies a given zoom transform (e.g., to a target element or a signal).
+     *
+     * @param {D3_ZOOM.ZoomTransform} transform The given zoom transform.
+     * @returns {void} Applies the zoom transform.
+     */
+    protected abstract _applyTransform(transform: D3_ZOOM.ZoomTransform): void;
+
+    /**
      * Private method: _onZoom.
      *
      * It applies a given zoom transform and sets the rounded zoom factor.
@@ -103,14 +120,4 @@ export abstract class ZoomBaseDirective<E extends Element> {
         this._applyTransform(transform);
         this.zoomValue.set(NUMBER_UTILS.roundToStepPrecision(transform.k, this.zoomConfig().stepSize));
     }
-
-    /**
-     * Protected abstract method: _applyTransform.
-     *
-     * It applies a given zoom transform (e.g., to a target element or a signal).
-     *
-     * @param {D3_ZOOM.ZoomTransform} transform The given zoom transform.
-     * @returns {void} Applies the zoom transform.
-     */
-    protected abstract _applyTransform(transform: D3_ZOOM.ZoomTransform): void;
 }

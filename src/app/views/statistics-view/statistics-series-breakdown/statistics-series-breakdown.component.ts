@@ -29,13 +29,9 @@ export class StatisticsSeriesBreakdownComponent {
     readonly seriesBreakdownData = input.required<StatisticsSeriesBreakdown[]>();
 
     /**
-     * Readonly variable: ROUTES.
+     * Readonly variable: editionRouteConstants.
      *
      * It keeps the edition route constants for the router links in the template.
      */
-    readonly ROUTES = {
-        edition: EDITION_ROUTE_CONSTANTS.EDITION,
-        series: EDITION_ROUTE_CONSTANTS.SERIES,
-        section: EDITION_ROUTE_CONSTANTS.SECTION,
-    };
+    readonly editionRouteConstants = EDITION_ROUTE_CONSTANTS;
 }

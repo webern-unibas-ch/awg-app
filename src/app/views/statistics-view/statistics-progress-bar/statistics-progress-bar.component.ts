@@ -36,7 +36,6 @@ export class StatisticsProgressBarComponent {
      * Readonly input signal: height.
      *
      * It holds the height of the progress bar (e.g., '15px', '20px').
-     * @default '15px'
      */
     readonly height = input<string>('15px');
 
@@ -44,7 +43,6 @@ export class StatisticsProgressBarComponent {
      * Readonly input signal: showPercentageLabel.
      *
      * It holds a flag whether to show the percentage label next to the bar.
-     * @default true
      */
     readonly showPercentageLabel = input<boolean>(true);
 
@@ -52,7 +50,6 @@ export class StatisticsProgressBarComponent {
      * Readonly input signal: boldPercentageLabel.
      *
      * It holds a flag whether to show the percentage label with bold styling (for series rows).
-     * @default false
      */
     readonly boldPercentageLabel = input<boolean>(false);
 
@@ -60,7 +57,6 @@ export class StatisticsProgressBarComponent {
      * Readonly input signal: customType.
      *
      * It holds a custom type to apply to the progress bar.
-     * @default ''
      */
     readonly customType = input<string>('');
 
@@ -68,7 +64,6 @@ export class StatisticsProgressBarComponent {
      * Readonly input signal: useCustomTypeOnly.
      *
      * It holds a flag whether to use only custom type and skip automatic color type logic.
-     * @default false
      */
     readonly useCustomTypeOnly = input<boolean>(false);
 

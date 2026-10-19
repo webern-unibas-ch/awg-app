@@ -125,8 +125,8 @@ describe('EditionViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have `id` and `title`', () => {
-            expectToBe(component.EDITION_VIEW_ID, expectedId);
-            expectToBe(component.EDITION_VIEW_TITLE, expectedTitle);
+            expectToBe(component.editionViewId, expectedId);
+            expectToBe(component.editionViewTitle, expectedTitle);
         });
 
         it('... should have signal `selectedEditionSeries` to hold null', () => {
@@ -270,7 +270,7 @@ describe('EditionViewComponent (DONE)', () => {
                     setup: () => editionStateService.updateSelectedEditionSeries(expectedSeries),
                 },
                 {
-                    desc: 'EDITION_VIEW_TITLE as default',
+                    desc: 'editionViewTitle as default',
                     context: () => expectedDefaultViewContext,
                     title: () => expectedTitle,
                     setup: () => editionStateService.updateSelectedEditionComplex(null),

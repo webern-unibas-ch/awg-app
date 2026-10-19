@@ -14,7 +14,6 @@ import { LoadingService } from './loading.service';
  *
  * @param {HttpRequest<unknown>} req The outgoing HTTP request.
  * @param {HttpHandlerFn} next The next interceptor or backend handler in the chain.
- *
  * @returns {Observable<HttpEvent<unknown>>} An observable of the HTTP event stream.
  */
 export const loadingInterceptor: HttpInterceptorFn = (

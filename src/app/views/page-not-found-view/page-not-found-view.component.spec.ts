@@ -56,20 +56,20 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have `PAGE_NOT_FOUND_ID`', () => {
-            expectToBe(component.PAGE_NOT_FOUND_VIEW_ID, expectedPageNotFoundViewId);
+            expectToBe(component.pageNotFoundViewId, expectedPageNotFoundViewId);
         });
 
         it('... should have `PAGE_NOT_FOUND_TITLE` and `PAGE_NOT_FOUND_SUBTITLE`', () => {
-            expectToBe(component.PAGE_NOT_FOUND_VIEW_TITLE, expectedPageNotFoundViewTitle);
-            expectToBe(component.PAGE_NOT_FOUND_VIEW_SUBTITLE, expectedPageNotFoundViewSubTitle);
+            expectToBe(component.pageNotFoundViewTitle, expectedPageNotFoundViewTitle);
+            expectToBe(component.pageNotFoundViewSubtitle, expectedPageNotFoundViewSubTitle);
         });
 
         it('... should have `PAGE_NOT_FOUND_IMG_PATH`', () => {
-            expectToBe(component.PAGE_NOT_FOUND_VIEW_IMG_PATH, expectedPageNotFoundViewImgPath);
+            expectToBe(component.pageNotFoundViewImgPath, expectedPageNotFoundViewImgPath);
         });
 
-        it('... should have `AWG_CONTACT_URL`', () => {
-            expectToBe(component.AWG_CONTACT_URL, expectedAwgContactUrl);
+        it('... should have `awgContactUrl`', () => {
+            expectToBe(component.awgContactUrl, expectedAwgContactUrl);
         });
 
         describe('VIEW', () => {
