@@ -70,6 +70,7 @@ export function setGlobalRdfstore(rdfstore: RdfStoreGlobal | undefined): void {
  * @returns {RdfStoreGlobal} The real rdfstore object.
  */
 export function createRealRdfstore(): RdfStoreGlobal {
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval -- evaluates the bundle without setting a global
     return new Function(`${rdfstoreBundle}\nreturn rdfstore;`)() as RdfStoreGlobal;
 }
 

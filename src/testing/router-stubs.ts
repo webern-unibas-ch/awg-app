@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/adjacent-overload-signatures, @typescript-eslint/no-empty-object-type, @typescript-eslint/related-getter-setter-pairs -- test doubles mirror the router API with overloaded test setters */
 import { ParamMap, Params, convertToParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
