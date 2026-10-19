@@ -1,8 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 
-import { EditionComplex, EditionComplexesList, EditionComplexJsonData } from '../models/edition-complex.model';
+import { EditionComplex, EditionComplexesJsonData, EditionComplexesList } from '../models/edition-complex.model';
 
-import * as jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
+import jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
 
 /**
  * The EditionComplexes service.
@@ -75,11 +75,14 @@ export class EditionComplexesService {
      */
     private _fetchEditionComplexesData(): EditionComplexesList {
         // Load the JSON data directly from the file
-        const complexesData = (jsonEditionComplexes as any).default;
+        const complexesData: EditionComplexesJsonData = jsonEditionComplexes;
         const editionComplexesList: EditionComplexesList = {};
 
-        complexesData.editionComplexes.forEach((complex: EditionComplexJsonData) => {
+        complexesData.editionComplexes.forEach(complex => {
             Object.entries(complex).forEach(([complexKey, complexValue]) => {
+                if (!complexValue) {
+                    return;
+                }
                 editionComplexesList[complexKey] = new EditionComplex(
                     complexValue.titleStatement,
                     complexValue.respStatement,

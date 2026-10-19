@@ -9,6 +9,7 @@ import {
     EditionDataAssetsKeys,
     EditionViewContext,
     EditionViewData,
+    EditionViewDataContent,
     EditionViewDataTypeMapping,
     EditionViewKey,
 } from '../models/edition-data.model';
@@ -188,13 +189,13 @@ export class EditionViewService {
      * It builds the EditionViewData object for the given view key and signal map.
      *
      * @param {K} viewKey The given view key.
-     * @param {Array<[keyof EditionViewDataTypeMapping[K], Signal<any>]>} signalMap The given signal map.
+     * @param {Array<[keyof EditionViewDataTypeMapping[K], Signal<unknown>]>} signalMap The given signal map.
      * @param {(data: EditionViewDataTypeMapping[K]) => boolean} [extraContentCheck] An optional extra content check function.
      * @returns {EditionViewData<K>} The built EditionViewData object.
      */
     private _buildViewData<K extends EditionViewKey>(
         viewKey: K,
-        signalMap: [keyof EditionViewDataTypeMapping[K], Signal<any>][],
+        signalMap: [keyof EditionViewDataTypeMapping[K], Signal<unknown>][],
         extraContentCheck?: (data: EditionViewDataTypeMapping[K]) => boolean
     ): EditionViewData<K> {
         const dataKeys = signalMap.map(([key]) => key);
@@ -242,8 +243,8 @@ export class EditionViewService {
                 return false;
             }
 
-            const nestedArrayKey = Object.keys(rawData).find(k => Array.isArray((rawData as any)[k]));
-            return nestedArrayKey ? !(rawData as any)[nestedArrayKey]?.length : false;
+            const nestedArray: unknown = Object.values(rawData).find(value => Array.isArray(value));
+            return Array.isArray(nestedArray) ? !nestedArray.length : false;
         });
 
         return hasEmptyContent || (!!extraContentCheck && extraContentCheck(typedData));
@@ -255,12 +256,12 @@ export class EditionViewService {
      * It extracts unique EditionDataAssetsKeys from the given view key and signal map.
      *
      * @param {K} viewKey The given view key.
-     * @param {Array<[keyof EditionViewDataTypeMapping[K], Signal<any>]>} signalMap The given signal map.
+     * @param {Array<[keyof EditionViewDataTypeMapping[K], Signal<unknown>]>} signalMap The given signal map.
      * @returns {EditionDataAssetsKeys[]} An array of unique EditionDataAssetsKeys.
      */
     private _getUniqueAssetKeys<K extends EditionViewKey>(
         viewKey: K,
-        signalMap: [keyof EditionViewDataTypeMapping[K], Signal<any>][]
+        signalMap: [keyof EditionViewDataTypeMapping[K], Signal<unknown>][]
     ): EditionDataAssetsKeys[] {
         const assetKeys = signalMap.map(([dataKey]) =>
             signalMap.length === 1
@@ -312,8 +313,8 @@ export class EditionViewService {
     private _createFallback<K extends EditionViewKey>(
         dataKeys: (keyof EditionViewDataTypeMapping[K])[]
     ): EditionViewData<K> {
-        const nullEntries = dataKeys.map(key => [key, null]);
-        const nullData = Object.fromEntries(nullEntries);
+        const nullEntries = dataKeys.map(key => [key, null] as const);
+        const nullData = Object.fromEntries(nullEntries) as EditionViewDataContent<K>;
 
         return {
             data: nullData,

@@ -1,3 +1,5 @@
+import { TableCell } from '@awg-shared/table/table.model';
+
 /**
  * The SelectTableCellType type.
  *
@@ -11,7 +13,7 @@ export type SelectTableCellType = 'uri' | 'bnode' | 'literal';
  *
  * It represents a cell of the SPARQL results table (a bound value of a variable).
  */
-export interface SelectTableCell {
+export interface SelectTableCell extends TableCell {
     /**
      * The type of the cell.
      */

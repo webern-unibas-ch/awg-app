@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { TableRows } from './table.model';
+import { TableRow } from './table.model';
 import {
     compareTableValues,
     filterTableRows,
@@ -16,15 +16,16 @@ import {
 /**
  * Helper function: createRow.
  *
- * It creates a table row with the given labels for column1 and column2.
+ * It creates a table row with the given labels for column1 and column2
+ * (without a cell for column1 if its label is undefined).
  *
- * @param {unknown} label1 The label of column1.
- * @param {unknown} label2 The label of column2.
- * @returns {TableRows} The created row.
+ * @param {string} [label1] The optional label of column1.
+ * @param {string} [label2] The label of column2.
+ * @returns {TableRow} The created row.
  */
-const createRow = (label1: unknown, label2: unknown = 'x'): TableRows => ({
-    column1: { value: `value-${String(label1)}`, label: label1, type: 'literal' },
-    column2: { value: `value-${String(label2)}`, label: label2, type: 'literal' },
+const createRow = (label1?: string, label2 = 'x'): TableRow => ({
+    ...(label1 === undefined ? {} : { column1: { value: `value-${label1}`, label: label1, type: 'literal' } }),
+    column2: { value: `value-${label2}`, label: label2, type: 'literal' },
 });
 
 describe('TableUtils (DONE)', () => {
@@ -64,16 +65,8 @@ describe('TableUtils (DONE)', () => {
                 expectToEqual(filteredTableRows, [rows[1]]);
             });
 
-            it('... should match number labels', () => {
-                const numberRows = [createRow(42), createRow(7)];
-
-                const filteredTableRows = filterTableRows(numberRows, '4');
-
-                expectToEqual(filteredTableRows, [numberRows[0]]);
-            });
-
-            it('... should ignore null and undefined entries', () => {
-                const sparseRows: TableRows[] = [{ column1: null, column2: undefined }, createRow('Apple')];
+            it('... should ignore missing cells', () => {
+                const sparseRows: TableRow[] = [{}, createRow('Apple')];
 
                 const filteredTableRows = filterTableRows(sparseRows, 'apple');
 
@@ -214,7 +207,7 @@ describe('TableUtils (DONE)', () => {
         });
 
         describe('#sortTableRows()', () => {
-            const rows = [createRow('b', '2'), createRow('c', '1'), createRow(null, '3'), createRow('a', '4')];
+            const rows = [createRow('b', '2'), createRow('c', '1'), createRow(undefined, '3'), createRow('a', '4')];
 
             it('... should have a method `sortTableRows`', () => {
                 expect(sortTableRows).toBeDefined();
@@ -277,7 +270,7 @@ describe('TableUtils (DONE)', () => {
         });
 
         describe('#paginateTableRows()', () => {
-            const rows = Array.from({ length: 23 }, (_, i) => createRow(i));
+            const rows = Array.from({ length: 23 }, (_, i) => createRow(String(i)));
 
             it('... should have a method `paginateTableRows`', () => {
                 expect(paginateTableRows).toBeDefined();

@@ -65,15 +65,6 @@
                             <a (awgClick)="onTableValueClick(cell.value)" role="link" tabindex="0">
                                 <ngb-highlight [result]="cell.label" [term]="searchFilter()" />
                             </a>
-                        } @else if (cell?.type === 'search') {
-                            <span>
-                                @if (cell.icon) {
-                                    <span class="badge">
-                                        <img [attr.src]="cell.icon" alt="iconsrc" />
-                                    </span>
-                                }
-                                <ngb-highlight [result]="cell.label" [term]="searchFilter()" />
-                            </span>
                         } @else {
                             <span><ngb-highlight [result]="cell?.label" [term]="searchFilter()" /></span>
                         }

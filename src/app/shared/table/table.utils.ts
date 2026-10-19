@@ -1,4 +1,4 @@
-import { TableRows } from './table.model';
+import { TableRow } from './table.model';
 
 /**
  * Array constant: TABLE_PAGE_SIZE_OPTIONS.
@@ -21,16 +21,14 @@ export const TABLE_DEFAULT_PAGE_SIZE = 10;
  * A row matches if the label of one of its entries
  * contains the term (case-insensitive).
  *
- * @param {TableRows[]} rows The given rows.
+ * @param {TableRow[]} rows The given rows.
  * @param {string} term The given search term.
- * @returns {TableRows[]} The filtered rows.
+ * @returns {TableRow[]} The filtered rows.
  */
-export function filterTableRows(rows: TableRows[], term: string): TableRows[] {
+export function filterTableRows(rows: TableRow[], term: string): TableRow[] {
     const searchTerm = term.toLowerCase();
 
-    return rows.filter(row =>
-        Object.values(row).some(rowEntry => rowEntry?.label?.toString().toLowerCase().includes(searchTerm))
-    );
+    return rows.filter(row => Object.values(row).some(rowEntry => rowEntry?.label.toLowerCase().includes(searchTerm)));
 }
 
 /**
@@ -93,12 +91,12 @@ export function compareTableValues(a: unknown, b: unknown): number {
  * The sort is stable in both directions, so equal values keep their order,
  * and missing values stay at the end also in reverse order.
  *
- * @param {TableRows[]} rows The given rows.
+ * @param {TableRow[]} rows The given rows.
  * @param {string} key The given key (header label) to sort by.
  * @param {boolean} reverse The flag for reverse sort order.
- * @returns {TableRows[]} The sorted rows.
+ * @returns {TableRow[]} The sorted rows.
  */
-export function sortTableRows(rows: TableRows[], key: string, reverse: boolean): TableRows[] {
+export function sortTableRows(rows: TableRow[], key: string, reverse: boolean): TableRow[] {
     if (!key) {
         return rows;
     }
@@ -121,12 +119,12 @@ export function sortTableRows(rows: TableRows[], key: string, reverse: boolean):
  *
  * It returns the rows of the given page.
  *
- * @param {TableRows[]} rows The given rows.
+ * @param {TableRow[]} rows The given rows.
  * @param {number} page The given page (starting with 1).
  * @param {number} pageSize The given page size.
- * @returns {TableRows[]} The rows of the given page.
+ * @returns {TableRow[]} The rows of the given page.
  */
-export function paginateTableRows(rows: TableRows[], page: number, pageSize: number): TableRows[] {
+export function paginateTableRows(rows: TableRow[], page: number, pageSize: number): TableRow[] {
     const startRow = (page - 1) * pageSize;
 
     return rows.slice(startRow, startRow + pageSize);

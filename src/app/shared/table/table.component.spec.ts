@@ -21,7 +21,7 @@ import {
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
 
-import { TableRows } from './table.model';
+import { TableRow } from './table.model';
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
 import { TableComponent } from './table.component';
 import { TABLE_DEFAULT_PAGE_SIZE, TABLE_PAGE_SIZE_OPTIONS } from './table.utils';
@@ -33,14 +33,14 @@ import { TABLE_DEFAULT_PAGE_SIZE, TABLE_PAGE_SIZE_OPTIONS } from './table.utils'
  * The label of column1 is zero-padded to sort lexicographically.
  *
  * @param {number} length The number of rows.
- * @returns {TableRows[]} The created rows.
+ * @returns {TableRow[]} The created rows.
  */
-const createRows = (length: number): TableRows[] =>
+const createRows = (length: number): TableRow[] =>
     Array.from({ length }, (_, i) => {
         const n = (i + 1).toString().padStart(2, '0');
         return {
             column1: { value: `value:c1r${n}`, label: `C1R${n}`, type: 'uri' },
-            column2: { value: `value:c2r${n}`, label: `C2R${n}`, type: 'search' },
+            column2: { value: `value:c2r${n}`, label: `C2R${n}`, type: 'bnode' },
             column3: { value: `value:c3r${n}`, label: `C3R${n}`, type: 'literal' },
         };
     });
@@ -60,7 +60,7 @@ describe('TableComponent (DONE)', () => {
 
     let expectedTableTitle: string;
     let expectedHeaderInputData: string[];
-    let expectedRowInputData: TableRows[];
+    let expectedRowInputData: TableRow[];
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -442,7 +442,7 @@ describe('TableComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display uri cells as link, search and literal cells as span', () => {
+                it('... should display uri cells as link, other cells as span', () => {
                     const tdDes = getAndExpectDebugElementByCss(getBodyRowDes(10)[0], 'td', 3, 3);
 
                     getAndExpectDebugElementByCss(tdDes[0], 'a[role="link"]', 1, 1);
@@ -454,7 +454,7 @@ describe('TableComponent (DONE)', () => {
 
                 it('... should display an empty span cell if a row has no value for a column (unbound variable)', async () => {
                     const rows = createRows(1);
-                    delete rows[0]['column3'];
+                    Reflect.deleteProperty(rows[0], 'column3');
                     fixture.componentRef.setInput('rowInputData', rows);
                     await detectChangesOnPush(fixture);
 
@@ -465,18 +465,6 @@ describe('TableComponent (DONE)', () => {
 
                     expect(highlightDes[0].injector.get(NgbHighlight).result).toBeUndefined();
                     expectToBe(tdEl.textContent.trim(), '');
-                });
-
-                it('... should display an icon badge in search cells if an icon is given', async () => {
-                    const rows = createRows(1);
-                    rows[0]['column2'].icon = 'assets/img/test.png';
-                    fixture.componentRef.setInput('rowInputData', rows);
-                    await detectChangesOnPush(fixture);
-
-                    const imgDes = getAndExpectDebugElementByCss(compDe, 'tbody td span.badge > img', 1, 1);
-                    const imgEl: HTMLImageElement = imgDes[0].nativeElement;
-
-                    expectToBe(imgEl.getAttribute('src'), 'assets/img/test.png');
                 });
 
                 it('... should pass down label and search filter to NgbHighlight', async () => {
