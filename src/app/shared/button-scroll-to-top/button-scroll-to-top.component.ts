@@ -50,7 +50,7 @@ export class ButtonScrollToTopComponent {
      */
     protected onWindowScroll(): void {
         const windowRef = this._document.defaultView;
-        const scrollPosition = windowRef?.scrollY || 0;
+        const scrollPosition = windowRef?.scrollY ?? 0;
         const SCROLL_THRESHOLD = 300;
 
         this.showScrollButton.set(scrollPosition >= SCROLL_THRESHOLD);

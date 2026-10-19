@@ -32,7 +32,7 @@ export class SourceDescWritingTrademarkComponent {
      *
      * It checks whether the trademark has a variant or an alt text.
      */
-    readonly hasTrademark = computed<boolean>(() => !!(this.trademark()?.variant || this.trademark()?.alt));
+    readonly hasTrademark = computed<boolean>(() => !!this.trademark()?.variant || !!this.trademark()?.alt);
 
     /**
      * Readonly computed signal: variant.
@@ -50,7 +50,7 @@ export class SourceDescWritingTrademarkComponent {
      *
      * It holds the alt text of the trademark, or an empty string.
      */
-    readonly alt = computed<string>(() => this.trademark()?.alt || '');
+    readonly alt = computed<string>(() => this.trademark()?.alt ?? '');
 
     /**
      * Readonly computed signal: loci.

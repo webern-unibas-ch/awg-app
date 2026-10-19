@@ -62,7 +62,7 @@ export class SourceDescContentSystemComponent {
      */
     readonly hasDivider = computed<boolean>(() => {
         const system = this.contentSystem();
-        return !!(system.systemDescription || system.measure || this.hasValidRow());
+        return !!system.systemDescription || !!system.measure || this.hasValidRow();
     });
 
     /**

@@ -35,7 +35,7 @@ describe('ButtonScrollToTopComponent (DONE)', () => {
     beforeEach(() => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
-        mockWindow = mockDocument.defaultView || window;
+        mockWindow = mockDocument.defaultView ?? window;
 
         // Spies
         windowScrollToSpy = vi.spyOn(mockWindow, 'scrollTo').mockImplementation(() => undefined);

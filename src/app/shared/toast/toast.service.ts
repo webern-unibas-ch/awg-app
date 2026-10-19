@@ -36,12 +36,12 @@ export class ToastMessage {
      *
      * @param {string} name The name of the toast.
      * @param {string} message The message of the toast.
-     * @param {number} [duration] The optional duration of the toast.
+     * @param {number} [duration=3000] The optional duration of the toast.
      */
-    constructor(name: string, message: string, duration?: number) {
+    constructor(name: string, message: string, duration = 3000) {
         this.name = name;
         this.message = message;
-        this.duration = duration || 3000;
+        this.duration = duration;
     }
 }
 

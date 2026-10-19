@@ -296,7 +296,6 @@ export default defineConfig(
             '@typescript-eslint/no-unsafe-function-type': 'warn',
             '@typescript-eslint/no-unsafe-member-access': 'warn',
             '@typescript-eslint/no-unsafe-return': 'warn',
-            '@typescript-eslint/prefer-nullish-coalescing': 'warn',
             '@typescript-eslint/prefer-promise-reject-errors': 'warn',
             '@typescript-eslint/related-getter-setter-pairs': 'warn',
             '@typescript-eslint/unbound-method': 'warn',

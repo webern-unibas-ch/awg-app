@@ -48,7 +48,7 @@ export class SourceDescContentGridComponent {
      *
      * It holds the complex id the content item links to, or an empty string.
      */
-    readonly parentComplexId = computed<string>(() => this.content()?.itemLinkTo?.complexId || '');
+    readonly parentComplexId = computed<string>(() => this.content()?.itemLinkTo?.complexId ?? '');
 
     /**
      * Public method: selectSvgSheet.

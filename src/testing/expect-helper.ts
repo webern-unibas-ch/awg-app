@@ -59,7 +59,7 @@ function expectDebugElement(
  * @param {string} selector The CSS selector to look for.
  * @param {number} expected The expected number of elements in the result array.
  * @param {number} expectedFailMsg The expected number of elements in the result array in the fail message.
- * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
+ * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
  * @returns {DebugElement[]} An array of the found DebugElements.
  */
 export function getAndExpectDebugElementByCss(
@@ -67,14 +67,9 @@ export function getAndExpectDebugElementByCss(
     selector: string,
     expected: number,
     expectedFailMsg: number,
-    suffixMsg?: string
+    suffixMsg = ''
 ): DebugElement[] {
     const outDes = inDe.queryAll(By.css(selector));
-
-    // Empty string if no suffix message provided
-    if (!suffixMsg) {
-        suffixMsg = '';
-    }
 
     expectDebugElement(outDes, selector, expected, expectedFailMsg, suffixMsg);
 
@@ -93,7 +88,7 @@ export function getAndExpectDebugElementByCss(
  * @param {Type<*>} selectorType The selector type (directive) to look for.
  * @param {number } expected The expected number of elements in the result array.
  * @param {number | undefined} expectedFailMsg The expected number of elements in the result array in the fail message.
- * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
+ * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
  * @returns {DebugElement[]} An array of the found DebugElements.
  */
 export function getAndExpectDebugElementByDirective(
@@ -101,14 +96,9 @@ export function getAndExpectDebugElementByDirective(
     selectorType: Type<any>,
     expected: number,
     expectedFailMsg: number | undefined,
-    suffixMsg?: string
+    suffixMsg = ''
 ): DebugElement[] {
     const outDes = inDe.queryAll(By.directive(selectorType));
-
-    // Empty string if no suffix message provided
-    if (!suffixMsg) {
-        suffixMsg = '';
-    }
 
     expectDebugElement(outDes, selectorType, expected, expectedFailMsg, suffixMsg);
 

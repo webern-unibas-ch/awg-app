@@ -31,7 +31,7 @@ export class SourceDescWritingWatermarkComponent {
      *
      * It holds the variant of the watermark, or an empty string.
      */
-    readonly variant = computed<string>(() => this.watermark()?.variant || '');
+    readonly variant = computed<string>(() => this.watermark()?.variant ?? '');
 
     /**
      * Readonly computed signal: hasWatermark.

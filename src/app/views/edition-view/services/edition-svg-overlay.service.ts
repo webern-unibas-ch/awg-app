@@ -344,7 +344,8 @@ export class EditionSvgOverlayService {
      * @returns {string} The resolved data id.
      */
     private _getSvgGroupDataId(group: SVGGElement): string {
-        return group.getAttribute(DATA_TKK_ID) || group.id;
+        const dataTkkId = group.getAttribute(DATA_TKK_ID);
+        return dataTkkId?.length ? dataTkkId : group.id;
     }
 
     /**

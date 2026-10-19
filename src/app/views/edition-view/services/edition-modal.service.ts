@@ -27,13 +27,13 @@ export class EditionModalService {
      * Public method: openTextModal.
      *
      * It opens a text modal with the edition text snippet for the given key.
-     * A missing key falls back to `CONTENTS_NOT_AVAILABLE`,
+     * An empty key falls back to `CONTENTS_NOT_AVAILABLE`,
      * an unknown key results in an empty content.
      *
-     * @param {string | null | undefined} snippetKey The key of the edition text snippet.
+     * @param {string} snippetKey The key of the edition text snippet.
      * @returns {void} Opens the text modal.
      */
-    openTextModal(snippetKey?: string | null): void {
+    openTextModal(snippetKey: string): void {
         const id = snippetKey || 'CONTENTS_NOT_AVAILABLE';
         const isValidKey = Object.hasOwn(EDITION_MODAL_SNIPPETS, id);
         const content = isValidKey ? EDITION_MODAL_SNIPPETS[id as keyof typeof EDITION_MODAL_SNIPPETS] : '';

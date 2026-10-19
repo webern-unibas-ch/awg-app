@@ -59,8 +59,8 @@ export function getItemLocus(locus: SourceDescWritingMaterialItemLocus): string 
         }
     }
 
-    const preInfo = locus.preFolioInfo || '';
-    const position = locus.position || '';
+    const preInfo = locus.preFolioInfo ?? '';
+    const position = locus.position ?? '';
 
     const parts = [preInfo, foliosStr, position].filter(Boolean);
     return parts.join(' ');

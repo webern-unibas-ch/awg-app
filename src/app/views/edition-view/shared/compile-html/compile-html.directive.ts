@@ -189,7 +189,7 @@ export class CompileHtmlDirective {
             return;
         }
 
-        const complexId = anchor.dataset['complexId'] || '';
+        const complexId = anchor.dataset['complexId'] ?? '';
 
         const introFragmentId = anchor.dataset['introFragmentId'];
         if (introFragmentId) {

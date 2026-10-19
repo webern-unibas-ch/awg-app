@@ -171,7 +171,7 @@ describe('SourceDescContentsComponent (DONE)', () => {
                 beforeEach(() => {
                     expectedContentsWithItems = component
                         .contents()
-                        .filter(content => content.item || content.itemDescription);
+                        .filter(content => !!content.item || !!content.itemDescription);
                     expectedContentsWithItemsLength = expectedContentsWithItems.length;
                 });
 
