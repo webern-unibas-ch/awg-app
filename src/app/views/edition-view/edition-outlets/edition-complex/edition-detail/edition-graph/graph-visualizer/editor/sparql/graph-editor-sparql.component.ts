@@ -46,7 +46,7 @@ export class GraphEditorSparqlComponent {
     readonly queryList = input<GraphQuery[]>([]);
 
     /**
-     * Model signal: query.
+     * Readonly model signal: query.
      *
      * It holds the SPARQL query (two-way bound with the editor).
      */

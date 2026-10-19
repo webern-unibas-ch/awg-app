@@ -99,7 +99,7 @@ export class ForceGraphCanvasComponent {
     readonly zoomConfig = input.required<ZoomConfig>();
 
     /**
-     * Model signal: zoomValue.
+     * Readonly model signal: zoomValue.
      *
      * It holds the current zoom factor of the graph.
      */

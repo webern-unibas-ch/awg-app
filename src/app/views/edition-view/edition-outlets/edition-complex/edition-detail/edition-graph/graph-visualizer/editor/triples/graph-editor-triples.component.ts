@@ -25,7 +25,7 @@ import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-edito
 })
 export class GraphEditorTriplesComponent {
     /**
-     * Model signal: triples.
+     * Readonly model signal: triples.
      *
      * It holds the RDF triples (two-way bound with the editor).
      */

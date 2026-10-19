@@ -29,7 +29,7 @@ export class EditionOutlineComponent {
     private readonly _editionOutlineService = inject(EditionOutlineService);
 
     /**
-     * Public signal: editionOutline.
+     * Readonly signal: editionOutline.
      *
      * It holds the outline of the edition as an array of routes.
      */

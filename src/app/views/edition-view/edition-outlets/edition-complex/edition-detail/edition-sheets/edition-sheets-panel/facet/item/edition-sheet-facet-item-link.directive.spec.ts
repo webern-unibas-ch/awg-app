@@ -29,8 +29,8 @@ import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-l
     imports: [EditionSheetFacetItemLinkDirective],
 })
 class TestEditionSheetFacetItemLinkComponent {
-    sheetTarget = signal<EditionNavigationSheetTarget>({ complexId: '', sheetId: 'test-1' });
-    isActive = signal(false);
+    readonly sheetTarget = signal<EditionNavigationSheetTarget>({ complexId: '', sheetId: 'test-1' });
+    readonly isActive = signal(false);
 }
 
 describe('EditionSheetFacetItemLinkDirective (DONE)', () => {

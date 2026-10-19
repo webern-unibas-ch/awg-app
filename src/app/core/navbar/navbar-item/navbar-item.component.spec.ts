@@ -1,4 +1,4 @@
-import { Component, DebugElement, isSignal, ViewChild } from '@angular/core';
+import { Component, DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter, Router, RouterLink } from '@angular/router';
@@ -31,8 +31,6 @@ import { NavbarItemComponent } from './navbar-item.component';
     `,
 })
 class TestHostComponent {
-    @ViewChild(NavbarItemComponent) navbarItemComponent!: NavbarItemComponent;
-
     testItem: NavbarItem = NAVBAR_ITEMS.home;
     testId = '';
     isTestDropdown = false;

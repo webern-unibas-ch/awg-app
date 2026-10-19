@@ -19,19 +19,19 @@ export class ButtonMoreComponent {
      *
      * It holds the target route for the button.
      */
-    targetRoute = input.required<string[]>();
+    readonly targetRoute = input.required<string[]>();
 
     /**
      * Readonly input signal: queryParams.
      *
      * It holds the query parameters for the button's target route.
      */
-    queryParams = input<Record<string, string> | null>(null);
+    readonly queryParams = input<Record<string, string> | null>(null);
 
     /**
      * Readonly input signal: disabled.
      *
      * It holds the disabled state of the button.
      */
-    disabled = input<boolean>(false);
+    readonly disabled = input<boolean>(false);
 }

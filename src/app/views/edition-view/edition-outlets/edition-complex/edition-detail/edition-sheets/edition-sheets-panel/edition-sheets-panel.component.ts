@@ -46,7 +46,7 @@ export class EditionSheetsPanelComponent {
     private readonly _fullscreenService = inject(FullscreenService);
 
     /**
-     * Model signal: isSheetFacetMinimized.
+     * Readonly model signal: isSheetFacetMinimized.
      *
      * It holds the toggle state of the sheet facet (two-way bound).
      */

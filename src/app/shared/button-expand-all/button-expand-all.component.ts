@@ -14,12 +14,12 @@ import { ChangeDetectionStrategy, Component, model } from '@angular/core';
 })
 export class ButtonExpandAllComponent {
     /**
-     * Model signal: isOpen.
+     * Readonly model signal: isOpen.
      *
      * It holds the state of the button to expand or collapse all details.
      * @default false
      */
-    isOpen = model<boolean>(false);
+    readonly isOpen = model<boolean>(false);
 
     /**
      * Public method: toggle.

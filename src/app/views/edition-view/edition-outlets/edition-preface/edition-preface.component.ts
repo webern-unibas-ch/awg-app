@@ -37,9 +37,9 @@ export class EditionPrefaceComponent {
     readonly viewData = this._editionViewService.prefaceViewData;
 
     /**
-     * Public signal: selectedLanguage.
+     * Readonly signal: selectedLanguage.
      *
      * It holds the selected language of the edition preface.
      */
-    selectedLanguage = signal<LanguageId>(LanguageId.DE);
+    readonly selectedLanguage = signal<LanguageId>(LanguageId.DE);
 }

@@ -64,11 +64,11 @@ export class EditionIntroComponent {
     readonly viewData = this._editionViewService.introViewData;
 
     /**
-     * Public signal: selectedLanguage.
+     * Readonly signal: selectedLanguage.
      *
      * It holds the selected language of the edition intro.
      */
-    selectedLanguage = signal<LanguageId>(LanguageId.DE);
+    readonly selectedLanguage = signal<LanguageId>(LanguageId.DE);
 
     /**
      * Readonly signal: notesSectionLabel.

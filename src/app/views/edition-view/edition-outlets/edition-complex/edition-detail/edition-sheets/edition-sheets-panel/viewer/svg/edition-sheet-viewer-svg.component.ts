@@ -78,7 +78,7 @@ export class EditionSheetViewerSvgComponent {
     readonly zoomConfig = input.required<ZoomConfig>();
 
     /**
-     * Model signal: zoomValue.
+     * Readonly model signal: zoomValue.
      *
      * It holds the current zoom factor of the svg sheet (two-way bound).
      */

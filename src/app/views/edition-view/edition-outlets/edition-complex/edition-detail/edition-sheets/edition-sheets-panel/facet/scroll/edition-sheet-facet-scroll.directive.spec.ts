@@ -30,10 +30,10 @@ import { EditionSheetFacetScrollDirective } from './edition-sheet-facet-scroll.d
     imports: [EditionSheetFacetScrollDirective],
 })
 class TestEditionSheetFacetScrollComponent {
-    trigger = signal<unknown>('initial');
-    activeIndex = signal<number | null>(null);
-    activeSelector = signal('.test-link.active');
-    itemSelector = signal('.test-link');
+    readonly trigger = signal<unknown>('initial');
+    readonly activeIndex = signal<number | null>(null);
+    readonly activeSelector = signal('.test-link.active');
+    readonly itemSelector = signal('.test-link');
 }
 
 describe('EditionSheetFacetScrollDirective (DONE)', () => {
