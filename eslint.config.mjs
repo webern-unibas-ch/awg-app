@@ -173,6 +173,11 @@ export default defineConfig(
                 },
             ],
             '@typescript-eslint/no-misused-new': 'error',
+            // Data classes without methods (JSON shapes): spread copies are intended
+            '@typescript-eslint/no-misused-spread': [
+                'error',
+                { allow: [{ from: 'file', name: ['GraphQuery', 'IntroList', 'Textcritics'] }] },
+            ],
             '@typescript-eslint/no-non-null-assertion': 'error',
             // Conflicts with no-non-null-assertion (it would turn assertions into `!`)
             '@typescript-eslint/non-nullable-type-assertion-style': 'off',
@@ -288,7 +293,6 @@ export default defineConfig(
         rules: {
             '@typescript-eslint/no-empty-object-type': 'warn',
             '@typescript-eslint/no-explicit-any': 'warn',
-            '@typescript-eslint/no-misused-spread': 'warn',
             '@typescript-eslint/no-unsafe-argument': 'warn',
             '@typescript-eslint/no-unsafe-assignment': 'warn',
             '@typescript-eslint/no-unsafe-call': 'warn',

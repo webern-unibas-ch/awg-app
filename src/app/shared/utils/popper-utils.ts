@@ -34,11 +34,8 @@ export function createMaxHeightModifier(
             const overflow = detect(state, { padding });
             const availableHeight = state.rects.popper.height - overflow.bottom;
 
-            state.styles['popper'] = {
-                ...state.styles['popper'],
-                maxHeight: `${Math.max(0, availableHeight)}px`,
-                overflowY: 'auto',
-            };
+            state.styles['popper'].maxHeight = `${Math.max(0, availableHeight)}px`;
+            state.styles['popper'].overflowY = 'auto';
         },
     };
 }
