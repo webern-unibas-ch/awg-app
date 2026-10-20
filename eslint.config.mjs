@@ -13,7 +13,6 @@ const ecmaVersion = 2022;
 // Angular rules are listed one by one on top of the recommended presets (no `tsAll`/`templateAll`).
 // Not adopted: template/no-call-expression (signals are called in templates), template/i18n,
 // require-localize-metadata and runtime-localize (single-language app).
-// - sort-keys-in-type-decorator with the project order (`imports` last; ~8 hits instead of 137 with the default).
 // - Template autofix rules: attributes-order (73), prefer-static-string-properties (32),
 //   prefer-template-literal (18), prefer-contextual-for-variables (8), no-interpolation-in-attributes (5,
 //   write template literals directly); no-duplicate-attributes with allowStylePrecedenceDuplicates (0 hits).
@@ -125,6 +124,29 @@ export default defineConfig(
             '@angular-eslint/prefer-signals': 'error',
             '@angular-eslint/reactive-context-must-read-signal': 'error',
             '@angular-eslint/require-lifecycle-on-prototype': 'error',
+            // Decorator keys: identity → view → host → behaviour → dependencies
+            '@angular-eslint/sort-keys-in-type-decorator': [
+                'error',
+                {
+                    Component: [
+                        'selector',
+                        'exportAs',
+                        'template',
+                        'templateUrl',
+                        'styleUrl',
+                        'styleUrls',
+                        'styles',
+                        'hostDirectives',
+                        'host',
+                        'encapsulation',
+                        'changeDetection',
+                        'providers',
+                        'viewProviders',
+                        'imports',
+                    ],
+                    Directive: ['selector', 'exportAs', 'hostDirectives', 'host', 'providers'],
+                },
+            ],
             '@angular-eslint/sort-lifecycle-methods': 'error',
             '@angular-eslint/use-component-selector': 'error',
             '@angular-eslint/use-injectable-provided-in': 'error',

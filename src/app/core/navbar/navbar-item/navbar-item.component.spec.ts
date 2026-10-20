@@ -23,12 +23,12 @@ import { NavbarItemComponent } from './navbar-item.component';
 
 // Test Host Component to test NavbarItemComponent with correct dropdown context
 @Component({
-    imports: [NavbarItemComponent, NgbDropdown],
     template: `
         <div ngbDropdown>
             <awg-navbar-item [id]="testId" [item]="testItem" [isDropdown]="isTestDropdown"></awg-navbar-item>
         </div>
     `,
+    imports: [NavbarItemComponent, NgbDropdown],
 })
 class TestHostComponent {
     testItem: NavbarItem = NAVBAR_ITEMS.home;
