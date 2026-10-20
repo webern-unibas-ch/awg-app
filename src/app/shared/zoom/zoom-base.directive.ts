@@ -56,7 +56,10 @@ export abstract class ZoomBaseDirective<E extends Element> {
      *
      * It keeps the D3 zoom behaviour bound to the host element.
      */
-    protected readonly _zoomBehaviour = D3_ZOOM.zoom<E, unknown>().on('zoom', event => this._onZoom(event.transform));
+    protected readonly _zoomBehaviour = D3_ZOOM.zoom<E, unknown>().on(
+        'zoom',
+        (event: D3_ZOOM.D3ZoomEvent<E, unknown>) => this._onZoom(event.transform)
+    );
 
     /**
      * Constructor of the ZoomBaseDirective.

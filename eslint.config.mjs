@@ -286,21 +286,6 @@ export default defineConfig(
         },
     },
 
-    // TODO(lint-audit): transitional warnings for preset rules that still have findings;
-    // each entry is removed together with the commit that fixes its findings
-    {
-        files: ['**/*.ts'],
-        rules: {
-            '@typescript-eslint/no-empty-object-type': 'warn',
-            '@typescript-eslint/no-explicit-any': 'warn',
-            '@typescript-eslint/no-unsafe-argument': 'warn',
-            '@typescript-eslint/no-unsafe-assignment': 'warn',
-            '@typescript-eslint/no-unsafe-call': 'warn',
-            '@typescript-eslint/no-unsafe-member-access': 'warn',
-            '@typescript-eslint/no-unsafe-return': 'warn',
-        },
-    },
-
     // Specs and test helpers: test doubles are loosely typed, mock data is copied by spread,
     // and methods are referenced unbound in expectations
     {
