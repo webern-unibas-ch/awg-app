@@ -14,7 +14,7 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
 @Component({
     selector: 'awg-page-not-found-view',
     templateUrl: './page-not-found-view.component.html',
-    styleUrls: ['./page-not-found-view.component.scss'],
+    styleUrl: './page-not-found-view.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [HeadingComponent, ExternalLinkDirective, RouterLink, RouterLinkActive],
 })

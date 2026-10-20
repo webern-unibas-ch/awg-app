@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 @Component({
     selector: 'awg-graph-editor-action-buttons',
     templateUrl: './graph-editor-action-buttons.component.html',
-    styleUrls: ['./graph-editor-action-buttons.component.scss'],
+    styleUrl: './graph-editor-action-buttons.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
 })

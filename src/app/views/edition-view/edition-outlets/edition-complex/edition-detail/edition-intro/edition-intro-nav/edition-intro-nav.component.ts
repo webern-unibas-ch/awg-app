@@ -14,7 +14,7 @@ import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/lan
 @Component({
     selector: 'awg-edition-intro-nav',
     templateUrl: './edition-intro-nav.component.html',
-    styleUrls: ['./edition-intro-nav.component.scss'],
+    styleUrl: './edition-intro-nav.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LanguageSwitcherComponent, RouterLink],
 })

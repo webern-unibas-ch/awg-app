@@ -12,7 +12,7 @@ import { StatisticsProgressBarConfig } from '../models/statistics.model';
 @Component({
     selector: 'awg-statistics-progress-bar',
     templateUrl: './statistics-progress-bar.component.html',
-    styleUrls: ['./statistics-progress-bar.component.scss'],
+    styleUrl: './statistics-progress-bar.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbProgressbar],
 })

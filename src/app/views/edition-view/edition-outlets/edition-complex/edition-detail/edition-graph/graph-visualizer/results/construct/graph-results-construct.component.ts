@@ -27,7 +27,7 @@ const EMPTY_GRAPH_DATA: ResultGraph = Object.freeze({ nodes: [], edges: [], trip
 @Component({
     selector: 'awg-graph-results-construct',
     templateUrl: './graph-results-construct.component.html',
-    styleUrls: ['./graph-results-construct.component.scss'],
+    styleUrl: './graph-results-construct.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, ForceGraphComponent, GraphResultsEmptyComponent, TwelveToneSpinnerComponent],
 })

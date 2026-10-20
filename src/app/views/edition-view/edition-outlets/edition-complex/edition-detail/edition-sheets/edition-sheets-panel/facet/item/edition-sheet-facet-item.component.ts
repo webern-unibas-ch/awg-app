@@ -21,7 +21,7 @@ import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-l
 @Component({
     selector: 'awg-edition-sheet-facet-item',
     templateUrl: './edition-sheet-facet-item.component.html',
-    styleUrls: ['./edition-sheet-facet-item.component.scss'],
+    styleUrl: './edition-sheet-facet-item.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSheetFacetItemLinkDirective, NgbDropdownModule],
 })

@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 @Component({
     selector: 'awg-heading',
     templateUrl: 'heading.component.html',
-    styleUrls: ['heading.component.scss'],
+    styleUrl: 'heading.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeadingComponent {

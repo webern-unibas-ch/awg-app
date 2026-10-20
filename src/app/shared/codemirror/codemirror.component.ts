@@ -38,7 +38,7 @@ import { CmMode, createEditorState } from './codemirror.utils';
 @Component({
     selector: 'awg-codemirror',
     templateUrl: './codemirror.component.html',
-    styleUrls: ['./codemirror.component.scss'],
+    styleUrl: './codemirror.component.scss',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

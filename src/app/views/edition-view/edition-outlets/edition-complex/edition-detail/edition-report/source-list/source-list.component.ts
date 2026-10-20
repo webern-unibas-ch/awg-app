@@ -19,7 +19,7 @@ import { SourceSiglumComponent } from '../source-siglum/source-siglum.component'
 @Component({
     selector: 'awg-source-list',
     templateUrl: './source-list.component.html',
-    styleUrls: ['./source-list.component.scss'],
+    styleUrl: './source-list.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective, SourceSiglumComponent],
 })

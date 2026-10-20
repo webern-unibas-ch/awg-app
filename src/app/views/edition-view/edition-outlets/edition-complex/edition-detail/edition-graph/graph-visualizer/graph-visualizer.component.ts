@@ -39,7 +39,7 @@ import { SPARQL_UTILS } from './utils/sparql.utils';
 @Component({
     selector: 'awg-graph-visualizer',
     templateUrl: './graph-visualizer.component.html',
-    styleUrls: ['./graph-visualizer.component.scss'],
+    styleUrl: './graph-visualizer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         GraphEditorSparqlComponent,

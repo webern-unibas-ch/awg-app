@@ -13,7 +13,7 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
 @Component({
     selector: 'awg-structure-view',
     templateUrl: './structure-view.component.html',
-    styleUrls: ['./structure-view.component.scss'],
+    styleUrl: './structure-view.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonScrollToTopComponent, ExternalLinkDirective, HeadingComponent],
 })

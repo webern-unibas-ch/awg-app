@@ -23,7 +23,7 @@ import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
 @Component({
     selector: 'awg-textcritics-list',
     templateUrl: './textcritics-list.component.html',
-    styleUrls: ['./textcritics-list.component.scss'],
+    styleUrl: './textcritics-list.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CompileHtmlDirective,

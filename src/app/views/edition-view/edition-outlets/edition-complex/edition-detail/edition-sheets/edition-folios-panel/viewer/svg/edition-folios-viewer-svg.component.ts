@@ -33,7 +33,7 @@ import { EditionNavigationService } from '@awg-views/edition-view/services/editi
 @Component({
     selector: 'awg-edition-folios-viewer-svg',
     templateUrl: './edition-folios-viewer-svg.component.html',
-    styleUrls: ['./edition-folios-viewer-svg.component.scss'],
+    styleUrl: './edition-folios-viewer-svg.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective],
 })

@@ -12,7 +12,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
     selector: 'awg-view-container',
     templateUrl: './view-container.component.html',
-    styleUrls: ['./view-container.component.scss'],
+    styleUrl: './view-container.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet],
 })

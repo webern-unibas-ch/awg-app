@@ -13,7 +13,6 @@ const ecmaVersion = 2022;
 // Angular rules are listed one by one on top of the recommended presets (no `tsAll`/`templateAll`).
 // Not adopted: template/no-call-expression (signals are called in templates), template/i18n,
 // require-localize-metadata and runtime-localize (single-language app).
-// - consistent-component-styles with 'array' (keeps `styleUrls`; 26 `styleUrl` hits, autofix).
 // - sort-keys-in-type-decorator with the project order (`imports` last; ~8 hits instead of 137 with the default).
 // - Template autofix rules: attributes-order (73), prefer-static-string-properties (32),
 //   prefer-template-literal (18), prefer-contextual-for-variables (8), no-interpolation-in-attributes (5,
@@ -97,6 +96,7 @@ export default defineConfig(
             '@angular-eslint/component-max-inline-declarations': 'error',
             '@angular-eslint/component-selector': ['error', { type: 'element', prefix: 'awg', style: 'kebab-case' }],
             '@angular-eslint/computed-must-return': 'error',
+            '@angular-eslint/consistent-component-styles': 'error',
             '@angular-eslint/contextual-decorator': 'error',
             '@angular-eslint/directive-class-suffix': 'error',
             '@angular-eslint/directive-selector': ['error', { type: 'attribute', prefix: 'awg', style: 'camelCase' }],

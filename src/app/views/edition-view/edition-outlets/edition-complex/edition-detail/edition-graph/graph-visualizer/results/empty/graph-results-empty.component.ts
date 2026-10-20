@@ -13,7 +13,7 @@ import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 @Component({
     selector: 'awg-graph-results-empty',
     templateUrl: './graph-results-empty.component.html',
-    styleUrls: ['./graph-results-empty.component.scss'],
+    styleUrl: './graph-results-empty.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LogoComponent],
 })

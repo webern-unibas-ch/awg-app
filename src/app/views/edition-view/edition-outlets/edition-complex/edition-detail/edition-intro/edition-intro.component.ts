@@ -22,7 +22,7 @@ import { EditionIntroScrollDirective } from './edition-intro-scroll/edition-intr
 @Component({
     selector: 'awg-edition-intro',
     templateUrl: './edition-intro.component.html',
-    styleUrls: ['./edition-intro.component.scss'],
+    styleUrl: './edition-intro.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AlertErrorComponent,

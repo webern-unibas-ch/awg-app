@@ -11,7 +11,7 @@ import { AlertError } from './alert-error.model';
 @Component({
     selector: 'awg-alert-error',
     templateUrl: './alert-error.component.html',
-    styleUrls: ['./alert-error.component.scss'],
+    styleUrl: './alert-error.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TitleCasePipe],
 })

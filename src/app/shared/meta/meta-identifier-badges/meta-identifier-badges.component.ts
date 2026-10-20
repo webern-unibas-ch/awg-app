@@ -15,7 +15,7 @@ import { MetaIdentifierBadge } from './meta-identifier-badges.model';
 @Component({
     selector: 'awg-meta-identifier-badges',
     templateUrl: './meta-identifier-badges.component.html',
-    styleUrls: ['./meta-identifier-badges.component.scss'],
+    styleUrl: './meta-identifier-badges.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ExternalLinkDirective],
 })

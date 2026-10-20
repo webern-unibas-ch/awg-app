@@ -19,7 +19,7 @@ import { EditionGraphStaticComponent } from './edition-graph-static/edition-grap
 @Component({
     selector: 'awg-edition-graph',
     templateUrl: './edition-graph.component.html',
-    styleUrls: ['./edition-graph.component.scss'],
+    styleUrl: './edition-graph.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AlertErrorComponent,

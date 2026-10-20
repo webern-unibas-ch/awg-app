@@ -16,7 +16,7 @@ import { MetaPage } from '@awg-shared/meta/meta.model';
 @Component({
     selector: 'awg-footer-poweredby',
     templateUrl: './footer-poweredby.component.html',
-    styleUrls: ['./footer-poweredby.component.scss'],
+    styleUrl: './footer-poweredby.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, ExternalLinkDirective, LogoComponent],
 })

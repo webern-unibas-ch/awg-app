@@ -19,7 +19,7 @@ import { EditionSheetViewerSvgComponent } from './svg/edition-sheet-viewer-svg.c
 @Component({
     selector: 'awg-edition-sheet-viewer',
     templateUrl: './edition-sheet-viewer.component.html',
-    styleUrls: ['./edition-sheet-viewer.component.scss'],
+    styleUrl: './edition-sheet-viewer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSheetViewerNavComponent, EditionSheetViewerSvgComponent, ZoomSliderComponent],
 })

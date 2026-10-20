@@ -21,7 +21,7 @@ import { ViewContainerComponent } from './core/view-container/view-container.com
 @Component({
     selector: 'awg-app',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
+    styleUrl: './app.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FooterComponent, NavbarComponent, ViewContainerComponent],
 })

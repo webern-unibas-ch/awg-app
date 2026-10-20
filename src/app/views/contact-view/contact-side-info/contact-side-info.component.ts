@@ -17,7 +17,7 @@ import { ContactMapComponent } from '../contact-map/contact-map.component';
 @Component({
     selector: 'awg-contact-side-info',
     templateUrl: './contact-side-info.component.html',
-    styleUrls: ['./contact-side-info.component.scss'],
+    styleUrl: './contact-side-info.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ContactAddressComponent, ContactMapComponent],
 })

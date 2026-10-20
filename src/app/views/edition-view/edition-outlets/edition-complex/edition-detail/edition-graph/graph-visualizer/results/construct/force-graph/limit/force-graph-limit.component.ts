@@ -65,7 +65,7 @@ function _toLimitValues(tripleCount: number): number[] {
 @Component({
     selector: 'awg-force-graph-limit',
     templateUrl: './force-graph-limit.component.html',
-    styleUrls: ['./force-graph-limit.component.scss'],
+    styleUrl: './force-graph-limit.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbDropdownModule],
 })

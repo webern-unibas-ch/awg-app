@@ -24,7 +24,7 @@ import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
 @Component({
     selector: 'awg-force-graph',
     templateUrl: './force-graph.component.html',
-    styleUrls: ['./force-graph.component.scss'],
+    styleUrl: './force-graph.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ForceGraphCanvasComponent, ForceGraphLimitComponent, ZoomSliderComponent],
 })

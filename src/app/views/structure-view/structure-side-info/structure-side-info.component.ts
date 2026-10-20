@@ -15,7 +15,7 @@ import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 @Component({
     selector: 'awg-structure-info',
     templateUrl: './structure-side-info.component.html',
-    styleUrls: ['./structure-side-info.component.scss'],
+    styleUrl: './structure-side-info.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [DatePipe, ExternalLinkDirective, MetaIdentifierBadgesComponent],
 })

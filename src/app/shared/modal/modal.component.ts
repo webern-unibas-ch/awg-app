@@ -13,7 +13,7 @@ import { MODAL_DATA, ModalData } from './modal.model';
 @Component({
     selector: 'awg-modal',
     templateUrl: './modal.component.html',
-    styleUrls: ['./modal.component.scss'],
+    styleUrl: './modal.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {

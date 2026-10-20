@@ -11,7 +11,7 @@ import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-htm
 @Component({
     selector: 'awg-source-desc-details',
     templateUrl: './source-desc-details.component.html',
-    styleUrls: ['./source-desc-details.component.scss'],
+    styleUrl: './source-desc-details.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective],
 })

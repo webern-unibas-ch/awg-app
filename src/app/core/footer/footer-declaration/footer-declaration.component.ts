@@ -14,7 +14,7 @@ import { MetaPage } from '@awg-shared/meta/meta.model';
 @Component({
     selector: 'awg-footer-declaration',
     templateUrl: './footer-declaration.component.html',
-    styleUrls: ['./footer-declaration.component.scss'],
+    styleUrl: './footer-declaration.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [DatePipe, ExternalLinkDirective, RouterLink],
 })

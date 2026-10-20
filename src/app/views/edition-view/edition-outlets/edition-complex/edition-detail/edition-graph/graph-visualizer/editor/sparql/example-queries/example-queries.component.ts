@@ -17,7 +17,7 @@ import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 @Component({
     selector: 'awg-example-queries',
     templateUrl: './example-queries.component.html',
-    styleUrls: ['./example-queries.component.scss'],
+    styleUrl: './example-queries.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective, NgbDropdownModule, NgTemplateOutlet],
 })

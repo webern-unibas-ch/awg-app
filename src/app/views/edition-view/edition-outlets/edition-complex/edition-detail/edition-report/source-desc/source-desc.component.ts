@@ -13,7 +13,7 @@ import { SourceDescItemComponent } from './source-desc-item/source-desc-item.com
 @Component({
     selector: 'awg-source-desc',
     templateUrl: './source-desc.component.html',
-    styleUrls: ['./source-desc.component.scss'],
+    styleUrl: './source-desc.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [SourceDescItemComponent],
 })

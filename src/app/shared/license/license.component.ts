@@ -10,7 +10,7 @@ import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.d
 @Component({
     selector: 'awg-license',
     templateUrl: './license.component.html',
-    styleUrls: ['./license.component.scss'],
+    styleUrl: './license.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ExternalLinkDirective],
 })

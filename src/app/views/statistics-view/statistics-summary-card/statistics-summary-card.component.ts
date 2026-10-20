@@ -11,7 +11,7 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 @Component({
     selector: 'awg-statistics-summary-card',
     templateUrl: './statistics-summary-card.component.html',
-    styleUrls: ['./statistics-summary-card.component.scss'],
+    styleUrl: './statistics-summary-card.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })

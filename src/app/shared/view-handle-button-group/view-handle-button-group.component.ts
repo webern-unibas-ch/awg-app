@@ -22,7 +22,7 @@ let nextGroupId = 0;
 @Component({
     selector: 'awg-view-handle-button-group',
     templateUrl: './view-handle-button-group.component.html',
-    styleUrls: ['./view-handle-button-group.component.scss'],
+    styleUrl: './view-handle-button-group.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, NgbTooltip],
 })

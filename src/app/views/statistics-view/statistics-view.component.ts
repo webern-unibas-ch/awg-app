@@ -24,7 +24,7 @@ import { StatisticsSummaryComponent } from './statistics-summary/statistics-summ
 @Component({
     selector: 'awg-statistics-view',
     templateUrl: './statistics-view.component.html',
-    styleUrls: ['./statistics-view.component.scss'],
+    styleUrl: './statistics-view.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ButtonScrollToTopComponent,

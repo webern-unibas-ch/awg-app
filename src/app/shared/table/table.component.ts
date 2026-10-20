@@ -27,7 +27,7 @@ import {
 @Component({
     selector: 'awg-table',
     templateUrl: './table.component.html',
-    styleUrls: ['./table.component.scss'],
+    styleUrl: './table.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ClickDirective,

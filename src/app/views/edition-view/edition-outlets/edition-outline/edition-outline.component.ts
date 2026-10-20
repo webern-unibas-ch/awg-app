@@ -16,7 +16,7 @@ import { EditionSeriesCardComponent } from './edition-series-card/edition-series
 @Component({
     selector: 'awg-edition-outline',
     templateUrl: './edition-outline.component.html',
-    styleUrls: ['./edition-outline.component.scss'],
+    styleUrl: './edition-outline.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSeriesCardComponent],
 })

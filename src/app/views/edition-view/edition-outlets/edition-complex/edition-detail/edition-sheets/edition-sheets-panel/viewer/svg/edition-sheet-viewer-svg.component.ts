@@ -44,7 +44,7 @@ import { EditionSheetViewerAdditionsPanelChange } from '../additions-panel/editi
 @Component({
     selector: 'awg-edition-sheet-viewer-svg',
     templateUrl: './edition-sheet-viewer-svg.component.html',
-    styleUrls: ['./edition-sheet-viewer-svg.component.scss'],
+    styleUrl: './edition-sheet-viewer-svg.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective, EditionSheetViewerAdditionsPanelComponent, LicenseComponent, SvgZoomDirective],
 })

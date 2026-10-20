@@ -52,7 +52,7 @@ import { FORCE_GRAPH_CANVAS_UTILS } from './force-graph-canvas.utils';
 @Component({
     selector: 'awg-force-graph-canvas',
     templateUrl: './force-graph-canvas.component.html',
-    styleUrls: ['./force-graph-canvas.component.scss'],
+    styleUrl: './force-graph-canvas.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CanvasDragDirective,

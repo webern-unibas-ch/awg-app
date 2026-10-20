@@ -19,7 +19,7 @@ import { SourceDescContentSystemComponent } from '../system/source-desc-content-
 @Component({
     selector: 'awg-source-desc-content-grid',
     templateUrl: './source-desc-content-grid.component.html',
-    styleUrls: ['./source-desc-content-grid.component.scss'],
+    styleUrl: './source-desc-content-grid.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CompileHtmlDirective,

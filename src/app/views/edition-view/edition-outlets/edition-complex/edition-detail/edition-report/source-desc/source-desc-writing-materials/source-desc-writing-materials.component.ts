@@ -13,7 +13,7 @@ import { SourceDescWritingMaterialComponent } from './material/source-desc-writi
 @Component({
     selector: 'awg-source-desc-writing-materials',
     templateUrl: './source-desc-writing-materials.component.html',
-    styleUrls: ['./source-desc-writing-materials.component.scss'],
+    styleUrl: './source-desc-writing-materials.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [SourceDescWritingMaterialComponent],
 })

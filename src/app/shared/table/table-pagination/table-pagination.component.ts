@@ -13,7 +13,7 @@ import { TABLE_DEFAULT_PAGE_SIZE } from '../table.utils';
 @Component({
     selector: 'awg-table-pagination',
     templateUrl: './table-pagination.component.html',
-    styleUrls: ['./table-pagination.component.scss'],
+    styleUrl: './table-pagination.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbPagination, NgbPaginationPages],
 })

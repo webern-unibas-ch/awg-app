@@ -26,7 +26,7 @@ import { EditionSheetViewerComponent } from './viewer/edition-sheet-viewer.compo
 @Component({
     selector: 'awg-edition-sheets-panel',
     templateUrl: './edition-sheets-panel.component.html',
-    styleUrls: ['./edition-sheets-panel.component.scss'],
+    styleUrl: './edition-sheets-panel.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         EditionSheetFacetComponent,

@@ -18,7 +18,7 @@ import { HomeViewCard } from './home-view-card.model';
 @Component({
     selector: 'awg-home-view-card',
     templateUrl: './home-view-card.component.html',
-    styleUrls: ['./home-view-card.component.scss'],
+    styleUrl: './home-view-card.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, ExternalLinkDirective, NgTemplateOutlet, RouterLink],
 })

@@ -11,7 +11,7 @@ import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-htm
 @Component({
     selector: 'awg-edition-tka-evaluations',
     templateUrl: './edition-tka-evaluations.component.html',
-    styleUrls: ['./edition-tka-evaluations.component.scss'],
+    styleUrl: './edition-tka-evaluations.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective],
 })

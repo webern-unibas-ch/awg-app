@@ -19,7 +19,7 @@ import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-edito
 @Component({
     selector: 'awg-graph-editor-triples',
     templateUrl: './graph-editor-triples.component.html',
-    styleUrls: ['./graph-editor-triples.component.scss'],
+    styleUrl: './graph-editor-triples.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, CodeMirrorComponent, GraphEditorActionButtonsComponent],
 })

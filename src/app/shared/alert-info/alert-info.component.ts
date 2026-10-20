@@ -12,7 +12,7 @@ import { NgbAlert } from '@ng-bootstrap/ng-bootstrap/alert';
 @Component({
     selector: 'awg-alert-info',
     templateUrl: './alert-info.component.html',
-    styleUrls: ['./alert-info.component.scss'],
+    styleUrl: './alert-info.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, NgbAlert],
 })

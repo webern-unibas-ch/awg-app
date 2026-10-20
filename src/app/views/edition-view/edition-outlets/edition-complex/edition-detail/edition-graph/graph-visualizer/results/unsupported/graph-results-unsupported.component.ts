@@ -12,7 +12,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 @Component({
     selector: 'awg-graph-results-unsupported',
     templateUrl: './graph-results-unsupported.component.html',
-    styleUrls: ['./graph-results-unsupported.component.scss'],
+    styleUrl: './graph-results-unsupported.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, UpperCasePipe],
 })

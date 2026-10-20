@@ -17,7 +17,7 @@ import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/tab
 @Component({
     selector: 'awg-source-desc-corrections',
     templateUrl: './source-desc-corrections.component.html',
-    styleUrls: ['./source-desc-corrections.component.scss'],
+    styleUrl: './source-desc-corrections.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonExpandAllComponent, CompileHtmlDirective, EditionTkaEvaluationsComponent, EditionTkaTableComponent],
 })

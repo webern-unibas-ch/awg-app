@@ -11,7 +11,7 @@ import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data/edition-
 @Component({
     selector: 'awg-edition-graph-static',
     templateUrl: './edition-graph-static.component.html',
-    styleUrls: ['./edition-graph-static.component.scss'],
+    styleUrl: './edition-graph-static.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
 })

@@ -11,7 +11,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 @Component({
     selector: 'awg-button-scroll-to-top',
     templateUrl: './button-scroll-to-top.component.html',
-    styleUrls: ['./button-scroll-to-top.component.scss'],
+    styleUrl: './button-scroll-to-top.component.scss',
     host: {
         '(window:scroll)': 'onWindowScroll()',
     },
