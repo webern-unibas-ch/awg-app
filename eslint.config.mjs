@@ -14,7 +14,7 @@ const ecmaVersion = 2022;
 // Not adopted: template/no-call-expression (signals are called in templates), template/i18n,
 // require-localize-metadata and runtime-localize (single-language app), template/attributes-order (it sorts
 // by binding kind only; bindings stay grouped by directive, with event bindings last).
-// - Manual fixes: button-has-type (21, no forms: `type="button"`), template/no-any (2),
+// - Manual fixes: template/no-any (2, template refs instead of `$any($event)`),
 //   template/no-non-null-assertion (1), require-switch-default (1), relative-url-prefix (2),
 //   prefer-signal-model (1, form-switch), use-component-view-encapsulation (codemirror: disable with reason).
 // - Decide separately: no-inline-styles (13 hits, plus 12 in index.html which should be excluded),
@@ -399,6 +399,8 @@ export default defineConfig(
     {
         files: ['**/*.html'],
         rules: {
+            // NgbAccordionButton sets `type="button"` as a host attribute
+            '@angular-eslint/template/button-has-type': ['error', { ignoreWithDirectives: ['ngbAccordionButton'] }],
             '@angular-eslint/template/conditional-complexity': 'error',
             // Static `class` next to `[class]` is merged by Angular
             '@angular-eslint/template/no-duplicate-attributes': ['error', { allowStylePrecedenceDuplicates: true }],

@@ -23,6 +23,7 @@
         <awg-table-pagination [collectionSize]="filteredRows().length" [pageSize]="pageSize()" [(page)]="page" />
         <div ngbDropdown class="d-inline-block">
             <button
+                type="button"
                 class="btn btn-default awg-pagesize-dropdown-button"
                 [id]="`pageSizeDropdownMenu${position}`"
                 ngbDropdownToggle>
@@ -30,7 +31,11 @@
             </button>
             <div class="dropdown-menu" [attr.aria-labelledby]="`pageSizeDropdownMenu${position}`" ngbDropdownMenu>
                 @for (pageSizeOption of pageSizeOptions; track pageSizeOption) {
-                    <button ngbDropdownItem class="dropdown-item" (click)="onPageSizeChange(pageSizeOption)">
+                    <button
+                        type="button"
+                        ngbDropdownItem
+                        class="dropdown-item"
+                        (click)="onPageSizeChange(pageSizeOption)">
                         {{ pageSizeOption }} Ergebnisse pro Seite
                     </button>
                 }

@@ -1,7 +1,7 @@
 <div ngbAccordion #sheetAcc [class.fullscreen]="isFullscreen()">
     <div ngbAccordionItem="awg-edition-sheet-view" [collapsed]="false">
         <div ngbAccordionHeader class="accordion-button awg-accordion-button-custom-header justify-content-between">
-            <button ngbAccordionToggle class="btn btn-link text-start p-0">Edierte Notentexte</button>
+            <button type="button" ngbAccordionToggle class="btn btn-link text-start p-0">Edierte Notentexte</button>
             <div class="ms-auto">
                 @if (!isFullscreen()) {
                     <awg-usage-hints snippetKey="HINT_EDITION_SHEETS" />
