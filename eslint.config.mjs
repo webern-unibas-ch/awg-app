@@ -14,8 +14,8 @@ const ecmaVersion = 2022;
 // Not adopted: template/no-call-expression (signals are called in templates), template/i18n,
 // require-localize-metadata and runtime-localize (single-language app), template/attributes-order (it sorts
 // by binding kind only; bindings stay grouped by directive, with event bindings last).
-// - Decide separately: no-inline-styles (13 hits, plus 12 in index.html which should be excluded),
-//   cyclomatic-complexity (max 9: off or limit 10), prefer-ngsrc (10), prefer-service-decorator (24, API migration).
+// - Decide separately: cyclomatic-complexity (max 9: off or limit 10), prefer-ngsrc (10),
+//   prefer-service-decorator (24, API migration).
 // - `npx eslint .` fails on vitest-base.config.ts (in no tsconfig): allowDefaultProject or ignore it
 //   (`yarn lint` only covers src).
 // - PR description: lint time ~267 s before the audit, 47 s after (step 3 done, 0 warnings).
@@ -402,10 +402,12 @@ export default defineConfig(
             // NgbAccordionButton sets `type="button"` as a host attribute
             '@angular-eslint/template/button-has-type': ['error', { ignoreWithDirectives: ['ngbAccordionButton'] }],
             '@angular-eslint/template/conditional-complexity': 'error',
-            // Static `class` next to `[class]` is merged by Angular
             '@angular-eslint/template/no-any': 'error',
+            // Static `class` next to `[class]` is merged by Angular
             '@angular-eslint/template/no-duplicate-attributes': ['error', { allowStylePrecedenceDuplicates: true }],
             '@angular-eslint/template/no-empty-control-flow': 'error',
+            // Style bindings with computed values are allowed
+            '@angular-eslint/template/no-inline-styles': ['error', { allowBindToStyle: 'dynamic' }],
             '@angular-eslint/template/no-interpolation-in-attributes': 'error',
             '@angular-eslint/template/no-nested-tags': 'error',
             '@angular-eslint/template/no-non-null-assertion': 'error',
@@ -420,6 +422,13 @@ export default defineConfig(
             '@angular-eslint/template/prefer-style-binding': 'error',
             '@angular-eslint/template/prefer-template-literal': 'error',
             '@angular-eslint/template/require-switch-default': 'error',
+        },
+    },
+    // Test hosts set layout styles inline, and the loading spinner sets its custom properties before the app starts
+    {
+        files: ['**/*.spec.ts/**', 'src/index.html'],
+        rules: {
+            '@angular-eslint/template/no-inline-styles': 'off',
         },
     },
     {
