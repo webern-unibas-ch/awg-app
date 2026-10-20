@@ -3,10 +3,10 @@
         <div class="row g-0 h-100">
             @if (!section.disabled) {
                 <div class="col-4 col-sm-2 col-md-12 awg-img-container">
-                    @let imgSrc = 'assets/img' + section.labeledRoute.route.join('/') + '/cover.jpg';
+                    @let imgSrc = `assets/img${section.labeledRoute.route.join('/')}/cover.jpg`;
                     @let imgLabel = section.labeledRoute.label;
 
-                    <img [src]="imgSrc" [title]="imgLabel" class="card-img-top img-fluid" alt="Cover {{ imgLabel }}" />
+                    <img [src]="imgSrc" [title]="imgLabel" class="card-img-top img-fluid" [alt]="`Cover ${imgLabel}`" />
                 </div>
             }
             <div

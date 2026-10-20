@@ -203,6 +203,16 @@ describe('NavbarComponent (DONE)', () => {
                 });
             });
 
+            it('... should pass down the static `linkClass` to LogoComponents (hollow)', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoComponent, 2, 2);
+
+                logoDes.forEach(logoDe => {
+                    const logoCmp = logoDe.injector.get(LogoComponent);
+
+                    expectToBe(logoCmp.linkClass(), 'navbar-brand');
+                });
+            });
+
             it('... should contain one toggle button in navbar', () => {
                 const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
                 getAndExpectDebugElementByCss(navbarDes[0], 'button.navbar-toggler', 1, 1);
@@ -281,16 +291,6 @@ describe('NavbarComponent (DONE)', () => {
                     const logoCmp = logoDe.injector.get(LogoComponent);
 
                     expectToEqual(logoCmp.logoData(), expectedLogosData.awg);
-                });
-            });
-
-            it('... should pass down expected linkClass to LogoComponents (hollow)', () => {
-                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoComponent, 2, 2);
-
-                logoDes.forEach(logoDe => {
-                    const logoCmp = logoDe.injector.get(LogoComponent);
-
-                    expectToBe(logoCmp.linkClass(), 'navbar-brand');
                 });
             });
 

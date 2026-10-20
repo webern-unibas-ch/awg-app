@@ -24,11 +24,11 @@
         <div ngbDropdown class="d-inline-block">
             <button
                 class="btn btn-default awg-pagesize-dropdown-button"
-                [id]="'pageSizeDropdownMenu' + position"
+                [id]="`pageSizeDropdownMenu${position}`"
                 ngbDropdownToggle>
                 {{ pageSize() }} Ergebnisse pro Seite
             </button>
-            <div class="dropdown-menu" [attr.aria-labelledby]="'pageSizeDropdownMenu' + position" ngbDropdownMenu>
+            <div class="dropdown-menu" [attr.aria-labelledby]="`pageSizeDropdownMenu${position}`" ngbDropdownMenu>
                 @for (pageSizeOption of pageSizeOptions; track pageSizeOption) {
                     <button ngbDropdownItem class="dropdown-item" (click)="onPageSizeChange(pageSizeOption)">
                         {{ pageSizeOption }} Ergebnisse pro Seite

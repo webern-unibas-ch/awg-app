@@ -44,11 +44,11 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
             });
 
-            it('... should throw when accessing AlertInfoComponent (hollow) inputs (`infoMessage`) due to missing initial data binding', () => {
+            it('... should pass down the static `infoMessage` to AlertInfoComponent (hollow)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent);
 
-                expect(() => alertInfoCmp.infoMessage()).toThrow();
+                expectToEqual(alertInfoCmp.infoMessage(), expectedInfoMessage);
             });
         });
     });
@@ -60,7 +60,7 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down the correct values to AlertInfoComponent (hollow) (`infoMessage`)', () => {
+            it('... should still pass down the static `infoMessage` to AlertInfoComponent (hollow)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent);
 

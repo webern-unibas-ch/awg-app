@@ -9,7 +9,7 @@
                     <div class="mb-3">
                         <awg-statistics-progress-bar
                             [config]="getProgressBarConfig(item.key, 'absolute')"
-                            [headerLabel]="item.baseLabel + ' Complexes'"
+                            [headerLabel]="`${item.baseLabel} Complexes`"
                             [showPercentageLabel]="false"
                             [customType]="item.colorType"
                             [useCustomTypeOnly]="true" />
@@ -29,7 +29,7 @@
                     <div class="mb-3">
                         <awg-statistics-progress-bar
                             [config]="getProgressBarConfig(item.key, 'ratio')"
-                            [headerLabel]="'Active ' + item.baseLabel + (item.key !== 'opus' ? 's' : '')"
+                            [headerLabel]="`Active ${item.baseLabel}${item.key !== 'opus' ? 's' : ''}`"
                             [showPercentageLabel]="false" />
                     </div>
                 }

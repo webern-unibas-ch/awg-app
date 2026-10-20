@@ -6,7 +6,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3">
             <div class="col">
                 <awg-form-switch
-                    [inputId]="inputIdPrefix + 'all'"
+                    [inputId]="`${inputIdPrefix}all`"
                     [checked]="allVisible()"
                     (checkedChange)="toggleAll()">
                     Alle {{ allVisible() ? 'aus' : 'ein' }}blenden

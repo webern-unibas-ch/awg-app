@@ -3,13 +3,13 @@
         <awg-edition-sheet-facet-toggle [(isMinimized)]="isMinimized" />
         @if (!isMinimized()) {
             <div class="card-body">
-                @for (key of editionTypeKeys; track key; let isLast = $last) {
+                @for (key of editionTypeKeys; track key) {
                     <awg-edition-sheet-facet-group
                         [editionTypeKey]="key"
                         [svgSheets]="sheetsData.sheets[key]"
                         [selectedSvgSheet]="selectedSvgSheet()" />
 
-                    @if (!isLast) {
+                    @if (!$last) {
                         <hr />
                     }
                 }

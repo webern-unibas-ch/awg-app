@@ -12,7 +12,7 @@
                 <thead>
                     <tr>
                         @for (tableHeader of tableHeaders(); track tableHeader.ref) {
-                            <th scope="col" class="awg-edition-tka-table-header {{ tableHeader.ref }} text-nowrap">
+                            <th scope="col" class="awg-edition-tka-table-header text-nowrap" [class]="tableHeader.ref">
                                 {{ tableHeader.label }}
                             </th>
                         }
@@ -33,7 +33,7 @@
                         ) {
                             <tr
                                 class="awg-edition-tka-table-comment"
-                                [id]="textcriticalComment.svgGroupId + '-entry'"
+                                [id]="`${textcriticalComment.svgGroupId}-entry`"
                                 [attr.data-svg-group-id]="textcriticalComment.svgGroupId"
                                 [ngbTooltip]="textcriticalComment.svgGroupId"
                                 tooltipClass="awg-group-id-tooltip"

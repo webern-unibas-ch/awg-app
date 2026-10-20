@@ -28,11 +28,11 @@
             <div class="awg-edition-responsibility mt-3 mb-5">
                 <p>
                     Ediert von
-                    @for (editor of editionComplex.respStatement.editors; track $index; let isLast = $last) {
+                    @for (editor of editionComplex.respStatement.editors; track $index) {
                         <span class="editor">
                             <a [href]="editor.homepage">{{ editor.name }}</a>
                             <awg-meta-identifier-badges [identifiers]="editor.identifiers" />
-                            @if (!isLast) {
+                            @if (!$last) {
                                 <span>&nbsp;&&nbsp;</span>
                             }
                         </span>
