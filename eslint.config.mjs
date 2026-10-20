@@ -14,9 +14,8 @@ const ecmaVersion = 2022;
 // Not adopted: template/no-call-expression (signals are called in templates), template/i18n,
 // require-localize-metadata and runtime-localize (single-language app), template/attributes-order (it sorts
 // by binding kind only; bindings stay grouped by directive, with event bindings last).
-// - Manual fixes: template/no-any (2, template refs instead of `$any($event)`),
-//   template/no-non-null-assertion (1), require-switch-default (1), relative-url-prefix (2),
-//   prefer-signal-model (1, form-switch), use-component-view-encapsulation (codemirror: disable with reason).
+// - Manual fixes: relative-url-prefix (2), prefer-signal-model (1, form-switch),
+//   use-component-view-encapsulation (codemirror: disable with reason).
 // - Decide separately: no-inline-styles (13 hits, plus 12 in index.html which should be excluded),
 //   cyclomatic-complexity (max 9: off or limit 10), prefer-ngsrc (10), prefer-service-decorator (24, API migration).
 // - `npx eslint .` fails on vitest-base.config.ts (in no tsconfig): allowDefaultProject or ignore it
@@ -403,10 +402,12 @@ export default defineConfig(
             '@angular-eslint/template/button-has-type': ['error', { ignoreWithDirectives: ['ngbAccordionButton'] }],
             '@angular-eslint/template/conditional-complexity': 'error',
             // Static `class` next to `[class]` is merged by Angular
+            '@angular-eslint/template/no-any': 'error',
             '@angular-eslint/template/no-duplicate-attributes': ['error', { allowStylePrecedenceDuplicates: true }],
             '@angular-eslint/template/no-empty-control-flow': 'error',
             '@angular-eslint/template/no-interpolation-in-attributes': 'error',
             '@angular-eslint/template/no-nested-tags': 'error',
+            '@angular-eslint/template/no-non-null-assertion': 'error',
             '@angular-eslint/template/no-outerhtml': 'error',
             '@angular-eslint/template/no-positive-tabindex': 'error',
             '@angular-eslint/template/prefer-at-else': 'error',
@@ -417,6 +418,7 @@ export default defineConfig(
             '@angular-eslint/template/prefer-static-string-properties': 'error',
             '@angular-eslint/template/prefer-style-binding': 'error',
             '@angular-eslint/template/prefer-template-literal': 'error',
+            '@angular-eslint/template/require-switch-default': 'error',
         },
     },
     {

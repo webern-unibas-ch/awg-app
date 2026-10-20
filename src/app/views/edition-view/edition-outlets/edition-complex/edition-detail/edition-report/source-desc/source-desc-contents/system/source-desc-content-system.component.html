@@ -30,9 +30,8 @@
         }
 
         <!-- Rows -->
-        @if (hasValidRow()) {
+        @if (validRow(); as row) {
             <span class="awg-source-desc-content-grid-row">
-                @let row = system.row!;
                 <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
                     <span>
                         <span

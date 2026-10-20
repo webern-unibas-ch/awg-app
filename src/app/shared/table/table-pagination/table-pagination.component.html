@@ -24,7 +24,7 @@
                         [value]="page"
                         (keyup.enter)="selectPage(i.value)"
                         (blur)="selectPage(i.value)"
-                        (input)="replaceNonNumberInput($any($event).target)" />
+                        (input)="replaceNonNumberInput(i)" />
                     <span id="paginationDescription" class="col-form-label text-nowrap px-2">
                         von {{ pages.length }}</span
                     >
