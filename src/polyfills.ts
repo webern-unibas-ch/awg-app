@@ -1,4 +1,4 @@
-/* eslint-disable capitalized-comments, spaced-comment */
+/* eslint-disable capitalized-comments, spaced-comment, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access -- patches untyped globals for third-party libraries */
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
