@@ -5,12 +5,12 @@
             #radioInput
             type="radio"
             class="btn-check"
+            autocomplete="off"
             [name]="groupName"
             [id]="groupName + '-' + viewHandle.type + '-view-button'"
             [value]="viewHandle.type"
             [checked]="viewHandle.type === selectedViewType()"
-            (change)="onViewChange(viewHandle.type)"
-            autocomplete="off" />
+            (change)="onViewChange(viewHandle.type)" />
         <label
             class="btn btn-sm btn-outline-info"
             [for]="groupName + '-' + viewHandle.type + '-view-button'"

@@ -48,6 +48,7 @@ Husky and lint-staged run ESLint and Prettier on staged files.
 - Reuse shared UI components where useful (e.g. `ButtonExpandAllComponent`, `ConditionalLinkComponent`).
 - **Imports:** full file paths, no barrels (exception for now: `@testing/mock-data`, `@testing/mock-helper`). Relative only `./` or one `../`, otherwise aliases: `@awg-app`, `@awg-core`, `@awg-shared`, `@awg-views`, `@testing`, and outlet aliases `@awg-graph` (edition-graph), `@awg-report` (edition-report). New outlet aliases only for deep imports, in all four tsconfigs (base, `.app`, `.spec`, `.doc`); once an outlet has one, imports into it use it.
 - **Import blocks** (blank line between, sorted by path): `@angular` → third party → `@testing` → `@awg-app`/`@awg-core` → `@awg-shared` → `@awg-views` → outlet aliases → relative. Move lines when a path changes its block; re-sort `imports: [...]` after renames.
+- **Template attributes:** related ones together (a directive with its inputs and outputs, `class` with `[class]`/`[class.x]`), static attributes before bindings, event bindings last. Not linted: `attributes-order` only sorts by binding kind.
 - Empty checks: `if (array.length)` / `if (!array.length)`. A helper that only gets non-empty lists is guarded at the call site ("(not empty)" in its JSDoc).
 - Destructure all used entries of a config/style constant at the top of a function, consistently across the file.
 

@@ -10,9 +10,9 @@
                 </div>
             }
             <div
+                class="col-md-12 d-flex flex-column awg-edition-section-card-content"
                 [class.col-8]="!section.disabled"
-                [class.col-sm-10]="!section.disabled"
-                class="col-md-12 d-flex flex-column awg-edition-section-card-content">
+                [class.col-sm-10]="!section.disabled">
                 <div class="card-body flex-grow-1" [class.awg-card-border-top]="!section.disabled">
                     <h5 class="card-title" [class.text-muted]="section.disabled">
                         {{ section.section.full }}

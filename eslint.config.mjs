@@ -12,10 +12,11 @@ const ecmaVersion = 2022;
 // Workflow: one commit per topic; list the hits, cases and alternatives before deciding.
 // Angular rules are listed one by one on top of the recommended presets (no `tsAll`/`templateAll`).
 // Not adopted: template/no-call-expression (signals are called in templates), template/i18n,
-// require-localize-metadata and runtime-localize (single-language app).
-// - Template autofix rules: attributes-order (73), prefer-static-string-properties (32),
-//   prefer-template-literal (18), prefer-contextual-for-variables (8), no-interpolation-in-attributes (5,
-//   write template literals directly); no-duplicate-attributes with allowStylePrecedenceDuplicates (0 hits).
+// require-localize-metadata and runtime-localize (single-language app), template/attributes-order (it sorts
+// by binding kind only; bindings stay grouped by directive, with event bindings last).
+// - Template bindings: prefer-static-string-properties (32), prefer-template-literal (18),
+//   prefer-contextual-for-variables (8), all autofix; no-interpolation-in-attributes (5, manual: static classes
+//   plus `[class]`, template literals); no-duplicate-attributes with allowStylePrecedenceDuplicates (0 hits).
 // - Manual fixes: button-has-type (21, no forms: `type="button"`), template/no-any (2),
 //   template/no-non-null-assertion (1), require-switch-default (1), relative-url-prefix (2),
 //   prefer-signal-model (1, form-switch), use-component-view-encapsulation (codemirror: disable with reason).

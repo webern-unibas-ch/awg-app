@@ -48,7 +48,7 @@ import { ExternalLinkDirective } from './external-link.directive';
         <a [href]="'/about'" rel="help">Internal Link with static rel</a>,
 
         <br /><br />
-        <a (click)="doSomething()" (keyup.enter)="doSomething()" role="link" tabindex="0">Link without href</a>`,
+        <a role="link" tabindex="0" (click)="doSomething()" (keyup.enter)="doSomething()">Link without href</a>`,
     imports: [ExternalLinkDirective],
 })
 class TestExternalLinkComponent {

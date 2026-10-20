@@ -14,10 +14,10 @@
         <ng-template #queryItem let-q>
             <a
                 ngbDropdownItem
-                [class.disabled]="isActive(q)"
-                (awgClick)="querySelectRequest.emit(q)"
                 role="link"
-                tabindex="0">
+                tabindex="0"
+                [class.disabled]="isActive(q)"
+                (awgClick)="querySelectRequest.emit(q)">
                 <span>{{ q.queryLabel }}</span>
             </a>
         </ng-template>

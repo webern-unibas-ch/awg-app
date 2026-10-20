@@ -1,6 +1,6 @@
 <p class="awg-language-switcher">
     @for (lang of languages; track lang.id) {
-        <button type="button" (click)="selectedLanguage.set(lang.id)" [class.active]="selectedLanguage() === lang.id">
+        <button type="button" [class.active]="selectedLanguage() === lang.id" (click)="selectedLanguage.set(lang.id)">
             {{ lang.label }}
         </button>
 

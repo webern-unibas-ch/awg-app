@@ -1,6 +1,6 @@
 <span class="awg-btn-expand-all-container text-muted small">
     [
-    <button type="button" class="awg-btn-expand-all-btn" (click)="toggle()" [attr.aria-expanded]="isOpen()">
+    <button type="button" class="awg-btn-expand-all-btn" [attr.aria-expanded]="isOpen()" (click)="toggle()">
         Alles {{ isOpen() ? 'ein' : 'aus' }}klappen
     </button>
     ]
