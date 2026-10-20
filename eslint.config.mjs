@@ -8,6 +8,27 @@ import typescriptEslint from 'typescript-eslint';
 
 const ecmaVersion = 2022;
 
+// TODO(lint-audit): open steps of the lint audit (remove this block when done).
+// Workflow: one commit per topic; list the hits, cases and alternatives before deciding.
+// Angular rules are listed one by one on top of the recommended presets (no `tsAll`/`templateAll`).
+// Not adopted: template/no-call-expression (signals are called in templates), template/i18n,
+// require-localize-metadata and runtime-localize (single-language app).
+// - consistent-component-styles with 'array' (keeps `styleUrls`; 26 `styleUrl` hits, autofix).
+// - sort-keys-in-type-decorator with the project order (`imports` last; ~8 hits instead of 137 with the default).
+// - Template autofix rules: attributes-order (73), prefer-static-string-properties (32),
+//   prefer-template-literal (18), prefer-contextual-for-variables (8), no-interpolation-in-attributes (5,
+//   write template literals directly); no-duplicate-attributes with allowStylePrecedenceDuplicates (0 hits).
+// - Manual fixes: button-has-type (21, no forms: `type="button"`), template/no-any (2),
+//   template/no-non-null-assertion (1), require-switch-default (1), relative-url-prefix (2),
+//   prefer-signal-model (1, form-switch), use-component-view-encapsulation (codemirror: disable with reason).
+// - Decide separately: no-inline-styles (13 hits, plus 12 in index.html which should be excluded),
+//   cyclomatic-complexity (max 9: off or limit 10), prefer-ngsrc (10), prefer-service-decorator (24, API migration).
+// - `npx eslint .` fails on vitest-base.config.ts (in no tsconfig): allowDefaultProject or ignore it
+//   (`yarn lint` only covers src).
+// - PR description: lint time ~267 s before the audit, 47 s after (step 3 done, 0 warnings).
+// Follow-up PRs: edition data model classes to interfaces (then drop the no-misused-spread allow list),
+// D3Selection with concrete generics, router stubs to RouterTestingHarness.
+
 export default defineConfig(
     // Global ignore
     {
@@ -73,17 +94,40 @@ export default defineConfig(
 
         rules: {
             '@angular-eslint/component-class-suffix': 'error',
+            '@angular-eslint/component-max-inline-declarations': 'error',
+            '@angular-eslint/component-selector': ['error', { type: 'element', prefix: 'awg', style: 'kebab-case' }],
+            '@angular-eslint/computed-must-return': 'error',
+            '@angular-eslint/contextual-decorator': 'error',
             '@angular-eslint/directive-class-suffix': 'error',
+            '@angular-eslint/directive-selector': ['error', { type: 'attribute', prefix: 'awg', style: 'camelCase' }],
             '@angular-eslint/inject-at-top': 'error',
+            '@angular-eslint/no-async-lifecycle-method': 'error',
+            '@angular-eslint/no-attribute-decorator': 'error',
+            // Experimental and developer preview APIs need a disable comment with a reason
+            '@angular-eslint/no-developer-preview': 'error',
+            '@angular-eslint/no-duplicates-in-metadata-arrays': 'error',
+            '@angular-eslint/no-experimental': 'error',
+            '@angular-eslint/no-forward-ref': 'error',
+            '@angular-eslint/no-implicit-take-until-destroyed': 'error',
             '@angular-eslint/no-input-rename': 'error',
             '@angular-eslint/no-inputs-metadata-property': 'error',
+            '@angular-eslint/no-lifecycle-call': 'error',
             '@angular-eslint/no-output-on-prefix': 'error',
             '@angular-eslint/no-output-rename': 'error',
             '@angular-eslint/no-outputs-metadata-property': 'error',
+            '@angular-eslint/no-pipe-impure': 'error',
+            '@angular-eslint/no-queries-metadata-property': 'error',
             '@angular-eslint/no-uncalled-signals': 'error',
+            '@angular-eslint/pipe-prefix': ['error', { prefixes: ['awg'] }],
+            '@angular-eslint/prefer-host-metadata-property': 'error',
+            '@angular-eslint/prefer-output-emitter-ref': 'error',
             '@angular-eslint/prefer-output-readonly': 'error',
             '@angular-eslint/prefer-signals': 'error',
+            '@angular-eslint/reactive-context-must-read-signal': 'error',
+            '@angular-eslint/require-lifecycle-on-prototype': 'error',
             '@angular-eslint/sort-lifecycle-methods': 'error',
+            '@angular-eslint/use-component-selector': 'error',
+            '@angular-eslint/use-injectable-provided-in': 'error',
             '@angular-eslint/use-lifecycle-interface': 'error',
             '@angular-eslint/use-pipe-transform-interface': 'error',
             '@typescript-eslint/consistent-type-definitions': 'error',
@@ -291,6 +335,9 @@ export default defineConfig(
     {
         files: ['**/*.spec.ts', 'src/testing/**/*.ts'],
         rules: {
+            // Test hosts are declared inline and without a selector
+            '@angular-eslint/component-max-inline-declarations': 'off',
+            '@angular-eslint/use-component-selector': 'off',
             // Bracket access to private and protected members is the test convention (`component['_method']`)
             '@typescript-eslint/dot-notation': [
                 'error',
@@ -329,6 +376,21 @@ export default defineConfig(
         ...config,
         files: ['**/*.html'],
     })),
+    {
+        files: ['**/*.html'],
+        rules: {
+            '@angular-eslint/template/conditional-complexity': 'error',
+            '@angular-eslint/template/no-empty-control-flow': 'error',
+            '@angular-eslint/template/no-nested-tags': 'error',
+            '@angular-eslint/template/no-outerhtml': 'error',
+            '@angular-eslint/template/no-positive-tabindex': 'error',
+            '@angular-eslint/template/prefer-at-else': 'error',
+            '@angular-eslint/template/prefer-at-empty': 'error',
+            '@angular-eslint/template/prefer-built-in-pipes': 'error',
+            '@angular-eslint/template/prefer-class-binding': 'error',
+            '@angular-eslint/template/prefer-style-binding': 'error',
+        },
+    },
     {
         files: ['**/*.html'],
         ignores: ['**/*inline-template-*.component.html'],
