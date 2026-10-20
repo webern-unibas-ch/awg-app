@@ -1,4 +1,4 @@
 {
-    "src/**/*.{ts,tsx,js,jsx,html}": "yarn lint-files:fix",
+    "src/**/*.{ts,tsx,js,jsx,html}": "eslint --fix",
     "src/**/*.{ts,tsx,js,jsx,html,css,scss,json,md}": "prettier --write"
 }
