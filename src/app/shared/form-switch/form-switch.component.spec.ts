@@ -54,7 +54,7 @@ describe('FormSwitchComponent (DONE)', () => {
 
         // Spies
         checkedChangeSpy = vi.fn();
-        component.checkedChange.subscribe(checkedChangeSpy);
+        component.checked.subscribe(checkedChangeSpy);
     });
 
     afterEach(() => {
@@ -72,7 +72,7 @@ describe('FormSwitchComponent (DONE)', () => {
             expect(() => component.inputId()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `checked`', () => {
+        it('... should throw due to missing required model signal `checked`', () => {
             expectToBe(isSignal(component.checked), true);
 
             expect(() => component.checked()).toThrow();
@@ -99,7 +99,7 @@ describe('FormSwitchComponent (DONE)', () => {
             expectToBe(component.inputId(), expectedInputId);
         });
 
-        it('... should have input signal `checked` to hold the provided state', () => {
+        it('... should have model signal `checked` to hold the provided state', () => {
             expectToBe(component.checked(), true);
         });
 
@@ -116,13 +116,16 @@ describe('FormSwitchComponent (DONE)', () => {
                 expectToBe(getInputEl().checked, isChecked);
             });
 
-            describe('... output `checkedChange`', () => {
-                it.each([true, false])('... should emit the new checked state %s on change', isChecked => {
-                    const inputEl = getInputEl();
+            describe('... model signal `checked` on change', () => {
+                it.each([true, false])('... should update and emit the new checked state %s', async isChecked => {
+                    fixture.componentRef.setInput('checked', !isChecked);
+                    await detectChangesOnPush(fixture);
 
+                    const inputEl = getInputEl();
                     inputEl.checked = isChecked;
                     inputEl.dispatchEvent(new Event('change'));
 
+                    expectToBe(component.checked(), isChecked);
                     expectSpyCall(checkedChangeSpy, 1, isChecked);
                 });
             });

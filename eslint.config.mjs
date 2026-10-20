@@ -14,8 +14,6 @@ const ecmaVersion = 2022;
 // Not adopted: template/no-call-expression (signals are called in templates), template/i18n,
 // require-localize-metadata and runtime-localize (single-language app), template/attributes-order (it sorts
 // by binding kind only; bindings stay grouped by directive, with event bindings last).
-// - Manual fixes: relative-url-prefix (2), prefer-signal-model (1, form-switch),
-//   use-component-view-encapsulation (codemirror: disable with reason).
 // - Decide separately: no-inline-styles (13 hits, plus 12 in index.html which should be excluded),
 //   cyclomatic-complexity (max 9: off or limit 10), prefer-ngsrc (10), prefer-service-decorator (24, API migration).
 // - `npx eslint .` fails on vitest-base.config.ts (in no tsconfig): allowDefaultProject or ignore it
@@ -118,8 +116,10 @@ export default defineConfig(
             '@angular-eslint/prefer-host-metadata-property': 'error',
             '@angular-eslint/prefer-output-emitter-ref': 'error',
             '@angular-eslint/prefer-output-readonly': 'error',
+            '@angular-eslint/prefer-signal-model': 'error',
             '@angular-eslint/prefer-signals': 'error',
             '@angular-eslint/reactive-context-must-read-signal': 'error',
+            '@angular-eslint/relative-url-prefix': 'error',
             '@angular-eslint/require-lifecycle-on-prototype': 'error',
             // Decorator keys: identity → view → host → behaviour → dependencies
             '@angular-eslint/sort-keys-in-type-decorator': [
@@ -146,6 +146,7 @@ export default defineConfig(
             ],
             '@angular-eslint/sort-lifecycle-methods': 'error',
             '@angular-eslint/use-component-selector': 'error',
+            '@angular-eslint/use-component-view-encapsulation': 'error',
             '@angular-eslint/use-injectable-provided-in': 'error',
             '@angular-eslint/use-lifecycle-interface': 'error',
             '@angular-eslint/use-pipe-transform-interface': 'error',

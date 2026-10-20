@@ -21,7 +21,6 @@ import {
     input,
     model,
     viewChild,
-    ViewEncapsulation,
 } from '@angular/core';
 
 import { EditorState } from '@codemirror/state';
@@ -39,7 +38,6 @@ import { CmMode, createEditorState } from './codemirror.utils';
     selector: 'awg-codemirror',
     templateUrl: './codemirror.component.html',
     styleUrl: './codemirror.component.scss',
-    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodeMirrorComponent {

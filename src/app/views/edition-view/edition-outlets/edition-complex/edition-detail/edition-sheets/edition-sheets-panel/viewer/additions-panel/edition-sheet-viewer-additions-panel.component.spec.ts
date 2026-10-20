@@ -292,7 +292,7 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                 });
 
                 it('... should trigger `toggleAll` when the FormSwitchComponent (hollow) changes', () => {
-                    getFormSwitchCmp('all').checkedChange.emit(false);
+                    getFormSwitchCmp('all').checked.set(false);
 
                     expectSpyCall(toggleAllSpy, 1);
                 });
@@ -370,7 +370,7 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                 it.each(['class1', 'class2', EditionSvgOverlayTypes.tkk])(
                     '... should trigger `toggle` with `%s` when its FormSwitchComponent (hollow) changes',
                     key => {
-                        getFormSwitchCmp(key).checkedChange.emit(false);
+                        getFormSwitchCmp(key).checked.set(false);
 
                         expectSpyCall(toggleSpy, 1, key);
                     }
