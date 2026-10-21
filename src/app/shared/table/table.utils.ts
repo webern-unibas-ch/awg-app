@@ -42,46 +42,30 @@ const TABLE_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity
 /**
  * Utils method: isMissingTableValue.
  *
- * It checks if a given table value is missing (null, undefined or NaN).
+ * It checks if a given table value is missing (a row without a cell for the column).
  *
- * @param {unknown} value The given value.
+ * @param {string | undefined} value The given value.
  * @returns {boolean} The result of the check.
  */
-export function isMissingTableValue(value: unknown): boolean {
-    return value == null || Number.isNaN(value);
+export function isMissingTableValue(value: string | undefined): value is undefined {
+    return value === undefined;
 }
 
 /**
  * Utils method: compareTableValues.
  *
- * It compares two table values for sorting:
- * - strings in natural, case-insensitive order,
- * - numbers numerically,
- * - numbers before strings,
- * - missing values (null, undefined, NaN) at the end.
+ * It compares two table values for sorting in natural, case-insensitive order
+ * (numbers within the values numerically), with missing values at the end.
  *
- * @param {unknown} a The first value.
- * @param {unknown} b The second value.
+ * @param {string | undefined} a The first value.
+ * @param {string | undefined} b The second value.
  * @returns {number} The comparison result (-1, 0, 1).
  */
-export function compareTableValues(a: unknown, b: unknown): number {
-    const isMissingA = isMissingTableValue(a);
-    const isMissingB = isMissingTableValue(b);
-
-    if (isMissingA || isMissingB) {
-        return Number(isMissingA) - Number(isMissingB);
+export function compareTableValues(a: string | undefined, b: string | undefined): number {
+    if (isMissingTableValue(a) || isMissingTableValue(b)) {
+        return Number(isMissingTableValue(a)) - Number(isMissingTableValue(b));
     }
-
-    const isNumberA = typeof a === 'number';
-    const isNumberB = typeof b === 'number';
-
-    if (isNumberA && isNumberB) {
-        return Math.sign(a - b);
-    }
-    if (isNumberA !== isNumberB) {
-        return isNumberA ? -1 : 1;
-    }
-    return Math.sign(TABLE_COLLATOR.compare(String(a), String(b)));
+    return Math.sign(TABLE_COLLATOR.compare(a, b));
 }
 
 /**

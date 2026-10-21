@@ -85,24 +85,16 @@ describe('TableUtils (DONE)', () => {
                 expect(isMissingTableValue).toBeDefined();
             });
 
-            describe('... should be true for null, undefined and NaN', () => {
-                it.each([
-                    { desc: 'null', value: null },
-                    { desc: 'undefined', value: undefined },
-                    { desc: 'Number.NaN', value: Number.NaN },
-                ])('... $desc', ({ value }) => {
-                    const isMissing = isMissingTableValue(value);
+            it('... should be true for undefined', () => {
+                const isMissing = isMissingTableValue(undefined);
 
-                    expectToBe(isMissing, true);
-                });
+                expectToBe(isMissing, true);
             });
 
-            describe('... should be false for strings and numbers (also empty and 0)', () => {
+            describe('... should be false for strings (also empty)', () => {
                 it.each([
                     { desc: 'a', value: 'a' },
                     { desc: '', value: '' },
-                    { desc: '1', value: 1 },
-                    { desc: '0', value: 0 },
                 ])('... $desc', ({ value }) => {
                     const isMissing = isMissingTableValue(value);
 
@@ -119,8 +111,7 @@ describe('TableUtils (DONE)', () => {
             describe('... should be 0 for equal values', () => {
                 it.each([
                     { desc: "'a', 'a'", a: 'a', b: 'a' },
-                    { desc: '1, 1', a: 1, b: 1 },
-                    { desc: 'null, undefined', a: null, b: undefined },
+                    { desc: 'undefined, undefined', a: undefined, b: undefined },
                 ])('... $desc', ({ a, b }) => {
                     const comparison = compareTableValues(a, b);
 
@@ -168,11 +159,10 @@ describe('TableUtils (DONE)', () => {
                 });
             });
 
-            describe('... should order numbers numerically', () => {
+            describe('... should order digit strings numerically', () => {
                 it.each([
-                    { desc: '2, 10', a: 2, b: 10, expected: -1 },
-                    { desc: '10, 2', a: 10, b: 2, expected: 1 },
-                    { desc: '-1, 0', a: -1, b: 0, expected: -1 },
+                    { desc: "'2', '10'", a: '2', b: '10', expected: -1 },
+                    { desc: "'10', '2'", a: '10', b: '2', expected: 1 },
                 ])('... $desc', ({ a, b, expected }) => {
                     const comparison = compareTableValues(a, b);
 
@@ -180,24 +170,10 @@ describe('TableUtils (DONE)', () => {
                 });
             });
 
-            describe('... should order numbers before strings', () => {
+            describe('... should order missing values at the end', () => {
                 it.each([
-                    { desc: "10, 'a'", a: 10, b: 'a', expected: -1 },
-                    { desc: "'1', 2", a: '1', b: 2, expected: 1 },
-                ])('... $desc', ({ a, b, expected }) => {
-                    const comparison = compareTableValues(a, b);
-
-                    expectToBe(comparison, expected);
-                });
-            });
-
-            describe('... should order null, undefined and NaN at the end', () => {
-                it.each([
-                    { desc: "null, 'a'", a: null, b: 'a', expected: 1 },
                     { desc: "undefined, 'a'", a: undefined, b: 'a', expected: 1 },
-                    { desc: 'Number.NaN, 1', a: Number.NaN, b: 1, expected: 1 },
-                    { desc: "'a', null", a: 'a', b: null, expected: -1 },
-                    { desc: '1, Number.NaN', a: 1, b: Number.NaN, expected: -1 },
+                    { desc: "'a', undefined", a: 'a', b: undefined, expected: -1 },
                 ])('... $desc', ({ a, b, expected }) => {
                     const comparison = compareTableValues(a, b);
 
