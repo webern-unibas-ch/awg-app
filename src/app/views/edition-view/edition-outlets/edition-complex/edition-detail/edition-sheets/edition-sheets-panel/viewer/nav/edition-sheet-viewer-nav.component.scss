@@ -1,4 +1,4 @@
-@import '/src/assets/themes/scss/shared';
+@use '/src/assets/themes/scss/shared' as theme;
 
 .awg-edition-sheet-viewer-nav {
     > .prev,
@@ -27,7 +27,7 @@
             font-weight: bold;
             font-size: 18px;
             transition: 0.6s ease;
-            color: $link-color;
+            color: theme.$link-color;
         }
     }
 

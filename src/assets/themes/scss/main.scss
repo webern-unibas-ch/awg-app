@@ -1,3 +1,5 @@
+@use './shared' as theme;
+
 /****** GENERAL SETTINGS ******/
 html,
 body {
@@ -12,7 +14,7 @@ a {
         cursor: pointer;
     }
     &:not(.awg-logo-link):hover {
-        border-bottom: 1px solid $link-color;
+        border-bottom: 1px solid theme.$link-color;
     }
 }
 a,
@@ -25,7 +27,7 @@ a[role='button'][tabindex='0'],
 a[role='button'][tabindex='0']:hover,
 a[role='link'][tabindex='0'],
 a[role='link'][tabindex='0']:hover {
-    color: $link-color;
+    color: theme.$link-color;
     text-decoration: none;
 }
 a.dropdown-item,
@@ -44,17 +46,17 @@ a.awg-edition-sheet-facet-item-link:hover {
 a.dropdown-item:hover,
 button.dropdown-item:hover,
 a.awg-edition-sheet-facet-item-link.active {
-    color: $link-color !important;
+    color: theme.$link-color !important;
 }
 .dropdown-item.active,
 .dropdown-item:active {
-    background-color: $link-color !important;
+    background-color: theme.$link-color !important;
     color: #ffffff !important;
 }
 .dropdown-item:hover,
 .dropdown-item:focus {
     background-color: #f1f3f3 !important;
-    color: $link-color !important;
+    color: theme.$link-color !important;
 }
 /* no border color for sheet-facet-item-link */
 a.awg-edition-sheet-facet-item-link.active,
@@ -69,7 +71,7 @@ button {
     &.dropdown-item {
         &.disabled {
             text-decoration: none;
-            background-color: $link-color;
+            background-color: theme.$link-color;
         }
     }
 }
@@ -102,7 +104,7 @@ button {
 
 /* view container */
 awg-view-container > div {
-    background-color: $bg-grey;
+    background-color: theme.$bg-grey;
     /* full height without header and footer */
     /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
     min-height: calc(100vh - 121px - 200px);
@@ -138,13 +140,13 @@ footer {
     background-color: transparent;
     color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
     padding: 15px;
-    border-top: 1px solid $border-grey;
+    border-top: 1px solid theme.$border-grey;
 }
 .awg-footer-main img {
     width: 200px;
 }
 .awg-footer-secondary {
-    border-top: 1px solid $border-grey;
+    border-top: 1px solid theme.$border-grey;
 }
 .awg-footer-secondary .icon img {
     position: relative;
@@ -164,7 +166,7 @@ footer {
 
 /****** CARDS ******/
 .card-header .btn-link {
-    color: $link-color !important;
+    color: theme.$link-color !important;
     box-shadow: none;
     -webkit-box-shadow: none;
     border-bottom: none;
@@ -203,8 +205,8 @@ footer {
 .accordion-button {
     &.collapsed,
     &:not(.collapsed) {
-        background-color: $bg-grey;
-        color: $link-color;
+        background-color: theme.$bg-grey;
+        color: theme.$link-color;
     }
     padding: 0.75rem 1rem; /* default: 25px */
 }
@@ -214,7 +216,7 @@ footer {
         content: none;
     }
     button.btn-link {
-        color: $link-color;
+        color: theme.$link-color;
         text-decoration: none;
     }
     padding: 0.54rem 1rem; /* default: 25px */
@@ -231,25 +233,25 @@ footer {
     margin-bottom: 2rem;
 }
 .awg-btn-group > button.btn {
-    background-color: $bg-grey;
-    border: 1px solid $border-grey;
+    background-color: theme.$bg-grey;
+    border: 1px solid theme.$border-grey;
 }
 
 /****** MODAL ******/
 .modal-header {
-    background-color: $info;
-    color: $bg-grey;
+    background-color: theme.$info;
+    color: theme.$bg-grey;
 }
 .modal-header > .close {
-    color: $bg-grey;
+    color: theme.$bg-grey;
 }
 .modal-body,
 .modal-footer {
-    background-color: $bg-grey;
+    background-color: theme.$bg-grey;
 }
 .awg-modal-button:hover,
 .awg-modal-button:active {
-    background-color: $info;
+    background-color: theme.$info;
 }
 
 /****** OBJECT BOX ******/
@@ -258,7 +260,7 @@ footer {
     height: 100%;
     padding: 10px;
     margin: 10px;
-    border: 1px solid $border-grey;
+    border: 1px solid theme.$border-grey;
     box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
 }
 .objbox-control-button {
@@ -351,7 +353,7 @@ span.facet-badge {
 
 /****** TOOLTIPS ******/
 .awg-group-id-tooltip .tooltip-inner {
-    font-family: $font-family-monospace;
+    font-family: var(--bs-font-monospace);
     font-size: 0.75rem;
     margin-right: 1em;
     border: 1px solid var(--bs-border-color);
