@@ -4,7 +4,7 @@ Guidance for Claude Code in this repository.
 
 ## Project
 
-Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), deployed to GitHub Pages (https://edition.anton-webern.ch). Yarn 4 (corepack); Node ^22.22.3 or >= 24.15.0.
+Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), deployed to GitHub Pages (https://edition.anton-webern.ch). Yarn 4 (corepack); Node ^22.23.4 or >= 24.22.1.
 
 ## Commands
 

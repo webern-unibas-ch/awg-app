@@ -12,6 +12,7 @@ runs:
           with:
               node-version: ${{ inputs.node-version }}
               cache: 'yarn'
+              check-latest: true
 
         - name: yarn install dependencies
           run: yarn install --immutable
