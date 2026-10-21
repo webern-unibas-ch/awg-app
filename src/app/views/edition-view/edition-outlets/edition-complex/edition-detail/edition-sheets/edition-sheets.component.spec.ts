@@ -1,6 +1,6 @@
 import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { Params, provideRouter, Router } from '@angular/router';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
@@ -16,7 +16,6 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
-import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
@@ -50,10 +49,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let component: EditionSheetsComponent;
     let fixture: ComponentFixture<EditionSheetsComponent>;
     let compDe: DebugElement;
-
-    let mockActivatedRoute: ActivatedRouteStub;
-    let expectedRouteUrl: UrlSegmentStub[] = [];
-    const expectedPath = 'sheets';
 
     let editionStateService: EditionStateService;
     let mockNavigationService: Partial<EditionNavigationService>;
@@ -92,20 +87,18 @@ describe('EditionSheetsComponent (DONE)', () => {
     };
 
     /**
-     * Sets the given sheet id as query param `id` of the route.
+     * Sets the given query params of the route (by a navigation of the router).
      */
-    const setSheetIdInRoute = (id: string): void => {
-        mockActivatedRoute.testQueryParamMap = { id };
+    const setQueryParamsInRoute = async (queryParams: Params): Promise<void> => {
+        await TestBed.inject(Router).navigate([], { queryParams });
     };
 
+    /**
+     * Sets the given sheet id as query param `id` of the route.
+     */
+    const setSheetIdInRoute = (id: string): Promise<void> => setQueryParamsInRoute({ id });
+
     beforeEach(async () => {
-        // Mocked activated route
-        // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
-        expectedRouteUrl = [{ path: expectedPath }];
-
-        mockActivatedRoute = new ActivatedRouteStub();
-        mockActivatedRoute.testUrl = expectedRouteUrl;
-
         // Mock services
         expectedDefaultViewDataContent = {
             folioConvoluteData: new FolioConvoluteList(),
@@ -124,10 +117,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 { provide: EditionNavigationService, useValue: mockNavigationService },
                 { provide: EditionViewService, useValue: { sheetsViewData: mockViewDataSignal.asReadonly() } },
                 { provide: FullscreenService, useValue: { isFullscreen: signal(false).asReadonly() } },
-                {
-                    provide: ActivatedRoute,
-                    useValue: mockActivatedRoute,
-                },
+                provideRouter([]),
             ],
         })
             .overrideComponent(AlertErrorComponent, { set: { template: '', imports: [] } })
@@ -137,7 +127,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             .compileComponents();
     });
 
-    beforeEach(() => {
+    beforeEach(async () => {
         // Inject services
         editionStateService = TestBed.inject(EditionStateService);
 
@@ -163,8 +153,8 @@ describe('EditionSheetsComponent (DONE)', () => {
         // Textcritics of the sketch edition test-1
         expectedSelectedTextcritics = expectedTextcriticsListData.textcritics[0];
 
-        // Mocked route with the expected sheet id
-        setSheetIdInRoute(expectedSheetId);
+        // Route with the expected sheet id
+        await setSheetIdInRoute(expectedSheetId);
 
         serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
 
@@ -283,17 +273,6 @@ describe('EditionSheetsComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should change urls', () => {
-            expectToEqual(mockActivatedRoute.snapshot.url[0].path, expectedPath);
-
-            const changedPath = 'other';
-            const changedRouteUrl: UrlSegmentStub[] = [{ path: changedPath }];
-
-            mockActivatedRoute.testUrl = changedRouteUrl;
-
-            expectToEqual(mockActivatedRoute.snapshot.url[0].path, changedPath);
-        });
-
         it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
             expectToEqual(component.selectedEditionComplex(), expectedComplex);
         });
@@ -311,20 +290,20 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expectToEqual(component.selectedSvgSheet(), expectedSelection);
             });
 
-            it('... should hold the selection of the partial given by the route', () => {
-                setSheetIdInRoute('test-2a');
+            it('... should hold the selection of the partial given by the route', async () => {
+                await setSheetIdInRoute('test-2a');
 
                 expectToEqual(component.selectedSvgSheet(), expectedSelectionWithPartial);
             });
 
-            it('... should hold the selection of the first partial for a svg sheet with partials selected by its plain id', () => {
-                setSheetIdInRoute('test-2');
+            it('... should hold the selection of the first partial for a svg sheet with partials selected by its plain id', async () => {
+                await setSheetIdInRoute('test-2');
 
                 expectToEqual(component.selectedSvgSheet(), expectedSelectionWithPartial);
             });
 
-            it('... should hold the selection of another partial given by the route', () => {
-                setSheetIdInRoute('test-2b');
+            it('... should hold the selection of another partial given by the route', async () => {
+                await setSheetIdInRoute('test-2b');
 
                 expectToEqual(
                     component.selectedSvgSheet(),
@@ -345,8 +324,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expectToEqual(component.selectedTkkOverlays(), [createTestTkkOverlay('g1114')]);
             });
 
-            it('... should hold undefined for an unknown sheet id', () => {
-                setSheetIdInRoute('unknown-id');
+            it('... should hold undefined for an unknown sheet id', async () => {
+                await setSheetIdInRoute('unknown-id');
 
                 expect(component.selectedSvgSheet()).toBeUndefined();
             });
@@ -354,8 +333,8 @@ describe('EditionSheetsComponent (DONE)', () => {
             it.each([
                 ['an empty sheet id', { id: '' }],
                 ['a missing sheet id', {}],
-            ])('... should hold undefined with %s in the route', (_label, queryParams) => {
-                mockActivatedRoute.testQueryParamMap = queryParams;
+            ])('... should hold undefined with %s in the route', async (_label, queryParams) => {
+                await setQueryParamsInRoute(queryParams);
 
                 expect(component.selectedSvgSheet()).toBeUndefined();
             });
@@ -372,8 +351,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expectToEqual(component.selectedConvolute(), expectedConvolute);
             });
 
-            it('... should have recomputed signal `selectedConvolute` when another sketch edition is selected', () => {
-                setSheetIdInRoute('test-3a');
+            it('... should have recomputed signal `selectedConvolute` when another sketch edition is selected', async () => {
+                await setSheetIdInRoute('test-3a');
 
                 expectToEqual(
                     component.selectedConvolute(),
@@ -381,14 +360,14 @@ describe('EditionSheetsComponent (DONE)', () => {
                 );
             });
 
-            it('... should hold undefined for a text edition', () => {
-                setSheetIdInRoute('test-TF1a');
+            it('... should hold undefined for a text edition', async () => {
+                await setSheetIdInRoute('test-TF1a');
 
                 expect(component.selectedConvolute()).toBeUndefined();
             });
 
-            it('... should hold undefined without selected svg sheet', () => {
-                setSheetIdInRoute('unknown-id');
+            it('... should hold undefined without selected svg sheet', async () => {
+                await setSheetIdInRoute('unknown-id');
 
                 expect(component.selectedConvolute()).toBeUndefined();
             });
@@ -411,10 +390,10 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expectToEqual(component.selectedTkkOverlays(), expectedOverlays);
             });
 
-            it('... should hold an empty array again when the selected svg sheet changes', () => {
+            it('... should hold an empty array again when the selected svg sheet changes', async () => {
                 component.onOverlaySelect([createTestTkkOverlay('g1114')]);
 
-                setSheetIdInRoute('test-2a');
+                await setSheetIdInRoute('test-2a');
 
                 expectToEqual(component.selectedTkkOverlays(), []);
             });
@@ -465,8 +444,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expectToEqual(expectedSelectedTextcritics.commentary, expectedCommentary);
             });
 
-            it('... should hold undefined without selected svg sheet', () => {
-                setSheetIdInRoute('unknown-id');
+            it('... should hold undefined without selected svg sheet', async () => {
+                await setSheetIdInRoute('unknown-id');
 
                 expect(component.selectedTextcritics()).toBeUndefined();
             });
@@ -479,8 +458,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expect(component.selectedTextcritics()).toBeUndefined();
             });
 
-            it('... should hold undefined if no textcritics are found for the selected svg sheet', () => {
-                setSheetIdInRoute('test-4');
+            it('... should hold undefined if no textcritics are found for the selected svg sheet', async () => {
+                await setSheetIdInRoute('test-4');
 
                 expect(component.selectedTextcritics()).toBeUndefined();
             });
@@ -501,8 +480,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 serviceNavigateToSvgSheetSpy.mockClear();
             });
 
-            it('... should not navigate if a sheet id is given by the route', () => {
-                setSheetIdInRoute('test-2a');
+            it('... should not navigate if a sheet id is given by the route', async () => {
+                await setSheetIdInRoute('test-2a');
                 fixture.detectChanges();
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0);
@@ -511,21 +490,21 @@ describe('EditionSheetsComponent (DONE)', () => {
             it.each([
                 ['an empty sheet id', { id: '' }],
                 ['a missing sheet id', {}],
-            ])('... should navigate to the default svg sheet with %s in the route', (_label, queryParams) => {
-                mockActivatedRoute.testQueryParamMap = queryParams;
+            ])('... should navigate to the default svg sheet with %s in the route', async (_label, queryParams) => {
+                await setQueryParamsInRoute(queryParams);
                 fixture.detectChanges();
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 1, { complexId: '', sheetId: 'test-TF1a' });
             });
 
-            it('... should not navigate without default svg sheet', () => {
+            it('... should not navigate without default svg sheet', async () => {
                 mockViewDataSignal.set(
                     createMockViewData({
                         ...expectedViewDataContent,
                         svgSheetsData: { sheets: { workEditions: [], textEditions: [], sketchEditions: [] } },
                     })
                 );
-                setSheetIdInRoute('');
+                await setSheetIdInRoute('');
                 fixture.detectChanges();
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0);
@@ -714,7 +693,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... should pass down the svg sheet of a changed route to the EditionSheetsPanelComponent', async () => {
-                        setSheetIdInRoute('test-2a');
+                        await setSheetIdInRoute('test-2a');
                         await detectChangesOnPush(fixture);
 
                         expectToEqual(sheetsPanelCmp.selectedSvgSheet(), expectedSelectionWithPartial);
@@ -754,7 +733,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         ['a text edition', 'test-TF1a'],
                         ['an unknown sheet id', 'unknown-id'],
                     ])('... should contain no EditionFoliosPanelComponent (hollow) for %s', async (_label, id) => {
-                        setSheetIdInRoute(id);
+                        await setSheetIdInRoute(id);
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelComponent, 0, 0);
@@ -783,8 +762,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expectSpyCall(onSheetBrowseSpy, 1, [expectedDirection]);
                 });
 
-                it('... should do nothing without selected svg sheet', () => {
-                    setSheetIdInRoute('unknown-id');
+                it('... should do nothing without selected svg sheet', async () => {
+                    await setSheetIdInRoute('unknown-id');
 
                     component.onSheetBrowse(1);
 
@@ -804,8 +783,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                         ['next partial within a text edition', 'test-TF1a', 1, 'test-TF1b'],
                         ['previous partial within a work edition', 'test-WE1b', -1, 'test-WE1a'],
                         ['same sheet at the end of an edition type', 'test-TF1b', 1, 'test-TF1b'],
-                    ] as const)('... %s', (_label, currentId, direction, expectedId) => {
-                        setSheetIdInRoute(currentId);
+                    ] as const)('... %s', async (_label, currentId, direction, expectedId) => {
+                        await setSheetIdInRoute(currentId);
 
                         component.onSheetBrowse(direction);
 
@@ -834,8 +813,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 describe('... should do nothing if', () => {
-                    it('... selectedSvgSheet is not defined', () => {
-                        setSheetIdInRoute('unknown-id');
+                    it('... selectedSvgSheet is not defined', async () => {
+                        await setSheetIdInRoute('unknown-id');
 
                         component.onLinkBoxSelect('linkBox1');
 
