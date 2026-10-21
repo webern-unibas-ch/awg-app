@@ -21,9 +21,9 @@ describe('EditionFoliosLegendComponent (DONE)', () => {
     let compDe: DebugElement;
 
     const expectedFolioLegends = [
-        { colorClass: 'olivedrab', label: 'aktuell ausgewählt' },
-        { colorClass: 'orange', label: 'auswählbar' },
-        { colorClass: 'grey', label: '(momentan noch) nicht auswählbar' },
+        { stateClass: 'active', label: 'aktuell ausgewählt' },
+        { stateClass: 'selectable', label: 'auswählbar' },
+        { stateClass: 'unselectable', label: '(momentan noch) nicht auswählbar' },
     ];
 
     beforeEach(async () => {
@@ -73,13 +73,13 @@ describe('EditionFoliosLegendComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one span with color class and label per legend entry', () => {
+            it('... should contain one span with state class and label per legend entry', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-folios-legend > span', 3, 3);
 
                 spanDes.forEach((spanDe, index) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
-                    expectToBe(spanEl.className, expectedFolioLegends[index].colorClass);
+                    expectToBe(spanEl.className, expectedFolioLegends[index].stateClass);
                     expectToBe(spanEl.textContent.trim(), expectedFolioLegends[index].label);
                 });
             });

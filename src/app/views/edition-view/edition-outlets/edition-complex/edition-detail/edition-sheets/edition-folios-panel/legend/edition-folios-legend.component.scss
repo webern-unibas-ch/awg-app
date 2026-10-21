@@ -1,9 +1,11 @@
-.olivedrab {
-    color: olivedrab;
+@use '/src/assets/themes/scss/shared' as theme;
+
+.active {
+    color: theme.$folio-active-color;
 }
-.orange {
-    color: orange;
+.selectable {
+    color: theme.$folio-selectable-color;
 }
-.grey {
-    color: grey;
+.unselectable {
+    color: theme.$folio-unselectable-color;
 }

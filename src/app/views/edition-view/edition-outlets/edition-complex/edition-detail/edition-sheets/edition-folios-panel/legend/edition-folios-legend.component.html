@@ -1,7 +1,7 @@
 <div class="awg-edition-folios-legend">
     Legende:&nbsp;
-    @for (legend of folioLegends; track legend.colorClass) {
-        <span [class]="legend.colorClass">
+    @for (legend of folioLegends; track legend.stateClass) {
+        <span [class]="legend.stateClass">
             <fa-icon [icon]="faSquare" />
             {{ legend.label }}
         </span>

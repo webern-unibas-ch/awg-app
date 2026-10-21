@@ -11,9 +11,9 @@ import { faSquare } from '@fortawesome/free-solid-svg-icons';
  */
 interface FolioLegend {
     /**
-     * The color class of the folio legend.
+     * The state class of the folio legend (state of the content segments).
      */
-    colorClass: string;
+    stateClass: 'active' | 'selectable' | 'unselectable';
 
     /**
      * The label of the folio legend.
@@ -49,15 +49,15 @@ export class EditionFoliosLegendComponent {
      */
     readonly folioLegends: FolioLegend[] = [
         {
-            colorClass: 'olivedrab',
+            stateClass: 'active',
             label: 'aktuell ausgewählt',
         },
         {
-            colorClass: 'orange',
+            stateClass: 'selectable',
             label: 'auswählbar',
         },
         {
-            colorClass: 'grey',
+            stateClass: 'unselectable',
             label: '(momentan noch) nicht auswählbar',
         },
     ];
