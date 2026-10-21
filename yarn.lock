@@ -836,7 +836,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/language@npm:^6.0.0":
+"@codemirror/language@npm:^6.0.0, @codemirror/language@npm:^6.13.1":
   version: 6.13.1
   resolution: "@codemirror/language@npm:6.13.1"
   dependencies:
@@ -882,12 +882,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/state@npm:^6.0.0, @codemirror/state@npm:^6.4.0, @codemirror/state@npm:^6.5.0":
-  version: 6.5.4
-  resolution: "@codemirror/state@npm:6.5.4"
+"@codemirror/state@npm:^6.0.0, @codemirror/state@npm:^6.4.0, @codemirror/state@npm:^6.7.0, @codemirror/state@npm:^6.7.6":
+  version: 6.7.6
+  resolution: "@codemirror/state@npm:6.7.6"
   dependencies:
     "@marijn/find-cluster-break": "npm:^1.0.0"
-  checksum: 10c0/8f40e1a22b84752fc44637e586cb3d804f775c0cf9c8083a79eed5cb18fbdfb30b83c112d8b6d819046526d1f9e49bf1198bdca4c4c3427bdf2c657a96df7adf
+  checksum: 10c0/1ea16c30571210d40f6161a3a43b221fa1522fdcfef4836f6063dcd3d04fd2d5f4aefbc5cfdcd30f7d9df96985967cfb12cd876e4abb1cd41bff41ec8f3d328e
   languageName: node
   linkType: hard
 
@@ -898,15 +898,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/view@npm:^6.0.0, @codemirror/view@npm:^6.17.0, @codemirror/view@npm:^6.23.0, @codemirror/view@npm:^6.27.0, @codemirror/view@npm:^6.35.0, @codemirror/view@npm:^6.37.0":
-  version: 6.39.16
-  resolution: "@codemirror/view@npm:6.39.16"
+"@codemirror/view@npm:^6.0.0, @codemirror/view@npm:^6.17.0, @codemirror/view@npm:^6.23.0, @codemirror/view@npm:^6.27.0, @codemirror/view@npm:^6.35.0, @codemirror/view@npm:^6.37.0, @codemirror/view@npm:^6.43.14":
+  version: 6.43.14
+  resolution: "@codemirror/view@npm:6.43.14"
   dependencies:
-    "@codemirror/state": "npm:^6.5.0"
+    "@codemirror/state": "npm:^6.7.0"
     crelt: "npm:^1.0.6"
     style-mod: "npm:^4.1.0"
     w3c-keyname: "npm:^2.2.4"
-  checksum: 10c0/93de1ad645649030968d7dae2ce9a599ec3e96651a1b8a43445137e69b879073e08f031299684f6df77889fa3743e8275166fd12a2b591b3fb7494c6a0d427d5
+  checksum: 10c0/b20e8545fcc158713250e55eb40c97e594a99c7406acafa68c75758395ec8393aca6b95f65533795f81d66e6f29bb8ad99c672281d5f03707c2c066a9e2dd36a
   languageName: node
   linkType: hard
 
@@ -4377,7 +4377,10 @@ __metadata:
     "@angular/localize": "npm:^22.2.3"
     "@angular/platform-browser": "npm:^22.2.3"
     "@angular/router": "npm:^22.2.3"
+    "@codemirror/language": "npm:^6.13.1"
     "@codemirror/legacy-modes": "npm:^6.5.5"
+    "@codemirror/state": "npm:^6.7.6"
+    "@codemirror/view": "npm:^6.43.14"
     "@commitlint/cli": "npm:^21.2.4"
     "@commitlint/config-angular": "npm:^21.2.4"
     "@compodoc/compodoc": "npm:^2.0.0"
