@@ -10,7 +10,8 @@
  * @returns {number} The rounded value.
  */
 export function roundToDecimals(value: number, decimals: number): number {
-    return Number(`${Math.round(Number(`${value}e${decimals}`))}e-${decimals}`);
+    const shiftedValue = Math.round(Number(`${value}e${decimals}`));
+    return Number(`${shiftedValue}e-${decimals}`);
 }
 
 /**
