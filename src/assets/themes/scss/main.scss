@@ -10,9 +10,7 @@ body {
 
 /****** LINKS & POINTER ******/
 a {
-    &:not(.list-group-item-danger) {
-        cursor: pointer;
-    }
+    cursor: pointer;
 }
 /* zero specificity, so that any class selector can override the hover border */
 :where(a:not(.awg-logo-link):hover) {
@@ -90,9 +88,6 @@ awg-view-container > div {
 /* On small screens, set height to 'auto' for side-outlet and grid */
 @media screen and (max-width: 767px) {
     .awg-side-outlet {
-        height: auto;
-    }
-    .row {
         height: auto;
     }
 }
@@ -173,27 +168,9 @@ footer {
     padding: 0.54rem 1rem; /* default: 25px */
 }
 
-/****** BUTTON GROUP ******/
-/* TODO: Switch button group direction with scss
-.awg-btn-group {
-    @media (max-width: 760px) {.btn-group-vertical}
-    @media (min-width: 761px) {.btn-group}
-}
- */
-.awg-btn-group {
-    margin-bottom: 2rem;
-}
-.awg-btn-group > button.btn {
-    background-color: theme.$bg-grey;
-    border: 1px solid theme.$border-grey;
-}
-
 /****** MODAL ******/
 .modal-header {
     background-color: theme.$info;
-    color: theme.$bg-grey;
-}
-.modal-header > .close {
     color: theme.$bg-grey;
 }
 .modal-body,
@@ -205,30 +182,7 @@ footer {
     background-color: theme.$info;
 }
 
-/****** OBJECT BOX ******/
-.objbox {
-    position: relative;
-    height: 100%;
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid theme.$border-grey;
-    box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
-}
-.objbox-control-button {
-    text-align: right;
-}
-
-.awg-subitem {
-    padding-left: 50px;
-}
-
 /****** IMAGES ******/
-.awg-jumbotron-image {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .img-thumbnail {
     height: 100px;
     width: auto;
@@ -247,38 +201,6 @@ footer {
 #unibaslogo {
     height: 50px;
     cursor: pointer;
-}
-.webernlogo {
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    color: black;
-    letter-spacing: normal;
-    text-align: center;
-}
-.webernlogo span {
-    font-weight: 100;
-}
-
-/****** SVG ******/
-.edition-svg-item {
-    fill: orange;
-    opacity: 0.2;
-}
-.edition-svg-measure,
-.edition-svg-system {
-    fill: white;
-    opacity: 0;
-}
-.edition-svg-measure:hover,
-.edition-svg-system:hover,
-.edition-svg-item:hover {
-    fill: rgba(139, 184, 45, 1); /* some lighter OliveDrab; rgba converted HEX #8bb82d */
-    opacity: 0.2;
-}
-svg a.active rect {
-    fill: OliveDrab;
-    opacity: 0.2;
 }
 
 /****** TABLES & LISTS ******/
@@ -344,9 +266,6 @@ details[open] summary::before {
 .italic {
     font-style: italic;
 }
-.highlighted {
-    background: orange;
-}
 .smallcaps,
 .version {
     font-variant: small-caps;
@@ -354,15 +273,6 @@ details[open] summary::before {
 
 .tab {
     padding-left: 25px;
-}
-
-.indent {
-    text-indent: 25px;
-}
-.single-line {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /****** COLOURS ******/
@@ -374,16 +284,6 @@ details[open] summary::before {
 }
 .grey {
     color: grey;
-}
-
-/****** FORMS ******/
-.ng-valid[required],
-.ng-valid.required {
-    border-start: 5px solid rgba(66, 169, 72, 1); /* rgba converted HEX #42a948; green */
-}
-.ng-invalid:not(form),
-.ng-invalid:not(form):focus {
-    border-start: 5px solid rgba(169, 68, 66, 1); /* rgba converted HEX #a94442; red */
 }
 
 /****** GLYPHS ******/
