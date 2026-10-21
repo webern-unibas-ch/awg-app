@@ -31,22 +31,6 @@ a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover {
     color: theme.$link-color;
     text-decoration: none;
 }
-/* overrides the text-muted utility of inactive sheet facet item links */
-a.awg-edition-sheet-facet-item-link:not(.active):hover {
-    color: rgba(51, 51, 51, 1) !important; /* rgba converted HEX #333 */
-}
-a.dropdown-item:hover,
-a.awg-edition-intro-nav-link:hover,
-a.awg-edition-sheet-facet-item-link,
-a.awg-edition-sheet-facet-item-link:hover {
-    border-bottom: none;
-    text-decoration: none;
-}
-/* active colour and no border colour for sheet-facet-item-link */
-a.awg-edition-sheet-facet-item-link {
-    --bs-btn-active-color: #{theme.$link-color};
-    --bs-btn-active-border-color: transparent;
-}
 
 a,
 button {

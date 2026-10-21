@@ -19,7 +19,6 @@ import { EditionNavigationService } from '@awg-views/edition-view/services/editi
         role: 'link',
         tabindex: '0',
         '[class.active]': 'isActive()',
-        '[class.text-muted]': '!isActive()',
     },
 })
 export class EditionSheetFacetItemLinkDirective {
