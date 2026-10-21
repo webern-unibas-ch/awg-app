@@ -412,7 +412,7 @@ to be displayed with ngb-toast.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, signal, TemplateRef } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Service, signal, TemplateRef } from &#x27;@angular/core&#x27;;
 
 /**
  * The ToastMessage class.
@@ -516,12 +516,8 @@ export class Toast {
  * The Toast service.
  *
  * It handles the displaying of toast messages.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class ToastService {
     /**
      * Private readonly signal: _toasts.

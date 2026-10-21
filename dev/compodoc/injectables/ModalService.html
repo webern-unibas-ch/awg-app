@@ -159,17 +159,6 @@
             </p>
 
 
-        <section data-compodoc="block-metadata">
-            <h3>Metadata</h3>
-            <table class="table table-sm table-hover metadata">
-                <tbody>
-                    <tr>
-                        <td class="col-md-3">providedIn</td>
-                        <td class="col-md-9"><code>root</code></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
 
 
             </div>
@@ -274,8 +263,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="115"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:115</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -352,8 +341,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="86"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:86</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -429,8 +418,8 @@ and supply it with the given ModalData via the MODAL_DATA injection token.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -521,8 +510,8 @@ and supply it with the given ModalData via the MODAL_DATA injection token.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -626,7 +615,7 @@ and supply it with the given ModalData via the MODAL_DATA injection token.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/modal/modal.service.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/modal/modal.service.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -666,7 +655,7 @@ and supply it with the given ModalData via the MODAL_DATA injection token.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/modal/modal.service.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/modal/modal.service.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -705,7 +694,7 @@ and supply it with the given ModalData via the MODAL_DATA injection token.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/shared/modal/modal.service.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/shared/modal/modal.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -725,7 +714,7 @@ and supply it with the given ModalData via the MODAL_DATA injection token.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable, Injector, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injector, Service, signal } from &#x27;@angular/core&#x27;;
 
 import { ModalDismissReasons, NgbModal } from &#x27;@ng-bootstrap/ng-bootstrap/modal&#x27;;
 
@@ -737,9 +726,7 @@ import { MODAL_DATA, ModalData } from &#x27;./modal.model&#x27;;
  *
  * It provides methods to open and close the modal with a given text or image content.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class ModalService {
     /**
      * Private readonly injection variable: _injector.

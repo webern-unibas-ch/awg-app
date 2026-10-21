@@ -155,22 +155,10 @@
             <p class="comment">
                 <p>The EditionComplexes service.</p>
 <p>It handles the provision of the edition complexes.</p>
-<p>Provided in: <code>root</code>.</p>
 
             </p>
 
 
-        <section data-compodoc="block-metadata">
-            <h3>Metadata</h3>
-            <table class="table table-sm table-hover metadata">
-                <tbody>
-                    <tr>
-                        <td class="col-md-3">providedIn</td>
-                        <td class="col-md-9"><code>root</code></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
 
 
             </div>
@@ -267,8 +255,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="87"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:87</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -359,8 +347,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -435,8 +423,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -492,7 +480,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -532,7 +520,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -580,7 +568,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/edition-view/services/edition-outline.service.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -600,7 +588,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { computed, inject, Injectable, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { computed, inject, Service, signal } from &#x27;@angular/core&#x27;;
 
 import {
     EditionOutline,
@@ -617,12 +605,8 @@ import * as jsonEditionOutline from &#x27;assets/data/edition/edition-outline.js
  * The EditionComplexes service.
  *
  * It handles the provision of the edition complexes.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class EditionOutlineService {
     /**
      * Private readonly injection variable: _editionComplexesService.

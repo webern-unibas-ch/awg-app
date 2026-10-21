@@ -294,7 +294,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Service } from &#x27;@angular/core&#x27;;
 
 import { Parser } from &#x27;n3&#x27;;
 
@@ -335,12 +335,8 @@ export interface TurtleParseResult {
  * it validates the turtle data, completes missing prefix declarations,
  * dispatches the query by its type to the {@link RdfStoreService}
  * and measures its duration.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class SparqlQueryService {
     /**
      * Private readonly injection variable: _rdfStoreService.

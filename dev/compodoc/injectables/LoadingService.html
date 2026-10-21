@@ -158,22 +158,10 @@
 that is set by the <a href="../miscellaneous/variables.html#loadingInterceptor">loadingInterceptor</a>
 and it provides the status as a readonly signal
 that can be read by components and templates.</p>
-<p>Provided in: <code>root</code>.</p>
 
             </p>
 
 
-        <section data-compodoc="block-metadata">
-            <h3>Metadata</h3>
-            <table class="table table-sm table-hover metadata">
-                <tbody>
-                    <tr>
-                        <td class="col-md-3">providedIn</td>
-                        <td class="col-md-9"><code>root</code></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
 
 
             </div>
@@ -260,8 +248,8 @@ that can be read by components and templates.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/shared/loading/loading.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/shared/loading/loading.service.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -330,8 +318,8 @@ that can be read by components and templates.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/app/shared/loading/loading.service.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/shared/loading/loading.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -413,7 +401,7 @@ that can be read by components and templates.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/loading/loading.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/loading/loading.service.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -452,7 +440,7 @@ that can be read by components and templates.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/loading/loading.service.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/loading/loading.service.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -474,7 +462,7 @@ If the array contains entries, it returns true, otherwise false.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpRequest } from &#x27;@angular/common/http&#x27;;
-import { computed, Injectable, signal } from &#x27;@angular/core&#x27;;
+import { computed, Service, signal } from &#x27;@angular/core&#x27;;
 
 /**
  * The Loading service.
@@ -483,12 +471,8 @@ import { computed, Injectable, signal } from &#x27;@angular/core&#x27;;
  * that is set by the {@link loadingInterceptor}
  * and it provides the status as a readonly signal
  * that can be read by components and templates.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class LoadingService {
     /**
      * Private readonly signal: _pendingRequests.

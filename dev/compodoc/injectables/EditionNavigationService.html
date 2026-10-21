@@ -159,17 +159,6 @@
             </p>
 
 
-        <section data-compodoc="block-metadata">
-            <h3>Metadata</h3>
-            <table class="table table-sm table-hover metadata">
-                <tbody>
-                    <tr>
-                        <td class="col-md-3">providedIn</td>
-                        <td class="col-md-9"><code>root</code></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
 
 
             </div>
@@ -273,8 +262,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:98</a></div>
                         </td>
                     </tr>
 
@@ -381,8 +370,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -457,8 +446,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -533,8 +522,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="80"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:80</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -623,7 +612,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -663,7 +652,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -702,7 +691,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -722,7 +711,7 @@ within the context of an edition complex identified by the provided complexId.</
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Service } from &#x27;@angular/core&#x27;;
 import { NavigationExtras, Router } from &#x27;@angular/router&#x27;;
 
 import { EDITION_ROUTE_CONSTANTS } from &#x27;../edition-routes.constants&#x27;;
@@ -735,9 +724,7 @@ import { EditionStateService } from &#x27;./edition-state.service&#x27;;
  *
  * It provides navigation functionality for the edition view of the app.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class EditionNavigationService {
     /**
      * Private readonly injection variable: _editionStateService.

@@ -156,22 +156,10 @@
                 <p>The EditionSnippet service.</p>
 <p>It provides helper methods to process
 comment strings with image snippet placeholders.</p>
-<p>Provided in: <code>root</code>.</p>
 
             </p>
 
 
-        <section data-compodoc="block-metadata">
-            <h3>Metadata</h3>
-            <table class="table table-sm table-hover metadata">
-                <tbody>
-                    <tr>
-                        <td class="col-md-3">providedIn</td>
-                        <td class="col-md-9"><code>root</code></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
 
 
             </div>
@@ -262,8 +250,8 @@ comment strings with image snippet placeholders.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -340,8 +328,8 @@ comment strings with image snippet placeholders.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -416,8 +404,8 @@ comment strings with image snippet placeholders.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -525,7 +513,7 @@ Multiple occurrences are disambiguated with an <code>a</code>, <code>b</code>, â
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -545,19 +533,15 @@ Multiple occurrences are disambiguated with an <code>a</code>, <code>b</code>, â
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Service } from &#x27;@angular/core&#x27;;
 
 /**
  * The EditionSnippet service.
  *
  * It provides helper methods to process
  * comment strings with image snippet placeholders.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class EditionSnippetService {
     /**
      * Private static readonly variable: SAFE_SNIPPET_ID_PATTERN.

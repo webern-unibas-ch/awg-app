@@ -156,22 +156,10 @@
                 <p>The EditionModal service.</p>
 <p>It is the modal facade of the edition view: it resolves the edition text snippets by key
 and opens text and image modals via the <a href="../injectables/ModalService.html">ModalService</a>.</p>
-<p>Provided in: <code>root</code>.</p>
 
             </p>
 
 
-        <section data-compodoc="block-metadata">
-            <h3>Metadata</h3>
-            <table class="table table-sm table-hover metadata">
-                <tbody>
-                    <tr>
-                        <td class="col-md-3">providedIn</td>
-                        <td class="col-md-9"><code>root</code></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
 
 
             </div>
@@ -253,8 +241,8 @@ and opens text and image modals via the <a href="../injectables/ModalService.htm
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -345,8 +333,8 @@ and opens text and image modals via the <a href="../injectables/ModalService.htm
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -436,7 +424,7 @@ an unknown key results in an empty content.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -456,7 +444,7 @@ an unknown key results in an empty content.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Service } from &#x27;@angular/core&#x27;;
 
 import { ModalService } from &#x27;@awg-shared/modal/modal.service&#x27;;
 import { OBJECT_UTILS } from &#x27;@awg-shared/utils/object-utils&#x27;;
@@ -468,12 +456,8 @@ import { EDITION_MODAL_SNIPPETS } from &#x27;../data/edition-modal-snippets.data
  *
  * It is the modal facade of the edition view: it resolves the edition text snippets by key
  * and opens text and image modals via the {@link ModalService}.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class EditionModalService {
     /**
      * Private readonly injection variable: _modalService.
