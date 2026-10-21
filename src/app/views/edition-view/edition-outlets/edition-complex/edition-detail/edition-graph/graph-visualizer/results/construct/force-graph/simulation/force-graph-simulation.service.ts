@@ -1,4 +1,4 @@
-import { inject, Injectable, InjectionToken } from '@angular/core';
+import { inject, InjectionToken, Service } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -92,12 +92,8 @@ export const FORCE_GRAPH_SIMULATION_WORKER_FACTORY = new InjectionToken<ForceGra
  *
  * It runs the force simulation of a graph in a web worker,
  * or on the main thread without web workers or if the worker fails.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class ForceGraphSimulationService {
     /**
      * Private readonly injection variable: _createWorker.

@@ -1,4 +1,4 @@
-import { computed, Injectable, Signal } from '@angular/core';
+import { computed, Service, Signal } from '@angular/core';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
@@ -12,9 +12,7 @@ import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-o
  *
  * It provides the labeled route items for the breadcrumb of the edition view.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionBreadcrumbService {
     /**
      * Public method: getBreadcrumbItems.

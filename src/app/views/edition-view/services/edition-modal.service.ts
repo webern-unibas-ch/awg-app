@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 
 import { ModalService } from '@awg-shared/modal/modal.service';
 import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
@@ -10,12 +10,8 @@ import { EDITION_MODAL_SNIPPETS } from '../data/edition-modal-snippets.data';
  *
  * It is the modal facade of the edition view: it resolves the edition text snippets by key
  * and opens text and image modals via the {@link ModalService}.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionModalService {
     /**
      * Private readonly injection variable: _modalService.

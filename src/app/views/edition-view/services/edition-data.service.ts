@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { computed, inject, Injectable, Signal, signal } from '@angular/core';
+import { computed, inject, Service, Signal, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 import { Observable, forkJoin as observableForkJoin, of as observableOf } from 'rxjs';
@@ -34,12 +34,8 @@ import { EditionStateService } from './edition-state.service';
  * It handles the calls to local JSON files vai HTTP
  * and provides the data response for the edition sheets
  * and edition report view.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionDataService {
     /**
      * Private readonly injection variable: _editionStateService.

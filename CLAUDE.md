@@ -42,6 +42,7 @@ Husky and lint-staged run ESLint, Prettier and the cycle check on staged files.
 ## Code conventions
 
 - Standalone components with own `imports`, `OnPush`, `@if`/`@for`; `input()`/`model()`/`output()`/`signal()`/`computed()` (doc comments: "Readonly input signal: x. It holds ...").
+- Services with `@Service()` (auto-provided in root, `inject()` only).
 - **Member order:** static fields → `inject()` fields (separate, alphabetical) → input/model → output → queries → state (related members together, mutable last) → constructor → get/set → static, public, protected, private methods (arrow-function fields count as methods). No lifecycle hooks: set-up in the constructor (`effect`, `afterNextRender`/`afterRenderEffect`), clean-up via `DestroyRef`.
 - **Naming:** UPPER_CASE only for module-level consts and static members (`static readonly`, `static get`), otherwise camelCase. `private` with `_` (no `#`), `protected` with `_` only for subclasses. Signal and output fields are `readonly`; only reassigned plain fields stay mutable.
 - Every component has ts, html, scss (also when empty, with `styleUrl`) and spec.

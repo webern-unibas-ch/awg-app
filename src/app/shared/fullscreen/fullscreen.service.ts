@@ -1,15 +1,11 @@
-import { DOCUMENT, inject, Injectable, signal } from '@angular/core';
+import { DOCUMENT, inject, Service, signal } from '@angular/core';
 
 /**
  * The Fullscreen service.
  *
  * It handles the fullscreen mode for the document.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class FullscreenService {
     /**
      * Private readonly injection variable: _document.

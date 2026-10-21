@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
@@ -11,9 +11,7 @@ import { EditionStateService } from './edition-state.service';
  *
  * It provides navigation functionality for the edition view of the app.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionNavigationService {
     /**
      * Private readonly injection variable: _editionStateService.

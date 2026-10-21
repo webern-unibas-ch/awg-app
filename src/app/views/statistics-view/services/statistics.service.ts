@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import {
     EditionOutlineComplexItem,
@@ -19,12 +19,8 @@ import {
  *
  * It handles the calculation and provision of statistics
  * for the edition outline data.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class StatisticsService {
     /**
      * Public method: calculateStatistics.

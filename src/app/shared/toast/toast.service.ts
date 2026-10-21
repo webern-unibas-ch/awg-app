@@ -1,4 +1,4 @@
-import { Injectable, signal, TemplateRef } from '@angular/core';
+import { Service, signal, TemplateRef } from '@angular/core';
 
 /**
  * The ToastMessage class.
@@ -102,12 +102,8 @@ export class Toast {
  * The Toast service.
  *
  * It handles the displaying of toast messages.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class ToastService {
     /**
      * Private readonly signal: _toasts.

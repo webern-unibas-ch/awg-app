@@ -1,4 +1,4 @@
-import { DOCUMENT, inject, Injectable } from '@angular/core';
+import { DOCUMENT, inject, Service } from '@angular/core';
 
 import { APP_CONSTANTS } from '@awg-app/app.constants';
 
@@ -22,12 +22,8 @@ export type AnalyticsConfigEvent = [string, string, { page_path: string; send_pa
  *
  * It handles the configuration for the GoogleAnalytics setup.
  * Inspired by https://www.ngdevelop.tech/integrate-google-analytics-with-angular-angular-seo/
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class AnalyticsService {
     /**
      * Private readonly injection variable: _doc.

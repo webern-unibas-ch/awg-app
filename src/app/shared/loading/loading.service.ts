@@ -1,5 +1,5 @@
 import { HttpRequest } from '@angular/common/http';
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, Service, signal } from '@angular/core';
 
 /**
  * The Loading service.
@@ -8,12 +8,8 @@ import { computed, Injectable, signal } from '@angular/core';
  * that is set by the {@link loadingInterceptor}
  * and it provides the status as a readonly signal
  * that can be read by components and templates.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class LoadingService {
     /**
      * Private readonly signal: _pendingRequests.
