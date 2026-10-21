@@ -10,6 +10,7 @@
         "src/polyfills.ts",
         "src/test.ts",
         "src/testing/**/*.ts",
-        "src/**/*.d.ts"
+        "src/**/*.d.ts",
+        "vitest-base.config.ts"
     ]
 }
