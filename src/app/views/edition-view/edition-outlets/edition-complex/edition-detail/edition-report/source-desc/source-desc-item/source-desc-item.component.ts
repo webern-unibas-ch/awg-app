@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { isEmptyObject } from '@awg-shared/utils/object-utils';
+import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
 
 import { SourceDesc, SourceDescDetails, SourceDescPhysDesc } from '@awg-views/edition-view/models/source-desc.model';
 import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
@@ -57,7 +57,7 @@ export class SourceDescItemComponent {
      *
      * It checks whether the source has a non-empty physical description.
      */
-    readonly hasPhysDesc = computed<boolean>(() => !isEmptyObject(this.physDesc()));
+    readonly hasPhysDesc = computed<boolean>(() => !OBJECT_UTILS.isEmptyObject(this.physDesc()));
 
     /**
      * Readonly computed signal: details.

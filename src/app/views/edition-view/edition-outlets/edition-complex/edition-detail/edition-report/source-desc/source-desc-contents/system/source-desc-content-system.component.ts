@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
+import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
 
 import { SourceDescSystem, SourceDescSystemRow } from '@awg-views/edition-view/models/source-desc.model';
 import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
@@ -48,7 +49,7 @@ export class SourceDescContentSystemComponent {
      */
     readonly validRow = computed<SourceDescSystemRow | undefined>(() => {
         const row = this.contentSystem().row;
-        return row && Object.keys(row).length ? row : undefined;
+        return OBJECT_UTILS.isEmptyObject(row) ? undefined : row;
     });
 
     /**
