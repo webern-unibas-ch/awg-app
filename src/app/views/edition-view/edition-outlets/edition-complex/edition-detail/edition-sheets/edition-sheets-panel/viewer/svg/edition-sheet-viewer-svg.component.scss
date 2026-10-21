@@ -1,10 +1,10 @@
-@import '/src/assets/themes/scss/shared';
+@use '/src/assets/themes/scss/shared' as theme;
 
 :host {
     display: block;
     height: 100%;
     box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* Rgba converted HEX #cccccc */
-    border: 1px solid $border-grey;
+    border: 1px solid theme.$border-grey;
     border-radius: 5px;
 }
 

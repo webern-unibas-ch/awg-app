@@ -1,7 +1,7 @@
-@import '/src/assets/themes/scss/shared';
+@use '/src/assets/themes/scss/shared' as theme;
 
 .awg-main-navbar {
-    border-bottom: 1px solid $border-grey;
+    border-bottom: 1px solid theme.$border-grey;
 }
 
 .navbar {
@@ -12,6 +12,6 @@
 
 :host ::ng-deep {
     .navbar-nav .nav-item.dropdown.active .nav-link {
-        color: $link-color !important;
+        color: theme.$link-color !important;
     }
 }

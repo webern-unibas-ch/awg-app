@@ -1,4 +1,4 @@
-@import '/src/assets/themes/scss/shared';
+@use '/src/assets/themes/scss/shared' as theme;
 
 .awg-language-switcher {
     font-family: 'Montserrat', sans-serif;
@@ -23,7 +23,7 @@
         }
 
         &:not(.active) {
-            color: $link-color;
+            color: theme.$link-color;
         }
 
         &:hover {
@@ -31,7 +31,7 @@
         }
 
         &:focus-visible {
-            outline: 1px solid $link-color;
+            outline: 1px solid theme.$link-color;
             outline-offset: 2px;
         }
     }
