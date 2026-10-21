@@ -18,7 +18,7 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn check:cycles`: madge check for circular imports (incl. path aliases; runs in CI)
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
 
-Husky and lint-staged run ESLint and Prettier on staged files.
+Husky and lint-staged run ESLint, Prettier and the cycle check on staged files.
 
 ## Git
 
