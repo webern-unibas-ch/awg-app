@@ -24,7 +24,8 @@
                         class="dropdown-item"
                         [awgEditionSheetFacetItemLink]="sheetPartial.sheetTarget"
                         [isActive]="sheetPartial.isActive"
-                        >{{ svgSheet().label }} <span class="text-muted">[{{ sheetPartial.positionLabel }}]</span></a
+                        >{{ svgSheet().label }}
+                        <span [class.text-muted]="!sheetPartial.isActive">[{{ sheetPartial.positionLabel }}]</span></a
                     >
                 </div>
             }

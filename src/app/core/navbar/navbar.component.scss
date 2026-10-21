@@ -12,6 +12,6 @@
 
 :host ::ng-deep {
     .navbar-nav .nav-item.dropdown.active .nav-link {
-        color: theme.$link-color !important;
+        color: theme.$link-color;
     }
 }

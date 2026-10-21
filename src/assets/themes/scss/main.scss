@@ -19,21 +19,20 @@ a {
     border-bottom: 1px solid theme.$link-color;
 }
 a,
-a:link:not(.nav-link),
-a:visited:not(.nav-link),
-a:hover:not(.nav-link),
-a:not([href]):not([tabindex]):not(.nav-link),
-a:not([href]):not([tabindex]):not(.nav-link):hover,
-a[role='button'][tabindex='0'],
-a[role='button'][tabindex='0']:hover,
-a[role='link'][tabindex='0'],
-a[role='link'][tabindex='0']:hover {
+a:link:not(.nav-link, .btn, .dropdown-item),
+a:visited:not(.nav-link, .btn, .dropdown-item),
+a:hover:not(.nav-link, .btn, .dropdown-item),
+a:not([href]):not([tabindex]):not(.nav-link, .btn, .dropdown-item),
+a:not([href]):not([tabindex]):not(.nav-link, .btn, .dropdown-item):hover,
+a[role='button'][tabindex='0']:not(.nav-link, .btn, .dropdown-item),
+a[role='button'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover,
+a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item),
+a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover {
     color: theme.$link-color;
     text-decoration: none;
 }
-a.dropdown-item,
-a.awg-edition-sheet-facet-item-link:hover,
-.nav-tabs > li > a {
+/* overrides the text-muted utility of inactive sheet facet item links */
+a.awg-edition-sheet-facet-item-link:not(.active):hover {
     color: rgba(51, 51, 51, 1) !important; /* rgba converted HEX #333 */
 }
 a.dropdown-item:hover,
@@ -43,27 +42,10 @@ a.awg-edition-sheet-facet-item-link:hover {
     border-bottom: none;
     text-decoration: none;
 }
-a.dropdown-item:hover,
-button.dropdown-item:hover,
-a.awg-edition-sheet-facet-item-link.active {
-    color: theme.$link-color !important;
-}
-.dropdown-item.active,
-.dropdown-item:active {
-    background-color: theme.$link-color !important;
-    color: #ffffff !important;
-}
-.dropdown-item:hover,
-.dropdown-item:focus {
-    background-color: #f1f3f3 !important;
-    color: theme.$link-color !important;
-}
-/* no border color for sheet-facet-item-link */
-a.awg-edition-sheet-facet-item-link.active,
-a.awg-edition-sheet-facet-item-link:active,
-a.awg-edition-sheet-facet-item-link:hover,
-a.awg-edition-sheet-facet-item-link:focus {
-    border-color: transparent !important;
+/* active colour and no border colour for sheet-facet-item-link */
+a.awg-edition-sheet-facet-item-link {
+    --bs-btn-active-color: #{theme.$link-color};
+    --bs-btn-active-border-color: transparent;
 }
 
 a,
@@ -165,21 +147,6 @@ footer {
 }
 
 /****** CARDS ******/
-.card-header .btn-link {
-    color: theme.$link-color !important;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    border-bottom: none;
-}
-.card-header .btn-link:hover {
-    text-decoration: underline;
-}
-.card-header .btn-link:focus {
-    text-decoration: none;
-}
-.card-footer a.btn:hover {
-    color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
-}
 
 .awg-statistics-card {
     border: 1px solid #e0e0e0;
@@ -345,10 +312,6 @@ td {
 
 ul.nobullets {
     list-style: none;
-}
-
-span.facet-badge {
-    background-color: rgba(119, 119, 119, 1) !important; /* rgba converted HEX #777 */
 }
 
 /****** TOOLTIPS ******/

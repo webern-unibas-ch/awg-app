@@ -7,8 +7,9 @@
 
 a.awg-edition-sheet-facet-item-link-dropdown-toggle {
     &.btn {
-        border: none !important;
+        border: none;
     }
+    // Overrides the text-muted utility of the inactive toggle
     &.active,
     &:active {
         color: theme.$link-color !important;
@@ -21,5 +22,15 @@ a.awg-edition-sheet-facet-item-link-dropdown-toggle {
         display: inline-block;
         white-space: break-spaces;
         text-align: start;
+    }
+}
+
+// Inactive partials keep the dropdown link colours (overrides the text-muted utility)
+.dropdown-item.text-muted:not(:active) {
+    color: var(--bs-dropdown-link-color) !important;
+
+    &:hover,
+    &:focus {
+        color: var(--bs-dropdown-link-hover-color) !important;
     }
 }
