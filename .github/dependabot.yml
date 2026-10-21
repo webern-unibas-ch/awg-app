@@ -39,6 +39,10 @@ updates:
           angular-eslint:
               patterns:
                   - '@angular-eslint/*'
+          codemirror:
+              patterns:
+                  - 'codemirror'
+                  - '@codemirror/*'
           fortawesome:
               patterns:
                   - '@fortawesome/*'

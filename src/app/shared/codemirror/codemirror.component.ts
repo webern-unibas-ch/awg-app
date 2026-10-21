@@ -24,7 +24,7 @@ import {
 } from '@angular/core';
 
 import { EditorState } from '@codemirror/state';
-import { EditorView } from 'codemirror';
+import { EditorView } from '@codemirror/view';
 
 import { CmMode, createEditorState } from './codemirror.utils';
 

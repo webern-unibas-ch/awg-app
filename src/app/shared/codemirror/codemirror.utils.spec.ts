@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import { EditorState } from '@codemirror/state';
-import { EditorView } from 'codemirror';
+import { EditorView } from '@codemirror/view';
 
 import { expectSpyCall, expectToBe } from '@testing/expect-helper';
 
