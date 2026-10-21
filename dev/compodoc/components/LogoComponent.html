@@ -425,7 +425,10 @@
 
         let classList &#x3D; &#x27;&#x27;;
         if (isUnibasLogo || isSnfLogo || isSagwLogo) {
-            classList &#x3D; &#x27;my-2&#x27;;
+            classList &#x3D; &#x27;awg-footer-logo my-2&#x27;;
+        }
+        if (isSagwLogo) {
+            classList +&#x3D; &#x27; awg-footer-logo-tall&#x27;;
         }
         if (isSagwLogo || isSnfLogo) {
             classList +&#x3D; &#x27; float-end&#x27;;
@@ -504,7 +507,10 @@ export class LogoComponent {
 
         let classList &#x3D; &#x27;&#x27;;
         if (isUnibasLogo || isSnfLogo || isSagwLogo) {
-            classList &#x3D; &#x27;my-2&#x27;;
+            classList &#x3D; &#x27;awg-footer-logo my-2&#x27;;
+        }
+        if (isSagwLogo) {
+            classList +&#x3D; &#x27; awg-footer-logo-tall&#x27;;
         }
         if (isSagwLogo || isSnfLogo) {
             classList +&#x3D; &#x27; float-end&#x27;;
@@ -550,6 +556,24 @@ export class LogoComponent {
     .navbar-brand img {
         max-width: 250%;
     }
+}
+
+// Footer logos (classes from logoClassList)
+.awg-footer-logo {
+    width: 200px;
+    height: 50px;
+}
+.awg-footer-logo-tall {
+    height: 75px;
+}
+
+// Icon logos (e.g. powered by)
+:host(.icon) img {
+    position: relative;
+    display: inline;
+    height: 24px;
+    width: 24px;
+    margin: 0;
 }
 </code></pre>
     </div>

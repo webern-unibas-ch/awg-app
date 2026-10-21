@@ -423,7 +423,23 @@ export class ModalComponent {
                 <p class="comment">
                     <code>./modal.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
+
+.modal-header {
+    background-color: theme.$info;
+    color: theme.$view-bg-color;
+}
+
+.modal-body,
+.modal-footer {
+    background-color: theme.$view-bg-color;
+}
+
+.awg-modal-button:hover,
+.awg-modal-button:active {
+    background-color: theme.$info;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="tree">

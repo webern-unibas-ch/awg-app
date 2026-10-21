@@ -1196,7 +1196,9 @@ export class EditionFoliosViewerSvgComponent {
                 <p class="comment">
                     <code>./edition-folios-viewer-svg.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">/* folio svg (drawn at runtime by d3, so not covered by view encapsulation) */
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
+
+/* folio svg (drawn at runtime by d3, so not covered by view encapsulation) */
 :host ::ng-deep {
     .awg-edition-folios-viewer-svg {
         // Sheet and trademark
@@ -1225,22 +1227,22 @@ export class EditionFoliosViewerSvgComponent {
 
         // Content segments (the stroke width of the shapes is set by the EditionFolioDrawingService)
         .content-segment-group {
-            fill: grey;
-            stroke: grey;
+            fill: theme.$folio-unselectable-color;
+            stroke: theme.$folio-unselectable-color;
             cursor: pointer;
 
             &amp;.selectable {
-                fill: orange;
-                stroke: orange;
+                fill: theme.$folio-selectable-color;
+                stroke: theme.$folio-selectable-color;
             }
 
             &amp;.active,
             &amp;.active .content-segment-shape {
-                stroke: olivedrab;
+                stroke: theme.$folio-active-color;
             }
 
             &amp;.active .content-segment-label {
-                fill: olivedrab;
+                fill: theme.$folio-active-color;
             }
 
             // Keyboard focus: dashed dark outline of the shape (outlines on svg groups are unreliable)

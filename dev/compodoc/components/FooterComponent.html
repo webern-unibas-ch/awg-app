@@ -487,7 +487,30 @@ export class FooterComponent {
                 <p class="comment">
                     <code>./footer.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
+
+footer {
+    font-family: &#x27;Montserrat&#x27;, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    height: 132px; // needed for the sticky footer
+    background-color: transparent;
+    color: theme.$text-dark-color;
+    padding: 15px;
+    border-top: 1px solid theme.$frame-border-color;
+}
+
+.awg-footer-secondary {
+    border-top: 1px solid theme.$frame-border-color;
+
+    .gtrans {
+        background-color: #dbdad9;
+        border-radius: 5px;
+        text-align: center;
+        padding: 3px;
+    }
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="tree">

@@ -786,8 +786,6 @@ export class EditionSheetFacetItemComponent {
                 </p>
                 <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
 
-$hover-color: #333;
-
 // Render the item as block (like the former direct children of the facet group)
 :host {
     display: block;
@@ -802,7 +800,7 @@ a.awg-edition-sheet-facet-item-link {
 
     // Overrides the text-muted utility of the inactive link
     &amp;:not(.active):hover {
-        color: $hover-color !important;
+        color: theme.$text-dark-color !important;
     }
 }
 
@@ -816,7 +814,7 @@ a.awg-edition-sheet-facet-item-link-dropdown-toggle {
         color: theme.$link-color !important;
     }
     &amp;:hover {
-        color: $hover-color !important;
+        color: theme.$text-dark-color !important;
     }
 
     &gt; span {

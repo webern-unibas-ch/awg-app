@@ -180,13 +180,13 @@ of the edition folios.</p>
                 <td class="col-md-9">
                     <ul class="index-list">
                         <li>
-                                <a href="#colorClass" class="reference-link ">
-                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">colorClass</span>
+                                <a href="#label" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">label</span>
                                 </a>
                         </li>
                         <li>
-                                <a href="#label" class="reference-link ">
-                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">label</span>
+                                <a href="#stateClass" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">stateClass</span>
                                 </a>
                         </li>
                     </ul>
@@ -200,51 +200,6 @@ of the edition folios.</p>
 
     <section data-compodoc="block-properties">
         <h3 id="inputs">Properties</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                        <tr>
-                            <td class="col-md-4">
-                                <a name="colorClass"></a>
-                                <span class="name "><b>colorClass</b>
-                                    <a href="#colorClass">
-                                        <span class="icon ion-ios-link"></span>
-                                    </a>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <code>colorClass:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                            </td>
-                        </tr>
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                </td>
-                            </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/legend/edition-folios-legend.component.ts:16</a></div>
-                                </td>
-                            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>The color class of the folio legend.</p>
-</div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                         <tr>
@@ -290,6 +245,51 @@ of the edition folios.</p>
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="stateClass"></a>
+                                <span class="name "><b>stateClass</b>
+                                    <a href="#stateClass">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>stateClass:     <code>&quot;active&quot; | &quot;selectable&quot; | &quot;unselectable&quot;</code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>    <code>&quot;active&quot; | &quot;selectable&quot; | &quot;unselectable&quot;</code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/legend/edition-folios-legend.component.ts:16</a></div>
+                                </td>
+                            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The state class of the folio legend (state of the content segments).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </section>
 </div>
 
@@ -308,9 +308,9 @@ import { faSquare } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
  */
 interface FolioLegend {
     /**
-     * The color class of the folio legend.
+     * The state class of the folio legend (state of the content segments).
      */
-    colorClass: string;
+    stateClass: &#x27;active&#x27; | &#x27;selectable&#x27; | &#x27;unselectable&#x27;;
 
     /**
      * The label of the folio legend.
@@ -346,15 +346,15 @@ export class EditionFoliosLegendComponent {
      */
     readonly folioLegends: FolioLegend[] &#x3D; [
         {
-            colorClass: &#x27;olivedrab&#x27;,
+            stateClass: &#x27;active&#x27;,
             label: &#x27;aktuell ausgewählt&#x27;,
         },
         {
-            colorClass: &#x27;orange&#x27;,
+            stateClass: &#x27;selectable&#x27;,
             label: &#x27;auswählbar&#x27;,
         },
         {
-            colorClass: &#x27;grey&#x27;,
+            stateClass: &#x27;unselectable&#x27;,
             label: &#x27;(momentan noch) nicht auswählbar&#x27;,
         },
     ];

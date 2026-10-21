@@ -808,7 +808,13 @@ export class ExampleQueriesComponent {
                 <p class="comment">
                     <code>./example-queries.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
+
+// The selected query is marked as disabled
+.dropdown-item.disabled {
+    background-color: theme.$link-color;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="tree">
