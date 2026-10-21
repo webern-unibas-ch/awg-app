@@ -3,7 +3,7 @@
 :host {
     display: block;
     height: 100%;
-    box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* Rgba converted HEX #cccccc */
+    box-shadow: theme.$viewer-box-shadow;
     border: 1px solid theme.$border-grey;
     border-radius: 5px;
 }

@@ -52,6 +52,7 @@ Husky and lint-staged run ESLint, Prettier and the cycle check on staged files.
 - **Template attributes:** related ones together (a directive with its inputs and outputs, `class` with `[class]`/`[class.x]`), static attributes before bindings, event bindings last. Not linted: `attributes-order` only sorts by binding kind.
 - Empty checks: `if (array.length)` / `if (!array.length)`. A helper that only gets non-empty lists is guarded at the call site ("(not empty)" in its JSDoc).
 - Destructure all used entries of a config/style constant at the top of a function, consistently across the file.
+- **Styles:** in the component SCSS; `main.scss` only for global rules (e.g. edition data html). Shared values in `shared.scss` (`as theme`), named by purpose, no prefix; own CSS properties `--awg-*`.
 
 ## Testing
 

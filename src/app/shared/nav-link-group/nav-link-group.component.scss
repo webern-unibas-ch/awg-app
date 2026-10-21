@@ -1,3 +1,5 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
 .awg-nav-link-group {
     font-family: 'Droid Sans', sans-serif;
     font-size: 12px;
@@ -10,7 +12,7 @@
         cursor: pointer;
         margin-right: 45px;
         padding-top: 5px;
-        border-top: 2px solid #f9f9f6;
+        border-top: 2px solid theme.$bg-grey;
 
         &:hover {
             color: #666;

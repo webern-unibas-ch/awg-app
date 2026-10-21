@@ -1,7 +1,5 @@
 @use '/src/assets/themes/scss/shared' as theme;
 
-$hover-color: #333;
-
 // Render the item as block (like the former direct children of the facet group)
 :host {
     display: block;
@@ -16,7 +14,7 @@ a.awg-edition-sheet-facet-item-link {
 
     // Overrides the text-muted utility of the inactive link
     &:not(.active):hover {
-        color: $hover-color !important;
+        color: theme.$text-dark-color !important;
     }
 }
 
@@ -30,7 +28,7 @@ a.awg-edition-sheet-facet-item-link-dropdown-toggle {
         color: theme.$link-color !important;
     }
     &:hover {
-        color: $hover-color !important;
+        color: theme.$text-dark-color !important;
     }
 
     > span {

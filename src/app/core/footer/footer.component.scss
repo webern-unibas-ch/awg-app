@@ -6,7 +6,7 @@ footer {
     font-size: 14px;
     height: 132px; // needed for the sticky footer
     background-color: transparent;
-    color: #333;
+    color: theme.$text-dark-color;
     padding: 15px;
     border-top: 1px solid theme.$border-grey;
 }

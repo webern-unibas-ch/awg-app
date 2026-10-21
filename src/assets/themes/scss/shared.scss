@@ -1,6 +1,8 @@
 // Custom variables
 $bg-grey: #f9f9f6;
 $border-grey: #e7e7e7;
+$text-dark-color: #333;
+$viewer-box-shadow: 5px 5px 6px #ccc;
 
 // Default variable overrides
 $info: #0f777a;
@@ -13,7 +15,7 @@ $accordion-button-bg: $bg-grey;
 $accordion-button-active-color: $link-color;
 $accordion-button-active-bg: $bg-grey;
 
-$dropdown-link-color: #333;
+$dropdown-link-color: $text-dark-color;
 $dropdown-link-hover-color: $link-color;
 $dropdown-link-hover-bg: #f1f3f3;
 $dropdown-link-active-color: #fff;
