@@ -98,7 +98,7 @@
         "@angular/localize": "^22.2.3",
         "@angular/platform-browser": "^22.2.3",
         "@angular/router": "^22.2.3",
-        "@codemirror/legacy-modes": "^6.5.4",
+        "@codemirror/legacy-modes": "^6.5.5",
         "@fortawesome/angular-fontawesome": "^5.1.0",
         "@fortawesome/free-solid-svg-icons": "^7.3.1",
         "@ng-bootstrap/ng-bootstrap": "^21.0.0",
