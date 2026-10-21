@@ -292,6 +292,10 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
                 expectToBe(spanEl.textContent, `[${expectedFolio.folioId}]`);
             });
 
+            it('... should have the folio id in the aria-label of the svg', () => {
+                expectToBe(getSvgEl().getAttribute('aria-label'), `Folio ${expectedFolio.folioId}`);
+            });
+
             it('... should contain one svg.awg-edition-folios-viewer-svg with the root group', () => {
                 expectToBe(getRootGroupEl().parentNode, getSvgEl());
             });
