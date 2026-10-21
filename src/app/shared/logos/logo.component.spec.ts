@@ -20,7 +20,11 @@ describe('LogoComponent (DONE)', () => {
     let expectedAngularLogoData: Logo;
 
     const cssClassFloatEnd = 'float-end';
+    const cssClassFooterLogo = 'awg-footer-logo';
+    const cssClassFooterLogoTall = 'awg-footer-logo-tall';
     const cssClassMarginY2 = 'my-2';
+    const expectedSagwClassList = `${cssClassFooterLogo} ${cssClassMarginY2} ${cssClassFooterLogoTall} ${cssClassFloatEnd}`;
+    const expectedUnibasClassList = `${cssClassFooterLogo} ${cssClassMarginY2}`;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -83,13 +87,13 @@ describe('LogoComponent (DONE)', () => {
         });
 
         it('... should have computed signal `logoClassList` to hold the expected CSS classes (for right main footer)', () => {
-            expectToBe(component.logoClassList(), `${cssClassMarginY2} ${cssClassFloatEnd}`);
+            expectToBe(component.logoClassList(), expectedSagwClassList);
         });
 
         it('... should have recomputed signal `logoClassList` when input changes', () => {
             const testCases = [
-                { logoData: expectedSagwLogoData, expected: `${cssClassMarginY2} ${cssClassFloatEnd}` },
-                { logoData: expectedUnibasLogoData, expected: cssClassMarginY2 },
+                { logoData: expectedSagwLogoData, expected: expectedSagwClassList },
+                { logoData: expectedUnibasLogoData, expected: expectedUnibasClassList },
                 { logoData: expectedAngularLogoData, expected: '' },
             ];
 
@@ -136,15 +140,17 @@ describe('LogoComponent (DONE)', () => {
                 fixture.componentRef.setInput('logoData', expectedSagwLogoData);
                 await detectChangesOnPush(fixture);
 
-                expectToBe(imageEl.classList.length, 2);
+                expectToBe(imageEl.classList.length, 4);
+                expectToContain(imageEl.classList, cssClassFooterLogo);
                 expectToContain(imageEl.classList, cssClassMarginY2);
+                expectToContain(imageEl.classList, cssClassFooterLogoTall);
                 expectToContain(imageEl.classList, cssClassFloatEnd);
 
                 fixture.componentRef.setInput('logoData', expectedUnibasLogoData);
                 await detectChangesOnPush(fixture);
 
-                expectToBe(imageEl.classList.length, 1);
-                expectToBe(imageEl.className, cssClassMarginY2);
+                expectToBe(imageEl.classList.length, 2);
+                expectToBe(imageEl.className, expectedUnibasClassList);
 
                 fixture.componentRef.setInput('logoData', expectedAngularLogoData);
                 await detectChangesOnPush(fixture);

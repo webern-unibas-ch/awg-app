@@ -22,18 +22,13 @@
     }
 }
 
-// Footer logos
-#unibaslogo,
-#sagwlogo,
-#snflogo {
+// Footer logos (classes from logoClassList)
+.awg-footer-logo {
     width: 200px;
-}
-#sagwlogo {
-    height: 75px;
-}
-#unibaslogo,
-#snflogo {
     height: 50px;
+}
+.awg-footer-logo-tall {
+    height: 75px;
 }
 
 // Icon logos (e.g. powered by)

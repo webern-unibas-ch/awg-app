@@ -46,7 +46,10 @@ export class LogoComponent {
 
         let classList = '';
         if (isUnibasLogo || isSnfLogo || isSagwLogo) {
-            classList = 'my-2';
+            classList = 'awg-footer-logo my-2';
+        }
+        if (isSagwLogo) {
+            classList += ' awg-footer-logo-tall';
         }
         if (isSagwLogo || isSnfLogo) {
             classList += ' float-end';
