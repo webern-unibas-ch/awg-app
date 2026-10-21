@@ -69,6 +69,15 @@ describe('ForceGraphSimulationService (DONE)', () => {
     });
 
     /**
+     * Installs fake timers for the main thread simulation, with a real `setInterval`.
+     * d3-force starts its internal timer on creation, and its poke interval is cleared on the next animation frame;
+     * d3 binds the real `requestAnimationFrame` at load, so a faked interval would never be cleared in a browser.
+     */
+    const useSimulationFakeTimers = (): void => {
+        vi.useFakeTimers({ toNotFake: ['setInterval', 'clearInterval'] });
+    };
+
+    /**
      * Configures the testing module with the given worker factory and injects the service.
      */
     const setup = (workerFactory: ForceGraphSimulationWorkerFactory): void => {
@@ -141,7 +150,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
         describe('... without web worker', () => {
             beforeEach(() => {
                 setup(() => undefined);
-                vi.useFakeTimers();
+                useSimulationFakeTimers();
             });
 
             afterEach(() => {
@@ -413,7 +422,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
                 });
 
                 it('... should emit the results of the main thread simulation', () => {
-                    vi.useFakeTimers();
+                    useSimulationFakeTimers();
                     const results: ForceGraphSimulationProgress[] = [];
                     forceGraphSimulationService
                         .simulate(forceGraphData, EMPTY)
