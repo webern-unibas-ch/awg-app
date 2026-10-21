@@ -72,8 +72,7 @@ export default defineConfig(
 
         rules: {
             // Angular rules on top of the recommended preset, listed one by one. Not adopted:
-            // prefer-service-decorator (an API migration), no-input-prefix (no input prefixes to forbid),
-            // require-localize-metadata and runtime-localize (single-language app)
+            // no-input-prefix (no input prefixes to forbid), require-localize-metadata and runtime-localize (single-language app)
 
             '@angular-eslint/component-class-suffix': 'error',
             '@angular-eslint/component-max-inline-declarations': 'error',
@@ -105,6 +104,7 @@ export default defineConfig(
             '@angular-eslint/prefer-host-metadata-property': 'error',
             '@angular-eslint/prefer-output-emitter-ref': 'error',
             '@angular-eslint/prefer-output-readonly': 'error',
+            '@angular-eslint/prefer-service-decorator': 'error',
             '@angular-eslint/prefer-signal-model': 'error',
             '@angular-eslint/prefer-signals': 'error',
             '@angular-eslint/reactive-context-must-read-signal': 'error',

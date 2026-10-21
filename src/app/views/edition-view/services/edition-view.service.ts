@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, Signal, signal } from '@angular/core';
+import { computed, inject, Service, Signal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -21,9 +21,7 @@ import { EditionDataService } from './edition-data.service';
  *
  * It provides methods to manage the state of the edition view and its data.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionViewService {
     /**
      * Private readonly injection variable: _editionDataService.

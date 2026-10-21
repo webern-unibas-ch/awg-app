@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Service, signal } from '@angular/core';
 
 import {
     EditionOutline,
@@ -15,12 +15,8 @@ import * as jsonEditionOutline from 'assets/data/edition/edition-outline.json';
  * The EditionComplexes service.
  *
  * It handles the provision of the edition complexes.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionOutlineService {
     /**
      * Private readonly injection variable: _editionComplexesService.

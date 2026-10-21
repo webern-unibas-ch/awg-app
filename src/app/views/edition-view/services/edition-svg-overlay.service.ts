@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 
 import { D3Selection } from '../models/d3-selection.model';
 import {
@@ -17,12 +17,8 @@ import { EditionSvgDrawingService } from './edition-svg-drawing.service';
  * It draws the SVG overlays for the edition view (tkk overlay boxes)
  * and provides stateless helpers for their interaction (target resolution, state transitions, colors).
  * The state itself and the events are held and handled by the consuming component.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionSvgOverlayService {
     /**
      * Private readonly injection variable: _svgDrawingService.

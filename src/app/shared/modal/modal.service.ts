@@ -1,4 +1,4 @@
-import { inject, Injectable, Injector, signal } from '@angular/core';
+import { inject, Injector, Service, signal } from '@angular/core';
 
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
 
@@ -10,9 +10,7 @@ import { MODAL_DATA, ModalData } from './modal.model';
  *
  * It provides methods to open and close the modal with a given text or image content.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class ModalService {
     /**
      * Private readonly injection variable: _injector.

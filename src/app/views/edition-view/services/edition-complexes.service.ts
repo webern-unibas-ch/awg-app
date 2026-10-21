@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Service, signal } from '@angular/core';
 
 import { EditionComplex, EditionComplexesJsonData, EditionComplexesList } from '../models/edition-complex.model';
 
@@ -8,12 +8,8 @@ import jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
  * The EditionComplexes service.
  *
  * It handles the provision of the edition complexes.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionComplexesService {
     /**
      * Private readonly signal holding the edition complexes list.

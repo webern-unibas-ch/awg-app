@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import type { Quad, Quad_Object, Quad_Predicate, Quad_Subject } from '@rdfjs/types';
 import { DataFactory } from 'n3';
@@ -27,12 +27,8 @@ const ERROR_LOCATION = '[RdfStoreService]';
  * It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
  * executes SPARQL queries and converts the responses into RDF/JS terms.
  * It is the only place that knows the rdfstore API and response formats.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class RdfStoreService {
     /**
      * Public method: construct.

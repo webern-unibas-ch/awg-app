@@ -3,7 +3,7 @@
  * Mads Holten's SPARQL Visualizer, cf. https://github.com/MadsHolten/sparql-visualizer
  */
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { ForceGraphData, ForceGraphEdge, ForceGraphVisibleNode } from '../force-graph.model';
 import { FORCE_GRAPH_UTILS } from '../force-graph.utils';
@@ -19,12 +19,8 @@ import {
  * The ForceGraphCanvas service.
  *
  * It draws the data of a force graph onto a canvas in a given view (by level of detail).
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class ForceGraphCanvasService {
     /**
      * Public method: drawGraph.

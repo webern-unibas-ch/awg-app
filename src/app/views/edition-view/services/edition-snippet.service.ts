@@ -1,16 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 /**
  * The EditionSnippet service.
  *
  * It provides helper methods to process
  * comment strings with image snippet placeholders.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionSnippetService {
     /**
      * Private static readonly variable: SAFE_SNIPPET_ID_PATTERN.

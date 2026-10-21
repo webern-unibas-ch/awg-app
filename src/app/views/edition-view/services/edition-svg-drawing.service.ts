@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { D3Selection } from '../models/d3-selection.model';
 import { DATA_TKK_ID } from '../models/edition-svg-overlay.model';
@@ -11,10 +11,8 @@ import * as D3_SELECTION from 'd3-selection';
  * The EditionSvgDrawing service.
  *
  * It handles the creation and handling with SVGs via the D3 library.
- *
- * Provided in: `root`.
  */
-@Injectable({ providedIn: 'root' })
+@Service()
 export class EditionSvgDrawingService {
     /**
      * Public async method: createSvg.

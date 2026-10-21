@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { EDITION_GLYPHS_DATA } from '../data/edition-glyphs.data';
 
@@ -7,12 +7,8 @@ import { EDITION_GLYPHS_DATA } from '../data/edition-glyphs.data';
  *
  * It provides methods to get
  * the hex value of a musical glyph.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionGlyphService {
     /**
      * Public method: getGlyph.

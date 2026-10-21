@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { D3Selection } from '../models/d3-selection.model';
 import {
@@ -36,12 +36,8 @@ const TRADEMARK_SYMBOL_PATH =
  * and draws them into a given svg root group.
  * The interaction with the drawn content segments is handled
  * by the {@link EditionFolioSegmentService}.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionFolioDrawingService {
     /**
      * Private readonly variable: _contentSegmentOffsetCorrection.

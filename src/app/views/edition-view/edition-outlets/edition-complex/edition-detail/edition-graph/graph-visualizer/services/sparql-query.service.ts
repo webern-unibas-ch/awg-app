@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 
 import { Parser } from 'n3';
 
@@ -39,12 +39,8 @@ export interface TurtleParseResult {
  * it validates the turtle data, completes missing prefix declarations,
  * dispatches the query by its type to the {@link RdfStoreService}
  * and measures its duration.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class SparqlQueryService {
     /**
      * Private readonly injection variable: _rdfStoreService.

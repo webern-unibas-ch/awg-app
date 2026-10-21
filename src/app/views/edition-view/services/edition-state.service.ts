@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Service, signal } from '@angular/core';
 
 import { EditionComplex } from '../models/edition-complex.model';
 import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
@@ -14,9 +14,7 @@ import { EditionOutlineService } from './edition-outline.service';
  * If an edition complex is selected, it takes precedence:
  * the selected series and section are derived from its publication statement.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionStateService {
     /**
      * Private readonly injection variable: _editionOutlineService.
