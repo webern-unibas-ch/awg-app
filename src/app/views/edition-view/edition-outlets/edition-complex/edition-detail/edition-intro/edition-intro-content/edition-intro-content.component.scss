@@ -30,7 +30,7 @@
 
         &::ng-deep {
             p {
-                margin-bottom: 0 !important;
+                margin-bottom: 0;
             }
 
             %block-style {
@@ -85,14 +85,14 @@
                     margin-right: auto;
 
                     > tbody > tr:first-child {
-                        border-top: 1px solid black !important;
+                        border-top: 1px solid black;
 
                         td {
                             padding-top: 10px;
                         }
                     }
                     > tbody > tr:last-child {
-                        border-bottom: 1px solid black !important;
+                        border-bottom: 1px solid black;
 
                         td {
                             padding-bottom: 10px;
