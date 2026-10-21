@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { ERROR_UTILS, getErrorMessage } from './error.utils';
+import { ERROR_UTILS, getErrorMessage } from './error-utils';
 
 describe('ErrorUtils (DONE)', () => {
     describe('ERROR_UTILS', () => {

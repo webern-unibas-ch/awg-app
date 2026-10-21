@@ -2,9 +2,11 @@ import { TitleCasePipe } from '@angular/common';
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+
+import { ERROR_UTILS } from '@awg-shared/utils/error-utils';
 
 import { AlertErrorComponent } from './alert-error.component';
 import { AlertError } from './alert-error.model';
@@ -47,6 +49,10 @@ describe('AlertErrorComponent', () => {
         fixture = TestBed.createComponent(AlertErrorComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('should create', () => {
@@ -95,35 +101,12 @@ describe('AlertErrorComponent', () => {
             fixture.detectChanges();
         });
 
-        describe('... should have computed signal `errorMessage` to hold', () => {
-            it.each<{ desc: string; error: unknown; expected: string }>([
-                {
-                    desc: 'the message of an error object',
-                    error: { status: 404, message: 'Data not found' },
-                    expected: 'Data not found',
-                },
-                {
-                    desc: 'the message of an Error',
-                    error: new Error('Connection refused'),
-                    expected: 'Connection refused',
-                },
-                {
-                    desc: 'a string error',
-                    error: 'Server is currently offline.',
-                    expected: 'Server is currently offline.',
-                },
-                {
-                    desc: 'an empty string if the error has no message',
-                    error: { status: 500 },
-                    expected: '',
-                },
-                { desc: 'an empty string if the error is null', error: null, expected: '' },
-                { desc: 'an empty string if the error is undefined', error: undefined, expected: '' },
-            ])('... $desc', ({ error, expected }) => {
-                fixture.componentRef.setInput('errorObject', { key: 'preface', error });
+        it('... should have computed signal `errorMessage` to hold the message of the error from ERROR_UTILS', () => {
+            const getErrorMessageSpy = vi.spyOn(ERROR_UTILS, 'getErrorMessage').mockReturnValue('Formatted error');
+            fixture.componentRef.setInput('errorObject', { key: 'report', error: { status: 500 } });
 
-                expectToBe(component.errorMessage(), expected);
-            });
+            expectToBe(component.errorMessage(), 'Formatted error');
+            expectSpyCall(getErrorMessageSpy, 1, { status: 500 });
         });
 
         describe('VIEW', () => {

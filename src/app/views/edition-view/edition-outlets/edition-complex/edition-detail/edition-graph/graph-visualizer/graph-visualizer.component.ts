@@ -15,6 +15,7 @@ import {
 
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
+import { ERROR_UTILS } from '@awg-shared/utils/error-utils';
 import { GraphQuery, GraphRdfData } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
@@ -26,7 +27,6 @@ import { GraphResultsSelectComponent } from './results/select/graph-results-sele
 import { GraphResultsStatusComponent } from './results/status/graph-results-status.component';
 import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 import { SparqlQueryService } from './services/sparql-query.service';
-import { ERROR_UTILS } from './utils/error.utils';
 import { GRAPH_QUERY_UTILS } from './utils/graph-query.utils';
 import { SPARQL_UTILS } from './utils/sparql.utils';
 

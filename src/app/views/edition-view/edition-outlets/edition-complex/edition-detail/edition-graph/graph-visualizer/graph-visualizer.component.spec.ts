@@ -18,6 +18,7 @@ import { mockConsole } from '@testing/mock-helper';
 
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
+import { ERROR_UTILS } from '@awg-shared/utils/error-utils';
 
 import { GraphRdfData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
@@ -35,7 +36,6 @@ import { GraphResultsSelectComponent } from './results/select/graph-results-sele
 import { GraphResultsStatusComponent } from './results/status/graph-results-status.component';
 import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 import { SparqlQueryService } from './services/sparql-query.service';
-import { ERROR_UTILS } from './utils/error.utils';
 import { DEFAULT_PREFIXES } from './utils/prefix.utils';
 import { SPARQL_UTILS } from './utils/sparql.utils';
 

@@ -1,6 +1,8 @@
 import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
+import { ERROR_UTILS } from '@awg-shared/utils/error-utils';
+
 import { AlertError } from './alert-error.model';
 
 /**
@@ -26,17 +28,7 @@ export class AlertErrorComponent {
     /**
      * Readonly computed signal: errorMessage.
      *
-     * It holds the error if it is a string, otherwise the message of the error (empty if it has none).
+     * It holds the message to display for the error of the error object.
      */
-    readonly errorMessage = computed(() => {
-        const { error } = this.errorObject();
-
-        if (typeof error === 'string') {
-            return error;
-        }
-        if (typeof error === 'object' && error !== null && 'message' in error && typeof error.message === 'string') {
-            return error.message;
-        }
-        return '';
-    });
+    readonly errorMessage = computed(() => ERROR_UTILS.getErrorMessage(this.errorObject().error));
 }
