@@ -472,6 +472,17 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     ]);
                 });
 
+                it('... should have `text-muted` class on the position label of inactive item anchors only', () => {
+                    const isTextMuted = getDropdownItemDes().map(itemDe => {
+                        const spanDes = getAndExpectDebugElementByCss(itemDe, 'span', 1, 1);
+                        const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+
+                        return spanEl.classList.contains('text-muted');
+                    });
+
+                    expectToEqual(isTextMuted, [false, true]);
+                });
+
                 describe('EditionSheetFacetItemLinkDirective', () => {
                     it('... should be applied to each item anchor', () => {
                         getDropdownItemDes().forEach(itemDe => {

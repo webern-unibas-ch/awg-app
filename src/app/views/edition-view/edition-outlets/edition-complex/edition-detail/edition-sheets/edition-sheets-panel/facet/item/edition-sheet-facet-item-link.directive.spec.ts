@@ -112,17 +112,15 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
         expectToContain(getLinkEl().classList, 'test-link');
     });
 
-    it('... should have `text-muted` and no `active` class if not active', () => {
-        expectToContain(getLinkEl().classList, 'text-muted');
+    it('... should have no `active` class if not active', () => {
         expectToNotContain(getLinkEl().classList, 'active');
     });
 
-    it('... should have `active` and no `text-muted` class if active', async () => {
+    it('... should have `active` class if active', async () => {
         hostComponent.isActive.set(true);
         await detectChangesOnPush(fixture);
 
         expectToContain(getLinkEl().classList, 'active');
-        expectToNotContain(getLinkEl().classList, 'text-muted');
     });
 
     describe('METHODS', () => {

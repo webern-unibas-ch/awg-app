@@ -7,12 +7,7 @@
     &.active,
     &:focus:not(#dropdownNavEdition),
     &:active:not(#dropdownNavEdition) {
-        color: theme.$link-color !important;
-    }
-
-    &:hover {
-        border-bottom: none !important;
-        text-decoration: none !important;
+        color: theme.$link-color;
     }
 
     > fa-icon {
