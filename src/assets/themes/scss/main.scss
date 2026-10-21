@@ -13,9 +13,10 @@ a {
     &:not(.list-group-item-danger) {
         cursor: pointer;
     }
-    &:not(.awg-logo-link):hover {
-        border-bottom: 1px solid theme.$link-color;
-    }
+}
+/* zero specificity, so that any class selector can override the hover border */
+:where(a:not(.awg-logo-link):hover) {
+    border-bottom: 1px solid theme.$link-color;
 }
 a,
 a:link:not(.nav-link),
@@ -36,11 +37,10 @@ a.awg-edition-sheet-facet-item-link:hover,
     color: rgba(51, 51, 51, 1) !important; /* rgba converted HEX #333 */
 }
 a.dropdown-item:hover,
-a.list-group-item:hover,
 a.awg-edition-intro-nav-link:hover,
 a.awg-edition-sheet-facet-item-link,
 a.awg-edition-sheet-facet-item-link:hover {
-    border-bottom: none !important;
+    border-bottom: none;
     text-decoration: none;
 }
 a.dropdown-item:hover,

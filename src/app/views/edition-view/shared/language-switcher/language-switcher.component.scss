@@ -26,10 +26,6 @@
             color: theme.$link-color;
         }
 
-        &:hover {
-            border-bottom: none !important;
-        }
-
         &:focus-visible {
             outline: 1px solid theme.$link-color;
             outline-offset: 2px;
