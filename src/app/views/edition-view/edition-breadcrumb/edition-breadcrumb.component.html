@@ -1,15 +1,16 @@
-<h6 class="awg-edition-info-breadcrumb">
-    @for (item of items(); track $index) {
-        @if (item.label) {
-            @if (item.route.length) {
-                <a [routerLink]="item.route">{{ item.label }}</a>
-            } @else {
-                <span [innerHTML]="item.label"></span>
-            }
+<nav class="awg-edition-info-breadcrumb" aria-label="Navigationspfad">
+    <ol class="breadcrumb">
+        @for (item of items(); track $index) {
+            <li class="breadcrumb-item" [class.active]="$last" [attr.aria-current]="$last ? 'page' : null">
+                @if (!$first) {
+                    <fa-icon class="awg-edition-breadcrumb-divider" [icon]="faChevronRight" />
+                }
+                @if (item.route.length) {
+                    <a [routerLink]="item.route">{{ item.label }}</a>
+                } @else {
+                    <span [innerHTML]="item.label"></span>
+                }
+            </li>
         }
-
-        @if (!$last) {
-            <span class="mx-1">/</span>
-        }
-    }
-</h6>
+    </ol>
+</nav>

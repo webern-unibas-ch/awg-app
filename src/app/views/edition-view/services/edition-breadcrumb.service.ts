@@ -95,12 +95,12 @@ export class EditionBreadcrumbService {
         series: EditionOutlineSeries | null,
         section: EditionOutlineSection | null
     ): LabeledRoute[] {
-        const { EDITION_INTRO } = EDITION_ROUTE_CONSTANTS;
+        const { EDITION_INTRO, SERIES } = EDITION_ROUTE_CONSTANTS;
 
         if (series) {
             const seriesRouteSegment = section ? [...rootItem.route, series.series.route] : [];
 
-            const items: LabeledRoute[] = [
+            return [
                 rootItem,
                 { label: series.series.full, route: seriesRouteSegment },
                 ...(section
@@ -113,16 +113,11 @@ export class EditionBreadcrumbService {
                     : []),
                 ...(section && context.isIntro ? [{ label: EDITION_INTRO.full, route: [] }] : []),
             ];
-
-            if (!context.isIntro) {
-                items.push({ label: '', route: [] }); // Add empty item to include final slash
-            }
-            return items;
         }
 
         return [
             { ...rootItem, route: [] },
-            { label: '', route: [] },
+            { label: SERIES.full, route: [] },
         ];
     }
 }

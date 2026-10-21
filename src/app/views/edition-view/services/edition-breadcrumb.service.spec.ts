@@ -144,7 +144,6 @@ describe('EditionBreadcrumbService (DONE)', () => {
                     expectedRootItem,
                     { label: series.series.full, route: [...expectedRootItem.route, series.series.route] },
                     { label: section.section.full, route: [] },
-                    { label: '', route: [] },
                 ];
 
                 const breadcrumbSignal = service.getBreadcrumbItems(
@@ -155,7 +154,7 @@ describe('EditionBreadcrumbService (DONE)', () => {
                 );
                 const actualBreadcrumbs = breadcrumbSignal();
 
-                expectToBe(actualBreadcrumbs.length, 4);
+                expectToBe(actualBreadcrumbs.length, 3);
                 expectToEqual(actualBreadcrumbs, expectedBreadcrumbs);
             });
 
@@ -254,7 +253,7 @@ describe('EditionBreadcrumbService (DONE)', () => {
                     section: (): EditionOutlineSection | null => null,
                     expected: (): LabeledRoute[] => [
                         { ...expectedRootItem, route: [] },
-                        { label: '', route: [] },
+                        { label: SERIES.full, route: [] },
                     ],
                 },
                 {
@@ -265,7 +264,6 @@ describe('EditionBreadcrumbService (DONE)', () => {
                     expected: (): LabeledRoute[] => [
                         expectedRootItem,
                         { label: expectedSeries.series.full, route: [] },
-                        { label: '', route: [] },
                     ],
                 },
                 {
@@ -280,7 +278,6 @@ describe('EditionBreadcrumbService (DONE)', () => {
                             route: [...expectedRootItem.route, expectedSeries.series.route],
                         },
                         { label: expectedSection.section.full, route: [] },
-                        { label: '', route: [] },
                     ],
                 },
                 {

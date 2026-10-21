@@ -1,0 +1,11 @@
+// Chevron icon as divider instead of the Bootstrap slash
+.breadcrumb {
+    --bs-breadcrumb-divider: none;
+}
+
+.awg-edition-breadcrumb-divider {
+    margin-right: var(--bs-breadcrumb-item-padding-x);
+    color: var(--bs-breadcrumb-divider-color);
+    font-size: 0.5em;
+    vertical-align: 0.1em;
+}
