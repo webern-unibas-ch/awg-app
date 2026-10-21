@@ -50,9 +50,6 @@ a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover {
 .half-para-margin {
     margin-bottom: 0.5em;
 }
-.no-para-margin {
-    margin-bottom: 0;
-}
 
 /****** CARDS ******/
 
@@ -77,15 +74,6 @@ a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover {
 }
 
 /****** ACCORDION ******/
-.accordion-button {
-    &.collapsed,
-    &:not(.collapsed) {
-        background-color: theme.$bg-grey;
-        color: theme.$link-color;
-    }
-    padding: 0.75rem 1rem; /* default: 25px */
-}
-
 .awg-accordion-button-custom-header {
     &::after {
         content: none;
@@ -151,12 +139,6 @@ details[open] summary::before {
 }
 
 /****** FONTPROPERTIES ******/
-.bold {
-    font-weight: bold;
-}
-.italic {
-    font-style: italic;
-}
 .smallcaps,
 .version {
     font-variant: small-caps;

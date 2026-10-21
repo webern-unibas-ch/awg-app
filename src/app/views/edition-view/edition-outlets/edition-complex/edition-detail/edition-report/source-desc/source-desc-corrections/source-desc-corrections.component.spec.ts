@@ -85,13 +85,13 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-source-desc-corrections', 1, 1);
             });
 
-            it('... should contain one paragraph (no-para-margin) in div displaying the corrections label in smallcaps', () => {
+            it('... should contain one paragraph (mb-0) in div displaying the corrections label in smallcaps', () => {
                 const expectedLabel = 'Korrekturen:';
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-corrections-label', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expectToContain(pEl.classList, 'no-para-margin');
+                expectToContain(pEl.classList, 'mb-0');
 
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;

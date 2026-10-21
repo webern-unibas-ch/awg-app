@@ -100,13 +100,13 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
             });
 
-            it('... should contain a text-muted paragraph (no-para-margin) in div', () => {
+            it('... should contain a text-muted paragraph (mb-0) in div', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToContain(pEl.classList, 'text-muted');
-                expectToContain(pEl.classList, 'no-para-margin');
+                expectToContain(pEl.classList, 'mb-0');
             });
 
             it('... should display text-muted disclaimer in paragraph', () => {
@@ -115,7 +115,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToContain(pEl.classList, 'text-muted');
-                expectToContain(pEl.classList, 'no-para-margin');
+                expectToContain(pEl.classList, 'mb-0');
 
                 const sectionRoute = expectedComplex.pubStatement.labeledSectionRoute;
                 const expectedText = `[Siehe auch die gesamte Einleitung zu ${sectionRoute?.label}.]`;
