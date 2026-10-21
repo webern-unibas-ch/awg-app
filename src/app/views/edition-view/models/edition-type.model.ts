@@ -32,7 +32,7 @@ export type EditionTypeLabel = (typeof EDITION_TYPE_LABEL_MAP)[EditionTypeKey];
  * It is used in the context of the edition view
  * to define the available keys for the edition types.
  */
-export const EDITION_TYPE_KEYS = Object.keys(EDITION_TYPE_LABEL_MAP) as unknown as EditionTypeKey[];
+export const EDITION_TYPE_KEYS = Object.keys(EDITION_TYPE_LABEL_MAP) as EditionTypeKey[];
 
 /**
  * The EDITION_TYPE_LABELS const.
@@ -40,4 +40,4 @@ export const EDITION_TYPE_KEYS = Object.keys(EDITION_TYPE_LABEL_MAP) as unknown 
  * It is used in the context of the edition view
  * to define the available labels for the edition types.
  */
-export const EDITION_TYPE_LABELS = Object.values(EDITION_TYPE_LABEL_MAP) as unknown as EditionTypeLabel[];
+export const EDITION_TYPE_LABELS = Object.values(EDITION_TYPE_LABEL_MAP) as EditionTypeLabel[];

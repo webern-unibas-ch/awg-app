@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
+import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
+
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data/edition-graph-images.data';
 
 /**
@@ -41,10 +43,10 @@ export class EditionGraphStaticComponent {
      */
     readonly imageSrc = computed<string | null>(() => {
         const imageKey = this.imageKey();
-        if (!imageKey || !Object.hasOwn(this.graphImages, imageKey)) {
+        if (!imageKey || !OBJECT_UTILS.isKeyOf(this.graphImages, imageKey)) {
             return null;
         }
 
-        return this.graphImages[imageKey as keyof typeof this.graphImages] || null;
+        return this.graphImages[imageKey] || null;
     });
 }

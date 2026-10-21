@@ -2,48 +2,16 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { isEmptyArray, isEmptyObject, UTILS } from './object-utils';
+import { isEmptyObject, isKeyOf, OBJECT_UTILS } from './object-utils';
 
 describe('ObjectUtils (DONE)', () => {
-    describe('UTILS', () => {
+    describe('OBJECT_UTILS', () => {
         it('... should reference all object utils methods', () => {
-            expectToEqual(UTILS, { isEmptyArray, isEmptyObject });
+            expectToEqual(OBJECT_UTILS, { isEmptyObject, isKeyOf });
         });
     });
 
     describe('METHODS', () => {
-        describe('#isEmptyArray()', () => {
-            it('... should have a method `isEmptyArray`', () => {
-                expect(isEmptyArray).toBeDefined();
-            });
-
-            describe('... should return true if the array', () => {
-                it.each([
-                    { desc: 'is undefined', value: undefined },
-                    { desc: 'is null', value: null },
-                    { desc: 'is empty', value: [] },
-                    { desc: 'is not an array (string)', value: 'string' },
-                ])('... $desc', ({ value }) => {
-                    const isEmpty = isEmptyArray(value as any);
-
-                    expectToBe(isEmpty, true);
-                });
-            });
-
-            describe('... should return false if the array', () => {
-                it.each([
-                    { desc: 'contains strings', value: ['test'] },
-                    { desc: 'contains numbers', value: [1, 2, 3] },
-                    { desc: 'contains an empty object as an element', value: [{}] },
-                    { desc: 'contains null as an element', value: [null] },
-                ])('... $desc', ({ value }) => {
-                    const isEmpty = isEmptyArray(value);
-
-                    expectToBe(isEmpty, false);
-                });
-            });
-        });
-
         describe('#isEmptyObject()', () => {
             it('... should have a method `isEmptyObject`', () => {
                 expect(isEmptyObject).toBeDefined();
@@ -75,6 +43,37 @@ describe('ObjectUtils (DONE)', () => {
                     const isEmpty = isEmptyObject(value);
 
                     expectToBe(isEmpty, false);
+                });
+            });
+        });
+
+        describe('#isKeyOf()', () => {
+            const object = { id: 1, name: '' };
+
+            it('... should have a method `isKeyOf`', () => {
+                expect(isKeyOf).toBeDefined();
+            });
+
+            describe('... should return true if the key', () => {
+                it.each([
+                    { desc: 'is an own key', key: 'id' },
+                    { desc: 'is an own key with an empty value', key: 'name' },
+                ])('... $desc', ({ key }) => {
+                    const isKey = isKeyOf(object, key);
+
+                    expectToBe(isKey, true);
+                });
+            });
+
+            describe('... should return false if the key', () => {
+                it.each([
+                    { desc: 'is unknown', key: 'unknown' },
+                    { desc: 'is a prototype key', key: 'toString' },
+                    { desc: 'is empty', key: '' },
+                ])('... $desc', ({ key }) => {
+                    const isKey = isKeyOf(object, key);
+
+                    expectToBe(isKey, false);
                 });
             });
         });

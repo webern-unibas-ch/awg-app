@@ -4,7 +4,7 @@
  * They select svg sheets (incl. partials), their edition type, convolute and textcritics,
  * and evaluate the sheet ids to navigate to, as pure functions.
  */
-import { UTILS } from '@awg-shared/utils/object-utils';
+import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
 
 import { EditionSvgOverlayTkk } from '../models/edition-svg-overlay.model';
 import {
@@ -194,7 +194,7 @@ export function filterCommentaryForOverlays(
     commentary: TextcriticalCommentary,
     overlays: EditionSvgOverlayTkk[]
 ): TextcriticalCommentary {
-    if (!commentary || UTILS.isEmptyObject(commentary)) {
+    if (OBJECT_UTILS.isEmptyObject(commentary)) {
         return commentary;
     }
 
