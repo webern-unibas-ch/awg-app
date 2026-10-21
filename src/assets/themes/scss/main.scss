@@ -69,9 +69,20 @@ a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover {
         content: none;
     }
 
+    // The toggle is a button inside the header, so the header shows the focus glow
+    // of a normal accordion button for it
+    &:has(> button.btn-link:focus) {
+        z-index: 3;
+        box-shadow: var(--bs-accordion-btn-focus-box-shadow);
+    }
+
     button.btn-link {
         color: theme.$link-color;
         text-decoration: none;
+
+        &:focus-visible {
+            box-shadow: none;
+        }
     }
 }
 
