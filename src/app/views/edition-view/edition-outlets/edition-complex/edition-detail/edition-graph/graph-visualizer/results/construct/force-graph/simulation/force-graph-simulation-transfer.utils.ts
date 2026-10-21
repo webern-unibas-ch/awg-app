@@ -83,7 +83,7 @@ export function setPosition(positions: Float32Array, index: number, point: Force
 export function packPositions(nodes: readonly Partial<ForceGraphPoint>[]): Float32Array {
     const positions = new Float32Array(nodes.length * 2);
     nodes.forEach((node, index) => {
-        setPosition(positions, index, { x: node.x ?? NaN, y: node.y ?? NaN });
+        setPosition(positions, index, { x: node.x ?? Number.NaN, y: node.y ?? Number.NaN });
     });
     return positions;
 }
