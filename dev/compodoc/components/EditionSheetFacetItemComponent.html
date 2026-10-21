@@ -782,7 +782,7 @@ export class EditionSheetFacetItemComponent {
                 <p class="comment">
                     <code>./edition-sheet-facet-item.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;/src/assets/themes/scss/shared&#x27;;
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
 
 // Render the item as block (like the former direct children of the facet group)
 :host {
@@ -795,7 +795,7 @@ a.awg-edition-sheet-facet-item-link-dropdown-toggle {
     }
     &amp;.active,
     &amp;:active {
-        color: $link-color !important;
+        color: theme.$link-color !important;
     }
     &amp;:hover {
         color: rgb(51, 51, 51) !important;

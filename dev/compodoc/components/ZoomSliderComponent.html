@@ -729,7 +729,7 @@ export class ZoomSliderComponent {
                 <p class="comment">
                     <code>./zoom-slider.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;/src/assets/themes/scss/shared&#x27;;
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
 
 :host {
     display: block;
@@ -747,7 +747,7 @@ export class ZoomSliderComponent {
 
 .input-group-text.awg-zoom-slider-label {
     min-width: 50px;
-    color: $info;
+    color: theme.$info;
 }
 
 /* slider input */
@@ -766,8 +766,8 @@ export class ZoomSliderComponent {
 @mixin slider-thumb($height) {
     width: 15px;
     height: $height;
-    background: $info;
-    border: 1.8px solid $info;
+    background: theme.$info;
+    border: 1.8px solid theme.$info;
     border-radius: 10px;
     cursor: pointer;
 }

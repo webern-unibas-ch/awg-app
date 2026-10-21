@@ -332,7 +332,7 @@ export class EditionSheetViewerNavComponent {
                 <p class="comment">
                     <code>./edition-sheet-viewer-nav.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;/src/assets/themes/scss/shared&#x27;;
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
 
 .awg-edition-sheet-viewer-nav {
     &gt; .prev,
@@ -361,7 +361,7 @@ export class EditionSheetViewerNavComponent {
             font-weight: bold;
             font-size: 18px;
             transition: 0.6s ease;
-            color: $link-color;
+            color: theme.$link-color;
         }
     }
 

@@ -486,7 +486,7 @@ export class NavbarItemComponent {
                 <p class="comment">
                     <code>./navbar-item.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;/src/assets/themes/scss/shared&#x27;;
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
 
 .nav-link {
     display: flex;
@@ -495,7 +495,7 @@ export class NavbarItemComponent {
     &amp;.active,
     &amp;:focus:not(#dropdownNavEdition),
     &amp;:active:not(#dropdownNavEdition) {
-        color: $link-color !important;
+        color: theme.$link-color !important;
     }
 
     &amp;:hover {

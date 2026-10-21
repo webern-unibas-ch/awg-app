@@ -986,10 +986,10 @@ export class NavbarComponent {
                 <p class="comment">
                     <code>./navbar.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;/src/assets/themes/scss/shared&#x27;;
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;/src/assets/themes/scss/shared&#x27; as theme;
 
 .awg-main-navbar {
-    border-bottom: 1px solid $border-grey;
+    border-bottom: 1px solid theme.$border-grey;
 }
 
 .navbar {
@@ -1000,7 +1000,7 @@ export class NavbarComponent {
 
 :host ::ng-deep {
     .navbar-nav .nav-item.dropdown.active .nav-link {
-        color: $link-color !important;
+        color: theme.$link-color !important;
     }
 }
 </code></pre>
