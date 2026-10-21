@@ -448,6 +448,10 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(svgDes[0], 'g.awg-edition-sheet-viewer-svg-root-group', 1, 1);
                 });
 
+                it('... should have the full id of the selected sheet in the aria-label of the svg', () => {
+                    expectToBe(getSvgEl().getAttribute('aria-label'), `Notentext ${expectedSvgSheet.fullId}`);
+                });
+
                 it('... should pass down `zoomConfig`, `zoomTarget` and `zoomValue` to the SvgZoomDirective', async () => {
                     fixture.componentRef.setInput('zoomValue', 2.5);
                     await detectChangesOnPush(fixture);

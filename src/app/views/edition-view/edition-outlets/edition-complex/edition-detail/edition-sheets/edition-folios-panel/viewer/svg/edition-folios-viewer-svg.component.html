@@ -1,10 +1,12 @@
 @let viewBox = folioSvgData().viewBox;
+@let folioId = folio().folioId;
 
-<span class="text-muted">[{{ folio().folioId }}]</span>
+<span class="text-muted">[{{ folioId }}]</span>
 <svg
     class="awg-edition-folios-viewer-svg"
     tabindex="-1"
     preserveAspectRatio="xMinYMin meet"
+    [attr.aria-label]="`Folio ${folioId}`"
     [attr.viewBox]="viewBox.viewBox"
     [attr.width]="viewBox.svgWidth"
     [attr.height]="viewBox.svgHeight"

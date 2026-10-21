@@ -24,7 +24,7 @@
 <awg-canvas-tooltip [point]="hovered?.point" [text]="hovered?.node.resultNode.label" />
 
 @if (isLayoutLoading()) {
-    <div class="awg-force-graph-canvas-loading" role="status">
+    <output class="awg-force-graph-canvas-loading">
         <awg-twelve-tone-spinner />
-    </div>
+    </output>
 }

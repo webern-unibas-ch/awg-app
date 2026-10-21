@@ -225,7 +225,7 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
             });
 
             it('... should not contain a loading overlay yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-canvas-loading', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'output.awg-force-graph-canvas-loading', 0, 0);
             });
         });
     });
@@ -303,9 +303,8 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
             });
 
             it('... should contain a loading overlay with one TwelveToneSpinnerComponent (hollow) while a new layout runs', () => {
-                const loadingDes = getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-canvas-loading', 1, 1);
+                const loadingDes = getAndExpectDebugElementByCss(compDe, 'output.awg-force-graph-canvas-loading', 1, 1);
 
-                expectToBe(loadingDes[0].attributes['role'], 'status');
                 getAndExpectDebugElementByDirective(loadingDes[0], TwelveToneSpinnerComponent, 1, 1);
             });
 
@@ -324,7 +323,7 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 emitLayout(true);
                 await detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-canvas-loading', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'output.awg-force-graph-canvas-loading', 0, 0);
             });
 
             it('... should contain a loading overlay and a dimmed canvas while a known graph is laid out again', async () => {
@@ -332,7 +331,7 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 fixture.componentRef.setInput('resultGraph', expectedNextResultGraph);
                 await detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-canvas-loading', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'output.awg-force-graph-canvas-loading', 1, 1);
                 expectToBe(getCanvasEl().classList.contains('is-loading'), true);
             });
 

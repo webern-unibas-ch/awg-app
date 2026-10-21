@@ -97,6 +97,14 @@ describe('StructureViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(divDes[0], 'svg', 1, 1);
             });
 
+            it('... should have role `img` and an aria-label on the svg', () => {
+                const svgDes = getAndExpectDebugElementByCss(compDe, '#awg-structure-view-svg', 1, 1);
+                const svgEl: SVGSVGElement = svgDes[0].nativeElement;
+
+                expectToBe(svgEl.getAttribute('role'), 'img');
+                expectToBe(svgEl.getAttribute('aria-label'), 'Modell der Datenstruktur der AWG-Online-Edition');
+            });
+
             it('... should not display svg image', () => {
                 const imageDes = getAndExpectDebugElementByCss(compDe, '#awg-structure-view-svg image', 1, 1);
                 const imageEl: SVGImageElement = imageDes[0].nativeElement;

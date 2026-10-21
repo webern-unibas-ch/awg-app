@@ -6,6 +6,7 @@
     [zoomTarget]="svgRootGroup"
     [(zoomValue)]="zoomValue"
     tabindex="-1"
+    [attr.aria-label]="`Notentext ${selectedSvgSheet().fullId}`"
     (awgClick)="onSheetSelect($event)"
     (pointerover)="onSheetHighlight($event.target)"
     (focusin)="onSheetHighlight($event.target)"

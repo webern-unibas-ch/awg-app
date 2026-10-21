@@ -59,7 +59,12 @@ function _nodePairKey(sourceId: string, targetId: string): string {
  * @returns {ForceGraphNode} The middle node.
  */
 function _toMidNode(pairKey: string, edgeNumber: number): ForceGraphNode {
-    return { id: `${pairKey}#mid${edgeNumber}`, radius: FORCE_GRAPH_NODE_RADIUS.resource, x: NaN, y: NaN };
+    return {
+        id: `${pairKey}#mid${edgeNumber}`,
+        radius: FORCE_GRAPH_NODE_RADIUS.resource,
+        x: Number.NaN,
+        y: Number.NaN,
+    };
 }
 
 /**
@@ -71,7 +76,13 @@ function _toMidNode(pairKey: string, edgeNumber: number): ForceGraphNode {
  * @returns {ForceGraphVisibleNode} The visible node.
  */
 function _toVisibleNode(resultNode: ResultGraphNode): ForceGraphVisibleNode {
-    return { id: resultNode.id, radius: FORCE_GRAPH_NODE_RADIUS[resultNode.kind], resultNode, x: NaN, y: NaN };
+    return {
+        id: resultNode.id,
+        radius: FORCE_GRAPH_NODE_RADIUS[resultNode.kind],
+        resultNode,
+        x: Number.NaN,
+        y: Number.NaN,
+    };
 }
 
 /**
