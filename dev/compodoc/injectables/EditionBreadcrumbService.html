@@ -655,12 +655,12 @@ export class EditionBreadcrumbService {
         series: EditionOutlineSeries | null,
         section: EditionOutlineSection | null
     ): LabeledRoute[] {
-        const { EDITION_INTRO } &#x3D; EDITION_ROUTE_CONSTANTS;
+        const { EDITION_INTRO, SERIES } &#x3D; EDITION_ROUTE_CONSTANTS;
 
         if (series) {
             const seriesRouteSegment &#x3D; section ? [...rootItem.route, series.series.route] : [];
 
-            const items: LabeledRoute[] &#x3D; [
+            return [
                 rootItem,
                 { label: series.series.full, route: seriesRouteSegment },
                 ...(section
@@ -673,16 +673,11 @@ export class EditionBreadcrumbService {
                     : []),
                 ...(section &amp;&amp; context.isIntro ? [{ label: EDITION_INTRO.full, route: [] }] : []),
             ];
-
-            if (!context.isIntro) {
-                items.push({ label: &#x27;&#x27;, route: [] }); // Add empty item to include final slash
-            }
-            return items;
         }
 
         return [
             { ...rootItem, route: [] },
-            { label: &#x27;&#x27;, route: [] },
+            { label: SERIES.full, route: [] },
         ];
     }
 }
