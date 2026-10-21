@@ -30,16 +30,6 @@ a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover {
     text-decoration: none;
 }
 
-a,
-button {
-    &.dropdown-item {
-        &.disabled {
-            text-decoration: none;
-            background-color: theme.$link-color;
-        }
-    }
-}
-
 /****** DIVS ******/
 .para {
     margin-bottom: 3em;
@@ -62,67 +52,6 @@ button {
 }
 .no-para-margin {
     margin-bottom: 0;
-}
-
-/****** PAGE LAYOUT ******/
-
-/* view container */
-awg-view-container > div {
-    background-color: theme.$bg-grey;
-    /* full height without header and footer */
-    /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
-    min-height: calc(100vh - 121px - 200px);
-}
-@media screen and (min-width: 768px) {
-    awg-view-container > div {
-        /* full height without header and footer from sm devices up */
-        min-height: calc(100vh - 121px - 135px);
-    }
-}
-
-/* side-outlet */
-.awg-side-outlet > .card {
-    padding: inherit;
-}
-
-/* On small screens, set height to 'auto' for side-outlet and grid */
-@media screen and (max-width: 767px) {
-    .awg-side-outlet {
-        height: auto;
-    }
-}
-
-/* footer */
-footer {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    height: 132px; /* needed for sticky footer */
-    background-color: transparent;
-    color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
-    padding: 15px;
-    border-top: 1px solid theme.$border-grey;
-}
-.awg-footer-main img {
-    width: 200px;
-}
-.awg-footer-secondary {
-    border-top: 1px solid theme.$border-grey;
-}
-.awg-footer-secondary .icon img {
-    position: relative;
-    display: inline;
-    height: 24px;
-    width: 24px;
-    margin: 0;
-}
-.awg-footer-secondary .gtrans {
-    bottom: 0;
-    right: 0;
-    background-color: #dbdad9;
-    border-radius: 5px;
-    text-align: center;
-    padding: 3px 3px 3px 3px;
 }
 
 /****** CARDS ******/
@@ -168,49 +97,11 @@ footer {
     padding: 0.54rem 1rem; /* default: 25px */
 }
 
-/****** MODAL ******/
-.modal-header {
-    background-color: theme.$info;
-    color: theme.$bg-grey;
-}
-.modal-body,
-.modal-footer {
-    background-color: theme.$bg-grey;
-}
-.awg-modal-button:hover,
-.awg-modal-button:active {
-    background-color: theme.$info;
-}
-
 /****** IMAGES ******/
-.img-thumbnail {
-    height: 100px;
-    width: auto;
-    padding: 0px;
-    margin: 2px 0px;
-}
-
-#sagwlogo {
-    height: 75px;
-    cursor: pointer;
-}
-#snflogo {
-    height: 50px;
-    cursor: pointer;
-}
-#unibaslogo {
-    height: 50px;
-    cursor: pointer;
-}
 
 /****** TABLES & LISTS ******/
 .table thead tr th {
     border-bottom: 2px solid black;
-}
-.borderless tbody tr td,
-.borderless tbody tr th,
-.borderless thead tr th {
-    border: none;
 }
 td {
     vertical-align: top;
@@ -273,17 +164,6 @@ details[open] summary::before {
 
 .tab {
     padding-left: 25px;
-}
-
-/****** COLOURS ******/
-.olivedrab {
-    color: olivedrab;
-}
-.orange {
-    color: orange;
-}
-.grey {
-    color: grey;
 }
 
 /****** GLYPHS ******/

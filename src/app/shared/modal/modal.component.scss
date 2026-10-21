@@ -1,0 +1,16 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
+.modal-header {
+    background-color: theme.$info;
+    color: theme.$bg-grey;
+}
+
+.modal-body,
+.modal-footer {
+    background-color: theme.$bg-grey;
+}
+
+.awg-modal-button:hover,
+.awg-modal-button:active {
+    background-color: theme.$info;
+}

@@ -1,0 +1,25 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
+footer {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    height: 132px; // needed for the sticky footer
+    background-color: transparent;
+    color: #333;
+    padding: 15px;
+    border-top: 1px solid theme.$border-grey;
+}
+
+.awg-footer-secondary {
+    border-top: 1px solid theme.$border-grey;
+
+    .gtrans {
+        bottom: 0;
+        right: 0;
+        background-color: #dbdad9;
+        border-radius: 5px;
+        text-align: center;
+        padding: 3px;
+    }
+}
