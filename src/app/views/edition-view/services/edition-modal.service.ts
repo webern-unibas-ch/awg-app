@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 
 import { ModalService } from '@awg-shared/modal/modal.service';
+import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
 
 import { EDITION_MODAL_SNIPPETS } from '../data/edition-modal-snippets.data';
 
@@ -35,8 +36,7 @@ export class EditionModalService {
      */
     openTextModal(snippetKey: string): void {
         const id = snippetKey || 'CONTENTS_NOT_AVAILABLE';
-        const isValidKey = Object.hasOwn(EDITION_MODAL_SNIPPETS, id);
-        const content = isValidKey ? EDITION_MODAL_SNIPPETS[id as keyof typeof EDITION_MODAL_SNIPPETS] : '';
+        const content = OBJECT_UTILS.isKeyOf(EDITION_MODAL_SNIPPETS, id) ? EDITION_MODAL_SNIPPETS[id] : '';
 
         this._modalService.openTextModal(id, content);
     }

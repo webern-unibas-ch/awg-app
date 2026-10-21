@@ -1,3 +1,5 @@
+import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
+
 import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data/edition-trademarks.data';
 import { EditionRouteConstant } from '@awg-views/edition-view/edition-routes.constants';
 import {
@@ -23,11 +25,11 @@ export function getTrademark(variant: string): EditionRouteConstant {
         short: 'unknown',
     };
 
-    if (!variant || !Object.hasOwn(EDITION_TRADEMARKS_DATA, variant)) {
+    if (!variant || !OBJECT_UTILS.isKeyOf(EDITION_TRADEMARKS_DATA, variant)) {
         return unknownTrademark;
     }
 
-    return EDITION_TRADEMARKS_DATA[variant as keyof typeof EDITION_TRADEMARKS_DATA];
+    return EDITION_TRADEMARKS_DATA[variant];
 }
 
 /**

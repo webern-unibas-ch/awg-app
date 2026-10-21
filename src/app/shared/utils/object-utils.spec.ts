@@ -2,12 +2,12 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { isEmptyObject, OBJECT_UTILS } from './object-utils';
+import { isEmptyObject, isKeyOf, OBJECT_UTILS } from './object-utils';
 
 describe('ObjectUtils (DONE)', () => {
     describe('OBJECT_UTILS', () => {
         it('... should reference all object utils methods', () => {
-            expectToEqual(OBJECT_UTILS, { isEmptyObject });
+            expectToEqual(OBJECT_UTILS, { isEmptyObject, isKeyOf });
         });
     });
 
@@ -43,6 +43,37 @@ describe('ObjectUtils (DONE)', () => {
                     const isEmpty = isEmptyObject(value);
 
                     expectToBe(isEmpty, false);
+                });
+            });
+        });
+
+        describe('#isKeyOf()', () => {
+            const object = { id: 1, name: '' };
+
+            it('... should have a method `isKeyOf`', () => {
+                expect(isKeyOf).toBeDefined();
+            });
+
+            describe('... should return true if the key', () => {
+                it.each([
+                    { desc: 'is an own key', key: 'id' },
+                    { desc: 'is an own key with an empty value', key: 'name' },
+                ])('... $desc', ({ key }) => {
+                    const isKey = isKeyOf(object, key);
+
+                    expectToBe(isKey, true);
+                });
+            });
+
+            describe('... should return false if the key', () => {
+                it.each([
+                    { desc: 'is unknown', key: 'unknown' },
+                    { desc: 'is a prototype key', key: 'toString' },
+                    { desc: 'is empty', key: '' },
+                ])('... $desc', ({ key }) => {
+                    const isKey = isKeyOf(object, key);
+
+                    expectToBe(isKey, false);
                 });
             });
         });
