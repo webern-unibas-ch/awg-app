@@ -8,20 +8,6 @@ import typescriptEslint from 'typescript-eslint';
 
 const ecmaVersion = 2022;
 
-// TODO(lint-audit): open steps of the lint audit (remove this block when done).
-// Workflow: one commit per topic; list the hits, cases and alternatives before deciding.
-// Angular rules are listed one by one on top of the recommended presets (no `tsAll`/`templateAll`).
-// Not adopted: template/no-call-expression (signals are called in templates), template/i18n,
-// require-localize-metadata and runtime-localize (single-language app), template/attributes-order (it sorts
-// by binding kind only; bindings stay grouped by directive, with event bindings last).
-// - Decide separately: cyclomatic-complexity (max 9: off or limit 10), prefer-ngsrc (10),
-//   prefer-service-decorator (24, API migration).
-// - `npx eslint .` fails on vitest-base.config.ts (in no tsconfig): allowDefaultProject or ignore it
-//   (`yarn lint` only covers src).
-// - PR description: lint time ~267 s before the audit, 47 s after (step 3 done, 0 warnings).
-// Follow-up PRs: edition data model classes to interfaces (then drop the no-misused-spread allow list),
-// D3Selection with concrete generics, router stubs to RouterTestingHarness.
-
 export default defineConfig(
     // Global ignore
     {
@@ -86,6 +72,10 @@ export default defineConfig(
         },
 
         rules: {
+            // Angular rules on top of the recommended preset, listed one by one. Not adopted:
+            // prefer-service-decorator (an API migration), no-input-prefix (no input prefixes to forbid),
+            // require-localize-metadata and runtime-localize (single-language app)
+
             '@angular-eslint/component-class-suffix': 'error',
             '@angular-eslint/component-max-inline-declarations': 'error',
             '@angular-eslint/component-selector': ['error', { type: 'element', prefix: 'awg', style: 'kebab-case' }],
@@ -399,9 +389,16 @@ export default defineConfig(
     {
         files: ['**/*.html'],
         rules: {
+            // Template rules on top of the recommended presets, listed one by one. Not adopted:
+            // no-call-expression (signals are called in templates), i18n (single-language app),
+            // attributes-order (it sorts by binding kind only, see the template attribute convention in CLAUDE.md),
+            // prefer-ngsrc (NgOptimizedImage needs explicit image sizes), use-track-by-function (`@for` requires `track`)
+
             // NgbAccordionButton sets `type="button"` as a host attribute
             '@angular-eslint/template/button-has-type': ['error', { ignoreWithDirectives: ['ngbAccordionButton'] }],
             '@angular-eslint/template/conditional-complexity': 'error',
+            // Data-driven templates branch on optional fields; the limit guards against further growth
+            '@angular-eslint/template/cyclomatic-complexity': ['error', { maxComplexity: 10 }],
             '@angular-eslint/template/no-any': 'error',
             // Static `class` next to `[class]` is merged by Angular
             '@angular-eslint/template/no-duplicate-attributes': ['error', { allowStylePrecedenceDuplicates: true }],
