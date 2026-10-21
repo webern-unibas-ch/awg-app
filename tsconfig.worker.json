@@ -3,6 +3,7 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "./out-tsc/worker",
+        "rootDir": "./src",
         "lib": ["es2022", "webworker"],
         "types": []
     },

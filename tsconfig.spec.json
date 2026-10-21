@@ -2,6 +2,7 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "./out-tsc/spec",
+        "rootDir": "./src",
         "types": ["node"],
         "paths": {
             "@awg-app/*": ["./src/app/*"],
@@ -19,5 +20,5 @@
             "@testing/*": ["./src/testing/*"]
         }
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/testing/", "polyfills.ts"]
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/testing/"]
 }
