@@ -212,7 +212,7 @@ to be displayed with ngb-toast.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, duration?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>constructor(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, duration: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -278,7 +278,7 @@ to be displayed with ngb-toast.</p>
                                                         </td>
                                                   
                                                     <td>
-                                                            Yes
+                                                            No
                                                     </td>
                                                     
                                                         <td>
@@ -450,13 +450,35 @@ export class ToastMessage {
      *
      * @param {string} name The name of the toast.
      * @param {string} message The message of the toast.
-     * @param {number} [duration] The optional duration of the toast.
+     * @param {number} [duration&#x3D;3000] The optional duration of the toast.
      */
-    constructor(name: string, message: string, duration?: number) {
+    constructor(name: string, message: string, duration &#x3D; 3000) {
         this.name &#x3D; name;
         this.message &#x3D; message;
-        this.duration &#x3D; duration || 3000;
+        this.duration &#x3D; duration;
     }
+}
+
+/**
+ * The ToastOptions interface.
+ *
+ * It defines the options of a toast to be displayed with ngb-toast.
+ */
+export interface ToastOptions {
+    /**
+     * The header of the toast.
+     */
+    header?: string;
+
+    /**
+     * The CSS classes of the toast.
+     */
+    classname?: string;
+
+    /**
+     * The delay (in ms) until the toast hides.
+     */
+    delay?: number;
 }
 
 /**
@@ -470,23 +492,23 @@ export class Toast {
     /**
      * The text or template of the toast.
      */
-    textOrTpl: string | TemplateRef&lt;any&gt;;
+    textOrTpl: string | TemplateRef&lt;unknown&gt;;
     /**
      * The options for the toast.
      */
-    options: any;
+    options: ToastOptions;
 
     /**
      * Constructor of the Toast class.
      *
      * It initializes the class with given values.
      *
-     * @param {string | TemplateRef&lt;*&gt;} textOrTpl The given text or template input.
-     * @param {*} [options] The optional options input.
+     * @param {string | TemplateRef&lt;unknown&gt;} textOrTpl The given text or template input.
+     * @param {ToastOptions} [options] The optional options input.
      */
-    constructor(textOrTpl: string | TemplateRef&lt;any&gt;, options?: any) {
+    constructor(textOrTpl: string | TemplateRef&lt;unknown&gt;, options?: ToastOptions) {
         this.textOrTpl &#x3D; textOrTpl;
-        this.options &#x3D; options ? { ...options } : {};
+        this.options &#x3D; { ...options };
     }
 }
 

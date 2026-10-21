@@ -278,7 +278,7 @@ It also emits events for clicks on specific elements within the compiled HTML.</
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_el" >_el</a>
+                                <a href="#_elementRef" >_elementRef</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
@@ -1067,12 +1067,12 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_el"></a>
+                    <a name="_elementRef"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_el</b></span>
-                        <a href="#_el"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_elementRef</b></span>
+                        <a href="#_elementRef"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1084,7 +1084,7 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(ElementRef)</code>
+                        <i>Default value : </i><code>inject&lt;ElementRef&lt;HTMLElement&gt;&gt;(ElementRef)</code>
                     </td>
                 </tr>
                     <tr>
@@ -1095,8 +1095,8 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly injection variable: _el</p>
-<p>It keeps the instance of the injected ElementRef.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _elementRef</p>
+<p>It keeps the reference to the host element.</p>
 </div>
                 </td>
             </tr>
@@ -1259,11 +1259,11 @@ export class CompileHtmlDirective {
     private readonly _editionModalService &#x3D; inject(EditionModalService);
 
     /**
-     * Private readonly injection variable: _el
+     * Private readonly injection variable: _elementRef
      *
-     * It keeps the instance of the injected ElementRef.
+     * It keeps the reference to the host element.
      */
-    private readonly _el &#x3D; inject(ElementRef);
+    private readonly _elementRef &#x3D; inject&lt;ElementRef&lt;HTMLElement&gt;&gt;(ElementRef);
 
     /**
      * Private readonly injection variable: _glyphService
@@ -1313,9 +1313,9 @@ export class CompileHtmlDirective {
 
             content &#x3D; this._replaceGlyphPlaceholders(content);
 
-            this._renderer.setProperty(this._el.nativeElement, &#x27;innerHTML&#x27;, content);
+            this._renderer.setProperty(this._elementRef.nativeElement, &#x27;innerHTML&#x27;, content);
 
-            ABBR_UTILS.applyAbbreviations(this._el.nativeElement);
+            ABBR_UTILS.applyAbbreviations(this._elementRef.nativeElement);
             this._applyAccessibilityAttributes();
         });
     }
@@ -1364,9 +1364,9 @@ export class CompileHtmlDirective {
             &#x27;img[data-snippet-id][data-snippet-src]&#x27;,
         ].join(&#x27;, &#x27;);
 
-        const elements &#x3D; this._el.nativeElement.querySelectorAll(selectors);
+        const elements &#x3D; this._elementRef.nativeElement.querySelectorAll&lt;HTMLElement&gt;(selectors);
 
-        elements.forEach((el: HTMLElement) &#x3D;&gt; {
+        elements.forEach(el &#x3D;&gt; {
             this._renderer.setAttribute(el, &#x27;tabindex&#x27;, &#x27;0&#x27;);
 
             const isImage &#x3D; el.tagName.toLowerCase() &#x3D;&#x3D;&#x3D; &#x27;img&#x27;;
@@ -1420,7 +1420,7 @@ export class CompileHtmlDirective {
             return;
         }
 
-        const complexId &#x3D; anchor.dataset[&#x27;complexId&#x27;] || &#x27;&#x27;;
+        const complexId &#x3D; anchor.dataset[&#x27;complexId&#x27;] ?? &#x27;&#x27;;
 
         const introFragmentId &#x3D; anchor.dataset[&#x27;introFragmentId&#x27;];
         if (introFragmentId) {
@@ -1481,7 +1481,7 @@ export class CompileHtmlDirective {
         }
         const regex &#x3D; /\{\{ref\.getGlyph\(&#x27;([^&#x27;]+)&#x27;\)\}\}/g;
 
-        return content.replace(regex, (_, glyphString) &#x3D;&gt; this._glyphService.getGlyph(glyphString));
+        return content.replace(regex, (_: string, glyphString: string) &#x3D;&gt; this._glyphService.getGlyph(glyphString));
     }
 }
 </code></pre>

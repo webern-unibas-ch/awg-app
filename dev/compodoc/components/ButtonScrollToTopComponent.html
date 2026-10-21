@@ -226,6 +226,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./button-scroll-to-top.component.scss</code></td>
+            </tr>
 
 
 
@@ -581,7 +585,7 @@ import { faArrowUp } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 @Component({
     selector: &#x27;awg-button-scroll-to-top&#x27;,
     templateUrl: &#x27;./button-scroll-to-top.component.html&#x27;,
-    styleUrls: [&#x27;./button-scroll-to-top.component.scss&#x27;],
+    styleUrl: &#x27;./button-scroll-to-top.component.scss&#x27;,
     host: {
         &#x27;(window:scroll)&#x27;: &#x27;onWindowScroll()&#x27;,
     },
@@ -620,7 +624,7 @@ export class ButtonScrollToTopComponent {
      */
     protected onWindowScroll(): void {
         const windowRef &#x3D; this._document.defaultView;
-        const scrollPosition &#x3D; windowRef?.scrollY || 0;
+        const scrollPosition &#x3D; windowRef?.scrollY ?? 0;
         const SCROLL_THRESHOLD &#x3D; 300;
 
         this.showScrollButton.set(scrollPosition &gt;&#x3D; SCROLL_THRESHOLD);

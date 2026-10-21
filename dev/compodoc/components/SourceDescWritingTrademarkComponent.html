@@ -382,7 +382,7 @@ of the critical report of the edition view of the app.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.trademark()?.alt || &#x27;&#x27;)</code>
+                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.trademark()?.alt ?? &#x27;&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
@@ -421,7 +421,7 @@ of the critical report of the edition view of the app.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed&lt;boolean&gt;(() &#x3D;&gt; !!(this.trademark()?.variant || this.trademark()?.alt))</code>
+                        <i>Default value : </i><code>computed&lt;boolean&gt;(() &#x3D;&gt; !!this.trademark()?.variant || !!this.trademark()?.alt)</code>
                     </td>
                 </tr>
                     <tr>
@@ -562,7 +562,7 @@ export class SourceDescWritingTrademarkComponent {
      *
      * It checks whether the trademark has a variant or an alt text.
      */
-    readonly hasTrademark &#x3D; computed&lt;boolean&gt;(() &#x3D;&gt; !!(this.trademark()?.variant || this.trademark()?.alt));
+    readonly hasTrademark &#x3D; computed&lt;boolean&gt;(() &#x3D;&gt; !!this.trademark()?.variant || !!this.trademark()?.alt);
 
     /**
      * Readonly computed signal: variant.
@@ -580,7 +580,7 @@ export class SourceDescWritingTrademarkComponent {
      *
      * It holds the alt text of the trademark, or an empty string.
      */
-    readonly alt &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.trademark()?.alt || &#x27;&#x27;);
+    readonly alt &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.trademark()?.alt ?? &#x27;&#x27;);
 
     /**
      * Readonly computed signal: loci.

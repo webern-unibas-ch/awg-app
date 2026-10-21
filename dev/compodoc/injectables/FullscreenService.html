@@ -597,7 +597,7 @@ export class FullscreenService {
      */
     closeFullscreen(): void {
         if (this._document.exitFullscreen) {
-            this._document.exitFullscreen().catch((err: Error) &#x3D;&gt; console.error(err));
+            this._document.exitFullscreen().catch((err: unknown) &#x3D;&gt; console.error(err));
         }
     }
 
@@ -611,7 +611,7 @@ export class FullscreenService {
      */
     openFullscreen(element: HTMLElement): void {
         if (!this._document.fullscreenElement) {
-            element.requestFullscreen().catch((err: Error) &#x3D;&gt; console.error(err));
+            element.requestFullscreen().catch((err: unknown) &#x3D;&gt; console.error(err));
         }
     }
 }

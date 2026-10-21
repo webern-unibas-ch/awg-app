@@ -338,7 +338,7 @@ and opens text and image modals via the <a href="../injectables/ModalService.htm
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>openTextModal(snippetKey?: string | null)</code>
+<code>openTextModal(snippetKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -355,7 +355,7 @@ and opens text and image modals via the <a href="../injectables/ModalService.htm
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: openTextModal.</p>
 <p>It opens a text modal with the edition text snippet for the given key.
-A missing key falls back to <code>CONTENTS_NOT_AVAILABLE</code>,
+An empty key falls back to <code>CONTENTS_NOT_AVAILABLE</code>,
 an unknown key results in an empty content.</p>
 </div>
 
@@ -375,11 +375,11 @@ an unknown key results in an empty content.</p>
                                         <tr>
                                                 <td>snippetKey</td>
                                             <td>
-                                                        <code>string | null</code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
-                                                    Yes
+                                                    No
                                             </td>
 
 
@@ -485,13 +485,13 @@ export class EditionModalService {
      * Public method: openTextModal.
      *
      * It opens a text modal with the edition text snippet for the given key.
-     * A missing key falls back to &#x60;CONTENTS_NOT_AVAILABLE&#x60;,
+     * An empty key falls back to &#x60;CONTENTS_NOT_AVAILABLE&#x60;,
      * an unknown key results in an empty content.
      *
-     * @param {string | null | undefined} snippetKey The key of the edition text snippet.
+     * @param {string} snippetKey The key of the edition text snippet.
      * @returns {void} Opens the text modal.
      */
-    openTextModal(snippetKey?: string | null): void {
+    openTextModal(snippetKey: string): void {
         const id &#x3D; snippetKey || &#x27;CONTENTS_NOT_AVAILABLE&#x27;;
         const isValidKey &#x3D; Object.hasOwn(EDITION_MODAL_SNIPPETS, id);
         const content &#x3D; isValidKey ? EDITION_MODAL_SNIPPETS[id as keyof typeof EDITION_MODAL_SNIPPETS] : &#x27;&#x27;;

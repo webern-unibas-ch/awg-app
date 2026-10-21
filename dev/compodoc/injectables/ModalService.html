@@ -267,7 +267,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getDismissReason(reason: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    <code>_getDismissReason(reason: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>)</code>
                 </td>
             </tr>
 
@@ -302,7 +302,7 @@
                                         <tr>
                                                 <td>reason</td>
                                             <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                            <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
                                             </td>
 
                                             <td>
@@ -822,10 +822,10 @@ export class ModalService {
         });
 
         modalRef.result.then(
-            result &#x3D;&gt; {
-                this.closeResult.set(&#x60;Closed with: ${result}&#x60;);
+            (result: unknown) &#x3D;&gt; {
+                this.closeResult.set(&#x60;Closed with: ${String(result)}&#x60;);
             },
-            reason &#x3D;&gt; {
+            (reason: unknown) &#x3D;&gt; {
                 this.closeResult.set(&#x60;Dismissed ${this._getDismissReason(reason)}&#x60;);
             }
         );
@@ -836,17 +836,17 @@ export class ModalService {
      *
      * It returns a string describing the reason for modal dismissal.
      *
-     * @param {any} reason The reason for dismissal.
+     * @param {unknown} reason The reason for dismissal.
      * @returns {string} The dismissal reason as a string.
      */
-    private _getDismissReason(reason: any): string {
+    private _getDismissReason(reason: unknown): string {
         switch (reason) {
             case ModalDismissReasons.ESC:
                 return &#x27;by pressing ESC&#x27;;
             case ModalDismissReasons.BACKDROP_CLICK:
                 return &#x27;by clicking on a backdrop&#x27;;
             default:
-                return &#x60;with: ${reason}&#x60;;
+                return &#x60;with: ${String(reason)}&#x60;;
         }
     }
 }

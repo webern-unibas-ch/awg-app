@@ -279,7 +279,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+                                <span class="modifier">Public</span>
+                        <code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
@@ -291,7 +292,8 @@
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the Statistics class.</p>
-<p>It initializes the edition statistics with default zero values and empty breakdowns.</p>
+<p>It makes the protected base constructor public and
+initializes the edition statistics with default zero values and empty breakdowns.</p>
 </div>
                     </td>
                 </tr>
@@ -1148,9 +1150,10 @@ export class Statistics extends StatisticsBreakdownBase {
     /**
      * Constructor of the Statistics class.
      *
-     * It initializes the edition statistics with default zero values and empty breakdowns.
+     * It makes the protected base constructor public and
+     * initializes the edition statistics with default zero values and empty breakdowns.
      */
-    constructor() {
+    public constructor() {
         super();
     }
 }

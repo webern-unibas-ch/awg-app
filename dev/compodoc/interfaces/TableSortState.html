@@ -232,7 +232,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/table/table.model.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/table/table.model.ts:40</a></div>
                                 </td>
                             </tr>
 
@@ -277,7 +277,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/table/table.model.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/shared/table/table.model.ts:45</a></div>
                                 </td>
                             </tr>
 
@@ -294,12 +294,30 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface TableRows {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface TableCell {
     /**
-     * The key-value pair bindings of the table rows.
+     * The type of the cell (&#x60;uri&#x60; cells are displayed as links).
      */
-    [key: string]: any;
+    readonly type: string;
+
+    /**
+     * The value of the cell (emitted on click of a link).
+     */
+    readonly value: string;
+
+    /**
+     * The label of the cell to be displayed, searched and sorted.
+     */
+    readonly label: string;
 }
+
+/**
+ * The TableRow type.
+ *
+ * It represents a row of a table with one cell per column (header label);
+ * a row can have no cell for a column.
+ */
+export type TableRow &#x3D; Readonly&lt;Partial&lt;Record&lt;string, TableCell&gt;&gt;&gt;;
 
 /**
  * The TableSortState interface.

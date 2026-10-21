@@ -612,7 +612,7 @@ the zoom factor is synced two-way via <code>zoomValue</code> (cf. <a href="../di
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">        <code><a href="../directives/ZoomBaseDirective.html#source" target="_self" >ZoomBaseDirective:119</a></code>
+                                <div class="io-line">        <code><a href="../directives/ZoomBaseDirective.html#source" target="_self" >ZoomBaseDirective:125</a></code>
 </div>
                         </td>
                     </tr>
@@ -694,7 +694,7 @@ the zoom factor is synced two-way via <code>zoomValue</code> (cf. <a href="../di
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">        <code><a href="../directives/ZoomBaseDirective.html#source" target="_self" >ZoomBaseDirective:97</a></code>
+                                <div class="io-line">        <code><a href="../directives/ZoomBaseDirective.html#source" target="_self" >ZoomBaseDirective:100</a></code>
 </div>
                         </td>
                     </tr>
@@ -887,7 +887,10 @@ the zoom factor is synced two-way via <code>zoomValue</code> (cf. <a href="../di
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>D3_ZOOM.zoom&lt;E, unknown&gt;().on(&#x27;zoom&#x27;, event &#x3D;&gt; this._onZoom(event.transform))</code>
+                        <i>Default value : </i><code>D3_ZOOM.zoom&lt;E, unknown&gt;().on(
+        &#x27;zoom&#x27;,
+        (event: D3_ZOOM.D3ZoomEvent&lt;E, unknown&gt;) &#x3D;&gt; this._onZoom(event.transform)
+    )</code>
                     </td>
                 </tr>
                         <tr>

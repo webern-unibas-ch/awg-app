@@ -293,7 +293,7 @@ Subclasses apply the resulting transform.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/zoom/zoom-base.directive.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/shared/zoom/zoom-base.directive.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -441,8 +441,8 @@ sets up the effects for the scale extent and external scale changes.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="109"
-                                    class="link-to-prism">src/app/shared/zoom/zoom-base.directive.ts:109</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/shared/zoom/zoom-base.directive.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -519,8 +519,8 @@ sets up the effects for the scale extent and external scale changes.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="119"
-                                    class="link-to-prism">src/app/shared/zoom/zoom-base.directive.ts:119</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/shared/zoom/zoom-base.directive.ts:125</a></div>
                         </td>
                     </tr>
 
@@ -595,8 +595,8 @@ sets up the effects for the scale extent and external scale changes.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="97"
-                                    class="link-to-prism">src/app/shared/zoom/zoom-base.directive.ts:97</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/shared/zoom/zoom-base.directive.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -767,7 +767,10 @@ sets up the effects for the scale extent and external scale changes.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>D3_ZOOM.zoom&lt;E, unknown&gt;().on(&#x27;zoom&#x27;, event &#x3D;&gt; this._onZoom(event.transform))</code>
+                        <i>Default value : </i><code>D3_ZOOM.zoom&lt;E, unknown&gt;().on(
+        &#x27;zoom&#x27;,
+        (event: D3_ZOOM.D3ZoomEvent&lt;E, unknown&gt;) &#x3D;&gt; this._onZoom(event.transform)
+    )</code>
                     </td>
                 </tr>
                     <tr>
@@ -850,7 +853,10 @@ export abstract class ZoomBaseDirective&lt;E extends Element&gt; {
      *
      * It keeps the D3 zoom behaviour bound to the host element.
      */
-    protected readonly _zoomBehaviour &#x3D; D3_ZOOM.zoom&lt;E, unknown&gt;().on(&#x27;zoom&#x27;, event &#x3D;&gt; this._onZoom(event.transform));
+    protected readonly _zoomBehaviour &#x3D; D3_ZOOM.zoom&lt;E, unknown&gt;().on(
+        &#x27;zoom&#x27;,
+        (event: D3_ZOOM.D3ZoomEvent&lt;E, unknown&gt;) &#x3D;&gt; this._onZoom(event.transform)
+    );
 
     /**
      * Constructor of the ZoomBaseDirective.
@@ -876,7 +882,7 @@ export abstract class ZoomBaseDirective&lt;E extends Element&gt; {
             );
 
             if (scale &amp;&amp; scale !&#x3D;&#x3D; currentScale) {
-                this._selection.call(this._zoomBehaviour.scaleTo, scale);
+                this._zoomBehaviour.scaleTo(this._selection, scale);
             }
         });
     }
@@ -889,7 +895,10 @@ export abstract class ZoomBaseDirective&lt;E extends Element&gt; {
      * @returns {void} Resets the zoom.
      */
     reset(): void {
-        this._selection.call(this._zoomBehaviour.transform, D3_ZOOM.zoomIdentity.scale(this.zoomConfig().initial));
+        const { initial } &#x3D; this.zoomConfig();
+        const initialTransform &#x3D; D3_ZOOM.zoomIdentity.scale(initial);
+
+        this._zoomBehaviour.transform(this._selection, initialTransform);
     }
 
     /**

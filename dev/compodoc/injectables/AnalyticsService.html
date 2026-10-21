@@ -283,8 +283,8 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/app/core/services/analytics.service.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/core/services/analytics.service.ts:122</a></div>
                         </td>
                     </tr>
 
@@ -455,7 +455,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>AppConstants.ANALYTICS_ENDPOINT</code>
+                        <i>Default value : </i><code>APP_CONSTANTS.ANALYTICS_ENDPOINT</code>
                     </td>
                 </tr>
                     <tr>
@@ -495,7 +495,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>AppConstants.ANALYTICS_ID</code>
+                        <i>Default value : </i><code>APP_CONSTANTS.ANALYTICS_ID</code>
                     </td>
                 </tr>
                     <tr>
@@ -643,14 +643,14 @@ PRODUCTION: TRUE</p>
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, inject, Injectable } from &#x27;@angular/core&#x27;;
 
-import { AppConstants } from &#x27;@awg-app/app.constants&#x27;;
+import { APP_CONSTANTS } from &#x27;@awg-app/app.constants&#x27;;
 
 import { environment } from &#x27;environments/environment&#x27;;
 
 /**
  * The global gtag variable for Analytics.
  */
-declare let gtag: Function;
+declare let gtag: (...args: AnalyticsConfigEvent) &#x3D;&gt; void;
 
 /**
  * The AnalyticsConfigEvent type.
@@ -685,14 +685,14 @@ export class AnalyticsService {
      * It stores the analytics id.
      *
      */
-    private readonly _analyticsId: string &#x3D; AppConstants.ANALYTICS_ID;
+    private readonly _analyticsId: string &#x3D; APP_CONSTANTS.ANALYTICS_ID;
 
     /**
      * Private readonly variable: _analyticsEndpoint.
      *
      * It stores the analytics endpoint.
      */
-    private readonly _analyticsEndpoint: string &#x3D; AppConstants.ANALYTICS_ENDPOINT;
+    private readonly _analyticsEndpoint: string &#x3D; APP_CONSTANTS.ANALYTICS_ENDPOINT;
 
     /**
      * Private readonly variable: _sendPageView.
@@ -722,7 +722,7 @@ export class AnalyticsService {
         if (!this._analyticsEndpoint || !this._analyticsId) {
             return;
         }
-        if (this._sendPageView &#x3D;&#x3D;&#x3D; false) {
+        if (!this._sendPageView) {
             console.info(&#x27;Running non-production analytics replacement now&#x27;);
         } else {
             this._prependAnalyticsScript();
@@ -747,9 +747,7 @@ export class AnalyticsService {
             &#x27;config&#x27;,
             this._analyticsId,
             {
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 page_path: page,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 send_page_view: this._sendPageView,
             },
         ];

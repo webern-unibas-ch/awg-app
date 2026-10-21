@@ -229,6 +229,10 @@ with redirects to the AWG contact pages.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./page-not-found-view.component.scss</code></td>
+            </tr>
 
 
 
@@ -347,7 +351,7 @@ with redirects to the AWG contact pages.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>AppConstants.AWG_PROJECT_URL + &#x27;de/info/kontakt.html&#x27;</code>
+                        <i>Default value : </i><code>APP_CONSTANTS.AWG_PROJECT_URL + &#x27;de/info/kontakt.html&#x27;</code>
                     </td>
                 </tr>
                     <tr>
@@ -533,7 +537,7 @@ of the page not found view.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
 import { RouterLink, RouterLinkActive } from &#x27;@angular/router&#x27;;
 
-import { AppConstants } from &#x27;@awg-app/app.constants&#x27;;
+import { APP_CONSTANTS } from &#x27;@awg-app/app.constants&#x27;;
 import { ExternalLinkDirective } from &#x27;@awg-shared/external-link/external-link.directive&#x27;;
 import { HeadingComponent } from &#x27;@awg-shared/heading/heading.component&#x27;;
 
@@ -546,7 +550,7 @@ import { HeadingComponent } from &#x27;@awg-shared/heading/heading.component&#x2
 @Component({
     selector: &#x27;awg-page-not-found-view&#x27;,
     templateUrl: &#x27;./page-not-found-view.component.html&#x27;,
-    styleUrls: [&#x27;./page-not-found-view.component.scss&#x27;],
+    styleUrl: &#x27;./page-not-found-view.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [HeadingComponent, ExternalLinkDirective, RouterLink, RouterLinkActive],
 })
@@ -586,7 +590,7 @@ export class PageNotFoundViewComponent {
      *
      * It keeps the url to the contact page of the Webern project homepage.
      */
-    readonly awgContactUrl &#x3D; AppConstants.AWG_PROJECT_URL + &#x27;de/info/kontakt.html&#x27;;
+    readonly awgContactUrl &#x3D; APP_CONSTANTS.AWG_PROJECT_URL + &#x27;de/info/kontakt.html&#x27;;
 }
 </code></pre>
     </div>

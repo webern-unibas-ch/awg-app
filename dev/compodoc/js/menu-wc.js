@@ -536,9 +536,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/AppConstants.html" data-type="entity-link" >AppConstants</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/EditionComplex.html" data-type="entity-link" >EditionComplex</a>
                             </li>
                             <li class="link">
@@ -767,6 +764,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/AlertError.html" data-type="entity-link" >AlertError</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/CanvasBounds.html" data-type="entity-link" >CanvasBounds</a>
                             </li>
                             <li class="link">
@@ -788,19 +788,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/CanvasViewport.html" data-type="entity-link" >CanvasViewport</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3Selection.html" data-type="entity-link" >D3Selection</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/D3ZoomBehaviour.html" data-type="entity-link" >D3ZoomBehaviour</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/DynamicViewContexts.html" data-type="entity-link" >DynamicViewContexts</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionComplexesJsonData.html" data-type="entity-link" >EditionComplexesJsonData</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/EditionComplexJsonData.html" data-type="entity-link" >EditionComplexJsonData</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionComplexJsonPersonRef.html" data-type="entity-link" >EditionComplexJsonPersonRef</a>
@@ -1160,7 +1151,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/StatisticsSummaryCardData.html" data-type="entity-link" >StatisticsSummaryCardData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/TableRows.html" data-type="entity-link" >TableRows</a>
+                                <a href="interfaces/TableCell.html" data-type="entity-link" >TableCell</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/TableSortState.html" data-type="entity-link" >TableSortState</a>
@@ -1176,6 +1167,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/TkaTableHeaderColumn.html" data-type="entity-link" >TkaTableHeaderColumn</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ToastOptions.html" data-type="entity-link" >ToastOptions</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/TurtleParseResult.html" data-type="entity-link" >TurtleParseResult</a>

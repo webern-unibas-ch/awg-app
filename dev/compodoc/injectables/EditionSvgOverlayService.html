@@ -339,7 +339,7 @@ The state itself and the events are held and handled by the consuming component.
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createTkkOverlayGroup(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, dim: DOMRect)</code>
+                    <code>_createTkkOverlayGroup(svgRootGroup: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, dim: DOMRect)</code>
                 </td>
             </tr>
 
@@ -374,7 +374,7 @@ The state itself and the events are held and handled by the consuming component.
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection</a></code>
                                             </td>
 
                                             <td>
@@ -449,7 +449,7 @@ The state itself and the events are held and handled by the consuming component.
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getOverlayGroupRectSelection(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_getOverlayGroupRectSelection(svgRootGroup: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -484,7 +484,7 @@ The state itself and the events are held and handled by the consuming component.
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection</a></code>
                                             </td>
 
                                             <td>
@@ -517,7 +517,7 @@ The state itself and the events are held and handled by the consuming component.
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection</a></code>
 
                         </div>
                             <div class="io-description">
@@ -630,8 +630,8 @@ otherwise uses group id (default).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="359"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:359</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="360"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:360</a></div>
                         </td>
                     </tr>
 
@@ -715,7 +715,7 @@ otherwise uses group id (default).</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>createSvgOverlays(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>)</code>
+<code>createSvgOverlays(rootGroupSelection: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection | undefined</a>)</code>
                 </td>
             </tr>
 
@@ -752,7 +752,7 @@ and returns the available tkk overlays.</p>
                                         <tr>
                                                 <td>rootGroupSelection</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -1382,7 +1382,7 @@ and returns the available tkk overlays.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateTkkOverlays(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, state: <a href="../interfaces/EditionSvgOverlaysState.html" target="_self">EditionSvgOverlaysState</a>)</code>
+<code>updateTkkOverlays(rootGroupSelection: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection | undefined</a>, state: <a href="../interfaces/EditionSvgOverlaysState.html" target="_self">EditionSvgOverlaysState</a>)</code>
                 </td>
             </tr>
 
@@ -1420,7 +1420,7 @@ and disables not highlighted overlay boxes for pointer and keyboard interaction.
                                         <tr>
                                                 <td>rootGroupSelection</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -2148,7 +2148,8 @@ export class EditionSvgOverlayService {
      * @returns {string} The resolved data id.
      */
     private _getSvgGroupDataId(group: SVGGElement): string {
-        return group.getAttribute(DATA_TKK_ID) || group.id;
+        const dataTkkId &#x3D; group.getAttribute(DATA_TKK_ID);
+        return dataTkkId?.length ? dataTkkId : group.id;
     }
 
     /**

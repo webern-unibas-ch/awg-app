@@ -242,7 +242,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/app/views/edition-view/models/edition-data.model.ts:173</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/app/views/edition-view/models/edition-data.model.ts:170</a></div>
                                 </td>
                             </tr>
 
@@ -287,7 +287,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/app/views/edition-view/models/edition-data.model.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/app/views/edition-view/models/edition-data.model.ts:175</a></div>
                                 </td>
                             </tr>
 
@@ -332,7 +332,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/views/edition-view/models/edition-data.model.ts:183</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/app/views/edition-view/models/edition-data.model.ts:180</a></div>
                                 </td>
                             </tr>
 
@@ -377,7 +377,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/app/views/edition-view/models/edition-data.model.ts:169</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/app/views/edition-view/models/edition-data.model.ts:166</a></div>
                                 </td>
                             </tr>
 
@@ -394,7 +394,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionSvgSheetsList } from &#x27;./edition-svg-sheets.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AlertError } from &#x27;@awg-shared/alert-error/alert-error.model&#x27;;
+
+import { EditionSvgSheetsList } from &#x27;./edition-svg-sheets.model&#x27;;
 import { FolioConvoluteList } from &#x27;./folio.model&#x27;;
 import { GraphList } from &#x27;./graph.model&#x27;;
 import { IntroList } from &#x27;./intro.model&#x27;;
@@ -439,16 +441,11 @@ export type EditionDataAssetsKeys &#x3D; EditionStaticDataAssetsKeys | EditionCo
  *
  * It defines the structure of an error object for data assets.
  */
-export interface EditionDataAssetsError {
+export interface EditionDataAssetsError extends AlertError {
     /**
      * The key of the data asset that caused the error.
      */
     key: EditionDataAssetsKeys;
-
-    /**
-     * The error object associated with the data asset.
-     */
-    error: unknown;
 }
 
 /**

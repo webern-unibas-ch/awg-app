@@ -306,7 +306,7 @@
                             <a href="#getDimensions" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-writing-materials/source-desc-writing-materials.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>getDimensions</b>&nbsp;&nbsp;&nbsp;(src/.../source-desc-writing-materials.utils.ts)</span></a>
                         </li>
                         <li>
-                            <a href="#getErrorMessage" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/error.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>getErrorMessage</b>&nbsp;&nbsp;&nbsp;(src/.../error.utils.ts)</span></a>
+                            <a href="#getErrorMessage" title="src/app/shared/utils/error-utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>getErrorMessage</b>&nbsp;&nbsp;&nbsp;(src/.../error-utils.ts)</span></a>
                         </li>
                         <li>
                             <a href="#getFullSheetIds" title="src/app/views/edition-view/utils/edition-sheets.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>getFullSheetIds</b>&nbsp;&nbsp;&nbsp;(src/.../edition-sheets.utils.ts)</span></a>
@@ -5754,13 +5754,8 @@ and a folio with systems. Invalid contents are logged.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Utils method: compareTableValues.</p>
-<p>It compares two table values for sorting:</p>
-<ul>
-<li>strings in natural, case-insensitive order,</li>
-<li>numbers numerically,</li>
-<li>numbers before strings,</li>
-<li>missing values (null, undefined, NaN) at the end.</li>
-</ul>
+<p>It compares two table values for sorting in natural, case-insensitive order
+(numbers within the values numerically), with missing values at the end.</p>
 </div>
 
                             <div class="io-description">
@@ -5892,7 +5887,7 @@ contains the term (case-insensitive).</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/TableRows.html" target="_self" >TableRows[]</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >TableRow[]</a></code>
 
                         </div>
                             <div class="io-description">
@@ -5926,7 +5921,7 @@ contains the term (case-insensitive).</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Utils method: isMissingTableValue.</p>
-<p>It checks if a given table value is missing (null, undefined or NaN).</p>
+<p>It checks if a given table value is missing (a row without a cell for the column).</p>
 </div>
 
                             <div class="io-description">
@@ -5958,7 +5953,7 @@ contains the term (case-insensitive).</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                            <b>Returns : </b>    <code>undefined</code>
 
                         </div>
                             <div class="io-description">
@@ -6059,7 +6054,7 @@ contains the term (case-insensitive).</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/TableRows.html" target="_self" >TableRows[]</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >TableRow[]</a></code>
 
                         </div>
                             <div class="io-description">
@@ -6162,7 +6157,7 @@ and missing values stay at the end also in reverse order.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/TableRows.html" target="_self" >TableRows[]</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >TableRow[]</a></code>
 
                         </div>
                             <div class="io-description">
@@ -9711,7 +9706,7 @@ from the <a href="../miscellaneous/variables.html#EDITION_TRADEMARKS_DATA">EDITI
         </tbody>
     </table>
 </section>
-    <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/error.utils.ts</h3>
+    <h3>src/app/shared/utils/error-utils.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -9795,20 +9790,12 @@ from the <a href="../miscellaneous/variables.html#EDITION_TRADEMARKS_DATA">EDITI
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>isEmptyArray&lt;T&gt;(value)</code>
+<code>isEmptyArray(value)</code>
                 </td>
             </tr>
 
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Type parameters :</b>
-                            <ul class="type-parameters">
-                                    <li>T</li>
-                            </ul>
-                        </td>
-                    </tr>
 
             <tr>
                 <td class="col-md-4">
@@ -10464,7 +10451,7 @@ with one cell per bound variable. Unbound variables get no cell.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/TableRows.html" target="_self" >TableRows[]</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >TableRow[]</a></code>
 
                         </div>
                             <div class="io-description">

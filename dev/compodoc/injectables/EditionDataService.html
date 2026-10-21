@@ -2301,7 +2301,7 @@ export class EditionDataService {
             this._dataError.set({ key: assetsKey, error });
 
             // Let the app keep running by returning the empty fallback.
-            return observableOf(fallbackValue as T);
+            return observableOf(fallbackValue);
         };
     }
 

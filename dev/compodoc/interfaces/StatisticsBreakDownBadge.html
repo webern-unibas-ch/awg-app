@@ -679,9 +679,10 @@ export class Statistics extends StatisticsBreakdownBase {
     /**
      * Constructor of the Statistics class.
      *
-     * It initializes the edition statistics with default zero values and empty breakdowns.
+     * It makes the protected base constructor public and
+     * initializes the edition statistics with default zero values and empty breakdowns.
      */
-    constructor() {
+    public constructor() {
         super();
     }
 }

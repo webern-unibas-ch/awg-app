@@ -854,7 +854,7 @@ The size is given by the caller, so that the bounds and the fit refer to the sam
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">        <code><a href="../directives/ZoomBaseDirective.html#source" target="_self" >ZoomBaseDirective:119</a></code>
+                                <div class="io-line">        <code><a href="../directives/ZoomBaseDirective.html#source" target="_self" >ZoomBaseDirective:125</a></code>
 </div>
                         </td>
                     </tr>
@@ -936,7 +936,7 @@ The size is given by the caller, so that the bounds and the fit refer to the sam
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">        <code><a href="../directives/ZoomBaseDirective.html#source" target="_self" >ZoomBaseDirective:97</a></code>
+                                <div class="io-line">        <code><a href="../directives/ZoomBaseDirective.html#source" target="_self" >ZoomBaseDirective:100</a></code>
 </div>
                         </td>
                     </tr>
@@ -1208,7 +1208,10 @@ The size is given by the caller, so that the bounds and the fit refer to the sam
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>D3_ZOOM.zoom&lt;E, unknown&gt;().on(&#x27;zoom&#x27;, event &#x3D;&gt; this._onZoom(event.transform))</code>
+                        <i>Default value : </i><code>D3_ZOOM.zoom&lt;E, unknown&gt;().on(
+        &#x27;zoom&#x27;,
+        (event: D3_ZOOM.D3ZoomEvent&lt;E, unknown&gt;) &#x3D;&gt; this._onZoom(event.transform)
+    )</code>
                     </td>
                 </tr>
                         <tr>
@@ -1324,7 +1327,7 @@ export class CanvasZoomDirective extends ZoomBaseDirective&lt;HTMLCanvasElement&
             .scale(scale)
             .translate(-centerX, -centerY);
 
-        this._selection.call(this._zoomBehaviour.transform, transform);
+        this._zoomBehaviour.transform(this._selection, transform);
     }
 
     /**

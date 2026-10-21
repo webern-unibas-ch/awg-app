@@ -227,6 +227,10 @@ another router outlet for the edition routes.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./edition-detail-nav.component.scss</code></td>
+            </tr>
 
 
 
@@ -476,7 +480,7 @@ const EDITION_DETAIL_ROUTES &#x3D; [EDITION_INTRO, EDITION_SHEETS, EDITION_REPOR
 @Component({
     selector: &#x27;awg-edition-detail-nav&#x27;,
     templateUrl: &#x27;./edition-detail-nav.component.html&#x27;,
-    styleUrls: [&#x27;./edition-detail-nav.component.scss&#x27;],
+    styleUrl: &#x27;./edition-detail-nav.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NavLinkGroupComponent, RouterOutlet],
 })

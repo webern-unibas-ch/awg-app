@@ -237,6 +237,10 @@ and renders that folio with its content segments.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./edition-folios-viewer-svg.component.scss</code></td>
+            </tr>
 
 
 
@@ -500,7 +504,7 @@ and it marks the content segment of the selected svg sheet as active.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_renderFolio(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, svgData: <a href="../interfaces/FolioSvgData.html" target="_self">FolioSvgData</a>)</code>
+                    <code>_renderFolio(rootGroupSelection: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection</a>, svgData: <a href="../interfaces/FolioSvgData.html" target="_self">FolioSvgData</a>)</code>
                 </td>
             </tr>
 
@@ -536,7 +540,7 @@ and marks the content segment of the selected svg sheet as active.</p>
                                         <tr>
                                                 <td>rootGroupSelection</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection</a></code>
                                             </td>
 
                                             <td>
@@ -846,8 +850,8 @@ selecting any other content segment opens its text modal.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed&lt;D3Selection&gt;(
-        () &#x3D;&gt; D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
+                        <i>Default value : </i><code>computed&lt;D3Selection&gt;(() &#x3D;&gt;
+        D3_SELECTION.select(this.svgRootGroup().nativeElement)
     )</code>
                     </td>
                 </tr>
@@ -1026,7 +1030,7 @@ import { EditionNavigationService } from &#x27;@awg-views/edition-view/services/
 @Component({
     selector: &#x27;awg-edition-folios-viewer-svg&#x27;,
     templateUrl: &#x27;./edition-folios-viewer-svg.component.html&#x27;,
-    styleUrls: [&#x27;./edition-folios-viewer-svg.component.scss&#x27;],
+    styleUrl: &#x27;./edition-folios-viewer-svg.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective],
 })
@@ -1100,8 +1104,8 @@ export class EditionFoliosViewerSvgComponent {
      *
      * It holds the d3 selection of the svg root group (the element is stable across renderings).
      */
-    private readonly _svgRootGroupSelection &#x3D; computed&lt;D3Selection&gt;(
-        () &#x3D;&gt; D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
+    private readonly _svgRootGroupSelection &#x3D; computed&lt;D3Selection&gt;(() &#x3D;&gt;
+        D3_SELECTION.select(this.svgRootGroup().nativeElement)
     );
 
     /**

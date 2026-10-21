@@ -330,7 +330,7 @@ adds specific attributes if href has an external target.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:33</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -363,7 +363,7 @@ adds specific attributes if href has an external target.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:40</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -412,7 +412,7 @@ adds specific attributes if href has an external target.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -467,7 +467,7 @@ adds specific attributes if href has an external target.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -519,7 +519,7 @@ adds specific attributes if href has an external target.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:73</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/shared/external-link/external-link.directive.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -550,6 +550,7 @@ import { computed, Directive, inject, input, PLATFORM_ID } from &#x27;@angular/c
  * adds specific attributes if href has an external target.
  */
 @Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector -- applies to all links to mark external targets
     selector: &#x27;a[href]&#x27;,
     host: {
         &#x27;[attr.href]&#x27;: &#x27;href()&#x27;,

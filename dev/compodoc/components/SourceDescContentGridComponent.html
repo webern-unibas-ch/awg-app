@@ -229,6 +229,10 @@ of the critical report of the edition view of the app.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./source-desc-content-grid.component.scss</code></td>
+            </tr>
 
 
 
@@ -529,7 +533,7 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.content()?.itemLinkTo?.complexId || &#x27;&#x27;)</code>
+                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.content()?.itemLinkTo?.complexId ?? &#x27;&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
@@ -575,7 +579,7 @@ import { SourceDescContentSystemComponent } from &#x27;../system/source-desc-con
 @Component({
     selector: &#x27;awg-source-desc-content-grid&#x27;,
     templateUrl: &#x27;./source-desc-content-grid.component.html&#x27;,
-    styleUrls: [&#x27;./source-desc-content-grid.component.scss&#x27;],
+    styleUrl: &#x27;./source-desc-content-grid.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CompileHtmlDirective,
@@ -604,7 +608,7 @@ export class SourceDescContentGridComponent {
      *
      * It holds the complex id the content item links to, or an empty string.
      */
-    readonly parentComplexId &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.content()?.itemLinkTo?.complexId || &#x27;&#x27;);
+    readonly parentComplexId &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.content()?.itemLinkTo?.complexId ?? &#x27;&#x27;);
 
     /**
      * Public method: selectSvgSheet.

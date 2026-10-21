@@ -228,6 +228,10 @@ and displays that svg sheet with a zoom slider and navigation buttons.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./edition-sheet-viewer.component.scss</code></td>
+            </tr>
 
 
 
@@ -578,7 +582,7 @@ import { EditionSheetViewerSvgComponent } from &#x27;./svg/edition-sheet-viewer-
 @Component({
     selector: &#x27;awg-edition-sheet-viewer&#x27;,
     templateUrl: &#x27;./edition-sheet-viewer.component.html&#x27;,
-    styleUrls: [&#x27;./edition-sheet-viewer.component.scss&#x27;],
+    styleUrl: &#x27;./edition-sheet-viewer.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSheetViewerNavComponent, EditionSheetViewerSvgComponent, ZoomSliderComponent],
 })

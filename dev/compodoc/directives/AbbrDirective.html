@@ -232,7 +232,7 @@
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_el" >_el</a>
+                                <a href="#_elementRef" >_elementRef</a>
                             </li>
                         </ul>
                     </td>
@@ -411,12 +411,12 @@ containing the full form as title.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_el"></a>
+                    <a name="_elementRef"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_el</b></span>
-                        <a href="#_el"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_elementRef</b></span>
+                        <a href="#_elementRef"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -428,7 +428,7 @@ containing the full form as title.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(ElementRef&lt;HTMLElement&gt;)</code>
+                        <i>Default value : </i><code>inject&lt;ElementRef&lt;HTMLElement&gt;&gt;(ElementRef)</code>
                     </td>
                 </tr>
                     <tr>
@@ -439,8 +439,8 @@ containing the full form as title.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly injection variable: _el.</p>
-<p>It keeps the instance of the injected Angular ElementRef.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _elementRef.</p>
+<p>It keeps the reference to the host element.</p>
 </div>
                 </td>
             </tr>
@@ -467,11 +467,11 @@ import { ABBR_UTILS } from &#x27;./abbr.utils&#x27;;
 })
 export class AbbrDirective {
     /**
-     * Private readonly injection variable: _el.
+     * Private readonly injection variable: _elementRef.
      *
-     * It keeps the instance of the injected Angular ElementRef.
+     * It keeps the reference to the host element.
      */
-    private readonly _el &#x3D; inject(ElementRef&lt;HTMLElement&gt;);
+    private readonly _elementRef &#x3D; inject&lt;ElementRef&lt;HTMLElement&gt;&gt;(ElementRef);
 
     /**
      * Readonly input signal: text.
@@ -502,7 +502,7 @@ export class AbbrDirective {
      */
     private _replaceAbbreviations(): void {
         const text &#x3D; this.text() || &#x27;&#x27;;
-        const element &#x3D; this._el.nativeElement;
+        const element &#x3D; this._elementRef.nativeElement;
         element.innerHTML &#x3D; text;
 
         if (!text) {

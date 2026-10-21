@@ -225,6 +225,10 @@ showing contact information and a map.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./contact-side-info.component.scss</code></td>
+            </tr>
 
 
 
@@ -462,7 +466,7 @@ showing contact information and a map.</p>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>this._sanitizer.bypassSecurityTrustResourceUrl(
-        AppConstants.CONTACT_MAP_UNSAFE_EMBED_URL
+        APP_CONSTANTS.CONTACT_MAP_UNSAFE_EMBED_URL
     )</code>
                     </td>
                 </tr>
@@ -502,7 +506,7 @@ showing contact information and a map.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>AppConstants.CONTACT_MAP_LINK_URL</code>
+                        <i>Default value : </i><code>APP_CONSTANTS.CONTACT_MAP_LINK_URL</code>
                     </td>
                 </tr>
                     <tr>
@@ -569,7 +573,7 @@ showing contact information and a map.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject } from &#x27;@angular/core&#x27;;
 import { DomSanitizer, SafeResourceUrl } from &#x27;@angular/platform-browser&#x27;;
 
-import { AppConstants } from &#x27;@awg-app/app.constants&#x27;;
+import { APP_CONSTANTS } from &#x27;@awg-app/app.constants&#x27;;
 import { META_DATA } from &#x27;@awg-shared/meta/meta.data&#x27;;
 import { MetaSectionTypes } from &#x27;@awg-shared/meta/meta.model&#x27;;
 
@@ -585,7 +589,7 @@ import { ContactMapComponent } from &#x27;../contact-map/contact-map.component&#
 @Component({
     selector: &#x27;awg-contact-side-info&#x27;,
     templateUrl: &#x27;./contact-side-info.component.html&#x27;,
-    styleUrls: [&#x27;./contact-side-info.component.scss&#x27;],
+    styleUrl: &#x27;./contact-side-info.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ContactAddressComponent, ContactMapComponent],
 })
@@ -624,7 +628,7 @@ export class ContactSideInfoComponent {
      * It keeps the sanitized link to embed the map.
      */
     readonly mapEmbedUrl: SafeResourceUrl &#x3D; this._sanitizer.bypassSecurityTrustResourceUrl(
-        AppConstants.CONTACT_MAP_UNSAFE_EMBED_URL
+        APP_CONSTANTS.CONTACT_MAP_UNSAFE_EMBED_URL
     ); // NOSONAR: URL is a static, trusted source
 
     /**
@@ -632,7 +636,7 @@ export class ContactSideInfoComponent {
      *
      * It keeps the link to the external map page.
      */
-    readonly mapLinkUrl &#x3D; AppConstants.CONTACT_MAP_LINK_URL;
+    readonly mapLinkUrl &#x3D; APP_CONSTANTS.CONTACT_MAP_LINK_URL;
 }
 </code></pre>
     </div>

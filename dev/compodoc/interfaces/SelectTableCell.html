@@ -165,8 +165,33 @@
 
             </p>
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/TableCell.html" target="_self" >TableCell</a></code>
+            </p>
 
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../interfaces/TableCell.html" target="_self" >TableCell</a></code>
+                                </li>
+                        </ul>
+                </div>
             </div>
+        </section>
+    </div>
 
     <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
     <h3 id="index">Index</h3>
@@ -237,7 +262,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/select/table/select-table.model.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/select/table/select-table.model.ts:31</a></div>
                                 </td>
                             </tr>
 
@@ -283,7 +308,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/select/table/select-table.model.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/select/table/select-table.model.ts:20</a></div>
                                 </td>
                             </tr>
 
@@ -328,7 +353,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/select/table/select-table.model.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/select/table/select-table.model.ts:25</a></div>
                                 </td>
                             </tr>
 
@@ -345,14 +370,22 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export type SelectTableCellType &#x3D; &#x27;uri&#x27; | &#x27;bnode&#x27; | &#x27;literal&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TableCell } from &#x27;@awg-shared/table/table.model&#x27;;
+
+/**
+ * The SelectTableCellType type.
+ *
+ * It represents the type of a table cell,
+ * named as in the SPARQL 1.1 Query Results JSON Format.
+ */
+export type SelectTableCellType &#x3D; &#x27;uri&#x27; | &#x27;bnode&#x27; | &#x27;literal&#x27;;
 
 /**
  * The SelectTableCell interface.
  *
  * It represents a cell of the SPARQL results table (a bound value of a variable).
  */
-export interface SelectTableCell {
+export interface SelectTableCell extends TableCell {
     /**
      * The type of the cell.
      */

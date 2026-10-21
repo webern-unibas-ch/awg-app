@@ -431,7 +431,7 @@ of the critical report of the edition view of the app.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.material().folioAddendum || &#x27;&#x27;)</code>
+                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.material().folioAddendum ?? &#x27;&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
@@ -470,7 +470,7 @@ of the critical report of the edition view of the app.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.material().materialType || &#x27;&#x27;)</code>
+                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.material().materialType ?? &#x27;&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
@@ -568,7 +568,7 @@ export class SourceDescWritingMaterialComponent {
      *
      * It holds the type of the writing material, or an empty string.
      */
-    readonly materialType &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.material().materialType || &#x27;&#x27;);
+    readonly materialType &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.material().materialType ?? &#x27;&#x27;);
 
     /**
      * Readonly computed signal: systems.
@@ -589,7 +589,7 @@ export class SourceDescWritingMaterialComponent {
      *
      * It holds the folio addendum of the writing material, or an empty string.
      */
-    readonly folioAddendum &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.material().folioAddendum || &#x27;&#x27;);
+    readonly folioAddendum &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.material().folioAddendum ?? &#x27;&#x27;);
 }
 </code></pre>
     </div>

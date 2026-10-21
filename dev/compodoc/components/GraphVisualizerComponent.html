@@ -260,6 +260,10 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./graph-visualizer.component.scss</code></td>
+            </tr>
 
 
 
@@ -1571,6 +1575,7 @@ Stale runs are cancelled when a new query is requested.</p>
 
 import { ToastComponent } from &#x27;@awg-shared/toast/toast.component&#x27;;
 import { ToastMessage, ToastService } from &#x27;@awg-shared/toast/toast.service&#x27;;
+import { ERROR_UTILS } from &#x27;@awg-shared/utils/error-utils&#x27;;
 import { GraphQuery, GraphRdfData } from &#x27;@awg-views/edition-view/models/graph.model&#x27;;
 
 import { GraphEditorSparqlComponent } from &#x27;./editor/sparql/graph-editor-sparql.component&#x27;;
@@ -1582,7 +1587,6 @@ import { GraphResultsSelectComponent } from &#x27;./results/select/graph-results
 import { GraphResultsStatusComponent } from &#x27;./results/status/graph-results-status.component&#x27;;
 import { GraphResultsUnsupportedComponent } from &#x27;./results/unsupported/graph-results-unsupported.component&#x27;;
 import { SparqlQueryService } from &#x27;./services/sparql-query.service&#x27;;
-import { ERROR_UTILS } from &#x27;./utils/error.utils&#x27;;
 import { GRAPH_QUERY_UTILS } from &#x27;./utils/graph-query.utils&#x27;;
 import { SPARQL_UTILS } from &#x27;./utils/sparql.utils&#x27;;
 
@@ -1595,7 +1599,7 @@ import { SPARQL_UTILS } from &#x27;./utils/sparql.utils&#x27;;
 @Component({
     selector: &#x27;awg-graph-visualizer&#x27;,
     templateUrl: &#x27;./graph-visualizer.component.html&#x27;,
-    styleUrls: [&#x27;./graph-visualizer.component.scss&#x27;],
+    styleUrl: &#x27;./graph-visualizer.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         GraphEditorSparqlComponent,

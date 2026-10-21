@@ -223,7 +223,7 @@
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_el" >_el</a>
+                                <a href="#_elementRef" >_elementRef</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
@@ -388,12 +388,12 @@ on window scroll.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_el"></a>
+                    <a name="_elementRef"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_el</b></span>
-                        <a href="#_el"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_elementRef</b></span>
+                        <a href="#_elementRef"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -405,7 +405,7 @@ on window scroll.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(ElementRef)</code>
+                        <i>Default value : </i><code>inject&lt;ElementRef&lt;HTMLElement&gt;&gt;(ElementRef)</code>
                     </td>
                 </tr>
                     <tr>
@@ -416,8 +416,8 @@ on window scroll.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly injection variable: _el.</p>
-<p>It keeps the instance of the injected ElementRef.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _elementRef.</p>
+<p>It keeps the reference to the host element.</p>
 </div>
                 </td>
             </tr>
@@ -524,11 +524,11 @@ on window scroll.</p>
 })
 export class EditionIntroScrollDirective {
     /**
-     * Private readonly injection variable: _el.
+     * Private readonly injection variable: _elementRef.
      *
-     * It keeps the instance of the injected ElementRef.
+     * It keeps the reference to the host element.
      */
-    private readonly _el &#x3D; inject(ElementRef);
+    private readonly _elementRef &#x3D; inject&lt;ElementRef&lt;HTMLElement&gt;&gt;(ElementRef);
 
     /**
      * Private readonly injection variable: _renderer.
@@ -575,7 +575,7 @@ export class EditionIntroScrollDirective {
      * on window scroll.
      */
     private _onIntroScroll(): void {
-        const container &#x3D; this._el.nativeElement as HTMLElement;
+        const container &#x3D; this._elementRef.nativeElement;
         const scrollPosition &#x3D; globalThis.scrollY || document.documentElement.scrollTop;
 
         const introSections &#x3D; container.querySelectorAll&lt;HTMLElement&gt;(&#x27;.awg-edition-intro-section&#x27;);

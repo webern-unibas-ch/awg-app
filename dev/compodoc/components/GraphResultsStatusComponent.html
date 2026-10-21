@@ -218,6 +218,10 @@ The status is announced to screen readers (role <code>status</code>).</p>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./graph-results-status.component.scss</code></td>
+            </tr>
 
 
 
@@ -558,7 +562,7 @@ const DURATION_FORMAT &#x3D; new Intl.NumberFormat(&#x27;de-DE&#x27;, { maximumF
 @Component({
     selector: &#x27;awg-graph-results-status&#x27;,
     templateUrl: &#x27;./graph-results-status.component.html&#x27;,
-    styleUrls: [&#x27;./graph-results-status.component.scss&#x27;],
+    styleUrl: &#x27;./graph-results-status.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GraphResultsStatusComponent {

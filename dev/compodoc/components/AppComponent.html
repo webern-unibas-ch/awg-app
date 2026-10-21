@@ -226,6 +226,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./app.component.scss</code></td>
+            </tr>
 
 
 
@@ -394,8 +398,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="123"
-                                    class="link-to-prism">src/app/app.component.ts:123</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/app.component.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -725,7 +729,7 @@ import { ViewContainerComponent } from &#x27;./core/view-container/view-containe
 @Component({
     selector: &#x27;awg-app&#x27;,
     templateUrl: &#x27;./app.component.html&#x27;,
-    styleUrls: [&#x27;./app.component.scss&#x27;],
+    styleUrl: &#x27;./app.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FooterComponent, NavbarComponent, ViewContainerComponent],
 })
@@ -800,7 +804,8 @@ export class AppComponent {
                         child &#x3D; child.firstChild;
                     }
 
-                    return child?.snapshot?.data?.[&#x27;title&#x27;] ?? appTitle;
+                    const title: unknown &#x3D; child?.snapshot.data[&#x27;title&#x27;];
+                    return typeof title &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? title : appTitle;
                 }),
                 takeUntilDestroyed()
             )

@@ -223,6 +223,10 @@ e.g. for the node under the pointer. It is placed next to the canvas inside its 
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./canvas-tooltip.component.scss</code></td>
+            </tr>
 
 
 
@@ -562,7 +566,7 @@ import { CanvasPoint } from &#x27;../canvas.model&#x27;;
 @Component({
     selector: &#x27;awg-canvas-tooltip&#x27;,
     templateUrl: &#x27;./canvas-tooltip.component.html&#x27;,
-    styleUrls: [&#x27;./canvas-tooltip.component.scss&#x27;],
+    styleUrl: &#x27;./canvas-tooltip.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbTooltip],
 })

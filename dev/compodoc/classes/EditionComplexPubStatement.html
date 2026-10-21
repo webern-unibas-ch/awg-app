@@ -234,7 +234,7 @@ to store information about the publication statement of an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:107</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:108</a></div>
                         </td>
                     </tr>
 
@@ -271,7 +271,7 @@ to store information about the publication statement of an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:117</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -308,7 +308,7 @@ to store information about the publication statement of an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:112</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -359,21 +359,22 @@ export interface EditionComplexJsonPersonRef {
 }
 
 /**
- * The EditionComplexJsonData interface.
+ * The EditionComplexJsonData type.
  *
  * It is used in the context of the edition view
- * to describe the structure of a JSON data for an edition complex.
+ * to describe the structure of a JSON data for an edition complex
+ * (an object with the complex id as its only key).
  */
-export interface EditionComplexJsonData {
-    /**
-     * The edition complex data.
-     */
-    [key: string]: {
-        titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
-        respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
-        pubStatement: { series: string; section: string };
-    };
-}
+export type EditionComplexJsonData &#x3D; Partial&lt;
+    Record&lt;
+        string,
+        {
+            titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
+            respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
+            pubStatement: { series: string; section: string };
+        }
+    &gt;
+&gt;;
 
 /**
  * The EditionComplexesJsonData interface.

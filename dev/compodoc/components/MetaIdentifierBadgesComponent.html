@@ -223,6 +223,10 @@
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./meta-identifier-badges.component.scss</code></td>
+            </tr>
 
 
 
@@ -386,11 +390,11 @@
         return validKeys
             .filter(key &#x3D;&gt; !!currentIds[key]?.trim() &amp;&amp; !!LOGOS_DATA[key])
             .map(key &#x3D;&gt; {
-                const idValue &#x3D; currentIds[key];
+                const idValue &#x3D; currentIds[key] ?? &#x27;&#x27;;
                 const logo &#x3D; LOGOS_DATA[key];
                 return {
                     key,
-                    fullUrl: logo.href + idValue,
+                    fullUrl: &#x60;${logo.href}${idValue}&#x60;,
                     src: logo.src,
                     label: logo.alt,
                     titleText: &#x60;${key.toUpperCase()}: ${idValue}&#x60;,
@@ -438,7 +442,7 @@ import { MetaIdentifierBadge } from &#x27;./meta-identifier-badges.model&#x27;;
 @Component({
     selector: &#x27;awg-meta-identifier-badges&#x27;,
     templateUrl: &#x27;./meta-identifier-badges.component.html&#x27;,
-    styleUrls: [&#x27;./meta-identifier-badges.component.scss&#x27;],
+    styleUrl: &#x27;./meta-identifier-badges.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ExternalLinkDirective],
 })
@@ -467,11 +471,11 @@ export class MetaIdentifierBadgesComponent {
         return validKeys
             .filter(key &#x3D;&gt; !!currentIds[key]?.trim() &amp;&amp; !!LOGOS_DATA[key])
             .map(key &#x3D;&gt; {
-                const idValue &#x3D; currentIds[key];
+                const idValue &#x3D; currentIds[key] ?? &#x27;&#x27;;
                 const logo &#x3D; LOGOS_DATA[key];
                 return {
                     key,
-                    fullUrl: logo.href + idValue,
+                    fullUrl: &#x60;${logo.href}${idValue}&#x60;,
                     src: logo.src,
                     label: logo.alt,
                     titleText: &#x60;${key.toUpperCase()}: ${idValue}&#x60;,

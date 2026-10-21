@@ -240,6 +240,10 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./graph-editor-triples.component.scss</code></td>
+            </tr>
 
 
 
@@ -487,12 +491,6 @@ If true, the accordion item is open and disabled.</p>
                         <b>performQueryRequest</b>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </td>
-                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/editor/triples/graph-editor-triples.component.ts:54</a></div>
@@ -513,12 +511,6 @@ If true, the accordion item is open and disabled.</p>
                     <td class="col-md-4">
                         <a name="resetTriplesRequest"></a>
                         <b>resetTriplesRequest</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
                     </td>
                 </tr>
                         <tr>
@@ -780,7 +772,7 @@ import { GraphEditorActionButtonsComponent } from &#x27;../action-buttons/graph-
 @Component({
     selector: &#x27;awg-graph-editor-triples&#x27;,
     templateUrl: &#x27;./graph-editor-triples.component.html&#x27;,
-    styleUrls: [&#x27;./graph-editor-triples.component.scss&#x27;],
+    styleUrl: &#x27;./graph-editor-triples.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, CodeMirrorComponent, GraphEditorActionButtonsComponent],
 })
@@ -812,14 +804,14 @@ export class GraphEditorTriplesComponent {
      *
      * It emits a request to perform a query.
      */
-    readonly performQueryRequest &#x3D; output&lt;void&gt;();
+    readonly performQueryRequest &#x3D; output();
 
     /**
      * Readonly output signal: resetTriplesRequest.
      *
      * It emits a request to reset the triples to their initial state.
      */
-    readonly resetTriplesRequest &#x3D; output&lt;void&gt;();
+    readonly resetTriplesRequest &#x3D; output();
 
     /**
      * Readonly variable: cmTurtleMode.

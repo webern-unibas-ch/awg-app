@@ -547,7 +547,7 @@ export class SourceDescWritingInstrumentsComponent {
             return &#x27;&#x27;;
         }
 
-        const main &#x3D; writingInstruments.main;
+        const main &#x3D; String(writingInstruments.main);
         const secondary &#x3D; writingInstruments.secondary?.join(&#x27;, &#x27;);
 
         return secondary ? &#x60;${main}; ${secondary}.&#x60; : &#x60;${main}.&#x60;;

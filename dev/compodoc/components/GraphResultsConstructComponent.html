@@ -229,6 +229,10 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./graph-results-construct.component.scss</code></td>
+            </tr>
 
 
 
@@ -820,7 +824,7 @@ const EMPTY_GRAPH_DATA: ResultGraph &#x3D; Object.freeze({ nodes: [], edges: [],
 @Component({
     selector: &#x27;awg-graph-results-construct&#x27;,
     templateUrl: &#x27;./graph-results-construct.component.html&#x27;,
-    styleUrls: [&#x27;./graph-results-construct.component.scss&#x27;],
+    styleUrl: &#x27;./graph-results-construct.component.scss&#x27;,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, ForceGraphComponent, GraphResultsEmptyComponent, TwelveToneSpinnerComponent],
 })

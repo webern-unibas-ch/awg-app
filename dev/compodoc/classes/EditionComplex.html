@@ -246,7 +246,7 @@ to store information about an edition complex.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:152</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:153</a></div>
                             </td>
                         </tr>
 
@@ -348,7 +348,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:152</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:153</a></div>
                         </td>
                     </tr>
 
@@ -380,7 +380,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:145</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:146</a></div>
                         </td>
                     </tr>
 
@@ -412,7 +412,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:140</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:141</a></div>
                         </td>
                     </tr>
 
@@ -444,7 +444,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:135</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:136</a></div>
                         </td>
                     </tr>
 
@@ -476,7 +476,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:130</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:131</a></div>
                         </td>
                     </tr>
 
@@ -518,8 +518,8 @@ to store information about an edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="231"
-                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:231</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:232</a></div>
                         </td>
                     </tr>
 
@@ -596,8 +596,8 @@ to store information about an edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="246"
-                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:246</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="247"
+                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:247</a></div>
                         </td>
                     </tr>
 
@@ -690,21 +690,22 @@ export interface EditionComplexJsonPersonRef {
 }
 
 /**
- * The EditionComplexJsonData interface.
+ * The EditionComplexJsonData type.
  *
  * It is used in the context of the edition view
- * to describe the structure of a JSON data for an edition complex.
+ * to describe the structure of a JSON data for an edition complex
+ * (an object with the complex id as its only key).
  */
-export interface EditionComplexJsonData {
-    /**
-     * The edition complex data.
-     */
-    [key: string]: {
-        titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
-        respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
-        pubStatement: { series: string; section: string };
-    };
-}
+export type EditionComplexJsonData &#x3D; Partial&lt;
+    Record&lt;
+        string,
+        {
+            titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
+            respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
+            pubStatement: { series: string; section: string };
+        }
+    &gt;
+&gt;;
 
 /**
  * The EditionComplexesJsonData interface.
