@@ -8,11 +8,11 @@ footer {
     background-color: transparent;
     color: theme.$text-dark-color;
     padding: 15px;
-    border-top: 1px solid theme.$border-grey;
+    border-top: 1px solid theme.$frame-border-color;
 }
 
 .awg-footer-secondary {
-    border-top: 1px solid theme.$border-grey;
+    border-top: 1px solid theme.$frame-border-color;
 
     .gtrans {
         background-color: #dbdad9;

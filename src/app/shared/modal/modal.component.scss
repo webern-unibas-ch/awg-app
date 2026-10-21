@@ -2,12 +2,12 @@
 
 .modal-header {
     background-color: theme.$info;
-    color: theme.$bg-grey;
+    color: theme.$view-bg-color;
 }
 
 .modal-body,
 .modal-footer {
-    background-color: theme.$bg-grey;
+    background-color: theme.$view-bg-color;
 }
 
 .awg-modal-button:hover,

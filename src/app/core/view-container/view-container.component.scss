@@ -1,7 +1,7 @@
 @use '/src/assets/themes/scss/shared' as theme;
 
 :host > div {
-    background-color: theme.$bg-grey;
+    background-color: theme.$view-bg-color;
     // Full height without header and footer (needed for the sticky footer,
     // see https://css-tricks.com/couple-takes-sticky-footer)
     min-height: calc(100vh - 121px - 200px);

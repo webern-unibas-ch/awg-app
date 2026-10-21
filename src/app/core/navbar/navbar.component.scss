@@ -1,7 +1,7 @@
 @use '/src/assets/themes/scss/shared' as theme;
 
 .awg-main-navbar {
-    border-bottom: 1px solid theme.$border-grey;
+    border-bottom: 1px solid theme.$frame-border-color;
 }
 
 .navbar {

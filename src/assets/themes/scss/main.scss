@@ -129,6 +129,7 @@ ul.nobullets {
 
 /****** EDITION CONTENT ******/
 // Classes of the html in the edition data (compiled at runtime, so not covered by view encapsulation)
+// Marker for proofreading new edition data
 .todo {
     color: red;
     font-weight: bold;

@@ -1,6 +1,6 @@
 // Custom variables
-$bg-grey: #f9f9f6;
-$border-grey: #e7e7e7;
+$view-bg-color: #f9f9f6;
+$frame-border-color: #e7e7e7;
 $text-dark-color: #333;
 $viewer-box-shadow: 5px 5px 6px #ccc;
 
@@ -11,9 +11,9 @@ $link-color: $info;
 $accordion-button-padding-y: 0.75rem;
 $accordion-button-padding-x: 1rem;
 $accordion-button-color: $link-color;
-$accordion-button-bg: $bg-grey;
+$accordion-button-bg: $view-bg-color;
 $accordion-button-active-color: $link-color;
-$accordion-button-active-bg: $bg-grey;
+$accordion-button-active-bg: $view-bg-color;
 
 $dropdown-link-color: $text-dark-color;
 $dropdown-link-hover-color: $link-color;
