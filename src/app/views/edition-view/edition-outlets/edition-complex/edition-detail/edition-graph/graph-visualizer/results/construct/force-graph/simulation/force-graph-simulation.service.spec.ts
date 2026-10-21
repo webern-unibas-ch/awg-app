@@ -69,6 +69,15 @@ describe('ForceGraphSimulationService (DONE)', () => {
     });
 
     /**
+     * Installs fake timers for the main thread simulation, with a real `setInterval`.
+     * d3-force starts its internal timer on creation, and its poke interval is cleared on the next animation frame;
+     * d3 binds the real `requestAnimationFrame` at load, so a faked interval would never be cleared in a browser.
+     */
+    const useSimulationFakeTimers = (): void => {
+        vi.useFakeTimers({ toNotFake: ['setInterval', 'clearInterval'] });
+    };
+
+    /**
      * Configures the testing module with the given worker factory and injects the service.
      */
     const setup = (workerFactory: ForceGraphSimulationWorkerFactory): void => {
@@ -96,21 +105,14 @@ describe('ForceGraphSimulationService (DONE)', () => {
 
     describe('FORCE_GRAPH_SIMULATION_WORKER_FACTORY', () => {
         it('... should hold a default factory that creates a module worker of the simulation', () => {
-            const workerSpy = vi.fn();
-            vi.stubGlobal(
-                'Worker',
-                class {
-                    constructor(workerUrl: URL, workerOptions: WorkerOptions) {
-                        workerSpy(workerUrl, workerOptions);
-                    }
-                }
-            );
+            const workerMock = vi.fn<(workerUrl: URL, workerOptions: WorkerOptions) => void>(function () {});
+            vi.stubGlobal('Worker', workerMock);
 
             const worker = TestBed.inject(FORCE_GRAPH_SIMULATION_WORKER_FACTORY)();
 
             expect(worker).toBeDefined();
-            expectSpyCall(workerSpy, 1);
-            const [url, options] = workerSpy.mock.calls[0];
+            expectSpyCall(workerMock, 1);
+            const [url, options] = workerMock.mock.calls[0];
             // The url of the bundled worker script (its name is set by the builder)
             expect(url).toBeInstanceOf(URL);
             expectToEqual(options, { type: 'module' });
@@ -127,11 +129,9 @@ describe('ForceGraphSimulationService (DONE)', () => {
         it('... should hold a default factory that creates no worker if the worker cannot be created', () => {
             vi.stubGlobal(
                 'Worker',
-                class {
-                    constructor() {
-                        throw new Error('SecurityError');
-                    }
-                }
+                vi.fn(function () {
+                    throw new Error('SecurityError');
+                })
             );
 
             const worker = TestBed.inject(FORCE_GRAPH_SIMULATION_WORKER_FACTORY)();
@@ -150,7 +150,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
         describe('... without web worker', () => {
             beforeEach(() => {
                 setup(() => undefined);
-                vi.useFakeTimers();
+                useSimulationFakeTimers();
             });
 
             afterEach(() => {
@@ -422,7 +422,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
                 });
 
                 it('... should emit the results of the main thread simulation', () => {
-                    vi.useFakeTimers();
+                    useSimulationFakeTimers();
                     const results: ForceGraphSimulationProgress[] = [];
                     forceGraphSimulationService
                         .simulate(forceGraphData, EMPTY)

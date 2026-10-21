@@ -44,7 +44,7 @@ import { EditionSheetViewerAdditionsPanelChange } from '../additions-panel/editi
 @Component({
     selector: 'awg-edition-sheet-viewer-svg',
     templateUrl: './edition-sheet-viewer-svg.component.html',
-    styleUrls: ['./edition-sheet-viewer-svg.component.scss'],
+    styleUrl: './edition-sheet-viewer-svg.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective, EditionSheetViewerAdditionsPanelComponent, LicenseComponent, SvgZoomDirective],
 })
@@ -148,8 +148,8 @@ export class EditionSheetViewerSvgComponent {
      *
      * It holds the d3 selection of the svg root group (the element is stable across renderings).
      */
-    private readonly _svgRootGroupSelection = computed<D3Selection>(
-        () => D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
+    private readonly _svgRootGroupSelection = computed<D3Selection>(() =>
+        D3_SELECTION.select(this.svgRootGroup().nativeElement)
     );
 
     /**
@@ -189,7 +189,8 @@ export class EditionSheetViewerSvgComponent {
      * @returns {void} Sets the visibility of the editorial addition.
      */
     onAdditionVisibilityChange({ key, isVisible }: EditionSheetViewerAdditionsPanelChange): void {
-        if (key === EditionSvgOverlayTypes.tkk) {
+        const tkkKey: string = EditionSvgOverlayTypes.tkk;
+        if (key === tkkKey) {
             this._updateTkkOverlaysSelection(state =>
                 this._svgOverlayService.setTkkOverlaysHighlight(state, isVisible)
             );
@@ -278,7 +279,7 @@ export class EditionSheetViewerSvgComponent {
     private _queueRendering(sheet: EditionSvgSheetSelection): void {
         this._renderQueue = this._renderQueue
             .then(() => (sheet === this.selectedSvgSheet() ? this._renderSheet(sheet) : undefined))
-            .catch(error => console.error('[EditionSheetViewerSvg] Failed to render svg sheet', error));
+            .catch((error: unknown) => console.error('[EditionSheetViewerSvg] Failed to render svg sheet', error));
     }
 
     /**

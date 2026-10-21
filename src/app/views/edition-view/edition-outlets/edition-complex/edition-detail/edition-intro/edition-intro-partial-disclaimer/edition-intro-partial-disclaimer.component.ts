@@ -13,7 +13,7 @@ import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.m
 @Component({
     selector: 'awg-edition-intro-partial-disclaimer',
     templateUrl: './edition-intro-partial-disclaimer.component.html',
-    styleUrls: ['./edition-intro-partial-disclaimer.component.scss'],
+    styleUrl: './edition-intro-partial-disclaimer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink],
 })

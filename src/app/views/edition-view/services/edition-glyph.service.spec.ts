@@ -19,7 +19,7 @@ describe('EditionGlyphService (DONE)', () => {
     });
 
     describe('#getGlyph()', () => {
-        const expectGlyphMappings = (glyphMappings: Array<[string, string]>): void => {
+        const expectGlyphMappings = (glyphMappings: [string, string][]): void => {
             glyphMappings.forEach(([alt, hex]) => {
                 const glyph = editionGlyphService.getGlyph(alt);
 

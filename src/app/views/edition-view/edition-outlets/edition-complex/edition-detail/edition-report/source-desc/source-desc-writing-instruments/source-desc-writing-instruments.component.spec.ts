@@ -144,7 +144,7 @@ describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
                     1,
                     1
                 );
-                const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective);
 
                 expectToBe(directiveIns.htmlContent(), component.getWritingInstruments(expectedWritingInstruments));
             });
@@ -158,8 +158,7 @@ describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
 
                 // Process HTML expression of expected text content
                 const expectedHtmlTextContent = mockDocument.createElement('p');
-                expectedHtmlTextContent.innerHTML =
-                    '<span>' + expectedWritingInstruments.main + secondaryString + '.</span>';
+                expectedHtmlTextContent.innerHTML = `<span>${expectedWritingInstruments.main ?? ''}${secondaryString}.</span>`;
 
                 expectToBe(spanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
             });

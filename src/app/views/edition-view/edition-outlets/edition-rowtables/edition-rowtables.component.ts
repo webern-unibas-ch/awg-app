@@ -15,7 +15,7 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
 @Component({
     selector: 'awg-edition-rowtables',
     templateUrl: './edition-rowtables.component.html',
-    styleUrls: ['./edition-rowtables.component.scss'],
+    styleUrl: './edition-rowtables.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AlertErrorComponent, ButtonMoreComponent, TwelveToneSpinnerComponent],
 })

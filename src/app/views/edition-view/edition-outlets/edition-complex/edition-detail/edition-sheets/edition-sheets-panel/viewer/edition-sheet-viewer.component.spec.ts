@@ -60,7 +60,9 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         // Mocked services for the real EditionSheetViewerSvgComponent
         // (not hollow: its required view query on the SvgZoomDirective needs the d3-driven template)
         mockSvgDrawingService = {
-            createSvg: vi.fn<CreateSvgFn>(async (_path, svgEl) => D3_SELECTION.select(svgEl as SVGSVGElement) as any),
+            createSvg: vi.fn<CreateSvgFn>((_path, svgEl) =>
+                Promise.resolve(D3_SELECTION.select(svgEl as SVGSVGElement))
+            ),
             getSuppliedClasses: vi.fn(() => []),
             toggleSuppliedClassOpacity: vi.fn(),
         };
@@ -189,7 +191,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                     expectToBe(getSheetSvgCmp().zoomValue(), 7.5);
                 });
 
-                it('... should trigger `resetZoom` of the sheet svg on reset request of the ZoomSliderComponent (hollow)', async () => {
+                it('... should trigger `resetZoom` of the sheet svg on reset request of the ZoomSliderComponent (hollow)', () => {
                     const resetZoomSpy = vi.spyOn(getSheetSvgCmp(), 'resetZoom');
                     const zoomSliderDes = getAndExpectDebugElementByDirective(compDe, ZoomSliderComponent, 1, 1);
 

@@ -26,7 +26,7 @@ import { EditionViewService } from './services/edition-view.service';
 @Component({
     selector: 'awg-edition-view',
     templateUrl: './edition-view.component.html',
-    styleUrls: ['./edition-view.component.scss'],
+    styleUrl: './edition-view.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ButtonScrollToTopComponent,

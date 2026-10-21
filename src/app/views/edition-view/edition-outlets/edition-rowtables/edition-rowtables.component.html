@@ -17,7 +17,7 @@
                         </div>
                         <div class="card-footer text-end">
                             <awg-button-more
-                                [targetRoute]="['../complex' + rowtable.route, 'sheets']"
+                                [targetRoute]="[`../complex${rowtable.route}`, 'sheets']"
                                 [queryParams]="{ id: rowtable.id }"
                                 [disabled]="rowtable.disabled" />
                         </div>

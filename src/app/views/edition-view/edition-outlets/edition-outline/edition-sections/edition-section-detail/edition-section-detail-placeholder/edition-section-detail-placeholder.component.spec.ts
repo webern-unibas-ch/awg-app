@@ -85,7 +85,7 @@ describe('EditionSectionDetailPlaceholderComponent (DONE)', () => {
 
             it('... should pass down the correct values to AlertInfoComponent (hollow) (`infoMessage `)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
-                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent) as AlertInfoComponent;
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent);
 
                 expectToEqual(alertInfoCmp.infoMessage(), expectedInfoMessage);
             });

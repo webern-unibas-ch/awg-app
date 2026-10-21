@@ -44,7 +44,7 @@
             <p>
                 Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über
                 diese Webapplikation präsentiert und über das Software-Framework
-                <a id="dsp-link" [href]="pageMetaData.daschUrl + 'services/data-deposit/dsp'"
+                <a id="dsp-link" [href]="`${pageMetaData.daschUrl}services/data-deposit/dsp`"
                     >DaSCH Service Platform (DSP)</a
                 >
                 des
@@ -54,7 +54,7 @@
                 aufbereitet, zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit
                 der Daten gemäss FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren
                 Metadaten und den langfristigen Betrieb der technischen Infrastruktur (vgl.
-                <a id="dasch-mission-link" [href]="pageMetaData.daschUrl + 'about-us/mission'"
+                <a id="dasch-mission-link" [href]="`${pageMetaData.daschUrl}about-us/mission`"
                     >Mission Statement DaSCH</a
                 >).
             </p>

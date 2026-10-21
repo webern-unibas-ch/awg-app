@@ -32,7 +32,7 @@ export class SourceDescWritingMaterialComponent {
      *
      * It holds the type of the writing material, or an empty string.
      */
-    readonly materialType = computed<string>(() => this.material().materialType || '');
+    readonly materialType = computed<string>(() => this.material().materialType ?? '');
 
     /**
      * Readonly computed signal: systems.
@@ -53,5 +53,5 @@ export class SourceDescWritingMaterialComponent {
      *
      * It holds the folio addendum of the writing material, or an empty string.
      */
-    readonly folioAddendum = computed<string>(() => this.material().folioAddendum || '');
+    readonly folioAddendum = computed<string>(() => this.material().folioAddendum ?? '');
 }

@@ -273,7 +273,7 @@ describe('RdfStoreService (DONE)', () => {
         it('... should not set a cause for errors created by the service', async () => {
             setGlobalRdfstore(undefined);
 
-            const error = await service.select(TURTLE, query).catch((err: Error) => err);
+            const error = await service.select(TURTLE, query).catch((err: unknown) => err);
 
             expect(error).toBeInstanceOf(Error);
             expect((error as Error).cause).toBeUndefined();

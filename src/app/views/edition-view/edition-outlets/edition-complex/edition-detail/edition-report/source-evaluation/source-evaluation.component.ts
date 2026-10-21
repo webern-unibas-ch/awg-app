@@ -14,7 +14,7 @@ import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shar
 @Component({
     selector: 'awg-source-evaluation',
     templateUrl: './source-evaluation.component.html',
-    styleUrls: ['./source-evaluation.component.scss'],
+    styleUrl: './source-evaluation.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective, EditionComplexPlaceholderComponent],
 })

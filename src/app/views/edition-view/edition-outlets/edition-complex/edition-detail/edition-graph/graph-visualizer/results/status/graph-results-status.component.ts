@@ -20,7 +20,7 @@ const DURATION_FORMAT = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 
 @Component({
     selector: 'awg-graph-results-status',
     templateUrl: './graph-results-status.component.html',
-    styleUrls: ['./graph-results-status.component.scss'],
+    styleUrl: './graph-results-status.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GraphResultsStatusComponent {

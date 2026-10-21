@@ -11,7 +11,7 @@ import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
 @Component({
     selector: 'awg-edition-tka-label',
     templateUrl: './edition-tka-label.component.html',
-    styleUrls: ['./edition-tka-label.component.scss'],
+    styleUrl: './edition-tka-label.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
 })

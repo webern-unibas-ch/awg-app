@@ -5,16 +5,16 @@
             #radioInput
             type="radio"
             class="btn-check"
+            autocomplete="off"
             [name]="groupName"
-            [id]="groupName + '-' + viewHandle.type + '-view-button'"
+            [id]="`${groupName}-${viewHandle.type}-view-button`"
             [value]="viewHandle.type"
             [checked]="viewHandle.type === selectedViewType()"
-            (change)="onViewChange(viewHandle.type)"
-            autocomplete="off" />
+            (change)="onViewChange(viewHandle.type)" />
         <label
             class="btn btn-sm btn-outline-info"
-            [for]="groupName + '-' + viewHandle.type + '-view-button'"
-            [ngbTooltip]="viewHandle.type + ' view'"
+            [for]="`${groupName}-${viewHandle.type}-view-button`"
+            [ngbTooltip]="`${viewHandle.type} view`"
             ><fa-icon [icon]="viewHandle.icon" />
             <span class="visually-hidden">{{ viewHandle.type }} view</span>
         </label>

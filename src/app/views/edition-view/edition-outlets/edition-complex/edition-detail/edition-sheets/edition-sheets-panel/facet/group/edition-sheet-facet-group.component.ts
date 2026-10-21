@@ -17,7 +17,7 @@ import { EditionSheetFacetScrollDirective } from '../scroll/edition-sheet-facet-
 @Component({
     selector: 'awg-edition-sheet-facet-group',
     templateUrl: './edition-sheet-facet-group.component.html',
-    styleUrls: ['./edition-sheet-facet-group.component.scss'],
+    styleUrl: './edition-sheet-facet-group.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionDisclaimerWorkeditionsComponent, EditionSheetFacetItemComponent, EditionSheetFacetScrollDirective],
 })

@@ -23,12 +23,12 @@ import { NavbarItemComponent } from './navbar-item.component';
 
 // Test Host Component to test NavbarItemComponent with correct dropdown context
 @Component({
-    imports: [NavbarItemComponent, NgbDropdown],
     template: `
         <div ngbDropdown>
             <awg-navbar-item [id]="testId" [item]="testItem" [isDropdown]="isTestDropdown"></awg-navbar-item>
         </div>
     `,
+    imports: [NavbarItemComponent, NgbDropdown],
 })
 class TestHostComponent {
     testItem: NavbarItem = NAVBAR_ITEMS.home;
@@ -117,13 +117,13 @@ describe('NavbarItemComponent (DONE)', () => {
             });
         });
 
-        const allNavbarItems = Object.values(NAVBAR_ITEMS);
+        const allNavbarItems: NavbarItem[] = Object.values(NAVBAR_ITEMS);
         const dropdownStates = [false, true];
 
         // Loop through all navbar items and dropdown states to test the component with different inputs
         allNavbarItems.forEach(navbarItem => {
             dropdownStates.forEach(isDropdownState => {
-                describe(`... with item "${navbarItem.id}" and isDropdown = ${isDropdownState}`, () => {
+                describe(`... with item "${navbarItem.id}" and isDropdown = ${String(isDropdownState)}`, () => {
                     beforeEach(() => {
                         // Set the initial values for the signal inputs
                         hostComponent.testItem = navbarItem;

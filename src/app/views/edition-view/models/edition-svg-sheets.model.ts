@@ -64,7 +64,7 @@ export class EditionSvgSheetsList {
     /**
      * The array of sheets from a svg sheet list.
      */
-    sheets: { [key in EditionTypeKey]: EditionSvgSheet[] } = {
+    sheets: Record<EditionTypeKey, EditionSvgSheet[]> = {
         workEditions: [],
         textEditions: [],
         sketchEditions: [],

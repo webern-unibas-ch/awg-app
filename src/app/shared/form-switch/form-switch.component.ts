@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 
 /**
  * The FormSwitch component.
@@ -22,16 +22,10 @@ export class FormSwitchComponent {
     readonly inputId = input.required<string>();
 
     /**
-     * Readonly input signal: checked.
+     * Readonly model signal: checked.
      *
      * It holds the checked state of the checkbox.
+     * Changes by the user are emitted via `checkedChange`.
      */
-    readonly checked = input.required<boolean>();
-
-    /**
-     * Readonly output signal: checkedChange.
-     *
-     * It emits the new checked state of the checkbox when the user changes it.
-     */
-    readonly checkedChange = output<boolean>();
+    readonly checked = model.required<boolean>();
 }

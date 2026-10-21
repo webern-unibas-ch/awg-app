@@ -161,7 +161,7 @@ describe('ModalService (DONE)', () => {
                 expect(service['_getDismissReason']).toBeDefined();
             });
 
-            it.each([
+            it.each<{ reason: unknown; expected: string }>([
                 { reason: ModalDismissReasons.ESC, expected: 'by pressing ESC' },
                 { reason: ModalDismissReasons.BACKDROP_CLICK, expected: 'by clicking on a backdrop' },
                 { reason: 'any other reason', expected: 'with: any other reason' },

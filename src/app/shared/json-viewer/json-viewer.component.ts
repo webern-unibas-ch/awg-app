@@ -17,7 +17,7 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
 @Component({
     selector: 'awg-json-viewer',
     templateUrl: './json-viewer.component.html',
-    styleUrls: ['./json-viewer.component.scss'],
+    styleUrl: './json-viewer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [JsonPipe, NgbNavModule, NgxJsonViewerModule],
 })

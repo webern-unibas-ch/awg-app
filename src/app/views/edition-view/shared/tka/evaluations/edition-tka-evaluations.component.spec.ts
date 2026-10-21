@@ -39,7 +39,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                         return 'glyphString';
                 }
             },
-        } as EditionGlyphService;
+        };
 
         await TestBed.configureTestingModule({
             imports: [EditionTkaEvaluationsComponent, CompileHtmlDirective],
@@ -125,7 +125,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
 
                 pDes.forEach((pDe, index) => {
                     const directiveDes = getAndExpectDebugElementByDirective(pDe, CompileHtmlDirective, 1, 1);
-                    const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                    const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective);
 
                     expectToBe(directiveIns.htmlContent(), expectedEvaluations[index]);
                 });

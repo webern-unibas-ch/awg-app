@@ -11,7 +11,7 @@ import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.d
 @Component({
     selector: 'awg-contact-map',
     templateUrl: './contact-map.component.html',
-    styleUrls: ['./contact-map.component.scss'],
+    styleUrl: './contact-map.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ExternalLinkDirective],
 })

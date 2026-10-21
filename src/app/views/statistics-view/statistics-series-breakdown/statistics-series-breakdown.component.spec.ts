@@ -129,12 +129,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                 const trDes = getAndExpectDebugElementByCss(theadDes[0], 'tr', 2, 2);
                 const thDes = getAndExpectDebugElementByCss(trDes[0], 'th', 3, 3);
 
-                const expectedHeaders: Array<{
+                const expectedHeaders: {
                     text: string;
                     rowspan: string | null;
                     colspan: string | null;
                     classes: string;
-                }> = [
+                }[] = [
                     { text: 'Series / Section', rowspan: '2', colspan: null, classes: 'text-center align-bottom' },
                     {
                         text: 'Complexes',
@@ -249,7 +249,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should mute series label if activeSections is zero', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData);
                         mockData[0].activeSections = 0;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
@@ -295,7 +295,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should adjust section indicator depending on number of active sections', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData);
                         mockData[0].activeSections = 2;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
@@ -344,7 +344,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should mute total complexes if activeSections is zero', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData);
                         mockData[0].activeSections = 0;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
@@ -394,7 +394,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should not have breakdown badge component if total complexes is zero', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData);
                         mockData[0].totalComplexes = 0;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
@@ -470,7 +470,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                     });
 
                     it('... should mute active complexes if activeSections is zero', () => {
-                        const mockData = structuredClone(expectedSeriesBreakdownData) as StatisticsSeriesBreakdown[];
+                        const mockData = structuredClone(expectedSeriesBreakdownData);
                         mockData[0].activeSections = 0;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
@@ -714,7 +714,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
 
-                            if (sectionData.disabled === true) {
+                            if (sectionData.disabled) {
                                 expectToContain(tdEl.classList, 'text-muted');
                             } else {
                                 expectToNotContain(tdEl.classList, 'text-muted');
@@ -781,7 +781,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
 
-                            if (sectionData.disabled === true) {
+                            if (sectionData.disabled) {
                                 expectToContain(tdEl.classList, 'text-muted');
                             } else {
                                 expectToNotContain(tdEl.classList, 'text-muted');

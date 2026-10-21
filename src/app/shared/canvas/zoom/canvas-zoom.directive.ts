@@ -82,7 +82,7 @@ export class CanvasZoomDirective extends ZoomBaseDirective<HTMLCanvasElement> {
             .scale(scale)
             .translate(-centerX, -centerY);
 
-        this._selection.call(this._zoomBehaviour.transform, transform);
+        this._zoomBehaviour.transform(this._selection, transform);
     }
 
     /**

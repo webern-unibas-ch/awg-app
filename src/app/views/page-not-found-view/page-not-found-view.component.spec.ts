@@ -13,7 +13,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { AppConstants } from '@awg-app/app.constants';
+import { APP_CONSTANTS } from '@awg-app/app.constants';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 
 import { PageNotFoundViewComponent } from './page-not-found-view.component';
@@ -29,7 +29,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     const expectedPageNotFoundViewTitle = 'Entschuldigung, diese Seite gibt es hier nicht…';
     const expectedPageNotFoundViewSubTitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
     const expectedPageNotFoundViewImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
-    const expectedAwgContactUrl = AppConstants.AWG_PROJECT_URL + 'de/info/kontakt.html';
+    const expectedAwgContactUrl = APP_CONSTANTS.AWG_PROJECT_URL + 'de/info/kontakt.html';
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({

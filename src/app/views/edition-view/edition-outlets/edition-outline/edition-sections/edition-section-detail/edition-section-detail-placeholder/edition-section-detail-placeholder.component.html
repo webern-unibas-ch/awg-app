@@ -1,8 +1,4 @@
 @if (selectedSection(); as section) {
     <awg-alert-info
-        [infoMessage]="
-            '[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von ' +
-            section.labeledRoute.label +
-            '.]'
-        " />
+        [infoMessage]="`[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von ${section.labeledRoute.label}.]`" />
 }

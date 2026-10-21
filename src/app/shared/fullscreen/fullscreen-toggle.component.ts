@@ -14,7 +14,7 @@ import { FullscreenService } from './fullscreen.service';
 @Component({
     selector: 'awg-fullscreen-toggle',
     templateUrl: './fullscreen-toggle.component.html',
-    styleUrls: ['./fullscreen-toggle.component.scss'],
+    styleUrl: './fullscreen-toggle.component.scss',
     host: {
         '(document:fullscreenchange)': 'onFullscreenChange()',
     },

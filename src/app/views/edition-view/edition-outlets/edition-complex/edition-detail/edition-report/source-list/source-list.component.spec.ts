@@ -257,18 +257,14 @@ describe('SourceListComponent (DONE)', () => {
 
                     it('... should contain one CompileHtmlDirective in first span', () => {
                         sourceRowDes.forEach(sourceRowDe => {
-                            const directiveIns = sourceRowDe.typeSpanDe.injector.get(
-                                CompileHtmlDirective
-                            ) as CompileHtmlDirective;
+                            const directiveIns = sourceRowDe.typeSpanDe.injector.get(CompileHtmlDirective);
                             expect(directiveIns).toBeTruthy();
                         });
                     });
 
                     it('... should pass down source type to CompileHtmlDirective', () => {
                         sourceRowDes.forEach((sourceRowDe, index) => {
-                            const directiveIns = sourceRowDe.typeSpanDe.injector.get(
-                                CompileHtmlDirective
-                            ) as CompileHtmlDirective;
+                            const directiveIns = sourceRowDe.typeSpanDe.injector.get(CompileHtmlDirective);
 
                             expectToBe(directiveIns.htmlContent(), sourcesData[index].type);
                         });
@@ -276,18 +272,14 @@ describe('SourceListComponent (DONE)', () => {
 
                     it('... should contain one CompileHtmlDirective in second span', () => {
                         sourceRowDes.forEach(sourceRowDe => {
-                            const abbrDirectiveIns = sourceRowDe.locationSpanDe.injector.get(
-                                CompileHtmlDirective
-                            ) as CompileHtmlDirective;
+                            const abbrDirectiveIns = sourceRowDe.locationSpanDe.injector.get(CompileHtmlDirective);
                             expect(abbrDirectiveIns).toBeTruthy();
                         });
                     });
 
                     it('... should pass down source location to CompileHtmlDirective', () => {
                         sourceRowDes.forEach((sourceRowDe, index) => {
-                            const directiveIns = sourceRowDe.locationSpanDe.injector.get(
-                                CompileHtmlDirective
-                            ) as CompileHtmlDirective;
+                            const directiveIns = sourceRowDe.locationSpanDe.injector.get(CompileHtmlDirective);
 
                             expectToBe(directiveIns.htmlContent(), sourcesData[index].location);
                         });
@@ -448,9 +440,7 @@ describe('SourceListComponent (DONE)', () => {
 
                     it('... should contain one CompileHtmlDirective in first span', () => {
                         textSourceRowDes.forEach(sourceRowDe => {
-                            const directiveIns = sourceRowDe.typeSpanDe.injector.get(
-                                CompileHtmlDirective
-                            ) as CompileHtmlDirective;
+                            const directiveIns = sourceRowDe.typeSpanDe.injector.get(CompileHtmlDirective);
 
                             expect(directiveIns).toBeTruthy();
                         });
@@ -458,9 +448,7 @@ describe('SourceListComponent (DONE)', () => {
 
                     it('... should pass down text source type to CompileHtmlDirective', () => {
                         textSourceRowDes.forEach((sourceRowDe, index) => {
-                            const directiveIns = sourceRowDe.typeSpanDe.injector.get(
-                                CompileHtmlDirective
-                            ) as CompileHtmlDirective;
+                            const directiveIns = sourceRowDe.typeSpanDe.injector.get(CompileHtmlDirective);
 
                             expectToBe(directiveIns.htmlContent(), textSourcesData[index].type);
                         });
@@ -468,9 +456,7 @@ describe('SourceListComponent (DONE)', () => {
 
                     it('... should contain one CompileHtmlDirective in second span', () => {
                         textSourceRowDes.forEach(sourceRowDe => {
-                            const directiveIns = sourceRowDe.locationSpanDe.injector.get(
-                                CompileHtmlDirective
-                            ) as CompileHtmlDirective;
+                            const directiveIns = sourceRowDe.locationSpanDe.injector.get(CompileHtmlDirective);
 
                             expect(directiveIns).toBeTruthy();
                         });
@@ -478,9 +464,7 @@ describe('SourceListComponent (DONE)', () => {
 
                     it('... should pass down text source location to CompileHtmlDirective', () => {
                         textSourceRowDes.forEach((sourceRowDe, index) => {
-                            const directiveIns = sourceRowDe.locationSpanDe.injector.get(
-                                CompileHtmlDirective
-                            ) as CompileHtmlDirective;
+                            const directiveIns = sourceRowDe.locationSpanDe.injector.get(CompileHtmlDirective);
 
                             expectToBe(directiveIns.htmlContent(), textSourcesData[index].location);
                         });

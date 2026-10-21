@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { TableRows } from './table.model';
+import { TableRow } from './table.model';
 import {
     compareTableValues,
     filterTableRows,
@@ -16,14 +16,15 @@ import {
 /**
  * Helper function: createRow.
  *
- * It creates a table row with the given labels for column1 and column2.
+ * It creates a table row with the given labels for column1 and column2
+ * (without a cell for column1 if its label is undefined).
  *
- * @param {unknown} label1 The label of column1.
- * @param {unknown} label2 The label of column2.
- * @returns {TableRows} The created row.
+ * @param {string} [label1] The optional label of column1.
+ * @param {string} [label2] The label of column2.
+ * @returns {TableRow} The created row.
  */
-const createRow = (label1: unknown, label2: unknown = 'x'): TableRows => ({
-    column1: { value: `value-${label1}`, label: label1, type: 'literal' },
+const createRow = (label1?: string, label2 = 'x'): TableRow => ({
+    ...(label1 === undefined ? {} : { column1: { value: `value-${label1}`, label: label1, type: 'literal' } }),
     column2: { value: `value-${label2}`, label: label2, type: 'literal' },
 });
 
@@ -64,16 +65,8 @@ describe('TableUtils (DONE)', () => {
                 expectToEqual(filteredTableRows, [rows[1]]);
             });
 
-            it('... should match number labels', () => {
-                const numberRows = [createRow(42), createRow(7)];
-
-                const filteredTableRows = filterTableRows(numberRows, '4');
-
-                expectToEqual(filteredTableRows, [numberRows[0]]);
-            });
-
-            it('... should ignore null and undefined entries', () => {
-                const sparseRows: TableRows[] = [{ column1: null, column2: undefined }, createRow('Apple')];
+            it('... should ignore missing cells', () => {
+                const sparseRows: TableRow[] = [{}, createRow('Apple')];
 
                 const filteredTableRows = filterTableRows(sparseRows, 'apple');
 
@@ -92,24 +85,16 @@ describe('TableUtils (DONE)', () => {
                 expect(isMissingTableValue).toBeDefined();
             });
 
-            describe('... should be true for null, undefined and NaN', () => {
-                it.each([
-                    { desc: 'null', value: null },
-                    { desc: 'undefined', value: undefined },
-                    { desc: 'Number.NaN', value: Number.NaN },
-                ])('... $desc', ({ value }) => {
-                    const isMissing = isMissingTableValue(value);
+            it('... should be true for undefined', () => {
+                const isMissing = isMissingTableValue(undefined);
 
-                    expectToBe(isMissing, true);
-                });
+                expectToBe(isMissing, true);
             });
 
-            describe('... should be false for strings and numbers (also empty and 0)', () => {
+            describe('... should be false for strings (also empty)', () => {
                 it.each([
                     { desc: 'a', value: 'a' },
                     { desc: '', value: '' },
-                    { desc: '1', value: 1 },
-                    { desc: '0', value: 0 },
                 ])('... $desc', ({ value }) => {
                     const isMissing = isMissingTableValue(value);
 
@@ -126,8 +111,7 @@ describe('TableUtils (DONE)', () => {
             describe('... should be 0 for equal values', () => {
                 it.each([
                     { desc: "'a', 'a'", a: 'a', b: 'a' },
-                    { desc: '1, 1', a: 1, b: 1 },
-                    { desc: 'null, undefined', a: null, b: undefined },
+                    { desc: 'undefined, undefined', a: undefined, b: undefined },
                 ])('... $desc', ({ a, b }) => {
                     const comparison = compareTableValues(a, b);
 
@@ -175,11 +159,10 @@ describe('TableUtils (DONE)', () => {
                 });
             });
 
-            describe('... should order numbers numerically', () => {
+            describe('... should order digit strings numerically', () => {
                 it.each([
-                    { desc: '2, 10', a: 2, b: 10, expected: -1 },
-                    { desc: '10, 2', a: 10, b: 2, expected: 1 },
-                    { desc: '-1, 0', a: -1, b: 0, expected: -1 },
+                    { desc: "'2', '10'", a: '2', b: '10', expected: -1 },
+                    { desc: "'10', '2'", a: '10', b: '2', expected: 1 },
                 ])('... $desc', ({ a, b, expected }) => {
                     const comparison = compareTableValues(a, b);
 
@@ -187,24 +170,10 @@ describe('TableUtils (DONE)', () => {
                 });
             });
 
-            describe('... should order numbers before strings', () => {
+            describe('... should order missing values at the end', () => {
                 it.each([
-                    { desc: "10, 'a'", a: 10, b: 'a', expected: -1 },
-                    { desc: "'1', 2", a: '1', b: 2, expected: 1 },
-                ])('... $desc', ({ a, b, expected }) => {
-                    const comparison = compareTableValues(a, b);
-
-                    expectToBe(comparison, expected);
-                });
-            });
-
-            describe('... should order null, undefined and NaN at the end', () => {
-                it.each([
-                    { desc: "null, 'a'", a: null, b: 'a', expected: 1 },
                     { desc: "undefined, 'a'", a: undefined, b: 'a', expected: 1 },
-                    { desc: 'Number.NaN, 1', a: Number.NaN, b: 1, expected: 1 },
-                    { desc: "'a', null", a: 'a', b: null, expected: -1 },
-                    { desc: '1, Number.NaN', a: 1, b: Number.NaN, expected: -1 },
+                    { desc: "'a', undefined", a: 'a', b: undefined, expected: -1 },
                 ])('... $desc', ({ a, b, expected }) => {
                     const comparison = compareTableValues(a, b);
 
@@ -214,7 +183,7 @@ describe('TableUtils (DONE)', () => {
         });
 
         describe('#sortTableRows()', () => {
-            const rows = [createRow('b', '2'), createRow('c', '1'), createRow(null, '3'), createRow('a', '4')];
+            const rows = [createRow('b', '2'), createRow('c', '1'), createRow(undefined, '3'), createRow('a', '4')];
 
             it('... should have a method `sortTableRows`', () => {
                 expect(sortTableRows).toBeDefined();
@@ -277,7 +246,7 @@ describe('TableUtils (DONE)', () => {
         });
 
         describe('#paginateTableRows()', () => {
-            const rows = Array.from({ length: 23 }, (_, i) => createRow(i));
+            const rows = Array.from({ length: 23 }, (_, i) => createRow(String(i)));
 
             it('... should have a method `paginateTableRows`', () => {
                 expect(paginateTableRows).toBeDefined();

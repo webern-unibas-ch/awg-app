@@ -16,7 +16,7 @@ import { MetaPage } from '@awg-shared/meta/meta.model';
 @Component({
     selector: 'awg-footer-poweredby',
     templateUrl: './footer-poweredby.component.html',
-    styleUrls: ['./footer-poweredby.component.scss'],
+    styleUrl: './footer-poweredby.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, ExternalLinkDirective, LogoComponent],
 })
@@ -44,9 +44,9 @@ export class FooterPoweredbyComponent {
         const logos = this.logosData();
         const page = this.pageMetaData();
 
-        const githubLogo = logos?.['github'];
-        const angularLogo = logos?.['angular'];
-        const bootstrapLogo = logos?.['bootstrap'];
+        const githubLogo = logos?.github;
+        const angularLogo = logos?.angular;
+        const bootstrapLogo = logos?.bootstrap;
         const devUrl = page?.awgAppDevUrl;
 
         if (!githubLogo || !angularLogo || !bootstrapLogo || !devUrl) {

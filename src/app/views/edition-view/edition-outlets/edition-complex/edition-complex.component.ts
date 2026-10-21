@@ -16,7 +16,7 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
 @Component({
     selector: 'awg-edition-complex',
     templateUrl: './edition-complex.component.html',
-    styleUrls: ['./edition-complex.component.scss'],
+    styleUrl: './edition-complex.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet],
 })

@@ -1,4 +1,4 @@
-import { TableRows } from '@awg-shared/table/table.model';
+import { TableRow } from '@awg-shared/table/table.model';
 
 import { PrefixMap, RdfTerm } from '@awg-graph/graph-visualizer/models/rdf.model';
 import { SparqlSelectResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
@@ -36,9 +36,9 @@ export function toTableCell(term: RdfTerm, prefixes: PrefixMap): SelectTableCell
  * with one cell per bound variable. Unbound variables get no cell.
  *
  * @param {SparqlSelectResult} result The given SELECT result.
- * @returns {TableRows[]} The table rows.
+ * @returns {TableRow[]} The table rows.
  */
-export function toTableRows(result: SparqlSelectResult): TableRows[] {
+export function toTableRows(result: SparqlSelectResult): TableRow[] {
     return result.bindings.map(binding =>
         Object.freeze(
             Object.fromEntries(

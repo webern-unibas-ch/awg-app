@@ -22,19 +22,25 @@ import { ViewContainerComponent } from './core/view-container/view-container.com
     selector: 'awg-test',
     template: 'test',
 })
-export class RoutedTestMockComponent {}
+export class RoutedTestMockComponent {
+    // Intentionally left empty
+}
 
 @Component({
     selector: 'awg-test2',
     template: 'test2',
 })
-export class RoutedTest2MockComponent {}
+export class RoutedTest2MockComponent {
+    // Intentionally left empty
+}
 
 @Component({
     selector: 'awg-side',
     template: 'test',
 })
-export class RoutedSideMockComponent {}
+export class RoutedSideMockComponent {
+    // Intentionally left empty
+}
 
 export const MOCK_ROUTES: Routes = [
     { path: '', redirectTo: 'test1', pathMatch: 'full' },
@@ -198,9 +204,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should throw due to missing required values for ViewContainerComponent', () => {
                 const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerComponent, 1, 1);
-                const viewContainerCmp = viewContainerDes[0].injector.get(
-                    ViewContainerComponent
-                ) as ViewContainerComponent;
+                const viewContainerCmp = viewContainerDes[0].injector.get(ViewContainerComponent);
 
                 // Expect the required inputs to throw if not provided
                 expect(() => viewContainerCmp.activateSideOutlet()).toThrow();
@@ -320,9 +324,7 @@ describe('AppComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerComponent, 1, 1);
-                const viewContainerCmp = viewContainerDes[0].injector.get(
-                    ViewContainerComponent
-                ) as ViewContainerComponent;
+                const viewContainerCmp = viewContainerDes[0].injector.get(ViewContainerComponent);
 
                 expectToBe(viewContainerCmp.activateSideOutlet(), expectedActivateSideOutlet);
             });

@@ -1,13 +1,13 @@
 import { DOCUMENT, inject, Injectable } from '@angular/core';
 
-import { AppConstants } from '@awg-app/app.constants';
+import { APP_CONSTANTS } from '@awg-app/app.constants';
 
 import { environment } from 'environments/environment';
 
 /**
  * The global gtag variable for Analytics.
  */
-declare let gtag: Function;
+declare let gtag: (...args: AnalyticsConfigEvent) => void;
 
 /**
  * The AnalyticsConfigEvent type.
@@ -42,14 +42,14 @@ export class AnalyticsService {
      * It stores the analytics id.
      *
      */
-    private readonly _analyticsId: string = AppConstants.ANALYTICS_ID;
+    private readonly _analyticsId: string = APP_CONSTANTS.ANALYTICS_ID;
 
     /**
      * Private readonly variable: _analyticsEndpoint.
      *
      * It stores the analytics endpoint.
      */
-    private readonly _analyticsEndpoint: string = AppConstants.ANALYTICS_ENDPOINT;
+    private readonly _analyticsEndpoint: string = APP_CONSTANTS.ANALYTICS_ENDPOINT;
 
     /**
      * Private readonly variable: _sendPageView.
@@ -79,7 +79,7 @@ export class AnalyticsService {
         if (!this._analyticsEndpoint || !this._analyticsId) {
             return;
         }
-        if (this._sendPageView === false) {
+        if (!this._sendPageView) {
             console.info('Running non-production analytics replacement now');
         } else {
             this._prependAnalyticsScript();
@@ -104,9 +104,7 @@ export class AnalyticsService {
             'config',
             this._analyticsId,
             {
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 page_path: page,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 send_page_view: this._sendPageView,
             },
         ];

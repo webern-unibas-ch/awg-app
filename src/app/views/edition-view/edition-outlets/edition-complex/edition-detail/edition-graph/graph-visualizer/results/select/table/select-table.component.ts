@@ -15,7 +15,7 @@ import { SELECT_TABLE_UTILS } from './select-table.utils';
 @Component({
     selector: 'awg-select-table',
     templateUrl: './select-table.component.html',
-    styleUrls: ['./select-table.component.scss'],
+    styleUrl: './select-table.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TableComponent],
 })

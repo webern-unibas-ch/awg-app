@@ -28,9 +28,9 @@ describe('LogoComponent (DONE)', () => {
         }).compileComponents();
 
         // Test data
-        expectedUnibasLogoData = LOGOS_DATA['unibas'];
-        expectedSagwLogoData = LOGOS_DATA['sagw'];
-        expectedAngularLogoData = LOGOS_DATA['angular'];
+        expectedUnibasLogoData = LOGOS_DATA.unibas;
+        expectedSagwLogoData = LOGOS_DATA.sagw;
+        expectedAngularLogoData = LOGOS_DATA.angular;
 
         // Create component fixture
         fixture = TestBed.createComponent(LogoComponent);

@@ -239,7 +239,7 @@ describe('IntroComponent (DONE)', () => {
 
                 it('... should pass down error object to AlertErrorComponent (hollow)', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent);
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
@@ -264,9 +264,7 @@ describe('IntroComponent (DONE)', () => {
 
                 it('... should have default spinnerText on TwelveToneSpinnerComponent (hollow)', () => {
                     const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
-                    const spinnerCmp = spinnerDes[0].injector.get(
-                        TwelveToneSpinnerComponent
-                    ) as TwelveToneSpinnerComponent;
+                    const spinnerCmp = spinnerDes[0].injector.get(TwelveToneSpinnerComponent);
 
                     expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
@@ -314,21 +312,19 @@ describe('IntroComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
                     });
 
-                    it('... should contain one EditionComplexPlaceholderComponent (hollow)', async () => {
+                    it('... should contain one EditionComplexPlaceholderComponent (hollow)', () => {
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                         getAndExpectDebugElementByDirective(divDes[0], EditionComplexPlaceholderComponent, 1, 1);
                     });
 
-                    it('... should pass down `type` and `editionComplex` to EditionComplexPlaceholderComponent (hollow)', async () => {
+                    it('... should pass down `type` and `editionComplex` to EditionComplexPlaceholderComponent (hollow)', () => {
                         const placeholderDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionComplexPlaceholderComponent,
                             1,
                             1
                         );
-                        const placeholderCmp = placeholderDes[0].injector.get(
-                            EditionComplexPlaceholderComponent
-                        ) as EditionComplexPlaceholderComponent;
+                        const placeholderCmp = placeholderDes[0].injector.get(EditionComplexPlaceholderComponent);
 
                         expectToBe(placeholderCmp.type(), 'intro');
                         expectToEqual(placeholderCmp.editionComplex(), expectedComplex);
@@ -368,7 +364,7 @@ describe('IntroComponent (DONE)', () => {
                             );
                             const editionIntroPartialDisclaimerCmp = editionIntroPartialDisclaimerDes[0].injector.get(
                                 EditionIntroPartialDisclaimerComponent
-                            ) as EditionIntroPartialDisclaimerComponent;
+                            );
 
                             expectToEqual(editionIntroPartialDisclaimerCmp.editionComplex(), expectedComplex);
                         });
@@ -385,9 +381,8 @@ describe('IntroComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
-                                EditionIntroContentComponent
-                            ) as EditionIntroContentComponent;
+                            const editionIntroContentCmp =
+                                editionIntroContentDes[0].injector.get(EditionIntroContentComponent);
 
                             expectToEqual(
                                 editionIntroContentCmp.introBlockContent(),
@@ -408,9 +403,7 @@ describe('IntroComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
-                                EditionIntroNavComponent
-                            ) as EditionIntroNavComponent;
+                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(EditionIntroNavComponent);
 
                             expectToEqual(
                                 editionIntroNavCmp.introBlockContent(),
@@ -427,9 +420,7 @@ describe('IntroComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
-                                EditionIntroNavComponent
-                            ) as EditionIntroNavComponent;
+                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(EditionIntroNavComponent);
 
                             const newLanguage = LanguageId.EN;
                             expect(component.selectedLanguage()).not.toBe(newLanguage);
@@ -476,9 +467,8 @@ describe('IntroComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
-                                EditionIntroContentComponent
-                            ) as EditionIntroContentComponent;
+                            const editionIntroContentCmp =
+                                editionIntroContentDes[0].injector.get(EditionIntroContentComponent);
 
                             expectToEqual(
                                 editionIntroContentCmp.introBlockContent(),
@@ -499,9 +489,7 @@ describe('IntroComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
-                                EditionIntroNavComponent
-                            ) as EditionIntroNavComponent;
+                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(EditionIntroNavComponent);
 
                             expectToEqual(
                                 editionIntroNavCmp.introBlockContent(),
@@ -518,9 +506,7 @@ describe('IntroComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
-                                EditionIntroNavComponent
-                            ) as EditionIntroNavComponent;
+                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(EditionIntroNavComponent);
 
                             const newLanguage = LanguageId.EN;
                             expect(component.selectedLanguage()).not.toBe(newLanguage);

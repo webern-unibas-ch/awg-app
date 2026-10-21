@@ -1,4 +1,4 @@
-import { TableRows } from './table.model';
+import { TableRow } from './table.model';
 
 /**
  * Array constant: TABLE_PAGE_SIZE_OPTIONS.
@@ -21,16 +21,14 @@ export const TABLE_DEFAULT_PAGE_SIZE = 10;
  * A row matches if the label of one of its entries
  * contains the term (case-insensitive).
  *
- * @param {TableRows[]} rows The given rows.
+ * @param {TableRow[]} rows The given rows.
  * @param {string} term The given search term.
- * @returns {TableRows[]} The filtered rows.
+ * @returns {TableRow[]} The filtered rows.
  */
-export function filterTableRows(rows: TableRows[], term: string): TableRows[] {
-    const searchTerm = term.toString().toLowerCase();
+export function filterTableRows(rows: TableRow[], term: string): TableRow[] {
+    const searchTerm = term.toLowerCase();
 
-    return rows.filter(row =>
-        Object.values(row).some(rowEntry => rowEntry?.['label']?.toString().toLowerCase().includes(searchTerm))
-    );
+    return rows.filter(row => Object.values(row).some(rowEntry => rowEntry?.label.toLowerCase().includes(searchTerm)));
 }
 
 /**
@@ -44,46 +42,30 @@ const TABLE_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity
 /**
  * Utils method: isMissingTableValue.
  *
- * It checks if a given table value is missing (null, undefined or NaN).
+ * It checks if a given table value is missing (a row without a cell for the column).
  *
- * @param {unknown} value The given value.
+ * @param {string | undefined} value The given value.
  * @returns {boolean} The result of the check.
  */
-export function isMissingTableValue(value: unknown): boolean {
-    return value == null || Number.isNaN(value);
+export function isMissingTableValue(value: string | undefined): value is undefined {
+    return value === undefined;
 }
 
 /**
  * Utils method: compareTableValues.
  *
- * It compares two table values for sorting:
- * - strings in natural, case-insensitive order,
- * - numbers numerically,
- * - numbers before strings,
- * - missing values (null, undefined, NaN) at the end.
+ * It compares two table values for sorting in natural, case-insensitive order
+ * (numbers within the values numerically), with missing values at the end.
  *
- * @param {unknown} a The first value.
- * @param {unknown} b The second value.
+ * @param {string | undefined} a The first value.
+ * @param {string | undefined} b The second value.
  * @returns {number} The comparison result (-1, 0, 1).
  */
-export function compareTableValues(a: unknown, b: unknown): number {
-    const isMissingA = isMissingTableValue(a);
-    const isMissingB = isMissingTableValue(b);
-
-    if (isMissingA || isMissingB) {
-        return Number(isMissingA) - Number(isMissingB);
+export function compareTableValues(a: string | undefined, b: string | undefined): number {
+    if (isMissingTableValue(a) || isMissingTableValue(b)) {
+        return Number(isMissingTableValue(a)) - Number(isMissingTableValue(b));
     }
-
-    const isNumberA = typeof a === 'number';
-    const isNumberB = typeof b === 'number';
-
-    if (isNumberA && isNumberB) {
-        return Math.sign(a - b);
-    }
-    if (isNumberA !== isNumberB) {
-        return isNumberA ? -1 : 1;
-    }
-    return Math.sign(TABLE_COLLATOR.compare(String(a), String(b)));
+    return Math.sign(TABLE_COLLATOR.compare(a, b));
 }
 
 /**
@@ -93,12 +75,12 @@ export function compareTableValues(a: unknown, b: unknown): number {
  * The sort is stable in both directions, so equal values keep their order,
  * and missing values stay at the end also in reverse order.
  *
- * @param {TableRows[]} rows The given rows.
+ * @param {TableRow[]} rows The given rows.
  * @param {string} key The given key (header label) to sort by.
  * @param {boolean} reverse The flag for reverse sort order.
- * @returns {TableRows[]} The sorted rows.
+ * @returns {TableRow[]} The sorted rows.
  */
-export function sortTableRows(rows: TableRows[], key: string, reverse: boolean): TableRows[] {
+export function sortTableRows(rows: TableRow[], key: string, reverse: boolean): TableRow[] {
     if (!key) {
         return rows;
     }
@@ -121,12 +103,12 @@ export function sortTableRows(rows: TableRows[], key: string, reverse: boolean):
  *
  * It returns the rows of the given page.
  *
- * @param {TableRows[]} rows The given rows.
+ * @param {TableRow[]} rows The given rows.
  * @param {number} page The given page (starting with 1).
  * @param {number} pageSize The given page size.
- * @returns {TableRows[]} The rows of the given page.
+ * @returns {TableRow[]} The rows of the given page.
  */
-export function paginateTableRows(rows: TableRows[], page: number, pageSize: number): TableRows[] {
+export function paginateTableRows(rows: TableRow[], page: number, pageSize: number): TableRow[] {
     const startRow = (page - 1) * pageSize;
 
     return rows.slice(startRow, startRow + pageSize);

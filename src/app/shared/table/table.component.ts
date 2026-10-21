@@ -9,7 +9,7 @@ import { NgbHighlight } from '@ng-bootstrap/ng-bootstrap/typeahead';
 import { ClickDirective } from '@awg-shared/click/click.directive';
 
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
-import { TableRows, TableSortState } from './table.model';
+import { TableRow, TableSortState } from './table.model';
 import {
     filterTableRows,
     paginateTableRows,
@@ -27,7 +27,7 @@ import {
 @Component({
     selector: 'awg-table',
     templateUrl: './table.component.html',
-    styleUrls: ['./table.component.scss'],
+    styleUrl: './table.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ClickDirective,
@@ -58,7 +58,7 @@ export class TableComponent {
      *
      * It holds the rows of the table.
      */
-    readonly rowInputData = input<TableRows[]>([]);
+    readonly rowInputData = input<TableRow[]>([]);
 
     /**
      * Readonly output signal: clickedTableValueRequest.

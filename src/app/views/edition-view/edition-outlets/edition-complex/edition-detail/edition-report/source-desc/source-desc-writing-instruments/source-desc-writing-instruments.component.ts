@@ -49,7 +49,7 @@ export class SourceDescWritingInstrumentsComponent {
             return '';
         }
 
-        const main = writingInstruments.main;
+        const main = String(writingInstruments.main);
         const secondary = writingInstruments.secondary?.join(', ');
 
         return secondary ? `${main}; ${secondary}.` : `${main}.`;

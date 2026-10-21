@@ -1,4 +1,8 @@
-import { EditionComplex, EditionComplexesList } from '@awg-views/edition-view/models/edition-complex.model';
+import {
+    EditionComplex,
+    EditionComplexesJsonData,
+    EditionComplexesList,
+} from '@awg-views/edition-view/models/edition-complex.model';
 import {
     EditionOutline,
     EditionOutlineSection,
@@ -20,11 +24,14 @@ let initializedComplexesList: EditionComplexesList | null = null;
  */
 function _getInitializedComplexesList(): EditionComplexesList {
     if (!initializedComplexesList) {
-        const complexesData = (jsonEditionComplexes as any).default ?? jsonEditionComplexes;
-        const complexesList: { [key: string]: EditionComplex } = {};
+        const complexesData: EditionComplexesJsonData = jsonEditionComplexes;
+        const complexesList: Record<string, EditionComplex> = {};
 
-        complexesData.editionComplexes.forEach((complex: any) => {
-            Object.entries(complex).forEach(([complexKey, complexValue]: [string, any]) => {
+        complexesData.editionComplexes.forEach(complex => {
+            Object.entries(complex).forEach(([complexKey, complexValue]) => {
+                if (!complexValue) {
+                    return;
+                }
                 complexesList[complexKey] = new EditionComplex(
                     complexValue.titleStatement,
                     complexValue.respStatement,
@@ -46,7 +53,7 @@ function _getInitializedComplexesList(): EditionComplexesList {
  */
 function _getInitializedOutline(): EditionOutlineSeries[] {
     if (!initializedOutline) {
-        const rawOutlineData = jsonEditionOutline['editionOutline'];
+        const rawOutlineData = jsonEditionOutline.editionOutline;
         const complexesList = _getInitializedComplexesList();
 
         const outlineModel = new EditionOutline(rawOutlineData, id => complexesList[id.toLowerCase()]);

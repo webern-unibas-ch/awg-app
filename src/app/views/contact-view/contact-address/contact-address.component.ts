@@ -12,7 +12,7 @@ import { MetaContact, MetaPage } from '@awg-shared/meta/meta.model';
 @Component({
     selector: 'awg-contact-address',
     templateUrl: './contact-address.component.html',
-    styleUrls: ['./contact-address.component.scss'],
+    styleUrl: './contact-address.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ExternalLinkDirective],
 })

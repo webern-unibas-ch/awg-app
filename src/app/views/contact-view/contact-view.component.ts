@@ -18,7 +18,7 @@ import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 @Component({
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
-    styleUrls: ['./contact-view.component.scss'],
+    styleUrl: './contact-view.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ButtonScrollToTopComponent,

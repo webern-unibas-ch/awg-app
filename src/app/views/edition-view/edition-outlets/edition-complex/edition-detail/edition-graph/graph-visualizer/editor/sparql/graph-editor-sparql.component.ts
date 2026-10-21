@@ -27,7 +27,7 @@ import { ExampleQueriesComponent } from './example-queries/example-queries.compo
 @Component({
     selector: 'awg-graph-editor-sparql',
     templateUrl: './graph-editor-sparql.component.html',
-    styleUrls: ['./graph-editor-sparql.component.scss'],
+    styleUrl: './graph-editor-sparql.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CodeMirrorComponent,
@@ -72,7 +72,7 @@ export class GraphEditorSparqlComponent {
      *
      * It emits a request to perform a query.
      */
-    readonly performQueryRequest = output<void>();
+    readonly performQueryRequest = output();
 
     /**
      * Readonly output signal: resetQueryRequest.

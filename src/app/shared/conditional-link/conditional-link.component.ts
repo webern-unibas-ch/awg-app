@@ -26,5 +26,5 @@ export class ConditionalLinkComponent {
      *
      * It emits an event when the target is clicked.
      */
-    readonly clicked = output<void>();
+    readonly clicked = output();
 }

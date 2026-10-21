@@ -46,14 +46,14 @@ export class ZoomSliderComponent {
      *
      * It emits when the user requests to zoom to fit.
      */
-    readonly fitRequest = output<void>();
+    readonly fitRequest = output();
 
     /**
      * Readonly output signal: resetRequest.
      *
      * It emits when the user requests to reset the zoom.
      */
-    readonly resetRequest = output<void>();
+    readonly resetRequest = output();
 
     /**
      * Readonly variable: faRotateLeft.

@@ -142,14 +142,14 @@ describe('SourceDescContentsComponent (DONE)', () => {
             it('... should pass down the correct isOpen state to the ButtonExpandAllComponent (hollow)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-contents-label', 1, 1);
                 const buttonDes = getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
-                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
+                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent);
 
                 expectToEqual(buttonCmp.isOpen(), expectedOpenAllContentDetails);
             });
 
             it('... should update `contentsState` when the ButtonExpandAllComponent (hollow) model changes', async () => {
                 const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
-                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
+                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent);
 
                 buttonCmp.isOpen.set(true);
 
@@ -171,7 +171,7 @@ describe('SourceDescContentsComponent (DONE)', () => {
                 beforeEach(() => {
                     expectedContentsWithItems = component
                         .contents()
-                        .filter(content => content.item || content.itemDescription);
+                        .filter(content => !!content.item || !!content.itemDescription);
                     expectedContentsWithItemsLength = expectedContentsWithItems.length;
                 });
 
@@ -218,7 +218,7 @@ describe('SourceDescContentsComponent (DONE)', () => {
 
                     const getButtonCmp = (): ButtonExpandAllComponent => {
                         const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
-                        return buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
+                        return buttonDes[0].injector.get(ButtonExpandAllComponent);
                     };
 
                     const getDetailsDes = (): DebugElement[] =>

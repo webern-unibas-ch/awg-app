@@ -17,7 +17,7 @@ import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/lan
 @Component({
     selector: 'awg-edition-preface',
     templateUrl: './edition-preface.component.html',
-    styleUrls: ['./edition-preface.component.scss'],
+    styleUrl: './edition-preface.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AlertErrorComponent, CompileHtmlDirective, LanguageSwitcherComponent, TwelveToneSpinnerComponent],
 })

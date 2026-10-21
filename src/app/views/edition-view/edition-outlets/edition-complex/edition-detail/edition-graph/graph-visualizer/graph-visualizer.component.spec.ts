@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -19,6 +18,7 @@ import { mockConsole } from '@testing/mock-helper';
 
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
+import { ERROR_UTILS } from '@awg-shared/utils/error-utils';
 
 import { GraphRdfData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
@@ -36,7 +36,6 @@ import { GraphResultsSelectComponent } from './results/select/graph-results-sele
 import { GraphResultsStatusComponent } from './results/status/graph-results-status.component';
 import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 import { SparqlQueryService } from './services/sparql-query.service';
-import { ERROR_UTILS } from './utils/error.utils';
 import { DEFAULT_PREFIXES } from './utils/prefix.utils';
 import { SPARQL_UTILS } from './utils/sparql.utils';
 
@@ -167,9 +166,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         const prefixes = { ...DEFAULT_PREFIXES, example: EXAMPLE };
         expectedConstructResult = {
             kind: 'construct',
-            quads: [
-                quad(namedNode(`${EXAMPLE}Test`), namedNode(`${EXAMPLE}has`), namedNode(`${EXAMPLE}Success`)) as Quad,
-            ],
+            quads: [quad(namedNode(`${EXAMPLE}Test`), namedNode(`${EXAMPLE}has`), namedNode(`${EXAMPLE}Success`))],
             prefixes,
         };
         expectedSelectResult = {

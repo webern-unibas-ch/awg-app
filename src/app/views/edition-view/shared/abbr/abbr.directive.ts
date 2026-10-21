@@ -12,11 +12,11 @@ import { ABBR_UTILS } from './abbr.utils';
 })
 export class AbbrDirective {
     /**
-     * Private readonly injection variable: _el.
+     * Private readonly injection variable: _elementRef.
      *
-     * It keeps the instance of the injected Angular ElementRef.
+     * It keeps the reference to the host element.
      */
-    private readonly _el = inject(ElementRef<HTMLElement>);
+    private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     /**
      * Readonly input signal: text.
@@ -47,7 +47,7 @@ export class AbbrDirective {
      */
     private _replaceAbbreviations(): void {
         const text = this.text() || '';
-        const element = this._el.nativeElement;
+        const element = this._elementRef.nativeElement;
         element.innerHTML = text;
 
         if (!text) {

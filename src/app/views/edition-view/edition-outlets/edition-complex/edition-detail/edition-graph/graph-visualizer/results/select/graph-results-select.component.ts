@@ -18,7 +18,7 @@ import { SelectTableComponent } from './table/select-table.component';
 @Component({
     selector: 'awg-graph-results-select',
     templateUrl: './graph-results-select.component.html',
-    styleUrls: ['./graph-results-select.component.scss'],
+    styleUrl: './graph-results-select.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, GraphResultsEmptyComponent, SelectTableComponent, TwelveToneSpinnerComponent],
 })

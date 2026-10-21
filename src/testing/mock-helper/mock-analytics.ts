@@ -18,7 +18,7 @@ interface IMockAnalytics {
     /**
      * The gtag function of the mocked analytics object.
      */
-    gtag: (event: string, eventName: string, eventOptions: { [key: string]: string | boolean }) => void;
+    gtag: (event: string, eventName: string, eventOptions: Record<string, string | boolean>) => void;
 
     /**
      * The getGtag function of the mocked analytics object.
@@ -36,7 +36,7 @@ interface IMockAnalytics {
  *
  * It keeps the analytics events.
  */
-let analyticsStore: Array<analyticsType> = [];
+let analyticsStore: analyticsType[] = [];
 
 /**
  * Test helper: mockAnalytics.
@@ -44,8 +44,8 @@ let analyticsStore: Array<analyticsType> = [];
  * It mocks the analytics object to catch analytics events.
  */
 export const mockAnalytics: IMockAnalytics = {
-    gtag: (event: string, eventName: string, eventOptions: { [key: string]: string | boolean }): void => {
-        analyticsStore.push([event, eventName, eventOptions as analyticsType[2]]);
+    gtag: (event: string, eventName: string, eventOptions: Record<string, string | boolean>): void => {
+        analyticsStore.push([event, eventName, eventOptions]);
     },
     getGtag: (index: number): analyticsType => analyticsStore[index] || null,
     clear: () => {

@@ -15,7 +15,7 @@ import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/tab
 @Component({
     selector: 'awg-edition-sheet-footer',
     templateUrl: './edition-sheet-footer.component.html',
-    styleUrls: ['./edition-sheet-footer.component.scss'],
+    styleUrl: './edition-sheet-footer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionTkaEvaluationsComponent, EditionTkaLabelComponent, EditionTkaTableComponent],
 })

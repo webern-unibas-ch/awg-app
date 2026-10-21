@@ -151,9 +151,7 @@ describe('EditionSectionDetailOverviewComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const introCardCmp = introCardDes[0].injector.get(
-                        EditionSectionDetailIntroCardComponent
-                    ) as EditionSectionDetailIntroCardComponent;
+                    const introCardCmp = introCardDes[0].injector.get(EditionSectionDetailIntroCardComponent);
 
                     expectToEqual(introCardCmp.selectedSection(), expectedSection);
                 });
@@ -181,9 +179,7 @@ describe('EditionSectionDetailOverviewComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const coverCmp = coverDes[0].injector.get(
-                        EditionSectionDetailCoverComponent
-                    ) as EditionSectionDetailCoverComponent;
+                    const coverCmp = coverDes[0].injector.get(EditionSectionDetailCoverComponent);
 
                     expectToEqual(coverCmp.selectedSection(), expectedSection);
                 });
@@ -333,9 +329,7 @@ describe('EditionSectionDetailOverviewComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const complexCardCmp = complexCardDes[0].injector.get(
-                            EditionSectionDetailComplexCardComponent
-                        ) as EditionSectionDetailComplexCardComponent;
+                        const complexCardCmp = complexCardDes[0].injector.get(EditionSectionDetailComplexCardComponent);
 
                         expectToEqual(complexCardCmp.displayedComplexes(), expectedSection.content.complexTypes.opus);
                     });
@@ -408,9 +402,7 @@ describe('EditionSectionDetailOverviewComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const complexCardCmp = complexCardDes[0].injector.get(
-                            EditionSectionDetailComplexCardComponent
-                        ) as EditionSectionDetailComplexCardComponent;
+                        const complexCardCmp = complexCardDes[0].injector.get(EditionSectionDetailComplexCardComponent);
 
                         expectToEqual(complexCardCmp.displayedComplexes(), expectedSection.content.complexTypes.mnr);
                     });
@@ -466,9 +458,7 @@ describe('EditionSectionDetailOverviewComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const placeholderCmp = placeholderDes[0].injector.get(
-                        EditionSectionDetailPlaceholderComponent
-                    ) as EditionSectionDetailPlaceholderComponent;
+                    const placeholderCmp = placeholderDes[0].injector.get(EditionSectionDetailPlaceholderComponent);
 
                     expectToEqual(placeholderCmp.selectedSection(), expectedSectionWithEmptyComplexTypes);
                 });

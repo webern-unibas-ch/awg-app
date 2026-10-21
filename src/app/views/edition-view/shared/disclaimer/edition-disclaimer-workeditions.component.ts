@@ -13,7 +13,7 @@ import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap/p
 @Component({
     selector: 'awg-edition-disclaimer-workeditions',
     templateUrl: './edition-disclaimer-workeditions.component.html',
-    styleUrls: ['./edition-disclaimer-workeditions.component.scss'],
+    styleUrl: './edition-disclaimer-workeditions.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, NgbPopoverModule],
 })

@@ -12,7 +12,7 @@
                                 <th scope="row" [id]="sourceId" class="text-nowrap">
                                     <awg-source-siglum
                                         [siglumData]="source"
-                                        [classPrefix]="'awg-source-list'"
+                                        classPrefix="awg-source-list"
                                         [isClickable]="!!(source.hasDescription || source.linkTo)"
                                         (clicked)="onSourceClick(source)" />
                                 </th>
@@ -36,9 +36,7 @@
                         @for (textSource of sourceList.textSources; track textSource.id) {
                             <tr>
                                 <th scope="row" [id]="textSource.id">
-                                    <awg-source-siglum
-                                        [siglumData]="textSource"
-                                        [classPrefix]="'awg-source-list-text'" />
+                                    <awg-source-siglum [siglumData]="textSource" classPrefix="awg-source-list-text" />
                                 </th>
                                 <td>
                                     <span [awgCompileHtml]="textSource.type"></span> <br />

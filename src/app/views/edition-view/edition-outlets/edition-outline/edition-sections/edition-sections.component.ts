@@ -13,7 +13,7 @@ import { EditionSectionCardComponent } from './edition-section-card/edition-sect
 @Component({
     selector: 'awg-edition-sections',
     templateUrl: './edition-sections.component.html',
-    styleUrls: ['./edition-sections.component.scss'],
+    styleUrl: './edition-sections.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSectionCardComponent],
 })

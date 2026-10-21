@@ -76,10 +76,10 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
             expectToBe(component.isLastItem(), false);
         });
 
-        it('... should throw when accessing computed signal `hasValidRow` due to missing input', () => {
-            expectToBe(isSignal(component.hasValidRow), true);
+        it('... should throw when accessing computed signal `validRow` due to missing input', () => {
+            expectToBe(isSignal(component.validRow), true);
 
-            expect(() => component.hasValidRow()).toThrow();
+            expect(() => component.validRow()).toThrow();
         });
 
         it('... should throw when accessing computed signal `hasDivider` due to missing input', () => {
@@ -123,18 +123,18 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
             expectToBe(component.isLastItem(), expectedIsLastItem);
         });
 
-        it('... should have computed signal `hasValidRow` to hold true', () => {
-            expectToBe(component.hasValidRow(), true);
+        it('... should have computed signal `validRow` to hold the row of the content system', () => {
+            expectToEqual(component.validRow(), expectedContentSystem.row);
         });
 
-        describe('... should have recomputed signal `hasValidRow` to hold false if row is', () => {
+        describe('... should have recomputed signal `validRow` to hold undefined if row is', () => {
             it.each([
                 { desc: 'missing', row: undefined },
                 { desc: 'empty', row: {} },
             ])('... $desc', ({ row }) => {
                 fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, row });
 
-                expectToBe(component.hasValidRow(), false);
+                expect(component.validRow()).toBeUndefined();
             });
         });
 

@@ -135,8 +135,9 @@ describe('EditionSvgOverlayService (DONE)', () => {
         });
 
         it('... should return an empty array if no tkk groups can be selected', () => {
+            const tkkSelector: string = EditionSvgOverlayTypes.tkk;
             serviceGetGroupsBySelectorSpy.mockImplementation((rootGroup: D3Selection, selector: string) =>
-                selector === EditionSvgOverlayTypes.tkk ? undefined : rootGroup.selectAll('g.' + selector)
+                selector === tkkSelector ? undefined : rootGroup.selectAll('g.' + selector)
             );
 
             const createdSvgOverlays = service.createSvgOverlays(expectedSvgRootGroup);
@@ -474,7 +475,7 @@ describe('EditionSvgOverlayService (DONE)', () => {
             ['the root group', () => expectedSvgRootGroup.node()],
             ['a tkk group without overlay box', () => expectedSvgRootGroup.select('#tkk-1').node()],
         ])('... should return undefined for %s', (_label, getTarget) => {
-            const svgOverlay = service.getSvgOverlay(getTarget() as unknown as EventTarget | null);
+            const svgOverlay = service.getSvgOverlay(getTarget());
 
             expect(svgOverlay).toBeUndefined();
         });

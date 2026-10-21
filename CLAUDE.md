@@ -15,9 +15,10 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn lint` / `yarn lint:fix`: ESLint
 - `yarn format-files:check` / `yarn format-files:fix`: Prettier for `src/**`
 - `yarn build:prod`: production build to `dist/awg-app`
+- `yarn check:cycles`: madge check for circular imports (incl. path aliases; runs in CI)
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
 
-Husky and lint-staged run ESLint and Prettier on staged files.
+Husky and lint-staged run ESLint, Prettier and the cycle check on staged files.
 
 ## Git
 
@@ -43,10 +44,11 @@ Husky and lint-staged run ESLint and Prettier on staged files.
 - Standalone components with own `imports`, `OnPush`, `@if`/`@for`; `input()`/`model()`/`output()`/`signal()`/`computed()` (doc comments: "Readonly input signal: x. It holds ...").
 - **Member order:** static fields → `inject()` fields (separate, alphabetical) → input/model → output → queries → state (related members together, mutable last) → constructor → get/set → static, public, protected, private methods (arrow-function fields count as methods). No lifecycle hooks: set-up in the constructor (`effect`, `afterNextRender`/`afterRenderEffect`), clean-up via `DestroyRef`.
 - **Naming:** UPPER_CASE only for module-level consts and static members (`static readonly`, `static get`), otherwise camelCase. `private` with `_` (no `#`), `protected` with `_` only for subclasses. Signal and output fields are `readonly`; only reassigned plain fields stay mutable.
-- Every component has ts, html, scss (also when empty, with `styleUrls`) and spec.
+- Every component has ts, html, scss (also when empty, with `styleUrl`) and spec.
 - Reuse shared UI components where useful (e.g. `ButtonExpandAllComponent`, `ConditionalLinkComponent`).
 - **Imports:** full file paths, no barrels (exception for now: `@testing/mock-data`, `@testing/mock-helper`). Relative only `./` or one `../`, otherwise aliases: `@awg-app`, `@awg-core`, `@awg-shared`, `@awg-views`, `@testing`, and outlet aliases `@awg-graph` (edition-graph), `@awg-report` (edition-report). New outlet aliases only for deep imports, in all four tsconfigs (base, `.app`, `.spec`, `.doc`); once an outlet has one, imports into it use it.
 - **Import blocks** (blank line between, sorted by path): `@angular` → third party → `@testing` → `@awg-app`/`@awg-core` → `@awg-shared` → `@awg-views` → outlet aliases → relative. Move lines when a path changes its block; re-sort `imports: [...]` after renames.
+- **Template attributes:** related ones together (a directive with its inputs and outputs, `class` with `[class]`/`[class.x]`), static attributes before bindings, event bindings last. Not linted: `attributes-order` only sorts by binding kind.
 - Empty checks: `if (array.length)` / `if (!array.length)`. A helper that only gets non-empty lists is guarded at the call site ("(not empty)" in its JSDoc).
 - Destructure all used entries of a config/style constant at the top of a function, consistently across the file.
 

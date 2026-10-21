@@ -43,9 +43,9 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         expectedLogosData = LOGOS_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedPoweredByData = {
-            githubLogo: expectedLogosData['github'],
-            angularLogo: expectedLogosData['angular'],
-            bootstrapLogo: expectedLogosData['bootstrap'],
+            githubLogo: expectedLogosData.github,
+            angularLogo: expectedLogosData.angular,
+            bootstrapLogo: expectedLogosData.bootstrap,
             devUrl: expectedPageMetaData.awgAppDevUrl,
         };
         expectedScrewdriverWrenchIcon = faScrewdriverWrench;
@@ -134,7 +134,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             ])('... $desc', ({ missingKey }) => {
                 const incompleteLogos = structuredClone(expectedLogosData);
 
-                delete incompleteLogos[missingKey as keyof typeof expectedLogosData];
+                Reflect.deleteProperty(incompleteLogos, missingKey);
 
                 fixture.componentRef.setInput('logosData', incompleteLogos);
                 fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
@@ -176,9 +176,9 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 const logoCmps = logoDes.map(de => de.injector.get(LogoComponent));
 
                 expectToBe(logoCmps.length, 3);
-                expectToEqual(logoCmps[0].logoData(), expectedLogosData['github']);
-                expectToEqual(logoCmps[1].logoData(), expectedLogosData['angular']);
-                expectToEqual(logoCmps[2].logoData(), expectedLogosData['bootstrap']);
+                expectToEqual(logoCmps[0].logoData(), expectedLogosData.github);
+                expectToEqual(logoCmps[1].logoData(), expectedLogosData.angular);
+                expectToEqual(logoCmps[2].logoData(), expectedLogosData.bootstrap);
             });
 
             it('... should have default linkClass on LogoComponents (hollow)', () => {

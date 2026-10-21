@@ -177,7 +177,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
                 it('... should pass down error object to AlertErrorComponent (hollow)', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent);
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
@@ -202,9 +202,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
                 it('... should have default spinnerText on TwelveToneSpinnerComponent (hollow)', () => {
                     const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
-                    const spinnerCmp = spinnerDes[0].injector.get(
-                        TwelveToneSpinnerComponent
-                    ) as TwelveToneSpinnerComponent;
+                    const spinnerCmp = spinnerDes[0].injector.get(TwelveToneSpinnerComponent);
 
                     expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
@@ -296,7 +294,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                        const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                         const rowtable = expectedRowtablesData.rowtables[index];
                         const expectedTargetRoute = ['../complex' + rowtable.route, 'sheets'];
@@ -315,7 +313,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                        const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                         const rowtable = expectedRowtablesData.rowtables[index];
                         const expectedQueryParams = { id: rowtable.id };
@@ -334,7 +332,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                        const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                         const rowtable = expectedRowtablesData.rowtables[index];
 

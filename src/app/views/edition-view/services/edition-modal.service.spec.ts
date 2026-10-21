@@ -64,19 +64,13 @@ describe('EditionModalService (DONE)', () => {
                 ]);
             });
 
-            describe('... should trigger `ModalService.openTextModal` with the default snippet', () => {
-                it.each([
-                    { desc: 'undefined', snippetKey: undefined },
-                    { desc: 'null', snippetKey: null },
-                    { desc: 'empty', snippetKey: '' },
-                ])('... if snippet key is $desc', ({ snippetKey }) => {
-                    service.openTextModal(snippetKey);
+            it('... should trigger `ModalService.openTextModal` with the default snippet if snippet key is empty', () => {
+                service.openTextModal('');
 
-                    expectSpyCall(modalServiceOpenTextModalSpy, 1, [
-                        'CONTENTS_NOT_AVAILABLE',
-                        EDITION_MODAL_SNIPPETS.CONTENTS_NOT_AVAILABLE,
-                    ]);
-                });
+                expectSpyCall(modalServiceOpenTextModalSpy, 1, [
+                    'CONTENTS_NOT_AVAILABLE',
+                    EDITION_MODAL_SNIPPETS.CONTENTS_NOT_AVAILABLE,
+                ]);
             });
 
             describe('... should trigger `ModalService.openTextModal` with empty content', () => {

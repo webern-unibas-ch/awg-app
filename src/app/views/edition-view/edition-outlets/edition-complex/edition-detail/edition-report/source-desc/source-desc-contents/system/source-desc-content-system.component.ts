@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input, output } from '@an
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { SourceDescSystem } from '@awg-views/edition-view/models/source-desc.model';
+import { SourceDescSystem, SourceDescSystemRow } from '@awg-views/edition-view/models/source-desc.model';
 import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -39,19 +39,16 @@ export class SourceDescContentSystemComponent {
      *
      * It emits an event when the target is clicked.
      */
-    readonly clicked = output<void>();
+    readonly clicked = output();
 
     /**
-     * Readonly computed signal: hasValidRow.
+     * Readonly computed signal: validRow.
      *
-     * It checks whether the current system has a valid row object with at least one property.
+     * It holds the row of the current system if it has at least one property, otherwise undefined.
      */
-    readonly hasValidRow = computed<boolean>(() => {
+    readonly validRow = computed<SourceDescSystemRow | undefined>(() => {
         const row = this.contentSystem().row;
-        if (!row) {
-            return false;
-        }
-        return Object.keys(row).length > 0;
+        return row && Object.keys(row).length ? row : undefined;
     });
 
     /**
@@ -62,7 +59,7 @@ export class SourceDescContentSystemComponent {
      */
     readonly hasDivider = computed<boolean>(() => {
         const system = this.contentSystem();
-        return !!(system.systemDescription || system.measure || this.hasValidRow());
+        return !!system.systemDescription || !!system.measure || !!this.validRow();
     });
 
     /**

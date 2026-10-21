@@ -43,7 +43,8 @@ Every component spec is split into a `BEFORE initial data binding` and an `AFTER
 
     - optional inputs hold `undefined`: ``... should have input signal `headerLabel` to hold undefined initially``
     - required inputs, and computed signals depending on them, throw: ``... should throw due to missing required input signal `identifiers` ``
-- **`AFTER`** tests the state after the data binding (signal values, rendered view, methods); values that did not change since `BEFORE` are not asserted again.
+    - static inputs of children outside `@if`/`@for` are set on creation: ``... should pass down the static `infoMessage` to AlertInfoComponent (hollow)``
+- **`AFTER`** tests the state after the data binding (signal values, rendered view, methods); values that did not change since `BEFORE` are not asserted again, unless `AFTER` would be empty (`... should still pass down …`).
 
 ### `describe` Blocks
 

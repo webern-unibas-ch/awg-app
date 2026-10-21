@@ -30,7 +30,7 @@ interface FolioLegend {
 @Component({
     selector: 'awg-edition-folios-legend',
     templateUrl: './edition-folios-legend.component.html',
-    styleUrls: ['./edition-folios-legend.component.scss'],
+    styleUrl: './edition-folios-legend.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })

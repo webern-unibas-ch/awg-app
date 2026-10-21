@@ -15,7 +15,7 @@ import { MetaIdentifierBadge } from './meta-identifier-badges.model';
 @Component({
     selector: 'awg-meta-identifier-badges',
     templateUrl: './meta-identifier-badges.component.html',
-    styleUrls: ['./meta-identifier-badges.component.scss'],
+    styleUrl: './meta-identifier-badges.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ExternalLinkDirective],
 })
@@ -44,11 +44,11 @@ export class MetaIdentifierBadgesComponent {
         return validKeys
             .filter(key => !!currentIds[key]?.trim() && !!LOGOS_DATA[key])
             .map(key => {
-                const idValue = currentIds[key];
+                const idValue = currentIds[key] ?? '';
                 const logo = LOGOS_DATA[key];
                 return {
                     key,
-                    fullUrl: logo.href + idValue,
+                    fullUrl: `${logo.href}${idValue}`,
                     src: logo.src,
                     label: logo.alt,
                     titleText: `${key.toUpperCase()}: ${idValue}`,

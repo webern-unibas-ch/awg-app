@@ -1,4 +1,4 @@
-import { AppConstants } from '@awg-app/app.constants';
+import { APP_CONSTANTS } from '@awg-app/app.constants';
 
 import { Meta, MetaContact, MetaPage, MetaStructure } from './meta.model';
 import { PERSONS_DATA } from './persons.data';
@@ -11,18 +11,18 @@ import { PERSONS_DATA } from './persons.data';
 const META_PAGE: MetaPage = {
     yearStart: 2015,
     yearCurrent: new Date().getFullYear(),
-    awgAppUrl: AppConstants.AWG_APP_URL,
-    awgAppDevUrl: AppConstants.AWG_APP_URL + '/dev/',
-    awgAppGithubUrl: AppConstants.AWG_APP_GITHUB_URL,
-    awgAppVersion: AppConstants.AWG_APP_VERSION,
-    awgAppVersionReleaseDate: AppConstants.AWG_APP_VERSION_RELEASE_DATE,
-    awgAppZenodoUrl: AppConstants.AWG_APP_ZENODO_URL,
-    awgProjectUrl: AppConstants.AWG_PROJECT_URL,
-    awgProjectName: AppConstants.AWG_PROJECT_NAME,
-    compodocUrl: AppConstants.AWG_APP_COMPODOC_URL,
-    daschUrl: AppConstants.DASCH_URL,
-    deepWikiUrl: AppConstants.DEEP_WIKI_URL,
-    dhlabUrl: AppConstants.DHLAB_URL,
+    awgAppUrl: APP_CONSTANTS.AWG_APP_URL,
+    awgAppDevUrl: APP_CONSTANTS.AWG_APP_URL + '/dev/',
+    awgAppGithubUrl: APP_CONSTANTS.AWG_APP_GITHUB_URL,
+    awgAppVersion: APP_CONSTANTS.AWG_APP_VERSION,
+    awgAppVersionReleaseDate: APP_CONSTANTS.AWG_APP_VERSION_RELEASE_DATE,
+    awgAppZenodoUrl: APP_CONSTANTS.AWG_APP_ZENODO_URL,
+    awgProjectUrl: APP_CONSTANTS.AWG_PROJECT_URL,
+    awgProjectName: APP_CONSTANTS.AWG_PROJECT_NAME,
+    compodocUrl: APP_CONSTANTS.AWG_APP_COMPODOC_URL,
+    daschUrl: APP_CONSTANTS.DASCH_URL,
+    deepWikiUrl: APP_CONSTANTS.DEEP_WIKI_URL,
+    dhlabUrl: APP_CONSTANTS.DHLAB_URL,
 } as const;
 
 /**

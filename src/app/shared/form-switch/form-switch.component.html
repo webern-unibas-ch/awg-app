@@ -5,6 +5,6 @@
         type="checkbox"
         [id]="inputId()"
         [checked]="checked()"
-        (change)="checkedChange.emit(checkbox.checked)" />
+        (change)="checked.set(checkbox.checked)" />
     <label class="form-check-label" [for]="inputId()"><ng-content /></label>
 </div>

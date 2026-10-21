@@ -36,13 +36,35 @@ export class ToastMessage {
      *
      * @param {string} name The name of the toast.
      * @param {string} message The message of the toast.
-     * @param {number} [duration] The optional duration of the toast.
+     * @param {number} [duration=3000] The optional duration of the toast.
      */
-    constructor(name: string, message: string, duration?: number) {
+    constructor(name: string, message: string, duration = 3000) {
         this.name = name;
         this.message = message;
-        this.duration = duration || 3000;
+        this.duration = duration;
     }
+}
+
+/**
+ * The ToastOptions interface.
+ *
+ * It defines the options of a toast to be displayed with ngb-toast.
+ */
+export interface ToastOptions {
+    /**
+     * The header of the toast.
+     */
+    header?: string;
+
+    /**
+     * The CSS classes of the toast.
+     */
+    classname?: string;
+
+    /**
+     * The delay (in ms) until the toast hides.
+     */
+    delay?: number;
 }
 
 /**
@@ -56,23 +78,23 @@ export class Toast {
     /**
      * The text or template of the toast.
      */
-    textOrTpl: string | TemplateRef<any>;
+    textOrTpl: string | TemplateRef<unknown>;
     /**
      * The options for the toast.
      */
-    options: any;
+    options: ToastOptions;
 
     /**
      * Constructor of the Toast class.
      *
      * It initializes the class with given values.
      *
-     * @param {string | TemplateRef<*>} textOrTpl The given text or template input.
-     * @param {*} [options] The optional options input.
+     * @param {string | TemplateRef<unknown>} textOrTpl The given text or template input.
+     * @param {ToastOptions} [options] The optional options input.
      */
-    constructor(textOrTpl: string | TemplateRef<any>, options?: any) {
+    constructor(textOrTpl: string | TemplateRef<unknown>, options?: ToastOptions) {
         this.textOrTpl = textOrTpl;
-        this.options = options ? { ...options } : {};
+        this.options = { ...options };
     }
 }
 

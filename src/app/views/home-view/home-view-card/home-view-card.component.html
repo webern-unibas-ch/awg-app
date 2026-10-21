@@ -11,17 +11,14 @@
             <span><fa-icon class="me-2" [icon]="faArrowRight" />{{ cardData.linkText }}</span>
         </ng-template>
 
-        @switch (cardData.link.type) {
-            @case ('internal') {
-                <a class="btn btn-info text-light stretched-link" [routerLink]="cardData.link.route"
-                    ><ng-container *ngTemplateOutlet="linkTemplate"
-                /></a>
-            }
-            @case ('external') {
-                <a class="btn btn-info text-light stretched-link" [href]="cardData.link.href"
-                    ><ng-container *ngTemplateOutlet="linkTemplate"
-                /></a>
-            }
+        @if (cardData.link.type === 'internal') {
+            <a class="btn btn-info text-light stretched-link" [routerLink]="cardData.link.route"
+                ><ng-container *ngTemplateOutlet="linkTemplate"
+            /></a>
+        } @else {
+            <a class="btn btn-info text-light stretched-link" [href]="cardData.link.href"
+                ><ng-container *ngTemplateOutlet="linkTemplate"
+            /></a>
         }
     </div>
 </div>

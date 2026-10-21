@@ -10,8 +10,6 @@ import { EditionIntroScrollDirective } from './edition-intro-scroll.directive';
 
 // Mock component
 @Component({
-    standalone: true,
-    imports: [EditionIntroScrollDirective],
     template: `
         <div awgEditionIntroScroll style="min-height: 2000px;">
             <div id="section1" class="awg-edition-intro-section" style="height: 100px;"></div>
@@ -21,8 +19,11 @@ import { EditionIntroScrollDirective } from './edition-intro-scroll.directive';
             <a href="#section2" class="awg-edition-intro-nav-link">Link 2</a>
         </div>
     `,
+    imports: [EditionIntroScrollDirective],
 })
-class TestHostComponent {}
+class TestHostComponent {
+    // Intentionally left empty
+}
 
 describe('EditionIntroScrollDirective (DONE)', () => {
     let fixture: ComponentFixture<TestHostComponent>;

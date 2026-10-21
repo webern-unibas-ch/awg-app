@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 @Component({
     selector: 'awg-edition-jumbotron',
     templateUrl: './edition-jumbotron.component.html',
-    styleUrls: ['./edition-jumbotron.component.scss'],
+    styleUrl: './edition-jumbotron.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionJumbotronComponent {

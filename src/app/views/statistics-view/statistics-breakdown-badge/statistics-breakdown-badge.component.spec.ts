@@ -222,15 +222,15 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'span.awg-statistics-breakdown-badge', 3, 3);
                 });
 
-                it('... all breakdown values are > 0 and showEmptyBadges is true', () => {
+                it('... all breakdown values are > 0 and showEmptyBadges is true', async () => {
                     fixture.componentRef.setInput('showEmptyBadges', true);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'span.awg-statistics-breakdown-badge', 3, 3);
                 });
             });
 
-            it('... should show only non-empty badges when showEmptyBadges is false (default)', () => {
+            it('... should show only non-empty badges when showEmptyBadges is false (default)', async () => {
                 const scenarios: {
                     breakdown: StatisticsComplexBreakdown;
                     expectedTexts: string[];
@@ -262,10 +262,10 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                     },
                 ];
 
-                scenarios.forEach(scenario => {
+                for (const scenario of scenarios) {
                     fixture.componentRef.setInput('breakdown', scenario.breakdown);
                     fixture.componentRef.setInput('showEmptyBadges', expectedShowEmptyBadges);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const badgeDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -278,10 +278,10 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                     scenario.expectedTexts.forEach((expectedText, index) => {
                         expectToContain(badgeEls[index].textContent, expectedText);
                     });
-                });
+                }
             });
 
-            it('... should show all badges (including empty ones) when showEmptyBadges is true', () => {
+            it('... should show all badges (including empty ones) when showEmptyBadges is true', async () => {
                 const scenarios: {
                     breakdown: StatisticsComplexBreakdown;
                     expectedTexts: string[];
@@ -316,10 +316,10 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                     },
                 ];
 
-                scenarios.forEach(scenario => {
+                for (const scenario of scenarios) {
                     fixture.componentRef.setInput('breakdown', scenario.breakdown);
                     fixture.componentRef.setInput('showEmptyBadges', true);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     const badgeDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -332,7 +332,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                     scenario.expectedTexts.forEach((expectedText, index) => {
                         expectToContain(badgeEls[index].textContent, expectedText);
                     });
-                });
+                }
             });
 
             it('... should display correct badge text for each breakdown type', () => {

@@ -10,7 +10,7 @@ import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '../models/
 @Component({
     selector: 'awg-statistics-breakdown-badge',
     templateUrl: './statistics-breakdown-badge.component.html',
-    styleUrls: ['./statistics-breakdown-badge.component.scss'],
+    styleUrl: './statistics-breakdown-badge.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatisticsBreakdownBadgeComponent {

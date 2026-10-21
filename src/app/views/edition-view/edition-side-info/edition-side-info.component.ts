@@ -17,7 +17,7 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
 @Component({
     selector: 'awg-edition-side-info',
     templateUrl: './edition-side-info.component.html',
-    styleUrls: ['./edition-side-info.component.scss'],
+    styleUrl: './edition-side-info.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, RouterLink],
 })

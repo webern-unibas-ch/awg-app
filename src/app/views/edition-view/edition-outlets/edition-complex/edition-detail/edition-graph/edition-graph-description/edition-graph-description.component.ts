@@ -15,7 +15,7 @@ import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shar
 @Component({
     selector: 'awg-edition-graph-description',
     templateUrl: './edition-graph-description.component.html',
-    styleUrls: ['./edition-graph-description.component.scss'],
+    styleUrl: './edition-graph-description.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective, EditionComplexPlaceholderComponent],
 })

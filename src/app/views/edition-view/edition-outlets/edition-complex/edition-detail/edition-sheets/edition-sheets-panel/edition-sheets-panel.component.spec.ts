@@ -135,7 +135,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
         const getItemHeaderDes = (): DebugElement[] =>
             getAndExpectDebugElementByCss(compDe, 'div#awg-edition-sheet-view > div.accordion-header', 1, 1);
 
-        beforeEach(async () => {
+        beforeEach(() => {
             // Set the initial values for the signal inputs
             fixture.componentRef.setInput('isSheetFacetMinimized', false);
             fixture.componentRef.setInput('svgSheetsData', expectedSvgSheetsData);

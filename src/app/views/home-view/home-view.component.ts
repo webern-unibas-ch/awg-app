@@ -25,7 +25,7 @@ import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
 @Component({
     selector: 'awg-home-view',
     templateUrl: './home-view.component.html',
-    styleUrls: ['./home-view.component.scss'],
+    styleUrl: './home-view.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AlertInfoComponent,

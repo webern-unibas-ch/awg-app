@@ -40,8 +40,8 @@ function expectDebugElement(
     }
 
     const failMsg = suffixMsg
-        ? `should have ${expectedFailMsg} ${selector} ${suffixMsg}`
-        : `should have ${expectedFailMsg} ${selector}`;
+        ? `should have ${String(expectedFailMsg)} ${selector} ${suffixMsg}`
+        : `should have ${String(expectedFailMsg)} ${selector}`;
 
     expect(des).toBeDefined();
     expect(des.length, failMsg).toBe(expected);
@@ -59,7 +59,7 @@ function expectDebugElement(
  * @param {string} selector The CSS selector to look for.
  * @param {number} expected The expected number of elements in the result array.
  * @param {number} expectedFailMsg The expected number of elements in the result array in the fail message.
- * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
+ * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
  * @returns {DebugElement[]} An array of the found DebugElements.
  */
 export function getAndExpectDebugElementByCss(
@@ -67,14 +67,9 @@ export function getAndExpectDebugElementByCss(
     selector: string,
     expected: number,
     expectedFailMsg: number,
-    suffixMsg?: string
+    suffixMsg = ''
 ): DebugElement[] {
     const outDes = inDe.queryAll(By.css(selector));
-
-    // Empty string if no suffix message provided
-    if (!suffixMsg) {
-        suffixMsg = '';
-    }
 
     expectDebugElement(outDes, selector, expected, expectedFailMsg, suffixMsg);
 
@@ -93,7 +88,7 @@ export function getAndExpectDebugElementByCss(
  * @param {Type<*>} selectorType The selector type (directive) to look for.
  * @param {number } expected The expected number of elements in the result array.
  * @param {number | undefined} expectedFailMsg The expected number of elements in the result array in the fail message.
- * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
+ * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
  * @returns {DebugElement[]} An array of the found DebugElements.
  */
 export function getAndExpectDebugElementByDirective(
@@ -101,14 +96,9 @@ export function getAndExpectDebugElementByDirective(
     selectorType: Type<any>,
     expected: number,
     expectedFailMsg: number | undefined,
-    suffixMsg?: string
+    suffixMsg = ''
 ): DebugElement[] {
     const outDes = inDe.queryAll(By.directive(selectorType));
-
-    // Empty string if no suffix message provided
-    if (!suffixMsg) {
-        suffixMsg = '';
-    }
 
     expectDebugElement(outDes, selectorType, expected, expectedFailMsg, suffixMsg);
 
@@ -128,7 +118,7 @@ export function getAndExpectDebugElementByDirective(
  */
 export function expectToBe<T>(actual: T, expected: T): void {
     expect(actual).toBeDefined();
-    expect(actual, `should be ${expected}`).toBe(expected);
+    expect(actual, `should be ${String(expected)}`).toBe(expected);
 }
 
 /**
@@ -142,9 +132,9 @@ export function expectToBe<T>(actual: T, expected: T): void {
  * @param {any} expected The expected value that should be contained.
  * @returns {void} Throws the expectation statements.
  */
-export function expectToContain<T>(actual: T extends Function ? never : T, expected: any): void {
+export function expectToContain<T>(actual: T extends (...args: never[]) => unknown ? never : T, expected: any): void {
     expect(actual).toBeDefined();
-    expect(actual, `should contain ${expected}`).toContain(expected);
+    expect(actual, `should contain ${String(expected)}`).toContain(expected);
 }
 
 /**
@@ -158,9 +148,12 @@ export function expectToContain<T>(actual: T extends Function ? never : T, expec
  * @param {any} expected The expected value that should not be contained.
  * @returns {void} Throws the expectation statements.
  */
-export function expectToNotContain<T>(actual: T extends Function ? never : T, expected: any): void {
+export function expectToNotContain<T>(
+    actual: T extends (...args: never[]) => unknown ? never : T,
+    expected: any
+): void {
     expect(actual).toBeDefined();
-    expect(actual, `should not contain ${expected}`).not.toContain(expected);
+    expect(actual, `should not contain ${String(expected)}`).not.toContain(expected);
 }
 
 /**
@@ -176,7 +169,7 @@ export function expectToNotContain<T>(actual: T extends Function ? never : T, ex
  */
 export function expectToEqual<T>(actual: T, expected: T): void {
     expect(actual).toBeDefined();
-    expect(actual, `should equal ${expected}`).toEqual(expected);
+    expect(actual, `should equal ${String(expected)}`).toEqual(expected);
 }
 
 /**

@@ -17,7 +17,7 @@ import { SourceDescContentItemComponent } from './item/source-desc-content-item.
 @Component({
     selector: 'awg-source-desc-contents',
     templateUrl: './source-desc-contents.component.html',
-    styleUrls: ['./source-desc-contents.component.scss'],
+    styleUrl: './source-desc-contents.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonExpandAllComponent, SourceDescContentGridComponent, SourceDescContentItemComponent],
 })

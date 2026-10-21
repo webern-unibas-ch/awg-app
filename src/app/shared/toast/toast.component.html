@@ -1,6 +1,6 @@
 @for (toast of toasts(); track toast) {
     <ngb-toast
-        [header]="toast.options.header"
+        [header]="toast.options.header ?? ''"
         [class]="toast.options.classname"
         [autohide]="true"
         [delay]="toast.options.delay || 5000"

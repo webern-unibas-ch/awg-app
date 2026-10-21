@@ -13,7 +13,7 @@ import { CanvasPoint } from '../canvas.model';
 @Component({
     selector: 'awg-canvas-tooltip',
     templateUrl: './canvas-tooltip.component.html',
-    styleUrls: ['./canvas-tooltip.component.scss'],
+    styleUrl: './canvas-tooltip.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbTooltip],
 })

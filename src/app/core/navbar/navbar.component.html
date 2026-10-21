@@ -8,9 +8,9 @@
     <button
         type="button"
         class="navbar-toggler"
-        (click)="toggleNav()"
+        aria-controls="collapsibleNavbar"
         [attr.aria-expanded]="!isCollapsed()"
-        aria-controls="collapsibleNavbar">
+        (click)="toggleNav()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -25,7 +25,7 @@
 
             <!-- Edition -->
             <li class="nav-item" ngbDropdown [class.active]="isEditionRouteActive()">
-                <awg-navbar-item [item]="navbarItems.edition" [isDropdown]="true" id="dropdownNavEdition" />
+                <awg-navbar-item id="dropdownNavEdition" [item]="navbarItems.edition" [isDropdown]="true" />
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
                     <h6 class="dropdown-header">Allgemein</h6>
                     @for (link of generalEditionLinks; track link.route.join('/')) {

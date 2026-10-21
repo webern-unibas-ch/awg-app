@@ -11,7 +11,7 @@ import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component'
 @Component({
     selector: 'awg-edition-section-detail-disclaimer',
     templateUrl: './edition-section-detail-disclaimer.component.html',
-    styleUrls: ['./edition-section-detail-disclaimer.component.scss'],
+    styleUrl: './edition-section-detail-disclaimer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AlertInfoComponent],
 })

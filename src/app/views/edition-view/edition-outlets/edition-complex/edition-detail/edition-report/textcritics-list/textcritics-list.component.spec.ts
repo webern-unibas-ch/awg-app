@@ -234,7 +234,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                        const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective);
 
                         expectToBe(directiveIns.htmlContent(), expectedTextcritics[index].label);
                     });
@@ -573,7 +573,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
                         const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
-                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent) as EditionTkaLabelComponent;
+                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
 
                         expectToBe(labelCmp.id(), expectedTextcriticsListData.textcritics[0].id);
                         expectToBe(labelCmp.labelType(), 'evaluation');
@@ -586,9 +586,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const evaluationsCmp = evaluationsDes[0].injector.get(
-                            EditionTkaEvaluationsComponent
-                        ) as EditionTkaEvaluationsComponent;
+                        const evaluationsCmp = evaluationsDes[0].injector.get(EditionTkaEvaluationsComponent);
 
                         expectToEqual(
                             evaluationsCmp.evaluations(),
@@ -667,7 +665,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
                         const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
-                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent) as EditionTkaLabelComponent;
+                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
 
                         expectToBe(labelCmp.id(), expectedTextcriticsListData.textcritics[0].id);
                         expectToBe(labelCmp.labelType(), 'commentary');
@@ -675,7 +673,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     it('... should pass down the correct values to EditionTkaTableComponent (hollow)', () => {
                         const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableComponent, 1, 1);
-                        const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent) as EditionTkaTableComponent;
+                        const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent);
 
                         expectToEqual(
                             tableCmp.displayedCommentary(),
@@ -693,7 +691,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
 
                         const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableComponent, 1, 1);
-                        const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent) as EditionTkaTableComponent;
+                        const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent);
 
                         expectToEqual(
                             tableCmp.displayedCommentary(),

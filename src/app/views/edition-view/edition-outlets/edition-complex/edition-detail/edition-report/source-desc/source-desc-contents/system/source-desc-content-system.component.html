@@ -24,15 +24,14 @@
         @if (system.measure) {
             <span class="awg-source-desc-content-grid-measure">
                 <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
-                    <span><span [awgAbbr]="'T.'"></span>&nbsp;{{ system.measure }}</span>
+                    <span><span awgAbbr="T."></span>&nbsp;{{ system.measure }}</span>
                 </awg-conditional-link>
             </span>
         }
 
         <!-- Rows -->
-        @if (hasValidRow()) {
+        @if (validRow(); as row) {
             <span class="awg-source-desc-content-grid-row">
-                @let row = system.row!;
                 <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
                     <span>
                         <span

@@ -20,7 +20,7 @@ import { EditionFoliosViewerComponent } from './viewer/edition-folios-viewer.com
 @Component({
     selector: 'awg-edition-folios-panel',
     templateUrl: './edition-folios-panel.component.html',
-    styleUrls: ['./edition-folios-panel.component.scss'],
+    styleUrl: './edition-folios-panel.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionFoliosLegendComponent, EditionFoliosViewerComponent, NgbAccordionModule, RouterLink],
 })

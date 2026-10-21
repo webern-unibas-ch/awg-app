@@ -19,12 +19,11 @@
                         pattern="[0-9]*"
                         class="form-control custom-pages-input"
                         id="paginationInput"
+                        aria-labelledby="paginationInputLabel paginationDescription"
                         [value]="page"
                         (keyup.enter)="selectPage(i.value)"
                         (blur)="selectPage(i.value)"
-                        (input)="replaceNonNumberInput($any($event).target)"
-                        aria-labelledby="paginationInputLabel paginationDescription"
-                        style="width: 3rem" />
+                        (input)="replaceNonNumberInput(i)" />
                     <span id="paginationDescription" class="col-form-label text-nowrap px-2">
                         von {{ pages.length }}</span
                     >

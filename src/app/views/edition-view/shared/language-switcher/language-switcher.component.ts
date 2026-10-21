@@ -10,7 +10,7 @@ import { LanguageId } from './language.model';
 @Component({
     selector: 'awg-language-switcher',
     templateUrl: './language-switcher.component.html',
-    styleUrls: ['./language-switcher.component.scss'],
+    styleUrl: './language-switcher.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSwitcherComponent {

@@ -407,9 +407,9 @@ describe('EditionViewService (DONE)', () => {
                         service['_previousViewName'].set(viewName);
                         mockIsLoadingSignal.set(false);
 
-                        (mockEditionDataService as any)['folioConvoluteData'].set({ convolutes: [{ id: 'fol-1' }] });
-                        (mockEditionDataService as any)['textcriticsData'].set({ textcritics: [{ id: 'tc-1' }] });
-                        (mockEditionDataService as any)['svgSheetsData'].set({
+                        (mockEditionDataService as any).folioConvoluteData.set({ convolutes: [{ id: 'fol-1' }] });
+                        (mockEditionDataService as any).textcriticsData.set({ textcritics: [{ id: 'tc-1' }] });
+                        (mockEditionDataService as any).svgSheetsData.set({
                             sheets: { workEditions: [], textEditions: [], sketchEditions: [] },
                         });
 
@@ -423,10 +423,10 @@ describe('EditionViewService (DONE)', () => {
                         service['_previousViewName'].set(viewName);
                         mockIsLoadingSignal.set(false);
 
-                        (mockEditionDataService as any)['folioConvoluteData'].set({ convolutes: [{ id: 'fol-1' }] });
-                        (mockEditionDataService as any)['textcriticsData'].set({ textcritics: [{ id: 'tc-1' }] });
+                        (mockEditionDataService as any).folioConvoluteData.set({ convolutes: [{ id: 'fol-1' }] });
+                        (mockEditionDataService as any).textcriticsData.set({ textcritics: [{ id: 'tc-1' }] });
 
-                        (mockEditionDataService as any)['svgSheetsData'].set({
+                        (mockEditionDataService as any).svgSheetsData.set({
                             sheets: { workEditions: [], textEditions: [], sketchEditions: [{ id: 'sketch-1' }] },
                         });
 
@@ -707,7 +707,7 @@ describe('EditionViewService (DONE)', () => {
             describe('... should return the `viewKey` itself for single-data views like ', () => {
                 it.each<{
                     viewKey: EditionViewKey;
-                    signalMap: Array<[any, Signal<any>]>;
+                    signalMap: [any, Signal<any>][];
                 }>([
                     { viewKey: 'preface', signalMap: [['prefaceData', signal(null)]] },
                     { viewKey: 'rowtables', signalMap: [['rowtablesData', signal(null)]] },
@@ -723,7 +723,7 @@ describe('EditionViewService (DONE)', () => {
             describe('... should strip `Data` suffix from `dataKeys` for multi-data views like', () => {
                 it.each<{
                     viewKey: EditionViewKey;
-                    signalMap: Array<[any, Signal<any>]>;
+                    signalMap: [any, Signal<any>][];
                 }>([
                     {
                         viewKey: 'sheets',
@@ -793,7 +793,7 @@ describe('EditionViewService (DONE)', () => {
 
         describe('#_getFallbackForInactiveView()', () => {
             const viewKey: EditionViewKey = 'sheets';
-            const dataKeys: Array<keyof EditionViewDataTypeMapping[typeof viewKey]> = ['folioConvoluteData'];
+            const dataKeys: (keyof EditionViewDataTypeMapping[typeof viewKey])[] = ['folioConvoluteData'];
 
             it('... should have a method `_getFallbackForInactiveView`', () => {
                 expect(service['_getFallbackForInactiveView']).toBeDefined();

@@ -11,7 +11,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 @Component({
     selector: 'awg-button-scroll-to-top',
     templateUrl: './button-scroll-to-top.component.html',
-    styleUrls: ['./button-scroll-to-top.component.scss'],
+    styleUrl: './button-scroll-to-top.component.scss',
     host: {
         '(window:scroll)': 'onWindowScroll()',
     },
@@ -50,7 +50,7 @@ export class ButtonScrollToTopComponent {
      */
     protected onWindowScroll(): void {
         const windowRef = this._document.defaultView;
-        const scrollPosition = windowRef?.scrollY || 0;
+        const scrollPosition = windowRef?.scrollY ?? 0;
         const SCROLL_THRESHOLD = 300;
 
         this.showScrollButton.set(scrollPosition >= SCROLL_THRESHOLD);

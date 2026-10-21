@@ -12,7 +12,7 @@ import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-ou
 @Component({
     selector: 'awg-edition-section-detail-intro-card',
     templateUrl: './edition-section-detail-intro-card.component.html',
-    styleUrls: ['./edition-section-detail-intro-card.component.scss'],
+    styleUrl: './edition-section-detail-intro-card.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonMoreComponent],
 })

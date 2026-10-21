@@ -6,7 +6,7 @@
  * @param value The array to check.
  * @returns True if the array is null, undefined, or empty; false otherwise.
  */
-export function isEmptyArray<T>(value: T[] | null | undefined): value is null | undefined | [] {
+export function isEmptyArray(value: unknown[] | null | undefined): value is null | undefined | [] {
     return !value || !Array.isArray(value) || value.length === 0;
 }
 

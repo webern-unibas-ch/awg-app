@@ -12,7 +12,7 @@ import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-ou
 @Component({
     selector: 'awg-edition-section-detail-placeholder',
     templateUrl: './edition-section-detail-placeholder.component.html',
-    styleUrls: ['./edition-section-detail-placeholder.component.scss'],
+    styleUrl: './edition-section-detail-placeholder.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AlertInfoComponent],
 })

@@ -343,7 +343,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                         expectToBe(hEl.textContent?.trim(), expectedBreadcrumb);
                     });
 
-                    it('... should have three router links (to series overview, current edition series and section overview)', async () => {
+                    it('... should have three router links (to series overview, current edition series and section overview)', () => {
                         const expectedLinkLength = 3;
 
                         const hDes = getAndExpectDebugElementByCss(compDe, 'h6.awg-edition-info-breadcrumb', 1, 1);

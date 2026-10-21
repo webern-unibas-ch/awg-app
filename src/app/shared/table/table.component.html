@@ -7,14 +7,15 @@
     </div>
     <div class="col-sm-6">
         <input
+            #searchInput
             id="search"
             class="form-control"
             type="text"
             name="searchFilter"
-            [value]="searchFilter()"
-            (input)="onSearchFilterChange($any($event.target).value)"
             placeholder="Ergebnisse filtern..."
-            aria-label="Filter results" />
+            aria-label="Filter results"
+            [value]="searchFilter()"
+            (input)="onSearchFilterChange(searchInput.value)" />
     </div>
 </div>
 
@@ -23,14 +24,19 @@
         <awg-table-pagination [collectionSize]="filteredRows().length" [pageSize]="pageSize()" [(page)]="page" />
         <div ngbDropdown class="d-inline-block">
             <button
+                type="button"
                 class="btn btn-default awg-pagesize-dropdown-button"
-                [id]="'pageSizeDropdownMenu' + position"
+                [id]="`pageSizeDropdownMenu${position}`"
                 ngbDropdownToggle>
                 {{ pageSize() }} Ergebnisse pro Seite
             </button>
-            <div class="dropdown-menu" [attr.aria-labelledby]="'pageSizeDropdownMenu' + position" ngbDropdownMenu>
+            <div class="dropdown-menu" [attr.aria-labelledby]="`pageSizeDropdownMenu${position}`" ngbDropdownMenu>
                 @for (pageSizeOption of pageSizeOptions; track pageSizeOption) {
-                    <button ngbDropdownItem class="dropdown-item" (click)="onPageSizeChange(pageSizeOption)">
+                    <button
+                        type="button"
+                        ngbDropdownItem
+                        class="dropdown-item"
+                        (click)="onPageSizeChange(pageSizeOption)">
                         {{ pageSizeOption }} Ergebnisse pro Seite
                     </button>
                 }
@@ -46,7 +52,7 @@
     <thead>
         <tr>
             @for (headerLabel of headerInputData(); track headerLabel) {
-                <th scope="col" (awgClick)="onSort(headerLabel)" tabindex="0">
+                <th scope="col" tabindex="0" (awgClick)="onSort(headerLabel)">
                     {{ headerLabel }}&nbsp;
                     @if (headerLabel === sortState().key) {
                         <fa-icon [icon]="sortIcon()" />
@@ -57,23 +63,14 @@
     </thead>
     <tbody>
         @for (row of paginatedRows(); track row) {
-            <tr (awgClick)="onTableRowClick($event)" tabindex="0">
+            <tr tabindex="0" (awgClick)="onTableRowClick($event)">
                 @for (headerLabel of headerInputData(); track headerLabel) {
                     @let cell = row[headerLabel];
                     <td>
                         @if (cell?.type === 'uri') {
-                            <a (awgClick)="onTableValueClick(cell.value)" role="link" tabindex="0">
+                            <a role="link" tabindex="0" (awgClick)="onTableValueClick(cell.value)">
                                 <ngb-highlight [result]="cell.label" [term]="searchFilter()" />
                             </a>
-                        } @else if (cell?.type === 'search') {
-                            <span>
-                                @if (cell.icon) {
-                                    <span class="badge">
-                                        <img [attr.src]="cell.icon" alt="iconsrc" />
-                                    </span>
-                                }
-                                <ngb-highlight [result]="cell.label" [term]="searchFilter()" />
-                            </span>
                         } @else {
                             <span><ngb-highlight [result]="cell?.label" [term]="searchFilter()" /></span>
                         }

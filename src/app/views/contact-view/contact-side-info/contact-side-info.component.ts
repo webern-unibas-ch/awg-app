@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-import { AppConstants } from '@awg-app/app.constants';
+import { APP_CONSTANTS } from '@awg-app/app.constants';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
@@ -17,7 +17,7 @@ import { ContactMapComponent } from '../contact-map/contact-map.component';
 @Component({
     selector: 'awg-contact-side-info',
     templateUrl: './contact-side-info.component.html',
-    styleUrls: ['./contact-side-info.component.scss'],
+    styleUrl: './contact-side-info.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ContactAddressComponent, ContactMapComponent],
 })
@@ -56,7 +56,7 @@ export class ContactSideInfoComponent {
      * It keeps the sanitized link to embed the map.
      */
     readonly mapEmbedUrl: SafeResourceUrl = this._sanitizer.bypassSecurityTrustResourceUrl(
-        AppConstants.CONTACT_MAP_UNSAFE_EMBED_URL
+        APP_CONSTANTS.CONTACT_MAP_UNSAFE_EMBED_URL
     ); // NOSONAR: URL is a static, trusted source
 
     /**
@@ -64,5 +64,5 @@ export class ContactSideInfoComponent {
      *
      * It keeps the link to the external map page.
      */
-    readonly mapLinkUrl = AppConstants.CONTACT_MAP_LINK_URL;
+    readonly mapLinkUrl = APP_CONSTANTS.CONTACT_MAP_LINK_URL;
 }

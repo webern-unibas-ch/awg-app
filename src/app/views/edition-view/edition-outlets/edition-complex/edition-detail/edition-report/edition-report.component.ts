@@ -21,7 +21,7 @@ import { TextcriticsListComponent } from './textcritics-list/textcritics-list.co
 @Component({
     selector: 'awg-edition-report',
     templateUrl: './edition-report.component.html',
-    styleUrls: ['./edition-report.component.scss'],
+    styleUrl: './edition-report.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         NgbAccordionModule,

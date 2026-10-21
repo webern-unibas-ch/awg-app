@@ -17,7 +17,7 @@ import { EditionSectionDetailPlaceholderComponent } from '../edition-section-det
 @Component({
     selector: 'awg-edition-section-detail-overview',
     templateUrl: './edition-section-detail-overview.component.html',
-    styleUrls: ['./edition-section-detail-overview.component.scss'],
+    styleUrl: './edition-section-detail-overview.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         EditionSectionDetailComplexCardComponent,

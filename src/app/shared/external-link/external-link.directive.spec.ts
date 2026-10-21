@@ -16,9 +16,7 @@ import { ExternalLinkDirective } from './external-link.directive';
 
 // Test external link component
 @Component({
-    template: `<a [href]="'https://coryrylan.com/blog/managing-external-links-safely-in-angular'"
-            >Static External Link</a
-        >
+    template: `<a href="https://coryrylan.com/blog/managing-external-links-safely-in-angular">Static External Link</a>
 
         <br /><br />
         <a [href]="dynamicExternalLink">Dynamic External Link</a>
@@ -33,22 +31,22 @@ import { ExternalLinkDirective } from './external-link.directive';
         <a [href]="dynamicInternalLink">Dynamic Internal Link</a>
 
         <br /><br />
-        <a [href]="'/about'">Relative URL Link</a>
+        <a href="/about">Relative URL Link</a>
 
         <br /><br />
-        <a [href]="'mailto:test@example.com'">Mailto Link</a>
+        <a href="mailto:test@example.com">Mailto Link</a>
 
         <br /><br />
-        <a [href]="'https://coryrylan.com/blog/'" rel="nofollow">External Link with static rel</a>
+        <a href="https://coryrylan.com/blog/" rel="nofollow">External Link with static rel</a>
 
         <br /><br />
-        <a [href]="'https://coryrylan.com/blog/'" rel="noopener nofollow">External Link with duplicate rel</a>
+        <a href="https://coryrylan.com/blog/" rel="noopener nofollow">External Link with duplicate rel</a>
 
         <br /><br />
-        <a [href]="'/about'" rel="help">Internal Link with static rel</a>,
+        <a href="/about" rel="help">Internal Link with static rel</a>,
 
         <br /><br />
-        <a (click)="doSomething()" (keyup.enter)="doSomething()" role="link" tabindex="0">Link without href</a>`,
+        <a role="link" tabindex="0" (click)="doSomething()" (keyup.enter)="doSomething()">Link without href</a>`,
     imports: [ExternalLinkDirective],
 })
 class TestExternalLinkComponent {

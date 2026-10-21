@@ -19,7 +19,7 @@ import { EditionSheetFacetToggleComponent } from './toggle/edition-sheet-facet-t
 @Component({
     selector: 'awg-edition-sheet-facet',
     templateUrl: './edition-sheet-facet.component.html',
-    styleUrls: ['./edition-sheet-facet.component.scss'],
+    styleUrl: './edition-sheet-facet.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSheetFacetGroupComponent, EditionSheetFacetToggleComponent],
 })

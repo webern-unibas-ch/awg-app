@@ -77,6 +77,13 @@ describe('SelectTableComponent (DONE)', () => {
             it('... should contain one TableComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
             });
+
+            it('... should pass down the static `tableTitle` to TableComponent (hollow)', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(TableComponent);
+
+                expectToBe(tableCmp.tableTitle(), expectedTableTitle);
+            });
         });
     });
 
@@ -106,13 +113,6 @@ describe('SelectTableComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down `tableTitle` to TableComponent (hollow)', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(TableComponent);
-
-                expectToBe(tableCmp.tableTitle(), expectedTableTitle);
-            });
-
             it('... should pass down `headerInputData` to TableComponent (hollow)', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(TableComponent);

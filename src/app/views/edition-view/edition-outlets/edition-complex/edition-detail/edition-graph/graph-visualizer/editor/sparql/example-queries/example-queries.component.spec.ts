@@ -276,11 +276,11 @@ describe('ExampleQueriesComponent (DONE)', () => {
                     expectToBe(isActive, true);
                 });
 
-                it.each([
+                it.each<{ desc: string; query: GraphQuery }>([
                     { desc: 'another label', query: { ...expectedConstructQuery1, queryLabel: 'Other' } },
                     {
                         desc: 'another type',
-                        query: { ...expectedConstructQuery1, queryType: 'select' } as GraphQuery,
+                        query: { ...expectedConstructQuery1, queryType: 'select' },
                     },
                 ])('... should be false for a query with $desc', ({ query }) => {
                     const isActive = component.isActive(query);

@@ -19,7 +19,7 @@ import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-edito
 @Component({
     selector: 'awg-graph-editor-triples',
     templateUrl: './graph-editor-triples.component.html',
-    styleUrls: ['./graph-editor-triples.component.scss'],
+    styleUrl: './graph-editor-triples.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, CodeMirrorComponent, GraphEditorActionButtonsComponent],
 })
@@ -51,14 +51,14 @@ export class GraphEditorTriplesComponent {
      *
      * It emits a request to perform a query.
      */
-    readonly performQueryRequest = output<void>();
+    readonly performQueryRequest = output();
 
     /**
      * Readonly output signal: resetTriplesRequest.
      *
      * It emits a request to reset the triples to their initial state.
      */
-    readonly resetTriplesRequest = output<void>();
+    readonly resetTriplesRequest = output();
 
     /**
      * Readonly variable: cmTurtleMode.

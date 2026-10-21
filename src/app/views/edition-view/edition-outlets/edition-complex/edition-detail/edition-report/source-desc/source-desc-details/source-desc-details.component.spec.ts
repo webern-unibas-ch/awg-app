@@ -179,7 +179,7 @@ describe('SourceDescDetailsComponent (DONE)', () => {
                     expectedDetails.length
                 );
                 directiveDes.forEach((directiveDe, index) => {
-                    const directiveIns = directiveDe.injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                    const directiveIns = directiveDe.injector.get(CompileHtmlDirective);
 
                     expectToBe(directiveIns.htmlContent(), expectedDetails[index]);
                 });

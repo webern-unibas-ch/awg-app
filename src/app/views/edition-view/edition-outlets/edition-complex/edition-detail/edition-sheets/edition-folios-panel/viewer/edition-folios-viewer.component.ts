@@ -32,7 +32,7 @@ const FOLIOS_PER_ROW_MAX_WRAPPED = 4;
 @Component({
     selector: 'awg-edition-folios-viewer',
     templateUrl: './edition-folios-viewer.component.html',
-    styleUrls: ['./edition-folios-viewer.component.scss'],
+    styleUrl: './edition-folios-viewer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionFoliosViewerSvgComponent],
 })

@@ -18,6 +18,7 @@ import {
  * It creates a store from the given rdfstore and resolves it (or rejects with the error).
  */
 const createStore = (rdfstore: RdfStoreGlobal): Promise<RdfStore> =>
+    // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors -- rdfstore passes its errors as unknown
     new Promise((resolve, reject) => rdfstore.create((err, store) => (err ? reject(err) : resolve(store))));
 
 describe('rdfstore-helper', () => {

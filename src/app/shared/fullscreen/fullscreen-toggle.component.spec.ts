@@ -339,7 +339,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
                 });
 
                 it('... should trigger `fullscreenService.updateState`', () => {
-                    const baselineCallCount = serviceUpdateStateSpy.mock.calls.length;
+                    const baselineCallCount: number = serviceUpdateStateSpy.mock.calls.length;
 
                     component['onFullscreenChange']();
 

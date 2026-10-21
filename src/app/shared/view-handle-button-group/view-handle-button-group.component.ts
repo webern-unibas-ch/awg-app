@@ -22,7 +22,7 @@ let nextGroupId = 0;
 @Component({
     selector: 'awg-view-handle-button-group',
     templateUrl: './view-handle-button-group.component.html',
-    styleUrls: ['./view-handle-button-group.component.scss'],
+    styleUrl: './view-handle-button-group.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, NgbTooltip],
 })
@@ -77,7 +77,7 @@ export class ViewHandleButtonGroupComponent {
     onViewChange(viewType: ViewHandleTypes): void {
         this.viewChangeRequest.emit(viewType);
 
-        const selectedViewType = this.selectedViewType();
+        const selectedViewType: string = this.selectedViewType();
         this.radioInputs().forEach(({ nativeElement }) => {
             nativeElement.checked = nativeElement.value === selectedViewType;
         });

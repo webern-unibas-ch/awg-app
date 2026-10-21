@@ -140,13 +140,13 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
         describe('... should have computed signal `versionData` to hold null if ...', () => {
             it('... pageMetaData is an empty object {}, null or undefined', () => {
-                fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
+                fixture.componentRef.setInput('pageMetaData', {});
                 expectToBe(component.versionData(), null);
 
-                fixture.componentRef.setInput('pageMetaData', undefined as any);
+                fixture.componentRef.setInput('pageMetaData', undefined);
                 expectToBe(component.versionData(), null);
 
-                fixture.componentRef.setInput('pageMetaData', null as any);
+                fixture.componentRef.setInput('pageMetaData', null);
                 expectToBe(component.versionData(), null);
             });
 
@@ -154,7 +154,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const incompletePageMetaData = {
                     ...expectedPageMetaData,
                     [key]: '',
-                } as MetaPage;
+                };
                 fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
 
                 expectToBe(component.versionData(), null);

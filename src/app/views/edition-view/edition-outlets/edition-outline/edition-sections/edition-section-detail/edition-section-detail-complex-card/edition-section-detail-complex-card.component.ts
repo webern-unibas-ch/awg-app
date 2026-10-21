@@ -13,7 +13,7 @@ import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/editio
 @Component({
     selector: 'awg-edition-section-detail-complex-card',
     templateUrl: './edition-section-detail-complex-card.component.html',
-    styleUrls: ['./edition-section-detail-complex-card.component.scss'],
+    styleUrl: './edition-section-detail-complex-card.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonMoreComponent, DatePipe],
 })

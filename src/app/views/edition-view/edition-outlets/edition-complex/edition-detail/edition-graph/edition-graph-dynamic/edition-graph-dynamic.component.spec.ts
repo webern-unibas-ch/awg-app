@@ -105,7 +105,7 @@ describe('EditionGraphDynamicComponent (DONE)', () => {
                     queryList: null,
                 },
             ])('... should hold false if $desc', async ({ triples, queryList }) => {
-                fixture.componentRef.setInput('rdfData', { triples, queryList } as GraphRdfData);
+                fixture.componentRef.setInput('rdfData', { triples, queryList });
                 await detectChangesOnPush(fixture);
 
                 expectToBe(component.hasRdfData(), false);

@@ -135,7 +135,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(getCardBodyDes()[0], 'p.card-text', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.textContent.trim(), expectedSection.content.intro.preview + ' …');
+                expectToBe(pEl.textContent.trim(), `${expectedSection.content.intro.preview ?? ''} …`);
             });
 
             it('... should have text-end paragraph in div.card-footer', () => {
@@ -153,7 +153,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                     1,
                     1
                 );
-                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                 expectToEqual(buttonMoreCmp.targetRoute(), [expectedSection.labeledRoute.route.join('/'), 'intro']);
             });
@@ -165,7 +165,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                     1,
                     1
                 );
-                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                 expectToBe(buttonMoreCmp.disabled(), expectedSection.content.intro.disabled);
             });

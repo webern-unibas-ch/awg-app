@@ -13,11 +13,11 @@ import { Directive, ElementRef, inject, Renderer2 } from '@angular/core';
 })
 export class EditionIntroScrollDirective {
     /**
-     * Private readonly injection variable: _el.
+     * Private readonly injection variable: _elementRef.
      *
-     * It keeps the instance of the injected ElementRef.
+     * It keeps the reference to the host element.
      */
-    private readonly _el = inject(ElementRef);
+    private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     /**
      * Private readonly injection variable: _renderer.
@@ -64,7 +64,7 @@ export class EditionIntroScrollDirective {
      * on window scroll.
      */
     private _onIntroScroll(): void {
-        const container = this._el.nativeElement as HTMLElement;
+        const container = this._elementRef.nativeElement;
         const scrollPosition = globalThis.scrollY || document.documentElement.scrollTop;
 
         const introSections = container.querySelectorAll<HTMLElement>('.awg-edition-intro-section');

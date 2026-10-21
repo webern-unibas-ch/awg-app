@@ -32,7 +32,7 @@ const EDITION_DETAIL_ROUTES = [EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT, ED
 @Component({
     selector: 'awg-edition-detail-nav',
     templateUrl: './edition-detail-nav.component.html',
-    styleUrls: ['./edition-detail-nav.component.scss'],
+    styleUrl: './edition-detail-nav.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NavLinkGroupComponent, RouterOutlet],
 })

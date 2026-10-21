@@ -14,7 +14,7 @@ import { NavLink } from './nav-link.model';
 @Component({
     selector: 'awg-nav-link-group',
     templateUrl: './nav-link-group.component.html',
-    styleUrls: ['./nav-link-group.component.scss'],
+    styleUrl: './nav-link-group.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective, RouterLink, RouterLinkActive, UpperCasePipe],
 })

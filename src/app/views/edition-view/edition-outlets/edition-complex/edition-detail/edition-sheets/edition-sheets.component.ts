@@ -30,7 +30,7 @@ import { EditionSheetsPanelComponent } from './edition-sheets-panel/edition-shee
 @Component({
     selector: 'awg-edition-sheets',
     templateUrl: './edition-sheets.component.html',
-    styleUrls: ['./edition-sheets.component.scss'],
+    styleUrl: './edition-sheets.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AlertErrorComponent,

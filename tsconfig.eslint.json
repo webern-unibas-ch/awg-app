@@ -1,7 +1,7 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "types": ["vitest/globals", "node"]
+        "types": ["node"]
     },
     "include": [
         "src/app/**/*.ts",
@@ -10,6 +10,7 @@
         "src/polyfills.ts",
         "src/test.ts",
         "src/testing/**/*.ts",
-        "src/**/*.d.ts"
+        "src/**/*.d.ts",
+        "vitest-base.config.ts"
     ]
 }

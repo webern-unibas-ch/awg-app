@@ -21,7 +21,7 @@ import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.co
 @Component({
     selector: 'awg-footer',
     templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.scss'],
+    styleUrl: './footer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LogoComponent, FooterDeclarationComponent, FooterCopyrightComponent, FooterPoweredbyComponent],
 })

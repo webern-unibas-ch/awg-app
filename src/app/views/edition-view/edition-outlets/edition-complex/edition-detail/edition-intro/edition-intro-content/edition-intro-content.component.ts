@@ -12,7 +12,7 @@ import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-htm
 @Component({
     selector: 'awg-edition-intro-content',
     templateUrl: './edition-intro-content.component.html',
-    styleUrls: ['./edition-intro-content.component.scss'],
+    styleUrl: './edition-intro-content.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective],
 })

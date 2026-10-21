@@ -63,8 +63,8 @@ describe('EditionDataService (DONE)', () => {
     const baseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
     const editionRoute = EDITION_ROUTE_CONSTANTS.EDITION.route;
     const config = EDITION_ASSETS_DATA.CONFIG;
-    const expectedPrefaceFilePath = `${baseRoute}${editionRoute}/${config['preface'].file}`;
-    const expectedRowtablesFilePath = `${baseRoute}${editionRoute}/${config['rowtables'].file}`;
+    const expectedPrefaceFilePath = `${baseRoute}${editionRoute}/${config.preface.file}`;
+    const expectedRowtablesFilePath = `${baseRoute}${editionRoute}/${config.rowtables.file}`;
 
     // Helper function to expect and flush an HTTP request
     function expectAndFlush(url: string, mockData: any, options = { status: 200, statusText: 'OK' }): void {
@@ -139,11 +139,11 @@ describe('EditionDataService (DONE)', () => {
     });
 
     describe('... static data signals', () => {
-        const testCases: Array<{
+        const testCases: {
             signalName: keyof EditionDataService;
             assetKey: EditionDataAssetsKeys;
             getExpectedData: () => unknown;
-        }> = [
+        }[] = [
             { signalName: 'prefaceData', assetKey: 'preface', getExpectedData: () => expectedPrefaceData },
             { signalName: 'rowtablesData', assetKey: 'rowtables', getExpectedData: () => expectedRowtablesData },
         ];
@@ -152,7 +152,7 @@ describe('EditionDataService (DONE)', () => {
             it(`... should have signal \`${signalName}\` to hold the default fallback`, async () => {
                 type DataType = UnpackSignal<EditionDataService[typeof signalName]>;
                 const signalFn = service[signalName] as unknown as Signal<DataType>;
-                const expectedFallback = config[assetKey].fallback as DataType;
+                const expectedFallback = config[assetKey].fallback;
 
                 expectToBe(isSignal(signalFn), true);
 
@@ -184,10 +184,10 @@ describe('EditionDataService (DONE)', () => {
     });
 
     describe('... complex data signals', () => {
-        const testCases: Array<{
+        const testCases: {
             signalName: keyof EditionDataService;
             assetKey: EditionDataAssetsKeys;
-        }> = [
+        }[] = [
             { signalName: 'introData', assetKey: 'intro' },
             { signalName: 'folioConvoluteData', assetKey: 'folioConvolute' },
             { signalName: 'graphData', assetKey: 'graph' },
@@ -202,7 +202,7 @@ describe('EditionDataService (DONE)', () => {
             it(`... should have signal \`${signalName}\` to hold the default fallback`, async () => {
                 type DataType = UnpackSignal<EditionDataService[typeof signalName]>;
                 const signalFn = service[signalName] as unknown as Signal<DataType>;
-                const expectedFallback = config[assetKey].fallback as DataType;
+                const expectedFallback = config[assetKey].fallback;
 
                 expectToBe(isSignal(signalFn), true);
 
@@ -231,7 +231,7 @@ describe('EditionDataService (DONE)', () => {
                     const signalFn = service[signalName] as unknown as Signal<DataType>;
 
                     const fallback = config[assetKey].fallback;
-                    let mockResponseData = createMockResponseData(assetKey, fallback) as DataType;
+                    let mockResponseData = createMockResponseData<DataType>(assetKey, fallback);
 
                     await new Promise(resolve => setTimeout(resolve, 0));
 
@@ -246,7 +246,7 @@ describe('EditionDataService (DONE)', () => {
                         expectAndFlush(expectedSectionUrl, expectedIntroSectionData);
                         expectAndFlush(expectedComplexUrl, expectedIntroComplexData);
 
-                        mockResponseData = expectedIntroSectionFilteredData as DataType;
+                        mockResponseData = expectedIntroSectionFilteredData;
                     } else {
                         expectAndFlush(expectedComplexUrl, mockResponseData);
                     }
@@ -347,8 +347,8 @@ describe('EditionDataService (DONE)', () => {
             it('... should return a signal holding the fetched data from correct static path', async () => {
                 const assetsKey: EditionStaticDataAssetsKeys = 'preface';
 
-                const staticDataSignal = TestBed.runInInjectionContext(
-                    () => service['_getStaticEditionDataByKey'](assetsKey) as Signal<any>
+                const staticDataSignal = TestBed.runInInjectionContext(() =>
+                    service['_getStaticEditionDataByKey']<any>(assetsKey)
                 );
 
                 // Initial value should be the fallback value
@@ -371,8 +371,8 @@ describe('EditionDataService (DONE)', () => {
                 const assetsKey: EditionStaticDataAssetsKeys = 'rowtables';
                 const expectedFallback = config[assetsKey].fallback;
 
-                const staticDataSignal = TestBed.runInInjectionContext(
-                    () => service['_getStaticEditionDataByKey'](assetsKey) as Signal<any>
+                const staticDataSignal = TestBed.runInInjectionContext(() =>
+                    service['_getStaticEditionDataByKey']<any>(assetsKey)
                 );
 
                 // Initial value should be the fallback value
@@ -441,8 +441,8 @@ describe('EditionDataService (DONE)', () => {
 
             describe('... when selectedEditionComplex changes', () => {
                 const expectedFile = 'test.json';
-                const expectedFallback: { data: Array<{ id: string }> } = { data: [] };
-                const expectedResponse: { data: Array<{ id: string }> } = { data: [{ id: 'test_1' }] };
+                const expectedFallback: { data: { id: string }[] } = { data: [] };
+                const expectedResponse: { data: { id: string }[] } = { data: [{ id: 'test_1' }] };
 
                 const complexKeys: EditionComplexDataAssetsKeys[] = [
                     'folioConvolute',
@@ -565,18 +565,14 @@ describe('EditionDataService (DONE)', () => {
             });
 
             it('... should return a signal initialized with an empty IntroList fallback', () => {
-                const resultSignal = TestBed.runInInjectionContext(
-                    () => service['_getIntroData']() as Signal<IntroList>
-                );
+                const resultSignal = TestBed.runInInjectionContext(() => service['_getIntroData']());
                 expectToBe(isSignal(resultSignal), true);
 
                 expectToEqual(resultSignal(), new IntroList());
             });
 
             it('... should react to state changes', async () => {
-                const resultSignal = TestBed.runInInjectionContext(
-                    () => service['_getIntroData']() as Signal<IntroList>
-                );
+                const resultSignal = TestBed.runInInjectionContext(() => service['_getIntroData']());
                 expectToBe(isSignal(resultSignal), true);
 
                 const mockState: {
@@ -658,14 +654,14 @@ describe('EditionDataService (DONE)', () => {
 
             describe('... when state is valid but complex is invalid or missing', () => {
                 const expectedSectionPath = 'assets/data/edition/series/1/section/5';
-                const expectedFile = config['intro'].file;
+                const expectedFile = config.intro.file;
                 const expectedFallback = new IntroList();
 
                 let nonMatchingComplex: EditionComplex | null;
                 let expectedSectionIntroData: IntroList;
 
                 beforeEach(() => {
-                    expectedSectionIntroData = { intro: [{ id: 'section_block', content: [] }] } as IntroList;
+                    expectedSectionIntroData = { intro: [{ id: 'section_block', content: [] }] };
                 });
 
                 it('... should trigger `_fetchJsonData` with the correct arguments', async () => {
@@ -693,7 +689,7 @@ describe('EditionDataService (DONE)', () => {
 
             describe('... when state is valid and complex matches the series and section', () => {
                 const expectedSectionPath = 'assets/data/edition/series/1/section/5';
-                const expectedFile = config['intro'].file;
+                const expectedFile = config.intro.file;
                 const expectedFallback = new IntroList();
 
                 let matchingComplex: EditionComplex;
@@ -814,7 +810,7 @@ describe('EditionDataService (DONE)', () => {
             it('... content inside an intro section is missing', () => {
                 const blockId = 'test_block_id';
                 const incompleteData: IntroList = {
-                    intro: [{ id: 'intro_1', content: undefined as any }],
+                    intro: [{ id: 'intro_1', content: undefined }],
                 };
                 const result = service['_filterSectionIntroDataByBlockId'](incompleteData, blockId);
 
@@ -953,9 +949,7 @@ describe('EditionDataService (DONE)', () => {
 
                 const errorHandlerFn = service['_handleError'](expectedKey, undefined);
                 const result$ = errorHandlerFn(mockError);
-                const res = await lastValueFrom(result$);
-
-                expect(res).toBeUndefined();
+                await expect(lastValueFrom(result$)).resolves.toBeUndefined();
                 expectToEqual(service['_dataError'](), {
                     key: expectedKey,
                     error: mockError,

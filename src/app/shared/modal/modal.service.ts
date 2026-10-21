@@ -95,10 +95,10 @@ export class ModalService {
         });
 
         modalRef.result.then(
-            result => {
-                this.closeResult.set(`Closed with: ${result}`);
+            (result: unknown) => {
+                this.closeResult.set(`Closed with: ${String(result)}`);
             },
-            reason => {
+            (reason: unknown) => {
                 this.closeResult.set(`Dismissed ${this._getDismissReason(reason)}`);
             }
         );
@@ -109,17 +109,17 @@ export class ModalService {
      *
      * It returns a string describing the reason for modal dismissal.
      *
-     * @param {any} reason The reason for dismissal.
+     * @param {unknown} reason The reason for dismissal.
      * @returns {string} The dismissal reason as a string.
      */
-    private _getDismissReason(reason: any): string {
+    private _getDismissReason(reason: unknown): string {
         switch (reason) {
             case ModalDismissReasons.ESC:
                 return 'by pressing ESC';
             case ModalDismissReasons.BACKDROP_CLICK:
                 return 'by clicking on a backdrop';
             default:
-                return `with: ${reason}`;
+                return `with: ${String(reason)}`;
         }
     }
 }

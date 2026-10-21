@@ -5,7 +5,7 @@
         type="range"
         class="awg-zoom-slider"
         aria-label="Zoom"
-        [attr.aria-valuetext]="zoomValue() + 'x'"
+        [attr.aria-valuetext]="`${zoomValue()}x`"
         [min]="zoomConfig().min"
         [max]="zoomConfig().max"
         [step]="zoomConfig().stepSize"

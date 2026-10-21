@@ -19,7 +19,7 @@ import { TKA_TABLE_HEADERS, TkaTableHeaderColumn } from './edition-tka-table.mod
 @Component({
     selector: 'awg-edition-tka-table',
     templateUrl: './edition-tka-table.component.html',
-    styleUrls: ['./edition-tka-table.component.scss'],
+    styleUrl: './edition-tka-table.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AbbrDirective, CompileHtmlDirective, NgbTooltipModule],
 })

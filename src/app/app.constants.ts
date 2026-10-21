@@ -1,159 +1,98 @@
 import { appHomepage, appVersion, appVersionReleaseDate } from './app.globals';
 
 /**
- * App constants with accessors to app-wide constant values.
+ * Constant: APP_CONSTANTS.
+ *
+ * It keeps the app-wide constant values.
  */
-export class AppConstants {
+export const APP_CONSTANTS = {
     /**
-     * Getter for the URL of the Analytics endpoint
+     * The URL of the Analytics endpoint
      * ({@link https://www.google-analytics.com/}).
-     *
-     * @returns {string}
      */
-    public static get ANALYTICS_ENDPOINT(): string {
-        return 'https://www.googletagmanager.com/gtag/js';
-    }
+    ANALYTICS_ENDPOINT: 'https://www.googletagmanager.com/gtag/js',
 
     /**
-     * Getter for the Analytics id ('G-XXXXXXXXXX').
-     *
-     * @returns {string}
+     * The Analytics id ('G-XXXXXXXXXX').
      */
-    public static get ANALYTICS_ID(): string {
-        return 'G-8KDNK9HM70';
-    }
+    ANALYTICS_ID: 'G-8KDNK9HM70',
 
     /**
-     * Getter for the name of the AWG.
-     *
-     * @returns {string}
+     * The name of the AWG.
      */
-    public static get AWG_PROJECT_NAME(): string {
-        return 'Anton Webern Gesamtausgabe';
-    }
+    AWG_PROJECT_NAME: 'Anton Webern Gesamtausgabe',
 
     /**
-     * Getter for the URL of the AWG project website
+     * The URL of the AWG project website
      * ({@link https://anton-webern.ch}).
-     *
-     * @returns {string}
      */
-    public static get AWG_PROJECT_URL(): string {
-        return 'https://anton-webern.ch/';
-    }
+    AWG_PROJECT_URL: 'https://anton-webern.ch/',
 
     /**
-     * Getter for the url of the AWG edition website (awg-app).
-     * ({@link https://edition.anton-webern.ch/})
-     *
-     * @returns {string}
+     * The URL of the AWG edition website (awg-app)
+     * ({@link https://edition.anton-webern.ch/}).
      */
-    public static get AWG_APP_URL(): string {
-        return appHomepage;
-    }
+    AWG_APP_URL: appHomepage,
 
     /**
-     * Getter for the URL of the compodoc documentation
-     * of the AWG edition website (awg-app).
+     * The URL of the compodoc documentation
+     * of the AWG edition website (awg-app)
      * ({@link compodoc/index.html}).
-     *
-     * @returns {string}
      */
-    public static get AWG_APP_COMPODOC_URL(): string {
-        return 'compodoc/index.html';
-    }
+    AWG_APP_COMPODOC_URL: 'compodoc/index.html',
 
     /**
-     * Getter for the URL of the GitHub repository
-     * of the AWG edition website (awg-app).
+     * The URL of the GitHub repository
+     * of the AWG edition website (awg-app)
      * ({@link https://github.com/webern-unibas-ch/awg-app}).
-     *
-     * @returns {string}
      */
-    public static get AWG_APP_GITHUB_URL(): string {
-        return 'https://github.com/webern-unibas-ch/awg-app';
-    }
+    AWG_APP_GITHUB_URL: 'https://github.com/webern-unibas-ch/awg-app',
 
     /**
-     * Getter for the latest version of the AWG edition website (awg-app).
-     *
-     * @returns {string}
+     * The latest version of the AWG edition website (awg-app).
      */
-    public static get AWG_APP_VERSION(): string {
-        return appVersion;
-    }
+    AWG_APP_VERSION: appVersion,
 
     /**
-     * Getter for the release date of the latest version of the AWG edition website (awg-app).
-     *
-     * @returns {string}
+     * The release date of the latest version of the AWG edition website (awg-app).
      */
-    public static get AWG_APP_VERSION_RELEASE_DATE(): string {
-        return appVersionReleaseDate;
-    }
+    AWG_APP_VERSION_RELEASE_DATE: appVersionReleaseDate,
 
     /**
-     * Getter for the URL of the DaSCH
+     * The URL of the DaSCH
      * ({@link https://www.dasch.swiss}).
-     *
-     * @returns {string}
      */
-    public static get DASCH_URL(): string {
-        return 'https://www.dasch.swiss/';
-    }
+    DASCH_URL: 'https://www.dasch.swiss/',
 
     /**
-     * Getter for the URL of the DeepWiki
+     * The URL of the DeepWiki
      * ({@link https://deepwiki.com/webern-unibas-ch/awg-app}).
-     *
-     * @returns {string}
      */
-    public static get DEEP_WIKI_URL(): string {
-        return 'https://deepwiki.com/webern-unibas-ch/awg-app';
-    }
+    DEEP_WIKI_URL: 'https://deepwiki.com/webern-unibas-ch/awg-app',
 
     /**
-     * Getter for the URL of the DHLAB Basel
+     * The URL of the DHLAB Basel
      * ({@link https://dhlab.philhist.unibas.ch}).
-     *
-     * @returns {string}
      */
-    public static get DHLAB_URL(): string {
-        return 'https://dhlab.philhist.unibas.ch/';
-    }
+    DHLAB_URL: 'https://dhlab.philhist.unibas.ch/',
 
     /**
-     * Getter for the contact map external link.
-     *
-     * @returns {string}
+     * The external link of the contact map.
      */
-    public static get CONTACT_MAP_LINK_URL(): string {
-        const mapLinkRoot = 'https://www.openstreetmap.org/';
-        const mapLinkId = '?mlat=47.55897&mlon=7.58451#map=19/47.55897/7.58451';
-        return mapLinkRoot + mapLinkId;
-    }
+    CONTACT_MAP_LINK_URL: 'https://www.openstreetmap.org/?mlat=47.55897&mlon=7.58451#map=19/47.55897/7.58451',
 
     /**
-     * Getter for the unsanitized contact map embed link.
-     *
-     * @returns {string}
+     * The unsanitized embed link of the contact map.
      */
-    public static get CONTACT_MAP_UNSAFE_EMBED_URL(): string {
-        const mapApi = 'https://www.openstreetmap.org/export/embed.html';
-        const bbox = '7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212';
-        const layer = 'mapnik';
-        const marker = '47.55896585846639%2C7.584506571292877';
-
-        return `${mapApi}?bbox=${bbox}&layer=${layer}&marker=${marker}`;
-    }
+    CONTACT_MAP_UNSAFE_EMBED_URL:
+        'https://www.openstreetmap.org/export/embed.html' +
+        '?bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212' +
+        '&layer=mapnik' +
+        '&marker=47.55896585846639%2C7.584506571292877',
 
     /**
-     * Getter for the URL of the Zenodo record
+     * The URL of the Zenodo record
      * ({@link https://doi.org/10.5281/zenodo.4717678}).
-     *
-     * @returns {string}
      */
-    public static get AWG_APP_ZENODO_URL(): string {
-        return 'https://doi.org/10.5281/zenodo.4717678';
-    }
-}
+    AWG_APP_ZENODO_URL: 'https://doi.org/10.5281/zenodo.4717678',
+} as const;

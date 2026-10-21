@@ -24,7 +24,7 @@ import { NAVBAR_DROPDOWN_EDITION_SECTION_LINKS, NAVBAR_ITEMS } from './navbar.da
 @Component({
     selector: 'awg-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss'],
+    styleUrl: './navbar.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LogoComponent, NavbarItemComponent, NavbarDropdownLinkComponent, NgbCollapse, NgbDropdownModule],
 })

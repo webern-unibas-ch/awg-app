@@ -58,11 +58,11 @@ describe(
             rows.forEach(row => {
                 Object.keys(row).forEach(variable => expect(result.variables).toContain(variable));
 
-                expectToBe(row['resource'].type, 'uri');
-                expect(row['resource'].label).toMatch(/^awg:/);
-                expectToBe(row['class'].type, 'uri');
-                expectToBe(row['count'].type, 'literal');
-                expect(row['count'].label).toMatch(/^\d+$/);
+                expectToBe(row['resource']?.type, 'uri');
+                expect(row['resource']?.label).toMatch(/^awg:/);
+                expectToBe(row['class']?.type, 'uri');
+                expectToBe(row['count']?.type, 'literal');
+                expect(row['count']?.label).toMatch(/^\d+$/);
             });
         });
     }

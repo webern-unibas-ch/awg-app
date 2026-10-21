@@ -104,7 +104,7 @@ describe('SourceSiglumComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        beforeEach(async () => {
+        beforeEach(() => {
             // Set the initial values for the signal inputs
             fixture.componentRef.setInput('siglumData', structuredClone(expectedSourceData));
             fixture.componentRef.setInput('isClickable', true);
@@ -265,7 +265,7 @@ describe('SourceSiglumComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should display missing sources in brackets as content of ConditionalLinkComponent (hollow)', async () => {
+                it('... should display missing sources in brackets as content of ConditionalLinkComponent (hollow)', () => {
                     const linkDes = getAndExpectDebugElementByCss(
                         getSiglumContainerDes()[0],
                         'awg-conditional-link',

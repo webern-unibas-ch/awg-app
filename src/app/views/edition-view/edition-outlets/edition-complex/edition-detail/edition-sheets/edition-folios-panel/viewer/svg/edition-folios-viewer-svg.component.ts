@@ -33,7 +33,7 @@ import { EditionNavigationService } from '@awg-views/edition-view/services/editi
 @Component({
     selector: 'awg-edition-folios-viewer-svg',
     templateUrl: './edition-folios-viewer-svg.component.html',
-    styleUrls: ['./edition-folios-viewer-svg.component.scss'],
+    styleUrl: './edition-folios-viewer-svg.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective],
 })
@@ -107,8 +107,8 @@ export class EditionFoliosViewerSvgComponent {
      *
      * It holds the d3 selection of the svg root group (the element is stable across renderings).
      */
-    private readonly _svgRootGroupSelection = computed<D3Selection>(
-        () => D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
+    private readonly _svgRootGroupSelection = computed<D3Selection>(() =>
+        D3_SELECTION.select(this.svgRootGroup().nativeElement)
     );
 
     /**

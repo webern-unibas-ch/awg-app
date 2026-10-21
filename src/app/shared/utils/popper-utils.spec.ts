@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import type { Modifier, ModifierArguments, Options, SideObject, State } from '@popperjs/core';
+import type { Modifier, ModifierArguments, Options, State } from '@popperjs/core';
 
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
@@ -54,7 +54,7 @@ describe('PopperUtils (DONE)', () => {
             });
 
             it('... should detect the overflow of the state with the default padding', () => {
-                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 0, left: 0 } as SideObject);
+                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 0, left: 0 });
                 const state = createState(580);
 
                 runModifier(createMaxHeightModifier(detect), state);
@@ -63,7 +63,7 @@ describe('PopperUtils (DONE)', () => {
             });
 
             it('... should limit the popper to the available height and make it scrollable if it overflows', () => {
-                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 185, left: 0 } as SideObject);
+                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 185, left: 0 });
                 const state = createState(580, { position: 'fixed' });
 
                 runModifier(createMaxHeightModifier(detect), state);
@@ -72,7 +72,7 @@ describe('PopperUtils (DONE)', () => {
             });
 
             it('... should allow a max height larger than the popper if there is enough space', () => {
-                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: -120, left: 0 } as SideObject);
+                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: -120, left: 0 });
                 const state = createState(580);
 
                 runModifier(createMaxHeightModifier(detect), state);
@@ -81,7 +81,7 @@ describe('PopperUtils (DONE)', () => {
             });
 
             it('... should not set a negative max height', () => {
-                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 700, left: 0 } as SideObject);
+                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 700, left: 0 });
                 const state = createState(580);
 
                 runModifier(createMaxHeightModifier(detect), state);
@@ -90,7 +90,7 @@ describe('PopperUtils (DONE)', () => {
             });
 
             it('... should use a given padding', () => {
-                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 0, left: 0 } as SideObject);
+                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 0, left: 0 });
                 const state = createState(100);
 
                 runModifier(createMaxHeightModifier(detect, 20), state);

@@ -88,9 +88,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         const textcritics = expectedTextcriticsListData.textcritics.map(textcritic =>
             textcritic.id === expectedSvgSheet.id ? { ...textcritic, ...changes } : textcritic
         );
-        mockViewDataSignal.set(
-            createMockViewData({ ...expectedViewDataContent, textcriticsData: { textcritics } as TextcriticsList })
-        );
+        mockViewDataSignal.set(createMockViewData({ ...expectedViewDataContent, textcriticsData: { textcritics } }));
     };
 
     /**
@@ -591,7 +589,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 it('... should pass down error object to AlertErrorComponent', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent);
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
@@ -658,9 +656,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const spinnerCmp = spinnerDes[0].injector.get(
-                            TwelveToneSpinnerComponent
-                        ) as TwelveToneSpinnerComponent;
+                        const spinnerCmp = spinnerDes[0].injector.get(TwelveToneSpinnerComponent);
 
                         expectToBe(spinnerCmp.spinnerText(), 'loading');
                     });

@@ -306,7 +306,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 const pDes = getCardFooterParagraphDes();
                 pDes.forEach((pDe, index) => {
                     const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
-                    const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                    const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                     expectToEqual(buttonMoreCmp.targetRoute(), [expectedComplexes[index].complex.baseRoute]);
                 });
@@ -316,7 +316,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 const pDes = getCardFooterParagraphDes();
                 pDes.forEach((pDe, index) => {
                     const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
-                    const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
+                    const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                     expectToBe(buttonMoreCmp.disabled(), expectedComplexes[index].disabled);
                 });

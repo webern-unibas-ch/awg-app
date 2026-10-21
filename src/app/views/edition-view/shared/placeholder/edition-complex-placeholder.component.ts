@@ -16,7 +16,7 @@ import {
 @Component({
     selector: 'awg-edition-complex-placeholder',
     templateUrl: './edition-complex-placeholder.component.html',
-    styleUrls: ['./edition-complex-placeholder.component.scss'],
+    styleUrl: './edition-complex-placeholder.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
 })

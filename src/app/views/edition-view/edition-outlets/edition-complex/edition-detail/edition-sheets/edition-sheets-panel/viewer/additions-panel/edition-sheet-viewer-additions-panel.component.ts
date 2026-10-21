@@ -20,7 +20,7 @@ import {
 @Component({
     selector: 'awg-edition-sheet-viewer-additions-panel',
     templateUrl: './edition-sheet-viewer-additions-panel.component.html',
-    styleUrls: ['./edition-sheet-viewer-additions-panel.component.scss'],
+    styleUrl: './edition-sheet-viewer-additions-panel.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionTkaLabelComponent, FormSwitchComponent],
 })

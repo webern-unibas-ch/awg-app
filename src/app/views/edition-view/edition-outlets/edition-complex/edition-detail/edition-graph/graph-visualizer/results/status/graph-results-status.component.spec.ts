@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -39,8 +38,8 @@ describe('GraphResultsStatusComponent (DONE)', () => {
         expectedConstructResult = {
             kind: 'construct',
             quads: [
-                quad(namedNode(`${EX}a`), namedNode(`${EX}p`), namedNode(`${EX}b`)) as Quad,
-                quad(namedNode(`${EX}b`), namedNode(`${EX}p`), namedNode(`${EX}c`)) as Quad,
+                quad(namedNode(`${EX}a`), namedNode(`${EX}p`), namedNode(`${EX}b`)),
+                quad(namedNode(`${EX}b`), namedNode(`${EX}p`), namedNode(`${EX}c`)),
             ],
             prefixes: {},
         };

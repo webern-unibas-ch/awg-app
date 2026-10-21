@@ -14,7 +14,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
     selector: 'awg-edition-section-detail',
     templateUrl: './edition-section-detail.component.html',
-    styleUrls: ['./edition-section-detail.component.scss'],
+    styleUrl: './edition-section-detail.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet],
 })

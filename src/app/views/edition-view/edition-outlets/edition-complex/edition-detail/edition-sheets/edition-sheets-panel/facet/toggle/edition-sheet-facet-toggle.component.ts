@@ -12,7 +12,7 @@ import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
 @Component({
     selector: 'awg-edition-sheet-facet-toggle',
     templateUrl: './edition-sheet-facet-toggle.component.html',
-    styleUrls: ['./edition-sheet-facet-toggle.component.scss'],
+    styleUrl: './edition-sheet-facet-toggle.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })

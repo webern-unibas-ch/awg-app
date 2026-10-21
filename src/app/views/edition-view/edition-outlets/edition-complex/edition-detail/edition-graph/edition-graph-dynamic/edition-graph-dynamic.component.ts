@@ -17,7 +17,7 @@ import { GraphVisualizerComponent } from '../graph-visualizer/graph-visualizer.c
 @Component({
     selector: 'awg-edition-graph-dynamic',
     templateUrl: './edition-graph-dynamic.component.html',
-    styleUrls: ['./edition-graph-dynamic.component.scss'],
+    styleUrl: './edition-graph-dynamic.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FullscreenToggleComponent, GraphVisualizerComponent, UsageHintsComponent],
 })

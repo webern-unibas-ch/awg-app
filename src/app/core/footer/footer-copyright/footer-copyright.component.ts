@@ -10,7 +10,7 @@ import { MetaPage } from '@awg-shared/meta/meta.model';
 @Component({
     selector: 'awg-footer-copyright',
     templateUrl: './footer-copyright.component.html',
-    styleUrls: ['./footer-copyright.component.scss'],
+    styleUrl: './footer-copyright.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterCopyrightComponent {

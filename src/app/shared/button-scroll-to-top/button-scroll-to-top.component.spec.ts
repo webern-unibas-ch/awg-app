@@ -35,7 +35,7 @@ describe('ButtonScrollToTopComponent (DONE)', () => {
     beforeEach(() => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
-        mockWindow = mockDocument.defaultView || window;
+        mockWindow = mockDocument.defaultView ?? window;
 
         // Spies
         windowScrollToSpy = vi.spyOn(mockWindow, 'scrollTo').mockImplementation(() => undefined);
@@ -194,7 +194,7 @@ describe('ButtonScrollToTopComponent (DONE)', () => {
                 });
 
                 it('... should request scrolling to top of page', () => {
-                    const baselineCallCount = windowScrollToSpy.mock.calls.length;
+                    const baselineCallCount: number = windowScrollToSpy.mock.calls.length;
 
                     windowScrollYSpy.mockReturnValue(expectedScrollThreshold + 1);
 

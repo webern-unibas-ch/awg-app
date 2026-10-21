@@ -29,7 +29,7 @@ describe('SparqlQueryService (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedQuads = [quad(namedNode(`${EX}a`), namedNode(`${EX}p`), namedNode(`${EX}b`)) as Quad];
+        expectedQuads = [quad(namedNode(`${EX}a`), namedNode(`${EX}p`), namedNode(`${EX}b`))];
         expectedSelectResult = { variables: ['s'], bindings: [{ s: namedNode(`${EX}a`) }] };
 
         // Mock services
@@ -78,7 +78,7 @@ describe('SparqlQueryService (DONE)', () => {
         it('... should reject invalid turtle data with the line of the error and keep the parser error as cause', async () => {
             const invalidTurtle = `@prefix ex: <${EX}> .\nex:a ex:p ex:b .\nex:c ex:p .\n`;
 
-            const error = await service.parseTurtle(invalidTurtle).catch((err: Error) => err);
+            const error = await service.parseTurtle(invalidTurtle).catch((err: unknown) => err);
 
             expectToBe(
                 (error as Error).message,

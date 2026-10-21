@@ -28,11 +28,11 @@ export class CompileHtmlDirective {
     private readonly _editionModalService = inject(EditionModalService);
 
     /**
-     * Private readonly injection variable: _el
+     * Private readonly injection variable: _elementRef
      *
-     * It keeps the instance of the injected ElementRef.
+     * It keeps the reference to the host element.
      */
-    private readonly _el = inject(ElementRef);
+    private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     /**
      * Private readonly injection variable: _glyphService
@@ -82,9 +82,9 @@ export class CompileHtmlDirective {
 
             content = this._replaceGlyphPlaceholders(content);
 
-            this._renderer.setProperty(this._el.nativeElement, 'innerHTML', content);
+            this._renderer.setProperty(this._elementRef.nativeElement, 'innerHTML', content);
 
-            ABBR_UTILS.applyAbbreviations(this._el.nativeElement);
+            ABBR_UTILS.applyAbbreviations(this._elementRef.nativeElement);
             this._applyAccessibilityAttributes();
         });
     }
@@ -133,9 +133,9 @@ export class CompileHtmlDirective {
             'img[data-snippet-id][data-snippet-src]',
         ].join(', ');
 
-        const elements = this._el.nativeElement.querySelectorAll(selectors);
+        const elements = this._elementRef.nativeElement.querySelectorAll<HTMLElement>(selectors);
 
-        elements.forEach((el: HTMLElement) => {
+        elements.forEach(el => {
             this._renderer.setAttribute(el, 'tabindex', '0');
 
             const isImage = el.tagName.toLowerCase() === 'img';
@@ -189,7 +189,7 @@ export class CompileHtmlDirective {
             return;
         }
 
-        const complexId = anchor.dataset['complexId'] || '';
+        const complexId = anchor.dataset['complexId'] ?? '';
 
         const introFragmentId = anchor.dataset['introFragmentId'];
         if (introFragmentId) {
@@ -250,6 +250,6 @@ export class CompileHtmlDirective {
         }
         const regex = /\{\{ref\.getGlyph\('([^']+)'\)\}\}/g;
 
-        return content.replace(regex, (_, glyphString) => this._glyphService.getGlyph(glyphString));
+        return content.replace(regex, (_: string, glyphString: string) => this._glyphService.getGlyph(glyphString));
     }
 }

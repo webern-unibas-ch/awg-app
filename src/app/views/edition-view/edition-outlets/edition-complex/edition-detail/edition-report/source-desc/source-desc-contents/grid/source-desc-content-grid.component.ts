@@ -19,7 +19,7 @@ import { SourceDescContentSystemComponent } from '../system/source-desc-content-
 @Component({
     selector: 'awg-source-desc-content-grid',
     templateUrl: './source-desc-content-grid.component.html',
-    styleUrls: ['./source-desc-content-grid.component.scss'],
+    styleUrl: './source-desc-content-grid.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CompileHtmlDirective,
@@ -48,7 +48,7 @@ export class SourceDescContentGridComponent {
      *
      * It holds the complex id the content item links to, or an empty string.
      */
-    readonly parentComplexId = computed<string>(() => this.content()?.itemLinkTo?.complexId || '');
+    readonly parentComplexId = computed<string>(() => this.content()?.itemLinkTo?.complexId ?? '');
 
     /**
      * Public method: selectSvgSheet.

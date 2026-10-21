@@ -8,6 +8,7 @@ import { computed, Directive, inject, input, PLATFORM_ID } from '@angular/core';
  * adds specific attributes if href has an external target.
  */
 @Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector -- applies to all links to mark external targets
     selector: 'a[href]',
     host: {
         '[attr.href]': 'href()',

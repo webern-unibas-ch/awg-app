@@ -232,7 +232,7 @@ describe('EditionReportComponent (DONE)', () => {
 
                 it('... should pass down error object to AlertErrorComponent (hollow)', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent);
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
@@ -260,9 +260,7 @@ describe('EditionReportComponent (DONE)', () => {
 
                 it('... should have default spinnerText on TwelveToneSpinnerComponent (hollow)', () => {
                     const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
-                    const spinnerCmp = spinnerDes[0].injector.get(
-                        TwelveToneSpinnerComponent
-                    ) as TwelveToneSpinnerComponent;
+                    const spinnerCmp = spinnerDes[0].injector.get(TwelveToneSpinnerComponent);
 
                     expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
@@ -352,7 +350,7 @@ describe('EditionReportComponent (DONE)', () => {
 
                     it('... should pass down sourceListData to SourceListComponent (hollow)', () => {
                         const sourceListDes = getAndExpectDebugElementByDirective(divDes[0], SourceListComponent, 1, 1);
-                        const sourceListCmp = sourceListDes[0].injector.get(SourceListComponent) as SourceListComponent;
+                        const sourceListCmp = sourceListDes[0].injector.get(SourceListComponent);
 
                         expectToEqual(sourceListCmp.sourceListData(), expectedSourceListData);
                     });
@@ -384,9 +382,7 @@ describe('EditionReportComponent (DONE)', () => {
 
                     it('... should pass down sourceDescListData to SourceDescComponent (hollow)', () => {
                         const descriptionDes = getAndExpectDebugElementByDirective(compDe, SourceDescComponent, 1, 1);
-                        const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescComponent
-                        ) as SourceDescComponent;
+                        const descriptionCmp = descriptionDes[0].injector.get(SourceDescComponent);
 
                         expectToEqual(descriptionCmp.sourceDescListData(), expectedSourceDescListData);
                     });
@@ -423,9 +419,7 @@ describe('EditionReportComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationComponent
-                        ) as SourceEvaluationComponent;
+                        const evaluationCmp = evaluationDes[0].injector.get(SourceEvaluationComponent);
 
                         expectToEqual(evaluationCmp.sourceEvaluationListData(), expectedSourceEvaluationListData);
                         expectToEqual(evaluationCmp.editionComplex(), expectedComplex);
@@ -463,9 +457,7 @@ describe('EditionReportComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const textcriticsCmp = textcriticsDes[0].injector.get(
-                            TextcriticsListComponent
-                        ) as TextcriticsListComponent;
+                        const textcriticsCmp = textcriticsDes[0].injector.get(TextcriticsListComponent);
 
                         expectToEqual(textcriticsCmp.textcriticsListData(), expectedTextcriticsListData);
                     });
