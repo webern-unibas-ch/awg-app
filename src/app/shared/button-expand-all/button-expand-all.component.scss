@@ -5,6 +5,7 @@
         transition: color 0.2s;
     }
 
+    // Overrides the text-muted utility on hover
     &:hover {
         color: inherit !important;
     }
