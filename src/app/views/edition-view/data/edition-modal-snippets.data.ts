@@ -24,7 +24,7 @@ export const EDITION_MODAL_SNIPPETS = {
     M198: '<p>Das Fragment „<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.</p>',
     HINT_EDITION_SHEETS:
         '<p>\n' +
-        '        <span class="bold">Hinweise zur Nutzung:</span> <br />\n' +
+        '        <span class="fw-bold">Hinweise zur Nutzung:</span> <br />\n' +
         '        Ausgewählte Skizzentranskriptionen lassen sich durch Klick auf einen markierten Bereich in der Konvolutansicht bzw. über die einzelnen Tabs unter <em>Edierte Notentexte</em> aufrufen.<br />\n' +
         '        Einen Takt oder eine markierte Stelle innerhalb einer Skizzentranskription anklicken, um die entsprechenden textkritischen Anmerkungen anzuzeigen.<br />\n' +
         '        Die größeren Boxen im Notentext markieren die jeweiligen Anschlüsse unmittelbar benachbarter Skizzen und sind ebenfalls verknüpft.<br />\n' +
@@ -32,7 +32,7 @@ export const EDITION_MODAL_SNIPPETS = {
         '    </p>',
     HINT_EDITION_GRAPH:
         '<p>\n' +
-        '        <span class="bold">Hinweise zur Nutzung:</span> <br />\n' +
+        '        <span class="fw-bold">Hinweise zur Nutzung:</span> <br />\n' +
         '        <em>RDF Triples</em>: Das Resource Description Framework (<em>RDF</em>) stellt grundlegende syntaktische und semantische Elemente zur Beschreibung digitaler Repräsentationen von Objekten (Ressourcen) zur Verfügung. Dabei folgt es einer dreigliedrigen Struktur der Form <em>&lt;SUBJEKT&gt; &lt;PRÄDIKAT&gt; &lt;OBJEKT&gt;</em>, die auch als <em>Triple</em> bezeichnet wird. Eine Menge solcher Triples kann als (gerichteter) Graph verstanden und visualisiert werden. Unter dem Punkt <em>RDF Triples</em> sind die für die vorliegende Graph-Visualisierung zugrundeliegenden RDF-Daten einsehbar und interaktiv lokal bearbeitbar. (Achtung: Änderungen werden von der AWG-APP nicht gespeichert und sollten bei Bedarf lokal gesichert werden.) Weiterführende Informationen zu RDF finden sich unter: <a href="https://www.w3.org/RDF/">https://www.w3.org/RDF/</a>.<br /><br />\n' +
         '        <em>SPARQL Abfrage</em>: Die SPARQL Protocol And RDF Query Language (<em>SPARQL</em>) stellt u.a. eine Abfragesprache für graph-basierte Datensätze bereit. Sie ermöglicht komplexe Abfragen und Manipulationen von in RDF dargestellten und strukturierten Daten. Dabei wird nach dem Prinzip des <em>graph pattern matching</em> der RDF-Graph nach einer angefragten Triple-Folge durchsucht. Unter dem Punkt <em>SPARQL Abfrage</em> lassen sich die Suchanfragen interaktiv anpassen. Einige Beispielabfragen sind bereits in einem Auswahl-Dropdown-Menü vorformuliert. Weiterführende Informationen zu SPARQL finden sich unter: <a href="https://www.w3.org/TR/sparql11-query/">https://www.w3.org/TR/sparql11-query/</a>.<br /><br />\n' +
         '\n' +

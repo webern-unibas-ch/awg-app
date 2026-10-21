@@ -1,3 +1,5 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
 /* folio svg (drawn at runtime by d3, so not covered by view encapsulation) */
 :host ::ng-deep {
     .awg-edition-folios-viewer-svg {
@@ -27,22 +29,22 @@
 
         // Content segments (the stroke width of the shapes is set by the EditionFolioDrawingService)
         .content-segment-group {
-            fill: grey;
-            stroke: grey;
+            fill: theme.$folio-unselectable-color;
+            stroke: theme.$folio-unselectable-color;
             cursor: pointer;
 
             &.selectable {
-                fill: orange;
-                stroke: orange;
+                fill: theme.$folio-selectable-color;
+                stroke: theme.$folio-selectable-color;
             }
 
             &.active,
             &.active .content-segment-shape {
-                stroke: olivedrab;
+                stroke: theme.$folio-active-color;
             }
 
             &.active .content-segment-label {
-                fill: olivedrab;
+                fill: theme.$folio-active-color;
             }
 
             // Keyboard focus: dashed dark outline of the shape (outlines on svg groups are unreliable)

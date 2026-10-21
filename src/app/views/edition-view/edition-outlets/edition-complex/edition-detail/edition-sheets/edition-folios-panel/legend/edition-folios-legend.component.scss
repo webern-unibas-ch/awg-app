@@ -1,0 +1,11 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
+.active {
+    color: theme.$folio-active-color;
+}
+.selectable {
+    color: theme.$folio-selectable-color;
+}
+.unselectable {
+    color: theme.$folio-unselectable-color;
+}

@@ -64,7 +64,7 @@ describe('SourceDescItemComponent (DONE)', () => {
     const expectSiglumParagraph = (pDe: DebugElement, source: SourceDesc): void => {
         const pEl: HTMLParagraphElement = pDe.nativeElement;
 
-        expectToContain(pEl.classList, 'bold');
+        expectToContain(pEl.classList, 'fw-bold');
 
         const siglumDes = getAndExpectDebugElementByDirective(pDe, SourceSiglumComponent, 1, 1);
         const siglumCmp = siglumDes[0].injector.get(SourceSiglumComponent);

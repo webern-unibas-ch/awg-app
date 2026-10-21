@@ -1,13 +1,4 @@
-.custom-header {
-    &::after {
-        content: none;
-    }
-
-    &.accordion-button {
-        padding: 0.8rem;
-
-        > #awg-graph-editor-sparql-toggle {
-            text-decoration: none;
-        }
-    }
+// Same height as the neighbouring triples accordion header (p-3 with one text line)
+.awg-accordion-button-custom-header {
+    min-height: 3.5rem;
 }

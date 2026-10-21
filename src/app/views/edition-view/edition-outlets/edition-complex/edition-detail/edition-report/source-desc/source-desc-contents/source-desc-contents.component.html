@@ -1,5 +1,5 @@
 <div class="awg-source-desc-contents">
-    <p class="awg-source-desc-contents-label no-para-margin">
+    <p class="awg-source-desc-contents-label mb-0">
         <span class="smallcaps">Inhalt:</span>
         <awg-button-expand-all [isOpen]="contentsState.allOpen()" (isOpenChange)="contentsState.setAll($event)" />
     </p>
@@ -16,7 +16,7 @@
                 [open]="contentsState.isOpen($index)"
                 (toggle)="contentsState.setOpen($index, contentDetails.open)">
                 <!-- content.itemDescription -->
-                <summary class="awg-source-desc-content-item-summary no-para-margin">
+                <summary class="awg-source-desc-content-item-summary mb-0">
                     <awg-source-desc-content-item [content]="content" />
                 </summary>
 

@@ -21,3 +21,21 @@
         max-width: 250%;
     }
 }
+
+// Footer logos (classes from logoClassList)
+.awg-footer-logo {
+    width: 200px;
+    height: 50px;
+}
+.awg-footer-logo-tall {
+    height: 75px;
+}
+
+// Icon logos (e.g. powered by)
+:host(.icon) img {
+    position: relative;
+    display: inline;
+    height: 24px;
+    width: 24px;
+    margin: 0;
+}

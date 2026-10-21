@@ -1,8 +1,21 @@
+// Custom variables
+$view-bg-color: #f9f9f6;
+$frame-border-color: #e7e7e7;
+$text-dark-color: #333;
+$viewer-box-shadow: 5px 5px 6px #ccc;
+
 // Default variable overrides
 $info: #0f777a;
 $link-color: $info;
 
-$dropdown-link-color: #333;
+$accordion-button-padding-y: 0.75rem;
+$accordion-button-padding-x: 1rem;
+$accordion-button-color: $link-color;
+$accordion-button-bg: $view-bg-color;
+$accordion-button-active-color: $link-color;
+$accordion-button-active-bg: $view-bg-color;
+
+$dropdown-link-color: $text-dark-color;
 $dropdown-link-hover-color: $link-color;
 $dropdown-link-hover-bg: #f1f3f3;
 $dropdown-link-active-color: #fff;
@@ -13,6 +26,7 @@ $form-check-input-checked-color: $info;
 $form-check-input-checked-bg-color: $info;
 $form-check-input-checked-border-color: $info;
 
-// Custom variables
-$bg-grey: #f9f9f6;
-$border-grey: #e7e7e7;
+// Folio content segments (viewer svg and legend)
+$folio-active-color: olivedrab;
+$folio-selectable-color: orange;
+$folio-unselectable-color: grey;

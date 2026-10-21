@@ -1,6 +1,6 @@
 @use './shared' as theme;
 
-/****** GENERAL SETTINGS ******/
+/****** BASE ******/
 html,
 body {
     font-family: 'Droid', serif;
@@ -8,13 +8,11 @@ body {
     min-width: 320px;
 }
 
-/****** LINKS & POINTER ******/
+/****** LINKS ******/
 a {
-    &:not(.list-group-item-danger) {
-        cursor: pointer;
-    }
+    cursor: pointer;
 }
-/* zero specificity, so that any class selector can override the hover border */
+// Zero specificity, so that any class selector can override the hover border
 :where(a:not(.awg-logo-link):hover) {
     border-bottom: 1px solid theme.$link-color;
 }
@@ -32,106 +30,16 @@ a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover {
     text-decoration: none;
 }
 
-a,
-button {
-    &.dropdown-item {
-        &.disabled {
-            text-decoration: none;
-            background-color: theme.$link-color;
-        }
-    }
-}
-
-/****** DIVS ******/
+/****** SPACING ******/
 .para {
     margin-bottom: 3em;
 }
-
-.todo {
-    color: red;
-    font-weight: bold;
-    &::before {
-        content: '## ';
-    }
-    &::after {
-        content: ' ##';
-    }
-}
-
-/****** PARAGRAPHS ******/
 .half-para-margin {
     margin-bottom: 0.5em;
 }
-.no-para-margin {
-    margin-bottom: 0;
-}
-
-/****** PAGE LAYOUT ******/
-
-/* view container */
-awg-view-container > div {
-    background-color: theme.$bg-grey;
-    /* full height without header and footer */
-    /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
-    min-height: calc(100vh - 121px - 200px);
-}
-@media screen and (min-width: 768px) {
-    awg-view-container > div {
-        /* full height without header and footer from sm devices up */
-        min-height: calc(100vh - 121px - 135px);
-    }
-}
-
-/* side-outlet */
-.awg-side-outlet > .card {
-    padding: inherit;
-}
-
-/* On small screens, set height to 'auto' for side-outlet and grid */
-@media screen and (max-width: 767px) {
-    .awg-side-outlet {
-        height: auto;
-    }
-    .row {
-        height: auto;
-    }
-}
-
-/* footer */
-footer {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    height: 132px; /* needed for sticky footer */
-    background-color: transparent;
-    color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
-    padding: 15px;
-    border-top: 1px solid theme.$border-grey;
-}
-.awg-footer-main img {
-    width: 200px;
-}
-.awg-footer-secondary {
-    border-top: 1px solid theme.$border-grey;
-}
-.awg-footer-secondary .icon img {
-    position: relative;
-    display: inline;
-    height: 24px;
-    width: 24px;
-    margin: 0;
-}
-.awg-footer-secondary .gtrans {
-    bottom: 0;
-    right: 0;
-    background-color: #dbdad9;
-    border-radius: 5px;
-    text-align: center;
-    padding: 3px 3px 3px 3px;
-}
 
 /****** CARDS ******/
-
+// Cards of the statistics view (used by several statistics components)
 .awg-statistics-card {
     border: 1px solid #e0e0e0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -142,153 +50,69 @@ footer {
     }
 
     .card-header {
-        background-color: #f8f9fa;
+        background-color: var(--bs-tertiary-bg);
         border-bottom: 1px solid #e0e0e0;
 
         .card-title {
-            color: #495057;
+            color: var(--bs-gray-700);
             font-weight: 600;
         }
     }
 }
 
 /****** ACCORDION ******/
-.accordion-button {
-    &.collapsed,
-    &:not(.collapsed) {
-        background-color: theme.$bg-grey;
-        color: theme.$link-color;
-    }
-    padding: 0.75rem 1rem; /* default: 25px */
-}
-
+// Accordion header with own content (without the Bootstrap chevron)
 .awg-accordion-button-custom-header {
+    padding: 0.54rem 1rem;
+
     &::after {
         content: none;
     }
+
+    // The toggle is a button inside the header, so the header shows the focus glow
+    // of a normal accordion button for it
+    &:has(> button.btn-link:focus) {
+        z-index: 3;
+        box-shadow: var(--bs-accordion-btn-focus-box-shadow);
+    }
+
     button.btn-link {
         color: theme.$link-color;
         text-decoration: none;
+
+        &:focus-visible {
+            box-shadow: none;
+        }
     }
-    padding: 0.54rem 1rem; /* default: 25px */
 }
 
-/****** BUTTON GROUP ******/
-/* TODO: Switch button group direction with scss
-.awg-btn-group {
-    @media (max-width: 760px) {.btn-group-vertical}
-    @media (min-width: 761px) {.btn-group}
-}
- */
-.awg-btn-group {
-    margin-bottom: 2rem;
-}
-.awg-btn-group > button.btn {
-    background-color: theme.$bg-grey;
-    border: 1px solid theme.$border-grey;
-}
+/****** DETAILS ******/
+details summary {
+    list-style: none;
 
-/****** MODAL ******/
-.modal-header {
-    background-color: theme.$info;
-    color: theme.$bg-grey;
-}
-.modal-header > .close {
-    color: theme.$bg-grey;
-}
-.modal-body,
-.modal-footer {
-    background-color: theme.$bg-grey;
-}
-.awg-modal-button:hover,
-.awg-modal-button:active {
-    background-color: theme.$info;
-}
+    &::-webkit-details-marker {
+        display: none;
+    }
 
-/****** OBJECT BOX ******/
-.objbox {
-    position: relative;
-    height: 100%;
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid theme.$border-grey;
-    box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
+    &::before {
+        content: '›';
+        display: inline-block;
+        margin-right: 0.25em;
+        font-size: 1.5em;
+        line-height: 1;
+        vertical-align: -0.1em;
+        // Lift the closed chevron, as the glyph sits low in its box
+        transform: translateY(-0.1em);
+        transition: transform 0.2s;
+    }
 }
-.objbox-control-button {
-    text-align: right;
-}
-
-.awg-subitem {
-    padding-left: 50px;
-}
-
-/****** IMAGES ******/
-.awg-jumbotron-image {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.img-thumbnail {
-    height: 100px;
-    width: auto;
-    padding: 0px;
-    margin: 2px 0px;
-}
-
-#sagwlogo {
-    height: 75px;
-    cursor: pointer;
-}
-#snflogo {
-    height: 50px;
-    cursor: pointer;
-}
-#unibaslogo {
-    height: 50px;
-    cursor: pointer;
-}
-.webernlogo {
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    color: black;
-    letter-spacing: normal;
-    text-align: center;
-}
-.webernlogo span {
-    font-weight: 100;
-}
-
-/****** SVG ******/
-.edition-svg-item {
-    fill: orange;
-    opacity: 0.2;
-}
-.edition-svg-measure,
-.edition-svg-system {
-    fill: white;
-    opacity: 0;
-}
-.edition-svg-measure:hover,
-.edition-svg-system:hover,
-.edition-svg-item:hover {
-    fill: rgba(139, 184, 45, 1); /* some lighter OliveDrab; rgba converted HEX #8bb82d */
-    opacity: 0.2;
-}
-svg a.active rect {
-    fill: OliveDrab;
-    opacity: 0.2;
+details[open] summary::before {
+    transform: rotate(90deg);
 }
 
 /****** TABLES & LISTS ******/
 .table thead tr th {
     border-bottom: 2px solid black;
-}
-.borderless tbody tr td,
-.borderless tbody tr th,
-.borderless thead tr th {
-    border: none;
 }
 td {
     vertical-align: top;
@@ -299,6 +123,7 @@ ul.nobullets {
 }
 
 /****** TOOLTIPS ******/
+// Tooltip windows are rendered outside of the components, so their styles stay global
 .awg-group-id-tooltip .tooltip-inner {
     font-family: var(--bs-font-monospace);
     font-size: 0.75rem;
@@ -306,47 +131,28 @@ ul.nobullets {
     border: 1px solid var(--bs-border-color);
 }
 
-/* The tooltip of a canvas must not catch the pointer (it would leave the canvas);
-   ng-bootstrap enables it again for the inner box (ngb-tooltip-window .tooltip-inner) */
+// The tooltip of a canvas must not catch the pointer (it would leave the canvas);
+// ng-bootstrap enables it again for the inner box (ngb-tooltip-window .tooltip-inner)
 .awg-canvas-tooltip,
 .awg-canvas-tooltip .tooltip-inner {
     pointer-events: none;
 }
 
-/****** DETAILS ******/
-details summary {
-    list-style: none;
-}
-details summary::-webkit-details-marker {
-    display: none;
-}
-
-details summary::before {
-    content: '›';
-    display: inline-block;
-    margin-right: 0.25em;
-    font-size: 1.5em;
-    line-height: 1;
-    vertical-align: -0.1em;
-    // Lift the closed chevron, as the glyph sits low in its box
-    transform: translateY(-0.1em);
-    transition: transform 0.2s;
-}
-
-details[open] summary::before {
-    transform: rotate(90deg);
-}
-
-/****** FONTPROPERTIES ******/
-.bold {
+/****** EDITION CONTENT ******/
+// Classes of the html in the edition data (compiled at runtime, so not covered by view encapsulation)
+// Marker for proofreading new edition data
+.todo {
+    color: red;
     font-weight: bold;
+
+    &::before {
+        content: '## ';
+    }
+    &::after {
+        content: ' ##';
+    }
 }
-.italic {
-    font-style: italic;
-}
-.highlighted {
-    background: orange;
-}
+
 .smallcaps,
 .version {
     font-variant: small-caps;
@@ -356,37 +162,7 @@ details[open] summary::before {
     padding-left: 25px;
 }
 
-.indent {
-    text-indent: 25px;
-}
-.single-line {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/****** COLOURS ******/
-.olivedrab {
-    color: olivedrab;
-}
-.orange {
-    color: orange;
-}
-.grey {
-    color: grey;
-}
-
-/****** FORMS ******/
-.ng-valid[required],
-.ng-valid.required {
-    border-start: 5px solid rgba(66, 169, 72, 1); /* rgba converted HEX #42a948; green */
-}
-.ng-invalid:not(form),
-.ng-invalid:not(form):focus {
-    border-start: 5px solid rgba(169, 68, 66, 1); /* rgba converted HEX #a94442; red */
-}
-
-/****** GLYPHS ******/
+// Glyphs
 @font-face {
     font-family: 'Bravura';
     src: url('../fonts/bravura-1.380/woff/Bravura.woff2') format('woff2');
@@ -396,26 +172,29 @@ details[open] summary::before {
     font-family: 'Bravura';
     font-size: 24px;
     line-height: 1;
-}
-.glyph.accid {
-    vertical-align: middle;
-}
-.glyph.note {
-    font-size: 16px;
-}
-.glyph.unicode {
-    position: relative;
-    vertical-align: bottom;
-    top: 7.5px;
+
+    &.accid {
+        vertical-align: middle;
+    }
+    &.note {
+        font-size: 16px;
+    }
+    &.unicode {
+        position: relative;
+        vertical-align: bottom;
+        top: 7.5px;
+    }
 }
 
-/****** EDITION SNIPPET ******/
+// Snippets
 .awg-edition-tkk-snippet {
     max-height: 4em;
     width: auto;
     cursor: pointer;
     display: inline-block;
-}
-.awg-edition-tkk-snippet + br + .awg-edition-tkk-snippet {
-    margin-top: 0.25em; /* add margin between consecutive snippets */
+
+    // Margin between consecutive snippets
+    & + br + & {
+        margin-top: 0.25em;
+    }
 }

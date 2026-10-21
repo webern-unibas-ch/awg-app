@@ -92,13 +92,13 @@ describe('SourceDescContentsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-source-desc-contents', 1, 1);
             });
 
-            it('... should contain one paragraph (no-para-margin) in div displaying the contents label in smallcaps', () => {
+            it('... should contain one paragraph (mb-0) in div displaying the contents label in smallcaps', () => {
                 const expectedLabel = 'Inhalt:';
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-contents-label', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expectToContain(pEl.classList, 'no-para-margin');
+                expectToContain(pEl.classList, 'mb-0');
 
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
@@ -290,7 +290,7 @@ describe('SourceDescContentsComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain as many summary elements (with no-para-margin) in details as given content items', () => {
+                it('... should contain as many summary elements (with mb-0) in details as given content items', () => {
                     const summaryDes = getAndExpectDebugElementByCss(
                         compDe,
                         'details.awg-source-desc-content-details > summary.awg-source-desc-content-item-summary',
@@ -301,7 +301,7 @@ describe('SourceDescContentsComponent (DONE)', () => {
                     summaryDes.forEach(summaryDe => {
                         const summaryEl = summaryDe.nativeElement;
 
-                        expectToContain(summaryEl.classList, 'no-para-margin');
+                        expectToContain(summaryEl.classList, 'mb-0');
                     });
                 });
 

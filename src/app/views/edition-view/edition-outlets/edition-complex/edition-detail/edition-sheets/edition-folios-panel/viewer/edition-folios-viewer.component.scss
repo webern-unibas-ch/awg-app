@@ -1,3 +1,5 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
 /*
 see also https://stackoverflow.com/questions/114543/how-to-horizontally-center-a-div-in-another-div
  */
@@ -8,8 +10,8 @@ see also https://stackoverflow.com/questions/114543/how-to-horizontally-center-a
     padding-top: 1em;
     width: inherit;
     text-align: center;
-    box-shadow: 5px 5px 6px #cccccc;
-    border: 1px solid #eeeeee;
+    box-shadow: theme.$viewer-box-shadow;
+    border: 1px solid theme.$frame-border-color;
 }
 .svgCol {
     display: inline-block;
