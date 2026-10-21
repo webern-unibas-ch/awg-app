@@ -345,13 +345,13 @@
                             <a href="#isEdgeLabelInView" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>isEdgeLabelInView</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-canvas.utils.ts)</span></a>
                         </li>
                         <li>
-                            <a href="#isEmptyArray" title="src/app/shared/utils/object-utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>isEmptyArray</b>&nbsp;&nbsp;&nbsp;(src/.../object-utils.ts)</span></a>
-                        </li>
-                        <li>
                             <a href="#isEmptyObject" title="src/app/shared/utils/object-utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>isEmptyObject</b>&nbsp;&nbsp;&nbsp;(src/.../object-utils.ts)</span></a>
                         </li>
                         <li>
                             <a href="#isHit" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>isHit</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-canvas.utils.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#isKeyOf" title="src/app/shared/utils/object-utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>isKeyOf</b>&nbsp;&nbsp;&nbsp;(src/.../object-utils.ts)</span></a>
                         </li>
                         <li>
                             <a href="#isLabelInView" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/canvas/force-graph-canvas.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>isLabelInView</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-canvas.utils.ts)</span></a>
@@ -9781,72 +9781,6 @@ from the <a href="../miscellaneous/variables.html#EDITION_TRADEMARKS_DATA">EDITI
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isEmptyArray"></a>
-                    <span class="name">
-                        <span ><b>isEmptyArray</b></span>
-                        <a href="#isEmptyArray"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>isEmptyArray(value)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Utils method: isEmptyArray.</p>
-<p>It checks if an array is null, undefined, or empty.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>value</td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The array to check.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >null | undefined | unknown</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>True if the array is null, undefined, or empty; false otherwise.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="isEmptyObject"></a>
                     <span class="name">
                         <span ><b>isEmptyObject</b></span>
@@ -9903,6 +9837,101 @@ from the <a href="../miscellaneous/variables.html#EDITION_TRADEMARKS_DATA">EDITI
                         </div>
                             <div class="io-description">
                                 <p>True if the object is null, undefined, or empty; false otherwise.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isKeyOf"></a>
+                    <span class="name">
+                        <span ><b>isKeyOf</b></span>
+                        <a href="#isKeyOf"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isKeyOf&lt;T extends object&gt;(object: T, key: PropertyKey)</code>
+                </td>
+            </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T extends object</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utils method: isKeyOf.</p>
+<p>It checks if a given key is an own key of a given object (no prototype keys)
+and narrows the key to the keys of the object.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>object</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The object to check.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                        <code>PropertyKey</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The key to check.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>keyof T</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>True if the key is an own key of the object; false otherwise.</p>
 
                             </div>
                 </td>

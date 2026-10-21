@@ -345,8 +345,8 @@ and opens text and image modals via the <a href="../injectables/ModalService.htm
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -436,7 +436,7 @@ an unknown key results in an empty content.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/views/edition-view/services/edition-modal.service.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -459,6 +459,7 @@ an unknown key results in an empty content.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable } from &#x27;@angular/core&#x27;;
 
 import { ModalService } from &#x27;@awg-shared/modal/modal.service&#x27;;
+import { OBJECT_UTILS } from &#x27;@awg-shared/utils/object-utils&#x27;;
 
 import { EDITION_MODAL_SNIPPETS } from &#x27;../data/edition-modal-snippets.data&#x27;;
 
@@ -493,8 +494,7 @@ export class EditionModalService {
      */
     openTextModal(snippetKey: string): void {
         const id &#x3D; snippetKey || &#x27;CONTENTS_NOT_AVAILABLE&#x27;;
-        const isValidKey &#x3D; Object.hasOwn(EDITION_MODAL_SNIPPETS, id);
-        const content &#x3D; isValidKey ? EDITION_MODAL_SNIPPETS[id as keyof typeof EDITION_MODAL_SNIPPETS] : &#x27;&#x27;;
+        const content &#x3D; OBJECT_UTILS.isKeyOf(EDITION_MODAL_SNIPPETS, id) ? EDITION_MODAL_SNIPPETS[id] : &#x27;&#x27;;
 
         this._modalService.openTextModal(id, content);
     }

@@ -426,6 +426,9 @@
                             <a href="#NUMERIC_REGEX" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/term.utils.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>NUMERIC_REGEX</b>&nbsp;&nbsp;&nbsp;(src/.../term.utils.ts)</span></a>
                         </li>
                         <li>
+                            <a href="#OBJECT_UTILS" title="src/app/shared/utils/object-utils.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>OBJECT_UTILS</b>&nbsp;&nbsp;&nbsp;(src/.../object-utils.ts)</span></a>
+                        </li>
+                        <li>
                             <a href="#PAGE_NOT_FOUND_VIEW_ROUTES" title="src/app/views/page-not-found-view/page-not-found-view.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>PAGE_NOT_FOUND_VIEW_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../page-not-found-view.routes.ts)</span></a>
                         </li>
                         <li>
@@ -541,9 +544,6 @@
                         </li>
                         <li>
                             <a href="#UPDATE_KEYWORDS" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/sparql.utils.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>UPDATE_KEYWORDS</b>&nbsp;&nbsp;&nbsp;(src/.../sparql.utils.ts)</span></a>
-                        </li>
-                        <li>
-                            <a href="#UTILS" title="src/app/shared/utils/object-utils.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>UTILS</b>&nbsp;&nbsp;&nbsp;(src/.../object-utils.ts)</span></a>
                         </li>
                         <li>
                             <a href="#VIEW_QUERY_TYPE_CONVERSIONS" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/graph-query.utils.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>VIEW_QUERY_TYPE_CONVERSIONS</b>&nbsp;&nbsp;&nbsp;(src/.../graph-query.utils.ts)</span></a>
@@ -1066,7 +1066,7 @@ http client (with loading interceptor), locale and the initialization of the edi
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-349-g7e9373bdd&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-350-g461ce2e8a&#x27;</code>
                     </td>
                 </tr>
 
@@ -4286,7 +4286,7 @@ to store the trademarks data.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>Object.keys(EDITION_TYPE_LABEL_MAP) as unknown as EditionTypeKey[]</code>
+                        <i>Default value : </i><code>Object.keys(EDITION_TYPE_LABEL_MAP) as EditionTypeKey[]</code>
                     </td>
                 </tr>
 
@@ -4358,7 +4358,7 @@ to map the technical edition type keys to their corresponding labels.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>Object.values(EDITION_TYPE_LABEL_MAP) as unknown as EditionTypeLabel[]</code>
+                        <i>Default value : </i><code>Object.values(EDITION_TYPE_LABEL_MAP) as EditionTypeLabel[]</code>
                     </td>
                 </tr>
 
@@ -6717,6 +6717,45 @@ so a <code>#</code> within an IRI or a string does not start a comment).</p>
         </tbody>
     </table>
 </section>
+    <h3>src/app/shared/utils/object-utils.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OBJECT_UTILS"></a>
+                    <span class="name">
+                        <span ><b>OBJECT_UTILS</b></span>
+                        <a href="#OBJECT_UTILS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    isEmptyObject,
+    isKeyOf,
+} as const</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Utils constants: OBJECT_UTILS.</p>
+<p>It keeps a namespace reference to the object utils methods.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/views/page-not-found-view/page-not-found-view.routes.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -7381,45 +7420,6 @@ of the physical description in the order of their display.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Constant: TRADEMARK_SYMBOL_PATH.</p>
 <p>It keeps the svg path of the trademark symbol of a folio.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/app/shared/utils/object-utils.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="UTILS"></a>
-                    <span class="name">
-                        <span ><b>UTILS</b></span>
-                        <a href="#UTILS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{
-    isEmptyArray,
-    isEmptyObject,
-} as const</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Utils constants: UTILS.</p>
-<p>It keeps a namespace reference to the utils methods.</p>
 </div>
                 </td>
             </tr>

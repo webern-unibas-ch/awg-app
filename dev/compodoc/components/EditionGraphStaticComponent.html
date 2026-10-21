@@ -318,7 +318,7 @@ of the edition view of the app.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph-static/edition-graph-static.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph-static/edition-graph-static.component.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -369,7 +369,7 @@ of the edition view of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph-static/edition-graph-static.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph-static/edition-graph-static.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -405,17 +405,17 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed&lt;string | null&gt;(() &#x3D;&gt; {
         const imageKey &#x3D; this.imageKey();
-        if (!imageKey || !Object.hasOwn(this.graphImages, imageKey)) {
+        if (!imageKey || !OBJECT_UTILS.isKeyOf(this.graphImages, imageKey)) {
             return null;
         }
 
-        return this.graphImages[imageKey as keyof typeof this.graphImages] || null;
+        return this.graphImages[imageKey] || null;
     })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph-static/edition-graph-static.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph-static/edition-graph-static.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -437,6 +437,8 @@ of the edition view of the app.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, input } from &#x27;@angular/core&#x27;;
+
+import { OBJECT_UTILS } from &#x27;@awg-shared/utils/object-utils&#x27;;
 
 import { EDITION_GRAPH_IMAGES_DATA } from &#x27;@awg-views/edition-view/data/edition-graph-images.data&#x27;;
 
@@ -479,11 +481,11 @@ export class EditionGraphStaticComponent {
      */
     readonly imageSrc &#x3D; computed&lt;string | null&gt;(() &#x3D;&gt; {
         const imageKey &#x3D; this.imageKey();
-        if (!imageKey || !Object.hasOwn(this.graphImages, imageKey)) {
+        if (!imageKey || !OBJECT_UTILS.isKeyOf(this.graphImages, imageKey)) {
             return null;
         }
 
-        return this.graphImages[imageKey as keyof typeof this.graphImages] || null;
+        return this.graphImages[imageKey] || null;
     });
 }
 </code></pre>
