@@ -10,7 +10,6 @@ import { Component, output } from '@angular/core';
     selector: 'awg-graph-editor-action-buttons',
     templateUrl: './graph-editor-action-buttons.component.html',
     styleUrl: './graph-editor-action-buttons.component.scss',
-    imports: [],
 })
 export class GraphEditorActionButtonsComponent {
     /**

@@ -14,7 +14,6 @@ import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data/edition-
     selector: 'awg-edition-graph-static',
     templateUrl: './edition-graph-static.component.html',
     styleUrl: './edition-graph-static.component.scss',
-    imports: [],
 })
 export class EditionGraphStaticComponent {
     /**

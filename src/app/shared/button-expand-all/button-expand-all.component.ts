@@ -9,7 +9,6 @@ import { Component, model } from '@angular/core';
     selector: 'awg-button-expand-all',
     templateUrl: './button-expand-all.component.html',
     styleUrl: './button-expand-all.component.scss',
-    imports: [],
 })
 export class ButtonExpandAllComponent {
     /**

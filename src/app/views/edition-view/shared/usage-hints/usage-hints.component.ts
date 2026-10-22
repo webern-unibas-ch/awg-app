@@ -13,7 +13,6 @@ import { EditionModalService } from '@awg-views/edition-view/services/edition-mo
     selector: 'awg-usage-hints',
     templateUrl: './usage-hints.component.html',
     styleUrl: './usage-hints.component.scss',
-    imports: [],
 })
 export class UsageHintsComponent {
     /**

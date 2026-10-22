@@ -10,7 +10,6 @@ import { Component, input, model } from '@angular/core';
     selector: 'awg-form-switch',
     templateUrl: './form-switch.component.html',
     styleUrl: './form-switch.component.scss',
-    imports: [],
 })
 export class FormSwitchComponent {
     /**

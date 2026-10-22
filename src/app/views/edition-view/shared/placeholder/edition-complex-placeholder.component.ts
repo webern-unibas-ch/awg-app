@@ -17,7 +17,6 @@ import {
     selector: 'awg-edition-complex-placeholder',
     templateUrl: './edition-complex-placeholder.component.html',
     styleUrl: './edition-complex-placeholder.component.scss',
-    imports: [],
 })
 export class EditionComplexPlaceholderComponent {
     /**

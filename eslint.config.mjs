@@ -323,6 +323,11 @@ export default defineConfig(
                     selector: "PropertyDefinition :not(PropertyDefinition) > CallExpression[callee.name='inject']",
                     message: 'Inject as a separate field at the top of the class.',
                 },
+                {
+                    selector:
+                        "Decorator[expression.callee.name='Component'] Property[key.name='imports'] > ArrayExpression[elements.length=0]",
+                    message: 'Omit `imports` when the component imports nothing.',
+                },
             ],
             'no-throw-literal': 'error',
             'no-undef-init': 'error',

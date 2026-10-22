@@ -12,7 +12,6 @@ import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-ou
     selector: 'awg-edition-section-detail-cover',
     templateUrl: './edition-section-detail-cover.component.html',
     styleUrl: './edition-section-detail-cover.component.scss',
-    imports: [],
 })
 export class EditionSectionDetailCoverComponent {
     /**

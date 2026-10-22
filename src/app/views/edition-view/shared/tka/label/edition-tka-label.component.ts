@@ -12,7 +12,6 @@ import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
     selector: 'awg-edition-tka-label',
     templateUrl: './edition-tka-label.component.html',
     styleUrl: './edition-tka-label.component.scss',
-    imports: [],
 })
 export class EditionTkaLabelComponent {
     /**
