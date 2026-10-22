@@ -78,10 +78,8 @@
         "build:dev": "yarn build:prod --base-href https://edition.anton-webern.ch/dev/ && yarn build:attach",
         "compress:dist": "gzipper compress ./dist/awg-app/ --gzip --brotli",
         "-- ANALYZE --": "",
-        "pre_wpanalyzer": "yarn build:prod --stats-json",
-        "wpanalyzer": "yarn pre_wpanalyzer && webpack-bundle-analyzer dist/awg-app/stats.json",
-        "pre_sourcemap": "yarn build:prod --source-map",
-        "sourcemap": "yarn pre_sourcemap && source-map-explorer dist/awg-app/*.js",
+        "analyze": "yarn build:prod --stats-json",
+        "analyze:local": "yarn analyze && esbuild-visualizer --metadata dist/awg-app/browser-stats.json --filename dist/awg-app/browser-stats.html --title \"AWG App Bundle\" --open",
         "-- CHECK --": "",
         "check:cycles": "madge --circular --extensions ts --ts-config tsconfig.json src",
         "check:snippets": "node scripts/check-snippets.js",
@@ -139,6 +137,7 @@
         "angular-eslint": "^22.6.0",
         "commit-and-tag-version": "^13.3.0",
         "conventional-recommended-bump": "^12.1.0",
+        "esbuild-visualizer": "^0.7.0",
         "eslint": "^10.13.0",
         "eslint-plugin-jsdoc": "^65.3.12",
         "eslint-plugin-prettier": "^5.5.7",
@@ -150,11 +149,9 @@
         "madge": "^8.0.0",
         "playwright": "^1.64.1",
         "prettier": "^3.9.10",
-        "source-map-explorer": "^2.5.3",
         "typescript": "~6.0.3",
         "typescript-eslint": "^8.71.2",
-        "vitest": "^5.0.5",
-        "webpack-bundle-analyzer": "^5.4.0"
+        "vitest": "^5.0.5"
     },
     "engines": {
         "node": "^22.23.4 || >= 24.22.1",
