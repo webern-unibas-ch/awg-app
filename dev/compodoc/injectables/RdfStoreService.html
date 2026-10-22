@@ -156,7 +156,8 @@
                 <p>The RdfStore service.</p>
 <p>It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
 executes SPARQL queries and converts the responses into RDF/JS terms.
-It is the only place that knows the rdfstore API and response formats.</p>
+It is the only place that knows the rdfstore API and response formats.
+The rdfstore script is loaded on first use, so it is not part of the initial bundle.</p>
 
             </p>
 
@@ -168,6 +169,30 @@ It is the only place that knows the rdfstore API and response formats.</p>
     <div class="tab-pane fade " id="api">
             <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_document" >_document</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_rdfstoreLoading" >_rdfstoreLoading</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
         <table class="table table-sm table-bordered index-table">
             <tbody>
@@ -180,6 +205,7 @@ It is the only place that knows the rdfstore API and response formats.</p>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
                                 <a href="#_createStore" >_createStore</a>
                             </li>
                             <li>
@@ -196,12 +222,22 @@ It is the only place that knows the rdfstore API and response formats.</p>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
+                                <a href="#_getGlobalRdfstore" >_getGlobalRdfstore</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
                                 <a href="#_literal" >_literal</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_load" >_load</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_loadRdfstore" >_loadRdfstore</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
@@ -245,6 +281,10 @@ It is the only place that knows the rdfstore API and response formats.</p>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#preload" >preload</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Async</span>
                                 <a href="#select" >select</a>
                             </li>
@@ -273,6 +313,7 @@ It is the only place that knows the rdfstore API and response formats.</p>
                     <a name="_createStore"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
                         <span ><b>_createStore</b></span>
                         <a href="#_createStore"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -288,8 +329,8 @@ It is the only place that knows the rdfstore API and response formats.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="103"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:103</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:148</a></div>
                         </td>
                     </tr>
 
@@ -334,8 +375,8 @@ It is the only place that knows the rdfstore API and response formats.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="277"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:277</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="378"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:378</a></div>
                         </td>
                     </tr>
 
@@ -429,8 +470,8 @@ It is the only place that knows the rdfstore API and response formats.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -513,6 +554,52 @@ It is the only place that knows the rdfstore API and response formats.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_getGlobalRdfstore"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_getGlobalRdfstore</b></span>
+                        <a href="#_getGlobalRdfstore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getGlobalRdfstore()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="217"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:217</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _getGlobalRdfstore.</p>
+<p>It gets the global rdfstore, if available.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>RdfStoreGlobal | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The global rdfstore or undefined.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_literal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -531,8 +618,8 @@ It is the only place that knows the rdfstore API and response formats.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="219"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:219</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="320"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:320</a></div>
                         </td>
                     </tr>
 
@@ -641,8 +728,8 @@ It is the only place that knows the rdfstore API and response formats.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="130"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:130</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:231</a></div>
                         </td>
                     </tr>
 
@@ -717,6 +804,54 @@ It is the only place that knows the rdfstore API and response formats.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_loadRdfstore"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_loadRdfstore</b></span>
+                        <a href="#_loadRdfstore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_loadRdfstore()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:171</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _loadRdfstore.</p>
+<p>It gets the global rdfstore and loads its script once if it is not available yet.
+Parallel calls share the pending loading. A failed loading removes the script
+and is not cached, so the next call loads the script again.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;RdfStoreGlobal&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise of the global rdfstore.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_nodeToTerm"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -735,8 +870,8 @@ It is the only place that knows the rdfstore API and response formats.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="171"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:171</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="272"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:272</a></div>
                         </td>
                     </tr>
 
@@ -813,8 +948,8 @@ It is the only place that knows the rdfstore API and response formats.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="151"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:151</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="252"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:252</a></div>
                         </td>
                     </tr>
 
@@ -915,8 +1050,8 @@ It is the only place that knows the rdfstore API and response formats.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="264"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:264</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="365"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:365</a></div>
                         </td>
                     </tr>
 
@@ -993,8 +1128,8 @@ It is the only place that knows the rdfstore API and response formats.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="291"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:291</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="392"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:392</a></div>
                         </td>
                     </tr>
 
@@ -1088,8 +1223,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="194"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:194</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="295"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:295</a></div>
                         </td>
                     </tr>
 
@@ -1166,8 +1301,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="249"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:249</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="350"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:350</a></div>
                         </td>
                     </tr>
 
@@ -1244,8 +1379,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="234"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:234</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="335"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:335</a></div>
                         </td>
                     </tr>
 
@@ -1322,8 +1457,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -1398,6 +1533,51 @@ The original error is kept as <code>cause</code>.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="preload"></a>
+                    <span class="name">
+                        <span ><b>preload</b></span>
+                        <a href="#preload"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>preload()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: preload.</p>
+<p>It starts loading the rdfstore script ahead of the first query.
+Errors are ignored here: the next query loads the script again and reports them.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise that resolves when the loading has settled.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="select"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
@@ -1416,8 +1596,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -1490,12 +1670,97 @@ The original error is kept as <code>cause</code>.</p>
     </table>
 </section>
 
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_document"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_document</b></span>
+                        <a href="#_document"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DOCUMENT)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:54</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _document.</p>
+<p>It keeps the instance of the injected DOCUMENT.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_rdfstoreLoading"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_rdfstoreLoading</b></span>
+                        <a href="#_rdfstoreLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Promise&lt;RdfStoreGlobal&gt; | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:61</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private variable: _rdfstoreLoading.</p>
+<p>It keeps the promise of a pending loading of the rdfstore script, or null if none is pending.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Service } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, inject, Service } from &#x27;@angular/core&#x27;;
 
 import type { Quad, Quad_Object, Quad_Predicate, Quad_Subject } from &#x27;@rdfjs/types&#x27;;
 import { DataFactory } from &#x27;n3&#x27;;
@@ -1519,14 +1784,44 @@ import {
 const ERROR_LOCATION &#x3D; &#x27;[RdfStoreService]&#x27;;
 
 /**
+ * String constant: RDFSTORE_SCRIPT_URL.
+ *
+ * It keeps the url of the rdfstore script, relative to the base href
+ * (built as separate bundle via angular.json, not injected into the index.html).
+ */
+const RDFSTORE_SCRIPT_URL &#x3D; &#x27;rdfstore.js&#x27;;
+
+/**
+ * Number constant: RDFSTORE_SCRIPT_TIMEOUT_MS.
+ *
+ * It keeps the time after which a pending loading of the rdfstore script fails.
+ */
+const RDFSTORE_SCRIPT_TIMEOUT_MS &#x3D; 30_000;
+
+/**
  * The RdfStore service.
  *
  * It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
  * executes SPARQL queries and converts the responses into RDF/JS terms.
  * It is the only place that knows the rdfstore API and response formats.
+ * The rdfstore script is loaded on first use, so it is not part of the initial bundle.
  */
 @Service()
 export class RdfStoreService {
+    /**
+     * Private readonly injection variable: _document.
+     *
+     * It keeps the instance of the injected DOCUMENT.
+     */
+    private readonly _document &#x3D; inject(DOCUMENT);
+
+    /**
+     * Private variable: _rdfstoreLoading.
+     *
+     * It keeps the promise of a pending loading of the rdfstore script, or null if none is pending.
+     */
+    private _rdfstoreLoading: Promise&lt;RdfStoreGlobal&gt; | null &#x3D; null;
+
     /**
      * Public method: construct.
      *
@@ -1575,6 +1870,21 @@ export class RdfStoreService {
     }
 
     /**
+     * Public method: preload.
+     *
+     * It starts loading the rdfstore script ahead of the first query.
+     * Errors are ignored here: the next query loads the script again and reports them.
+     *
+     * @returns {Promise&lt;void&gt;} A promise that resolves when the loading has settled.
+     */
+    preload(): Promise&lt;void&gt; {
+        return this._loadRdfstore().then(
+            () &#x3D;&gt; undefined,
+            () &#x3D;&gt; undefined
+        );
+    }
+
+    /**
      * Private method: _execute.
      *
      * It creates a new store, loads the turtle data and executes the query.
@@ -1597,14 +1907,10 @@ export class RdfStoreService {
      *
      * @returns {Promise&lt;RdfStore&gt;} A promise of the store.
      */
-    private _createStore(): Promise&lt;RdfStore&gt; {
-        const rdfstore &#x3D; (globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore;
+    private async _createStore(): Promise&lt;RdfStore&gt; {
+        const rdfstore &#x3D; await this._loadRdfstore();
 
         return new Promise((resolve, reject) &#x3D;&gt; {
-            if (!rdfstore?.create) {
-                reject(this._error(&#x27;rdfstore is not available in the current runtime.&#x27;));
-                return;
-            }
             rdfstore.create((err, store) &#x3D;&gt; {
                 if (err) {
                     reject(this._toError(err, &#x27;An unknown error occurred while creating the store.&#x27;));
@@ -1613,6 +1919,66 @@ export class RdfStoreService {
                 resolve(store);
             });
         });
+    }
+
+    /**
+     * Private method: _loadRdfstore.
+     *
+     * It gets the global rdfstore and loads its script once if it is not available yet.
+     * Parallel calls share the pending loading. A failed loading removes the script
+     * and is not cached, so the next call loads the script again.
+     *
+     * @returns {Promise&lt;RdfStoreGlobal&gt;} A promise of the global rdfstore.
+     */
+    private _loadRdfstore(): Promise&lt;RdfStoreGlobal&gt; {
+        const rdfstore &#x3D; this._getGlobalRdfstore();
+        if (rdfstore) {
+            return Promise.resolve(rdfstore);
+        }
+
+        this._rdfstoreLoading ??&#x3D; new Promise&lt;RdfStoreGlobal&gt;((resolve, reject) &#x3D;&gt; {
+            const script &#x3D; this._document.createElement(&#x27;script&#x27;);
+            const fail &#x3D; (message: string): void &#x3D;&gt; {
+                script.remove();
+                reject(this._error(message));
+            };
+            const timeoutId &#x3D; setTimeout(
+                () &#x3D;&gt; fail(&#x60;Timed out loading the rdfstore script (${RDFSTORE_SCRIPT_URL}).&#x60;),
+                RDFSTORE_SCRIPT_TIMEOUT_MS
+            );
+
+            script.src &#x3D; RDFSTORE_SCRIPT_URL;
+            script.addEventListener(&#x27;load&#x27;, () &#x3D;&gt; {
+                clearTimeout(timeoutId);
+                const loadedRdfstore &#x3D; this._getGlobalRdfstore();
+                if (loadedRdfstore) {
+                    resolve(loadedRdfstore);
+                } else {
+                    fail(&#x27;rdfstore is not available in the current runtime.&#x27;);
+                }
+            });
+            script.addEventListener(&#x27;error&#x27;, () &#x3D;&gt; {
+                clearTimeout(timeoutId);
+                fail(&#x60;Failed to load the rdfstore script (${RDFSTORE_SCRIPT_URL}).&#x60;);
+            });
+            this._document.head.appendChild(script);
+        }).finally(() &#x3D;&gt; {
+            this._rdfstoreLoading &#x3D; null;
+        });
+
+        return this._rdfstoreLoading;
+    }
+
+    /**
+     * Private method: _getGlobalRdfstore.
+     *
+     * It gets the global rdfstore, if available.
+     *
+     * @returns {RdfStoreGlobal | undefined} The global rdfstore or undefined.
+     */
+    private _getGlobalRdfstore(): RdfStoreGlobal | undefined {
+        const rdfstore &#x3D; (globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore;
+        return rdfstore?.create ? rdfstore : undefined;
     }
 
     /**
