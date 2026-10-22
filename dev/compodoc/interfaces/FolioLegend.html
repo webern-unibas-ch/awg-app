@@ -295,7 +295,7 @@ of the edition folios.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 
 import { FaIconComponent } from &#x27;@fortawesome/angular-fontawesome&#x27;;
 import { faSquare } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
@@ -328,7 +328,6 @@ interface FolioLegend {
     selector: &#x27;awg-edition-folios-legend&#x27;,
     templateUrl: &#x27;./edition-folios-legend.component.html&#x27;,
     styleUrl: &#x27;./edition-folios-legend.component.scss&#x27;,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })
 export class EditionFoliosLegendComponent {

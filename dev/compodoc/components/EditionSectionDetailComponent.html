@@ -259,7 +259,7 @@ during the navigation.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 import { RouterOutlet } from &#x27;@angular/router&#x27;;
 
 /**
@@ -276,7 +276,6 @@ import { RouterOutlet } from &#x27;@angular/router&#x27;;
     selector: &#x27;awg-edition-section-detail&#x27;,
     templateUrl: &#x27;./edition-section-detail.component.html&#x27;,
     styleUrl: &#x27;./edition-section-detail.component.scss&#x27;,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet],
 })
 export class EditionSectionDetailComponent {
