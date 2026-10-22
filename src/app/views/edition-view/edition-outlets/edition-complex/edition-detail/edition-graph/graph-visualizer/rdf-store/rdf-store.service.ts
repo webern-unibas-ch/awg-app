@@ -1,4 +1,4 @@
-import { Service } from '@angular/core';
+import { DOCUMENT, inject, Service } from '@angular/core';
 
 import type { Quad, Quad_Object, Quad_Predicate, Quad_Subject } from '@rdfjs/types';
 import { DataFactory } from 'n3';
@@ -22,14 +22,37 @@ import {
 const ERROR_LOCATION = '[RdfStoreService]';
 
 /**
+ * String constant: RDFSTORE_SCRIPT_URL.
+ *
+ * It keeps the url of the rdfstore script, relative to the base href
+ * (built as separate bundle via angular.json, not injected into the index.html).
+ */
+const RDFSTORE_SCRIPT_URL = 'rdfstore.js';
+
+/**
  * The RdfStore service.
  *
  * It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
  * executes SPARQL queries and converts the responses into RDF/JS terms.
  * It is the only place that knows the rdfstore API and response formats.
+ * The rdfstore script is loaded on first use, so it is not part of the initial bundle.
  */
 @Service()
 export class RdfStoreService {
+    /**
+     * Private readonly injection variable: _document.
+     *
+     * It keeps the instance of the injected DOCUMENT.
+     */
+    private readonly _document = inject(DOCUMENT);
+
+    /**
+     * Private variable: _rdfstoreLoading.
+     *
+     * It keeps the promise of the loading rdfstore script, or null if it is not (successfully) loading.
+     */
+    private _rdfstoreLoading: Promise<RdfStoreGlobal> | null = null;
+
     /**
      * Public method: construct.
      *
@@ -100,14 +123,10 @@ export class RdfStoreService {
      *
      * @returns {Promise<RdfStore>} A promise of the store.
      */
-    private _createStore(): Promise<RdfStore> {
-        const rdfstore = (globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore;
+    private async _createStore(): Promise<RdfStore> {
+        const rdfstore = await this._loadRdfstore();
 
         return new Promise((resolve, reject) => {
-            if (!rdfstore?.create) {
-                reject(this._error('rdfstore is not available in the current runtime.'));
-                return;
-            }
             rdfstore.create((err, store) => {
                 if (err) {
                     reject(this._toError(err, 'An unknown error occurred while creating the store.'));
@@ -116,6 +135,56 @@ export class RdfStoreService {
                 resolve(store);
             });
         });
+    }
+
+    /**
+     * Private method: _loadRdfstore.
+     *
+     * It gets the global rdfstore and loads its script once if it is not available yet.
+     * A failed loading is not cached, so the next call loads the script again.
+     *
+     * @returns {Promise<RdfStoreGlobal>} A promise of the global rdfstore.
+     */
+    private _loadRdfstore(): Promise<RdfStoreGlobal> {
+        const rdfstore = this._getGlobalRdfstore();
+        if (rdfstore) {
+            return Promise.resolve(rdfstore);
+        }
+
+        this._rdfstoreLoading ??= new Promise<RdfStoreGlobal>((resolve, reject) => {
+            const script = this._document.createElement('script');
+            script.src = RDFSTORE_SCRIPT_URL;
+            script.addEventListener('load', () => {
+                const loadedRdfstore = this._getGlobalRdfstore();
+                if (loadedRdfstore) {
+                    resolve(loadedRdfstore);
+                } else {
+                    reject(this._error('rdfstore is not available in the current runtime.'));
+                }
+            });
+            script.addEventListener('error', () => {
+                script.remove();
+                reject(this._error(`Failed to load the rdfstore script (${RDFSTORE_SCRIPT_URL}).`));
+            });
+            this._document.head.appendChild(script);
+        }).catch((error: unknown) => {
+            this._rdfstoreLoading = null;
+            throw error;
+        });
+
+        return this._rdfstoreLoading;
+    }
+
+    /**
+     * Private method: _getGlobalRdfstore.
+     *
+     * It gets the global rdfstore, if available.
+     *
+     * @returns {RdfStoreGlobal | undefined} The global rdfstore or undefined.
+     */
+    private _getGlobalRdfstore(): RdfStoreGlobal | undefined {
+        const rdfstore = (globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore;
+        return rdfstore?.create ? rdfstore : undefined;
     }
 
     /**

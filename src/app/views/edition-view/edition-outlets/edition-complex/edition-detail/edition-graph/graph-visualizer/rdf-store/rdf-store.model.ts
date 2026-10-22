@@ -3,7 +3,7 @@ import { SparqlBinding } from '../models/rdf.model';
 /**
  * The RdfStoreGlobal interface.
  *
- * It represents the global `rdfstore` object (loaded as script via angular.json).
+ * It represents the global `rdfstore` object (loaded as script on first use by the RdfStoreService).
  * Only the {@link RdfStoreService} may use it.
  */
 export interface RdfStoreGlobal {

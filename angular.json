@@ -32,7 +32,13 @@
                         "stylePreprocessorOptions": {
                             "includePaths": ["."]
                         },
-                        "scripts": ["node_modules/rdfstore/dist/rdfstore_min.js"],
+                        "scripts": [
+                            {
+                                "input": "node_modules/rdfstore/dist/rdfstore_min.js",
+                                "bundleName": "rdfstore",
+                                "inject": false
+                            }
+                        ],
                         "browser": "src/main.ts"
                     },
                     "configurations": {
