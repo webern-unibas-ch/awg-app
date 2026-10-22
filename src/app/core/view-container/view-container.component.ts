@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 /**
@@ -13,7 +13,6 @@ import { RouterOutlet } from '@angular/router';
     selector: 'awg-view-container',
     templateUrl: './view-container.component.html',
     styleUrl: './view-container.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet],
 })
 export class ViewContainerComponent {

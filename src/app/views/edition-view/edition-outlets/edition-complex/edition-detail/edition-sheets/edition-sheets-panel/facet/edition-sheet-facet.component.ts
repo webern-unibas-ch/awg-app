@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 
 import {
     EditionSvgSheetSelection,
@@ -20,7 +20,6 @@ import { EditionSheetFacetToggleComponent } from './toggle/edition-sheet-facet-t
     selector: 'awg-edition-sheet-facet',
     templateUrl: './edition-sheet-facet.component.html',
     styleUrl: './edition-sheet-facet.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSheetFacetGroupComponent, EditionSheetFacetToggleComponent],
 })
 export class EditionSheetFacetComponent {

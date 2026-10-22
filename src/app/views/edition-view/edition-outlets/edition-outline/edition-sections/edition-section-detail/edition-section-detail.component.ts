@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 /**
@@ -15,7 +15,6 @@ import { RouterOutlet } from '@angular/router';
     selector: 'awg-edition-section-detail',
     templateUrl: './edition-section-detail.component.html',
     styleUrl: './edition-section-detail.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet],
 })
 export class EditionSectionDetailComponent {

@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
@@ -18,7 +18,6 @@ import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
     selector: 'awg-example-queries',
     templateUrl: './example-queries.component.html',
     styleUrl: './example-queries.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective, NgbDropdownModule, NgTemplateOutlet],
 })
 export class ExampleQueriesComponent {

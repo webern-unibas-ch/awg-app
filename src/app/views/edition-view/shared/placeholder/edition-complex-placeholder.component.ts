@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 
@@ -17,8 +17,6 @@ import {
     selector: 'awg-edition-complex-placeholder',
     templateUrl: './edition-complex-placeholder.component.html',
     styleUrl: './edition-complex-placeholder.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [],
 })
 export class EditionComplexPlaceholderComponent {
     /**

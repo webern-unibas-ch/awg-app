@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, linkedSignal, signal } from '@angular/core';
+import { Component, computed, effect, inject, linkedSignal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 
@@ -31,7 +31,6 @@ import { EditionSheetsPanelComponent } from './edition-sheets-panel/edition-shee
     selector: 'awg-edition-sheets',
     templateUrl: './edition-sheets.component.html',
     styleUrl: './edition-sheets.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AlertErrorComponent,
         EditionFoliosPanelComponent,

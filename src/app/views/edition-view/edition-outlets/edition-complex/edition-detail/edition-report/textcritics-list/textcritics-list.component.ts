@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
@@ -24,7 +24,6 @@ import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
     selector: 'awg-textcritics-list',
     templateUrl: './textcritics-list.component.html',
     styleUrl: './textcritics-list.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CompileHtmlDirective,
         EditionDisclaimerWorkeditionsComponent,

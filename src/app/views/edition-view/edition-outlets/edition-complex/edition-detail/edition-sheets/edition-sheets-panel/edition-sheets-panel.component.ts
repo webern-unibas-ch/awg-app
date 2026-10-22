@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, model, output } from '@angular/core';
+import { Component, inject, input, model, output } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,7 +27,6 @@ import { EditionSheetViewerComponent } from './viewer/edition-sheet-viewer.compo
     selector: 'awg-edition-sheets-panel',
     templateUrl: './edition-sheets-panel.component.html',
     styleUrl: './edition-sheets-panel.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         EditionSheetFacetComponent,
         EditionSheetFooterComponent,

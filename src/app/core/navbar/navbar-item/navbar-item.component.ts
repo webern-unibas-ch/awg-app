@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -15,7 +15,6 @@ import { NavbarItem } from '../navbar.model';
     selector: 'awg-navbar-item',
     templateUrl: './navbar-item.component.html',
     styleUrl: './navbar-item.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, NgbDropdownToggle, RouterLink, RouterLinkActive],
 })
 export class NavbarItemComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
@@ -33,7 +33,6 @@ const FOLIOS_PER_ROW_MAX_WRAPPED = 4;
     selector: 'awg-edition-folios-viewer',
     templateUrl: './edition-folios-viewer.component.html',
     styleUrl: './edition-folios-viewer.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionFoliosViewerSvgComponent],
 })
 export class EditionFoliosViewerComponent {

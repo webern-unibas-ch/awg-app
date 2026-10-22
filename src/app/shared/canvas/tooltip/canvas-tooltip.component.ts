@@ -1,4 +1,4 @@
-import { afterRenderEffect, ChangeDetectionStrategy, Component, input, untracked, viewChild } from '@angular/core';
+import { afterRenderEffect, Component, input, untracked, viewChild } from '@angular/core';
 
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap/tooltip';
 
@@ -14,7 +14,6 @@ import { CanvasPoint } from '../canvas.model';
     selector: 'awg-canvas-tooltip',
     templateUrl: './canvas-tooltip.component.html',
     styleUrl: './canvas-tooltip.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbTooltip],
 })
 export class CanvasTooltipComponent {

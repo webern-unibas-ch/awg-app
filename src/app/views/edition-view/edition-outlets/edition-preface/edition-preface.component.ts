@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
@@ -18,7 +18,6 @@ import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/lan
     selector: 'awg-edition-preface',
     templateUrl: './edition-preface.component.html',
     styleUrl: './edition-preface.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AlertErrorComponent, CompileHtmlDirective, LanguageSwitcherComponent, TwelveToneSpinnerComponent],
 })
 export class EditionPrefaceComponent {

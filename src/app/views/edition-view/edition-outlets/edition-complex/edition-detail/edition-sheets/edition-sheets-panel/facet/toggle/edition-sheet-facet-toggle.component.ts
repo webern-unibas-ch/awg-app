@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, model } from '@angular/core';
+import { Component, computed, model } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,6 @@ import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
     selector: 'awg-edition-sheet-facet-toggle',
     templateUrl: './edition-sheet-facet-toggle.component.html',
     styleUrl: './edition-sheet-facet-toggle.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })
 export class EditionSheetFacetToggleComponent {

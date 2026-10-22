@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -17,7 +17,6 @@ import { StatisticsProgressBarComponent } from '../statistics-progress-bar/stati
     selector: 'awg-statistics-series-breakdown',
     templateUrl: './statistics-series-breakdown.component.html',
     styleUrl: './statistics-series-breakdown.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, RouterLinkActive, StatisticsBreakdownBadgeComponent, StatisticsProgressBarComponent],
 })
 export class StatisticsSeriesBreakdownComponent {

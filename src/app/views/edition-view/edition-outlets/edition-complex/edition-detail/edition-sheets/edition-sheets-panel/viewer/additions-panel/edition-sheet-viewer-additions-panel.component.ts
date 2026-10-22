@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, linkedSignal, output } from '@angular/core';
+import { Component, computed, input, linkedSignal, output } from '@angular/core';
 
 import { FormSwitchComponent } from '@awg-shared/form-switch/form-switch.component';
 
@@ -21,7 +21,6 @@ import {
     selector: 'awg-edition-sheet-viewer-additions-panel',
     templateUrl: './edition-sheet-viewer-additions-panel.component.html',
     styleUrl: './edition-sheet-viewer-additions-panel.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionTkaLabelComponent, FormSwitchComponent],
 })
 export class EditionSheetViewerAdditionsPanelComponent {

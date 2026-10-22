@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
@@ -31,7 +31,6 @@ interface FolioLegend {
     selector: 'awg-edition-folios-legend',
     templateUrl: './edition-folios-legend.component.html',
     styleUrl: './edition-folios-legend.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })
 export class EditionFoliosLegendComponent {

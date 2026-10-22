@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
 import { createExpandAllState } from '@awg-shared/button-expand-all/button-expand-all.utils';
@@ -18,7 +18,6 @@ import { SourceDescContentItemComponent } from './item/source-desc-content-item.
     selector: 'awg-source-desc-contents',
     templateUrl: './source-desc-contents.component.html',
     styleUrl: './source-desc-contents.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonExpandAllComponent, SourceDescContentGridComponent, SourceDescContentItemComponent],
 })
 export class SourceDescContentsComponent {

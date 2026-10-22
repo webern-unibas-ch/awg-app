@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap/tooltip';
 
@@ -20,7 +20,6 @@ import { TKA_TABLE_HEADERS, TkaTableHeaderColumn } from './edition-tka-table.mod
     selector: 'awg-edition-tka-table',
     templateUrl: './edition-tka-table.component.html',
     styleUrl: './edition-tka-table.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AbbrDirective, CompileHtmlDirective, NgbTooltipModule],
 })
 export class EditionTkaTableComponent {

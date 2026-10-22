@@ -3,7 +3,7 @@
  * (cf. https://github.com/MadsHolten/sparql-visualizer), reimplemented with a canvas and a web worker.
  */
 
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 
 import { ZoomSliderComponent } from '@awg-shared/zoom/zoom-slider.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
@@ -25,7 +25,6 @@ import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
     selector: 'awg-force-graph',
     templateUrl: './force-graph.component.html',
     styleUrl: './force-graph.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ForceGraphCanvasComponent, ForceGraphLimitComponent, ZoomSliderComponent],
 })
 export class ForceGraphComponent {

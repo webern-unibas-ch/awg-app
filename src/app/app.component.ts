@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
@@ -22,7 +22,6 @@ import { ViewContainerComponent } from './core/view-container/view-container.com
     selector: 'awg-app',
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FooterComponent, NavbarComponent, ViewContainerComponent],
 })
 export class AppComponent {

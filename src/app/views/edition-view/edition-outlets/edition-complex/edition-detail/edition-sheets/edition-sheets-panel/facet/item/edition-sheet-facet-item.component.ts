@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
@@ -22,7 +22,6 @@ import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-l
     selector: 'awg-edition-sheet-facet-item',
     templateUrl: './edition-sheet-facet-item.component.html',
     styleUrl: './edition-sheet-facet-item.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSheetFacetItemLinkDirective, NgbDropdownModule],
 })
 export class EditionSheetFacetItemComponent {

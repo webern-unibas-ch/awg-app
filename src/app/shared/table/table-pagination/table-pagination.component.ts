@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 
 import { NgbPagination, NgbPaginationPages } from '@ng-bootstrap/ng-bootstrap/pagination';
 
@@ -14,7 +14,6 @@ import { TABLE_DEFAULT_PAGE_SIZE } from '../table.utils';
     selector: 'awg-table-pagination',
     templateUrl: './table-pagination.component.html',
     styleUrl: './table-pagination.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbPagination, NgbPaginationPages],
 })
 export class TablePaginationComponent {

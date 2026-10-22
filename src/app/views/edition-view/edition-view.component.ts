@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject } from '@angular/core';
+import { Component, computed, DestroyRef, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
@@ -27,7 +27,6 @@ import { EditionViewService } from './services/edition-view.service';
     selector: 'awg-edition-view',
     templateUrl: './edition-view.component.html',
     styleUrl: './edition-view.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ButtonScrollToTopComponent,
         EditionBreadcrumbComponent,

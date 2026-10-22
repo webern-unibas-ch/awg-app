@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { EditionRouteConstant } from '@awg-views/edition-view/edition-routes.constants';
 import { SourceDescWritingMaterialTrademark } from '@awg-views/edition-view/models/source-desc.model';
@@ -16,7 +16,6 @@ import { getItemLocus, getTrademark } from '../source-desc-writing-materials.uti
     selector: 'awg-source-desc-writing-trademark',
     templateUrl: './source-desc-writing-trademark.component.html',
     styleUrl: './source-desc-writing-trademark.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective],
 })
 export class SourceDescWritingTrademarkComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { APP_CONSTANTS } from '@awg-app/app.constants';
@@ -18,7 +18,6 @@ import { ContactMapComponent } from '../contact-map/contact-map.component';
     selector: 'awg-contact-side-info',
     templateUrl: './contact-side-info.component.html',
     styleUrl: './contact-side-info.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ContactAddressComponent, ContactMapComponent],
 })
 export class ContactSideInfoComponent {

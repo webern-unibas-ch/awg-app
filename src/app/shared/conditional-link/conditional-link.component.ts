@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 /**
  * The ConditionalLink component.
@@ -10,7 +10,6 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
     selector: 'awg-conditional-link',
     templateUrl: './conditional-link.component.html',
     styleUrl: './conditional-link.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgTemplateOutlet],
 })
 export class ConditionalLinkComponent {

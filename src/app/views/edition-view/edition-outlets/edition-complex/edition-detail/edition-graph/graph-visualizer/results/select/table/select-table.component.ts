@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 
 import { TableComponent } from '@awg-shared/table/table.component';
 
@@ -16,7 +16,6 @@ import { SELECT_TABLE_UTILS } from './select-table.utils';
     selector: 'awg-select-table',
     templateUrl: './select-table.component.html',
     styleUrl: './select-table.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TableComponent],
 })
 export class SelectTableComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
@@ -14,7 +14,6 @@ import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
     selector: 'awg-graph-results-empty',
     templateUrl: './graph-results-empty.component.html',
     styleUrl: './graph-results-empty.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LogoComponent],
 })
 export class GraphResultsEmptyComponent {

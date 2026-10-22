@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { Component, output } from '@angular/core';
 
 /**
  * The GraphEditorActionButtons component.
@@ -10,8 +10,6 @@ import { ChangeDetectionStrategy, Component, output } from '@angular/core';
     selector: 'awg-graph-editor-action-buttons',
     templateUrl: './graph-editor-action-buttons.component.html',
     styleUrl: './graph-editor-action-buttons.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [],
 })
 export class GraphEditorActionButtonsComponent {
     /**

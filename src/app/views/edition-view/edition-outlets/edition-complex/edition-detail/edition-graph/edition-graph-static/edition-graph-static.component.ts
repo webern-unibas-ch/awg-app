@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
 
@@ -14,8 +14,6 @@ import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data/edition-
     selector: 'awg-edition-graph-static',
     templateUrl: './edition-graph-static.component.html',
     styleUrl: './edition-graph-static.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [],
 })
 export class EditionGraphStaticComponent {
     /**

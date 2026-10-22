@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,6 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
     selector: 'awg-statistics-summary-card',
     templateUrl: './statistics-summary-card.component.html',
     styleUrl: './statistics-summary-card.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })
 export class StatisticsSummaryCardComponent {

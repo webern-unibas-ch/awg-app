@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
@@ -26,7 +26,6 @@ import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
     selector: 'awg-home-view',
     templateUrl: './home-view.component.html',
     styleUrl: './home-view.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AlertInfoComponent,
         ButtonScrollToTopComponent,

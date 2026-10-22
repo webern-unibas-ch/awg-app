@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { SourceDescWritingMaterial } from '@awg-views/edition-view/models/source-desc.model';
 
@@ -14,7 +14,6 @@ import { SourceDescWritingMaterialComponent } from './material/source-desc-writi
     selector: 'awg-source-desc-writing-materials',
     templateUrl: './source-desc-writing-materials.component.html',
     styleUrl: './source-desc-writing-materials.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [SourceDescWritingMaterialComponent],
 })
 export class SourceDescWritingMaterialsComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
@@ -19,7 +19,6 @@ import { SelectTableComponent } from './table/select-table.component';
     selector: 'awg-graph-results-select',
     templateUrl: './graph-results-select.component.html',
     styleUrl: './graph-results-select.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, GraphResultsEmptyComponent, SelectTableComponent, TwelveToneSpinnerComponent],
 })
 export class GraphResultsSelectComponent {

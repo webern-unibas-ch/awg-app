@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
 
@@ -12,8 +12,6 @@ import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-ou
     selector: 'awg-edition-section-detail-cover',
     templateUrl: './edition-section-detail-cover.component.html',
     styleUrl: './edition-section-detail-cover.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [],
 })
 export class EditionSectionDetailCoverComponent {
     /**

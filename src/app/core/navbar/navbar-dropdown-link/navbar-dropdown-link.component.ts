@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 /**
@@ -10,7 +10,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     selector: 'awg-navbar-dropdown-link',
     templateUrl: './navbar-dropdown-link.component.html',
     styleUrl: './navbar-dropdown-link.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, RouterLinkActive],
 })
 export class NavbarDropdownLinkComponent {

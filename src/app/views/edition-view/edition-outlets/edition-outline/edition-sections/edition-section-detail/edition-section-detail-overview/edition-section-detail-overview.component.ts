@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
@@ -18,7 +18,6 @@ import { EditionSectionDetailPlaceholderComponent } from '../edition-section-det
     selector: 'awg-edition-section-detail-overview',
     templateUrl: './edition-section-detail-overview.component.html',
     styleUrl: './edition-section-detail-overview.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         EditionSectionDetailComplexCardComponent,
         EditionSectionDetailCoverComponent,

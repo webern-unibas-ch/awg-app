@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
@@ -14,7 +14,6 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
     selector: 'awg-structure-view',
     templateUrl: './structure-view.component.html',
     styleUrl: './structure-view.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonScrollToTopComponent, ExternalLinkDirective, HeadingComponent],
 })
 export class StructureViewComponent {

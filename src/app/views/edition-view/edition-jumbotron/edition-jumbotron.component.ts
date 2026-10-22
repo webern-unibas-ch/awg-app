@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 /**
  * The EditionJumbotron component.
@@ -10,7 +10,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     selector: 'awg-edition-jumbotron',
     templateUrl: './edition-jumbotron.component.html',
     styleUrl: './edition-jumbotron.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionJumbotronComponent {
     /**

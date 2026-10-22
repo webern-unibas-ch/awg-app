@@ -2,16 +2,7 @@
  * This component is adapted from Mads Holten's SPARQL Visualizer
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
-import {
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    inject,
-    input,
-    linkedSignal,
-    resource,
-    untracked,
-} from '@angular/core';
+import { Component, computed, inject, input, linkedSignal, resource, untracked } from '@angular/core';
 
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
@@ -40,7 +31,6 @@ import { SPARQL_UTILS } from './utils/sparql.utils';
     selector: 'awg-graph-visualizer',
     templateUrl: './graph-visualizer.component.html',
     styleUrl: './graph-visualizer.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         GraphEditorSparqlComponent,
         GraphEditorTriplesComponent,

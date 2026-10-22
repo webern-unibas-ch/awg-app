@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +17,6 @@ import { MetaPage } from '@awg-shared/meta/meta.model';
     selector: 'awg-footer-poweredby',
     templateUrl: './footer-poweredby.component.html',
     styleUrl: './footer-poweredby.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, ExternalLinkDirective, LogoComponent],
 })
 export class FooterPoweredbyComponent {

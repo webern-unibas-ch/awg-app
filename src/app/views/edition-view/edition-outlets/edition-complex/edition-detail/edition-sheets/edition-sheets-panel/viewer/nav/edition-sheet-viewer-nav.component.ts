@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { Component, output } from '@angular/core';
 
 /**
  * The EditionSheetViewerNav component.
@@ -9,7 +9,6 @@ import { ChangeDetectionStrategy, Component, output } from '@angular/core';
     selector: 'awg-edition-sheet-viewer-nav',
     templateUrl: './edition-sheet-viewer-nav.component.html',
     styleUrl: './edition-sheet-viewer-nav.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionSheetViewerNavComponent {
     /**

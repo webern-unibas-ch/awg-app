@@ -102,6 +102,7 @@ export default defineConfig(
             '@angular-eslint/no-uncalled-signals': 'error',
             '@angular-eslint/pipe-prefix': ['error', { prefixes: ['awg'] }],
             '@angular-eslint/prefer-host-metadata-property': 'error',
+            '@angular-eslint/prefer-on-push-component-change-detection': ['error', { allowExplicitOnPush: false }],
             '@angular-eslint/prefer-output-emitter-ref': 'error',
             '@angular-eslint/prefer-output-readonly': 'error',
             '@angular-eslint/prefer-service-decorator': 'error',
@@ -321,6 +322,11 @@ export default defineConfig(
                 {
                     selector: "PropertyDefinition :not(PropertyDefinition) > CallExpression[callee.name='inject']",
                     message: 'Inject as a separate field at the top of the class.',
+                },
+                {
+                    selector:
+                        "Decorator[expression.callee.name='Component'] Property[key.name='imports'] > ArrayExpression[elements.length=0]",
+                    message: 'Omit `imports` when the component imports nothing.',
                 },
             ],
             'no-throw-literal': 'error',

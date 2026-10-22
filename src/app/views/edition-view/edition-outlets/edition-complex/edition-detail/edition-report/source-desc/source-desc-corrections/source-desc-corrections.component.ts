@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
 import { createExpandAllState } from '@awg-shared/button-expand-all/button-expand-all.utils';
@@ -18,7 +18,6 @@ import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/tab
     selector: 'awg-source-desc-corrections',
     templateUrl: './source-desc-corrections.component.html',
     styleUrl: './source-desc-corrections.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonExpandAllComponent, CompileHtmlDirective, EditionTkaEvaluationsComponent, EditionTkaTableComponent],
 })
 export class SourceDescCorrectionsComponent {

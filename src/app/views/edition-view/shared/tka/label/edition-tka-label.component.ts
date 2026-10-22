@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
 
@@ -12,8 +12,6 @@ import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
     selector: 'awg-edition-tka-label',
     templateUrl: './edition-tka-label.component.html',
     styleUrl: './edition-tka-label.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [],
 })
 export class EditionTkaLabelComponent {
     /**

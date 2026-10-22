@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, TemplateRef } from '@angular/core';
+import { Component, inject, TemplateRef } from '@angular/core';
 
 import { NgbToast } from '@ng-bootstrap/ng-bootstrap/toast';
 
@@ -14,7 +14,6 @@ import { Toast, ToastService } from './toast.service';
     selector: 'awg-toast',
     templateUrl: './toast.component.html',
     styleUrl: './toast.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbToast, NgTemplateOutlet],
 })
 export class ToastComponent {

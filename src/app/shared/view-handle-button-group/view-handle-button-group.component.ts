@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, input, output, viewChildren } from '@angular/core';
+import { Component, ElementRef, input, output, viewChildren } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap/tooltip';
@@ -23,7 +23,6 @@ let nextGroupId = 0;
     selector: 'awg-view-handle-button-group',
     templateUrl: './view-handle-button-group.component.html',
     styleUrl: './view-handle-button-group.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, NgbTooltip],
 })
 export class ViewHandleButtonGroupComponent {

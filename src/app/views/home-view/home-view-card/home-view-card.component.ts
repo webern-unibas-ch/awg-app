@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -19,7 +19,6 @@ import { HomeViewCard } from './home-view-card.model';
     selector: 'awg-home-view-card',
     templateUrl: './home-view-card.component.html',
     styleUrl: './home-view-card.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, ExternalLinkDirective, NgTemplateOutlet, RouterLink],
 })
 export class HomeViewCardComponent {

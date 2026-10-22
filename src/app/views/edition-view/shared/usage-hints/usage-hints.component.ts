@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 
 import { EDITION_MODAL_SNIPPETS } from '@awg-views/edition-view/data/edition-modal-snippets.data';
 import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
@@ -13,8 +13,6 @@ import { EditionModalService } from '@awg-views/edition-view/services/edition-mo
     selector: 'awg-usage-hints',
     templateUrl: './usage-hints.component.html',
     styleUrl: './usage-hints.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [],
 })
 export class UsageHintsComponent {
     /**

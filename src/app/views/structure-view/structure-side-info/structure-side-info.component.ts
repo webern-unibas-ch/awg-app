@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
@@ -16,7 +16,6 @@ import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
     selector: 'awg-structure-info',
     templateUrl: './structure-side-info.component.html',
     styleUrl: './structure-side-info.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [DatePipe, ExternalLinkDirective, MetaIdentifierBadgesComponent],
 })
 export class StructureSideInfoComponent {

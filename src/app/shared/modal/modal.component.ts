@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal';
 
@@ -14,7 +14,6 @@ import { MODAL_DATA, ModalData } from './modal.model';
     selector: 'awg-modal',
     templateUrl: './modal.component.html',
     styleUrl: './modal.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
     /**

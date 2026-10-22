@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionTkaEvaluationsComponent } from '@awg-views/edition-view/shared/tka/evaluations/edition-tka-evaluations.component';
@@ -16,7 +16,6 @@ import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/tab
     selector: 'awg-edition-sheet-footer',
     templateUrl: './edition-sheet-footer.component.html',
     styleUrl: './edition-sheet-footer.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionTkaEvaluationsComponent, EditionTkaLabelComponent, EditionTkaTableComponent],
 })
 export class EditionSheetFooterComponent {

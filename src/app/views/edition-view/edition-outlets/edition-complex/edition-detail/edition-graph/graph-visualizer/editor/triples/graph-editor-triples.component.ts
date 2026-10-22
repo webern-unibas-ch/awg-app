@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { Component, input, model, output } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
@@ -20,7 +20,6 @@ import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-edito
     selector: 'awg-graph-editor-triples',
     templateUrl: './graph-editor-triples.component.html',
     styleUrl: './graph-editor-triples.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, CodeMirrorComponent, GraphEditorActionButtonsComponent],
 })
 export class GraphEditorTriplesComponent {

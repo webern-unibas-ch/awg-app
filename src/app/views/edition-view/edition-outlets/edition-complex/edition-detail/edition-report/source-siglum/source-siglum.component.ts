@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
@@ -15,7 +15,6 @@ import { SourceSiglum } from '@awg-views/edition-view/models/source.model';
     selector: 'awg-source-siglum',
     templateUrl: './source-siglum.component.html',
     styleUrl: './source-siglum.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ConditionalLinkComponent],
 })
 export class SourceSiglumComponent {

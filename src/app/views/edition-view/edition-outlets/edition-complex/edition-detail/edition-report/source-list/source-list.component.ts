@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 
 import { EditionNavigationFragmentTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceList } from '@awg-views/edition-view/models/source-list.model';
@@ -20,7 +20,6 @@ import { SourceSiglumComponent } from '../source-siglum/source-siglum.component'
     selector: 'awg-source-list',
     templateUrl: './source-list.component.html',
     styleUrl: './source-list.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective, SourceSiglumComponent],
 })
 export class SourceListComponent {

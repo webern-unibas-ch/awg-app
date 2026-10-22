@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { IntroBlock } from '@awg-views/edition-view/models/intro.model';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
@@ -13,7 +13,6 @@ import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-htm
     selector: 'awg-edition-intro-content',
     templateUrl: './edition-intro-content.component.html',
     styleUrl: './edition-intro-content.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective],
 })
 export class EditionIntroContentComponent {

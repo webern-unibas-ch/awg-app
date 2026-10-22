@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { Graph } from '@awg-views/edition-view/models/graph.model';
@@ -16,7 +16,6 @@ import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shar
     selector: 'awg-edition-graph-description',
     templateUrl: './edition-graph-description.component.html',
     styleUrl: './edition-graph-description.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective, EditionComplexPlaceholderComponent],
 })
 export class EditionGraphDescriptionComponent {

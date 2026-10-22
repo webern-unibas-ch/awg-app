@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
@@ -19,7 +19,6 @@ import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
     styleUrl: './contact-view.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ButtonScrollToTopComponent,
         DatePipe,

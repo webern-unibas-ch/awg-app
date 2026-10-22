@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,6 @@ import { NgbAlert } from '@ng-bootstrap/ng-bootstrap/alert';
     selector: 'awg-alert-info',
     templateUrl: './alert-info.component.html',
     styleUrl: './alert-info.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, NgbAlert],
 })
 export class AlertInfoComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, linkedSignal } from '@angular/core';
+import { Component, computed, input, linkedSignal } from '@angular/core';
 
 import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_LABEL_MAP, EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
@@ -18,7 +18,6 @@ import { EditionSheetFacetScrollDirective } from '../scroll/edition-sheet-facet-
     selector: 'awg-edition-sheet-facet-group',
     templateUrl: './edition-sheet-facet-group.component.html',
     styleUrl: './edition-sheet-facet-group.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionDisclaimerWorkeditionsComponent, EditionSheetFacetItemComponent, EditionSheetFacetScrollDirective],
 })
 export class EditionSheetFacetGroupComponent {
