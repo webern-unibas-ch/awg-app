@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, MockInstance, vi } from 'vitest';
 
 import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
@@ -155,6 +155,28 @@ describe('RdfStoreService (DONE)', () => {
         });
     });
 
+    describe('#preload()', () => {
+        it('... should have a method `preload`', () => {
+            expect(service.preload).toBeDefined();
+        });
+
+        it('... should start loading the rdfstore script', async () => {
+            const loadRdfstoreSpy = vi
+                .spyOn(service as any, '_loadRdfstore')
+                .mockResolvedValue(createMockRdfstore().rdfstore);
+
+            await service.preload();
+
+            expectSpyCall(loadRdfstoreSpy, 1);
+        });
+
+        it('... should resolve even if the loading fails', async () => {
+            vi.spyOn(service as any, '_loadRdfstore').mockRejectedValue(new Error('Failed'));
+
+            await expect(service.preload()).resolves.toBeUndefined();
+        });
+    });
+
     describe('#select()', () => {
         it('... should have a method `select`', () => {
             expect(service.select).toBeDefined();
@@ -233,14 +255,6 @@ describe('RdfStoreService (DONE)', () => {
     describe('... error handling', () => {
         const query = 'SELECT * WHERE { ?s ?p ?o }';
 
-        it('... should reject if rdfstore is not available', async () => {
-            setGlobalRdfstore(undefined);
-
-            await expect(service.select(TURTLE, query)).rejects.toThrow(
-                '[RdfStoreService] rdfstore is not available in the current runtime.'
-            );
-        });
-
         it('... should prefix the message of Error instances and keep them as cause', async () => {
             const error = new Error('Parse error at line 3');
             setGlobalRdfstore(createMockRdfstore({ loadError: error }).rdfstore);
@@ -270,12 +284,16 @@ describe('RdfStoreService (DONE)', () => {
             });
         });
 
-        it('... should not set a cause for errors created by the service', async () => {
-            setGlobalRdfstore(undefined);
+        it('... should reject with the error of a failed script loading without cause', async () => {
+            // Keeps the script out of the document, so neither jsdom nor the browser fetches it
+            const appendChildSpy = vi.spyOn(document.head, 'appendChild').mockImplementation(node => node);
 
-            const error = await service.select(TURTLE, query).catch((err: unknown) => err);
+            const selection = service.select(TURTLE, query);
+            (appendChildSpy.mock.calls[0][0] as HTMLScriptElement).dispatchEvent(new Event('error'));
+            const error = await selection.catch((err: unknown) => err);
 
             expect(error).toBeInstanceOf(Error);
+            expectToBe((error as Error).message, '[RdfStoreService] Failed to load the rdfstore script (rdfstore.js).');
             expect((error as Error).cause).toBeUndefined();
         });
 
@@ -296,6 +314,117 @@ describe('RdfStoreService (DONE)', () => {
             await expect(service.select(TURTLE, query)).rejects.toThrow(
                 '[RdfStoreService] An unknown error occurred while executing the query.'
             );
+        });
+    });
+
+    describe('#_loadRdfstore()', () => {
+        let appendChildSpy: MockInstance<(node: Node) => Node>;
+
+        const getAppendedScripts = (): HTMLScriptElement[] =>
+            appendChildSpy.mock.calls.map(([node]) => node as HTMLScriptElement);
+
+        beforeEach(() => {
+            // Fakes the timeout of pending loadings, so it neither outlasts nor slows down the tests
+            vi.useFakeTimers();
+            // Keeps the script out of the document, so neither jsdom nor the browser fetches it
+            appendChildSpy = vi.spyOn(document.head, 'appendChild').mockImplementation(node => node);
+        });
+
+        afterEach(() => {
+            vi.useRealTimers();
+        });
+
+        it('... should have a method `_loadRdfstore`', () => {
+            expect(service['_loadRdfstore']).toBeDefined();
+        });
+
+        it('... should return the global rdfstore without loading the script if it is available', async () => {
+            const { rdfstore } = createMockRdfstore();
+            setGlobalRdfstore(rdfstore);
+
+            const loadedRdfstore = await service['_loadRdfstore']();
+
+            expectToBe(loadedRdfstore, rdfstore);
+            expectSpyCall(appendChildSpy, 0);
+        });
+
+        it('... should load the script once and return the global rdfstore after loading', async () => {
+            const { rdfstore } = createMockRdfstore();
+
+            const firstLoading = service['_loadRdfstore']();
+            const secondLoading = service['_loadRdfstore']();
+            const scripts = getAppendedScripts();
+            setGlobalRdfstore(rdfstore);
+            scripts[0].dispatchEvent(new Event('load'));
+            const loadedRdfstores = await Promise.all([firstLoading, secondLoading]);
+
+            expectSpyCall(appendChildSpy, 1);
+            expectToBe(scripts[0].getAttribute('src'), 'rdfstore.js');
+            expectToEqual(loadedRdfstores, [rdfstore, rdfstore]);
+        });
+
+        it('... should hold no pending loading after a successful loading', async () => {
+            const loading = service['_loadRdfstore']();
+            setGlobalRdfstore(createMockRdfstore().rdfstore);
+            getAppendedScripts()[0].dispatchEvent(new Event('load'));
+            await loading;
+
+            expectToBe(service['_rdfstoreLoading'], null);
+        });
+
+        it('... should reject and remove the script if rdfstore is not available after loading the script', async () => {
+            const loading = service['_loadRdfstore']();
+            const script = getAppendedScripts()[0];
+            const removeSpy = vi.spyOn(script, 'remove');
+            script.dispatchEvent(new Event('load'));
+
+            await expect(loading).rejects.toThrow(
+                '[RdfStoreService] rdfstore is not available in the current runtime.'
+            );
+            expectSpyCall(removeSpy, 1);
+        });
+
+        it('... should reject and remove the script if it fails to load, and load it again on the next call', async () => {
+            const failedLoading = service['_loadRdfstore']();
+            const script = getAppendedScripts()[0];
+            const removeSpy = vi.spyOn(script, 'remove');
+            script.dispatchEvent(new Event('error'));
+
+            await expect(failedLoading).rejects.toThrow(
+                '[RdfStoreService] Failed to load the rdfstore script (rdfstore.js).'
+            );
+            expectSpyCall(removeSpy, 1);
+
+            void service['_loadRdfstore']();
+
+            expectSpyCall(appendChildSpy, 2);
+        });
+
+        it('... should reject and remove the script if the loading times out, and load it again on the next call', async () => {
+            const pendingLoading = service['_loadRdfstore']();
+            const removeSpy = vi.spyOn(getAppendedScripts()[0], 'remove');
+            vi.advanceTimersByTime(30_000);
+
+            await expect(pendingLoading).rejects.toThrow(
+                '[RdfStoreService] Timed out loading the rdfstore script (rdfstore.js).'
+            );
+            expectSpyCall(removeSpy, 1);
+
+            void service['_loadRdfstore']();
+
+            expectSpyCall(appendChildSpy, 2);
+        });
+
+        it('... should not time out after a successful loading', async () => {
+            const loading = service['_loadRdfstore']();
+            const script = getAppendedScripts()[0];
+            const removeSpy = vi.spyOn(script, 'remove');
+            setGlobalRdfstore(createMockRdfstore().rdfstore);
+            script.dispatchEvent(new Event('load'));
+            await loading;
+            vi.advanceTimersByTime(30_000);
+
+            expectSpyCall(removeSpy, 0);
         });
     });
 });

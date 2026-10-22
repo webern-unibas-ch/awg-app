@@ -63,7 +63,7 @@ export function setGlobalRdfstore(rdfstore: RdfStoreGlobal | undefined): void {
  * Helper function: createRealRdfstore.
  *
  * It creates a new real (not mocked) rdfstore by evaluating its browser bundle
- * (added as script via angular.json in the app)
+ * (loaded as script on first use in the app)
  * and returns the `rdfstore` object, without setting a global.
  * It works in the jsdom and in the browser test runner.
  *
