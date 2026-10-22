@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
@@ -16,7 +16,6 @@ import { MetaIdentifierBadge } from './meta-identifier-badges.model';
     selector: 'awg-meta-identifier-badges',
     templateUrl: './meta-identifier-badges.component.html',
     styleUrl: './meta-identifier-badges.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ExternalLinkDirective],
 })
 export class MetaIdentifierBadgesComponent {

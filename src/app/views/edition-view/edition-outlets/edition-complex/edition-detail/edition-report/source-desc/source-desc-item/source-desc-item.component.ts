@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
 
@@ -25,7 +25,6 @@ import { SOURCE_DESC_DETAILS } from './source-desc-item.data';
     selector: 'awg-source-desc-item',
     templateUrl: './source-desc-item.component.html',
     styleUrl: './source-desc-item.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AbbrDirective,
         CompileHtmlDirective,

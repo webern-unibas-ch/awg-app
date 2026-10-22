@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -12,7 +12,6 @@ import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-htm
     selector: 'awg-source-desc-details',
     templateUrl: './source-desc-details.component.html',
     styleUrl: './source-desc-details.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective],
 })
 export class SourceDescDetailsComponent {

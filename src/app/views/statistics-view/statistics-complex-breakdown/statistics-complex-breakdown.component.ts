@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import {
     StatisticsComplexBreakdownData,
@@ -19,7 +19,6 @@ import { StatisticsProgressBarComponent } from '../statistics-progress-bar/stati
     selector: 'awg-statistics-complex-breakdown',
     templateUrl: './statistics-complex-breakdown.component.html',
     styleUrl: './statistics-complex-breakdown.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [StatisticsProgressBarComponent],
 })
 export class StatisticsComplexBreakdownComponent {

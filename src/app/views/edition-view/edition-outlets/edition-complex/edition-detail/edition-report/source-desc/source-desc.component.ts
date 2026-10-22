@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { SourceDescList } from '@awg-views/edition-view/models/source-desc.model';
 
@@ -14,7 +14,6 @@ import { SourceDescItemComponent } from './source-desc-item/source-desc-item.com
     selector: 'awg-source-desc',
     templateUrl: './source-desc.component.html',
     styleUrl: './source-desc.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [SourceDescItemComponent],
 })
 export class SourceDescComponent {

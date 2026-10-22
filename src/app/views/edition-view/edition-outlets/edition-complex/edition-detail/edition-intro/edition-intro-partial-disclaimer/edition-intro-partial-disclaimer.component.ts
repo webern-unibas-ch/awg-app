@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -14,7 +14,6 @@ import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.m
     selector: 'awg-edition-intro-partial-disclaimer',
     templateUrl: './edition-intro-partial-disclaimer.component.html',
     styleUrl: './edition-intro-partial-disclaimer.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink],
 })
 export class EditionIntroPartialDisclaimerComponent {

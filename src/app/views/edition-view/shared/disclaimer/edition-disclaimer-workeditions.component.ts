@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +14,6 @@ import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap/p
     selector: 'awg-edition-disclaimer-workeditions',
     templateUrl: './edition-disclaimer-workeditions.component.html',
     styleUrl: './edition-disclaimer-workeditions.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, NgbPopoverModule],
 })
 export class EditionDisclaimerWorkeditionsComponent {

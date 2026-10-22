@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
@@ -20,7 +20,6 @@ import { EditionGraphStaticComponent } from './edition-graph-static/edition-grap
     selector: 'awg-edition-graph',
     templateUrl: './edition-graph.component.html',
     styleUrl: './edition-graph.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AlertErrorComponent,
         EditionGraphDescriptionComponent,

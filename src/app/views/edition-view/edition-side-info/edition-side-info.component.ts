@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
@@ -18,7 +18,6 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
     selector: 'awg-edition-side-info',
     templateUrl: './edition-side-info.component.html',
     styleUrl: './edition-side-info.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, RouterLink],
 })
 export class EditionSideInfoComponent {

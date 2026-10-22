@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 
 import { ZoomSliderComponent } from '@awg-shared/zoom/zoom-slider.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
@@ -20,7 +20,6 @@ import { EditionSheetViewerSvgComponent } from './svg/edition-sheet-viewer-svg.c
     selector: 'awg-edition-sheet-viewer',
     templateUrl: './edition-sheet-viewer.component.html',
     styleUrl: './edition-sheet-viewer.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSheetViewerNavComponent, EditionSheetViewerSvgComponent, ZoomSliderComponent],
 })
 export class EditionSheetViewerComponent {

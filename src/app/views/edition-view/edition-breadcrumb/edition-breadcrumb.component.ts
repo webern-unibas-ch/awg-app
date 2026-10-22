@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -15,7 +15,6 @@ import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
     selector: 'awg-edition-breadcrumb',
     templateUrl: './edition-breadcrumb.component.html',
     styleUrl: './edition-breadcrumb.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent, RouterLink],
 })
 export class EditionBreadcrumbComponent {

@@ -1,14 +1,4 @@
-import {
-    afterRenderEffect,
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    ElementRef,
-    inject,
-    input,
-    untracked,
-    viewChild,
-} from '@angular/core';
+import { afterRenderEffect, Component, computed, ElementRef, inject, input, untracked, viewChild } from '@angular/core';
 
 import * as D3_SELECTION from 'd3-selection';
 
@@ -34,7 +24,6 @@ import { EditionNavigationService } from '@awg-views/edition-view/services/editi
     selector: 'awg-edition-folios-viewer-svg',
     templateUrl: './edition-folios-viewer-svg.component.html',
     styleUrl: './edition-folios-viewer-svg.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective],
 })
 export class EditionFoliosViewerSvgComponent {

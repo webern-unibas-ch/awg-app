@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { SparqlResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
 
@@ -21,7 +21,6 @@ const DURATION_FORMAT = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 
     selector: 'awg-graph-results-status',
     templateUrl: './graph-results-status.component.html',
     styleUrl: './graph-results-status.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GraphResultsStatusComponent {
     /**

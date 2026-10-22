@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input, linkedSignal, output, signal } from '@angular/core';
+import { Component, computed, input, linkedSignal, output, signal } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
@@ -28,7 +28,6 @@ import {
     selector: 'awg-table',
     templateUrl: './table.component.html',
     styleUrl: './table.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ClickDirective,
         FaIconComponent,

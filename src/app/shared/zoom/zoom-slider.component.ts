@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { Component, input, model, output } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faMaximize, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,6 @@ import { ZoomConfig } from './zoom.model';
     selector: 'awg-zoom-slider',
     templateUrl: './zoom-slider.component.html',
     styleUrl: './zoom-slider.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })
 export class ZoomSliderComponent {

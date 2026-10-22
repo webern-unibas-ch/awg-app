@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { NgbProgressbar } from '@ng-bootstrap/ng-bootstrap/progressbar';
 
@@ -13,7 +13,6 @@ import { StatisticsProgressBarConfig } from '../models/statistics.model';
     selector: 'awg-statistics-progress-bar',
     templateUrl: './statistics-progress-bar.component.html',
     styleUrl: './statistics-progress-bar.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbProgressbar],
 })
 export class StatisticsProgressBarComponent {

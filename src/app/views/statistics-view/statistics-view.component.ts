@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 
 import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
@@ -25,7 +25,6 @@ import { StatisticsSummaryComponent } from './statistics-summary/statistics-summ
     selector: 'awg-statistics-view',
     templateUrl: './statistics-view.component.html',
     styleUrl: './statistics-view.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         ButtonScrollToTopComponent,
         StatisticsComplexBreakdownComponent,

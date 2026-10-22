@@ -1,6 +1,5 @@
 import {
     afterRenderEffect,
-    ChangeDetectionStrategy,
     Component,
     computed,
     DestroyRef,
@@ -53,7 +52,6 @@ import { FORCE_GRAPH_CANVAS_UTILS } from './force-graph-canvas.utils';
     selector: 'awg-force-graph-canvas',
     templateUrl: './force-graph-canvas.component.html',
     styleUrl: './force-graph-canvas.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CanvasDragDirective,
         CanvasTooltipComponent,

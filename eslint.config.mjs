@@ -102,6 +102,7 @@ export default defineConfig(
             '@angular-eslint/no-uncalled-signals': 'error',
             '@angular-eslint/pipe-prefix': ['error', { prefixes: ['awg'] }],
             '@angular-eslint/prefer-host-metadata-property': 'error',
+            '@angular-eslint/prefer-on-push-component-change-detection': ['error', { allowExplicitOnPush: false }],
             '@angular-eslint/prefer-output-emitter-ref': 'error',
             '@angular-eslint/prefer-output-readonly': 'error',
             '@angular-eslint/prefer-service-decorator': 'error',

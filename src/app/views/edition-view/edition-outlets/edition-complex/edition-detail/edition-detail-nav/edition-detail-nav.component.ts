@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { NavLinkGroupComponent } from '@awg-shared/nav-link-group/nav-link-group.component';
@@ -33,7 +33,6 @@ const EDITION_DETAIL_ROUTES = [EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT, ED
     selector: 'awg-edition-detail-nav',
     templateUrl: './edition-detail-nav.component.html',
     styleUrl: './edition-detail-nav.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NavLinkGroupComponent, RouterOutlet],
 })
 export class EditionDetailNavComponent {

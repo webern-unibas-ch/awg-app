@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
@@ -15,7 +15,6 @@ import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-out
     selector: 'awg-edition-series-card',
     templateUrl: './edition-series-card.component.html',
     styleUrl: './edition-series-card.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonMoreComponent, RouterLink],
 })
 export class EditionSeriesCardComponent {

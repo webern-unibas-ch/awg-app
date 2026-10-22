@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 /**
@@ -10,7 +10,6 @@ import { RouterLink } from '@angular/router';
     selector: 'awg-button-more',
     templateUrl: './button-more.component.html',
     styleUrl: './button-more.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink],
 })
 export class ButtonMoreComponent {

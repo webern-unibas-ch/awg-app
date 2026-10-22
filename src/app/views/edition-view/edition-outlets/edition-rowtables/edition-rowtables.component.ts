@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
@@ -16,7 +16,6 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
     selector: 'awg-edition-rowtables',
     templateUrl: './edition-rowtables.component.html',
     styleUrl: './edition-rowtables.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AlertErrorComponent, ButtonMoreComponent, TwelveToneSpinnerComponent],
 })
 export class EditionRowtablesComponent {

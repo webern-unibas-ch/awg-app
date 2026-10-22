@@ -12,7 +12,6 @@
 
 import {
     afterNextRender,
-    ChangeDetectionStrategy,
     Component,
     DestroyRef,
     effect,
@@ -38,7 +37,6 @@ import { CmMode, createEditorState } from './codemirror.utils';
     selector: 'awg-codemirror',
     templateUrl: './codemirror.component.html',
     styleUrl: './codemirror.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodeMirrorComponent {
     /**

@@ -1,5 +1,5 @@
 import { UpperCasePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { QueryParamsHandling, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
@@ -15,7 +15,6 @@ import { NavLink } from './nav-link.model';
     selector: 'awg-nav-link-group',
     templateUrl: './nav-link-group.component.html',
     styleUrl: './nav-link-group.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective, RouterLink, RouterLinkActive, UpperCasePipe],
 })
 export class NavLinkGroupComponent {

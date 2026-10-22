@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, model } from '@angular/core';
+import { Component, model } from '@angular/core';
 
 import { LanguageId } from './language.model';
 
@@ -11,7 +11,6 @@ import { LanguageId } from './language.model';
     selector: 'awg-language-switcher',
     templateUrl: './language-switcher.component.html',
     styleUrl: './language-switcher.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSwitcherComponent {
     /**

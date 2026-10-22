@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
@@ -15,7 +15,6 @@ import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shar
     selector: 'awg-source-evaluation',
     templateUrl: './source-evaluation.component.html',
     styleUrl: './source-evaluation.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective, EditionComplexPlaceholderComponent],
 })
 export class SourceEvaluationComponent {

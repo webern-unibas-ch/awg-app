@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
@@ -17,7 +17,6 @@ import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-htm
     selector: 'awg-source-desc-content-system',
     templateUrl: './source-desc-content-system.component.html',
     styleUrl: './source-desc-content-system.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AbbrDirective, CompileHtmlDirective, ConditionalLinkComponent],
 })
 export class SourceDescContentSystemComponent {

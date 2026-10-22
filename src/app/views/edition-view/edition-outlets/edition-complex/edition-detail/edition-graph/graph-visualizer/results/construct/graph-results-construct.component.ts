@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
@@ -28,7 +28,6 @@ const EMPTY_GRAPH_DATA: ResultGraph = Object.freeze({ nodes: [], edges: [], trip
     selector: 'awg-graph-results-construct',
     templateUrl: './graph-results-construct.component.html',
     styleUrl: './graph-results-construct.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, ForceGraphComponent, GraphResultsEmptyComponent, TwelveToneSpinnerComponent],
 })
 export class GraphResultsConstructComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
+import { Component, computed, input, model } from '@angular/core';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
@@ -66,7 +66,6 @@ function _toLimitValues(tripleCount: number): number[] {
     selector: 'awg-force-graph-limit',
     templateUrl: './force-graph-limit.component.html',
     styleUrl: './force-graph-limit.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbDropdownModule],
 })
 export class ForceGraphLimitComponent {

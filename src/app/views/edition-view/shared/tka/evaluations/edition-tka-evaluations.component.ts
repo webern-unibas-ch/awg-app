@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -12,7 +12,6 @@ import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-htm
     selector: 'awg-edition-tka-evaluations',
     templateUrl: './edition-tka-evaluations.component.html',
     styleUrl: './edition-tka-evaluations.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective],
 })
 export class EditionTkaEvaluationsComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 
@@ -11,7 +11,6 @@ import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.d
     selector: 'awg-license',
     templateUrl: './license.component.html',
     styleUrl: './license.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ExternalLinkDirective],
 })
 export class LicenseComponent {

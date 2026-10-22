@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 
 import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-toggle.component';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
@@ -18,7 +18,6 @@ import { GraphVisualizerComponent } from '../graph-visualizer/graph-visualizer.c
     selector: 'awg-edition-graph-dynamic',
     templateUrl: './edition-graph-dynamic.component.html',
     styleUrl: './edition-graph-dynamic.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FullscreenToggleComponent, GraphVisualizerComponent, UsageHintsComponent],
 })
 export class EditionGraphDynamicComponent {

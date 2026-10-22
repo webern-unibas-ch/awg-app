@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +18,6 @@ import { FullscreenService } from './fullscreen.service';
     host: {
         '(document:fullscreenchange)': 'onFullscreenChange()',
     },
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })
 export class FullscreenToggleComponent {

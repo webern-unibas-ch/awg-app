@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DOCUMENT, inject, signal } from '@angular/core';
+import { Component, DOCUMENT, inject, signal } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,6 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
     host: {
         '(window:scroll)': 'onWindowScroll()',
     },
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })
 export class ButtonScrollToTopComponent {

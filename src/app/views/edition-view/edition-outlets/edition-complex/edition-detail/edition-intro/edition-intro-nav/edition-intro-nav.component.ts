@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { IntroBlock } from '@awg-views/edition-view/models/intro.model';
@@ -15,7 +15,6 @@ import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/lan
     selector: 'awg-edition-intro-nav',
     templateUrl: './edition-intro-nav.component.html',
     styleUrl: './edition-intro-nav.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LanguageSwitcherComponent, RouterLink],
 })
 export class EditionIntroNavComponent {

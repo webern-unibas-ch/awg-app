@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
@@ -22,7 +22,6 @@ import { TextcriticsListComponent } from './textcritics-list/textcritics-list.co
     selector: 'awg-edition-report',
     templateUrl: './edition-report.component.html',
     styleUrl: './edition-report.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         NgbAccordionModule,
         AlertErrorComponent,

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
 
@@ -12,7 +12,6 @@ import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directiv
     selector: 'awg-source-desc-content-folio',
     templateUrl: './source-desc-content-folio.component.html',
     styleUrl: './source-desc-content-folio.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AbbrDirective],
 })
 export class SourceDescContentFolioComponent {

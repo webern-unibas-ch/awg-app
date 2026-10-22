@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
 
@@ -12,7 +12,6 @@ import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component'
     selector: 'awg-edition-section-detail-disclaimer',
     templateUrl: './edition-section-detail-disclaimer.component.html',
     styleUrl: './edition-section-detail-disclaimer.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AlertInfoComponent],
 })
 export class EditionSectionDetailDisclaimerComponent {

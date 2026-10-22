@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -17,7 +17,6 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
     selector: 'awg-edition-complex',
     templateUrl: './edition-complex.component.html',
     styleUrl: './edition-complex.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet],
 })
 export class EditionComplexComponent {

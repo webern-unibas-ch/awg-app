@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
@@ -23,7 +23,6 @@ import { EditionIntroScrollDirective } from './edition-intro-scroll/edition-intr
     selector: 'awg-edition-intro',
     templateUrl: './edition-intro.component.html',
     styleUrl: './edition-intro.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AlertErrorComponent,
         EditionIntroContentComponent,

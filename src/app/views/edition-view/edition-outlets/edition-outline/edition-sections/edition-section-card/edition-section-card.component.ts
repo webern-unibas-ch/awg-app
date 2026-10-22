@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
@@ -13,7 +13,6 @@ import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-ou
     selector: 'awg-edition-section-card',
     templateUrl: './edition-section-card.component.html',
     styleUrl: './edition-section-card.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonMoreComponent],
 })
 export class EditionSectionCardComponent {

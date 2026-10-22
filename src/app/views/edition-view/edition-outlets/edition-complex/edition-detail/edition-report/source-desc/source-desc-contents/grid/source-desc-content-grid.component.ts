@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
@@ -20,7 +20,6 @@ import { SourceDescContentSystemComponent } from '../system/source-desc-content-
     selector: 'awg-source-desc-content-grid',
     templateUrl: './source-desc-content-grid.component.html',
     styleUrl: './source-desc-content-grid.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CompileHtmlDirective,
         ConditionalLinkComponent,

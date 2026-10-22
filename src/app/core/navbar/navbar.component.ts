@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { isActive, Router } from '@angular/router';
 
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap/collapse';
@@ -25,7 +25,6 @@ import { NAVBAR_DROPDOWN_EDITION_SECTION_LINKS, NAVBAR_ITEMS } from './navbar.da
     selector: 'awg-navbar',
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LogoComponent, NavbarItemComponent, NavbarDropdownLinkComponent, NgbCollapse, NgbDropdownModule],
 })
 export class NavbarComponent {

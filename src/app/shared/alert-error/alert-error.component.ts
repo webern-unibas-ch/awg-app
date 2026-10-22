@@ -1,5 +1,5 @@
 import { TitleCasePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { ERROR_UTILS } from '@awg-shared/utils/error-utils';
 
@@ -14,7 +14,6 @@ import { AlertError } from './alert-error.model';
     selector: 'awg-alert-error',
     templateUrl: './alert-error.component.html',
     styleUrl: './alert-error.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TitleCasePipe],
 })
 export class AlertErrorComponent {

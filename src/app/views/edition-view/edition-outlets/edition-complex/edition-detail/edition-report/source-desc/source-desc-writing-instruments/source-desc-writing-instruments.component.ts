@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { SourceDescWritingInstruments } from '@awg-views/edition-view/models/source-desc.model';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
@@ -13,7 +13,6 @@ import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-htm
     selector: 'awg-source-desc-writing-instruments',
     templateUrl: './source-desc-writing-instruments.component.html',
     styleUrl: './source-desc-writing-instruments.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CompileHtmlDirective],
 })
 export class SourceDescWritingInstrumentsComponent {

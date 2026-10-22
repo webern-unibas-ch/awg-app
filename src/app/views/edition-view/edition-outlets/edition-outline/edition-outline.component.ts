@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
@@ -17,7 +17,6 @@ import { EditionSeriesCardComponent } from './edition-series-card/edition-series
     selector: 'awg-edition-outline',
     templateUrl: './edition-outline.component.html',
     styleUrl: './edition-outline.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionSeriesCardComponent],
 })
 export class EditionOutlineComponent {

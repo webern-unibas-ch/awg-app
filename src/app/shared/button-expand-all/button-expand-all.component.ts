@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, model } from '@angular/core';
+import { Component, model } from '@angular/core';
 
 /**
  * The ButtonExpandAll component.
@@ -9,7 +9,6 @@ import { ChangeDetectionStrategy, Component, model } from '@angular/core';
     selector: 'awg-button-expand-all',
     templateUrl: './button-expand-all.component.html',
     styleUrl: './button-expand-all.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
 })
 export class ButtonExpandAllComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '../models/statistics.model';
 
@@ -11,7 +11,6 @@ import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '../models/
     selector: 'awg-statistics-breakdown-badge',
     templateUrl: './statistics-breakdown-badge.component.html',
     styleUrl: './statistics-breakdown-badge.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatisticsBreakdownBadgeComponent {
     /**

@@ -1,6 +1,5 @@
 import {
     afterRenderEffect,
-    ChangeDetectionStrategy,
     Component,
     computed,
     effect,
@@ -45,7 +44,6 @@ import { EditionSheetViewerAdditionsPanelChange } from '../additions-panel/editi
     selector: 'awg-edition-sheet-viewer-svg',
     templateUrl: './edition-sheet-viewer-svg.component.html',
     styleUrl: './edition-sheet-viewer-svg.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective, EditionSheetViewerAdditionsPanelComponent, LicenseComponent, SvgZoomDirective],
 })
 export class EditionSheetViewerSvgComponent {

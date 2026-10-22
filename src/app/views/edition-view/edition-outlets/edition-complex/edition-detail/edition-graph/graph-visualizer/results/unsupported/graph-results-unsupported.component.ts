@@ -1,5 +1,5 @@
 import { UpperCasePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
@@ -13,7 +13,6 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
     selector: 'awg-graph-results-unsupported',
     templateUrl: './graph-results-unsupported.component.html',
     styleUrl: './graph-results-unsupported.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, UpperCasePipe],
 })
 export class GraphResultsUnsupportedComponent {

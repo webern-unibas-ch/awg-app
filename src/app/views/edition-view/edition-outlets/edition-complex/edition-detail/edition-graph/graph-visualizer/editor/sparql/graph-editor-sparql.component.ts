@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
+import { Component, computed, input, model, output } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
@@ -28,7 +28,6 @@ import { ExampleQueriesComponent } from './example-queries/example-queries.compo
     selector: 'awg-graph-editor-sparql',
     templateUrl: './graph-editor-sparql.component.html',
     styleUrl: './graph-editor-sparql.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CodeMirrorComponent,
         GraphEditorActionButtonsComponent,

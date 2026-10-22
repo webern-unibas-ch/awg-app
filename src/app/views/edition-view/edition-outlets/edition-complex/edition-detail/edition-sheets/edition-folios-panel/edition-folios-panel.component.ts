@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,7 +21,6 @@ import { EditionFoliosViewerComponent } from './viewer/edition-folios-viewer.com
     selector: 'awg-edition-folios-panel',
     templateUrl: './edition-folios-panel.component.html',
     styleUrl: './edition-folios-panel.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionFoliosLegendComponent, EditionFoliosViewerComponent, NgbAccordionModule, RouterLink],
 })
 export class EditionFoliosPanelComponent {

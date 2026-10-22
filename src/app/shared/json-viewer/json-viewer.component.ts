@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap/nav';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
@@ -18,7 +18,6 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     selector: 'awg-json-viewer',
     templateUrl: './json-viewer.component.html',
     styleUrl: './json-viewer.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [JsonPipe, NgbNavModule, NgxJsonViewerModule],
 })
 export class JsonViewerComponent {

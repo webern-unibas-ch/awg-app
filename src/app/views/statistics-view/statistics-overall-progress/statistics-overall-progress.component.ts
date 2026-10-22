@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { StatisticsOverallProgressData } from '../models/statistics.model';
 import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
@@ -13,7 +13,6 @@ import { StatisticsProgressBarComponent } from '../statistics-progress-bar/stati
     selector: 'awg-statistics-overall-progress',
     templateUrl: './statistics-overall-progress.component.html',
     styleUrl: './statistics-overall-progress.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [StatisticsProgressBarComponent],
 })
 export class StatisticsOverallProgressComponent {

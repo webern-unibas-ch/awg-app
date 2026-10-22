@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
@@ -14,7 +14,6 @@ import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/editio
     selector: 'awg-edition-section-detail-complex-card',
     templateUrl: './edition-section-detail-complex-card.component.html',
     styleUrl: './edition-section-detail-complex-card.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonMoreComponent, DatePipe],
 })
 export class EditionSectionDetailComplexCardComponent {
