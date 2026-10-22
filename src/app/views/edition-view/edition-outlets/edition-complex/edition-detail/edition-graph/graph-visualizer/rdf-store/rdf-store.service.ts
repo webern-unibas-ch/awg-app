@@ -30,6 +30,13 @@ const ERROR_LOCATION = '[RdfStoreService]';
 const RDFSTORE_SCRIPT_URL = 'rdfstore.js';
 
 /**
+ * Number constant: RDFSTORE_SCRIPT_TIMEOUT_MS.
+ *
+ * It keeps the time after which a pending loading of the rdfstore script fails.
+ */
+const RDFSTORE_SCRIPT_TIMEOUT_MS = 30_000;
+
+/**
  * The RdfStore service.
  *
  * It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
@@ -49,7 +56,7 @@ export class RdfStoreService {
     /**
      * Private variable: _rdfstoreLoading.
      *
-     * It keeps the promise of the loading rdfstore script, or null if it is not (successfully) loading.
+     * It keeps the promise of a pending loading of the rdfstore script, or null if none is pending.
      */
     private _rdfstoreLoading: Promise<RdfStoreGlobal> | null = null;
 
@@ -101,6 +108,21 @@ export class RdfStoreService {
     }
 
     /**
+     * Public method: preload.
+     *
+     * It starts loading the rdfstore script ahead of the first query.
+     * Errors are ignored here: the next query loads the script again and reports them.
+     *
+     * @returns {Promise<void>} A promise that resolves when the loading has settled.
+     */
+    preload(): Promise<void> {
+        return this._loadRdfstore().then(
+            () => undefined,
+            () => undefined
+        );
+    }
+
+    /**
      * Private method: _execute.
      *
      * It creates a new store, loads the turtle data and executes the query.
@@ -141,7 +163,8 @@ export class RdfStoreService {
      * Private method: _loadRdfstore.
      *
      * It gets the global rdfstore and loads its script once if it is not available yet.
-     * A failed loading is not cached, so the next call loads the script again.
+     * Parallel calls share the pending loading. A failed loading removes the script
+     * and is not cached, so the next call loads the script again.
      *
      * @returns {Promise<RdfStoreGlobal>} A promise of the global rdfstore.
      */
@@ -153,23 +176,32 @@ export class RdfStoreService {
 
         this._rdfstoreLoading ??= new Promise<RdfStoreGlobal>((resolve, reject) => {
             const script = this._document.createElement('script');
+            const fail = (message: string): void => {
+                script.remove();
+                reject(this._error(message));
+            };
+            const timeoutId = setTimeout(
+                () => fail(`Timed out loading the rdfstore script (${RDFSTORE_SCRIPT_URL}).`),
+                RDFSTORE_SCRIPT_TIMEOUT_MS
+            );
+
             script.src = RDFSTORE_SCRIPT_URL;
             script.addEventListener('load', () => {
+                clearTimeout(timeoutId);
                 const loadedRdfstore = this._getGlobalRdfstore();
                 if (loadedRdfstore) {
                     resolve(loadedRdfstore);
                 } else {
-                    reject(this._error('rdfstore is not available in the current runtime.'));
+                    fail('rdfstore is not available in the current runtime.');
                 }
             });
             script.addEventListener('error', () => {
-                script.remove();
-                reject(this._error(`Failed to load the rdfstore script (${RDFSTORE_SCRIPT_URL}).`));
+                clearTimeout(timeoutId);
+                fail(`Failed to load the rdfstore script (${RDFSTORE_SCRIPT_URL}).`);
             });
             this._document.head.appendChild(script);
-        }).catch((error: unknown) => {
+        }).finally(() => {
             this._rdfstoreLoading = null;
-            throw error;
         });
 
         return this._rdfstoreLoading;
