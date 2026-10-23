@@ -10,14 +10,17 @@
  *
  * Parsing logic mirrors create_glyph_subset (awg-utils):
  *   - only \uXXXX escapes inside `hex` string values (single, double or backtick quotes) count
- *   - a value with several escapes adds all of them (e.g. '')
+ *   - a value with several escapes adds all of them (e.g. '\uE524\uE520')
  *   - literal characters (e.g. a space) are ignored
+ *
+ * Glyphs the subset tool would skip are reported as errors: literal Private Use Area characters
+ * and \u{XXXX} escapes in `hex` values (the font would have no glyph for them).
  *
  * Usage:  node scripts/check-glyph-subset.js
  *         yarn check:glyph-subset
  *
  * Exit code 0 = subset matches the glyph data
- * Exit code 1 = codepoints missing or outdated, or font/license files missing
+ * Exit code 1 = codepoints missing, outdated or unsupported, manifest invalid, or font/license files missing
  */
 
 'use strict';
@@ -31,47 +34,71 @@ const FONT_DIR = path.join(ROOT, 'src', 'assets', 'themes', 'fonts', 'awg-editio
 const MANIFEST_FILE = path.join(FONT_DIR, 'AWGEditionGlyphs.json');
 const HEX_VALUE_PATTERN = /\bhex:\s*(['"`])(.*?)\1/g;
 const UNICODE_ESCAPE_PATTERN = /\\u([0-9A-Fa-f]{4})/g;
+const UNSUPPORTED_GLYPH_PATTERN = /[\uE000-\uF8FF]|\\u\{[0-9A-Fa-f]+\}/gu;
 const UTILS_HINT =
     'Create the subset again with create_glyph_subset in awg-utils and copy its output into this folder.';
 
-// ── Format a codepoint in Unicode notation ───────────────────────────────────
-
-function formatCodepoint(codepoint) {
-    return `U+${codepoint.toString(16).toUpperCase().padStart(4, '0')}`;
+function relPath(filePath) {
+    return path.relative(ROOT, filePath).replace(/\\/g, '/');
 }
 
-// ── Read the codepoints of the glyph data ────────────────────────────────────
+// ── Read the codepoints of the glyph data (in Unicode notation, e.g. U+E264) ─
 
 function readDataCodepoints() {
     const content = fs.readFileSync(GLYPHS_DATA_FILE, 'utf8');
     const codepoints = new Set();
+    const unsupported = new Set();
     for (const hexMatch of content.matchAll(HEX_VALUE_PATTERN)) {
         for (const escapeMatch of hexMatch[2].matchAll(UNICODE_ESCAPE_PATTERN)) {
-            codepoints.add(formatCodepoint(parseInt(escapeMatch[1], 16)));
+            codepoints.add(`U+${escapeMatch[1].toUpperCase()}`);
+        }
+        for (const unsupportedMatch of hexMatch[2].matchAll(UNSUPPORTED_GLYPH_PATTERN)) {
+            const value = unsupportedMatch[0];
+            unsupported.add(value.startsWith('\\') ? value : `U+${value.codePointAt(0).toString(16).toUpperCase()}`);
         }
     }
-    return codepoints;
+    return { codepoints, unsupported };
+}
+
+// ── Read the manifest of the subset (null if missing or invalid) ─────────────
+
+function readManifest(errors) {
+    let manifest;
+    try {
+        manifest = JSON.parse(fs.readFileSync(MANIFEST_FILE, 'utf8'));
+    } catch (e) {
+        errors.push(`Cannot read the manifest ${relPath(MANIFEST_FILE)}: ${e.message}`);
+        return null;
+    }
+    if (manifest === null || typeof manifest !== 'object' || !Array.isArray(manifest.codepoints)) {
+        errors.push(`The manifest ${relPath(MANIFEST_FILE)} has no list of codepoints.`);
+        return null;
+    }
+    return manifest;
 }
 
 // ── Run ──────────────────────────────────────────────────────────────────────
 
 const errors = [];
-const relPath = filePath => path.relative(ROOT, filePath).replace(/\\/g, '/');
 
-const dataCodepoints = readDataCodepoints();
+const { codepoints: dataCodepoints, unsupported } = readDataCodepoints();
 if (dataCodepoints.size === 0) {
     errors.push(`No \\uXXXX escapes found in any hex value of ${relPath(GLYPHS_DATA_FILE)}.`);
 }
-
-let manifest = null;
-try {
-    manifest = JSON.parse(fs.readFileSync(MANIFEST_FILE, 'utf8'));
-} catch (e) {
-    errors.push(`Cannot read the manifest ${relPath(MANIFEST_FILE)}: ${e.message}`);
+if (unsupported.size) {
+    errors.push(`Use \\uXXXX escapes in hex values, not: ${[...unsupported].join(', ')}`);
 }
 
+const manifest = readManifest(errors);
+const subsetCodepoints = new Set(manifest?.codepoints ?? []);
+
 if (manifest) {
-    const subsetCodepoints = new Set(manifest.codepoints ?? []);
+    if (subsetCodepoints.size !== manifest.codepoints.length || manifest.count !== manifest.codepoints.length) {
+        errors.push(
+            `The manifest is inconsistent: count ${manifest.count}, ${manifest.codepoints.length} entries, ${subsetCodepoints.size} unique.`
+        );
+    }
+
     const missing = [...dataCodepoints].filter(codepoint => !subsetCodepoints.has(codepoint)).sort();
     const outdated = [...subsetCodepoints].filter(codepoint => !dataCodepoints.has(codepoint)).sort();
 
@@ -91,13 +118,13 @@ if (manifest) {
 
 console.log(`Glyph data: ${dataCodepoints.size} codepoint(s) in ${relPath(GLYPHS_DATA_FILE)}`);
 if (manifest) {
-    console.log(`Subset:     ${manifest.codepoints?.length ?? 0} codepoint(s) in ${relPath(MANIFEST_FILE)}`);
+    console.log(`Subset:     ${subsetCodepoints.size} codepoint(s) in ${relPath(MANIFEST_FILE)}`);
 }
 
 if (errors.length) {
-    console.log(`\n${'─'.repeat(60)}`);
+    console.error(`\n${'─'.repeat(60)}`);
     for (const error of errors) {
-        console.error(`MISS   ${error}`);
+        console.error(`ERROR  ${error}`);
     }
     console.error(`\n${UTILS_HINT}`);
     process.exit(1);
