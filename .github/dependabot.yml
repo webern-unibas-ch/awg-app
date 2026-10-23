@@ -12,10 +12,20 @@ updates:
       target-branch: 'develop'
       labels:
           - 'gh actions dependencies'
+      # an action joins the first group it matches
       groups:
+          # the codeql sub-actions only work in matching versions, so always update them together
           github/codeql-action:
               patterns:
                   - 'github/codeql-action/*'
+          # minor and patch updates of all other actions in one PR, major updates separately
+          # (some actions only run on main or tags, so PR checks don't cover them)
+          github-actions:
+              patterns:
+                  - '*'
+              update-types:
+                  - 'minor'
+                  - 'patch'
 
     # Maintain dependencies for yarn
     - package-ecosystem: 'npm'
