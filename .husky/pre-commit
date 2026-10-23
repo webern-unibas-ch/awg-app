@@ -1,3 +1,8 @@
 # cf. https://typicode.github.io/husky/#/?id=package-scripts
 
 yarn run lint-staged --max-arg-length 6000
+
+# Check the edition glyphs after lint-staged (so all formatters are done), only if glyph files are staged
+if git diff --cached --name-only | grep -qE '^(src/app/views/edition-view/data/edition-glyphs\.data\.ts|src/assets/data/edition/.+\.json|src/assets/themes/fonts/awg-edition-glyphs/)'; then
+    yarn run check:glyphs
+fi

@@ -93,9 +93,9 @@ jobs:
               run: |
                   yarn run check:cycles
 
-            - name: Check glyph font subset
+            - name: Check edition glyphs
               run: |
-                  yarn run check:glyph-subset
+                  yarn run check:glyphs
 
     sonar:
         # perform SonarQube scan only for current node version, and only on non-PR runs in the main repository (token issue)
