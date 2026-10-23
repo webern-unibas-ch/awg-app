@@ -1,10 +1,8 @@
 name: 'CodeQL'
 on:
     push:
-        # Dependabot triggered push events have read-only access, but uploading code scanning requires write access.
-        branches-ignore: [dependabot/**]
-        tags-ignore:
-            - '*'
+        # trigger only on the long-lived branches; other branches are covered by their pull requests
+        branches: [develop, main]
     pull_request:
         branches: [develop, main]
 
