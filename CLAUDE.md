@@ -16,9 +16,10 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn format-files:check` / `yarn format-files:fix`: Prettier for `src/**`
 - `yarn build:prod`: production build to `dist/awg-app`
 - `yarn check:cycles`: madge check for circular imports (incl. path aliases; runs in CI)
+- `yarn check:glyphs`: checks the glyph chain edition data → `EDITION_GLYPHS_DATA` → glyph font subset (manifest, sha256); runs in CI and pre-commit
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
 
-Husky and lint-staged run ESLint, Prettier and the cycle check on staged files.
+Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; afterwards the pre-commit hook runs `check:glyphs` if glyph files are staged.
 
 ## Git
 
@@ -37,6 +38,7 @@ Husky and lint-staged run ESLint, Prettier and the cycle check on staged files.
 - **Layout:** `core/` (navbar, footer, view-container, analytics), `shared/` (reusable components, directives, models, utils), `views/` (one folder per route).
 - **Edition view** (`views/edition-view/`), the bulk of the app: `edition/series/:seriesId/...` → `complex/:complexId/{intro,sheets,report,graph}`, plus `preface` and `rowtables`. Page components in `edition-outlets/`, models in `edition-view/models/`.
 - **Data:** no backend; static JSON under `src/assets/data/edition/`. `EditionDataService` loads it as signals, using `EDITION_ASSETS_DATA` (file names) and `EditionStateService` (current complex).
+- **awg-utils** (sibling repo, Python tools) generates edition JSON (`convert_source_description`) and the glyph font subset in `src/assets/themes/fonts/awg-edition-glyphs/` (`create_glyph_subset`; don't edit by hand). Both parse `edition-glyphs.data.ts` by regex: keep its format (`alt: '[name]'`, `hex` with `\uXXXX` escapes, section comments) or update the parsers there.
 - **Rendering:** HTML strings via `CompileHtmlDirective`; score sheets as SVGs with D3 overlays and zoom; graph view with RDF store (`rdfstore`, `n3`), CodeMirror SPARQL editor and a canvas force graph simulated in a web worker. D3 only draws (stateless drawing services); interaction runs through template listeners, state lives in signals.
 
 ## Code conventions
