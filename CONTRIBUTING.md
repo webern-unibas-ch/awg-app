@@ -14,6 +14,7 @@ Please note that this project is released with a [Code of Conduct](CODE_OF_CONDU
     - [Commit Message Schema](#commit-message-schema)
     - [Pull Requests](#pull-requests)
     - [Release Versioning Convention](#release-versioning-convention)
+    - [Release Process](#release-process)
     - [Issue Reporting](#issue-reporting)
 - [Angular quick start guide](#angular-quick-start-guide)
     - [Prerequisites](#prerequisites)
@@ -147,6 +148,26 @@ For more information about pull requests go check out the GitHub Help [About pul
 ### Release Versioning Convention
 
 We use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md) and automate versions by means of [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version). See also [README#releases](README.md#releases).
+
+### Release Process
+
+Releases are prepared on a release branch and merged via pull requests. Both pull requests are merged with **"Create a merge commit"** (no squash), so that `main` and `develop` share the release commit and the release tag stays reachable from `develop`.
+
+1. Create the branch `release/vX.Y.Z` from `develop`.
+2. Run `yarn pre-release --skip.commit` to update the version and generate the CHANGELOG. Review and complete the new CHANGELOG section, then commit it as `chore(release): X.Y.Z` and push the branch.
+3. Open a pull request from `release/vX.Y.Z` into `main` and merge it with a merge commit. The push to `main` deploys the app.
+4. Tag the merge commit on `main` with a signed tag and push it. The tag creates the GitHub release:
+
+    ```bash
+    git switch main && git pull
+    git tag -s vX.Y.Z -m "vX.Y.Z"
+    git push origin vX.Y.Z
+    ```
+
+5. Open a pull request from `main` into `develop` (back-merge) and merge it with a merge commit, e.g. titled `Merge tag 'vX.Y.Z' into develop`. Don't merge the release branch itself into `develop`: the tag would not be reachable from `develop`, and the next CHANGELOG would contain old commits again.
+6. Delete the release branch.
+
+Hotfixes follow the same steps, with a branch `hotfix/vX.Y.Z` created from `main`.
 
 ### Issue Reporting
 
