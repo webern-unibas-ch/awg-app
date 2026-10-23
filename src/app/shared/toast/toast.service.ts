@@ -1,4 +1,4 @@
-import { Injectable, TemplateRef } from '@angular/core';
+import { Service, signal, TemplateRef } from '@angular/core';
 
 /**
  * The ToastMessage class.
@@ -36,13 +36,35 @@ export class ToastMessage {
      *
      * @param {string} name The name of the toast.
      * @param {string} message The message of the toast.
-     * @param {number} [duration] The optional duration of the toast.
+     * @param {number} [duration=3000] The optional duration of the toast.
      */
-    constructor(name: string, message: string, duration?: number) {
+    constructor(name: string, message: string, duration = 3000) {
         this.name = name;
         this.message = message;
-        this.duration = duration || 3000;
+        this.duration = duration;
     }
+}
+
+/**
+ * The ToastOptions interface.
+ *
+ * It defines the options of a toast to be displayed with ngb-toast.
+ */
+export interface ToastOptions {
+    /**
+     * The header of the toast.
+     */
+    header?: string;
+
+    /**
+     * The CSS classes of the toast.
+     */
+    classname?: string;
+
+    /**
+     * The delay (in ms) until the toast hides.
+     */
+    delay?: number;
 }
 
 /**
@@ -56,23 +78,23 @@ export class Toast {
     /**
      * The text or template of the toast.
      */
-    textOrTpl: string | TemplateRef<any>;
+    textOrTpl: string | TemplateRef<unknown>;
     /**
      * The options for the toast.
      */
-    options: any;
+    options: ToastOptions;
 
     /**
      * Constructor of the Toast class.
      *
      * It initializes the class with given values.
      *
-     * @param {string | TemplateRef<*>} textOrTpl The given text or template input.
-     * @param {*} [options] The optional options input.
+     * @param {string | TemplateRef<unknown>} textOrTpl The given text or template input.
+     * @param {ToastOptions} [options] The optional options input.
      */
-    constructor(textOrTpl: string | TemplateRef<any>, options?: any) {
+    constructor(textOrTpl: string | TemplateRef<unknown>, options?: ToastOptions) {
         this.textOrTpl = textOrTpl;
-        this.options = options ? { ...options } : {};
+        this.options = { ...options };
     }
 }
 
@@ -80,45 +102,73 @@ export class Toast {
  * The Toast service.
  *
  * It handles the displaying of toast messages.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class ToastService {
     /**
-     * Public variable: toasts.
+     * Private readonly signal: _toasts.
      *
-     * It keeps the toast messages.
+     * It holds the toast messages.
      */
-    toasts: Toast[] = [];
+    private readonly _toasts = signal<Toast[]>([]);
+
+    /**
+     * Readonly signal: toasts.
+     *
+     * It holds the toast messages (readonly).
+     */
+    readonly toasts = this._toasts.asReadonly();
 
     /**
      * Public method: add.
      *
-     * It adds the toast with the message
-     * represented by the given header and body to the toast array.
+     * It adds the given toast to the toast array.
      *
-     * @param {Toast} toast The given toast template.
-     * @param {*} options The given toast options.
-     *
-     * @returns {void} Adds the toast message to the toast array.
+     * @param {Toast} toast The given toast.
+     * @returns {void} Adds the toast to the toast array.
      */
     add(toast: Toast): void {
-        this.toasts.push(toast);
+        this._toasts.update(toasts => [...toasts, toast]);
     }
 
     /**
      * Public method: remove.
      *
-     * It deletes a given toast.
+     * It removes the given toast from the toast array.
      *
-     * @param { * } toast The given toast.
-     *
-     * @returns {void} Deletes the toast message.
+     * @param {Toast} toast The given toast.
+     * @returns {void} Removes the toast from the toast array.
      */
     remove(toast: Toast): void {
-        this.toasts = this.toasts.filter(t => t !== toast);
+        this._toasts.update(toasts => toasts.filter(t => t !== toast));
+    }
+
+    /**
+     * Public method: showMessage.
+     *
+     * It shows a given toast message with the specified type
+     * and logs it to the console.
+     *
+     * @param {ToastMessage} toastMessage The given toast message.
+     * @param {'error' | 'info'} [type] The optional type of message to display (default: 'info').
+     * @returns {void} Shows the message.
+     */
+    showMessage(toastMessage: ToastMessage, type: 'error' | 'info' = 'info'): void {
+        if (!toastMessage.message) {
+            return;
+        }
+
+        const toast = new Toast(toastMessage.message, {
+            header: toastMessage.name,
+            classname: type === 'error' ? 'bg-danger text-light' : 'bg-info text-light',
+            delay: toastMessage.duration,
+        });
+        this.add(toast);
+
+        if (type === 'error') {
+            console.error(toastMessage.name, ':', toastMessage.message);
+        } else {
+            console.info(toastMessage.name, ':', toastMessage.message);
+        }
     }
 }

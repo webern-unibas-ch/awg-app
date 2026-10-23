@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, signal } from '@angular/core';
 
-import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
+import { HeadingComponent } from '@awg-shared/heading/heading.component';
+import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 /**
  * The ContactView component.
@@ -13,108 +18,76 @@ import { CoreService } from '@awg-core/services';
 @Component({
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
-    styleUrls: ['./contact-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false,
+    styleUrl: './contact-view.component.scss',
+    imports: [
+        ButtonScrollToTopComponent,
+        DatePipe,
+        ExternalLinkDirective,
+        HeadingComponent,
+        MetaIdentifierBadgesComponent,
+    ],
 })
-export class ContactViewComponent implements OnInit {
+export class ContactViewComponent {
     /**
-     * Public variable: imprintTitle.
-     *
-     * It keeps the title of the imprint section.
-     */
-    imprintTitle = 'Impressum';
-
-    /**
-     * Public variable: imprintId.
-     *
-     * It keeps the id of the imprint section.
-     */
-    imprintId = 'awg-imprint';
-
-    /**
-     * Public variable: citationTitle.
-     *
-     * It keeps the title of the citation section.
-     */
-    citationTitle = 'Zitation';
-    /**
-     * Public variable: citationId.
+     * Readonly variable: citationId.
      *
      * It keeps the id of the citation section.
      */
-    citationId = 'awg-citation';
+    readonly citationId = 'awg-citation';
 
     /**
-     * Public variable: documentationTitle.
+     * Readonly variable: citationTitle.
      *
-     * It keeps the title of the documentation section.
+     * It keeps the title of the citation section.
      */
-    documentationTitle = 'Dokumentation';
+    readonly citationTitle = 'Zitation';
 
     /**
-     * Public variable: documentationId.
+     * Readonly variable: imprintId.
+     *
+     * It keeps the id of the imprint section.
+     */
+    readonly imprintId = 'awg-imprint';
+
+    /**
+     * Readonly variable: imprintTitle.
+     *
+     * It keeps the title of the imprint section.
+     */
+    readonly imprintTitle = 'Impressum';
+
+    /**
+     * Readonly variable: documentationId.
      *
      * It keeps the id of the documentation section.
      */
-    documentationId = 'awg-documentation';
+    readonly documentationId = 'awg-documentation';
 
     /**
-     * Public variable: contactMetaData.
+     * Readonly variable: documentationTitle.
+     *
+     * It keeps the title of the documentation section.
+     */
+    readonly documentationTitle = 'Dokumentation';
+
+    /**
+     * Readonly variable: contactMetaData.
      *
      * It keeps the contact metadata for the contact view.
      */
-    contactMetaData: MetaContact;
+    readonly contactMetaData = META_DATA[MetaSectionTypes.contact];
 
     /**
-     * Public variable: pageMetaData.
+     * Readonly variable: pageMetaData.
      *
      * It keeps the page metadata for the contact view.
      */
-    pageMetaData: MetaPage;
+    readonly pageMetaData = META_DATA[MetaSectionTypes.page];
 
     /**
-     * Public variable: today.
+     * Readonly signal: today.
      *
-     * It keeps the current date for the contact view.
+     * It holds the current date for the contact view.
      */
-    today: number;
-
-    /**
-     * Public variable: dateFormat.
-     *
-     * It keeps the date format for the contact view.
-     */
-    dateFormat = 'd. MMMM yyyy';
-
-    /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.provideMetaData();
-        this.today = Date.now();
-    }
-
-    /**
-     * Public method: provideMetaData.
-     *
-     * It calls the CoreService to provide
-     * the metadata for the contact view.
-     *
-     * @returns {void} Sets the pageMetaData variable.
-     */
-    provideMetaData(): void {
-        this.pageMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.page);
-        this.contactMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.contact);
-    }
+    readonly today = signal<number>(Date.now()).asReadonly();
 }

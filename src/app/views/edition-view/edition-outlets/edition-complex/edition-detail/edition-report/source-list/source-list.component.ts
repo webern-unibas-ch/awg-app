@@ -1,68 +1,48 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 
-import { UtilityService } from '@awg-core/services';
-import { Source, SourceList } from '@awg-views/edition-view/models';
+import { EditionNavigationFragmentTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { SourceList } from '@awg-views/edition-view/models/source-list.model';
+import { Source } from '@awg-views/edition-view/models/source.model';
+import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
+
+import { SourceSiglumComponent } from '../source-siglum/source-siglum.component';
 
 /**
  * The SourceList component.
  *
  * It contains the source list section
- * of the criitical report
+ * of the critical report
  * of the edition view of the app.
  */
 @Component({
     selector: 'awg-source-list',
     templateUrl: './source-list.component.html',
-    styleUrls: ['./source-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    styleUrl: './source-list.component.scss',
+    imports: [CompileHtmlDirective, SourceSiglumComponent],
 })
 export class SourceListComponent {
+    /**
+     * Private readonly injection variable: _editionModalService
+     *
+     * It keeps the instance of the injected EditionModalService.
+     */
+    private readonly _editionModalService = inject(EditionModalService);
+
+    /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService = inject(EditionNavigationService);
+
     /**
      * Input variable: sourceListData.
      *
      * It keeps the source list data.
      */
-    @Input()
-    sourceListData: SourceList;
-
-    /**
-     * Output variable: navigateToReportFragment.
-     *
-     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
-     */
-    @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
-
-    /**
-     * Output variable: openModalRequest.
-     *
-     * It keeps an event emitter to open the modal
-     * with the selected modal text snippet.
-     */
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: SourceListComponent;
-
-    /**
-     * Readonly injection variable: UTILS.
-     *
-     * It keeps the instance of the injected UtilityService.
-     */
-    readonly UTILS = inject(UtilityService);
-
-    /**
-     * Constructor of the SourceListComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
+    readonly sourceListData = input.required<SourceList | null>();
 
     /**
      * Public method: onSourceClick.
@@ -71,12 +51,11 @@ export class SourceListComponent {
      * on a source click event.
      *
      * @param {Source} source The given source.
-     *
      * @returns {void} Navigates to a report fragment or opens a modal.
      */
     onSourceClick(source: Source): void {
         if (source.hasDescription) {
-            this.navigateToReportFragment({
+            this._navigateToReportFragment({
                 complexId: '',
                 fragmentId: source.linkTo,
             });
@@ -86,35 +65,33 @@ export class SourceListComponent {
     }
 
     /**
-     * Public method: navigateToReportFragment.
+     * Private method: navigateToReportFragment.
      *
-     * It emits the given ids of a selected edition complex and report fragment
-     * to the {@link navigateToReportFragmentRequest}.
+     * It delegates the navigation for the given complex and report fragment IDs
+     * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Emits the ids.
+     * @param {EditionNavigationFragmentTarget} reportTarget The given report fragment navigation target.
+     * @returns {void} Navigates to the selected report fragment.
      */
-    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
-        if (!reportIds?.fragmentId) {
+    private _navigateToReportFragment(reportTarget: EditionNavigationFragmentTarget): void {
+        if (!reportTarget.fragmentId) {
             return;
         }
-        this.navigateToReportFragmentRequest.emit(reportIds);
+        this._navigationService.navigateToReportFragment(reportTarget);
     }
 
     /**
      * Private method: openModal.
      *
-     * It emits a given id of a modal snippet text
-     * to the {@link openModalRequest}.
+     * It opens a text modal snippet via the {@link EditionModalService} for a given id.
      *
      * @param {string} id The given modal snippet id.
-     *
-     * @returns {void} Emits the id.
+     * @returns {void} Opens the text modal.
      */
     private _openModal(id: string): void {
         if (!id) {
             return;
         }
-        this.openModalRequest.emit(id);
+        this._editionModalService.openTextModal(id);
     }
 }

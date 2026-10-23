@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { faCheckCircle, faFolder, faList, faMusic } from '@fortawesome/free-solid-svg-icons';
 
-import { StatisticsSummaryCardData, StatisticsSummaryData } from '@awg-views/statistics-view/models';
-import { StatisticsSummaryCardComponent } from '@awg-views/statistics-view/statistics-summary-card';
+import { StatisticsSummaryCardData, StatisticsSummaryData } from '../models/statistics.model';
+import { StatisticsSummaryCardComponent } from '../statistics-summary-card/statistics-summary-card.component';
 
 /**
  * The StatisticsSummary component.
@@ -14,24 +14,24 @@ import { StatisticsSummaryCardComponent } from '@awg-views/statistics-view/stati
     selector: 'awg-statistics-summary',
     templateUrl: './statistics-summary.component.html',
     styleUrl: './statistics-summary.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [StatisticsSummaryCardComponent],
 })
 export class StatisticsSummaryComponent {
     /**
-     * Input signal: summaryData.
+     * Readonly input signal: summaryData.
      *
      * It holds the summary data.
      */
-    summaryData = input.required<StatisticsSummaryData>();
+    readonly summaryData = input.required<StatisticsSummaryData | null>();
 
     /**
-     * Computed signal: summaryCards.
+     * Readonly computed signal: summaryCards.
      *
      * It computes the data for the statistics summary cards based on the input data.
      */
-    summaryCards = computed<StatisticsSummaryCardData[]>(() => {
+    readonly summaryCards = computed<StatisticsSummaryCardData[]>(() => {
         const data = this.summaryData();
+
         if (!data) {
             return [];
         }

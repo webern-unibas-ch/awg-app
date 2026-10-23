@@ -1,0 +1,44 @@
+<div
+    class="p-0 btn-group awg-example-query-btn-group"
+    ngbDropdown
+    placement="bottom-right"
+    [popperOptions]="dropdownPopperOptions"
+    role="group"
+    aria-label="Beispielabfragen">
+    <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">Beispielabfragen</button>
+    <button
+        type="button"
+        class="btn btn-sm btn-info dropdown-toggle-split"
+        ngbDropdownToggle
+        aria-label="Beispielabfrage auswählen"></button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+        <ng-template #queryItem let-q>
+            <a
+                ngbDropdownItem
+                role="link"
+                tabindex="0"
+                [class.disabled]="isActive(q)"
+                (awgClick)="querySelectRequest.emit(q)">
+                <span>{{ q.queryLabel }}</span>
+            </a>
+        </ng-template>
+
+        @if (constructQueries().length) {
+            <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
+            @for (q of constructQueries(); track q) {
+                <ng-container *ngTemplateOutlet="queryItem; context: { $implicit: q }" />
+            }
+        }
+
+        @if (constructQueries().length && selectQueries().length) {
+            <div class="dropdown-divider"></div>
+        }
+
+        @if (selectQueries().length) {
+            <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
+            @for (q of selectQueries(); track q) {
+                <ng-container *ngTemplateOutlet="queryItem; context: { $implicit: q }" />
+            }
+        }
+    </div>
+</div>

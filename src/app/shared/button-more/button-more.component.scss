@@ -1,0 +1,10 @@
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.btn-outline-info:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(var(--bs-info-rgb), 0.5);
+}

@@ -1,0 +1,17 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
+.nav-link {
+    display: flex;
+    text-decoration: none;
+
+    &.active,
+    &:focus:not(#dropdownNavEdition),
+    &:active:not(#dropdownNavEdition) {
+        color: theme.$link-color;
+    }
+
+    > fa-icon {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}

@@ -1,0 +1,35 @@
+@if (svgSheet().content.length === 1) {
+    <a
+        class="btn btn-default w-100 awg-edition-sheet-facet-item-link card-text text-start"
+        [class.text-muted]="!isActive()"
+        [awgEditionSheetFacetItemLink]="sheetTarget()"
+        [isActive]="isActive()">
+        {{ svgSheet().label }}
+    </a>
+} @else if (svgSheet().content.length > 1) {
+    <div class="awg-edition-sheet-facet-item-link-dropdown" ngbDropdown [popperOptions]="dropdownPopperOptions">
+        <a
+            class="btn card-text awg-edition-sheet-facet-item-link-dropdown-toggle"
+            [class.active]="isActive()"
+            [class.text-muted]="!isActive()"
+            [id]="dropdownId()"
+            ngbDropdownToggle>
+            <span
+                >{{ svgSheet().label }} <span class="badge bg-secondary">{{ svgSheet().content.length }}</span></span
+            >
+        </a>
+        <div ngbDropdownMenu [attr.aria-labelledby]="dropdownId()">
+            @for (sheetPartial of sheetPartials(); track sheetPartial.sheetTarget.sheetId) {
+                <div>
+                    <a
+                        class="dropdown-item"
+                        [awgEditionSheetFacetItemLink]="sheetPartial.sheetTarget"
+                        [isActive]="sheetPartial.isActive"
+                        >{{ svgSheet().label }}
+                        <span [class.text-muted]="!sheetPartial.isActive">[{{ sheetPartial.positionLabel }}]</span></a
+                    >
+                </div>
+            }
+        </div>
+    </div>
+}

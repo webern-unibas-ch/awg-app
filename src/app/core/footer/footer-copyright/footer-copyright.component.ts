@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
-import { MetaPage } from '@awg-core/core-models';
+import { MetaPage } from '@awg-shared/meta/meta.model';
 
 /**
  * The FooterCopyright component.
@@ -10,16 +10,13 @@ import { MetaPage } from '@awg-core/core-models';
 @Component({
     selector: 'awg-footer-copyright',
     templateUrl: './footer-copyright.component.html',
-    styleUrls: ['./footer-copyright.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    styleUrl: './footer-copyright.component.scss',
 })
 export class FooterCopyrightComponent {
     /**
-     * Input variable: pageMetaData.
+     * Readonly input signal: pageMetaData.
      *
-     * It keeps the page metadata for the component.
+     * It holds the page metadata for the footer copyright.
      */
-    @Input()
-    pageMetaData: MetaPage;
+    readonly pageMetaData = input.required<MetaPage>();
 }

@@ -1,17 +1,9 @@
-<div class="spinner">
-    <div class="spinner-load-text">
-        <p>{{ spinnerLoadText }}</p>
+<div class="twelve-tone-spinner">
+    <div class="twelve-tone-spinner-text">
+        <p>{{ spinnerText() }}</p>
     </div>
-    <div class="spinner-note1"></div>
-    <div class="spinner-note2"></div>
-    <div class="spinner-note3"></div>
-    <div class="spinner-note4"></div>
-    <div class="spinner-note5"></div>
-    <div class="spinner-note6"></div>
-    <div class="spinner-note7"></div>
-    <div class="spinner-note8"></div>
-    <div class="spinner-note9"></div>
-    <div class="spinner-note10"></div>
-    <div class="spinner-note11"></div>
-    <div class="spinner-note12"></div>
+
+    @for (note of spinnerNotes; track note) {
+        <div class="twelve-tone-spinner-note" [style.--index]="note" [attr.data-note]="note"></div>
+    }
 </div>

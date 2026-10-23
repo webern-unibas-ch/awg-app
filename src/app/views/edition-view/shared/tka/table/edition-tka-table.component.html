@@ -1,0 +1,57 @@
+@if (displayedCommentary(); as commentary) {
+    <table
+        aria-label="Table for text-critical comments"
+        class="table table-hover table-condensed awg-edition-tka-table">
+        @if (commentary?.preamble; as preamble) {
+            <caption class="awg-edition-tka-table-preamble mb-0">
+                <span [awgCompileHtml]="preamble"> </span>
+            </caption>
+        }
+        @if (commentary?.comments; as comments) {
+            @if (comments.length) {
+                <thead>
+                    <tr>
+                        @for (tableHeader of tableHeaders(); track tableHeader.ref) {
+                            <th scope="col" class="awg-edition-tka-table-header text-nowrap" [class]="tableHeader.ref">
+                                {{ tableHeader.label }}
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (textcriticalCommentBlock of comments; track $index) {
+                        @if (textcriticalCommentBlock.blockHeader) {
+                            <tr class="table-light table-group-divider">
+                                <td colspan="4" class="awg-edition-tka-table-block-header">
+                                    <span [awgCompileHtml]="textcriticalCommentBlock.blockHeader"></span>
+                                </td>
+                            </tr>
+                        }
+                        @for (
+                            textcriticalComment of textcriticalCommentBlock.blockComments;
+                            track textcriticalComment.svgGroupId
+                        ) {
+                            <tr
+                                class="awg-edition-tka-table-comment"
+                                [id]="`${textcriticalComment.svgGroupId}-entry`"
+                                [attr.data-svg-group-id]="textcriticalComment.svgGroupId"
+                                [ngbTooltip]="textcriticalComment.svgGroupId"
+                                tooltipClass="awg-group-id-tooltip"
+                                placement="left">
+                                <td [awgAbbr]="textcriticalComment.measure"></td>
+                                <td [awgAbbr]="textcriticalComment.system"></td>
+                                <td [innerHTML]="textcriticalComment.position"></td>
+                                <td>
+                                    <span
+                                        [awgCompileHtml]="
+                                            getComment(textcriticalComment.comment, textcriticalComment.svgGroupId)
+                                        "></span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            }
+        }
+    </table>
+}

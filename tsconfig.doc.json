@@ -1,15 +1,22 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "baseUrl": "./src/",
         "outDir": "./out-tsc/app",
+        "rootDir": "./src",
         "types": ["node"],
         "paths": {
-            "@awg-app/*": ["app/*"],
-            "@awg-core/*": ["app/core/*"],
-            "@awg-shared/*": ["app/shared/*"],
-            "@awg-side-info/*": ["app/side-info/*"],
-            "@awg-views/*": ["app/views/*"]
+            "@awg-app/*": ["./src/app/*"],
+            "@awg-core/*": ["./src/app/core/*"],
+            "@awg-shared/*": ["./src/app/shared/*"],
+            "@awg-views/*": ["./src/app/views/*"],
+            "@awg-graph/*": [
+                "./src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/*"
+            ],
+            "@awg-report/*": [
+                "./src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/*"
+            ],
+            "assets/*": ["./src/assets/*"],
+            "environments/*": ["./src/environments/*"]
         }
     },
     "include": ["src/**/*.ts"],

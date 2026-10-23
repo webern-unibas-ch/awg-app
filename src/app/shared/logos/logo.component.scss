@@ -1,0 +1,41 @@
+.navbar-brand:hover {
+    border-bottom: none;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+    .navbar-brand img {
+        max-width: 90%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .navbar-brand img {
+        max-width: 200%;
+    }
+    .navbar > .container-fluid > .row {
+        flex-wrap: nowrap;
+    }
+}
+@media screen and (max-width: 575px) {
+    .navbar-brand img {
+        max-width: 250%;
+    }
+}
+
+// Footer logos (classes from logoClassList)
+.awg-footer-logo {
+    width: 200px;
+    height: 50px;
+}
+.awg-footer-logo-tall {
+    height: 75px;
+}
+
+// Icon logos (e.g. powered by)
+:host(.icon) img {
+    position: relative;
+    display: inline;
+    height: 24px;
+    width: 24px;
+    margin: 0;
+}

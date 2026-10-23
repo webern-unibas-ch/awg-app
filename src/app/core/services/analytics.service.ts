@@ -1,0 +1,124 @@
+import { DOCUMENT, inject, Service } from '@angular/core';
+
+import { APP_CONSTANTS } from '@awg-app/app.constants';
+
+import { environment } from 'environments/environment';
+
+/**
+ * The global gtag variable for Analytics.
+ */
+declare let gtag: (...args: AnalyticsConfigEvent) => void;
+
+/**
+ * The AnalyticsConfigEvent type.
+ *
+ * It defines the type for the Analytics event configuration.
+ */
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export type AnalyticsConfigEvent = [string, string, { page_path: string; send_page_view: boolean }];
+
+/**
+ * The Analytics service.
+ *
+ * It handles the configuration for the GoogleAnalytics setup.
+ * Inspired by https://www.ngdevelop.tech/integrate-google-analytics-with-angular-angular-seo/
+ */
+@Service()
+export class AnalyticsService {
+    /**
+     * Private readonly injection variable: _doc.
+     *
+     * It stores the Angular DOCUMENT.
+     */
+    private readonly _doc = inject(DOCUMENT);
+
+    /**
+     * Private readonly variable: _analyticsId.
+     *
+     * It stores the analytics id.
+     *
+     */
+    private readonly _analyticsId: string = APP_CONSTANTS.ANALYTICS_ID;
+
+    /**
+     * Private readonly variable: _analyticsEndpoint.
+     *
+     * It stores the analytics endpoint.
+     */
+    private readonly _analyticsEndpoint: string = APP_CONSTANTS.ANALYTICS_ENDPOINT;
+
+    /**
+     * Private readonly variable: _sendPageView.
+     *
+     * It stores a boolean flag to send page views dependent from environment.
+     *
+     * DEVELOP: FALSE
+     * PRODUCTION: TRUE
+     */
+    private readonly _sendPageView = environment.GA_SEND_PAGE_VIEW;
+
+    /**
+     * Private variable: _isInitialized.
+     *
+     * It stores a boolean flag for successful initialization.
+     */
+    private _isInitialized = false;
+
+    /**
+     * Public method: initializeAnalytics.
+     *
+     * It initializes the Analytics script.
+     *
+     * @returns {void} Inits Analytics.
+     */
+    initializeAnalytics(): void {
+        if (!this._analyticsEndpoint || !this._analyticsId) {
+            return;
+        }
+        if (!this._sendPageView) {
+            console.info('Running non-production analytics replacement now');
+        } else {
+            this._prependAnalyticsScript();
+        }
+        this._isInitialized = true;
+    }
+
+    /**
+     * Public method: trackPageView.
+     *
+     * It tracks a page view for Analytics.
+     *
+     * @param {string} page The given page string.
+     * @returns {void} Configures and sends the page view to Analytics.
+     */
+    trackPageView(page: string): void {
+        if (!page || !this._isInitialized) {
+            return;
+        }
+
+        const configEvent: AnalyticsConfigEvent = [
+            'config',
+            this._analyticsId,
+            {
+                page_path: page,
+                send_page_view: this._sendPageView,
+            },
+        ];
+
+        gtag(...configEvent);
+    }
+
+    /**
+     * Private method: _prependAnalyticsScript.
+     *
+     * It prepends the Analytics <script> tag to index.html via DOCUMENT.
+     *
+     * @returns {void} Prepends Analytics script.
+     */
+    private _prependAnalyticsScript(): void {
+        const gtagScript: HTMLScriptElement = this._doc.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = this._analyticsEndpoint + '?id=' + this._analyticsId;
+        this._doc.head.prepend(gtagScript);
+    }
+}

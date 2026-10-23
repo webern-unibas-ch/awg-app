@@ -1,0 +1,18 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
+/*
+see also https://stackoverflow.com/questions/114543/how-to-horizontally-center-a-div-in-another-div
+ */
+.svgGrid {
+    margin-bottom: 2em;
+}
+.svgRow {
+    padding-top: 1em;
+    width: inherit;
+    text-align: center;
+    box-shadow: theme.$viewer-box-shadow;
+    border: 1px solid theme.$frame-border-color;
+}
+.svgCol {
+    display: inline-block;
+}

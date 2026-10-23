@@ -26,7 +26,6 @@ interface Spy {
  * @param {number } expected The expected number of elements in the input array.
  * @param {number | undefined} expectedFailMsg The expected number of elements in the input array in the fail message.
  * @param {string} suffixMsg A message to add at the end of the expectation statement.
- *
  * @returns {void} Throws the expectation statements.
  */
 function expectDebugElement(
@@ -41,8 +40,8 @@ function expectDebugElement(
     }
 
     const failMsg = suffixMsg
-        ? `should have ${expectedFailMsg} ${selector} ${suffixMsg}`
-        : `should have ${expectedFailMsg} ${selector}`;
+        ? `should have ${String(expectedFailMsg)} ${selector} ${suffixMsg}`
+        : `should have ${String(expectedFailMsg)} ${selector}`;
 
     expect(des).toBeDefined();
     expect(des.length, failMsg).toBe(expected);
@@ -60,8 +59,7 @@ function expectDebugElement(
  * @param {string} selector The CSS selector to look for.
  * @param {number} expected The expected number of elements in the result array.
  * @param {number} expectedFailMsg The expected number of elements in the result array in the fail message.
- * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
- *
+ * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
  * @returns {DebugElement[]} An array of the found DebugElements.
  */
 export function getAndExpectDebugElementByCss(
@@ -69,14 +67,9 @@ export function getAndExpectDebugElementByCss(
     selector: string,
     expected: number,
     expectedFailMsg: number,
-    suffixMsg?: string
+    suffixMsg = ''
 ): DebugElement[] {
     const outDes = inDe.queryAll(By.css(selector));
-
-    // Empty string if no suffix message provided
-    if (!suffixMsg) {
-        suffixMsg = '';
-    }
 
     expectDebugElement(outDes, selector, expected, expectedFailMsg, suffixMsg);
 
@@ -95,8 +88,7 @@ export function getAndExpectDebugElementByCss(
  * @param {Type<*>} selectorType The selector type (directive) to look for.
  * @param {number } expected The expected number of elements in the result array.
  * @param {number | undefined} expectedFailMsg The expected number of elements in the result array in the fail message.
- * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
- *
+ * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
  * @returns {DebugElement[]} An array of the found DebugElements.
  */
 export function getAndExpectDebugElementByDirective(
@@ -104,14 +96,9 @@ export function getAndExpectDebugElementByDirective(
     selectorType: Type<any>,
     expected: number,
     expectedFailMsg: number | undefined,
-    suffixMsg?: string
+    suffixMsg = ''
 ): DebugElement[] {
     const outDes = inDe.queryAll(By.directive(selectorType));
-
-    // Empty string if no suffix message provided
-    if (!suffixMsg) {
-        suffixMsg = '';
-    }
 
     expectDebugElement(outDes, selectorType, expected, expectedFailMsg, suffixMsg);
 
@@ -121,52 +108,68 @@ export function getAndExpectDebugElementByDirective(
 /**
  * Test helper function: expectToBe.
  *
- * It checks if a given source value is defined and if it is the same as the expected value ('toBe').
+ * It checks if a given actual value is defined and if it is the same as the expected value ('toBe').
  *
  * Exposed to be called from tests.
  *
- * @param {any} source The input value to be checked.
- * @param {any} expected The expected value.
- *
+ * @param {T} actual The actual input value to be checked.
+ * @param {T} expected The expected value.
  * @returns {void} Throws the expectation statements.
  */
-export function expectToBe(source: any, expected: any): void {
-    expect(source).toBeDefined();
-    expect(source, `should be ${expected}`).toBe(expected);
+export function expectToBe<T>(actual: T, expected: T): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should be ${String(expected)}`).toBe(expected);
 }
 
 /**
  * Test helper function: expectToContain.
  *
- * It checks if a given source value is defined and if it contains the expected value ('toContain').
+ * It checks if a given actual value is defined and if it contains the expected value ('toContain').
  *
  * Exposed to be called from tests.
  *
- * @param {any} source The input value to be checked.
- * @param {any} expected The expected value.
- *
+ * @param {T} actual The input value to be checked (Array, String, etc. - cannot be a function).
+ * @param {any} expected The expected value that should be contained.
  * @returns {void} Throws the expectation statements.
  */
-export function expectToContain(source: any, expected: any): void {
-    expect(source).toBeDefined();
-    expect(source, `should contain ${expected}`).toContain(expected);
+export function expectToContain<T>(actual: T extends (...args: never[]) => unknown ? never : T, expected: any): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should contain ${String(expected)}`).toContain(expected);
+}
+
+/**
+ * Test helper function: expectToNotContain.
+ *
+ * It checks if a given actual value is defined and if it does not contain the expected value ('not.toContain').
+ *
+ * Exposed to be called from tests.
+ *
+ * @param {T} actual The input value to be checked (Array, String, etc. - cannot be a function).
+ * @param {any} expected The expected value that should not be contained.
+ * @returns {void} Throws the expectation statements.
+ */
+export function expectToNotContain<T>(
+    actual: T extends (...args: never[]) => unknown ? never : T,
+    expected: any
+): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should not contain ${String(expected)}`).not.toContain(expected);
 }
 
 /**
  * Test helper function: expectToEqual.
  *
- * It checks if a given source value is defined and if it equals the expected value ('toEqual').
+ * It checks if a given actual value is defined and if it equals the expected value ('toEqual').
  *
  * Exposed to be called from tests.
  *
- * @param {any} source The input value to be checked.
- * @param {any} expected The expected value.
- *
+ * @param {T} actual The actual input value to be checked.
+ * @param {T} expected The expected value
  * @returns {void} Throws the expectation statements.
  */
-export function expectToEqual(source: any, expected: any): void {
-    expect(source).toBeDefined();
-    expect(source, `should equal ${expected}`).toEqual(expected);
+export function expectToEqual<T>(actual: T, expected: T): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should equal ${String(expected)}`).toEqual(expected);
 }
 
 /**
@@ -179,7 +182,6 @@ export function expectToEqual(source: any, expected: any): void {
  * @param {Spy} spy The input spy instance.
  * @param {*} expectedMostRecentValue The expected value for the most recent spy call.
  * @param {number} index The index value of the most recent arguments array of a spy call.
- *
  * @returns {void} Throws the expectation statements.
  */
 function expectRecentSpyCall(spy: Spy, expectedMostRecentValue: any, index: number): void {
@@ -204,7 +206,6 @@ function expectRecentSpyCall(spy: Spy, expectedMostRecentValue: any, index: numb
  * @param {Spy} spy The input spy instance.
  * @param {number} expectedTimes The expected number of spy calls.
  * @param {*} [expectedMostRecentValue] An optional expected value for the most recent spy call.
- *
  * @returns {void} Throws the expectation statements.
  */
 export function expectSpyCall(spy: Spy, expectedTimes: number, expectedMostRecentValue?: any): void {
@@ -219,12 +220,12 @@ export function expectSpyCall(spy: Spy, expectedTimes: number, expectedMostRecen
     expect(spy).toHaveBeenCalledTimes(expectedTimes);
 
     // If spy was called, check if it was called with value x
-    if (spy.mock.calls.length > 0) {
-        if (expectedMostRecentValue && Array.isArray(expectedMostRecentValue)) {
+    if (spy.mock.calls.length) {
+        if (expectedMostRecentValue !== undefined && Array.isArray(expectedMostRecentValue)) {
             expectedMostRecentValue.forEach((value, index) => {
                 expectRecentSpyCall(spy, value, index);
             });
-        } else if (expectedMostRecentValue) {
+        } else if (expectedMostRecentValue !== undefined) {
             expectRecentSpyCall(spy, expectedMostRecentValue, 0);
         }
     }

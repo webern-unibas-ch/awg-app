@@ -4,9 +4,9 @@
             "id": "Mx466_TF1",
             "label": "M* 466 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition M* 466 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> mit blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition M* 466 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx466', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition M* 466 ist <a data-complex-id='mx466' data-report-fragment-id='source_B'><strong>B</strong></a> relevante Quelle. <a data-complex-id='mx466' data-report-fragment-id='source_A'><strong>A</strong></a> enthält Skizzen.",
+                "<a data-complex-id='mx466' data-report-fragment-id='source_B'><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a data-complex-id='mx466' data-report-fragment-id='source_B_corr_1'>Korrekturen 1</a> mit Tinte sowie die später erfolgten <a data-complex-id='mx466' data-report-fragment-id='source_B_corr_2'>Korrekturen 2</a> mit blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition M* 466 ist <a data-complex-id='mx466' data-report-fragment-id='source_B'><strong>B</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -17,7 +17,7 @@
             "id": "Mx466_Sk1",
             "label": "M* 466 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx466', sheetId: 'Mx466_TF1'})\">Studienkomposition für Klavier M* 466.</a>"
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a data-complex-id='mx466' data-sheet-id='Mx466_TF1'>Studienkomposition für Klavier M* 466.</a>"
             ],
             "commentary": {
                 "preamble": "",

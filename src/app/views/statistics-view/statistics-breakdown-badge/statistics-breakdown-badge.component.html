@@ -1,5 +1,5 @@
 <div class="awg-statistics-breakdown-badge-container" [class]="containerClasses()">
-    @for (badge of visibleBadges(); track badge.label) {
+    @for (badge of displayedBadges(); track badge.label) {
         <span
             class="awg-statistics-breakdown-badge badge me-1"
             [class.bg-primary]="badge.type === 'primary'"

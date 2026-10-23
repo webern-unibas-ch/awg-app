@@ -1,8 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject, signal } from '@angular/core';
 
-import { PrefaceList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
+
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
+import { LanguageSwitcherComponent } from '@awg-views/edition-view/shared/language-switcher/language-switcher.component';
+import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/language.model';
 
 /**
  * The EditionPreface component.
@@ -13,106 +17,28 @@ import { EditionDataService, EditionGlyphService, EditionStateService } from '@a
 @Component({
     selector: 'awg-edition-preface',
     templateUrl: './edition-preface.component.html',
-    styleUrls: ['./edition-preface.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    styleUrl: './edition-preface.component.scss',
+    imports: [AlertErrorComponent, CompileHtmlDirective, LanguageSwitcherComponent, TwelveToneSpinnerComponent],
 })
-export class EditionPrefaceComponent implements OnInit, OnDestroy {
+export class EditionPrefaceComponent {
     /**
-     * Public variable: prefaceData$.
+     * Private readonly injection variable: _editionViewService.
      *
-     * It keeps an observable of the data of the edition preface.
+     * It keeps the instance of the injected EditionViewService.
      */
-    prefaceData$: Observable<PrefaceList>;
+    private readonly _editionViewService = inject(EditionViewService);
 
     /**
-     * Public variable: currentLanguage.
+     * Readonly signal: viewData.
      *
-     * It keeps the current language of the edition preface: 0 for German, 1 for English.
+     * It holds the state of the preface view data.
      */
-    currentLanguage = 0;
+    readonly viewData = this._editionViewService.prefaceViewData;
 
     /**
-     * Self-referring variable needed for CompileHtml library.
+     * Readonly signal: selectedLanguage.
+     *
+     * It holds the selected language of the edition preface.
      */
-    ref: EditionPrefaceComponent;
-
-    /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
-     * Private readonly injection variable: _editionGlyphService.
-     *
-     * It keeps the instance of the injected EditionGlyphService.
-     */
-    private readonly _editionGlyphService = inject(EditionGlyphService);
-
-    /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Constructor of the EditionPrefaceComponent.
-     *
-     * It declares the self-referring ref variable needed for CompileHtml library.
-     *
-     */
-    constructor() {
-        this.ref = this;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {
-        this._editionStateService.updateIsPrefaceView(true);
-        this.prefaceData$ = this._editionDataService.getEditionPrefaceData();
-    }
-
-    /**
-     * Public method: getGlyph.
-     *
-     * It returns the hex value string for a glyph referenced by the given glyph string
-     * via the EditionGlyphService.
-     *
-     * @param {string} glyphString The given glyph string.
-     * @returns {string} The hex value string of the given glyph string or empty string.
-     */
-    getGlyph(glyphString: string): string {
-        return this._editionGlyphService.getGlyph(glyphString);
-    }
-
-    /**
-     * Public method: setLanguage.
-     *
-     * It sets the current language of the edition preface.
-     *
-     * @param {number} language The given language number.
-     * @returns {void} Sets the current language.
-     */
-    setLanguage(language: number): void {
-        this.currentLanguage = language;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     *
-     * Destroys subscriptions.
-     */
-    ngOnDestroy() {
-        this._editionStateService.clearIsPrefaceView();
-    }
+    readonly selectedLanguage = signal<LanguageId>(LanguageId.DE);
 }

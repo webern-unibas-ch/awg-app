@@ -1,18 +1,19 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 
-import { EditionOutlineService } from '@awg-views/edition-view/services';
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+
 import {
     Statistics,
     StatisticsComplexBreakdownData,
     StatisticsOverallProgressData,
     StatisticsSummaryData,
-} from '@awg-views/statistics-view/models';
-import { StatisticsService } from '@awg-views/statistics-view/services';
-
-import { StatisticsComplexBreakdownComponent } from '@awg-views/statistics-view/statistics-complex-breakdown';
-import { StatisticsOverallProgressComponent } from '@awg-views/statistics-view/statistics-overall-progress';
-import { StatisticsSeriesBreakdownComponent } from '@awg-views/statistics-view/statistics-series-breakdown';
-import { StatisticsSummaryComponent } from '@awg-views/statistics-view/statistics-summary';
+} from './models/statistics.model';
+import { StatisticsService } from './services/statistics.service';
+import { StatisticsComplexBreakdownComponent } from './statistics-complex-breakdown/statistics-complex-breakdown.component';
+import { StatisticsOverallProgressComponent } from './statistics-overall-progress/statistics-overall-progress.component';
+import { StatisticsSeriesBreakdownComponent } from './statistics-series-breakdown/statistics-series-breakdown.component';
+import { StatisticsSummaryComponent } from './statistics-summary/statistics-summary.component';
 
 /**
  * The Statistics view component.
@@ -23,9 +24,9 @@ import { StatisticsSummaryComponent } from '@awg-views/statistics-view/statistic
 @Component({
     selector: 'awg-statistics-view',
     templateUrl: './statistics-view.component.html',
-    styleUrls: ['./statistics-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrl: './statistics-view.component.scss',
     imports: [
+        ButtonScrollToTopComponent,
         StatisticsComplexBreakdownComponent,
         StatisticsOverallProgressComponent,
         StatisticsSeriesBreakdownComponent,
@@ -34,21 +35,40 @@ import { StatisticsSummaryComponent } from '@awg-views/statistics-view/statistic
 })
 export class StatisticsViewComponent {
     /**
-     * Public signal: statisticsData.
+     * Private readonly injection variable: _editionOutlineService.
      *
-     * It holds the statistics data for the edition complexes,
-     * which is retrieved from the StatisticsService based on data from the EditionOutlineService.
+     * It keeps the instance of the injected EditionOutlineService.
      */
-    statisticsData = signal<Statistics | null>(
-        inject(StatisticsService).getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
-    );
+    private readonly _editionOutlineService = inject(EditionOutlineService);
 
     /**
-     * Computed signal: complexBreakdownData.
+     * Private readonly injection variable: _statisticsService.
+     *
+     * It keeps the instance of the injected StatisticsService.
+     */
+    private readonly _statisticsService = inject(StatisticsService);
+
+    /**
+     * Readonly computed signal: statisticsData.
+     *
+     * It automatically computes the statistics data whenever the edition outline signal updates.
+     */
+    readonly statisticsData = computed<Statistics | null>(() => {
+        const outline = this._editionOutlineService.editionOutline();
+
+        if (!outline || outline.length === 0) {
+            return null;
+        }
+
+        return this._statisticsService.getStatisticsFromOutline(outline);
+    });
+
+    /**
+     * Readonly computed signal: complexBreakdownData.
      *
      * It computes the complex breakdown data for the statistics breakdown badges based on the main statistics data.
      */
-    complexBreakdownData = computed<StatisticsComplexBreakdownData | null>(() => {
+    readonly complexBreakdownData = computed<StatisticsComplexBreakdownData | null>(() => {
         const data = this.statisticsData();
         if (!data) {
             return null;
@@ -62,11 +82,11 @@ export class StatisticsViewComponent {
     });
 
     /**
-     * Computed signal: overallProgressData.
+     * Readonly computed signal: overallProgressData.
      *
      * It computes the overall progress data for the statistics progress bar based on the main statistics data.
      */
-    overallProgressData = computed<StatisticsOverallProgressData | null>(() => {
+    readonly overallProgressData = computed<StatisticsOverallProgressData | null>(() => {
         const data = this.statisticsData();
         if (!data) {
             return null;
@@ -80,11 +100,11 @@ export class StatisticsViewComponent {
     });
 
     /**
-     * Computed signal: summaryData.
+     * Readonly computed signal: summaryData.
      *
      * It computes the summary data for the statistics summary cards based on the main statistics data.
      */
-    summaryData = computed<StatisticsSummaryData | null>(() => {
+    readonly summaryData = computed<StatisticsSummaryData | null>(() => {
         const data = this.statisticsData();
         if (!data) {
             return null;

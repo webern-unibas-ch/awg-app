@@ -1,12 +1,20 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionOutlineService } from '@awg-views/edition-view/services';
+import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
+import { HeadingComponent } from '@awg-shared/heading/heading.component';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
-import { HOME_VIEW_CARD_DATA } from '@awg-views/home-view/data';
-import { HomeViewCard } from '@awg-views/home-view/models';
+import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
+import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+
+import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
+import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
 
 /**
  * The HomeView component.
@@ -17,93 +25,82 @@ import { HomeViewCard } from '@awg-views/home-view/models';
 @Component({
     selector: 'awg-home-view',
     templateUrl: './home-view.component.html',
-    styleUrls: ['./home-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false,
+    styleUrl: './home-view.component.scss',
+    imports: [
+        AlertInfoComponent,
+        ButtonScrollToTopComponent,
+        ExternalLinkDirective,
+        HeadingComponent,
+        HomeViewCardComponent,
+        RouterLink,
+    ],
 })
-export class HomeViewComponent implements OnInit {
+export class HomeViewComponent {
     /**
-     * Public variable: disclaimerInfoMessage.
+     * Private readonly injection variable: _editionOutlineService.
      *
-     * It keeps the disclaimer info message for the home view section.
+     * It keeps the instance of the injected EditionOutlineService.
      */
-    disclaimerInfoMessage = 'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
+    private readonly _editionOutlineService = inject(EditionOutlineService);
 
     /**
-     * Public variable: homeViewTitle.
-     *
-     * It keeps the title for the heading component
-     * of the home view section.
-     */
-    homeViewTitle = 'Anton Webern Gesamtausgabe: Online-Edition';
-
-    /**
-     * Public variable: homeId.
+     * Readonly variable: homeViewId.
      *
      * It keeps the id for the heading component
      * of the home view section.
      */
-    homeViewId = 'awg-home-view';
+    readonly homeViewId = 'awg-home-view-heading';
 
     /**
-     * Public variable: homeViewCardData.
+     * Readonly variable: homeViewTitle.
+     *
+     * It keeps the title for the heading component
+     * of the home view section.
+     */
+    readonly homeViewTitle = 'Anton Webern Gesamtausgabe: Online-Edition';
+
+    /**
+     * Readonly variable: disclaimerMessage.
+     *
+     * It keeps the disclaimer message for the home view section.
+     */
+    readonly disclaimerMessage =
+        'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
+
+    /**
+     * Readonly variable: homeViewCardData.
      *
      * It keeps the data for the home view cards.
      */
-    homeViewCardData: HomeViewCard[] = HOME_VIEW_CARD_DATA;
+    readonly homeViewCardData = HOME_VIEW_CARD_DATA;
 
     /**
-     * Public variable: pageMetaData.
+     * Readonly variable: pageMetaData.
      *
      * It keeps the page metadata for the home view.
      */
-    pageMetaData: MetaPage;
+    readonly pageMetaData = META_DATA[MetaSectionTypes.page];
 
     /**
-     * Readonly variable: DISPLAYED_SECTIONS.
+     * Readonly signal: sectionLinksData.
      *
-     * It keeps the array of displayed sections.
+     * It holds the array of displayed edition sections based on active IDs.
+     * Undefined sections are filtered out, all other sections are mapped to EditionSectionLinks.
      */
-    readonly DISPLAYED_SECTIONS = [
-        EditionOutlineService.getEditionSectionById('1', '5'),
-        EditionOutlineService.getEditionSectionById('2', '2a'),
-    ];
-
+    readonly sectionLinksData = signal<EditionSectionLink[]>(
+        ACTIVE_EDITION_SECTION_IDS.map(ids =>
+            this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId)
+        )
+            .filter((section): section is EditionOutlineSection => section !== undefined)
+            .map((section, index, array) => new EditionSectionLink(section, index, array.length))
+    ).asReadonly();
     /**
-     * Private readonly injection variable: _coreService.
+     * Readonly signal: rowtablesRoute.
      *
-     * It keeps the instance of the injected CoreService.
+     * It holds the router link array for the rowtables link.
      */
-    private readonly _coreService = inject(CoreService);
-
-    /**
-     * Getter variable: editionRouteConstants.
-     *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.provideMetaData();
-    }
-
-    /**
-     * Public method: provideMetaData.
-     *
-     * It calls the CoreService to provide
-     * the metadata for the contact view.
-     *
-     * @returns {void} Sets the pageMetaData variable.
-     */
-    provideMetaData(): void {
-        this.pageMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.page);
-    }
+    readonly rowtablesRoute = signal([
+        EDITION_ROUTE_CONSTANTS.EDITION.route,
+        EDITION_ROUTE_CONSTANTS.ROWTABLES.route,
+    ]).asReadonly();
 }

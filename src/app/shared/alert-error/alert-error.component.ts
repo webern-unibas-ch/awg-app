@@ -1,24 +1,33 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
+import { Component, computed, input } from '@angular/core';
+
+import { ERROR_UTILS } from '@awg-shared/utils/error-utils';
+
+import { AlertError } from './alert-error.model';
 
 /**
  * The AlertErrorComponent.
  *
- * It contains an error alert message that is
- * provided via the {@link SharedModule}.
+ * It contains an error alert message.
  */
 @Component({
     selector: 'awg-alert-error',
     templateUrl: './alert-error.component.html',
-    styleUrls: ['./alert-error.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    styleUrl: './alert-error.component.scss',
+    imports: [TitleCasePipe],
 })
 export class AlertErrorComponent {
     /**
-     * Input variable: errorObject.
+     * Readonly input signal: errorObject.
      *
-     * It keeps the error object for the component.
+     * It holds the error object for the component.
      */
-    @Input()
-    errorObject: any;
+    readonly errorObject = input.required<AlertError>();
+
+    /**
+     * Readonly computed signal: errorMessage.
+     *
+     * It holds the message to display for the error of the error object.
+     */
+    readonly errorMessage = computed(() => ERROR_UTILS.getErrorMessage(this.errorObject().error));
 }

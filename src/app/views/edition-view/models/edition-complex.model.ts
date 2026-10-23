@@ -1,10 +1,14 @@
-import { PERSONS_DATA } from '@awg-core/core-data';
-import { MetaPerson } from '@awg-core/core-models/meta.model';
+import { MetaPerson } from '@awg-shared/meta/meta.model';
+import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
+import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
+
 import {
     EDITION_CATALOGUE_TYPE_CONSTANTS,
     EDITION_ROUTE_CONSTANTS,
-} from '@awg-views/edition-view/edition-route-constants';
-import { EditionRouteConstant } from './edition-route-constant.model';
+    EditionCatalogueTypeConstantsKey,
+    EditionRouteConstant,
+    EditionRouteConstantsKey,
+} from '../edition-routes.constants';
 
 /**
  * The EditionComplexJsonPersonRef interface.
@@ -20,21 +24,22 @@ export interface EditionComplexJsonPersonRef {
 }
 
 /**
- * The EditionComplexJsonData interface.
+ * The EditionComplexJsonData type.
  *
  * It is used in the context of the edition view
- * to describe the structure of a JSON data for an edition complex.
+ * to describe the structure of a JSON data for an edition complex
+ * (an object with the complex id as its only key).
  */
-export interface EditionComplexJsonData {
-    /**
-     * The edition complex data.
-     */
-    [key: string]: {
-        titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
-        respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
-        pubStatement: { series: string; section: string };
-    };
-}
+export type EditionComplexJsonData = Partial<
+    Record<
+        string,
+        {
+            titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
+            respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
+            pubStatement: { series: string; section: string };
+        }
+    >
+>;
 
 /**
  * The EditionComplexesJsonData interface.
@@ -50,12 +55,12 @@ export interface EditionComplexesJsonData {
 }
 
 /**
- * The EditionComplexTitleStatement class.
+ * The EditionComplexTitleStatement interface.
  *
  * It is used in the context of the edition view
  * to store information about the title statement of an edition complex.
  */
-export class EditionComplexTitleStatement {
+export interface EditionComplexTitleStatement {
     /**
      * The title of a title statement.
      */
@@ -73,12 +78,12 @@ export class EditionComplexTitleStatement {
 }
 
 /**
- * The EditionComplexRespStatement class.
+ * The EditionComplexRespStatement interface.
  *
  * It is used in the context of the edition view
  * to store information about the responsibility statement of an edition complex.
  */
-export class EditionComplexRespStatement {
+export interface EditionComplexRespStatement {
     /**
      * The editors of an edition complex.
      */
@@ -98,14 +103,19 @@ export class EditionComplexRespStatement {
  */
 export class EditionComplexPubStatement {
     /**
+     * The labeled route for the series/section of the current edition complex.
+     */
+    labeledSectionRoute: LabeledRoute = { label: '', route: [] };
+
+    /**
      * The route for the current series.
      */
-    series: EditionRouteConstant;
+    series: EditionRouteConstant = new EditionRouteConstant();
 
     /**
      * The route for the current section.
      */
-    section: EditionRouteConstant;
+    section: EditionRouteConstant = new EditionRouteConstant();
 }
 
 /**
@@ -157,12 +167,15 @@ export class EditionComplex {
         pubStatement: { series: string; section: string }
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
-            return;
+            throw new Error(
+                '[EditionComplexModel] Cannot instantiate complex: Missing catalogueType or catalogueNumber.'
+            );
         }
 
         // Helper constants
         const delimiter = '/';
         const spacer = '&nbsp;';
+        const routes = EDITION_ROUTE_CONSTANTS;
 
         // Set dynamic routes
         this.titleStatement = {
@@ -172,21 +185,40 @@ export class EditionComplex {
 
         this.respStatement = this._mapRespStatement(respStatement);
 
-        this.pubStatement = {
-            series: this._mapPubStatement('SERIES_', pubStatement?.series),
-            section: this._mapPubStatement('SECTION_', pubStatement?.section),
-        };
+        const seriesKey = `SERIES_${pubStatement?.series?.toUpperCase()}` as EditionRouteConstantsKey;
+        const seriesConstant = EDITION_ROUTE_CONSTANTS[seriesKey] ?? new EditionRouteConstant();
+
+        const sectionKey = `SECTION_${pubStatement?.section?.toUpperCase()}` as EditionRouteConstantsKey;
+        const sectionConstant = EDITION_ROUTE_CONSTANTS[sectionKey] ?? new EditionRouteConstant();
+
+        this.pubStatement =
+            seriesConstant.route && sectionConstant.route
+                ? {
+                      labeledSectionRoute: {
+                          label: `${routes.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}`,
+                          route: [
+                              routes.EDITION.route,
+                              routes.SERIES.route,
+                              seriesConstant.route,
+                              routes.SECTION.route,
+                              sectionConstant.route,
+                          ],
+                      },
+                      series: seriesConstant,
+                      section: sectionConstant,
+                  }
+                : new EditionComplexPubStatement();
 
         this.complexId = new EditionRouteConstant();
         this.complexId.route = this.titleStatement.catalogueType.route;
         // For routes, replace slashes in catalogue number with underscores
-        this.complexId.route += this.titleStatement.catalogueNumber.replaceAll('/', '_');
+        this.complexId.route += this.titleStatement.catalogueNumber.replaceAll(delimiter, '_');
         this.complexId.short = `${this.titleStatement.catalogueType.short}${spacer}${this.titleStatement.catalogueNumber}`;
         this.complexId.full = `${this.titleStatement.title} ${this.complexId.short}`;
 
         // Set base route
-        const rootPath = `${EDITION_ROUTE_CONSTANTS.EDITION.route}${EDITION_ROUTE_CONSTANTS.COMPLEX.route}`;
-        this.baseRoute = `${rootPath}${this.complexId.route}${delimiter}`;
+        const rootPath = `${routes.EDITION.route}${routes.COMPLEX.route}`;
+        this.baseRoute = `${rootPath}${this.complexId.route}`;
     }
 
     /**
@@ -195,25 +227,12 @@ export class EditionComplex {
      * It maps the catalogue type to the corresponding route constant.
      *
      * @param {string} catalogueType The given catalogue type.
-     *
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
-        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()];
-    }
+        const key = catalogueType.toUpperCase() as EditionCatalogueTypeConstantsKey;
 
-    /**
-     * Private method: _mapPubStatement.
-     *
-     * It maps the publication statement to the corresponding route constant.
-     *
-     * @param {string} prefix The given prefix.
-     * @param {string} value The given value.
-     *
-     * @returns {EditionRouteConstant} The corresponding route constant.
-     */
-    private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
-        return EDITION_ROUTE_CONSTANTS[`${prefix}${value?.toUpperCase()}`];
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[key] ?? new EditionRouteConstant();
     }
 
     /**
@@ -223,7 +242,6 @@ export class EditionComplex {
      * to their corresponding MetaPerson from PERSONS_DATA.
      *
      * @param {{ editors: EditionComplexJsonPersonRef[]; lastModified: string }} respStatement The given responsibility statement.
-     *
      * @returns {EditionComplexRespStatement} The resolved EditionComplexRespStatement.
      */
     private _mapRespStatement(respStatement: {
@@ -231,8 +249,9 @@ export class EditionComplex {
         lastModified: string;
     }): EditionComplexRespStatement {
         const editors: MetaPerson[] =
-            respStatement?.editors?.map(editor => PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: '' }) ??
-            [];
+            respStatement?.editors?.map(
+                editor => PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: '', identifiers: {} }
+            ) ?? [];
         return { editors, lastModified: respStatement?.lastModified ?? '' };
     }
 }

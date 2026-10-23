@@ -1,0 +1,7 @@
+// The host stays unpositioned: the anchor is placed relative to the positioned container of the canvas
+.awg-canvas-tooltip-anchor {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}

@@ -1,0 +1,21 @@
+<!-- sideinfo: structure -->
+<div class="card">
+    <div class="card-body bg-light">
+        <h5 id="awg-structure-info-header">{{ structureSideInfoHeader }}</h5>
+        <p>&#9671;</p>
+        <p>
+            Konzept/Grafik:
+            @if (structureMetaData.authors[0]; as author) {
+                <span class="awg-structure-info-author">
+                    <a [href]="author.homepage">{{ author.name }}</a>
+                    <awg-meta-identifier-badges [identifiers]="author.identifiers" />
+                </span>
+            }
+        </p>
+        <p>&#9671;</p>
+        <p>
+            Versionsdatum:
+            <span id="awg-structure-info-lastmodified">{{ structureMetaData.lastModified | date: 'longDate' }}</span>
+        </p>
+    </div>
+</div>

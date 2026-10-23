@@ -24,19 +24,21 @@
                         "index": "src/index.html",
                         "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
                         "tsConfig": "tsconfig.app.json",
+                        "webWorkerTsConfig": "tsconfig.worker.json",
                         "inlineStyleLanguage": "scss",
-                        "aot": false,
                         "assets": ["src/favicon.ico", "src/assets"],
                         "allowedCommonJsDependencies": ["readable-stream", "queue-microtask", "rdfstore"],
-                        "styles": [
-                            "src/index.style.scss",
-                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "src/styles.scss"
-                        ],
+                        "styles": ["src/index.style.scss", "src/styles.scss"],
                         "stylePreprocessorOptions": {
                             "includePaths": ["."]
                         },
-                        "scripts": ["node_modules/rdfstore/dist/rdfstore_min.js"],
+                        "scripts": [
+                            {
+                                "input": "node_modules/rdfstore/dist/rdfstore_min.js",
+                                "bundleName": "rdfstore",
+                                "inject": false
+                            }
+                        ],
                         "browser": "src/main.ts"
                     },
                     "configurations": {
@@ -61,9 +63,9 @@
                             ],
                             "optimization": true,
                             "outputHashing": "all",
+                            "extractLicenses": true,
                             "sourceMap": false,
-                            "namedChunks": false,
-                            "extractLicenses": true
+                            "namedChunks": false
                         },
                         "development": {
                             "fileReplacements": [],

@@ -1,5 +1,13 @@
 <div class="awg-error-message">
     <div class="col-12 text-center">
-        <div class="alert alert-danger">{{ errorObject | json }}</div>
+        <div class="alert alert-danger">
+            @let err = errorObject();
+            @if (err.key) {
+                <strong>{{ err.key | titlecase }}:</strong>
+            } @else {
+                <strong>Error:</strong>
+            }
+            {{ errorMessage() }}
+        </div>
     </div>
 </div>

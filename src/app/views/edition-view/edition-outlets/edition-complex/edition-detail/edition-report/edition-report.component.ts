@@ -1,82 +1,38 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
 
-import { EMPTY, Observable } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
-import { ModalComponent } from '@awg-shared/modal/modal.component';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import {
-    EditionComplex,
-    SourceDescriptionList,
-    SourceEvaluationList,
-    SourceList,
-    TextcriticsList,
-} from '@awg-views/edition-view/models';
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
+
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+
+import { SourceDescComponent } from './source-desc/source-desc.component';
+import { SourceEvaluationComponent } from './source-evaluation/source-evaluation.component';
+import { SourceListComponent } from './source-list/source-list.component';
+import { TextcriticsListComponent } from './textcritics-list/textcritics-list.component';
 
 /**
  * The EditionReport component.
  *
- * It contains the report section of the edition view of the app
- * with a {@link HeadingComponent}, a {@link ModalComponent},
- * the {@link SourcesComponent} and the {@link TextcriticsComponent}.
+ * It contains the report section of the edition view of the app.
  */
 @Component({
     selector: 'awg-edition-report',
     templateUrl: './edition-report.component.html',
-    styleUrls: ['./edition-report.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    styleUrl: './edition-report.component.scss',
+    imports: [
+        NgbAccordionModule,
+        AlertErrorComponent,
+        SourceDescComponent,
+        SourceEvaluationComponent,
+        SourceListComponent,
+        TextcriticsListComponent,
+        TwelveToneSpinnerComponent,
+    ],
 })
-export class EditionReportComponent implements OnInit {
-    /**
-     * ViewChild variable: modal.
-     *
-     * It keeps the reference to the awg-modal.
-     */
-    @ViewChild('modal', { static: true }) modal: ModalComponent;
-
-    /**
-     * Public variable: editionComplex.
-     *
-     * It keeps the information about the current edition complex.
-     */
-    editionComplex: EditionComplex;
-
-    /**
-     * Public variable: editionReportData$.
-     *
-     * Observable that keeps the report data.
-     */
-    editionReportData$: Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]>;
-
-    /**
-     * Public variable: errorObject.
-     *
-     * It keeps an errorObject for the service calls.
-     */
-    errorObject = null;
-
-    /**
-     * Public variable: titles.
-     *
-     * It keeps an object for the titles of the report sections.
-     */
-    titles = {
-        sourceList: '1. Quellenübersicht',
-        sourceDescription: '2. Quellenbeschreibung',
-        sourceEvaluation: '3. Quellenbewertung',
-        tka: '4. Textkritische Anmerkungen',
-    };
-
-    /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
+export class EditionReportComponent {
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -85,117 +41,35 @@ export class EditionReportComponent implements OnInit {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _router.
+     * Private readonly injection variable: _editionViewService.
      *
-     * It keeps the instance of the injected Angular Router.
+     * It keeps the instance of the injected EditionViewService.
      */
-    private readonly _router: any = inject(Router);
+    private readonly _editionViewService = inject(EditionViewService);
 
     /**
-     * Getter variable: editionRouteConstants.
+     * Readonly signal: selectedEditionComplex.
      *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
-    }
+     * It holds the state of the selected edition complex.
+     */
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Readonly signal: viewData.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It holds the state of the report view data.
      */
-    ngOnInit() {
-        this.getEditionReportData();
-    }
+    readonly viewData = this._editionViewService.reportViewData;
 
     /**
-     * Public method: getEditionReportData.
+     * Readonly variable: reportTitles.
      *
-     * It calls the EditionDataService to provide
-     * the data for the edition report.
-     *
-     * @returns {void} Sets the editionReportData observable.
+     * It keeps an object for the titles of the report sections.
      */
-    getEditionReportData(): void {
-        this.editionReportData$ = this._editionStateService.getSelectedEditionComplex().pipe(
-            switchMap((complex: EditionComplex) => {
-                this.editionComplex = complex;
-                return this._editionDataService.getEditionReportData(this.editionComplex);
-            }),
-            catchError(err => {
-                this.errorObject = err;
-                return EMPTY;
-            })
-        );
-    }
-
-    /**
-     * Public method: onModalOpen.
-     *
-     * It opens the {@link ModalComponent} with a given id of a modal snippet text.
-     *
-     * @param {string} id The given modal snippet id.
-     * @returns {void} Opens the modal with the snippet id.
-     */
-    onModalOpen(id: string): void {
-        if (!id) {
-            return;
-        }
-        this.modal.open(id);
-    }
-
-    /**
-     * Public method: onReportFragmentNavigate.
-     *
-     * It navigates to the '/report/' route using the provided fragmentId
-     * within the context of an edition complex identified by the provided complexId.
-     *
-     * @param {object}  reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Navigates to the edition report.
-     */
-    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
-        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
-        const navigationExtras: NavigationExtras = {
-            fragment: reportIds?.fragmentId ?? '',
-        };
-
-        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
-    }
-
-    /**
-     * Public method: onSvgSheetSelect.
-     *
-     * It navigates to the '/sheet/' route using the provided sheetId
-     * within the context of an edition complex identified by the provided complexId.
-     *
-     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
-     * @returns {void} Navigates to the edition sheets.
-     */
-    onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        const sheetRoute = this.editionRouteConstants.EDITION_SHEETS.route;
-        const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetIds?.sheetId ?? '' },
-            // .queryParamsHandling: '',
-        };
-
-        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
-    }
-
-    /**
-     * Private method: _navigateWithComplexId.
-     *
-     * It navigates to a target route using the provided complexId.
-     *
-     * @param {string} complexId The given complex id.
-     * @param {string} targetRoute The given target route.
-     * @param {NavigationExtras} navigationExtras The given navigation extras.
-     * @returns {void} Navigates to the target route.
-     */
-    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
-
-        this._router.navigate([complexRoute, targetRoute], navigationExtras);
-    }
+    readonly reportTitles = {
+        sourceList: '1. Quellenübersicht',
+        sourceDesc: '2. Quellenbeschreibung',
+        sourceEvaluation: '3. Quellenbewertung',
+        tka: '4. Textkritische Anmerkungen',
+    } as const;
 }

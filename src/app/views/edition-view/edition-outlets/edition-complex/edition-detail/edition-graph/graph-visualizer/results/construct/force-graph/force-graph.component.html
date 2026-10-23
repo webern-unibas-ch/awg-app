@@ -1,0 +1,27 @@
+<div class="awg-force-graph-container" [style.height.px]="height()">
+    <div class="awg-force-graph-icon-bar">
+        <!-- Slider -->
+        <awg-zoom-slider
+            class="awg-force-graph-zoom-slider float-start mb-3"
+            [zoomConfig]="zoomConfig"
+            [(zoomValue)]="zoomValue"
+            [hasFitButton]="true"
+            (fitRequest)="graphCanvas.zoomToFit()"
+            (resetRequest)="graphCanvas.resetZoom()" />
+
+        <!-- Limit -->
+        <awg-force-graph-limit
+            class="awg-force-graph-limit-container float-end my-auto"
+            [tripleCount]="resultGraph().tripleCount"
+            [(limit)]="limit" />
+    </div>
+
+    <!-- Graph -->
+    <awg-force-graph-canvas
+        #graphCanvas
+        class="awg-force-graph-canvas-container"
+        [resultGraph]="limitedResultGraph()"
+        [zoomConfig]="zoomConfig"
+        [(zoomValue)]="zoomValue"
+        (clickedNodeRequest)="clickedNodeRequest.emit($event)" />
+</div>

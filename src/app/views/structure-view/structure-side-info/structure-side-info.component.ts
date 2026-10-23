@@ -1,0 +1,35 @@
+import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
+
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
+import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
+
+/**
+ * The StructureSideInfo component.
+ *
+ * It contains the side-info section of the structure view
+ * showing author and last modification date information.
+ */
+@Component({
+    selector: 'awg-structure-info',
+    templateUrl: './structure-side-info.component.html',
+    styleUrl: './structure-side-info.component.scss',
+    imports: [DatePipe, ExternalLinkDirective, MetaIdentifierBadgesComponent],
+})
+export class StructureSideInfoComponent {
+    /**
+     * Readonly variable: structureSideInfoHeader.
+     *
+     * It keeps the header for the structure side info.
+     */
+    readonly structureSideInfoHeader = 'Strukturmodell';
+
+    /**
+     * Readonly variable: structureMetaData.
+     *
+     * It keeps the metadata for the structure side info.
+     */
+    readonly structureMetaData = META_DATA[MetaSectionTypes.structure];
+}

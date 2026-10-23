@@ -1,12 +1,13 @@
-import { Component, DebugElement, DOCUMENT, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
+import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -18,81 +19,16 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-core/services';
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalCommentary, TextcriticsList } from '@awg-views/edition-view/models';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { Textcritics, TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
+import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/shared/disclaimer/edition-disclaimer-workeditions.component';
+import { EditionTkaEvaluationsComponent } from '@awg-views/edition-view/shared/tka/evaluations/edition-tka-evaluations.component';
+import { EditionTkaLabelComponent } from '@awg-views/edition-view/shared/tka/label/edition-tka-label.component';
+import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/table/edition-tka-table.component';
 
 import { TextcriticsListComponent } from './textcritics-list.component';
-
-// Mock components
-@Component({
-    selector: 'awg-disclaimer-workeditions',
-    template: '',
-    standalone: false,
-})
-class DisclaimerWorkeditionsStubComponent {}
-
-@Component({
-    selector: 'awg-edition-tka-evaluations',
-    template: '',
-    standalone: false,
-})
-class EditionTkaEvaluationsStubComponent {
-    @Input()
-    evaluations: string[];
-    @Output()
-    navigateToReportFragmentRequest: EventEmitter<{
-        complexId: string;
-        fragmentId: string;
-    }> = new EventEmitter();
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{
-        complexId: string;
-        sheetId: string;
-    }> = new EventEmitter();
-}
-
-@Component({
-    selector: 'awg-edition-tka-label',
-    template: '',
-    standalone: false,
-})
-class EditionTkaLabelStubComponent {
-    @Input()
-    id: string;
-    @Input()
-    labelType: 'evaluation' | 'commentary';
-}
-
-@Component({
-    selector: 'awg-edition-tka-table',
-    template: '',
-    standalone: false,
-})
-class EditionTkaTableStubComponent {
-    @Input()
-    commentary: TextcriticalCommentary;
-    @Input()
-    isCorrections = false;
-    @Input()
-    isRowTable = false;
-    @Input()
-    isSketchId = false;
-    @Output()
-    navigateToReportFragmentRequest: EventEmitter<{
-        complexId: string;
-        fragmentId: string;
-    }> = new EventEmitter();
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{
-        complexId: string;
-        sheetId: string;
-    }> = new EventEmitter();
-}
 
 describe('TextcriticsListComponent (DONE)', () => {
     let component: TextcriticsListComponent;
@@ -100,71 +36,66 @@ describe('TextcriticsListComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockDocument: Document;
+    let mockNavigationService: Partial<EditionNavigationService>;
+
+    let selectSvgSheetSpy: Spy;
+    let serviceNavigateToSvgSheetSpy: Spy;
 
     let expectedComplexId: string;
     let expectedNextComplexId: string;
-    let expectedReportFragment: string;
-    let expectedModalSnippet: string;
     let expectedNextSheetId: string;
     let expectedSheetId: string;
-    let expectedTextcriticsData: TextcriticsList;
-
-    let navigateToReportFragmentSpy: Spy;
-    let navigateToReportFragmentRequestEmitSpy: Spy;
-    let openModalSpy: Spy;
-    let openModalRequestEmitSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
-
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
+    let expectedTextcriticsListData: TextcriticsList;
 
     beforeEach(async () => {
+        // Mock services
+        mockNavigationService = {
+            navigateToSvgSheet: vi.fn(),
+        };
+
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule],
-            declarations: [
+            imports: [
+                CompileHtmlDirective,
+                EditionDisclaimerWorkeditionsComponent,
+                EditionTkaEvaluationsComponent,
+                EditionTkaLabelComponent,
+                EditionTkaTableComponent,
                 TextcriticsListComponent,
-                CompileHtmlComponent,
-                DisclaimerWorkeditionsStubComponent,
-                EditionTkaEvaluationsStubComponent,
-                EditionTkaLabelStubComponent,
-                EditionTkaTableStubComponent,
+                NgbAccordionModule,
             ],
-            providers: [UtilityService],
-        }).compileComponents();
+            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
+        })
+            .overrideComponent(EditionDisclaimerWorkeditionsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaEvaluationsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaLabelComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaTableComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(TextcriticsListComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
+
+        // Service spies
+        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
 
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedReportFragment = 'source_A';
-        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
-        expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
-        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsData);
+        expectedNextSheetId = 'test_item_id_2';
+        expectedTextcriticsListData = structuredClone(mockEditionData.mockTextcriticsListData);
 
-        // Spies
-        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
-        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
-        openModalSpy = vi.spyOn(component, 'openModal');
-        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
+        // Create component fixture
+        fixture = TestBed.createComponent(TextcriticsListComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
-        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
     });
 
     afterEach(() => {
@@ -176,12 +107,10 @@ describe('TextcriticsListComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `textcriticsData`', () => {
-            expect(component.textcriticsData).toBeUndefined();
-        });
+        it('... should throw due to missing required input signal `textcriticsListData`', () => {
+            expectToBe(isSignal(component.textcriticsListData), true);
 
-        it('... should have `ref`', () => {
-            expectToEqual(component.ref, component);
+            expect(() => component.textcriticsListData()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -193,55 +122,63 @@ describe('TextcriticsListComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.textcriticsData = structuredClone(expectedTextcriticsData);
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('textcriticsListData', structuredClone(expectedTextcriticsListData));
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `textcriticsData`', () => {
-            expectToEqual(component.textcriticsData, expectedTextcriticsData);
+        it('... should have input signal `textcriticsListData` to hold the expected data', () => {
+            expectToEqual(component.textcriticsListData(), expectedTextcriticsListData);
         });
 
         describe('VIEW', () => {
+            it('... should render no content if `textcriticsListData` is not available', async () => {
+                fixture.componentRef.setInput('textcriticsListData', null);
+
+                await detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+            });
+
             it('... should contain one div.accordion', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             it('... should contain as many items in div.accordion as there are textcritics', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', totalItems, totalItems);
             });
 
             it('... should contain item header with collapsed body', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-header`,
                     1,
                     1
                 );
                 getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );
 
                 const itemBodyDes1 = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse`,
                     1,
                     1
                 );
                 const itemBodyDes2 = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse`,
                     1,
                     1
                 );
@@ -252,64 +189,78 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl2.classList, 'collapse');
             });
 
-            it('... should contain an item header button with CompileHtmlComponent', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
-                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
+            describe('... item header buttons', () => {
+                let itemHeaderBtnDes: DebugElement[];
+                let expectedTextcritics: Textcritics[];
 
-                itemDes.forEach((itemDe, index) => {
-                    const itemHeaderDes = getAndExpectDebugElementByCss(
-                        itemDe,
-                        `div#${expectedTextcriticsData.textcritics[index].id} > div.accordion-header`,
-                        1,
-                        1
-                    );
+                beforeEach(() => {
+                    expectedTextcritics = expectedTextcriticsListData.textcritics;
+                    const totalItems = expectedTextcritics.length;
 
-                    const btnDes = getAndExpectDebugElementByCss(
-                        itemHeaderDes[0],
-                        'div.accordion-button > button.btn',
-                        1,
-                        1
-                    );
-                    getAndExpectDebugElementByDirective(btnDes[0], CompileHtmlComponent, 1, 1);
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
+
+                    itemHeaderBtnDes = [];
+                    itemDes.forEach((itemDe, index) => {
+                        const expectedId = expectedTextcritics[index].id;
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
+                            itemDe,
+                            `div#${expectedId} > div.accordion-header`,
+                            1,
+                            1
+                        );
+
+                        const btnDes = getAndExpectDebugElementByCss(
+                            itemHeaderDes[0],
+                            'div.accordion-button > button.btn',
+                            1,
+                            1
+                        );
+
+                        itemHeaderBtnDes.push(btnDes[0]);
+                    });
                 });
-            });
 
-            it('... should display item header button', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
-                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
+                it('... should contain an item header button with CompileHtmlDirective for each textcritics', () => {
+                    itemHeaderBtnDes.forEach(itemHeaderBtnDe => {
+                        getAndExpectDebugElementByDirective(itemHeaderBtnDe, CompileHtmlDirective, 1, 1);
+                    });
+                });
 
-                itemDes.forEach((itemDe, index) => {
-                    const itemHeaderDes = getAndExpectDebugElementByCss(
-                        itemDe,
-                        `div#${expectedTextcriticsData.textcritics[index].id} > div.accordion-header`,
-                        1,
-                        1
-                    );
+                it('... should pass down label to CompileHtmlDirective', () => {
+                    itemHeaderBtnDes.forEach((itemHeaderBtnDe, index) => {
+                        const directiveDes = getAndExpectDebugElementByDirective(
+                            itemHeaderBtnDe,
+                            CompileHtmlDirective,
+                            1,
+                            1
+                        );
+                        const directiveIns = directiveDes[0].injector.get(CompileHtmlDirective);
 
-                    const btnDes = getAndExpectDebugElementByCss(
-                        itemHeaderDes[0],
-                        'div.accordion-button > button.btn',
-                        1,
-                        1
-                    );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
+                        expectToBe(directiveIns.htmlContent(), expectedTextcritics[index].label);
+                    });
+                });
 
-                    const expectedButtonLabel = mockDocument.createElement('span');
-                    expectedButtonLabel.innerHTML = expectedTextcriticsData.textcritics[index].label;
+                it('... should display label of item header button', () => {
+                    itemHeaderBtnDes.forEach((itemHeaderBtnDe, index) => {
+                        const btnEl: HTMLButtonElement = itemHeaderBtnDe.nativeElement;
 
-                    expect(btnEl.classList.contains('text-start')).toBe(true);
-                    expectToBe(btnEl.textContent.trim(), expectedButtonLabel.textContent.trim());
+                        const expectedButtonLabel = mockDocument.createElement('span');
+                        expectedButtonLabel.innerHTML = expectedTextcritics[index].label;
+
+                        expectToContain(btnEl.classList, 'text-start');
+                        expectToBe(btnEl.textContent.trim(), expectedButtonLabel.textContent.trim());
+                    });
                 });
             });
 
             it('... should contain a button group with sheet button', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 itemDes.forEach((itemDe, index) => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDe,
-                        `div#${expectedTextcriticsData.textcritics[index].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[index].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -325,32 +276,35 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     const expectedButtonLabel = 'Zum edierten Notentext';
 
-                    expect(btnEl.classList.contains('btn-outline-info')).toBe(true);
+                    expectToContain(btnEl.classList, 'btn-outline-info');
                     expectToBe(btnEl.disabled, false);
                     expectToBe(btnEl.textContent.trim(), expectedButtonLabel);
                 });
             });
 
             describe('... if textcritics are related to work edition', () => {
-                let textcriticsDataWithWorkEdition: TextcriticsList;
+                let textcriticsListDataWithWorkEdition: TextcriticsList;
 
                 beforeEach(async () => {
-                    textcriticsDataWithWorkEdition = structuredClone(expectedTextcriticsData);
-                    textcriticsDataWithWorkEdition.textcritics[0].id = 'op12_WE';
-                    textcriticsDataWithWorkEdition.textcritics[1].id = 'op25_WE';
+                    textcriticsListDataWithWorkEdition = structuredClone(expectedTextcriticsListData);
+                    textcriticsListDataWithWorkEdition.textcritics[0].id = 'op12_WE';
+                    textcriticsListDataWithWorkEdition.textcritics[1].id = 'op25_WE';
 
-                    component.textcriticsData = structuredClone(textcriticsDataWithWorkEdition);
+                    fixture.componentRef.setInput(
+                        'textcriticsListData',
+                        structuredClone(textcriticsListDataWithWorkEdition)
+                    );
                     await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain another button with DisclaimerWorkeditions component in button group ', () => {
-                    const totalItems = expectedTextcriticsData.textcritics.length;
+                    const totalItems = expectedTextcriticsListData.textcritics.length;
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                     itemDes.forEach((itemDe, index) => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             itemDe,
-                            `div#${textcriticsDataWithWorkEdition.textcritics[index].id} > div.accordion-header`,
+                            `div#${textcriticsListDataWithWorkEdition.textcritics[index].id} > div.accordion-header`,
                             1,
                             1
                         );
@@ -365,21 +319,21 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
                         const expectedButtonLabel = 'Zum edierten Notentext';
 
-                        getAndExpectDebugElementByDirective(btnDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(btnDes[0], EditionDisclaimerWorkeditionsComponent, 1, 1);
 
-                        expect(btnEl1.classList.contains('btn-outline-info')).toBe(true);
+                        expectToContain(btnEl1.classList, 'btn-outline-info');
                         expectToBe(btnEl1.textContent.trim(), expectedButtonLabel);
                     });
                 });
 
                 it('... should disable sheet button', () => {
-                    const totalItems = expectedTextcriticsData.textcritics.length;
+                    const totalItems = expectedTextcriticsListData.textcritics.length;
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                     itemDes.forEach((itemDe, index) => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             itemDe,
-                            `div#${textcriticsDataWithWorkEdition.textcritics[index].id} > div.accordion-header`,
+                            `div#${textcriticsListDataWithWorkEdition.textcritics[index].id} > div.accordion-header`,
                             1,
                             1
                         );
@@ -394,9 +348,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
                         const expectedButtonLabel = 'Zum edierten Notentext';
 
-                        getAndExpectDebugElementByDirective(btnDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(btnDes[0], EditionDisclaimerWorkeditionsComponent, 1, 1);
 
-                        expect(btnEl1.classList.contains('btn-outline-info')).toBe(true);
+                        expectToContain(btnEl1.classList, 'btn-outline-info');
                         expectToBe(btnEl1.disabled, true);
                         expectToBe(btnEl1.textContent.trim(), expectedButtonLabel);
                     });
@@ -404,23 +358,22 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should toggle first item body on click on first header', async () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 const headerDes0 = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-header`,
                     1,
                     1
                 );
 
                 const btnDes = getAndExpectDebugElementByCss(headerDes0[0], 'div.accordion-button > button.btn', 1, 1);
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Item body is closed
                 let itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse`,
                     1,
                     1,
                     'collapsed'
@@ -430,13 +383,12 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'collapse');
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse`,
                     1,
                     1,
                     'open'
@@ -446,13 +398,12 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'show');
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse`,
                     1,
                     1,
                     'collapsed'
@@ -463,23 +414,22 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should toggle second item body on click on second header', async () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 const headerDes1 = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );
 
                 const btnDes = getAndExpectDebugElementByCss(headerDes1[0], 'div.accordion-button > button.btn', 1, 1);
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Item body is closed
                 let itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse`,
                     1,
                     1,
                     'collapsed'
@@ -489,13 +439,12 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'collapse');
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse`,
                     1,
                     1,
                     'open'
@@ -505,13 +454,12 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'show');
 
                 // Click header button
-                click(btnEl as HTMLElement);
-                await detectChangesOnPush(fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse`,
                     1,
                     1,
                     'collapsed'
@@ -526,13 +474,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Open bodies
                     const headerDes0 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-header`,
                         1,
                         1
                     );
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -549,18 +497,15 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const btnEl0: HTMLButtonElement = btnDes0[0].nativeElement;
-                    const btnEl1: HTMLButtonElement = btnDes1[0].nativeElement;
 
                     // Click header buttons to open body
-                    click(btnEl0 as HTMLElement);
-                    click(btnEl1 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes0[0], fixture);
+                    await clickAndAwaitChanges(btnDes1[0], fixture);
                 });
 
                 describe('...  if evaluations array is empty', () => {
-                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaEvaluationsComponent', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[0];
+                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent (hollow), but no EditionTkaEvaluationsComponent (hollow)', () => {
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -572,13 +517,12 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
                         const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
-
-                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsComponent, 0, 0);
                     });
 
                     it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -595,13 +539,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const smallEl: HTMLElement = smallDes[0].nativeElement;
 
                         expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
-                        expect(smallEl.classList.contains('text-muted')).toBe(true);
+                        expectToContain(smallEl.classList, 'text-muted');
                     });
                 });
 
                 describe('...  if evaluations array is not empty', () => {
-                    it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaEvaluationsComponent', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[1];
+                    it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent (hollow) and EditionTkaEvaluationsComponent (hollow)', () => {
+                        const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -613,15 +557,14 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
                         const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
-
-                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsComponent, 1, 1);
                     });
 
-                    it('... should pass down `id` data to first EditionTkaLabelComponent (stubbed)', () => {
+                    it('... should pass down the correct values to first EditionTkaLabelComponent (hollow)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -629,61 +572,32 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
                         const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                        const labelDes = getAndExpectDebugElementByDirective(
-                            pDes[0],
-                            EditionTkaLabelStubComponent,
-                            1,
-                            1
-                        );
-                        const labelCmp = labelDes[0].injector.get(
-                            EditionTkaLabelStubComponent
-                        ) as EditionTkaLabelStubComponent;
+                        const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
+                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
 
-                        expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
+                        expectToBe(labelCmp.id(), expectedTextcriticsListData.textcritics[0].id);
+                        expectToBe(labelCmp.labelType(), 'evaluation');
                     });
 
-                    it('... should pass down `labelType` data to first EditionTkaLabelComponent (stubbed)', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
-                            1,
-                            1,
-                            'open'
-                        );
-                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
-                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
-
-                        const labelDes = getAndExpectDebugElementByDirective(
-                            pDes[0],
-                            EditionTkaLabelStubComponent,
-                            1,
-                            1
-                        );
-                        const labelCmp = labelDes[0].injector.get(
-                            EditionTkaLabelStubComponent
-                        ) as EditionTkaLabelStubComponent;
-
-                        expectToBe(labelCmp.labelType, 'evaluation');
-                    });
-
-                    it('... should pass down `evaluations` data to EditionTkaEvaluationsComponent (stubbed)', () => {
+                    it('... should pass down the correct values to EditionTkaEvaluationsComponent (hollow)', () => {
                         const evaluationsDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionTkaEvaluationsStubComponent,
+                            EditionTkaEvaluationsComponent,
                             1,
                             1
                         );
-                        const evaluationsCmp = evaluationsDes[0].injector.get(
-                            EditionTkaEvaluationsStubComponent
-                        ) as EditionTkaEvaluationsStubComponent;
+                        const evaluationsCmp = evaluationsDes[0].injector.get(EditionTkaEvaluationsComponent);
 
-                        expectToEqual(evaluationsCmp.evaluations, expectedTextcriticsData.textcritics[1].evaluations);
+                        expectToEqual(
+                            evaluationsCmp.evaluations(),
+                            expectedTextcriticsListData.textcritics[0].evaluations
+                        );
                     });
                 });
 
                 describe('...  if commmentary is an empty object', () => {
-                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaTableComponent', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[0];
+                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent (hollow), but no EditionTkaTableComponent (hollow)', () => {
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -695,13 +609,12 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
                         const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
-
-                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableComponent, 0, 0);
                     });
 
                     it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -718,13 +631,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const smallEl: HTMLElement = smallDes[0].nativeElement;
 
                         expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
-                        expect(smallEl.classList.contains('text-muted')).toBe(true);
+                        expectToContain(smallEl.classList, 'text-muted');
                     });
                 });
 
                 describe('...  if commentary is not empty', () => {
-                    it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent and EditionTkaTableComponent', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[1];
+                    it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent (hollow) and EditionTkaTableComponent (hollow)', () => {
+                        const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -736,15 +649,14 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
                         const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
-
-                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableComponent, 1, 1);
                     });
 
-                    it('... should pass down `id` data to second EditionTkaLabelComponent (stubbed)', () => {
+                    it('... should pass down the correct values to second EditionTkaLabelComponent (hollow)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -752,356 +664,43 @@ describe('TextcriticsListComponent (DONE)', () => {
                         const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
                         const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                        const labelDes = getAndExpectDebugElementByDirective(
-                            pDes[0],
-                            EditionTkaLabelStubComponent,
-                            1,
-                            1
-                        );
-                        const labelCmp = labelDes[0].injector.get(
-                            EditionTkaLabelStubComponent
-                        ) as EditionTkaLabelStubComponent;
+                        const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
+                        const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
 
-                        expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
+                        expectToBe(labelCmp.id(), expectedTextcriticsListData.textcritics[0].id);
+                        expectToBe(labelCmp.labelType(), 'commentary');
                     });
 
-                    it('... should pass down `labelType` data to second EditionTkaLabelComponent (stubbed)', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
-                            1,
-                            1,
-                            'open'
-                        );
-                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
-                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                    it('... should pass down the correct values to EditionTkaTableComponent (hollow)', () => {
+                        const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableComponent, 1, 1);
+                        const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent);
 
-                        const labelDes = getAndExpectDebugElementByDirective(
-                            pDes[0],
-                            EditionTkaLabelStubComponent,
-                            1,
-                            1
+                        expectToEqual(
+                            tableCmp.displayedCommentary(),
+                            expectedTextcriticsListData.textcritics[0].commentary
                         );
-                        const labelCmp = labelDes[0].injector.get(
-                            EditionTkaLabelStubComponent
-                        ) as EditionTkaLabelStubComponent;
-
-                        expectToBe(labelCmp.labelType, 'commentary');
+                        expectToEqual(tableCmp.id(), expectedTextcriticsListData.textcritics[0].id);
+                        expectToEqual(tableCmp.isRowtable(), expectedTextcriticsListData.textcritics[0].rowtable);
                     });
 
-                    it('... should pass down `commentary` to EditionTkaTableComponent (stubbed)', () => {
-                        const tableDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionTkaTableStubComponent,
-                            1,
-                            1
+                    it('... should pass down false to EditionTkaTableComponent (hollow) if rowtable is undefined', async () => {
+                        const textcriticsListDataWithNoRowtable = structuredClone(expectedTextcriticsListData);
+                        textcriticsListDataWithNoRowtable.textcritics[0].rowtable = undefined;
+
+                        fixture.componentRef.setInput('textcriticsListData', textcriticsListDataWithNoRowtable);
+                        await detectChangesOnPush(fixture);
+
+                        const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableComponent, 1, 1);
+                        const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent);
+
+                        expectToEqual(
+                            tableCmp.displayedCommentary(),
+                            textcriticsListDataWithNoRowtable.textcritics[0].commentary
                         );
-                        const tableCmp = tableDes[0].injector.get(
-                            EditionTkaTableStubComponent
-                        ) as EditionTkaTableStubComponent;
-
-                        expectToEqual(tableCmp.commentary, expectedTextcriticsData.textcritics[1].commentary);
-                    });
-
-                    it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
-                        const tableDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionTkaTableStubComponent,
-                            1,
-                            1
-                        );
-                        const tableCmp = tableDes[0].injector.get(
-                            EditionTkaTableStubComponent
-                        ) as EditionTkaTableStubComponent;
-
-                        expectToEqual(tableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
-                    });
-
-                    it('... should pass down `isSketchId` to EditionTkaTableComponent (stubbed)', () => {
-                        const tableDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionTkaTableStubComponent,
-                            1,
-                            1
-                        );
-                        const tableCmp = tableDes[0].injector.get(
-                            EditionTkaTableStubComponent
-                        ) as EditionTkaTableStubComponent;
-
-                        expectToEqual(tableCmp.isSketchId, false);
+                        expectToEqual(tableCmp.id(), textcriticsListDataWithNoRowtable.textcritics[0].id);
+                        expectToBe(tableCmp.isRowtable(), false);
                     });
                 });
-            });
-        });
-
-        describe('#isWorkEditionId()', () => {
-            it('... should have a method `isWorkEditionId`', () => {
-                expect(component.isWorkEditionId).toBeDefined();
-            });
-
-            describe('... should return false if', () => {
-                it('... id is undefined', () => {
-                    const result = component.isWorkEditionId(undefined);
-
-                    expect(result).toBe(false);
-                });
-
-                it('... id is null', () => {
-                    const result = component.isWorkEditionId(null);
-
-                    expect(result).toBe(false);
-                });
-
-                it('... id is empty string', () => {
-                    const result = component.isWorkEditionId('');
-
-                    expect(result).toBe(false);
-                });
-
-                it('... id is not a work edition id', () => {
-                    const result = component.isWorkEditionId('test_id');
-
-                    expect(result).toBe(false);
-                });
-            });
-
-            it('... should return true if id is a work edition id', () => {
-                const result = component.isWorkEditionId('op12_WE');
-
-                expect(result).toBe(true);
-            });
-        });
-
-        describe('#navigateToReportFragment()', () => {
-            it('... should have a method `navigateToReportFragment`', () => {
-                expect(component.navigateToReportFragment).toBeDefined();
-            });
-
-            describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsComponent', async () => {
-                    // Open second item
-                    const headerDes1 = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
-                        1,
-                        1
-                    );
-
-                    const btnDes = getAndExpectDebugElementByCss(
-                        headerDes1[0],
-                        'div.accordion-button > button.btn',
-                        1,
-                        1
-                    );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
-
-                    const evaluationsDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaEvaluationsStubComponent,
-                        1,
-                        1
-                    );
-                    const evaluationsCmp = evaluationsDes[0].injector.get(
-                        EditionTkaEvaluationsStubComponent
-                    ) as EditionTkaEvaluationsStubComponent;
-
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
-                    evaluationsCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
-
-                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
-                });
-
-                it('... EditionTkaTableComponent', async () => {
-                    // Open second item
-                    const headerDes1 = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
-                        1,
-                        1
-                    );
-
-                    const btnDes = getAndExpectDebugElementByCss(
-                        headerDes1[0],
-                        'div.accordion-button > button.btn',
-                        1,
-                        1
-                    );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
-
-                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
-                    const tableCmp = tableDes[0].injector.get(
-                        EditionTkaTableStubComponent
-                    ) as EditionTkaTableStubComponent;
-
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
-                    tableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
-
-                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
-                });
-            });
-
-            describe('... should not emit anything if', () => {
-                it('... parameter is undefined', () => {
-                    component.navigateToReportFragment(undefined);
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... parameter is null', () => {
-                    component.navigateToReportFragment(null);
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... fragment id is undefined', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... fragment id is null', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... fragment id is empty string', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-            });
-
-            it('... should emit id of selected report fragment within same complex', () => {
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-                component.navigateToReportFragment(expectedReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
-
-                const otherFragment = 'source_B';
-                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
-            });
-
-            it('... should emit id of selected report fragment for another complex', () => {
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-                component.navigateToReportFragment(expectedReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
-
-                const otherFragment = 'source_B';
-                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
-            });
-        });
-
-        describe('#openModal()', () => {
-            it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeDefined();
-            });
-
-            describe('... should trigger on event from', () => {
-                it('... EditionTkaEvaluationsComponent', async () => {
-                    // Open second item
-                    const headerDes1 = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
-                        1,
-                        1
-                    );
-
-                    const btnDes = getAndExpectDebugElementByCss(
-                        headerDes1[0],
-                        'div.accordion-button > button.btn',
-                        1,
-                        1
-                    );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
-
-                    const evaluationsDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaEvaluationsStubComponent,
-                        1,
-                        1
-                    );
-                    const evaluationsCmp = evaluationsDes[0].injector.get(
-                        EditionTkaEvaluationsStubComponent
-                    ) as EditionTkaEvaluationsStubComponent;
-
-                    evaluationsCmp.openModalRequest.emit(expectedModalSnippet);
-
-                    expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-                });
-
-                it('... EditionTkaTableComponent', async () => {
-                    // Open second item
-                    const headerDes1 = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
-                        1,
-                        1
-                    );
-
-                    const btnDes = getAndExpectDebugElementByCss(
-                        headerDes1[0],
-                        'div.accordion-button > button.btn',
-                        1,
-                        1
-                    );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
-
-                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
-                    const tableCmp = tableDes[0].injector.get(
-                        EditionTkaTableStubComponent
-                    ) as EditionTkaTableStubComponent;
-
-                    tableCmp.openModalRequest.emit(expectedModalSnippet);
-
-                    expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-                });
-            });
-
-            describe('... should not emit anything if ', () => {
-                it('... id is undefined', () => {
-                    component.openModal(undefined);
-
-                    expectSpyCall(openModalRequestEmitSpy, 0);
-                });
-
-                it('... id is null', () => {
-                    component.openModal(undefined);
-
-                    expectSpyCall(openModalRequestEmitSpy, 0, null);
-                });
-                it('... id is empty string', () => {
-                    component.openModal('');
-
-                    expectSpyCall(openModalRequestEmitSpy, 0);
-                });
-            });
-
-            it('... should emit id of given modal snippet', () => {
-                component.openModal(expectedModalSnippet);
-
-                expectSpyCall(openModalRequestEmitSpy, 1, expectedModalSnippet);
             });
         });
 
@@ -1110,111 +709,77 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            describe('... should trigger on event from ...', () => {
-                it('...  EditionTkaEvaluationsComponent', async () => {
-                    // Open second item
-                    const headerDes1 = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+            it('... should trigger on click on sheet button', async () => {
+                const totalItems = expectedTextcriticsListData.textcritics.length;
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
+
+                for (const [index, itemDe] of itemDes.entries()) {
+                    const expectedId = expectedTextcriticsListData.textcritics[index].id;
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
+                        itemDe,
+                        `div#${expectedId} > div.accordion-header`,
                         1,
                         1
                     );
 
-                    const btnDes = getAndExpectDebugElementByCss(
-                        headerDes1[0],
-                        'div.accordion-button > button.btn',
+                    const btnGrpDes = getAndExpectDebugElementByCss(
+                        itemHeaderDes[0],
+                        'div.accordion-button > div.btn-group',
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
+                    const btnDes = getAndExpectDebugElementByCss(btnGrpDes[0], 'button.btn', 1, 1);
 
-                    // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
 
-                    const evaluationsDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaEvaluationsStubComponent,
-                        1,
-                        1
-                    );
-                    const evaluationsCmp = evaluationsDes[0].injector.get(
-                        EditionTkaEvaluationsStubComponent
-                    ) as EditionTkaEvaluationsStubComponent;
-
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                    evaluationsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                    expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                });
-
-                it('... EditionTkaTableComponent', async () => {
-                    // Open second item
-                    const headerDes1 = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
-                        1,
-                        1
-                    );
-
-                    const btnDes = getAndExpectDebugElementByCss(
-                        headerDes1[0],
-                        'div.accordion-button > button.btn',
-                        1,
-                        1
-                    );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    // Click header buttons to open body
-                    click(btnEl as HTMLElement);
-                    await detectChangesOnPush(fixture);
-
-                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
-                    const tableCmp = tableDes[0].injector.get(
-                        EditionTkaTableStubComponent
-                    ) as EditionTkaTableStubComponent;
-
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                    tableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                    expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                });
+                    expectSpyCall(selectSvgSheetSpy, index + 1, {
+                        complexId: '',
+                        sheetId: expectedId,
+                    });
+                }
             });
 
-            it('... should not emit anything if no id is provided', () => {
-                const expectedSheetIds = undefined;
+            it('... should do nothing if no sheetId is provided', () => {
+                const expectedSheetIds: EditionNavigationSheetTarget = { complexId: 'op25', sheetId: '' };
                 component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-
-                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
             });
 
-            it('... should emit id of selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+            it('... should trigger NavigationService with selected svg sheet within same complex', () => {
+                const expectedSheetIds: EditionNavigationSheetTarget = {
+                    complexId: expectedComplexId,
+                    sheetId: expectedSheetId,
+                };
                 component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
+                const expectedNextSheetIds: EditionNavigationSheetTarget = {
+                    complexId: expectedComplexId,
+                    sheetId: expectedNextSheetId,
+                };
                 component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
             });
 
-            it('... should emit id of selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+            it('... should trigger NavigationService with selected svg sheet for another complex', () => {
+                const expectedSheetIds: EditionNavigationSheetTarget = {
+                    complexId: expectedComplexId,
+                    sheetId: expectedSheetId,
+                };
                 component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
+                const expectedNextSheetIds: EditionNavigationSheetTarget = {
+                    complexId: expectedNextComplexId,
+                    sheetId: expectedNextSheetId,
+                };
                 component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
             });
         });
     });

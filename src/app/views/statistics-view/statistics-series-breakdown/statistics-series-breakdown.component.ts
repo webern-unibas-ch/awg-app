@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { StatisticsSeriesBreakdown } from '@awg-views/statistics-view/models';
-import { StatisticsBreakdownBadgeComponent } from '@awg-views/statistics-view/statistics-breakdown-badge';
-import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
+
+import { StatisticsSeriesBreakdown } from '../models/statistics.model';
+import { StatisticsBreakdownBadgeComponent } from '../statistics-breakdown-badge/statistics-breakdown-badge.component';
+import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
 
 /**
  * The StatisticsSeriesBreakdown component.
@@ -16,25 +17,20 @@ import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/stati
     selector: 'awg-statistics-series-breakdown',
     templateUrl: './statistics-series-breakdown.component.html',
     styleUrl: './statistics-series-breakdown.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, RouterLinkActive, StatisticsBreakdownBadgeComponent, StatisticsProgressBarComponent],
 })
 export class StatisticsSeriesBreakdownComponent {
     /**
-     * Input signal: seriesBreakdown.
+     * Readonly input signal: seriesBreakdown.
      *
      * It holds the series breakdown data.
      */
-    seriesBreakdownData = input.required<StatisticsSeriesBreakdown[]>();
+    readonly seriesBreakdownData = input.required<StatisticsSeriesBreakdown[]>();
 
     /**
-     * Readonly variable: ROUTES.
+     * Readonly variable: editionRouteConstants.
      *
      * It keeps the edition route constants for the router links in the template.
      */
-    readonly ROUTES = {
-        edition: EDITION_ROUTE_CONSTANTS.EDITION,
-        series: EDITION_ROUTE_CONSTANTS.SERIES,
-        section: EDITION_ROUTE_CONSTANTS.SECTION,
-    };
+    readonly editionRouteConstants = EDITION_ROUTE_CONSTANTS;
 }

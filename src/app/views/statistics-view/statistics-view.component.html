@@ -1,5 +1,7 @@
 @if (statisticsData(); as statisticsData) {
     <div class="awg-statistics-view">
+        <awg-button-scroll-to-top />
+
         <div class="container-fluid">
             <div class="row">
                 <main class="col">
@@ -12,16 +14,13 @@
                         </p>
                     </header>
 
-                    <awg-statistics-summary [summaryData]="summaryData()"> </awg-statistics-summary>
+                    <awg-statistics-summary [summaryData]="summaryData()" />
 
-                    <awg-statistics-overall-progress [overallProgressData]="overallProgressData()">
-                    </awg-statistics-overall-progress>
+                    <awg-statistics-overall-progress [overallProgressData]="overallProgressData()" />
 
-                    <awg-statistics-complex-breakdown
-                        [complexBreakdownData]="complexBreakdownData()"></awg-statistics-complex-breakdown>
+                    <awg-statistics-complex-breakdown [complexBreakdownData]="complexBreakdownData()" />
 
-                    <awg-statistics-series-breakdown
-                        [seriesBreakdownData]="statisticsData.seriesBreakdown"></awg-statistics-series-breakdown>
+                    <awg-statistics-series-breakdown [seriesBreakdownData]="statisticsData.seriesBreakdown" />
                 </main>
             </div>
         </div>

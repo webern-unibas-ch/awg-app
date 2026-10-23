@@ -2,13 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
-
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
+import { expectToBe } from '@testing/expect-helper';
 
 import { EditionGlyphService } from './edition-glyph.service';
 
-describe('EditionGlyphService', () => {
+describe('EditionGlyphService (DONE)', () => {
     let editionGlyphService: EditionGlyphService;
 
     beforeEach(() => {
@@ -20,14 +18,12 @@ describe('EditionGlyphService', () => {
         expect(editionGlyphService).toBeTruthy();
     });
 
-    it('... should have `GLYPHS`', () => {
-        expectToEqual(editionGlyphService.GLYPHS, EDITION_GLYPHS_DATA);
-    });
-
     describe('#getGlyph()', () => {
-        const expectGlyphMappings = (glyphMappings: Array<[string, string]>): void => {
+        const expectGlyphMappings = (glyphMappings: [string, string][]): void => {
             glyphMappings.forEach(([alt, hex]) => {
-                expectToBe(editionGlyphService.getGlyph(alt), hex);
+                const glyph = editionGlyphService.getGlyph(alt);
+
+                expectToBe(glyph, hex);
             });
         };
 
@@ -82,10 +78,16 @@ describe('EditionGlyphService', () => {
             expectGlyphMappings([['[ped]', '\uE650']]);
         });
 
-        it('... should return an empty string for an invalid glyph alt value', () => {
-            expectToBe(editionGlyphService.getGlyph(''), '');
-            expectToBe(editionGlyphService.getGlyph('[invalid]'), '');
-            expectToBe(editionGlyphService.getGlyph('[not found]'), '');
+        describe('... should return an empty string for an invalid glyph alt value', () => {
+            it.each([
+                { desc: '', glyphString: '' },
+                { desc: '[invalid]', glyphString: '[invalid]' },
+                { desc: '[not found]', glyphString: '[not found]' },
+            ])('... $desc', ({ glyphString }) => {
+                const glyph = editionGlyphService.getGlyph(glyphString);
+
+                expectToBe(glyph, '');
+            });
         });
     });
 });

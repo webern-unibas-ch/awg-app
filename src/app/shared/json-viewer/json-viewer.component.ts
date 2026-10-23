@@ -1,11 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component, input } from '@angular/core';
+
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap/nav';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 /**
  * The JsonViewer component.
  *
  * It contains a json viewer template
- * (a tabbed card to display json data)
- * that is provided via the {@link SharedModule}.
+ * (a tabbed card to display json data).
  *
  * First tab shows formatted view using ngx-json-viewer
  * and second tab shows plain view using
@@ -14,24 +17,21 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 @Component({
     selector: 'awg-json-viewer',
     templateUrl: './json-viewer.component.html',
-    styleUrls: ['./json-viewer.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    styleUrl: './json-viewer.component.scss',
+    imports: [JsonPipe, NgbNavModule, NgxJsonViewerModule],
 })
 export class JsonViewerComponent {
     /**
-     * Input variable: jsonViewerData.
+     * Readonly input signal: jsonViewerData.
      *
-     * It keeps the data for the json viewer.
+     * It holds the data for the json viewer.
      */
-    @Input()
-    jsonViewerData: unknown;
+    readonly jsonViewerData = input<unknown>();
 
     /**
-     * Input variable: jsonViewerHeader.
+     * Readonly input signal: jsonViewerHeader.
      *
-     * It keeps the header for the json viewer.
+     * It holds the header for the json viewer.
      */
-    @Input()
-    jsonViewerHeader: string;
+    readonly jsonViewerHeader = input('');
 }

@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
-import { StatisticsOverallProgressData } from '@awg-views/statistics-view/models';
-import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
+import { StatisticsOverallProgressData } from '../models/statistics.model';
+import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
 
 /**
  * The StatisticsOverallProgress Component
@@ -13,14 +13,13 @@ import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/stati
     selector: 'awg-statistics-overall-progress',
     templateUrl: './statistics-overall-progress.component.html',
     styleUrl: './statistics-overall-progress.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [StatisticsProgressBarComponent],
 })
 export class StatisticsOverallProgressComponent {
     /**
-     * Input signal: overallProgressData.
+     * Readonly input signal: overallProgressData.
      *
      * It holds the overall progress data.
      */
-    overallProgressData = input.required<StatisticsOverallProgressData>();
+    readonly overallProgressData = input.required<StatisticsOverallProgressData | null>();
 }

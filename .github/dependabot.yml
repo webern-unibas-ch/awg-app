@@ -2,22 +2,33 @@ version: 2
 updates:
     # Maintain dependencies for GitHub Actions
     - package-ecosystem: 'github-actions'
-      directory: '/'
+      directories:
+          - '/'
+          - '/.github/actions/common-node-setup'
       schedule:
-          interval: 'daily'
+          interval: 'weekly'
+      cooldown:
+          default-days: 3
       target-branch: 'develop'
       labels:
           - 'gh actions dependencies'
+      groups:
+          github/codeql-action:
+              patterns:
+                  - 'github/codeql-action/*'
 
     # Maintain dependencies for yarn
     - package-ecosystem: 'npm'
       directory: '/'
       schedule:
-          interval: 'daily'
+          interval: 'weekly'
+      cooldown:
+          default-days: 3
       target-branch: 'develop'
       open-pull-requests-limit: 15
       labels:
           - 'npm dependencies'
+      # a dependency joins the first group it matches
       groups:
           angular-cli/devkit:
               patterns:
@@ -32,7 +43,12 @@ updates:
                   - '@angular/build'
           angular-eslint:
               patterns:
+                  - 'angular-eslint'
                   - '@angular-eslint/*'
+          codemirror:
+              patterns:
+                  - 'codemirror'
+                  - '@codemirror/*'
           fortawesome:
               patterns:
                   - '@fortawesome/*'
@@ -43,4 +59,25 @@ updates:
                   - '@commitlint/*'
           typescript-eslint:
               patterns:
+                  - 'typescript-eslint'
                   - '@typescript-eslint/*'
+          eslint:
+              patterns:
+                  - 'eslint'
+                  - '@eslint/*'
+          vitest:
+              patterns:
+                  - 'vitest'
+                  - '@vitest/*'
+          # remaining minor and patch updates of dev dependencies in one PR
+          npm-dev-minor-patch:
+              dependency-type: 'development'
+              patterns:
+                  - '*'
+              update-types:
+                  - 'minor'
+                  - 'patch'
+          npm-security:
+              applies-to: security-updates
+              patterns:
+                  - '*'

@@ -1,0 +1,38 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
+:host {
+    display: block;
+    height: 100%;
+    box-shadow: theme.$viewer-box-shadow;
+    border: 1px solid theme.$frame-border-color;
+    border-radius: 5px;
+}
+
+/* Svg sheet overlays (injected at runtime, so not covered by view encapsulation) */
+:host ::ng-deep {
+    .awg-edition-sheet-viewer-svg {
+        // Only the box path, not the label glyphs: the first path of the group
+        // (nested in up to two inner groups in some svg files).
+        // Note: `!important` is needed to override the inline fill style of the svg files.
+        g.link-box {
+            $box-path: '> path:first-child, > g:first-child > path:first-child, > g:first-child > g:first-child > path:first-child';
+
+            cursor: pointer;
+
+            #{$box-path} {
+                fill: #dddddd !important;
+            }
+
+            &:hover,
+            &:focus-visible {
+                #{$box-path} {
+                    fill: #eeeeee !important;
+                }
+            }
+        }
+
+        rect.tkk-overlay-group-box {
+            cursor: pointer;
+        }
+    }
+}

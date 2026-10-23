@@ -4,14 +4,16 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table" style="width: 100%">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col" rowspan="2" class="text-center align-bottom" style="width: 15%">
+                        <th scope="col" rowspan="2" class="awg-statistics-label-col text-center align-bottom">
                             Series / Section
                         </th>
                         <th scope="colgroup" colspan="3" class="text-center table-light border-bottom-0">Complexes</th>
-                        <th scope="col" rowspan="2" class="text-center align-bottom" style="width: 50%">Progress</th>
+                        <th scope="col" rowspan="2" class="awg-statistics-progress-col text-center align-bottom">
+                            Progress
+                        </th>
                     </tr>
                     <tr>
                         <th scope="col" class="text-center">Total</th>
@@ -37,8 +39,7 @@
                             </td>
                             <td class="text-center">
                                 @if (series.totalComplexes > 0) {
-                                    <awg-statistics-breakdown-badge [breakdown]="series.activeComplexBreakdown">
-                                    </awg-statistics-breakdown-badge>
+                                    <awg-statistics-breakdown-badge [breakdown]="series.activeComplexBreakdown" />
                                 }
                             </td>
                             <td class="text-center" [class.text-muted]="series.activeSections === 0">
@@ -50,9 +51,8 @@
                                         mode: 'percentage',
                                         percentage: series.progressRate,
                                     }"
-                                    [height]="'20px'"
-                                    [boldPercentageLabel]="true">
-                                </awg-statistics-progress-bar>
+                                    height="20px"
+                                    [boldPercentageLabel]="true" />
                             </td>
                         </tr>
                         <!-- Section Rows -->
@@ -68,10 +68,10 @@
                                             section.disabled
                                                 ? null
                                                 : [
-                                                      ROUTES.edition.route,
-                                                      ROUTES.series.route,
+                                                      editionRouteConstants.EDITION.route,
+                                                      editionRouteConstants.SERIES.route,
                                                       series.series.length,
-                                                      ROUTES.section.route,
+                                                      editionRouteConstants.SECTION.route,
                                                       section.section,
                                                   ]
                                         "
@@ -84,8 +84,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if (section.totalComplexes > 0) {
-                                        <awg-statistics-breakdown-badge [breakdown]="section.activeComplexBreakdown">
-                                        </awg-statistics-breakdown-badge>
+                                        <awg-statistics-breakdown-badge [breakdown]="section.activeComplexBreakdown" />
                                     }
                                 </td>
                                 <td class="text-center" [class.text-muted]="section.disabled">
@@ -96,7 +95,7 @@
                                         [config]="{
                                             mode: 'percentage',
                                             percentage: section.totalComplexes > 0 ? section.progressRate : 0,
-                                        }"></awg-statistics-progress-bar>
+                                        }" />
                                 </td>
                             </tr>
                         }

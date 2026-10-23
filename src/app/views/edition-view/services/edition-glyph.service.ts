@@ -1,26 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
+import { EDITION_GLYPHS_DATA } from '../data/edition-glyphs.data';
 
 /**
  * The EditionGlyph service.
  *
  * It provides methods to get
  * the hex value of a musical glyph.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionGlyphService {
-    /**
-     * Readonly variable: GLYPHS.
-     *
-     * It keeps the data for musical glyphs.
-     */
-    readonly GLYPHS = EDITION_GLYPHS_DATA;
-
     /**
      * Public method: getGlyph.
      *
@@ -30,7 +19,7 @@ export class EditionGlyphService {
      * @returns {string} The hex value string of the given glyph string or empty string.
      */
     getGlyph(glyphString: string): string {
-        const glyph = Object.values(this.GLYPHS).find(g => g.alt === glyphString);
+        const glyph = Object.values(EDITION_GLYPHS_DATA).find(g => g.alt === glyphString);
         return glyph ? glyph.hex : '';
     }
 }

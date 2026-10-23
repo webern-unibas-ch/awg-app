@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 
 import { describe, expect, it } from 'vitest';
 
+import { expectToBe } from './expect-helper';
+
 import { getInterceptorInstance } from './interceptor-helper';
 
 class FirstInterceptor implements HttpInterceptor {
@@ -26,7 +28,7 @@ describe('interceptorHelper: getInterceptorInstance', () => {
         const found = getInterceptorInstance(interceptors, SecondInterceptor);
 
         expect(found).toBeDefined();
-        expect(found).toBe(secondInterceptor);
+        expectToBe(found, secondInterceptor);
     });
 
     it('... should return null if no interceptor matches the requested type (else path)', () => {
@@ -35,12 +37,12 @@ describe('interceptorHelper: getInterceptorInstance', () => {
 
         const found = getInterceptorInstance(interceptors, SecondInterceptor);
 
-        expect(found).toBeNull();
+        expectToBe(found, null);
     });
 
     it('... should return null for an empty interceptor list', () => {
         const found = getInterceptorInstance([], SecondInterceptor);
 
-        expect(found).toBeNull();
+        expectToBe(found, null);
     });
 });

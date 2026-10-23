@@ -1,16 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 /**
  * The EditionSnippet service.
  *
  * It provides helper methods to process
  * comment strings with image snippet placeholders.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class EditionSnippetService {
     /**
      * Private static readonly variable: SAFE_SNIPPET_ID_PATTERN.
@@ -45,21 +41,16 @@ export class EditionSnippetService {
             const id = `${svgGroupId}${suffix}`;
             const src = `assets/img/edition/snippets/${id}.png`;
             const alt = `Abbildung: ${id}`;
-            const clickExpression = `ref.openSnippet(${JSON.stringify(src)}, ${JSON.stringify(id)})`;
-            const keydownSpaceExpression = `$event.preventDefault();${clickExpression}`;
 
             const escapedSrc = this._escapeHtmlAttribute(src);
             const escapedAlt = this._escapeHtmlAttribute(alt);
-            const escapedClick = this._escapeHtmlAttribute(clickExpression);
-            const escapedKeydownSpace = this._escapeHtmlAttribute(keydownSpaceExpression);
+            const escapedId = this._escapeHtmlAttribute(id);
 
             return [
                 `<img src="${escapedSrc}" alt="${escapedAlt}" class="awg-edition-tkk-snippet"`,
-                ` role="button" tabindex="0" aria-label="${escapedAlt}"`,
-                ` (click)="${escapedClick}"`,
-                ` (keydown.enter)="${escapedClick}"`,
-                ` (keydown.space)="${escapedKeydownSpace}" />`,
-            ].join('');
+                `role="button" tabindex="0" aria-label="${escapedAlt}"`,
+                `data-snippet-src="${escapedSrc}" data-snippet-id="${escapedId}" />`,
+            ].join(' ');
         });
     }
 

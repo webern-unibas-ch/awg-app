@@ -1062,7 +1062,7 @@
                         "label": "Korrekturen in <strong>A<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 409: <a (click)=\"ref.selectSvgSheet({complexId: 'mx409', sheetId: 'Mx409_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 409: <a data-complex-id='mx409' data-sheet-id='Mx409_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1105,7 +1105,7 @@
                         "label": "Korrekturen in <strong>A<sup>b</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 409: <a (click)=\"ref.selectSvgSheet({complexId: 'mx409', sheetId: 'Mx409_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 409: <a data-complex-id='mx409' data-sheet-id='Mx409_TF2'>Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

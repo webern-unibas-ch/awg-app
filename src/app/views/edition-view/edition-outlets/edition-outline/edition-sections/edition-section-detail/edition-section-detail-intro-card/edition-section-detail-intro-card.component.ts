@@ -1,0 +1,25 @@
+import { Component, input } from '@angular/core';
+
+import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
+import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
+
+/**
+ * The EditionSectionDetailIntroCard component.
+ *
+ * It contains the intro card for the section detail
+ * of the edition view of the app.
+ */
+@Component({
+    selector: 'awg-edition-section-detail-intro-card',
+    templateUrl: './edition-section-detail-intro-card.component.html',
+    styleUrl: './edition-section-detail-intro-card.component.scss',
+    imports: [ButtonMoreComponent],
+})
+export class EditionSectionDetailIntroCardComponent {
+    /**
+     * Readonly input signal: selectedSection.
+     *
+     * It holds the selected section of the edition.
+     */
+    readonly selectedSection = input.required<EditionOutlineSection | null>();
+}

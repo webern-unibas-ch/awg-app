@@ -1,0 +1,13 @@
+<iframe
+    title="Contact Map View"
+    id="awg-contact-map-embed"
+    [width]="iframeSettings.width"
+    [height]="iframeSettings.height"
+    [src]="embedUrl()">
+</iframe>
+
+<div id="awg-contact-map-link">
+    <small>
+        <a [href]="linkUrl()">{{ linkLabel }}</a>
+    </small>
+</div>

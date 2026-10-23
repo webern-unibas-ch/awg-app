@@ -1,25 +1,28 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 /**
  * The TwelveToneSpinner component.
  *
  * It contains the loading spinner of the app
- * (an animated twelve tone cycle)
- * that is provided via the {@link SharedModule}.
+ * (an animated twelve tone cycle).
  */
 @Component({
     selector: 'awg-twelve-tone-spinner',
     templateUrl: './twelve-tone-spinner.component.html',
-    styleUrls: ['./twelve-tone-spinner.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    styleUrl: './twelve-tone-spinner.component.scss',
 })
 export class TwelveToneSpinnerComponent {
     /**
-     * Public variable: spinnerLoadText.
+     * Readonly input signal: spinnerText.
      *
-     * It contains the message to be displayed
-     * while the spinner is active.
+     * It holds the text that is displayed inside the spinner.
      */
-    spinnerLoadText = 'loading';
+    readonly spinnerText = input<string>('loading');
+
+    /**
+     * Readonly variable: spinnerNotes.
+     *
+     * It contains the twelve notes of the spinner.
+     */
+    readonly spinnerNotes = Array.from({ length: 12 }, (_, i) => i);
 }

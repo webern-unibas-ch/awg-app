@@ -1,32 +1,27 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 /**
  * The Heading component.
  *
- * It contains a configurable h2 heading
- * that is provided via the {@link SharedModule}.
+ * It contains a configurable heading.
  */
 @Component({
     selector: 'awg-heading',
-    templateUrl: 'heading.component.html',
-    styleUrls: ['heading.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    templateUrl: './heading.component.html',
+    styleUrl: './heading.component.scss',
 })
 export class HeadingComponent {
     /**
-     * Input variable: title.
+     * Readonly input signal: id.
      *
-     * It keeps the title of the heading.
+     * It holds the id of the heading.
      */
-    @Input()
-    title: string;
+    readonly id = input.required<string>();
 
     /**
-     * Input variable: id.
+     * Readonly input signal: title.
      *
-     * It keeps the id of the heading.
+     * It holds the title of the heading.
      */
-    @Input()
-    id: string;
+    readonly title = input.required<string>();
 }

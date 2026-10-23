@@ -1,0 +1,6 @@
+@if (formattedWritingInstruments(); as formattedInstruments) {
+    <p class="awg-source-desc-writing-instruments">
+        <span class="smallcaps">Schreibstoff:&nbsp;</span>
+        <span [awgCompileHtml]="formattedInstruments"></span>
+    </p>
+}

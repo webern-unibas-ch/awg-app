@@ -1,62 +1,35 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi, type Mocked } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
+    expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+
 import {
     Statistics,
     StatisticsComplexBreakdownData,
     StatisticsOverallProgressData,
-    StatisticsSeriesBreakdown,
     StatisticsSummaryData,
-} from '@awg-views/statistics-view/models';
-import { StatisticsService } from '@awg-views/statistics-view/services';
+} from './models/statistics.model';
+import { StatisticsService } from './services/statistics.service';
+import { StatisticsComplexBreakdownComponent } from './statistics-complex-breakdown/statistics-complex-breakdown.component';
+import { StatisticsOverallProgressComponent } from './statistics-overall-progress/statistics-overall-progress.component';
+import { StatisticsSeriesBreakdownComponent } from './statistics-series-breakdown/statistics-series-breakdown.component';
+import { StatisticsSummaryComponent } from './statistics-summary/statistics-summary.component';
 
-import { StatisticsComplexBreakdownComponent } from '@awg-views/statistics-view/statistics-complex-breakdown';
-import { StatisticsOverallProgressComponent } from '@awg-views/statistics-view/statistics-overall-progress';
-import { StatisticsSeriesBreakdownComponent } from '@awg-views/statistics-view/statistics-series-breakdown';
-import { StatisticsSummaryComponent } from '@awg-views/statistics-view/statistics-summary';
-import { StatisticsViewComponent } from '@awg-views/statistics-view/statistics-view.component';
-
-// Mock components
-@Component({
-    selector: 'awg-statistics-complex-breakdown',
-    template: '',
-})
-class StatisticsComplexBreakdownStubComponent {
-    complexBreakdownData = input.required<StatisticsComplexBreakdownData>();
-}
-
-@Component({
-    selector: 'awg-statistics-series-breakdown',
-    template: '',
-})
-class StatisticsSeriesBreakdownStubComponent {
-    seriesBreakdownData = input.required<StatisticsSeriesBreakdown>();
-}
-
-@Component({
-    selector: 'awg-statistics-overall-progress',
-    template: '',
-})
-class StatisticsOverallProgressStubComponent {
-    overallProgressData = input.required<StatisticsOverallProgressData>();
-}
-
-@Component({
-    selector: 'awg-statistics-summary',
-    template: '',
-})
-class StatisticsSummaryStubComponent {
-    summaryData = input.required<StatisticsSummaryData>();
-}
+import { StatisticsViewComponent } from './statistics-view.component';
 
 describe('StatisticsViewComponent', () => {
     let component: StatisticsViewComponent;
@@ -65,6 +38,9 @@ describe('StatisticsViewComponent', () => {
 
     let mockStatisticsService: Mocked<Partial<StatisticsService>>;
 
+    let getStatisticsFromOutlineSpy: Spy;
+
+    let mockOutlineSignal: WritableSignal<EditionOutlineSeries[] | null>;
     let expectedStatisticsData: Statistics;
 
     let expectedComplexBreakdownData: StatisticsComplexBreakdownData;
@@ -72,43 +48,32 @@ describe('StatisticsViewComponent', () => {
     let expectedSummaryData: StatisticsSummaryData;
 
     beforeEach(async () => {
+        mockOutlineSignal = signal(null);
+
         mockStatisticsService = {
             getStatisticsFromOutline: vi.fn(),
         };
 
         await TestBed.configureTestingModule({
             imports: [StatisticsViewComponent],
-            providers: [{ provide: StatisticsService, useValue: mockStatisticsService }],
+            providers: [
+                { provide: StatisticsService, useValue: mockStatisticsService },
+                { provide: EditionOutlineService, useValue: { editionOutline: mockOutlineSignal.asReadonly() } },
+            ],
         })
-            .overrideComponent(StatisticsViewComponent, {
-                remove: {
-                    imports: [
-                        StatisticsComplexBreakdownComponent,
-                        StatisticsOverallProgressComponent,
-                        StatisticsSeriesBreakdownComponent,
-                        StatisticsSummaryComponent,
-                    ],
-                },
-                add: {
-                    imports: [
-                        StatisticsComplexBreakdownStubComponent,
-                        StatisticsOverallProgressStubComponent,
-                        StatisticsSeriesBreakdownStubComponent,
-                        StatisticsSummaryStubComponent,
-                    ],
-                },
-            })
+            .overrideComponent(ButtonScrollToTopComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(StatisticsComplexBreakdownComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(StatisticsOverallProgressComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(StatisticsSeriesBreakdownComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(StatisticsSummaryComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
     beforeEach(() => {
-        // Mock return value for getStatisticsFromOutline (needs to be set before component creation)
-        mockStatisticsService.getStatisticsFromOutline.mockReturnValue({} as Statistics);
-
-        // Create component fixture
-        fixture = TestBed.createComponent(StatisticsViewComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Service spies
+        getStatisticsFromOutlineSpy = vi
+            .spyOn(mockStatisticsService, 'getStatisticsFromOutline')
+            .mockReturnValue(new Statistics());
 
         // Test data
         expectedStatisticsData = {
@@ -173,6 +138,11 @@ describe('StatisticsViewComponent', () => {
             activeComplexes: expectedStatisticsData.activeComplexes,
             totalComplexes: expectedStatisticsData.totalComplexes,
         };
+
+        // Create component fixture
+        fixture = TestBed.createComponent(StatisticsViewComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
@@ -184,10 +154,28 @@ describe('StatisticsViewComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have a signal `statisticsData` (initialized with data from StatisticsService)', () => {
-            expectToEqual(component.statisticsData(), {});
+        it('... should have computed signal `statisticsData` to hold null', () => {
+            expectToBe(isSignal(component.statisticsData), true);
 
-            expect(mockStatisticsService.getStatisticsFromOutline).toHaveBeenCalled();
+            expectToEqual(component.statisticsData(), null);
+
+            expectSpyCall(getStatisticsFromOutlineSpy, 0);
+        });
+
+        it('... should have computed signal `complexBreakdownData` to hold null', () => {
+            expectToBe(isSignal(component.complexBreakdownData), true);
+
+            expectToBe(component.complexBreakdownData(), null);
+        });
+        it('... should have computed signal `overallProgressData` to hold null', () => {
+            expectToBe(isSignal(component.overallProgressData), true);
+
+            expectToBe(component.overallProgressData(), null);
+        });
+        it('... should have computed signal `summaryData` to hold null', () => {
+            expectToBe(isSignal(component.summaryData), true);
+
+            expectToBe(component.summaryData(), null);
         });
 
         describe('VIEW', () => {
@@ -200,19 +188,87 @@ describe('StatisticsViewComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set input signals with test data
-            component.statisticsData.set(expectedStatisticsData);
-            mockStatisticsService.getStatisticsFromOutline.mockReturnValue(expectedStatisticsData);
+            mockOutlineSignal.set([{ series: { route: '1', short: 'I', full: 'Serie 1' }, sections: [] }]);
+            getStatisticsFromOutlineSpy.mockReturnValue(expectedStatisticsData);
 
             fixture.detectChanges();
         });
 
-        it('... should have updated `statisticsData` signal', () => {
+        it('... should have computed signal `statisticsData` to hold the provided data', () => {
             expectToEqual(component.statisticsData(), expectedStatisticsData);
+
+            expectSpyCall(getStatisticsFromOutlineSpy, 1, [
+                [{ series: { route: '1', short: 'I', full: 'Serie 1' }, sections: [] }],
+            ]);
+        });
+
+        it('... should have computed signal `complexBreakdownData` to hold the expected data', () => {
+            const complexBreakdownData = component.complexBreakdownData();
+
+            expectToEqual(complexBreakdownData, {
+                activeComplexBreakdown: expectedStatisticsData.activeComplexBreakdown,
+                complexBreakdown: expectedStatisticsData.complexBreakdown,
+                totalComplexes: expectedStatisticsData.totalComplexes,
+            });
+        });
+
+        it('... should have computed signal `overallProgressData` to hold the expected data', () => {
+            const overallProgressData = component.overallProgressData();
+
+            expectToEqual(overallProgressData, {
+                progressRate: expectedStatisticsData.progressRate,
+                activeComplexes: expectedStatisticsData.activeComplexes,
+                totalComplexes: expectedStatisticsData.totalComplexes,
+            });
+        });
+
+        it('... should have computed signal `summaryData` to hold the expected data', () => {
+            const summaryData = component.summaryData();
+
+            expectToEqual(summaryData, {
+                activeSeries: expectedStatisticsData.activeSeries,
+                activeSections: expectedStatisticsData.activeSections,
+                activeComplexes: expectedStatisticsData.activeComplexes,
+                totalComplexes: expectedStatisticsData.totalComplexes,
+            });
+        });
+
+        describe('... if no outline is provided', () => {
+            beforeEach(() => {
+                getStatisticsFromOutlineSpy.mockClear();
+                mockOutlineSignal.set(null);
+
+                fixture.detectChanges();
+            });
+
+            it('... should have recomputed signal `statisticsData` to hold null', () => {
+                expectToEqual(component.statisticsData(), null);
+
+                expectSpyCall(getStatisticsFromOutlineSpy, 0);
+            });
+
+            it('... should have recomputed signal `complexBreakdownData` to hold null', () => {
+                expectToBe(component.complexBreakdownData(), null);
+            });
+
+            it('... should have recomputed signal `overallProgressData` to hold null', () => {
+                expectToBe(component.overallProgressData(), null);
+            });
+
+            it('... should have recomputed signal `summaryData` to hold null', () => {
+                expectToBe(component.summaryData(), null);
+            });
         });
 
         describe('VIEW', () => {
+            const getStatisticsViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view', 1, 1);
+            const getStatisticsViewMainDes = () =>
+                getAndExpectDebugElementByCss(getStatisticsViewDes()[0], 'div.row main', 1, 1);
+            const getStatisticsViewHeaderDes = () =>
+                getAndExpectDebugElementByCss(getStatisticsViewMainDes()[0], 'header.awg-statistics-view-header', 1, 1);
+
             it('... should contain one paragraph info about about missing data if statisticsData is null', () => {
-                component.statisticsData.set(null);
+                mockOutlineSignal.set(null);
                 fixture.detectChanges();
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
@@ -222,222 +278,137 @@ describe('StatisticsViewComponent', () => {
             });
 
             it('... should contain one outer div if statisticsData is available', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view', 1, 1);
+                getStatisticsViewDes();
+            });
+
+            it('... should contain one ScrollToTop component (hollow) in `div.awg-statistics-view`', () => {
+                getAndExpectDebugElementByDirective(getStatisticsViewDes()[0], ButtonScrollToTopComponent, 1, 1);
             });
 
             it('... should contain a container and row div in outer div', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view', 1, 1);
-                const containerDes = getAndExpectDebugElementByCss(divDes[0], 'div.container-fluid', 1, 1);
+                const containerDes = getAndExpectDebugElementByCss(
+                    getStatisticsViewDes()[0],
+                    'div.container-fluid',
+                    1,
+                    1
+                );
 
                 getAndExpectDebugElementByCss(containerDes[0], 'div.row', 1, 1);
             });
 
             it('... should contain one main element in row div', () => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row', 1, 1);
+                const rowDes = getAndExpectDebugElementByCss(getStatisticsViewDes()[0], 'div.row', 1, 1);
 
                 getAndExpectDebugElementByCss(rowDes[0], 'main', 1, 1);
             });
 
             it('... should contain one header in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByCss(mainDes[0], 'header.awg-statistics-view-header', 1, 1);
+                getStatisticsViewHeaderDes();
             });
 
             it('... should contain one h2 in header', () => {
-                const headerDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-view div.row main header',
-                    1,
-                    1
-                );
-
-                getAndExpectDebugElementByCss(headerDes[0], 'h2', 1, 1);
+                getAndExpectDebugElementByCss(getStatisticsViewHeaderDes()[0], 'h2', 1, 1);
             });
 
             it('... should display correct header in header', () => {
-                const headerDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-view div.row main header',
-                    1,
-                    1
-                );
-                const hDes = getAndExpectDebugElementByCss(headerDes[0], 'h2', 1, 1);
+                const hDes = getAndExpectDebugElementByCss(getStatisticsViewHeaderDes()[0], 'h2', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                 expectToBe(hEl.textContent.trim(), 'Statistics');
             });
 
             it('... should contain one lead p in header', () => {
-                const headerDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-view div.row main header',
-                    1,
-                    1
-                );
-                getAndExpectDebugElementByCss(headerDes[0], 'p.lead', 1, 1);
+                getAndExpectDebugElementByCss(getStatisticsViewHeaderDes()[0], 'p.lead', 1, 1);
             });
 
             it('... should display correct lead text (muted) in header', () => {
-                const headerDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-statistics-view div.row main header',
-                    1,
-                    1
-                );
-                const pDes = getAndExpectDebugElementByCss(headerDes[0], 'p.lead', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(getStatisticsViewHeaderDes()[0], 'p.lead', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.classList.contains('text-muted'), true);
+                expectToContain(pEl.classList, 'text-muted');
                 expectToBe(
                     pEl.textContent.trim(),
                     'Overview of key metrics in the online edition of the Anton Webern Gesamtausgabe'
                 );
             });
 
-            it('... should contain one statistics summary component (stubbed) in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByDirective(mainDes[0], StatisticsSummaryStubComponent, 1, 1);
+            it('... should contain one StatisticsSummaryComponent (hollow) in main element', () => {
+                getAndExpectDebugElementByDirective(getStatisticsViewMainDes()[0], StatisticsSummaryComponent, 1, 1);
             });
 
-            it('... should pass down correct summaryData to statistics summary component', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
+            it('... should pass down the correct summaryData to StatisticsSummaryComponent (hollow)', () => {
                 const summaryDes = getAndExpectDebugElementByDirective(
-                    mainDes[0],
-                    StatisticsSummaryStubComponent,
+                    getStatisticsViewMainDes()[0],
+                    StatisticsSummaryComponent,
                     1,
                     1
                 );
-                const summaryCmp = summaryDes[0].injector.get(StatisticsSummaryStubComponent);
+                const summaryCmp = summaryDes[0].injector.get(StatisticsSummaryComponent);
 
                 expectToEqual(summaryCmp.summaryData(), expectedSummaryData);
             });
 
-            it('... should contain one statistics overall progress component (stubbed) in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByDirective(mainDes[0], StatisticsOverallProgressStubComponent, 1, 1);
-            });
-
-            it('... should pass down correct overallProgressData to statistics overall progress component', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-                const overallProgressDes = getAndExpectDebugElementByDirective(
-                    mainDes[0],
-                    StatisticsOverallProgressStubComponent,
+            it('... should contain one StatisticsOverallProgressComponent (hollow) in main element', () => {
+                getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsOverallProgressComponent,
                     1,
                     1
                 );
-                const overallProgressCmp = overallProgressDes[0].injector.get(StatisticsOverallProgressStubComponent);
+            });
+
+            it('... should pass down the correct overallProgressData to StatisticsOverallProgressComponent (hollow)', () => {
+                const overallProgressDes = getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsOverallProgressComponent,
+                    1,
+                    1
+                );
+                const overallProgressCmp = overallProgressDes[0].injector.get(StatisticsOverallProgressComponent);
 
                 expectToEqual(overallProgressCmp.overallProgressData(), expectedOverallProgressData);
             });
 
-            it('... should contain one statistics complex breakdown component (stubbed) in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByDirective(mainDes[0], StatisticsComplexBreakdownStubComponent, 1, 1);
-            });
-
-            it('... should pass down correct complexBreakdownData to statistics complex breakdown component', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-                const complexBreakdownDes = getAndExpectDebugElementByDirective(
-                    mainDes[0],
-                    StatisticsComplexBreakdownStubComponent,
+            it('... should contain one StatisticsComplexBreakdownComponent (hollow) in main element', () => {
+                getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsComplexBreakdownComponent,
                     1,
                     1
                 );
-                const complexBreakdownCmp = complexBreakdownDes[0].injector.get(
-                    StatisticsComplexBreakdownStubComponent
+            });
+
+            it('... should pass down the correct complexBreakdownData to StatisticsComplexBreakdownComponent (hollow)', () => {
+                const complexBreakdownDes = getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsComplexBreakdownComponent,
+                    1,
+                    1
                 );
+                const complexBreakdownCmp = complexBreakdownDes[0].injector.get(StatisticsComplexBreakdownComponent);
 
                 expectToEqual(complexBreakdownCmp.complexBreakdownData(), expectedComplexBreakdownData);
             });
 
-            it('... should contain one statistics series breakdown component (stubbed) in main element', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-
-                getAndExpectDebugElementByDirective(mainDes[0], StatisticsSeriesBreakdownStubComponent, 1, 1);
-            });
-
-            it('... should pass down correct seriesBreakdownData to statistics series breakdown component', () => {
-                const mainDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-view div.row main', 1, 1);
-                const seriesBreakdownDes = getAndExpectDebugElementByDirective(
-                    mainDes[0],
-                    StatisticsSeriesBreakdownStubComponent,
+            it('... should contain one StatisticsSeriesBreakdownComponent (hollow) in main element', () => {
+                getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsSeriesBreakdownComponent,
                     1,
                     1
                 );
-                const seriesBreakdownCmp = seriesBreakdownDes[0].injector.get(StatisticsSeriesBreakdownStubComponent);
+            });
+
+            it('... should pass down the correct seriesBreakdownData to StatisticsSeriesBreakdownComponent (hollow)', () => {
+                const seriesBreakdownDes = getAndExpectDebugElementByDirective(
+                    getStatisticsViewMainDes()[0],
+                    StatisticsSeriesBreakdownComponent,
+                    1,
+                    1
+                );
+                const seriesBreakdownCmp = seriesBreakdownDes[0].injector.get(StatisticsSeriesBreakdownComponent);
 
                 expectToEqual(seriesBreakdownCmp.seriesBreakdownData(), expectedStatisticsData.seriesBreakdown);
-            });
-        });
-
-        describe('#complexBreakdownData', () => {
-            it('... should have a computed signal `complexBreakdownData`', () => {
-                expect(component.complexBreakdownData).toBeDefined();
-            });
-
-            it('... should return null if statisticsData is null', () => {
-                component.statisticsData.set(null);
-
-                expectToBe(component.complexBreakdownData(), null);
-            });
-
-            it('... should compute complex breakdown data based on statisticsData', () => {
-                const complexBreakdownData = component.complexBreakdownData();
-
-                expectToEqual(complexBreakdownData, {
-                    activeComplexBreakdown: expectedStatisticsData.activeComplexBreakdown,
-                    complexBreakdown: expectedStatisticsData.complexBreakdown,
-                    totalComplexes: expectedStatisticsData.totalComplexes,
-                });
-            });
-        });
-
-        describe('#overallProgressData', () => {
-            it('... should have a computed signal `overallProgressData`', () => {
-                expect(component.overallProgressData).toBeDefined();
-            });
-
-            it('... should return null if statisticsData is null', () => {
-                component.statisticsData.set(null);
-
-                expectToBe(component.overallProgressData(), null);
-            });
-
-            it('... should compute overall progress data based on statisticsData', () => {
-                const overallProgressData = component.overallProgressData();
-
-                expectToEqual(overallProgressData, {
-                    progressRate: expectedStatisticsData.progressRate,
-                    activeComplexes: expectedStatisticsData.activeComplexes,
-                    totalComplexes: expectedStatisticsData.totalComplexes,
-                });
-            });
-        });
-
-        describe('#summaryData', () => {
-            it('... should have a computed signal `summaryData`', () => {
-                expect(component.summaryData).toBeDefined();
-            });
-
-            it('... should return null if statisticsData is null', () => {
-                component.statisticsData.set(null);
-
-                expectToBe(component.summaryData(), null);
-            });
-
-            it('... should compute summary data based on statisticsData', () => {
-                const summaryData = component.summaryData();
-
-                expectToEqual(summaryData, {
-                    activeSeries: expectedStatisticsData.activeSeries,
-                    activeSections: expectedStatisticsData.activeSections,
-                    activeComplexes: expectedStatisticsData.activeComplexes,
-                    totalComplexes: expectedStatisticsData.totalComplexes,
-                });
             });
         });
     });

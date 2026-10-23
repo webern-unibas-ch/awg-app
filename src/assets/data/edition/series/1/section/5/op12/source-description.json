@@ -12,7 +12,7 @@
             "id": "source_Aa",
             "siglum": "A",
             "siglumAddendum": "a",
-            "type": "Skizzen zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>/<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">2</a>.",
+            "type": "Skizzen zu „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF1'>Textfassung 1</a>/<a data-complex-id='op12' data-sheet-id='M212_TF2'>2</a>.",
             "location": "",
             "physDesc": {
                 "conditions": [
@@ -86,7 +86,7 @@
                 },
                 "titles": [],
                 "dates": [
-                    "<em>13. I. 1915</em> auf Bl. 2<sup>r</sup> System 13–14 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1c'})\"><strong>Sk1</strong></a>)"
+                    "<em>13. I. 1915</em> auf Bl. 2<sup>r</sup> System 13–14 (nach <a data-complex-id='op12' data-sheet-id='M212_Sk1c'><strong>Sk1</strong></a>)"
                 ],
                 "paginations": [],
                 "measureNumbers": [],
@@ -158,7 +158,7 @@
                             "complexId": "op12",
                             "sheetId": "M212_Sk2"
                         },
-                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>)",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -182,7 +182,7 @@
                             "complexId": "op12",
                             "sheetId": "M212_Sk3"
                         },
-                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>)",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -206,7 +206,7 @@
                             "complexId": "op12",
                             "sheetId": "M212_Sk5"
                         },
-                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>)",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -230,7 +230,7 @@
                             "complexId": "op12",
                             "sheetId": "M212_Sk4"
                         },
-                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>)",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -315,7 +315,7 @@
                 },
                 "titles": [],
                 "dates": [
-                    "<em>9</em>[→<em>10.</em>] <em>IV. 1917 | Wien</em> auf Bl. 1<sup>v</sup> System 9–10 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M217_Sk1g'})\"><strong>Sk1</strong></a>)"
+                    "<em>9</em>[→<em>10.</em>] <em>IV. 1917 | Wien</em> auf Bl. 1<sup>v</sup> System 9–10 (nach <a data-complex-id='op12' data-sheet-id='M217_Sk1g'><strong>Sk1</strong></a>)"
                 ],
                 "paginations": [],
                 "measureNumbers": [],
@@ -541,7 +541,7 @@
                 },
                 "titles": [],
                 "dates": [
-                    "<em>31</em>[.] <em>I</em>[.] <em>1915</em> auf Bl. 1<sup>r</sup> System 13a–15a (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1i'})\"><strong>Sk1</strong></a>)"
+                    "<em>31</em>[.] <em>I</em>[.] <em>1915</em> auf Bl. 1<sup>r</sup> System 13a–15a (nach <a data-complex-id='op12' data-sheet-id='M213_Sk1i'><strong>Sk1</strong></a>)"
                 ],
                 "paginations": [],
                 "measureNumbers": [],
@@ -953,7 +953,7 @@
                 },
                 "titles": [],
                 "dates": [
-                    "<em>Wien | 31. III. 1917</em> auf Bl. 3<sup>r</sup> System 5–6 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_Sk1f'})\"><strong>Sk1</strong></a>)"
+                    "<em>Wien | 31. III. 1917</em> auf Bl. 3<sup>r</sup> System 5–6 (nach <a data-complex-id='op12' data-sheet-id='M216_Sk1f'><strong>Sk1</strong></a>)"
                 ],
                 "paginations": [],
                 "measureNumbers": [],
@@ -1040,7 +1040,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">2</a>.",
+            "type": "Autograph von „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 1</a>→<a data-complex-id='op12' data-sheet-id='M212_TF2'>2</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1101,7 +1101,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">2</a>",
+                        "itemDescription": "Autograph von „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF1'>Textfassung 1</a>→<a data-complex-id='op12' data-sheet-id='M212_TF2'>2</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1168,7 +1168,7 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1232,7 +1232,7 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1291,7 +1291,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Autographe von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> (<strong>C<sup>a</sup></strong>) / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>b</sup></strong>) / „Schien mir’s, als ich sah die Sonne“ M 213: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>c</sup></strong>) / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>).",
+            "type": "Autographe von „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a> (<strong>C<sup>a</sup></strong>) / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>b</sup></strong>) / „Schien mir’s, als ich sah die Sonne“ M 213: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>c</sup></strong>) / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a data-complex-id='op12' data-sheet-id='M216_TF1'>Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1448,7 +1448,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> (<strong>C<sup>a</sup></strong>)",
+                        "itemDescription": "Autograph von „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a> (<strong>C<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -1707,7 +1707,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Korrekturskizzen zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213: <span class='link-todo'>einzige Textfassung</span> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Cc_corr'})\">Korrekturen in <strong>C<sup>c</sup></strong></a>.)",
+                        "itemDescription": "Korrekturskizzen zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213: <span class='link-todo'>einzige Textfassung</span> (siehe <a data-complex-id='op12' data-report-fragment-id='source_Cc_corr'>Korrekturen in <strong>C<sup>c</sup></strong></a>.)",
                         "folios": [
                             {
                                 "folio": "7r",
@@ -1749,7 +1749,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>)",
+                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a data-complex-id='op12' data-sheet-id='M216_TF1'>Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "9r",
@@ -1816,7 +1816,7 @@
                         "label": "Korrekturen in <strong>C<sup>a</sup></strong>",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2104,7 +2104,7 @@
                         "id": "source_Cd_corr",
                         "label": "Korrekturen in <strong>C<sup>d</sup></strong>",
                         "evaluations": [
-                            "<strong>C<sup>d</sup></strong> weist drei voneinander unterscheidbare Korrekturschichten auf: mit Tinte ggf. auf Rasur (Korrekturen 1), mit Bleistift (Korrekturen 2) und mit Kopierstift (Korrekturen 3). Der Zustand vor und nach Korrekturen 1 ist nicht eindeutig entzifferbar, post correcturam entspricht er in weiten Teilen <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a> von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216. Korrekturen 2 und 3 betreffen die Überarbeitung zu der in <strong>F</strong> etablierten <span class='link-todo'>Textfassung 2</span>. Auf eine tabellarische Darstellung der verschiedenen Korrekturschichten wird verzichtet, da sie auf Grund der zahlreichen Abweichungen der Grundschicht zu den beiden edierten Textfassungen nicht praktikabel ist."
+                            "<strong>C<sup>d</sup></strong> weist drei voneinander unterscheidbare Korrekturschichten auf: mit Tinte ggf. auf Rasur (Korrekturen 1), mit Bleistift (Korrekturen 2) und mit Kopierstift (Korrekturen 3). Der Zustand vor und nach Korrekturen 1 ist nicht eindeutig entzifferbar, post correcturam entspricht er in weiten Teilen <a data-complex-id='op12' data-sheet-id='M216_TF1'>Textfassung 1</a> von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216. Korrekturen 2 und 3 betreffen die Überarbeitung zu der in <strong>F</strong> etablierten <span class='link-todo'>Textfassung 2</span>. Auf eine tabellarische Darstellung der verschiedenen Korrekturschichten wird verzichtet, da sie auf Grund der zahlreichen Abweichungen der Grundschicht zu den beiden edierten Textfassungen nicht praktikabel ist."
                         ],
                         "commentary": {
                             "preamble": "",
@@ -2118,7 +2118,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>.",
+            "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a data-complex-id='op12' data-sheet-id='M216_TF1'>Textfassung 1</a>.",
             "location": "GB-Lbl, O. W. Neighbour Collection, MS Mus. 1810/163.",
             "physDesc": {
                 "conditions": [
@@ -2178,7 +2178,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>",
+                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a data-complex-id='op12' data-sheet-id='M216_TF1'>Textfassung 1</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -2245,7 +2245,7 @@
                         "label": "Korrekturen in <strong>D</strong> (mit Tinte auf Rasur)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a data-complex-id='op12' data-sheet-id='M216_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2346,7 +2346,7 @@
                                             "measure": "20",
                                             "system": "",
                                             "position": "2/4",
-                                            "comment": "Rasur über der Akkolade. Ante correcturam vermutlich: <em>tempo</em> auch hier? <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: <em>rit. - - - tempo</em> über Klav."
+                                            "comment": "Rasur über der Akkolade. Ante correcturam vermutlich: <em>tempo</em> auch hier? <a data-complex-id='op12' data-report-fragment-id='source_D'><strong>D</strong></a>: <em>rit. - - - tempo</em> über Klav."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m216_tf1_D_corr-015",
@@ -2367,7 +2367,7 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Druck von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>.",
+            "type": "Druck von „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>.",
             "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
             "physDesc": {
                 "conditions": ["1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm."],
@@ -2388,7 +2388,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Druck von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>",
+                        "itemDescription": "Druck von „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -2434,11 +2434,11 @@
             "id": "source_EH",
             "siglum": "E",
             "siglumAddendum": "H",
-            "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns: „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>→<span class='link-todo'>3</span>.",
+            "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns: „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>→<span class='link-todo'>3</span>.",
             "location": "CH-Bps, Sammlung Anton Webern, Basel, P IV 29.",
             "physDesc": {
                 "conditions": [
-                    "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                    "Siehe <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a>."
                 ],
                 "corrections": [
                     {
@@ -2446,7 +2446,7 @@
                         "label": "Korrekturen in <strong>E<sup>H</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -4616,7 +4616,7 @@
             "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
             "physDesc": {
                 "conditions": [
-                    "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
+                    "Siehe <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>."
                 ],
                 "annotations": [
                     "<em>Som̅er, 1925</em> auf S. [1] untere Hälfte links mit Bleistift",

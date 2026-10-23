@@ -1,20 +1,24 @@
-import { DOCUMENT, DebugElement, NgModule, inject } from '@angular/core';
+import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { NgbConfig, NgbPagination, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap/pagination';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { TABLE_DEFAULT_PAGE_SIZE } from '../table.utils';
 import { TablePaginationComponent } from './table-pagination.component';
 
 describe('TablePaginationComponent (DONE)', () => {
@@ -24,8 +28,6 @@ describe('TablePaginationComponent (DONE)', () => {
 
     let mockDocument: Document;
 
-    let emitPageChangeSpy: Spy;
-    let emitPageChangeRequestSpy: Spy;
     let onPageChangeSpy: Spy;
     let replaceNonNumberInputSpy: Spy;
     let selectPageSpy: Spy;
@@ -33,45 +35,36 @@ describe('TablePaginationComponent (DONE)', () => {
     let expectedCollectionSize: number;
     let expectedPage: number;
 
-    // global NgbConfigModule
-    @NgModule({ imports: [NgbPaginationModule], exports: [NgbPaginationModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbConfigModule],
-            declarations: [TablePaginationComponent],
+            imports: [TablePaginationComponent],
         }).compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(TablePaginationComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
         expectedCollectionSize = 100;
         expectedPage = 1;
 
-        // Spy on methods
-        emitPageChangeSpy = vi.spyOn(component.pageChange, 'emit');
-        emitPageChangeRequestSpy = vi.spyOn(component.pageChangeRequest, 'emit');
+        // Create component fixture
+        fixture = TestBed.createComponent(TablePaginationComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         onPageChangeSpy = vi.spyOn(component, 'onPageChange');
         replaceNonNumberInputSpy = vi.spyOn(component, 'replaceNonNumberInput');
         selectPageSpy = vi.spyOn(component, 'selectPage');
     });
 
     afterEach(() => {
-        vi.clearAllMocks();
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -79,118 +72,108 @@ describe('TablePaginationComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have collectionSize', () => {
-            expect(component.collectionSize).toBeUndefined();
+        it('... should have input signal `collectionSize` to hold the default value', () => {
+            expectToBe(isSignal(component.collectionSize), true);
+            expectToBe(component.collectionSize(), 0);
         });
 
-        it('... should not have page', () => {
-            expect(component.page).toBeUndefined();
+        it('... should have input signal `pageSize` to hold the default value', () => {
+            expectToBe(isSignal(component.pageSize), true);
+            expectToBe(component.pageSize(), TABLE_DEFAULT_PAGE_SIZE);
         });
 
-        it('... should have FILTER_PAG_REGEX', () => {
-            expectToEqual(component.FILTER_PAG_REGEX, /\D/g);
+        it('... should have model signal `page` to hold the default value', () => {
+            expectToBe(isSignal(component.page), true);
+            expectToBe(component.page(), 1);
         });
 
-        it('... should not have called formatInput', () => {
-            expectSpyCall(replaceNonNumberInputSpy, 0);
-        });
-
-        it('... should not have called onPageChange', () => {
-            expectSpyCall(onPageChangeSpy, 0);
-        });
-
-        it('... should not have called selectPage', () => {
-            expectSpyCall(selectPageSpy, 0);
+        it('... should have `filterPagRegex`', () => {
+            expectToEqual(component.filterPagRegex, /\D/g);
         });
 
         describe('VIEW', () => {
-            it('... should have one ngbPagination component', () => {
+            it('... should contain one NgbPagination component', () => {
                 getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
             });
 
-            it('... should have one ul in ngbPagination with no content yet', () => {
+            it('... should contain one ul in NgbPagination with no page items yet', () => {
                 const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul', 1, 1);
+
                 getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 0, 0);
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
+        const getPageInputDes = () =>
+            getAndExpectDebugElementByCss(compDe, 'input#paginationInput.custom-pages-input', 1, 1);
+        const getPageInputEl = (): HTMLInputElement => getPageInputDes()[0].nativeElement;
+
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.collectionSize = expectedCollectionSize;
-            component.page = expectedPage;
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('collectionSize', expectedCollectionSize);
+            fixture.componentRef.setInput('page', expectedPage);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have collectionSize', () => {
-            expectToBe(component.collectionSize, expectedCollectionSize);
+        it('... should have input signal `collectionSize` to hold the provided collection size', () => {
+            expectToBe(component.collectionSize(), expectedCollectionSize);
         });
 
-        it('... should have page', () => {
-            expectToBe(component.page, expectedPage);
+        it('... should have model signal `page` to hold the provided page', () => {
+            expectToBe(component.page(), expectedPage);
         });
 
         describe('VIEW', () => {
-            it('... should have one ngbPagination component', () => {
-                getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
+            it('... should pass down `page`, `collectionSize` and `pageSize` to NgbPagination', () => {
+                const paginationDes = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
+                const paginationCmp = paginationDes[0].injector.get(NgbPagination);
+
+                expectToBe(paginationCmp.page, expectedPage);
+                expectToBe(paginationCmp.collectionSize, expectedCollectionSize);
+                expectToBe(paginationCmp.pageSize, TABLE_DEFAULT_PAGE_SIZE);
+                expectToBe(paginationCmp.boundaryLinks, true);
             });
 
-            it('... should have one ul.pagination in ngbPagination with 4 li.page-item', () => {
+            it('... should contain one ul.pagination with 4 li.page-item', () => {
                 const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
+
                 getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 4, 4);
             });
 
-            it('... should have first two li.page-item with class .disabled', () => {
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
+            it('... should disable the first two li.page-item on the first page', () => {
+                const liDes = getAndExpectDebugElementByCss(compDe, 'ul.pagination > li.page-item', 4, 4);
+                const firstLiEl: HTMLLIElement = liDes[0].nativeElement;
+                const secondLiEl: HTMLLIElement = liDes[1].nativeElement;
+                const thirdLiEl: HTMLLIElement = liDes[2].nativeElement;
+                const fourthLiEl: HTMLLIElement = liDes[3].nativeElement;
 
-                const liDes = getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 4, 4);
-                const liEl1: HTMLLIElement = liDes[0].nativeElement;
-                const liEl2: HTMLLIElement = liDes[1].nativeElement;
-
-                expect(liEl1.classList.contains('disabled')).toBeTruthy();
-                expect(liEl1.classList.contains('disabled')).toBe(true);
-
-                expect(liEl2.classList.contains('disabled')).toBeTruthy();
-                expect(liEl2.classList.contains('disabled')).toBe(true);
+                expectToContain(firstLiEl.classList, 'disabled');
+                expectToContain(secondLiEl.classList, 'disabled');
+                expectToNotContain(thirdLiEl.classList, 'disabled');
+                expectToNotContain(fourthLiEl.classList, 'disabled');
             });
 
-            it('... should have last two li.page-item not with class .disabled', () => {
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
+            it('... should contain a.page-link in all li.page-item', () => {
+                const liDes = getAndExpectDebugElementByCss(compDe, 'ul.pagination > li.page-item', 4, 4);
 
-                const liDes = getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 4, 4);
-                const liEl3: HTMLLIElement = liDes[2].nativeElement;
-                const liEl4: HTMLLIElement = liDes[3].nativeElement;
-
-                expect(liEl3.classList.contains('disabled')).toBeFalsy();
-                expect(liEl3.classList.contains('disabled')).toBe(false);
-
-                expect(liEl4.classList.contains('disabled')).toBeFalsy();
-                expect(liEl4.classList.contains('disabled')).toBe(false);
+                liDes.forEach(liDe => {
+                    getAndExpectDebugElementByCss(liDe, 'a.page-link', 1, 1);
+                });
             });
 
-            it('... should have a.page-link in all li.page-item', () => {
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
+            it('... should not render custom pages item if pages are empty', async () => {
+                fixture.componentRef.setInput('collectionSize', 0);
+                await detectChangesOnPush(fixture);
 
-                const liDes = getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 4, 4);
-
-                getAndExpectDebugElementByCss(liDes[0], 'a.page-link', 1, 1);
-                getAndExpectDebugElementByCss(liDes[1], 'a.page-link', 1, 1);
-                getAndExpectDebugElementByCss(liDes[2], 'a.page-link', 1, 1);
-                getAndExpectDebugElementByCss(liDes[3], 'a.page-link', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'input#paginationInput', 0, 0);
             });
 
-            it('... should have one li.ngb-custom-pages-item in ul.pagination', () => {
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
-
-                getAndExpectDebugElementByCss(ulDes[0], 'li.ngb-custom-pages-item', 1, 1);
-            });
-
-            it('... should have one div with label, input and span in li.ngb-custom-page-item', () => {
-                const liDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item', 1, 1);
-                const divDes = getAndExpectDebugElementByCss(liDes[0], 'div', 1, 1);
+            it('... should contain one li.ngb-custom-pages-item with label, input and span', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'label#paginationInputLabel', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'input#paginationInput.custom-pages-input', 1, 1);
@@ -198,192 +181,164 @@ describe('TablePaginationComponent (DONE)', () => {
             });
 
             it('... should display `Seite` in label', () => {
-                const expectedLabel = 'Seite';
-
-                const divDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
-
-                const labelDes = getAndExpectDebugElementByCss(divDes[0], 'label#paginationInputLabel', 1, 1);
+                const labelDes = getAndExpectDebugElementByCss(compDe, 'label#paginationInputLabel', 1, 1);
                 const labelEl: HTMLLabelElement = labelDes[0].nativeElement;
 
-                expectToBe(labelEl.textContent, expectedLabel);
+                expectToBe(labelEl.textContent, 'Seite');
             });
 
-            it('... should display recent page in input', () => {
-                const expectedInputValue = expectedPage.toString();
+            it('... should display the current page in input', () => {
+                expectToBe(getPageInputEl().value, expectedPage.toString());
+            });
 
-                const divDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
-                const inputDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'input#paginationInput.custom-pages-input',
-                    1,
-                    1
+            it('... should display the current page in input after page change', async () => {
+                fixture.componentRef.setInput('page', 4);
+                await detectChangesOnPush(fixture);
+
+                expectToBe(getPageInputEl().value, '4');
+            });
+
+            it('... should display `von {pages.length}` in span', () => {
+                const spanDes = getAndExpectDebugElementByCss(compDe, 'span#paginationDescription', 1, 1);
+
+                expectToBe(
+                    spanDes[0].nativeElement.textContent.trim(),
+                    `von ${expectedCollectionSize / TABLE_DEFAULT_PAGE_SIZE}`
                 );
-                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
-
-                expectToBe(inputEl.value, expectedInputValue);
             });
 
-            it('... should display `von pages.length` in span', () => {
-                const expectedPagesLength = expectedCollectionSize / 10;
-                const expectedSpanText = `von ${expectedPagesLength}`;
+            describe('... with a provided page size', () => {
+                beforeEach(async () => {
+                    fixture.componentRef.setInput('pageSize', 25);
+                    await detectChangesOnPush(fixture);
+                });
 
-                const divDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
+                it('... should have input signal `pageSize` to hold the provided page size', () => {
+                    expectToBe(component.pageSize(), 25);
+                });
 
-                const spanDes = getAndExpectDebugElementByCss(divDes[0], 'span#paginationDescription', 1, 1);
-                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+                it('... should pass down the provided `pageSize` to NgbPagination', () => {
+                    const paginationDes = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
 
-                expectToBe(spanEl.textContent.trim(), expectedSpanText);
+                    expectToBe(paginationDes[0].injector.get(NgbPagination).pageSize, 25);
+                });
+
+                it('... should display the number of pages for the provided page size in span', () => {
+                    const spanDes = getAndExpectDebugElementByCss(compDe, 'span#paginationDescription', 1, 1);
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+
+                    expectToBe(spanEl.textContent.trim(), `von ${expectedCollectionSize / 25}`);
+                });
             });
-        });
 
-        describe('#replaceNonNumberInput()', () => {
-            it('... should have a method `replaceNonNumberInput`', () => {
-                expect(component.replaceNonNumberInput).toBeDefined();
-            });
-
-            it('... should trigger on input event', () => {
-                const inputDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'input#paginationInput.custom-pages-input',
-                    1,
-                    1
-                );
-                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
-
-                expectSpyCall(replaceNonNumberInputSpy, 0);
-
-                inputEl.dispatchEvent(new Event('input'));
+            it('... should trigger `replaceNonNumberInput()` on input event', () => {
+                getPageInputEl().dispatchEvent(new Event('input'));
 
                 expectSpyCall(replaceNonNumberInputSpy, 1);
             });
 
-            describe('should format the HTMLInputElement input', () => {
-                it('... by keeping numbers', () => {
-                    const input = mockDocument.createElement('input');
-                    input.value = '3';
-
-                    component.replaceNonNumberInput(input);
-                    expectToBe(input.value, '3');
-                });
-
-                it('... by replacing non-numbers with empty string', () => {
-                    const input = mockDocument.createElement('input');
-                    input.value = 'Test';
-
-                    component.replaceNonNumberInput(input);
-                    expectToBe(input.value, '');
-                });
-            });
-        });
-
-        describe('#onPageChange()', () => {
-            it('... should have a method `onPageChange`', () => {
-                expect(component.onPageChange).toBeDefined();
-            });
-
-            it('... should trigger on pageChange event of NgbPagination', async () => {
-                const expectedNewPage = 3;
-
-                const ngbPaginationDes = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
-                const ngbPaginationCmp = ngbPaginationDes[0].injector.get(NgbPagination) as NgbPagination;
-
-                expectSpyCall(onPageChangeSpy, 0);
-
-                ngbPaginationCmp.pageChange.emit(expectedNewPage);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(onPageChangeSpy, 1, expectedNewPage);
-            });
-
-            it('... should not do anything if newPage is not given', () => {
-                component.onPageChange(undefined);
-
-                expectSpyCall(emitPageChangeSpy, 0);
-                expectSpyCall(emitPageChangeRequestSpy, 0);
-            });
-
-            it('... should emit the newPage', () => {
-                const expectedNewPage = 3;
-
-                component.onPageChange(expectedNewPage);
-
-                expectSpyCall(emitPageChangeSpy, 1, expectedNewPage);
-                expectSpyCall(emitPageChangeRequestSpy, 1, expectedNewPage);
-            });
-        });
-
-        describe('#selectPage()', () => {
-            it('... should have a method `selectPage`', () => {
-                expect(component.selectPage).toBeDefined();
-            });
-
-            it('... should trigger on blur event', () => {
-                const inputDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'input#paginationInput.custom-pages-input',
-                    1,
-                    1
-                );
-                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
-
-                expectSpyCall(selectPageSpy, 0);
-
+            it('... should trigger `selectPage()` on blur event', () => {
+                const inputEl = getPageInputEl();
                 inputEl.value = '5';
                 inputEl.dispatchEvent(new Event('blur'));
 
                 expectSpyCall(selectPageSpy, 1, '5');
             });
 
-            it('... should trigger on keyup.enter event', () => {
-                const inputDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'input#paginationInput.custom-pages-input',
-                    1,
-                    1
-                );
-                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
-
-                expectSpyCall(selectPageSpy, 0);
-
+            it('... should trigger `selectPage()` on keyup.enter event', () => {
+                const inputEl = getPageInputEl();
                 inputEl.value = '5';
                 inputEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
 
                 expectSpyCall(selectPageSpy, 1, '5');
             });
 
-            describe('should set the page', () => {
-                it('... to the parsed integer value of a given number string', () => {
-                    const expectedNewPage = 3;
+            it('... should trigger `onPageChange()` on pageChange event of NgbPagination', async () => {
+                const paginationDes = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
 
-                    component.selectPage(expectedNewPage.toString());
+                // NgbPagination emits pageChange asynchronously
+                paginationDes[0].injector.get(NgbPagination).pageChange.emit(3);
+                await detectChangesOnPush(fixture);
 
-                    expectToBe(component.page, expectedNewPage);
+                expectSpyCall(onPageChangeSpy, 1, 3);
+            });
+
+            describe('... output `pageChange`', () => {
+                it('... should emit the selected page via model signal `page`', () => {
+                    const emittedPages: number[] = [];
+                    component.page.subscribe(page => emittedPages.push(page));
+
+                    const inputEl = getPageInputEl();
+                    inputEl.value = '5';
+                    inputEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+
+                    expectToEqual(emittedPages, [5]);
+                });
+            });
+        });
+
+        describe('METHODS', () => {
+            describe('#replaceNonNumberInput()', () => {
+                it('... should have a method `replaceNonNumberInput`', () => {
+                    expect(component.replaceNonNumberInput).toBeDefined();
                 });
 
-                it('... to 1 if the given value cannot be parsed to an integer', () => {
-                    const expectedNewPage = 'Test';
+                it('... should keep numbers', () => {
+                    const input = mockDocument.createElement('input');
+                    input.value = '3';
 
-                    component.selectPage(expectedNewPage);
+                    component.replaceNonNumberInput(input);
 
-                    expectToBe(component.page, 1);
-
-                    const expectedNewPage2 = 'NaN';
-
-                    component.selectPage(expectedNewPage2);
-
-                    expectToBe(component.page, 1);
-
-                    const expectedNewPage3 = '_123';
-
-                    component.selectPage(expectedNewPage3);
-
-                    expectToBe(component.page, 1);
+                    expectToBe(input.value, '3');
                 });
 
-                it('... to 1 if the given value is undefined', () => {
-                    component.selectPage(undefined);
+                it('... should replace non-numbers with empty string', () => {
+                    const input = mockDocument.createElement('input');
+                    input.value = 'T3st';
 
-                    expectToBe(component.page, 1);
+                    component.replaceNonNumberInput(input);
+
+                    expectToBe(input.value, '3');
+                });
+            });
+
+            describe('#onPageChange()', () => {
+                it('... should have a method `onPageChange`', () => {
+                    expect(component.onPageChange).toBeDefined();
+                });
+
+                it('... should set model signal `page` to the given page', () => {
+                    component.onPageChange(3);
+
+                    expectToBe(component.page(), 3);
+                });
+
+                it('... should do nothing if the given page is 0', () => {
+                    component.onPageChange(0);
+
+                    expectToBe(component.page(), expectedPage);
+                });
+            });
+
+            describe('#selectPage()', () => {
+                it('... should have a method `selectPage`', () => {
+                    expect(component.selectPage).toBeDefined();
+                });
+
+                it('... should set model signal `page` to the parsed integer of a given number string', () => {
+                    component.selectPage('3');
+
+                    expectToBe(component.page(), 3);
+                });
+
+                it('... should set model signal `page` to 1 if the given value cannot be parsed', () => {
+                    component.selectPage('3');
+
+                    ['Test', 'NaN', '_123', ''].forEach(value => {
+                        component.selectPage(value);
+
+                        expectToBe(component.page(), 1);
+                    });
                 });
             });
         });

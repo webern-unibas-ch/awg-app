@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 /**
  * The ViewContainer component.
@@ -11,15 +12,14 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 @Component({
     selector: 'awg-view-container',
     templateUrl: './view-container.component.html',
-    styleUrls: ['./view-container.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    styleUrl: './view-container.component.scss',
+    imports: [RouterOutlet],
 })
 export class ViewContainerComponent {
     /**
-     * Input variable: activateSideOutlet.
+     * Readonly input signal: activateSideOutlet.
      *
-     * It keeps track of the side outlet.
+     * It holds a flag to indicate if the side outlet is active.
      */
-    @Input() activateSideOutlet: boolean;
+    readonly activateSideOutlet = input.required<boolean>();
 }

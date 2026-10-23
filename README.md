@@ -2,7 +2,7 @@
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg)
 [![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=blue&label=angular&logo=angular)](https://github.com/angular/angular)
-![Node.js version](https://img.shields.io/badge/node.js-%3E=v22.22.0-blue)
+![Node.js version](https://img.shields.io/badge/node.js-%5Ev22.23.4%20%7C%7C%20%3E%3Dv24.22.1-blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/webern-unibas-ch/awg-app)
 ![CI Workflow](https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg)
 [![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/graph/badge.svg?token=IO5EgI81R6)](https://codecov.io/gh/webern-unibas-ch/awg-app)
@@ -111,7 +111,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) a
 
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/en/reference/emoji-key/)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->

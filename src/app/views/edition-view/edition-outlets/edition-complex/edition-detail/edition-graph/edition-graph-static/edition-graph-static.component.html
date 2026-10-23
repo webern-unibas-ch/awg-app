@@ -1,0 +1,6 @@
+@if (imageSrc(); as src) {
+    <div class="awg-graph-static mt-3">
+        <h4>Statischer Graph</h4>
+        <img width="100%" [src]="src" [alt]="`Static network representation of data for ${imageKey()}`" />
+    </div>
+}

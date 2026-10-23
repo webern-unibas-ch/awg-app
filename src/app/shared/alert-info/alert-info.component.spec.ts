@@ -1,11 +1,11 @@
-import { DebugElement, inject, NgModule } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faCircleInfo, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { NgbAlert, NgbAlertModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap/alert';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import {
     expectToBe,
@@ -25,32 +25,24 @@ describe('AlertInfoComponent (DONE)', () => {
     let expectedInfoMessage: string;
     let expectedFaCircleInfo: IconDefinition;
 
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAlertModule], exports: [NgbAlertModule] })
-    class NgbAnimationConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbAnimationConfigModule],
-            declarations: [AlertInfoComponent],
+            imports: [AlertInfoComponent],
         }).compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(AlertInfoComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedFaCircleInfo = faCircleInfo;
         expectedInfoMessage = 'This is an info message.';
+
+        // Create component fixture
+        fixture = TestBed.createComponent(AlertInfoComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -58,24 +50,24 @@ describe('AlertInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `infoMessage`', () => {
-            expect(component.infoMessage).toBeUndefined();
+        it('... should throw due to missing required input signal `infoMessage`', () => {
+            expectToBe(isSignal(component.infoMessage), true);
+
+            expect(() => component.infoMessage()).toThrow();
+        });
+
+        it('... should have model signal `isOpen` to hold the default value', () => {
+            expectToBe(isSignal(component.isOpen), true);
+
+            expectToBe(component.isOpen(), true);
         });
 
         it('... should have `faCircleInfo`', () => {
             expectToEqual(component.faCircleInfo, expectedFaCircleInfo);
         });
 
-        it('... should have `isOpen` set to true', () => {
-            expect(component.isOpen).toBe(true);
-        });
-
-        it('... should have `type` set to `info`', () => {
-            expect(component.type).toBe('info');
-        });
-
         describe('VIEW', () => {
-            it('... should not have a ngbAlert component yet', () => {
+            it('... should not have a NgbAlert component yet', () => {
                 getAndExpectDebugElementByDirective(compDe, NgbAlert, 0, 0);
             });
         });
@@ -83,10 +75,15 @@ describe('AlertInfoComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.infoMessage = expectedInfoMessage;
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('infoMessage', expectedInfoMessage);
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should have input signal `infoMessage` to hold the provided message', () => {
+            expectToBe(component.infoMessage(), expectedInfoMessage);
         });
 
         describe('VIEW', () => {
@@ -99,9 +96,9 @@ describe('AlertInfoComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(alertDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.classList.contains('small'), true);
-                expectToBe(pEl.classList.contains('text-muted'), true);
-                expectToBe(pEl.classList.contains('text-center'), true);
+                expectToContain(pEl.classList, 'small');
+                expectToContain(pEl.classList, 'text-muted');
+                expectToContain(pEl.classList, 'text-center');
             });
 
             it('... should display circle info icon in alert paragraph', () => {
@@ -113,12 +110,32 @@ describe('AlertInfoComponent (DONE)', () => {
                 expectToEqual(faIconIns(), expectedFaCircleInfo);
             });
 
-            it('... should display an error message in alert paragraph', () => {
+            it('... should display an info message in alert paragraph', () => {
                 const alertDes = getAndExpectDebugElementByDirective(compDe, NgbAlert, 1, 1);
                 const pDes = getAndExpectDebugElementByCss(alertDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToContain(pEl.textContent.trim(), expectedInfoMessage);
+            });
+
+            it('... should remove the alert when isOpen is set to false from outside', () => {
+                fixture.componentRef.setInput('isOpen', false);
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByDirective(compDe, NgbAlert, 0, 0);
+            });
+
+            it('... should set isOpen to false when the alert is closed', () => {
+                expectToBe(component.isOpen(), true);
+
+                // 1. Das closed-Event von ngb-alert simulieren
+                const alertDes = getAndExpectDebugElementByDirective(compDe, NgbAlert, 1, 1);
+                const alertCmp = alertDes[0].injector.get(NgbAlert);
+                alertCmp.closed.emit();
+
+                fixture.detectChanges();
+
+                expectToBe(component.isOpen(), false);
             });
         });
     });

@@ -1,0 +1,35 @@
+import { Component, inject } from '@angular/core';
+
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
+
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+
+/**
+ * The EditionRowtables component.
+ *
+ * It contains the rowtables overview
+ * of the edition view of the app.
+ */
+@Component({
+    selector: 'awg-edition-rowtables',
+    templateUrl: './edition-rowtables.component.html',
+    styleUrl: './edition-rowtables.component.scss',
+    imports: [AlertErrorComponent, ButtonMoreComponent, TwelveToneSpinnerComponent],
+})
+export class EditionRowtablesComponent {
+    /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
+
+    /**
+     * Readonly signal: viewData.
+     *
+     * It holds the state of the rowtables view data from the EditionViewService.
+     */
+    readonly viewData = this._editionViewService.rowtablesViewData;
+}

@@ -1,11 +1,11 @@
 /**
- * The Preface class.
+ * The Preface interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single preface
  * from a preface json file.
  */
-export class Preface {
+export interface Preface {
     /**
      * The id of a preface.
      */
@@ -28,5 +28,5 @@ export class PrefaceList {
     /**
      * The array of prefaces from a preface list.
      */
-    preface: Preface[];
+    preface: Preface[] = [];
 }

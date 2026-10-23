@@ -1,18 +1,24 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "baseUrl": "./src/",
         "outDir": "./out-tsc/spec",
-        "typeRoots": ["./node_modules/@types", "./node_modules"],
-        "types": ["vitest/globals", "node"],
+        "rootDir": "./src",
+        "types": ["node"],
         "paths": {
-            "@awg-app/*": ["app/*"],
-            "@awg-core/*": ["app/core/*"],
-            "@awg-shared/*": ["app/shared/*"],
-            "@awg-side-info/*": ["app/side-info/*"],
-            "@awg-views/*": ["app/views/*"],
-            "@testing/*": ["testing/*"]
+            "@awg-app/*": ["./src/app/*"],
+            "@awg-core/*": ["./src/app/core/*"],
+            "@awg-shared/*": ["./src/app/shared/*"],
+            "@awg-views/*": ["./src/app/views/*"],
+            "@awg-graph/*": [
+                "./src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/*"
+            ],
+            "@awg-report/*": [
+                "./src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/*"
+            ],
+            "assets/*": ["./src/assets/*"],
+            "environments/*": ["./src/environments/*"],
+            "@testing/*": ["./src/testing/*"]
         }
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/testing/", "polyfills.ts"]
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/testing/"]
 }

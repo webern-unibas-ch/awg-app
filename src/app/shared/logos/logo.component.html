@@ -1,0 +1,5 @@
+@if (logoData(); as logo) {
+    <a [class]="linkClass()" [href]="logo.href">
+        <img [class]="logoClassList()" [id]="logo.id" [src]="logo.src" [alt]="logo.alt" />
+    </a>
+}

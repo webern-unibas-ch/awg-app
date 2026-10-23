@@ -1,0 +1,6 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
+// The selected query is marked as disabled
+.dropdown-item.disabled {
+    background-color: theme.$link-color;
+}

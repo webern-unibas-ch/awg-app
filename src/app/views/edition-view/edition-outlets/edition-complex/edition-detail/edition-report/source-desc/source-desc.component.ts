@@ -1,0 +1,26 @@
+import { Component, input } from '@angular/core';
+
+import { SourceDescList } from '@awg-views/edition-view/models/source-desc.model';
+
+import { SourceDescItemComponent } from './source-desc-item/source-desc-item.component';
+
+/**
+ * The SourceDescComponent component.
+ *
+ * It contains the source description section
+ * of the critical report of the edition view of the app.
+ */
+@Component({
+    selector: 'awg-source-desc',
+    templateUrl: './source-desc.component.html',
+    styleUrl: './source-desc.component.scss',
+    imports: [SourceDescItemComponent],
+})
+export class SourceDescComponent {
+    /**
+     * Readonly input signal: sourceDescListData.
+     *
+     * It holds the source description list data.
+     */
+    readonly sourceDescListData = input.required<SourceDescList>();
+}

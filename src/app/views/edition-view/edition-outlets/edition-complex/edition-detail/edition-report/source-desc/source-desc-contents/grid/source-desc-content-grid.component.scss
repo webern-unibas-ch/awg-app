@@ -1,0 +1,42 @@
+.awg-source-desc-content-grid-container {
+    margin-left: 25px;
+    display: grid;
+    grid-template-columns: auto auto 1fr; // folio | system 1 | system 2
+    gap: 0.5rem 0.25rem;
+}
+
+.awg-source-desc-content-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    row-gap: 0.25rem;
+    align-items: start;
+
+    .awg-source-desc-content-grid-folio {
+        grid-column: 1;
+        white-space: nowrap;
+
+        &.span-full {
+            grid-column: 1 / -1;
+            white-space: normal;
+        }
+    }
+
+    .awg-source-desc-content-grid-systems-container {
+        grid-column: 2 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        row-gap: 0.15rem;
+    }
+
+    .awg-source-desc-content-grid-system-group {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+
+        // groups with only one system use the full width
+        > :only-child {
+            grid-column: 1 / -1;
+        }
+    }
+}

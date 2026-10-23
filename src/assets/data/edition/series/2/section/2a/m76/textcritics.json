@@ -4,9 +4,9 @@
             "id": "M76_TF1",
             "label": "M 76 Textfassung 1",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_B'})\"><strong>B</strong></a> bezieht sich auf Textfassung 2 für Streichquartett (siehe AWG II/2b).",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <a data-complex-id='m76' data-report-fragment-id='source_A'><strong>A</strong></a> relevante Quelle. <a data-complex-id='m76' data-report-fragment-id='source_B'><strong>B</strong></a> bezieht sich auf Textfassung 2 für Streichquartett (siehe AWG II/2b).",
+                "<a data-complex-id='m76' data-report-fragment-id='source_A'><strong>A</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a data-complex-id='m76' data-report-fragment-id='source_A_corr_1'>Korrekturen 1</a> mit Tinte sowie die später erfolgten <a data-complex-id='m76' data-report-fragment-id='source_A_corr_2'>Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <a data-complex-id='m76' data-report-fragment-id='source_A'><strong>A</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -26,14 +26,14 @@
                                 "measure": "8",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und <a data-complex-id='m76' data-report-fragment-id='source_A_corr_2'>Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m76_tf1-003",
                                 "measure": "9",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog T. 8 und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a> sowie Korrekturen 2 in Textfassung 2."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog T. 8 und mit Blick auf <a data-complex-id='m76' data-report-fragment-id='source_A_corr_2'>Korrekturen 2</a> sowie Korrekturen 2 in Textfassung 2."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m76_tf1-004",
@@ -54,7 +54,7 @@
                                 "measure": "14–17",
                                 "system": "Klav.",
                                 "position": "",
-                                "comment": "Unterstimmenschicht in <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a>: Achtelbalken zwischen den Systemen, Achtelnoten im unteren System nach oben gehalst: <br />##Abbildung## <br />##Abbildung##"
+                                "comment": "Unterstimmenschicht in <a data-complex-id='m76' data-report-fragment-id='source_A'><strong>A</strong></a>: Achtelbalken zwischen den Systemen, Achtelnoten im unteren System nach oben gehalst: <br />##Abbildung## <br />##Abbildung##"
                             },
                             {
                                 "svgGroupId": "awg-tkk-m76_tf1-007",

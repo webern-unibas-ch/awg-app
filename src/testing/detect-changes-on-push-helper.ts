@@ -15,7 +15,7 @@ import { ComponentFixture } from '@angular/core/testing';
  *           });
  */
 export async function detectChangesOnPush<T>(cf: ComponentFixture<T>) {
-    const cd = cf.debugElement.injector.get<ChangeDetectorRef>(ChangeDetectorRef as any);
+    const cd = cf.debugElement.injector.get<ChangeDetectorRef>(ChangeDetectorRef);
     cd.detectChanges();
     await cf.whenStable();
 }

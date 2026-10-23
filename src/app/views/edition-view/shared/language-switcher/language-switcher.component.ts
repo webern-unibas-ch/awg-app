@@ -1,0 +1,34 @@
+import { Component, model } from '@angular/core';
+
+import { LanguageId } from './language.model';
+
+/**
+ * The LanguageSwitcher component.
+ *
+ * It contains the language switcher of the edition view.
+ */
+@Component({
+    selector: 'awg-language-switcher',
+    templateUrl: './language-switcher.component.html',
+    styleUrl: './language-switcher.component.scss',
+})
+export class LanguageSwitcherComponent {
+    /**
+     * Readonly model signal: selectedLanguage.
+     *
+     * It holds the selected language id.
+     */
+    readonly selectedLanguage = model.required<LanguageId>();
+
+    /**
+     * Protected readonly variable: languages.
+     *
+     * It holds the available languages of the edition view.
+     */
+    protected readonly languages = Object.values(LanguageId)
+        .filter((value): value is LanguageId => typeof value === 'number')
+        .map(id => ({
+            id,
+            label: LanguageId[id],
+        }));
+}

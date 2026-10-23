@@ -1,59 +1,63 @@
 <!-- content: contact -->
 <div class="awg-contact-view p-5 border rounded-3">
+    <awg-button-scroll-to-top />
+
     <!-- citation -->
     <!-- citation heading -->
-    <awg-heading [title]="citationTitle" [id]="citationId"></awg-heading>
+    <awg-heading [title]="citationTitle" [id]="citationId" />
 
     <!-- citation description -->
     <div class="awg-citation-description mb-5">
         <p class="smallcaps">Empfohlene Zitierweisen:</p>
 
-        <p class="italic">Website:</p>
+        <p class="fst-italic">Website:</p>
         <p class="awg-citation-text">
             {{ pageMetaData.awgProjectName }}. Projekt-Website:
-            <a href="{{ pageMetaData?.awgProjectUrl }}"> {{ pageMetaData?.awgProjectUrl }} </a>, abgerufen am
-            <span class="awg-citation-date">{{ today | date: dateFormat }}</span
+            <a [href]="pageMetaData.awgProjectUrl"> {{ pageMetaData.awgProjectUrl }} </a>, abgerufen am
+            <span class="awg-citation-date">{{ today() | date: 'longDate' }}</span
             >.
         </p>
 
-        <p class="italic">Online-Edition:</p>
+        <p class="fst-italic">Online-Edition:</p>
         <p class="awg-citation-text">
             {{ pageMetaData.awgProjectName }}. Online-Edition (Version
-            <span class="awg-citation-version">{{ pageMetaData?.version }}</span> vom
-            <span class="awg-citation-version-release">{{ pageMetaData?.versionReleaseDate }}</span
-            >): <a href="{{ pageMetaData?.awgAppUrl }}"> {{ pageMetaData?.awgAppUrl }} </a>, abgerufen am
-            <span class="awg-citation-date">{{ today | date: dateFormat }}</span
+            <span class="awg-citation-version">{{ pageMetaData.awgAppVersion }}</span> vom
+            <span class="awg-citation-version-release">{{
+                pageMetaData.awgAppVersionReleaseDate | date: 'longDate'
+            }}</span
+            >): <a [href]="pageMetaData.awgAppUrl"> {{ pageMetaData.awgAppUrl }} </a>, abgerufen am
+            <span class="awg-citation-date">{{ today() | date: 'longDate' }}</span
             >.
         </p>
     </div>
 
     <!-- documentation -->
     <!-- documentation heading -->
-    <awg-heading [title]="documentationTitle" [id]="documentationId"></awg-heading>
+    <awg-heading [title]="documentationTitle" [id]="documentationId" />
 
     <!-- documentation description -->
     <div class="awg-documentation-description mb-5">
         <p class="awg-documentation-text">
             <span class="smallcaps">GitHub:</span><br />
             Repository unter:
-            <a href="{{ pageMetaData?.githubUrl }}">
-                {{ pageMetaData?.githubUrl }}
+            <a [href]="pageMetaData.awgAppGithubUrl">
+                {{ pageMetaData.awgAppGithubUrl }}
             </a>
         </p>
 
         <p class="awg-documentation-text">
             <span class="smallcaps">Compodoc:</span><br />
             Dokumentation von Struktur und Funktionalitäten der Angular App:
-            <a id="awg-compodoc" href="{{ pageMetaData?.compodocUrl }}"> Compodoc documentation </a> <br />
+            <a id="awg-compodoc" [href]="pageMetaData.compodocUrl"> Compodoc documentation </a> <br />
             <span class="smallcaps">DeepWiki:</span><br />
             Interaktive (KI-basierte) Dokumentation der Angular App:
-            <a id="awg-deepwiki" href="{{ pageMetaData?.deepWikiUrl }}"> DeepWiki documentation </a> <br />
+            <a id="awg-deepwiki" [href]="pageMetaData.deepWikiUrl"> DeepWiki documentation </a> <br />
         </p>
     </div>
 
     <!-- imprint -->
     <!-- imprint heading -->
-    <awg-heading [title]="imprintTitle" [id]="imprintId"></awg-heading>
+    <awg-heading [title]="imprintTitle" [id]="imprintId" />
 
     <!-- imprint description -->
     <div class="awg-imprint-description">
@@ -82,9 +86,8 @@
         </p>
         <p>
             <span class="smallcaps">Programmierung &amp; Webdesign:</span><br />
-            @for (developer of contactMetaData?.developers; track developer.name) {
-                {{ developer.name
-                }}<awg-meta-identifier-badges [identifiers]="developer.identifiers"></awg-meta-identifier-badges><br />
+            @for (developer of contactMetaData.developers; track developer.name) {
+                {{ developer.name }}<awg-meta-identifier-badges [identifiers]="developer.identifiers" /><br />
             }
             Wissenschaftlicher Mitarbeiter der {{ pageMetaData.awgProjectName }}, Basel<br /><a
                 href="mailto:stefan.muennich@unibas.ch"
@@ -96,7 +99,7 @@
     <!-- disclaimer description -->
     <div id="awg-disclaimer">
         <p><span class="smallcaps">Disclaimer/Haftungserklärung:</span><br /></p>
-        <p class="italic">Urheberrecht und Lizenzierung:</p>
+        <p class="fst-italic">Urheberrecht und Lizenzierung:</p>
         <p>
             Sämtliche im Rahmen der {{ pageMetaData.awgProjectName }} erarbeiteten und auf ihrer Website oder ihrer
             Online-Edition veröffentlichten Inhalte sowie auch alle Inhalte, die von der Website oder der Online-Edition
@@ -114,11 +117,11 @@
 
         <p>
             Der Software-Code der Online-Edition wird auf
-            <a href="{{ pageMetaData?.githubUrl }}">GitHub</a> unter einer
+            <a [href]="pageMetaData.awgAppGithubUrl">GitHub</a> unter einer
             <a href="https://opensource.org/licenses/MIT">MIT</a>-Lizenz zur Verfügung gestellt.
         </p>
 
-        <p class="italic">Externe Links:</p>
+        <p class="fst-italic">Externe Links:</p>
         <p>
             Die {{ pageMetaData.awgProjectName }} hat keinen Einfluss auf und übernimmt keine Verantwortung für die
             Inhalte der von ihrer Website, von ihrer Online-Edition oder von der DaSCH Service Platform (DSP)/SALSAH
@@ -129,7 +132,7 @@
             (DSP)/SALSAH (Projektbereich der Anton Webern Gesamtausgabe).
         </p>
 
-        <p class="italic">Haftungserklärung:</p>
+        <p class="fst-italic">Haftungserklärung:</p>
         <p>
             Die {{ pageMetaData.awgProjectName }} bemüht sich um richtige und aktualisierte Informationen auf ihrer
             Website und ihrer Online-Edition, übernimmt jedoch keinerlei Garantien oder Zusicherungen betreffend der
@@ -141,7 +144,7 @@
             Zugang, Benutzung oder möglichen Störungen beim Gebrauch der Website auftreten könnten.
         </p>
 
-        <p class="italic">Google Analytics:</p>
+        <p class="fst-italic">Google Analytics:</p>
         <p>
             Die {{ pageMetaData.awgProjectName }} setzt auf Grundlage ihrer berechtigten Interessen (d.h. Interesse an
             der Analyse und Optimierung unseres Onlineangebotes im Sinne des Art.
@@ -154,7 +157,7 @@
         <p>
             Google ist unter dem Privacy-Shield-Abkommen zertifiziert und bietet hierdurch eine Garantie, das
             europäische Datenschutzrecht einzuhalten (<a
-                href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active"
+                href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&amp;status=Active"
                 >https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active</a
             >).
         </p>

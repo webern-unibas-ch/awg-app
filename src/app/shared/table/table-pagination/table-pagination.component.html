@@ -1,11 +1,12 @@
 <ngb-pagination
     class="d-flex justify-content-center cols-xs-2"
-    [(page)]="page"
-    [collectionSize]="collectionSize"
+    [page]="page()"
+    [collectionSize]="collectionSize()"
+    [pageSize]="pageSize()"
     [boundaryLinks]="true"
     (pageChange)="onPageChange($event)">
     <ng-template ngbPaginationPages let-page let-pages="pages">
-        @if (pages.length > 0) {
+        @if (pages.length) {
             <li class="ngb-custom-pages-item">
                 <div class="mb-3 d-flex flex-nowrap px-2">
                     <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1"
@@ -18,12 +19,11 @@
                         pattern="[0-9]*"
                         class="form-control custom-pages-input"
                         id="paginationInput"
+                        aria-labelledby="paginationInputLabel paginationDescription"
                         [value]="page"
                         (keyup.enter)="selectPage(i.value)"
                         (blur)="selectPage(i.value)"
-                        (input)="replaceNonNumberInput($any($event).target)"
-                        aria-labelledby="paginationInputLabel paginationDescription"
-                        style="width: 3rem" />
+                        (input)="replaceNonNumberInput(i)" />
                     <span id="paginationDescription" class="col-form-label text-nowrap px-2">
                         von {{ pages.length }}</span
                     >

@@ -1,9 +1,9 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { faCheckCircle, faFolder, faList, faMusic, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faFolder, faList, faMusic } from '@fortawesome/free-solid-svg-icons';
 
 import {
     expectToBe,
@@ -13,22 +13,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { StatisticsSummaryCardData, StatisticsSummaryData } from '@awg-views/statistics-view/models';
-import { StatisticsSummaryCardComponent } from '@awg-views/statistics-view/statistics-summary-card';
+import { StatisticsSummaryCardData, StatisticsSummaryData } from '../models/statistics.model';
+import { StatisticsSummaryCardComponent } from '../statistics-summary-card/statistics-summary-card.component';
 
 import { StatisticsSummaryComponent } from './statistics-summary.component';
-
-// Mock components
-@Component({
-    selector: 'awg-statistics-summary-card',
-    template: '',
-})
-class StatisticsSummaryCardStubComponent {
-    title = input<string>();
-    value = input<number | string>();
-    icon = input<IconDefinition>();
-    bgClass = input<string>();
-}
 
 describe('StatisticsSummaryComponent', () => {
     let component: StatisticsSummaryComponent;
@@ -42,16 +30,11 @@ describe('StatisticsSummaryComponent', () => {
         await TestBed.configureTestingModule({
             imports: [StatisticsSummaryComponent],
         })
-            .overrideComponent(StatisticsSummaryComponent, {
-                remove: { imports: [StatisticsSummaryCardComponent] },
-                add: { imports: [StatisticsSummaryCardStubComponent] },
-            })
+            .overrideComponent(StatisticsSummaryCardComponent, { set: { template: '', imports: [] } })
             .compileComponents();
+    });
 
-        fixture = TestBed.createComponent(StatisticsSummaryComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+    beforeEach(() => {
         // Test data
         expectedSummaryData = {
             activeSeries: 5,
@@ -82,13 +65,10 @@ describe('StatisticsSummaryComponent', () => {
             },
         ];
 
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('summaryData', {
-            activeSeries: 0,
-            activeSections: 0,
-            activeComplexes: 0,
-            totalComplexes: 0,
-        });
+        // Create component fixture
+        fixture = TestBed.createComponent(StatisticsSummaryComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -96,13 +76,16 @@ describe('StatisticsSummaryComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `summaryData`', () => {
-            expectToEqual(component.summaryData(), {
-                activeSeries: 0,
-                activeSections: 0,
-                activeComplexes: 0,
-                totalComplexes: 0,
-            });
+        it('... should throw due to missing required input signal `summaryData`', () => {
+            expectToBe(isSignal(component.summaryData), true);
+
+            expect(() => component.summaryData()).toThrow();
+        });
+
+        it('... should throw when accessing computed signal `summaryCards` due to missing input', () => {
+            expectToBe(isSignal(component.summaryCards), true);
+
+            expect(() => component.summaryCards()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -114,16 +97,18 @@ describe('StatisticsSummaryComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent updating the input signal
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('summaryData', expectedSummaryData);
+
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have updated `summaryData`', () => {
+        it('... should have input signal `summaryData` to hold the provided identifiers', () => {
             expectToEqual(component.summaryData(), expectedSummaryData);
         });
 
-        it('... should have computed `summaryCards` based on `statisticsData`', () => {
+        it('... should have computed signal `summaryCards` to hold the expected cards', () => {
             const summaryCards = component.summaryCards();
 
             expectToBe(summaryCards.length, 4);
@@ -133,6 +118,14 @@ describe('StatisticsSummaryComponent', () => {
                 expectToEqual(card.icon, expectedSummaryCards[index].icon);
                 expectToBe(card.bgClass, expectedSummaryCards[index].bgClass);
             });
+        });
+
+        it('... should have recomputed signal `summaryCards` to hold empty array if no summaryData is provided', () => {
+            fixture.componentRef.setInput('summaryData', null);
+
+            fixture.detectChanges();
+
+            expectToEqual(component.summaryCards(), []);
         });
 
         describe('VIEW', () => {
@@ -155,60 +148,31 @@ describe('StatisticsSummaryComponent', () => {
                 getAndExpectDebugElementByCss(cardsDes[0], 'div.col-md-3.mb-3', 4, 4);
             });
 
-            it('... should contain one card component (stubbed) in each col div', () => {
+            it('... should contain one card component (hollow) in each col div', () => {
                 const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
                 const colDes = getAndExpectDebugElementByCss(cardsDes[0], 'div.col-md-3.mb-3', 4, 4);
 
                 colDes.forEach(colDe => {
-                    getAndExpectDebugElementByDirective(colDe, StatisticsSummaryCardStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(colDe, StatisticsSummaryCardComponent, 1, 1);
                 });
             });
 
-            it('... should pass down correct card data to each card component', () => {
+            it('... should pass down the correct card data to each card component', () => {
                 const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
                 const cardDes = getAndExpectDebugElementByDirective(
                     cardsDes[0],
-                    StatisticsSummaryCardStubComponent,
+                    StatisticsSummaryCardComponent,
                     expectedSummaryCards.length,
                     expectedSummaryCards.length
                 );
 
                 expectedSummaryCards.forEach((card, index) => {
-                    const cardCmp = cardDes[index].injector.get(StatisticsSummaryCardStubComponent);
+                    const cardCmp = cardDes[index].injector.get(StatisticsSummaryCardComponent);
 
                     expectToBe(cardCmp.title(), card.title);
                     expectToBe(cardCmp.value(), card.value);
                     expectToEqual(cardCmp.icon(), card.icon);
                     expectToBe(cardCmp.bgClass(), card.bgClass);
-                });
-            });
-        });
-
-        describe('#summaryCards', () => {
-            it('... should have a computed signal `summaryCards`', () => {
-                expect(component.summaryCards).toBeDefined();
-            });
-
-            it('... should return empty array if `summaryData` is null', () => {
-                fixture.componentRef.setInput('summaryData', null);
-
-                const summaryCards = component.summaryCards();
-
-                expectToBe(summaryCards.length, 0);
-                expectToEqual(summaryCards, []);
-            });
-
-            it('... should return correct summary card data based on summaryData input', () => {
-                fixture.componentRef.setInput('summaryData', expectedSummaryData);
-
-                const summaryCards = component.summaryCards();
-
-                expectToBe(summaryCards.length, 4);
-                summaryCards.forEach((card, index) => {
-                    expectToBe(card.title, expectedSummaryCards[index].title);
-                    expectToBe(card.value, expectedSummaryCards[index].value);
-                    expectToEqual(card.icon, expectedSummaryCards[index].icon);
-                    expectToBe(card.bgClass, expectedSummaryCards[index].bgClass);
                 });
             });
         });

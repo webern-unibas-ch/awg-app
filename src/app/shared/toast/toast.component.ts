@@ -1,37 +1,58 @@
-import { Component, TemplateRef, inject } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { Component, inject, TemplateRef } from '@angular/core';
+
+import { NgbToast } from '@ng-bootstrap/ng-bootstrap/toast';
 
 import { Toast, ToastService } from './toast.service';
 
 /**
  * The Toast component.
  *
- * It contains a toast template that is
- * provided via the {@link SharedModule}.
+ * It displays the toasts of the {@link ToastService}.
  */
 @Component({
     selector: 'awg-toast',
     templateUrl: './toast.component.html',
-    styleUrls: ['./toast.component.scss'],
-    standalone: false,
+    styleUrl: './toast.component.scss',
+    imports: [NgbToast, NgTemplateOutlet],
 })
 export class ToastComponent {
     /**
-     * Public variable: toastService.
+     * Private readonly injection variable: _toastService.
      *
      * It keeps the instance of the injected ToastService.
      */
-    toastService = inject(ToastService);
+    private readonly _toastService = inject(ToastService);
+
+    /**
+     * Readonly signal: toasts.
+     *
+     * It holds the toasts of the ToastService.
+     */
+    readonly toasts = this._toastService.toasts;
 
     /**
      * Public method: isTemplate.
      *
      * It checks if a given toast is provided as a template or text.
      *
-     * @param {*} toast The given queryResult.
-     *
+     * @param {string | TemplateRef<unknown>} value The toast value to check.
      * @returns {boolean} The boolean value of the check result.
      */
-    isTemplate(toast: Toast): boolean {
-        return toast.textOrTpl instanceof TemplateRef;
+    isTemplate(value: string | TemplateRef<unknown>): value is TemplateRef<unknown> {
+        return value instanceof TemplateRef;
+    }
+
+    /**
+     * Public method: onHidden.
+     *
+     * It removes the given toast from the ToastService
+     * after it has been hidden.
+     *
+     * @param {Toast} toast The given toast.
+     * @returns {void} Removes the toast.
+     */
+    onHidden(toast: Toast): void {
+        this._toastService.remove(toast);
     }
 }

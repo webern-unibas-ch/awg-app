@@ -1,110 +1,93 @@
 /**
+ * The DATA_TKK_ID constant.
+ *
+ * It keeps the name of the data attribute that links the parts of a multi-part tkk overlay.
+ */
+export const DATA_TKK_ID = 'data-tkk-id';
+
+/**
  * The EditionSvgOverlayTypes enumeration.
  *
- * It stores the possible svg overlay type selectors and related
- * attribute-name constants (e.g., data attributes used to identify overlays).
+ * It stores the possible types of svg overlays
+ * (identical to the class names of their svg groups).
  */
 export enum EditionSvgOverlayTypes {
-    dataTkkId = 'data-tkk-id',
     linkBox = 'link-box',
     tkk = 'tkk',
 }
 
 /**
- * The EditionSvgOverlayActionTypes enumeration.
+ * The EditionSvgOverlayLinkBox interface.
  *
- * It stores the possible svg overlay action types.
+ * It describes a link box overlay of an svg sheet
+ * (a link box drawn in the svg sheet itself).
  */
-export enum EditionSvgOverlayActionTypes {
-    hover = 'hover',
-    fill = 'fill',
-    transparent = 'transparent',
+export interface EditionSvgOverlayLinkBox {
+    /**
+     * The type of the svg overlay.
+     */
+    type: EditionSvgOverlayTypes.linkBox;
+
+    /**
+     * The id of the link box group (refers to the `svgGroupId` of the link boxes).
+     */
+    id: string;
 }
 
 /**
- * The EditionSvgOverlayState interface.
+ * The EditionSvgOverlayTkk interface.
  *
- * It stores the state of the svg overlays,
- * including the available and selected overlays.
+ * It describes a tkk overlay of an svg sheet
+ * (an overlay box drawn over a tkk group of the svg sheet).
  */
-export interface EditionSvgOverlayState {
+export interface EditionSvgOverlayTkk {
     /**
-     * An array of available svg overlays.
+     * The type of the svg overlay.
      */
-    available: EditionSvgOverlay[];
+    type: EditionSvgOverlayTypes.tkk;
 
     /**
-     * An array of selected svg overlays.
-     */
-    selected: EditionSvgOverlay[];
-}
-
-/**
- * The EditionSvgOverlay class.
- *
- * It is used in the context of the edition view
- * to store the data of a svg overlay.
- */
-export class EditionSvgOverlay {
-    /**
-     * The actual id of the SVG element (unique per element, if present).
+     * The id of the tkk group (refers to the `svgGroupId` of the textcritical comments).
      */
     id: string;
 
     /**
-     * The data id of an svg overlay (e.g., data-tkk-id value).
+     * The data id of the tkk overlay (shared by all parts of a multi-part tkk overlay).
      */
     dataId: string;
+}
+
+/**
+ * The EditionSvgOverlay type.
+ *
+ * It describes an svg overlay of an svg sheet: a tkk overlay or a link box overlay.
+ */
+export type EditionSvgOverlay = EditionSvgOverlayTkk | EditionSvgOverlayLinkBox;
+
+/**
+ * The EditionSvgOverlaysState interface.
+ *
+ * It describes the state of the svg overlays of a rendered svg sheet
+ * (available tkk overlays, selection, hover and highlighting; link boxes have no state).
+ */
+export interface EditionSvgOverlaysState {
+    /**
+     * The available tkk overlays of the rendered svg sheet.
+     */
+    tkkOverlays: EditionSvgOverlayTkk[];
 
     /**
-     * The type of an svg overlay (EditionSvgOverlayTypes).
+     * The data ids of the selected tkk overlays.
      */
-    type: EditionSvgOverlayTypes;
+    selectedDataIds: ReadonlySet<string>;
 
     /**
-     * The key string of an svg overlay type (EditionSvgOverlayTypes).
+     * The data id of the hovered tkk overlay, if any.
      */
-    typeKey: string;
+    hoveredDataId: string | undefined;
 
     /**
-     * A boolean value indicating whether the overlay is selected.
+     * A boolean flag whether the tkk overlays are highlighted (i.e., visible; set by the additions panel).
      */
-    isSelected?: boolean;
-
-    /**
-     * Constructor of the EditionSvgOverlay class.
-     *
-     * It initializes the class with values from the EditionSvgOverlayTypes, data id, and actual id.
-     *
-     * @param {EditionSvgOverlayTypes} typeValue The given overlay type value.
-     * @param {string} actualId The actual id of the SVG element (unique per element, if present).
-     * @param {string} dataId The data id of the overlay (e.g., data-tkk-id value).
-     * @param {boolean} [isSelected] The given boolean value indicating whether the overlay is selected.
-     *
-     */
-    constructor(typeValue: EditionSvgOverlayTypes, actualId: string, dataId: string, isSelected?: boolean) {
-        this.id = actualId;
-        this.dataId = dataId;
-        this.type = typeValue;
-        this.typeKey = this._getEnumKeyFromValue(typeValue);
-        this.isSelected = isSelected || false;
-    }
-
-    /**
-     * Private method: _getEnumKeyFromValue.
-     *
-     * It gets the type of a string enum by its value.
-     *
-     * Cf. https://www.tutorialsteacher.com/typescript/typescript-enum
-     *
-     * @param {EditionSvgOverlayTypes} enumValue The given overlay enum value.
-     *
-     * @returns {string} Filtered key of the EditionSvgOverlayTypes.
-     */
-    private _getEnumKeyFromValue(enumValue: EditionSvgOverlayTypes): string {
-        const enumKey: string = Object.keys(EditionSvgOverlayTypes)
-            // Find key of enumValue
-            .find((key: string) => EditionSvgOverlayTypes[key] === enumValue);
-        return enumKey;
-    }
+    isHighlighted: boolean;
 }

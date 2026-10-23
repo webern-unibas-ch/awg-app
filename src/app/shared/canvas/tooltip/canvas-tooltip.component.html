@@ -1,0 +1,11 @@
+<!-- Invisible anchor of the tooltip at the given point -->
+<span
+    class="awg-canvas-tooltip-anchor"
+    [style.left.px]="point()?.x"
+    [style.top.px]="point()?.y"
+    [ngbTooltip]="text()"
+    tooltipClass="awg-canvas-tooltip"
+    triggers="manual"
+    placement="end start top bottom"
+    [animation]="false"
+    [autoClose]="false"></span>

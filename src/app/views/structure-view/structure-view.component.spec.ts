@@ -1,40 +1,37 @@
-import { Component, DebugElement, Input } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { StructureViewComponent } from './structure-view.component';
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
+import { HeadingComponent } from '@awg-shared/heading/heading.component';
 
-// Mock heading component
-@Component({
-    selector: 'awg-heading',
-    template: '',
-    standalone: false,
-})
-class HeadingStubComponent {
-    @Input()
-    title: string;
-    @Input()
-    id: string;
-}
+import { StructureViewComponent } from './structure-view.component';
 
 describe('StructureViewComponent (DONE)', () => {
     let component: StructureViewComponent;
     let fixture: ComponentFixture<StructureViewComponent>;
     let compDe: DebugElement;
 
-    const expectedTitle = 'Datenstrukturmodell';
-    const expectedId = 'awg-structure-view';
+    const expectedStructureViewId = 'awg-structure-view-heading';
+    const expectedStructureViewTitle = 'Datenstrukturmodell';
+    const expectedStructureViewImgPath = 'assets/img/structure/WebernGraph.png';
+    const expectedStructureViewSvgPath = 'assets/img/structure/WebernGraph.svg';
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [StructureViewComponent, HeadingStubComponent],
-        }).compileComponents();
+            imports: [StructureViewComponent],
+            declarations: [],
+        })
+            .overrideComponent(ButtonScrollToTopComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(HeadingComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
+        // Create component fixture
         fixture = TestBed.createComponent(StructureViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -45,38 +42,76 @@ describe('StructureViewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have title and id', () => {
-            expectToBe(component.structureViewTitle, expectedTitle);
-            expectToBe(component.structureViewId, expectedId);
+        it('... should have `structureViewId`', () => {
+            expectToBe(component.structureViewId, expectedStructureViewId);
+        });
+
+        it('... should have `structureViewTitle`', () => {
+            expectToBe(component.structureViewTitle, expectedStructureViewTitle);
+        });
+
+        it('... should have `structureViewImgPath`', () => {
+            expectToBe(component.structureViewImgPath, expectedStructureViewImgPath);
+        });
+
+        it('... should have `structureViewSvgPath`', () => {
+            expectToBe(component.structureViewSvgPath, expectedStructureViewSvgPath);
         });
 
         describe('VIEW', () => {
+            const getStructureViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
+
             it('... should contain one `div.awg-structure-view`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
+                getStructureViewDes();
             });
 
-            it('... should contain one heading component (stubbed) in `div.awg-structure-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+            it('... should contain one ScrollToTop component (hollow) in `div.awg-structure-view`', () => {
+                getAndExpectDebugElementByDirective(getStructureViewDes()[0], ButtonScrollToTopComponent, 1, 1);
             });
 
-            it('... should not pass down `title` and `id` to heading component', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+            it('... should contain one HeadingComponent (hollow) in `div.awg-structure-view`', () => {
+                getAndExpectDebugElementByDirective(getStructureViewDes()[0], HeadingComponent, 1, 1);
+            });
 
-                expect(headingCmp.title).toBeUndefined();
-                expect(headingCmp.id).toBeUndefined();
+            it('... should throw when accessing HeadingComponent (hollow) inputs (`id` and `title`) due to missing initial data binding', () => {
+                const headingDes = getAndExpectDebugElementByDirective(
+                    getStructureViewDes()[0],
+                    HeadingComponent,
+                    1,
+                    1
+                );
+                const headingCmp = headingDes[0].injector.get(HeadingComponent);
+
+                expect(() => headingCmp.title()).toThrow();
+                expect(() => headingCmp.id()).toThrow();
             });
 
             it('... should contain one `div.awg-structure-view-content` in `div.awg-structure-view`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-structure-view-content', 1, 1);
+                getAndExpectDebugElementByCss(getStructureViewDes()[0], 'div.awg-structure-view-content', 1, 1);
             });
 
             it('... should contain three `p` & one `svg` element in div.awg-structure-view-content', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view-content', 1, 1);
+                const divDes = getStructureViewDes();
+
                 getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
                 getAndExpectDebugElementByCss(divDes[0], 'svg', 1, 1);
+            });
+
+            it('... should have role `img` and an aria-label on the svg', () => {
+                const svgDes = getAndExpectDebugElementByCss(compDe, '#awg-structure-view-svg', 1, 1);
+                const svgEl: SVGSVGElement = svgDes[0].nativeElement;
+
+                expectToBe(svgEl.getAttribute('role'), 'img');
+                expectToBe(svgEl.getAttribute('aria-label'), 'Modell der Datenstruktur der AWG-Online-Edition');
+            });
+
+            it('... should not display svg image', () => {
+                const imageDes = getAndExpectDebugElementByCss(compDe, '#awg-structure-view-svg image', 1, 1);
+                const imageEl: SVGImageElement = imageDes[0].nativeElement;
+
+                expectToBe(imageEl.getAttribute('href'), null);
+                expectToBe(imageEl.getAttribute('xlink:href'), null);
+                expectToBe(imageEl.getAttribute('src'), null);
             });
         });
     });
@@ -88,12 +123,22 @@ describe('StructureViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down `title` and `id` to heading component', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+            it('... should pass down the correct values to HeadingComponent (hollow) (`id` and `title`)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingComponent);
 
-                expectToBe(headingCmp.title, expectedTitle);
-                expectToBe(headingCmp.id, expectedId);
+                expectToBe(headingCmp.id(), expectedStructureViewId);
+                expectToBe(headingCmp.title(), expectedStructureViewTitle);
+            });
+
+            it('... should display svg image', () => {
+                const imageDes = getAndExpectDebugElementByCss(compDe, '#awg-structure-view-svg image', 1, 1);
+                const imageEl: SVGImageElement = imageDes[0].nativeElement;
+
+                expectToBe(imageEl.getAttribute('href'), expectedStructureViewSvgPath);
+                expectToBe(imageEl.getAttribute('xlink:href'), expectedStructureViewSvgPath);
+                expectToBe(imageEl.getAttribute('src'), expectedStructureViewImgPath);
             });
         });
     });

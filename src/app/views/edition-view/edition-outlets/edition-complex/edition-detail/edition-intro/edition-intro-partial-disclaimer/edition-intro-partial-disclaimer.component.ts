@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-import { EditionComplex } from '@awg-views/edition-view/models';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 
 /**
  * The EditionIntroPartialDisclaimer component.
@@ -11,55 +13,21 @@ import { EditionComplex } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-edition-intro-partial-disclaimer',
     templateUrl: './edition-intro-partial-disclaimer.component.html',
-    styleUrls: ['./edition-intro-partial-disclaimer.component.scss'],
-    standalone: false,
+    styleUrl: './edition-intro-partial-disclaimer.component.scss',
+    imports: [RouterLink],
 })
 export class EditionIntroPartialDisclaimerComponent {
     /**
-     * Input variable: editionComplex.
+     * Readonly input signal: editionComplex.
      *
-     * It keeps the editionComplex for the intro partial disclaimer.
+     * It holds the editionComplex for the intro partial disclaimer.
      */
-    @Input()
-    editionComplex: EditionComplex;
+    readonly editionComplex = input.required<EditionComplex | null>();
 
     /**
-     * Input variable: editionLabel.
+     * Readonly variable: introRoute.
      *
-     * It keeps the edition label for the intro partial disclaimer.
+     * It keeps the route to the edition intro view.
      */
-    @Input()
-    editionLabel: string;
-
-    /**
-     * Input variable: editionRoute.
-     *
-     * It keeps the edition route for the intro partial disclaimer.
-     */
-    @Input()
-    editionRoute: string;
-
-    /**
-     * Input variable: seriesRoute.
-     *
-     * It keeps the series route for the intro partial disclaimer.
-     */
-    @Input()
-    seriesRoute: string;
-
-    /**
-     * Input variable: sectionRoute.
-     *
-     * It keeps the section route for the intro partial disclaimer.
-     */
-    @Input()
-    sectionRoute: string;
-
-    /**
-     * Input variable: introRoute.
-     *
-     * It keeps the intro route for the intro partial disclaimer.
-     */
-    @Input()
-    introRoute: string;
+    readonly introRoute = EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route;
 }

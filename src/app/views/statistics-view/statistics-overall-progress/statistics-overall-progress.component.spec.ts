@@ -1,4 +1,4 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -11,25 +11,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { StatisticsOverallProgressData, StatisticsProgressBarConfig } from '@awg-views/statistics-view/models';
-import { StatisticsProgressBarComponent } from '@awg-views/statistics-view/statistics-progress-bar';
+import { StatisticsOverallProgressData } from '../models/statistics.model';
+import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
 
 import { StatisticsOverallProgressComponent } from './statistics-overall-progress.component';
-
-// Mock components
-@Component({
-    selector: 'awg-statistics-progress-bar',
-    template: '',
-})
-class StatisticsProgressBarStubComponent {
-    config = input.required<StatisticsProgressBarConfig>();
-    headerLabel = input<string>();
-    height = input<string>('15px');
-    showPercentageLabel = input<boolean>(true);
-    boldPercentageLabel = input<boolean>(false);
-    customType = input<string>('');
-    useCustomTypeOnly = input<boolean>(false);
-}
 
 describe('StatisticsOverallProgressComponent', () => {
     let component: StatisticsOverallProgressComponent;
@@ -42,28 +27,22 @@ describe('StatisticsOverallProgressComponent', () => {
         await TestBed.configureTestingModule({
             imports: [StatisticsOverallProgressComponent],
         })
-            .overrideComponent(StatisticsOverallProgressComponent, {
-                remove: { imports: [StatisticsProgressBarComponent] },
-                add: { imports: [StatisticsProgressBarStubComponent] },
-            })
+            .overrideComponent(StatisticsProgressBarComponent, { set: { template: '', imports: [] } })
             .compileComponents();
+    });
 
-        fixture = TestBed.createComponent(StatisticsOverallProgressComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+    beforeEach(() => {
         // Test data
         expectedOverallProgressData = {
             progressRate: 50,
             activeComplexes: 8,
             totalComplexes: 16,
         };
-        // Set required input signal with default value for initial tests
-        fixture.componentRef.setInput('overallProgressData', {
-            progressRate: 0,
-            activeComplexes: 0,
-            totalComplexes: 0,
-        });
+
+        // Create component fixture
+        fixture = TestBed.createComponent(StatisticsOverallProgressComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -71,8 +50,10 @@ describe('StatisticsOverallProgressComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have required `overallProgressData`', () => {
-            expectToEqual(component.overallProgressData(), { progressRate: 0, activeComplexes: 0, totalComplexes: 0 });
+        it('... should throw due to missing required input signal `overallProgressData`', () => {
+            expectToBe(isSignal(component.overallProgressData), true);
+
+            expect(() => component.overallProgressData()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -87,10 +68,11 @@ describe('StatisticsOverallProgressComponent', () => {
             // Set input signals with test data
             fixture.componentRef.setInput('overallProgressData', expectedOverallProgressData);
 
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have updated `overallProgressData`', () => {
+        it('... should have input signal `overallProgressData` to hold the provided data', () => {
             expectToEqual(component.overallProgressData(), expectedOverallProgressData);
         });
 
@@ -130,21 +112,21 @@ describe('StatisticsOverallProgressComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress > div.card-body', 1, 1);
             });
 
-            it('... should contain one progress bar component (stubbed) in card body', () => {
+            it('... should contain one progress bar component (hollow) in card body', () => {
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
 
-                getAndExpectDebugElementByDirective(cardBodyDes[0], StatisticsProgressBarStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(cardBodyDes[0], StatisticsProgressBarComponent, 1, 1);
             });
 
-            it('... should pass down correct values (incl. progress rate) to progress bar component', () => {
+            it('... should pass down the correct values (incl. progress rate) to progress bar component', () => {
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
                 const progressBarDes = getAndExpectDebugElementByDirective(
                     cardBodyDes[0],
-                    StatisticsProgressBarStubComponent,
+                    StatisticsProgressBarComponent,
                     1,
                     1
                 );
-                const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarStubComponent);
+                const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarComponent);
 
                 expectToEqual(progressBarCmp.config(), {
                     mode: 'percentage',

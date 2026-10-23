@@ -1,0 +1,34 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
+.awg-language-switcher {
+    font-family: 'Montserrat', sans-serif;
+    font-size: small;
+    text-align: end;
+
+    button {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+
+        text-decoration: none;
+
+        &.active,
+        &.active:hover {
+            cursor: default;
+            color: inherit;
+        }
+
+        &:not(.active) {
+            color: theme.$link-color;
+        }
+
+        &:focus-visible {
+            outline: 1px solid theme.$link-color;
+            outline-offset: 2px;
+        }
+    }
+}

@@ -1,3 +1,5 @@
+import { EditionRouteConstant } from '../edition-routes.constants';
+
 /**
  * Object constant: EDITION_TRADEMARKS_DATA.
  *
@@ -456,4 +458,4 @@ export const EDITION_TRADEMARKS_DATA = {
         short: '[JE] | No. 15 | 16 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 15 | 16 linig.',
     },
-} as const;
+} satisfies Record<string, EditionRouteConstant>;

@@ -1,0 +1,25 @@
+<div ngbAccordion>
+    <div ngbAccordionItem="awg-graph-results-select" [collapsed]="false" [disabled]="isFullscreenMode()">
+        <div ngbAccordionHeader>
+            <button ngbAccordionButton class="p-3">Resultat</button>
+        </div>
+        <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+                <ng-template>
+                    @if (queryResult(); as queryResult) {
+                        @if (isValidSelectQueryResult(queryResult)) {
+                            <!-- SPARQL table visualization -->
+                            <awg-select-table
+                                [queryResult]="queryResult"
+                                (clickedTableRequest)="onTableNodeClick($event)" />
+                        } @else {
+                            <awg-graph-results-empty />
+                        }
+                    } @else {
+                        <awg-twelve-tone-spinner />
+                    }
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

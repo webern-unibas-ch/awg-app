@@ -1,0 +1,39 @@
+@use '/src/assets/themes/scss/shared' as theme;
+
+// Render the item as block (like the former direct children of the facet group)
+:host {
+    display: block;
+}
+
+a.awg-edition-sheet-facet-item-link {
+    // Active colour and no border colour for the button states
+    --bs-btn-active-color: #{theme.$link-color};
+    --bs-btn-active-border-color: transparent;
+
+    border-bottom: none;
+
+    // Overrides the text-muted utility of the inactive link
+    &:not(.active):hover {
+        color: theme.$text-dark-color !important;
+    }
+}
+
+a.awg-edition-sheet-facet-item-link-dropdown-toggle {
+    &.btn {
+        border: none;
+    }
+    // Overrides the text-muted utility of the inactive toggle
+    &.active,
+    &:active {
+        color: theme.$link-color !important;
+    }
+    &:hover {
+        color: theme.$text-dark-color !important;
+    }
+
+    > span {
+        display: inline-block;
+        white-space: break-spaces;
+        text-align: start;
+    }
+}

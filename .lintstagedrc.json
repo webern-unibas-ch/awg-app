@@ -1,4 +1,5 @@
 {
-    "src/**/*.{ts,tsx,js,jsx,html}": "yarn lint-files:fix",
-    "src/**/*.{ts,tsx,js,jsx,html,css,scss,json,md}": "yarn format-files:fix"
+    "src/**/*.ts": "madge --circular --extensions ts --ts-config tsconfig.json",
+    "src/**/*.{ts,tsx,js,jsx,html}": ["eslint --fix", "prettier --write"],
+    "src/**/*.{css,scss,json,md}": "prettier --write"
 }
