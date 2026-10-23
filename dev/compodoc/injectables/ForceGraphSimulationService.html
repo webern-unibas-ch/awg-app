@@ -1,0 +1,636 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ForceGraphSimulationService</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/simulation/force-graph-simulation.service.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The ForceGraphSimulation service.</p>
+<p>It runs the force simulation of a graph in a web worker,
+or on the main thread without web workers or if the worker fails.</p>
+
+            </p>
+
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api">
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_createWorker" >_createWorker</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#simulate" >simulate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="simulate"></a>
+                    <span class="name">
+                        <span ><b>simulate</b></span>
+                        <a href="#simulate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>simulate(graphData: <a href="../interfaces/ForceGraphData.html" target="_self">ForceGraphData</a>, commands$: <a href="../interfaces/ForceGraphSimulation.html" target="_self">Observable&lt;ForceGraphSimulationCommand&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/simulation/force-graph-simulation.service.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: simulate.</p>
+<p>It runs the steerable force simulation of the given data and emits every step&#39;s positions, endlessly
+(until unsubscribed). A failing worker falls back to the main thread; only a failure there errors.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>graphData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphData.html" target="_self" >ForceGraphData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given force graph data.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>commands$</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ForceGraphSimulation.html" target="_self" >Observable&lt;ForceGraphSimulationCommand&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given pin and release commands.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Graph.html" target="_self" >Observable&lt;ForceGraphSimulationProgress&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The simulation progress.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_createWorker"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_createWorker</b></span>
+                        <a href="#_createWorker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FORCE_GRAPH_SIMULATION_WORKER_FACTORY)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/simulation/force-graph-simulation.service.ts:103</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _createWorker.</p>
+<p>It keeps the injected factory of the web worker of the simulation.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, InjectionToken, Service } from &#x27;@angular/core&#x27;;
+
+import { Observable } from &#x27;rxjs&#x27;;
+
+import { ForceGraphData } from &#x27;../force-graph.model&#x27;;
+
+import { FORCE_GRAPH_SIMULATION_TRANSFER_UTILS } from &#x27;./force-graph-simulation-transfer.utils&#x27;;
+import {
+    ForceGraphSimulation,
+    ForceGraphSimulationCommand,
+    ForceGraphSimulationInput,
+    ForceGraphSimulationMessage,
+    ForceGraphSimulationProgress,
+    ForceGraphSimulationWorkerFactory,
+} from &#x27;./force-graph-simulation.model&#x27;;
+import { FORCE_GRAPH_SIMULATION_UTILS } from &#x27;./force-graph-simulation.utils&#x27;;
+
+/**
+ * Private function: _createSimulationWorker.
+ *
+ * It creates the web worker of the force graph simulation, if web workers are available
+ * and the worker can be created (e.g., not blocked by a content security policy).
+ *
+ * @returns {Worker | undefined} The web worker or undefined.
+ */
+function _createSimulationWorker(): Worker | undefined {
+    if (typeof Worker &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) {
+        return undefined;
+    }
+    try {
+        return new Worker(new URL(&#x27;./force-graph-simulation.worker&#x27;, import.meta.url), { type: &#x27;module&#x27; });
+    } catch {
+        return undefined;
+    }
+}
+
+/**
+ * Private function: _startWorkerSimulation.
+ *
+ * It starts the simulation in the given web worker and passes on its progress; pin and release are posted to it.
+ * A failing worker (e.g., script not loaded, failed step) is terminated, like on dispose, and reported.
+ *
+ * @param {Worker} worker The given web worker.
+ * @param {ForceGraphSimulationInput} input The given simulation input.
+ * @param {(progress: ForceGraphSimulationProgress) &#x3D;&gt; void} onProgress The callback for the progress of each step.
+ * @param {() &#x3D;&gt; void} onFailure The callback for a failure of the worker.
+ * @returns {ForceGraphSimulation} The simulation in the worker.
+ */
+function _startWorkerSimulation(
+    worker: Worker,
+    input: ForceGraphSimulationInput,
+    onProgress: (progress: ForceGraphSimulationProgress) &#x3D;&gt; void,
+    onFailure: () &#x3D;&gt; void
+): ForceGraphSimulation {
+    const post &#x3D; (message: ForceGraphSimulationMessage, transfer: Transferable[] &#x3D; []): void &#x3D;&gt;
+        worker.postMessage(message, transfer);
+
+    worker.onmessage &#x3D; ({ data }: MessageEvent&lt;ForceGraphSimulationProgress&gt;) &#x3D;&gt; onProgress(data);
+    // Load and runtime errors of the worker
+    // (a failed loading of the worker script is reported as plain event, without message)
+    worker.onerror &#x3D; (event: ErrorEvent | Event) &#x3D;&gt; {
+        // The failure is handled (no uncaught error)
+        event.preventDefault();
+        console.warn(
+            &#x27;[ForceGraphSimulationService] Simulation worker failed, continuing on the main thread:&#x27;,
+            &#x27;message&#x27; in event ? event.message : &#x27;The worker script could not be loaded.&#x27;
+        );
+        worker.terminate();
+        onFailure();
+    };
+    post({ type: &#x27;start&#x27;, input }, [input.radii.buffer, input.links.buffer, input.positions.buffer]);
+
+    return {
+        pin: (index, point) &#x3D;&gt; post({ type: &#x27;pin&#x27;, index, point }),
+        release: index &#x3D;&gt; post({ type: &#x27;release&#x27;, index }),
+        dispose: () &#x3D;&gt; worker.terminate(),
+    };
+}
+
+/**
+ * Injection token: FORCE_GRAPH_SIMULATION_WORKER_FACTORY.
+ *
+ * It provides the factory of the web worker of the force graph simulation.
+ */
+export const FORCE_GRAPH_SIMULATION_WORKER_FACTORY &#x3D; new InjectionToken&lt;ForceGraphSimulationWorkerFactory&gt;(
+    &#x27;FORCE_GRAPH_SIMULATION_WORKER_FACTORY&#x27;,
+    { providedIn: &#x27;root&#x27;, factory: () &#x3D;&gt; _createSimulationWorker }
+);
+
+/**
+ * The ForceGraphSimulation service.
+ *
+ * It runs the force simulation of a graph in a web worker,
+ * or on the main thread without web workers or if the worker fails.
+ */
+@Service()
+export class ForceGraphSimulationService {
+    /**
+     * Private readonly injection variable: _createWorker.
+     *
+     * It keeps the injected factory of the web worker of the simulation.
+     */
+    private readonly _createWorker &#x3D; inject(FORCE_GRAPH_SIMULATION_WORKER_FACTORY);
+
+    /**
+     * Public method: simulate.
+     *
+     * It runs the steerable force simulation of the given data and emits every step&#x27;s positions, endlessly
+     * (until unsubscribed). A failing worker falls back to the main thread; only a failure there errors.
+     *
+     * @param {ForceGraphData} graphData The given force graph data.
+     * @param {Observable&lt;ForceGraphSimulationCommand&gt;} commands$ The given pin and release commands.
+     * @returns {Observable&lt;ForceGraphSimulationProgress&gt;} The simulation progress.
+     */
+    simulate(
+        graphData: ForceGraphData,
+        commands$: Observable&lt;ForceGraphSimulationCommand&gt;
+    ): Observable&lt;ForceGraphSimulationProgress&gt; {
+        return new Observable&lt;ForceGraphSimulationProgress&gt;(subscriber &#x3D;&gt; {
+            let simulation: ForceGraphSimulation;
+
+            // A new input for every start, from the last known positions of the force graph data
+            // (the buffers of an input posted to the worker are transferred)
+            const createSimulationInput &#x3D; (): ForceGraphSimulationInput &#x3D;&gt;
+                FORCE_GRAPH_SIMULATION_TRANSFER_UTILS.toSimulationInput(graphData);
+
+            // The simulation refers to the nodes by their index in the force graph data
+            const onCommand &#x3D; (command: ForceGraphSimulationCommand): void &#x3D;&gt; {
+                const index &#x3D; graphData.nodes.indexOf(command.node);
+                if (index &#x3D;&#x3D;&#x3D; -1) {
+                    return;
+                }
+                if (command.type &#x3D;&#x3D;&#x3D; &#x27;pin&#x27;) {
+                    simulation.pin(index, command.point);
+                } else {
+                    simulation.release(index);
+                }
+            };
+            const onProgress &#x3D; (progress: ForceGraphSimulationProgress): void &#x3D;&gt; subscriber.next(progress);
+            const onError &#x3D; (error: unknown): void &#x3D;&gt; subscriber.error(error);
+
+            const startOnMainThread &#x3D; (): ForceGraphSimulation &#x3D;&gt;
+                FORCE_GRAPH_SIMULATION_UTILS.startSimulation(createSimulationInput(), onProgress, onError);
+            // A failing worker hands the simulation over to the main thread
+            // (in the error callback of the worker: a failing start would be uncaught otherwise)
+            const onFailure &#x3D; (): void &#x3D;&gt; {
+                try {
+                    simulation &#x3D; startOnMainThread();
+                } catch (error) {
+                    onError(error);
+                }
+            };
+            const startOnWorker &#x3D; (simulationWorker: Worker): ForceGraphSimulation &#x3D;&gt;
+                _startWorkerSimulation(simulationWorker, createSimulationInput(), onProgress, onFailure);
+
+            const worker &#x3D; this._createWorker();
+            simulation &#x3D; worker ? startOnWorker(worker) : startOnMainThread();
+            const commandSubscription &#x3D; commands$.subscribe(onCommand);
+
+            return () &#x3D;&gt; {
+                commandSubscription.unsubscribe();
+                simulation.dispose();
+            };
+        });
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ForceGraphSimulationService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,200 @@
+@use './shared' as theme;
+
+/****** BASE ******/
+html,
+body {
+    font-family: 'Droid', serif;
+    background-color: transparent;
+    min-width: 320px;
+}
+
+/****** LINKS ******/
+a {
+    cursor: pointer;
+}
+// Zero specificity, so that any class selector can override the hover border
+:where(a:not(.awg-logo-link):hover) {
+    border-bottom: 1px solid theme.$link-color;
+}
+a,
+a:link:not(.nav-link, .btn, .dropdown-item),
+a:visited:not(.nav-link, .btn, .dropdown-item),
+a:hover:not(.nav-link, .btn, .dropdown-item),
+a:not([href]):not([tabindex]):not(.nav-link, .btn, .dropdown-item),
+a:not([href]):not([tabindex]):not(.nav-link, .btn, .dropdown-item):hover,
+a[role='button'][tabindex='0']:not(.nav-link, .btn, .dropdown-item),
+a[role='button'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover,
+a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item),
+a[role='link'][tabindex='0']:not(.nav-link, .btn, .dropdown-item):hover {
+    color: theme.$link-color;
+    text-decoration: none;
+}
+
+/****** SPACING ******/
+.para {
+    margin-bottom: 3em;
+}
+.half-para-margin {
+    margin-bottom: 0.5em;
+}
+
+/****** CARDS ******/
+// Cards of the statistics view (used by several statistics components)
+.awg-statistics-card {
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.15s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+        background-color: var(--bs-tertiary-bg);
+        border-bottom: 1px solid #e0e0e0;
+
+        .card-title {
+            color: var(--bs-gray-700);
+            font-weight: 600;
+        }
+    }
+}
+
+/****** ACCORDION ******/
+// Accordion header with own content (without the Bootstrap chevron)
+.awg-accordion-button-custom-header {
+    padding: 0.54rem 1rem;
+
+    &::after {
+        content: none;
+    }
+
+    // The toggle is a button inside the header, so the header shows the focus glow
+    // of a normal accordion button for it
+    &:has(> button.btn-link:focus) {
+        z-index: 3;
+        box-shadow: var(--bs-accordion-btn-focus-box-shadow);
+    }
+
+    button.btn-link {
+        color: theme.$link-color;
+        text-decoration: none;
+
+        &:focus-visible {
+            box-shadow: none;
+        }
+    }
+}
+
+/****** DETAILS ******/
+details summary {
+    list-style: none;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+
+    &::before {
+        content: '›';
+        display: inline-block;
+        margin-right: 0.25em;
+        font-size: 1.5em;
+        line-height: 1;
+        vertical-align: -0.1em;
+        // Lift the closed chevron, as the glyph sits low in its box
+        transform: translateY(-0.1em);
+        transition: transform 0.2s;
+    }
+}
+details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+/****** TABLES & LISTS ******/
+.table thead tr th {
+    border-bottom: 2px solid black;
+}
+td {
+    vertical-align: top;
+}
+
+ul.nobullets {
+    list-style: none;
+}
+
+/****** TOOLTIPS ******/
+// Tooltip windows are rendered outside of the components, so their styles stay global
+.awg-group-id-tooltip .tooltip-inner {
+    font-family: var(--bs-font-monospace);
+    font-size: 0.75rem;
+    margin-right: 1em;
+    border: 1px solid var(--bs-border-color);
+}
+
+// The tooltip of a canvas must not catch the pointer (it would leave the canvas);
+// ng-bootstrap enables it again for the inner box (ngb-tooltip-window .tooltip-inner)
+.awg-canvas-tooltip,
+.awg-canvas-tooltip .tooltip-inner {
+    pointer-events: none;
+}
+
+/****** EDITION CONTENT ******/
+// Classes of the html in the edition data (compiled at runtime, so not covered by view encapsulation)
+// Marker for proofreading new edition data
+.todo {
+    color: red;
+    font-weight: bold;
+
+    &::before {
+        content: '## ';
+    }
+    &::after {
+        content: ' ##';
+    }
+}
+
+.smallcaps,
+.version {
+    font-variant: small-caps;
+}
+
+.tab {
+    padding-left: 25px;
+}
+
+// Glyphs (subset of Bravura, created with create_glyph_subset in awg-utils)
+@font-face {
+    font-family: 'AWG Edition Glyphs';
+    src: url('../fonts/awg-edition-glyphs/AWGEditionGlyphs-Regular.woff2') format('woff2');
+}
+
+.glyph {
+    font-family: 'AWG Edition Glyphs';
+    font-size: 24px;
+    line-height: 1;
+
+    &.accid {
+        vertical-align: middle;
+    }
+    &.note {
+        font-size: 16px;
+    }
+    &.unicode {
+        position: relative;
+        vertical-align: bottom;
+        top: 7.5px;
+    }
+}
+
+// Snippets
+.awg-edition-tkk-snippet {
+    max-height: 4em;
+    width: auto;
+    cursor: pointer;
+    display: inline-block;
+
+    // Margin between consecutive snippets
+    & + br + & {
+        margin-top: 0.25em;
+    }
+}

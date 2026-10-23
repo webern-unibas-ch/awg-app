@@ -1,0 +1,21 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Autograph von <br /><span class=\"tab\"></span><em>Kunfttag I</em> („Dem bist du Kind“) M 144: einzige Textfassung.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_A"
+        }
+    ],
+    "textSources": [
+        {
+            "id": "text_George_DsR",
+            "siglum": "George_DsR",
+            "siglumAddendum": "",
+            "type": "Stefan George, <em>Der siebente Ring</em>, Berlin: Blätter für die Kunst, 1907, S. 96.",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1041."
+        }
+    ]
+}

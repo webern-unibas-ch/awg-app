@@ -1,0 +1,92 @@
+{
+    "textcritics": [
+        {
+            "id": "SkRT",
+            "label": "M 286 / M 287 RT (Reihentabelle op. 19)",
+            "evaluations": [
+                "<small class=\"text-muted\">[Der Skizzenkommentar erscheint im Zusammenhang der vollständigen Edition von Opus 19 in AWG I/3.]</small>"
+            ],
+            "rowtable": true,
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-001",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1a",
+                                "position": "G<sub>g</sub>",
+                                "comment": "Vertikaler Strich, Reihennummerierung und -bezeichnung <em>Gr.</em> (lies: Grundform) mit rotem Buntstift. <em>I.</em> überschreibt <em>1</em>."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-002",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1b",
+                                "position": "K<sub>c</sub>",
+                                "comment": "Reihennummerierung und -bezeichnung <em>Kr</em> (lies: Krebsform) mit rotem Buntstift. <em>II.</em> überschreibt <em>2</em>."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-003",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1b",
+                                "position": "K<sub>c</sub>: 8.–9. Reihenton",
+                                "comment": "<em>’</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-004",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "2a",
+                                "position": "U<sub>g</sub>",
+                                "comment": "Reihennummerierung und -bezeichnung <em>U</em> (lies: Umkehrungsform) mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-005",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "2b",
+                                "position": "KU<sub>d</sub>: 1. Reihenton",
+                                "comment": "Reihennummerierung und -bezeichnung <em>U Kr</em> (lies: Umkehrung der Krebsform) mit blauem Buntstift. <em>IV</em> überschreibt <em>4</em>."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-006",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "4a",
+                                "position": "G<sub>cis</sub>",
+                                "comment": "Vertikaler Strich, Reihennummerierung und -bezeichnung <em>Transp.</em> (lies: Transposition der Grundform) mit Kopierstift. <em>5</em> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-007",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "4b",
+                                "position": "K<sub>ges</sub>",
+                                "comment": "Reihennummerierung und -bezeichnung <em>Kr Tr</em> (lies: Krebs der transponierten Grundform) mit Kopierstift."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-008",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "5a",
+                                "position": "U<sub>cis</sub",
+                                "comment": "Vertikaler Strich, Reihennummerierung und -bezeichnung <em>U Tr</em> (lies: Umkehrung der transponierten Grundform) mit grünem Buntstift. <em>7</em> mit Bleistift, gestrichen mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-009",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "5b",
+                                "position": "KU<sub>gis</sub>",
+                                "comment": "Reihennummerierung und -bezeichnung <em>Krebs U Tr</em> (lies: Krebs der Umkehrung der transponierten Grundform) mit grünem Buntstift. <em>8</em> mit grünem Buntstift überschreibt <em>8</em> mit Bleistift (nachgezogen)."
+                            },
+                            {
+                                "svgGroupId": "awg-tkk-op19_skrt-010",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "5b",
+                                "position": "KU<sub>gis</sub>: 2.–4.Reihenton",
+                                "comment": "Bogen mit dünnem Bleistift."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
