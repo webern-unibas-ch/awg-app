@@ -1,5 +1,6 @@
 {
     "src/**/*.ts": "madge --circular --extensions ts --ts-config tsconfig.json",
     "src/**/*.{ts,tsx,js,jsx,html}": ["eslint --fix", "prettier --write"],
-    "src/**/*.{css,scss,json,md}": "prettier --write"
+    "src/**/*.{css,scss,json,md}": "prettier --write",
+    "{src/app/views/edition-view/data/edition-glyphs.data.ts,src/assets/themes/fonts/awg-edition-glyphs/*}": "node scripts/check-glyph-subset.js"
 }
