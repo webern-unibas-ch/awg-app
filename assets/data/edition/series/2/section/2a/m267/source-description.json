@@ -158,7 +158,7 @@
                                             "measure": "8",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Verschiedene Rasuren in und zwischen den Systemen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>)."
+                                            "comment": "Verschiedene Rasuren in und zwischen den Systemen (vgl. <a data-complex-id='m267' data-report-fragment-id='source_A_corr_2'>Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m267_tf1_A_corr_1-009",
@@ -257,7 +257,7 @@
                                             "measure": "nach 7",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Korrekturskizze für T. 8 (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm267', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>): <br />##Abbildung##"
+                                            "comment": "Korrekturskizze für T. 8 (vgl. <a data-complex-id='m267' data-report-fragment-id='source_A_corr_1'>Korrekturen 1</a>): <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m267_tf1_A_corr_2-002",

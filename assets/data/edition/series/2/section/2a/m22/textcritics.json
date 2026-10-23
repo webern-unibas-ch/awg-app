@@ -4,9 +4,9 @@
             "id": "M22_TF1",
             "label": "M 22 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 22 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a> relevante Quelle.  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_A'})\"><strong>A</strong></a>,  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_B'})\"><strong>B</strong></a>,  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_C'})\"><strong>C</strong></a>,  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_D'})\"><strong>D</strong></a> und  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_E'})\"><strong>E</strong></a> enthalten Skizzen.",
-                " <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Eine nur geringfügig abweichende Variante für Var. XIX T. 7–8, notiert in separaten Systemen, wurde nicht berücksichtigt.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier/Streichquartett M 22 ist  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a> nach Korrekturen 1. Die letzten drei Variationen (Var. XXI–XXIII) in Besetzung für Streichquartett wurden aufgrund der durchgehenden Nummerierung in die Edition miteinbezogen (vgl. Einleitung)."
+                "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 22 ist <a data-complex-id='m22' data-report-fragment-id='source_F'><strong>F</strong></a> relevante Quelle.  <a data-complex-id='m22' data-report-fragment-id='source_A'><strong>A</strong></a>,  <a data-complex-id='m22' data-report-fragment-id='source_B'><strong>B</strong></a>,  <a data-complex-id='m22' data-report-fragment-id='source_C'><strong>C</strong></a>,  <a data-complex-id='m22' data-report-fragment-id='source_D'><strong>D</strong></a> und  <a data-complex-id='m22' data-report-fragment-id='source_E'><strong>E</strong></a> enthalten Skizzen.",
+                " <a data-complex-id='m22' data-report-fragment-id='source_F'><strong>F</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Eine nur geringfügig abweichende Variante für Var. XIX T. 7–8, notiert in separaten Systemen, wurde nicht berücksichtigt.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier/Streichquartett M 22 ist  <a data-complex-id='m22' data-report-fragment-id='source_F'><strong>F</strong></a> nach Korrekturen 1. Die letzten drei Variationen (Var. XXI–XXIII) in Besetzung für Streichquartett wurden aufgrund der durchgehenden Nummerierung in die Edition miteinbezogen (vgl. Einleitung)."
             ],
             "commentary": {
                 "preamble": "",
@@ -19,7 +19,7 @@
                                 "measure": "8",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a>: Einfacher Taktstrich."
+                                "comment": "Schlussstrich ergänzt. <a data-complex-id='m22' data-report-fragment-id='source_F'><strong>F</strong></a>: Einfacher Taktstrich."
                             }
                         ]
                     },
@@ -81,7 +81,7 @@
                                 "measure": "8",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a>: Einfacher Taktstrich."
+                                "comment": "Schlussstrich ergänzt. <a data-complex-id='m22' data-report-fragment-id='source_F'><strong>F</strong></a>: Einfacher Taktstrich."
                             }
                         ]
                     },
@@ -1985,7 +1985,7 @@
             "id": "M22_Sk27_1",
             "label": "M 22 Sk27.1",
             "evaluations": [
-                "<strong>M 22 Sk27.1</strong> überarbeitet die T. 5–6 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm22', sheetId: 'M22_Sk27'})\"><strong>M 22 Sk27</strong></a> und fügt die T. 7–8 zu Var. XVIII von M 22 hinzu."
+                "<strong>M 22 Sk27.1</strong> überarbeitet die T. 5–6 aus <a data-complex-id='m22' data-sheet-id='M22_Sk27'><strong>M 22 Sk27</strong></a> und fügt die T. 7–8 zu Var. XVIII von M 22 hinzu."
             ],
             "commentary": {
                 "preamble": "",
@@ -2509,7 +2509,7 @@
             "id": "M22_Sk32_1",
             "label": "M 22 Sk32.1",
             "evaluations": [
-                "<strong>M 22 Sk32.1</strong> schließt an T. 5 von <a (click)=\"ref.selectSvgSheet({complexId: 'm22', sheetId: 'M22_Sk32'})\"><strong>M 22 Sk32</strong></a> an und entwirft einen alternativen Schluss zu Var. XXII von M 22."
+                "<strong>M 22 Sk32.1</strong> schließt an T. 5 von <a data-complex-id='m22' data-sheet-id='M22_Sk32'><strong>M 22 Sk32</strong></a> an und entwirft einen alternativen Schluss zu Var. XXII von M 22."
             ],
             "commentary": {
                 "preamble": "",
@@ -2577,7 +2577,7 @@
             "id": "M22_Sk32_1_1",
             "label": "M 22 Sk32.1.1",
             "evaluations": [
-                "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <a (click)=\"ref.selectSvgSheet({complexId: 'm22', sheetId: 'M22_Sk32_1'})\"><strong>M 22 Sk32.1</strong></a> den melodischen Übergang in T. 7 zum Schlussakkord neu."
+                "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <a data-complex-id='m22' data-sheet-id='M22_Sk32_1'><strong>M 22 Sk32.1</strong></a> den melodischen Übergang in T. 7 zum Schlussakkord neu."
             ],
             "commentary": {
                 "preamble": "",

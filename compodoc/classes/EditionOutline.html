@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -117,12 +124,23 @@
   <li class="breadcrumb-item" >EditionOutline</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/models/edition-outline.model.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" 
@@ -134,13 +152,6 @@
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app/views/edition-view/models/edition-outline.model.ts</code>
-        </p>
-
 
             <p class="comment">
                 <h3>Description</h3>
@@ -155,52 +166,59 @@ to structure outline information of the edition.</p>
 
 
 
+            </div>
+
+    <div class="tab-pane fade " id="api">
             <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Properties</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_mapComplexItems" >_mapComplexItems</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_mapSection" >_mapSection</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_mapSectionContent" >_mapSectionContent</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_mapSeries" >_mapSeries</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#outline" >outline</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
 
 
 
 
-        </tbody>
-    </table>
 </section>
 
             <section data-compodoc="block-constructor">
@@ -209,12 +227,12 @@ to structure outline information of the edition.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(outlineData: <a href="../classes/EditionOutline.html" target="_self">EditionOutlineSeriesJsonData[]</a>)</code>
+<code>constructor(outlineData: <a href="../classes/EditionOutline.html" target="_self">EditionOutlineSeriesJsonData[] | null | undefined</a>, getComplexById: (id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>) => void)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:218</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:306</a></div>
                             </td>
                         </tr>
 
@@ -239,7 +257,7 @@ to structure outline information of the edition.</p>
                                                         <td>outlineData</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/EditionOutline.html" target="_self" >EditionOutlineSeriesJsonData[]</a></code>
+                                                                        <code><a href="../classes/EditionOutline.html" target="_self" >EditionOutlineSeriesJsonData[] | null | undefined</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -248,6 +266,22 @@ to structure outline information of the edition.</p>
                                                     
                                                         <td>
                                                                 <p>The given edition outline.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>getComplexById</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Optional function to get an edition complex by id.</p>
 
                                                         </td>
                                                 </tr>
@@ -291,7 +325,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="311" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:311</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="440" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:440</a></div>
                         </td>
                     </tr>
 
@@ -319,6 +353,13 @@ to structure outline information of the edition.</p>
                                                     <td>complexItems</td>
                                                     <td>
                                                             <code><p>The complex items to map.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>getComplexById</td>
+                                                    <td>
+                                                            <code><p>Optional function to get an edition complex by id.</p>
 </code>
                                                     </td>
                                             </tr>
@@ -355,7 +396,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:266</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="363" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:363</a></div>
                         </td>
                     </tr>
 
@@ -407,6 +448,13 @@ to structure outline information of the edition.</p>
 </code>
                                                     </td>
                                             </tr>
+                                            <tr>
+                                                    <td>getComplexById</td>
+                                                    <td>
+                                                            <code><p>Optional function to get an edition complex by id.</p>
+</code>
+                                                    </td>
+                                            </tr>
                                     </tbody>
                                 </table>
                         </div>
@@ -440,7 +488,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:292</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="408" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:408</a></div>
                         </td>
                     </tr>
 
@@ -468,6 +516,20 @@ to structure outline information of the edition.</p>
                                                     <td>content</td>
                                                     <td>
                                                             <code><p>The content data to map.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>labeledIntroRoute</td>
+                                                    <td>
+                                                            <code><p>The labeled intro route for the edition section.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>getComplexById</td>
+                                                    <td>
+                                                            <code><p>Optional function to get an edition complex by id.</p>
 </code>
                                                     </td>
                                             </tr>
@@ -504,7 +566,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:246</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="339" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:339</a></div>
                         </td>
                     </tr>
 
@@ -549,6 +611,13 @@ to structure outline information of the edition.</p>
 </code>
                                                     </td>
                                             </tr>
+                                            <tr>
+                                                    <td>getComplexById</td>
+                                                    <td>
+                                                            <code><p>Optional function to get an edition complex by id.</p>
+</code>
+                                                    </td>
+                                            </tr>
                                     </tbody>
                                 </table>
                         </div>
@@ -562,6 +631,7 @@ to structure outline information of the edition.</p>
                 <td class="col-md-4">
                     <a name="outline"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>outline</b></span>
                         <a href="#outline"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -575,7 +645,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:218</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:306</a></div>
                         </td>
                     </tr>
 
@@ -600,11 +670,79 @@ to structure outline information of the edition.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
-import { EditionRouteConstant } from &#x27;@awg-views/edition-view/models&#x27;;
-import { EditionComplexesService } from &#x27;@awg-views/edition-view/services&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { LabeledRoute } from &#x27;@awg-shared/models/labeled-route.model&#x27;;
+import {
+    EDITION_ROUTE_CONSTANTS,
+    EditionRouteConstant,
+    EditionRouteConstantsKey,
+} from &#x27;@awg-views/edition-view/edition-routes.constants&#x27;;
 
 import { EditionComplex } from &#x27;./edition-complex.model&#x27;;
+
+/**
+ * The EditionSectionLink class.
+ *
+ * It is used in the context of the edition view
+ * to structure information for the edition section links,
+ * e.g., in the home view.
+ */
+export class EditionSectionLink {
+    /**
+     * The route for the edition section.
+     */
+    readonly route: string[];
+
+    /**
+     * The shortTitle for the edition section.
+     */
+    readonly shortTitle: string;
+
+    /**
+     * The full title of the navbar section.
+     */
+    readonly fullTitle: string;
+
+    /**
+     * The separator for the edition section.
+     */
+    readonly separator: string;
+
+    /**
+     * Constructor of the EditionSectionLink class.
+     *
+     * It initializes the class with an EditionOutlineSection object.
+     *
+     * @param {EditionOutlineSection} section The edition outline section to be mapped to a navbar section.
+     */
+    constructor(section: EditionOutlineSection, index: number &#x3D; 0, totalLength: number &#x3D; 1) {
+        if (!section?.seriesParent || !section?.section) {
+            throw new Error(&#x27;[EditionSectionLink]: invalid edition outline section&#x27;);
+        }
+        this.route &#x3D; section.labeledRoute.route;
+        this.shortTitle &#x3D; section.labeledRoute.label;
+        this.fullTitle &#x3D; section.section.full;
+        this.separator &#x3D; EditionSectionLink._getSeparator(index, totalLength);
+    }
+
+    /**
+     * Private static method: _getSeparator.
+     *
+     * It returns the appropriate separator for the displayed sections.
+     *
+     * @param {number} index The index of the current section in the displayed sections array.
+     * @param {number} length The total length of the displayed sections array.
+     * @returns {string} The appropriate separator for the displayed sections.
+     */
+    private static _getSeparator(index: number, length: number): string {
+        if (length &lt;&#x3D; 1 || index &#x3D;&#x3D;&#x3D; length - 1) {
+            return &#x27;&#x27;;
+        }
+        if (index &#x3D;&#x3D;&#x3D; length - 2) {
+            return &#x27; und &#x27;;
+        }
+        return &#x27;, &#x27;;
+    }
+}
 
 /**
  * The EditionOutlineSectionsContentJsonData interface.
@@ -625,8 +763,8 @@ export interface EditionOutlineSectionsContentJsonData {
      * The complex types data.
      */
     complexTypes: {
-        opus: [{ complex: string; disabled: boolean }];
-        mnr: [{ complex: string; disabled: boolean }];
+        opus: { complex: string; disabled: boolean }[];
+        mnr: { complex: string; disabled: boolean }[];
     };
 }
 
@@ -694,17 +832,22 @@ export interface EditionOutlineComplexItem {
     /**
      * The edition complex.
      */
-    complex: EditionComplex;
+    readonly complex: EditionComplex;
 
     /**
      * Boolean flag if an edition complex is disabled.
      */
-    disabled: boolean;
+    readonly disabled: boolean;
+
+    /**
+     * The labeled route of an edition complex.
+     */
+    readonly labeledRoute: LabeledRoute;
 
     /**
      * The sub-complexes of an edition complex.
      */
-    subComplexes?: EditionOutlineComplexItem[];
+    readonly subComplexes?: EditionOutlineComplexItem[];
 }
 
 /**
@@ -717,12 +860,12 @@ export interface EditionOutlineComplexTypes {
     /**
      * The opus parts of an edition complex.
      */
-    opus: EditionOutlineComplexItem[];
+    readonly opus: EditionOutlineComplexItem[];
 
     /**
      * The mnr parts of an edition complex.
      */
-    mnr: EditionOutlineComplexItem[];
+    readonly mnr: EditionOutlineComplexItem[];
 }
 
 /**
@@ -735,12 +878,17 @@ export interface EditionOutlineIntroItem {
     /**
      * Boolean flag if an intro is disabled.
      */
-    disabled: boolean;
+    readonly disabled: boolean;
+
+    /**
+     * The labeled route of an intro.
+     */
+    readonly labeledRoute: LabeledRoute;
 
     /**
      * The preview of an intro.
      */
-    preview?: string;
+    readonly preview?: string;
 }
 
 /**
@@ -753,12 +901,17 @@ export interface EditionOutlineSectionContent {
     /**
      * The intro of an edition section.
      */
-    intro: EditionOutlineIntroItem;
+    readonly intro: EditionOutlineIntroItem;
 
     /**
      * The edition complex types of an edition section.
      */
-    complexTypes: EditionOutlineComplexTypes;
+    readonly complexTypes: EditionOutlineComplexTypes;
+
+    /**
+     * The edition complexes of an edition section.
+     */
+    readonly sectionComplexes: EditionOutlineComplexItem[];
 }
 
 /**
@@ -771,22 +924,27 @@ export interface EditionOutlineSection {
     /**
      * The series parent route of an edition section.
      */
-    seriesParent: EditionRouteConstant;
+    readonly seriesParent: EditionRouteConstant;
 
     /**
      * The section route of an edition section.
      */
-    section: EditionRouteConstant;
+    readonly section: EditionRouteConstant;
+
+    /**
+     * The labeled route of an edition section.
+     */
+    readonly labeledRoute: LabeledRoute;
 
     /**
      * The section content of an edition section.
      */
-    content: EditionOutlineSectionContent;
+    readonly content: EditionOutlineSectionContent;
 
     /**
      * Boolean flag if an edition section is disabled.
      */
-    disabled: boolean;
+    readonly disabled: boolean;
 }
 
 /**
@@ -799,12 +957,12 @@ export interface EditionOutlineSeries {
     /**
      * The series route of an edition series.
      */
-    series: EditionRouteConstant;
+    readonly series: EditionRouteConstant;
 
     /**
      * The section route of an edition series.
      */
-    sections: EditionOutlineSection[];
+    readonly sections: EditionOutlineSection[];
 }
 
 /**
@@ -817,21 +975,26 @@ export class EditionOutline {
     /**
      * The outline of the edition.
      */
-    outline: EditionOutlineSeries[];
+    readonly outline: EditionOutlineSeries[];
 
     /**
      * Constructor of the EditionOutline class.
      *
      * It initializes the class with an edition outline Object.
      *
-     * @param {EditionOutlineSeriesJsonData[]} outlineData The given edition outline.
+     * @param {EditionOutlineSeriesJsonData[] | null | undefined} outlineData The given edition outline.
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      */
-    constructor(outlineData: EditionOutlineSeriesJsonData[]) {
+    constructor(
+        outlineData: EditionOutlineSeriesJsonData[] | null | undefined,
+        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
+    ) {
         if (!outlineData) {
+            this.outline &#x3D; [];
             return;
         }
 
-        this.outline &#x3D; outlineData.map(this._mapSeries);
+        this.outline &#x3D; outlineData.map(data &#x3D;&gt; this._mapSeries(data, getComplexById));
     }
 
     /**
@@ -842,14 +1005,18 @@ export class EditionOutline {
      * @param {EditionOutlineSeriesJsonData} data The series data to map.
      * @param {string} data.series The given series string.
      * @param {EditionOutlineSectionsJsonData[]} data.sections The given sections data.
-     *
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      * @returns {EditionOutlineSeries} The mapped series.
      */
-    private readonly _mapSeries &#x3D; ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries &#x3D;&gt; {
-        const seriesConstant: EditionRouteConstant &#x3D; EDITION_ROUTE_CONSTANTS[&#x27;SERIES_&#x27; + series];
+    private readonly _mapSeries &#x3D; (
+        { series, sections }: EditionOutlineSeriesJsonData,
+        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
+    ): EditionOutlineSeries &#x3D;&gt; {
+        const seriesConstant: EditionRouteConstant &#x3D;
+            EDITION_ROUTE_CONSTANTS[(&#x27;SERIES_&#x27; + series) as EditionRouteConstantsKey];
         return {
             series: seriesConstant,
-            sections: sections.map(section &#x3D;&gt; this._mapSection(section, seriesConstant)),
+            sections: sections.map(section &#x3D;&gt; this._mapSection(section, seriesConstant, getComplexById)),
         };
     };
 
@@ -862,22 +1029,40 @@ export class EditionOutline {
      * @param {string} data.section The given section string.
      * @param {Object} data.complexTypes The given complex types data.
      * @param {boolean} data.disabled The given disabled flag.
-     *
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      * @returns {EditionOutlineSection} The mapped section.
      */
     private readonly _mapSection &#x3D; (
         { section, disabled, content }: EditionOutlineSectionsJsonData,
-        seriesConstant: EditionRouteConstant
+        seriesConstant: EditionRouteConstant,
+        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
     ): EditionOutlineSection &#x3D;&gt; {
+        const routes &#x3D; EDITION_ROUTE_CONSTANTS;
         const sectionConstant: EditionRouteConstant &#x3D;
             seriesConstant.route &#x3D;&#x3D;&#x3D; &#x27;3&#x27; &amp;&amp; section &#x3D;&#x3D;&#x3D; &#x27;5&#x27;
-                ? EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5
-                : EDITION_ROUTE_CONSTANTS[&#x27;SECTION_&#x27; + section];
+                ? routes.SERIES_3_SECTION_5
+                : routes[(&#x27;SECTION_&#x27; + section) as EditionRouteConstantsKey];
+
+        const labeledSectionRoute: LabeledRoute &#x3D; {
+            label: &#x60;${routes.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}&#x60;,
+            route: [
+                routes.EDITION.route,
+                routes.SERIES.route,
+                seriesConstant.route,
+                routes.SECTION.route,
+                sectionConstant.route,
+            ],
+        };
+        const labeledIntroRoute: LabeledRoute &#x3D; {
+            label: routes.EDITION_INTRO.full,
+            route: [...labeledSectionRoute.route, routes.EDITION_INTRO.route],
+        };
 
         return {
             seriesParent: seriesConstant,
             section: sectionConstant,
-            content: this._mapSectionContent(content),
+            labeledRoute: labeledSectionRoute,
+            content: this._mapSectionContent(content, labeledIntroRoute, getComplexById),
             disabled,
         };
     };
@@ -888,18 +1073,32 @@ export class EditionOutline {
      * It maps the content data.
      *
      * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
-     *
+     * @param {LabeledRoute} labeledIntroRoute The labeled intro route for the edition section.
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
     private readonly _mapSectionContent &#x3D; (
-        content: EditionOutlineSectionsContentJsonData
-    ): EditionOutlineSectionContent &#x3D;&gt; ({
-        intro: { disabled: content.intro.disabled, preview: content.intro.preview || &#x27;&#x27; },
-        complexTypes: {
-            opus: this._mapComplexItems(content.complexTypes.opus),
-            mnr: this._mapComplexItems(content.complexTypes.mnr),
-        },
-    });
+        content: EditionOutlineSectionsContentJsonData,
+        labeledIntroRoute: LabeledRoute,
+        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
+    ): EditionOutlineSectionContent &#x3D;&gt; {
+        const opus &#x3D; this._mapComplexItems(content.complexTypes.opus, getComplexById);
+        const mnr &#x3D; this._mapComplexItems(content.complexTypes.mnr, getComplexById);
+        const sectionComplexes &#x3D; [...opus, ...mnr];
+
+        return {
+            intro: {
+                disabled: content.intro.disabled,
+                labeledRoute: labeledIntroRoute,
+                preview: content.intro.preview ?? &#x27;&#x27;,
+            },
+            complexTypes: {
+                opus,
+                mnr,
+            },
+            sectionComplexes,
+        };
+    };
 
     /**
      * Private readonly method: _mapComplexItems.
@@ -907,16 +1106,33 @@ export class EditionOutline {
      * It maps the complex items.
      *
      * @param {EditionOutlineComplexItem[]} complexItems The complex items to map.
-     *
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      * @returns {EditionOutlineComplexItem[]} The mapped complex items.
      */
     private readonly _mapComplexItems &#x3D; (
-        complexItems: { complex: string; disabled: boolean }[]
+        complexItems: { complex: string; disabled: boolean }[],
+        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
     ): EditionOutlineComplexItem[] &#x3D;&gt;
-        complexItems.map(({ complex, disabled }) &#x3D;&gt; ({
-            complex: EditionComplexesService.getEditionComplexById(complex),
-            disabled,
-        }));
+        complexItems
+            .map(({ complex, disabled }) &#x3D;&gt; {
+                const fullComplex &#x3D; getComplexById(complex);
+
+                if (!fullComplex) {
+                    return null;
+                }
+
+                const labeledRoute: LabeledRoute &#x3D; {
+                    label: fullComplex.complexId?.full,
+                    route: [fullComplex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
+                };
+
+                return {
+                    complex: fullComplex,
+                    labeledRoute,
+                    disabled,
+                };
+            })
+            .filter((item): item is EditionOutlineComplexItem &#x3D;&gt; item !&#x3D;&#x3D; null);
 }
 </code></pre>
     </div>
@@ -962,6 +1178,24 @@ export class EditionOutline {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -977,7 +1211,6 @@ export class EditionOutline {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

@@ -642,7 +642,7 @@
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 33: <a (click)=\"ref.selectSvgSheet({complexId: 'm33', sheetId: 'M33_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 33: <a data-complex-id='m33' data-sheet-id='M33_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -727,7 +727,7 @@
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift und Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 33: <a (click)=\"ref.selectSvgSheet({complexId: 'm33', sheetId: 'M33_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 33: <a data-complex-id='m33' data-sheet-id='M33_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -798,7 +798,7 @@
                         "label": "Korrekturen in <strong>B<sup>b</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 33: <a (click)=\"ref.selectSvgSheet({complexId: 'm33', sheetId: 'M33_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 33: <a data-complex-id='m33' data-sheet-id='M33_TF2'>Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

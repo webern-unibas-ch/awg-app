@@ -1,3 +1,6 @@
+// Bootstrap 5 partials need @import (with the overrides in between) until Bootstrap 6
+@use 'sass:map';
+
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import 'bootstrap/scss/functions';
 
@@ -16,7 +19,7 @@ $custom-spacers: (
 );
 
 // Merge the spacer maps
-$spacers: map-merge($spacers, $custom-spacers);
+$spacers: map.merge($spacers, $custom-spacers);
 
 // 5. Include remainder of required parts
 @import 'bootstrap/scss/maps';
@@ -27,7 +30,7 @@ $spacers: map-merge($spacers, $custom-spacers);
 @import 'bootstrap/scss/utilities';
 @import 'bootstrap/scss/reboot';
 @import 'bootstrap/scss/type';
-// not used: @import "bootstrap/scss/images";
+@import 'bootstrap/scss/images';
 @import 'bootstrap/scss/containers';
 @import 'bootstrap/scss/grid';
 @import 'bootstrap/scss/tables';
@@ -40,17 +43,17 @@ $spacers: map-merge($spacers, $custom-spacers);
 @import 'bootstrap/scss/navbar';
 @import 'bootstrap/scss/card';
 @import 'bootstrap/scss/accordion';
-// not used: @import "bootstrap/scss/breadcrumb";
+@import 'bootstrap/scss/breadcrumb';
 @import 'bootstrap/scss/pagination';
 @import 'bootstrap/scss/badge';
 @import 'bootstrap/scss/alert';
 @import 'bootstrap/scss/progress';
-// not used: @import "bootstrap/scss/list-group";
+@import 'bootstrap/scss/list-group';
 @import 'bootstrap/scss/close';
 @import 'bootstrap/scss/toasts';
 @import 'bootstrap/scss/modal';
 @import 'bootstrap/scss/tooltip';
-// not used: @import "bootstrap/scss/popover";
+@import 'bootstrap/scss/popover';
 // not used: @import "bootstrap/scss/carousel";
 // not used: @import "bootstrap/scss/spinners";
 

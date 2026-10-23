@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -113,12 +120,23 @@
   <li class="breadcrumb-item" >FullscreenService</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/shared/fullscreen/fullscreen.service.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" 
@@ -130,13 +148,6 @@
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app/core/services/fullscreen-service/fullscreen.service.ts</code>
-        </p>
-
 
             <p class="comment">
                 <h3>Description</h3>
@@ -144,60 +155,78 @@
             <p class="comment">
                 <p>The Fullscreen service.</p>
 <p>It handles the fullscreen mode for the document.</p>
-<p>Provided in: <code>root</code>.</p>
 
             </p>
 
 
 
+
+            </div>
+
+    <div class="tab-pane fade " id="api">
             <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Properties</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_document" >_document</a>
                             </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_isFullscreen" >_isFullscreen</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isFullscreen" >isFullscreen</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Methods</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#closeFullscreen" >closeFullscreen</a>
                             </li>
                             <li>
-                                <a href="#isFullscreen" >isFullscreen</a>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#openFullscreen" >openFullscreen</a>
                             </li>
                             <li>
-                                <a href="#openFullscreen" >openFullscreen</a>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#updateState" >updateState</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
 
 
 
-        </tbody>
-    </table>
 </section>
 
 
@@ -226,8 +255,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/core/services/fullscreen-service/fullscreen.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -254,50 +283,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isFullscreen"></a>
-                    <span class="name">
-                        <span ><b>isFullscreen</b></span>
-                        <a href="#isFullscreen"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>isFullscreen()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/app/core/services/fullscreen-service/fullscreen.service.ts:41</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: isFullscreen.</p>
-<p>It checks if the document is in fullscreen mode.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Returns true if the document is in fullscreen mode, false otherwise.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="openFullscreen"></a>
                     <span class="name">
                         <span ><b>openFullscreen</b></span>
@@ -314,8 +299,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/app/core/services/fullscreen-service/fullscreen.service.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -370,7 +355,52 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateState"></a>
+                    <span class="name">
+                        <span ><b>updateState</b></span>
+                        <a href="#updateState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateState()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: updateState.</p>
+<p>It updates the fullscreen state based on the document&#39;s fullscreen element.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Updates the fullscreen state.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
+
             <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -402,7 +432,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/core/services/fullscreen-service/fullscreen.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -416,24 +446,99 @@
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_isFullscreen"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_isFullscreen</b></span>
+                        <a href="#_isFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(!!this._document.fullscreenElement)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:22</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly signal: _isFullscreen.</p>
+<p>It holds the fullscreen state for internal use.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFullscreen"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isFullscreen</b></span>
+                        <a href="#isFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._isFullscreen.asReadonly()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/fullscreen/fullscreen.service.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public readonly signal: isFullscreen.</p>
+<p>It holds the fullscreen state for components and templates.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, inject, Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, inject, Service, signal } from &#x27;@angular/core&#x27;;
 
 /**
  * The Fullscreen service.
  *
  * It handles the fullscreen mode for the document.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class FullscreenService {
     /**
      * Private readonly injection variable: _document.
@@ -441,6 +546,31 @@ export class FullscreenService {
      * It keeps the instance of the injected DOCUMENT.
      */
     private readonly _document &#x3D; inject(DOCUMENT);
+
+    /**
+     * Private readonly signal: _isFullscreen.
+     *
+     * It holds the fullscreen state for internal use.
+     */
+    private readonly _isFullscreen &#x3D; signal&lt;boolean&gt;(!!this._document.fullscreenElement);
+
+    /**
+     * Public readonly signal: isFullscreen.
+     *
+     * It holds the fullscreen state for components and templates.
+     */
+    readonly isFullscreen &#x3D; this._isFullscreen.asReadonly();
+
+    /**
+     * Public method: updateState.
+     *
+     * It updates the fullscreen state based on the document&#x27;s fullscreen element.
+     *
+     * @returns {void} Updates the fullscreen state.
+     */
+    updateState(): void {
+        this._isFullscreen.set(!!this._document.fullscreenElement);
+    }
 
     /**
      * Public method: closeFullscreen.
@@ -451,19 +581,8 @@ export class FullscreenService {
      */
     closeFullscreen(): void {
         if (this._document.exitFullscreen) {
-            this._document.exitFullscreen().catch((err: Error) &#x3D;&gt; console.error(err));
+            this._document.exitFullscreen().catch((err: unknown) &#x3D;&gt; console.error(err));
         }
-    }
-
-    /**
-     * Public method: isFullscreen.
-     *
-     * It checks if the document is in fullscreen mode.
-     *
-     * @returns {boolean} Returns true if the document is in fullscreen mode, false otherwise.
-     */
-    isFullscreen(): boolean {
-        return !!this._document.fullscreenElement;
     }
 
     /**
@@ -476,7 +595,7 @@ export class FullscreenService {
      */
     openFullscreen(element: HTMLElement): void {
         if (!this._document.fullscreenElement) {
-            element.requestFullscreen().catch((err: Error) &#x3D;&gt; console.error(err));
+            element.requestFullscreen().catch((err: unknown) &#x3D;&gt; console.error(err));
         }
     }
 }
@@ -529,6 +648,24 @@ export class FullscreenService {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -544,7 +681,6 @@ export class FullscreenService {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

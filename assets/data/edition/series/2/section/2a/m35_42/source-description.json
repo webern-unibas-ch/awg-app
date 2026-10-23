@@ -1088,7 +1088,7 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 35/42: <a (click)=\"ref.selectSvgSheet({complexId: 'm35_42', sheetId: 'M35_42_TF1'})\">einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 35/42: <a data-complex-id='m35_42' data-sheet-id='M35_42_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1117,7 +1117,7 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 35/42: <a (click)=\"ref.selectSvgSheet({complexId: 'm35_42', sheetId: 'M35_42_TF1'})\">einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 35/42: <a data-complex-id='m35_42' data-sheet-id='M35_42_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1141,7 +1141,7 @@
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "Taktende",
-                                            "comment": "Einschubzeichen über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm35_42', sheetId: 'M35_42_Sk2'})\"><strong>Sk2</strong></a>)."
+                                            "comment": "Einschubzeichen über dem System (vgl. <a data-complex-id='m35_42' data-sheet-id='M35_42_Sk2'><strong>Sk2</strong></a>)."
                                         }
                                     ]
                                 }
@@ -1735,7 +1735,7 @@
                         "label": "Korrekturen in <strong>D</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 35/42: <a (click)=\"ref.selectSvgSheet({complexId: 'm35_42', sheetId: 'M35_42_TF1'})\">einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 35/42: <a data-complex-id='m35_42' data-sheet-id='M35_42_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

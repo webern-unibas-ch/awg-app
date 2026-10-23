@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -111,10 +118,19 @@
   GraphVisualizerComponent</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" class="nav-link"
@@ -135,14 +151,7 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts</code>
-</p>
-
-
+    <div class="tab-pane fade active in" id="info">
     <p class="comment">
         <h3>Description</h3>
     </p>
@@ -154,13 +163,12 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
     </p>
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+    </div>
 
 <section data-compodoc="block-metadata">
     <h3>Metadata</h3>
@@ -187,7 +195,30 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                 <td class="col-md-9"><code>awg-graph-visualizer</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="../components/GraphEditorSparqlComponent.html" target="_self" >GraphEditorSparqlComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphEditorTriplesComponent.html" target="_self" >GraphEditorTriplesComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphResultsConstructComponent.html" target="_self" >GraphResultsConstructComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphResultsSelectComponent.html" target="_self" >GraphResultsSelectComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphResultsStatusComponent.html" target="_self" >GraphResultsStatusComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphResultsUnsupportedComponent.html" target="_self" >GraphResultsUnsupportedComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/ToastComponent.html" target="_self" >ToastComponent</a></code>
+</div>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -197,12 +228,42 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
 
 
             <tr>
+                <td class="col-md-3">templateVariables</td>
+                <td class="col-md-9">
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-3"><code>isFullscreen</code></td>
+                                <td class="col-md-9"><code>isFullscreenMode()</code></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3"><code>currentQuery</code></td>
+                                <td class="col-md-9"><code>query()</code></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3"><code>isConstructQuery</code></td>
+                                <td class="col-md-9"><code>currentQuery.queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3"><code>isSelectQuery</code></td>
+                                <td class="col-md-9"><code>currentQuery.queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
                 <td class="col-md-3">templateUrl</td>
                 <td class="col-md-9"><code>./graph-visualizer.component.html</code></td>
             </tr>
 
 
 
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./graph-visualizer.component.scss</code></td>
+            </tr>
 
 
 
@@ -212,115 +273,196 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
     </table>
 </section>
 
-    <section data-compodoc="block-index">
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/EditionGraphDynamicComponent.html" target="_self" >EditionGraphDynamicComponent</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/GraphEditorSparqlComponent.html" target="_self" >GraphEditorSparqlComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphEditorTriplesComponent.html" target="_self" >GraphEditorTriplesComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphResultsConstructComponent.html" target="_self" >GraphResultsConstructComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphResultsSelectComponent.html" target="_self" >GraphResultsSelectComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphResultsStatusComponent.html" target="_self" >GraphResultsStatusComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphResultsUnsupportedComponent.html" target="_self" >GraphResultsUnsupportedComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/ToastComponent.html" target="_self" >ToastComponent</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Properties</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_graphVisualizerService" >_graphVisualizerService</a>
+                                <a href="#_queryRequest" >_queryRequest</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_runnableRequest" >_runnableRequest</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_sparqlQueryService" >_sparqlQueryService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_toastService" >_toastService</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#defaultForceGraphHeight" >defaultForceGraphHeight</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                <a href="#fs" >fs</a>
-                            </li>
-                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#query" >query</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#queryList" >queryList</a>
                             </li>
                             <li>
-                                <a href="#queryResult$" >queryResult$</a>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#queryResult" >queryResult</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#queryRun" >queryRun</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#queryTime" >queryTime</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#triples" >triples</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Methods</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_createQueryRequest" >_createQueryRequest</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Async</span>
-                                <a href="#_queryLocalStore" >_queryLocalStore</a>
+                                <a href="#_runQuery" >_runQuery</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#onGraphNodeClick" >onGraphNodeClick</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#onTableNodeClick" >onTableNodeClick</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#performQuery" >performQuery</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#resetQuery" >resetQuery</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#resetTriples" >resetTriples</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#showToastMessage" >showToastMessage</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Inputs</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
-                                <a href="#graphRDFInputData" >graphRDFInputData</a>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#isFullscreenMode" >isFullscreenMode</a>
                             </li>
                             <li>
-                                <a href="#isFullscreen" >isFullscreen</a>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#rdfData" >rdfData</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
 
 
-        </tbody>
-    </table>
 </section>
 
 
@@ -330,25 +472,30 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="graphRDFInputData"></a>
-                        <b>graphRDFInputData</b>
+                        <a name="isFullscreenMode"></a>
+                        <b>isFullscreenMode</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/GraphRDFData.html" target="_self" >GraphRDFData</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:71</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: graphRDFInputData.</p>
-<p>It keeps the input data for the RDF graph.</p>
+                        <div class="io-description"><p>Readonly input signal: isFullscreenMode.</p>
+<p>It holds a boolean flag if fullscreenMode is active.</p>
 </div>
                     </td>
                 </tr>
@@ -358,31 +505,37 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isFullscreen"></a>
-                        <b>isFullscreen</b>
+                        <a name="rdfData"></a>
+                        <b>rdfData</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <i>Type : </i>        <code><a href="../classes/GraphRdfData.html" target="_self" >GraphRdfData</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:64</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: isFullscreen.</p>
-<p>It keeps a boolean flag if fullscreenMode is active.</p>
+                        <div class="io-description"><p>Readonly input signal: rdfData.</p>
+<p>It holds the RDF data (triples and queries) of the graph.</p>
 </div>
                     </td>
                 </tr>
             </tbody>
         </table>
 </section>
+
 
 
 
@@ -395,35 +548,82 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_queryLocalStore"></a>
+                    <a name="_createQueryRequest"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                            <span class="modifier">Async</span>
-                        <span ><b>_queryLocalStore</b></span>
-                        <a href="#_queryLocalStore"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_createQueryRequest</b></span>
+                        <a href="#_createQueryRequest"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_queryLocalStore(queryType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_createQueryRequest()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="270"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:270</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="269"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:269</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _queryLocalStore</p>
-<p>It performs a query against the local rdfstore.</p>
+                        <div class="io-description"><p>Private method: _createQueryRequest.</p>
+<p>It creates a request of the current query against the current triples.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#SparqlQueryRequest" target="_self" >SparqlQueryRequest</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The query request.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_runQuery"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>_runQuery</b></span>
+                        <a href="#_runQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_runQuery(request: <a href="../miscellaneous/typealiases.html#SparqlQueryRequest" target="_self">SparqlQueryRequest</a>, abortSignal: AbortSignal)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="284"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:284</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _runQuery.</p>
+<p>It runs a requested query and shows the completed query in the editor (unless edited meanwhile).
+On errors, it logs, shows a toast and returns an empty result. Cancelled runs have no side effects.</p>
 </div>
 
                             <div class="io-description">
@@ -440,9 +640,9 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>queryType</td>
+                                                <td>request</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#SparqlQueryRequest" target="_self" >SparqlQueryRequest</a></code>
                                             </td>
 
                                             <td>
@@ -451,14 +651,14 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
 
 
                                             <td>
-                                                    <p>The given query type.</p>
+                                                    <p>The given query request.</p>
 
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>queryString</td>
+                                                <td>abortSignal</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>AbortSignal</code>
                                             </td>
 
                                             <td>
@@ -467,23 +667,7 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
 
 
                                             <td>
-                                                    <p>The given queryString.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>triples</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>THe given triples.</p>
+                                                    <p>The given abort signal of the run.</p>
 
                                             </td>
                                         </tr>
@@ -491,54 +675,13 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#QueryResult" target="_self" >Promise&lt;QueryResult&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/SparqlQueryRun.html" target="_self" >Promise&lt;SparqlQueryRun&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The result of the query.</p>
+                                <p>The run of the query.</p>
 
                             </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:114</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
-<p>It calls the containing methods
-when initializing the component.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
                 </td>
             </tr>
         </tbody>
@@ -556,15 +699,15 @@ when initializing the component.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onGraphNodeClick(node: <a href="../classes/D3SimulationNode.html" target="_self">D3SimulationNode</a>)</code>
+<code>onGraphNodeClick(node: <a href="../interfaces/ResultGraphNode.html" target="_self">ResultGraphNode</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="193"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:193</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="213"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:213</a></div>
                         </td>
                     </tr>
 
@@ -590,7 +733,7 @@ when initializing the component.</p>
                                         <tr>
                                                 <td>node</td>
                                             <td>
-                                                            <code><a href="../classes/D3SimulationNode.html" target="_self" >D3SimulationNode</a></code>
+                                                            <code><a href="../interfaces/ResultGraphNode.html" target="_self" >ResultGraphNode</a></code>
                                             </td>
 
                                             <td>
@@ -634,8 +777,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="217"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:217</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="236"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:236</a></div>
                         </td>
                     </tr>
 
@@ -710,8 +853,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="166"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:166</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:199</a></div>
                         </td>
                     </tr>
 
@@ -719,7 +862,7 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: performQuery.</p>
-<p>It performs a SPARQL query against the rdfstore.</p>
+<p>It requests a run of the current query against the current triples.</p>
 </div>
 
                         <div class="io-description">
@@ -747,15 +890,15 @@ when initializing the component.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>resetQuery(query?: <a href="../classes/GraphSparqlQuery.html" target="_self">GraphSparqlQuery</a>)</code>
+<code>resetQuery(query?: <a href="../classes/GraphQuery.html" target="_self">GraphQuery</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="145"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:145</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:181</a></div>
                         </td>
                     </tr>
 
@@ -763,8 +906,9 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: resetQuery.</p>
-<p>It resets the initial value of a given query
-if it is known from the RDF input data.</p>
+<p>It resets a given query to its initial value
+if it is known from the query list (or to the first query of the list
+if no query is given), and performs it.</p>
 </div>
 
                             <div class="io-description">
@@ -783,7 +927,7 @@ if it is known from the RDF input data.</p>
                                         <tr>
                                                 <td>query</td>
                                             <td>
-                                                            <code><a href="../classes/GraphSparqlQuery.html" target="_self" >GraphSparqlQuery</a></code>
+                                                            <code><a href="../classes/GraphQuery.html" target="_self" >GraphQuery</a></code>
                                             </td>
 
                                             <td>
@@ -804,7 +948,7 @@ if it is known from the RDF input data.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Resets the initial query.</p>
+                                <p>Resets and performs the query.</p>
 
                             </div>
                 </td>
@@ -831,8 +975,8 @@ if it is known from the RDF input data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="128"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:128</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="163"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:163</a></div>
                         </td>
                     </tr>
 
@@ -840,7 +984,7 @@ if it is known from the RDF input data.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: resetTriples.</p>
-<p>It (re-)sets the initial value of the triples variable
+<p>It resets the triples to the triples
 from the RDF input data.</p>
 </div>
 
@@ -849,7 +993,7 @@ from the RDF input data.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>(Re-)Sets the initial triples.</p>
+                                <p>Resets the triples.</p>
 
                             </div>
                 </td>
@@ -876,8 +1020,8 @@ from the RDF input data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="240"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:240</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="258"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:258</a></div>
                         </td>
                     </tr>
 
@@ -885,7 +1029,7 @@ from the RDF input data.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: showToastMessage.</p>
-<p>It shows a given toast message with the specified type.</p>
+<p>It shows a given toast message with the specified type via the ToastService.</p>
 </div>
 
                             <div class="io-description">
@@ -955,6 +1099,7 @@ from the RDF input data.</p>
         </tbody>
     </table>
 </section>
+
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -964,12 +1109,12 @@ from the RDF input data.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_graphVisualizerService"></a>
+                    <a name="_queryRequest"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_graphVisualizerService</b></span>
-                        <a href="#_graphVisualizerService"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_queryRequest</b></span>
+                        <a href="#_queryRequest"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -981,19 +1126,107 @@ from the RDF input data.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(GraphVisualizerService)</code>
+                        <i>Default value : </i><code>linkedSignal&lt;GraphRdfData, SparqlQueryRequest&gt;({
+        source: this.rdfData,
+        computation: () &#x3D;&gt; untracked(() &#x3D;&gt; this._createQueryRequest()),
+    })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:139</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly injection variable: _graphVisualizerService.</p>
-<p>It keeps the instance of the injected GraphVisualizerService.</p>
+                    <div class="io-description"><p>Private readonly linked signal: _queryRequest.</p>
+<p>It holds the latest requested query (reset to the current query and triples on input change,
+which are reset themselves). Only <a href="performQuery">performQuery</a> requests a new run, not edits of query or triples.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_runnableRequest"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_runnableRequest</b></span>
+                        <a href="#_runnableRequest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;SparqlQueryRequest | undefined&gt;(() &#x3D;&gt; {
+        const request &#x3D; this._queryRequest();
+        return GRAPH_QUERY_UTILS.isRunnableQueryType(request.queryType) ? request : undefined;
+    })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:150</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly computed signal: _runnableRequest.</p>
+<p>It holds the latest requested query if it can be run
+(only construct and select queries for now), otherwise undefined.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_sparqlQueryService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_sparqlQueryService</b></span>
+                        <a href="#_sparqlQueryService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SparqlQueryService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _sparqlQueryService.</p>
+<p>It keeps the instance of the injected SparqlQueryService.</p>
 </div>
                 </td>
             </tr>
@@ -1026,7 +1259,7 @@ from the RDF input data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:106</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -1046,6 +1279,7 @@ from the RDF input data.</p>
                 <td class="col-md-4">
                     <a name="defaultForceGraphHeight"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>defaultForceGraphHeight</b></span>
                         <a href="#defaultForceGraphHeight"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1064,57 +1298,14 @@ from the RDF input data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:78</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: defaultForceGraphHeight.</p>
+                    <div class="io-description"><p>Readonly variable: defaultForceGraphHeight.</p>
 <p>It keeps the default height for the force graph.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="fs"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>fs</b></span>
-                        <a href="#fs"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>ElementRef&lt;HTMLElement&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ViewChild(&#x27;fs&#x27;)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:34</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>ViewChild variable: fs.</p>
-<p>It keeps the reference to the full screen HTMLElement.</p>
 </div>
                 </td>
             </tr>
@@ -1127,6 +1318,7 @@ from the RDF input data.</p>
                 <td class="col-md-4">
                     <a name="query"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>query</b></span>
                         <a href="#query"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1134,20 +1326,26 @@ from the RDF input data.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/GraphSparqlQuery.html" target="_self" >GraphSparqlQuery</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>linkedSignal&lt;GraphQuery&gt;(() &#x3D;&gt; GRAPH_QUERY_UTILS.initialQuery(this.queryList()))</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:101</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: query.</p>
-<p>It keeps the input query string of the graph visualization.</p>
+                    <div class="io-description"><p>Readonly linked signal: query.</p>
+<p>It holds the query of the graph visualization
+(reset to the first query of the query list whenever it changes).</p>
 </div>
                 </td>
             </tr>
@@ -1160,6 +1358,7 @@ from the RDF input data.</p>
                 <td class="col-md-4">
                     <a name="queryList"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>queryList</b></span>
                         <a href="#queryList"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1167,20 +1366,25 @@ from the RDF input data.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>GraphSparqlQuery[]</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.rdfData().queryList)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:85</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: queryList.</p>
-<p>It keeps the input query list of the graph visualization.</p>
+                    <div class="io-description"><p>Readonly computed signal: queryList.</p>
+<p>It holds the query list from the RDF input data.</p>
 </div>
                 </td>
             </tr>
@@ -1191,29 +1395,82 @@ from the RDF input data.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="queryResult$"></a>
+                    <a name="queryResult"></a>
                     <span class="name">
-                        <span ><b>queryResult$</b></span>
-                        <a href="#queryResult$"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>queryResult</b></span>
+                        <a href="#queryResult"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#QueryResult" target="_self" >Observable&lt;QueryResult&gt;</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;SparqlResult | undefined&gt;(() &#x3D;&gt;
+        this.queryRun.isLoading() ? undefined : this.queryRun.value()?.result
+    )</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:122</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: queryResult$.</p>
-<p>It keeps the result of the query as an observable of QueryResult.</p>
+                    <div class="io-description"><p>Readonly computed signal: queryResult.</p>
+<p>It holds the result of the latest query run
+(undefined while the query is running).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="queryRun"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>queryRun</b></span>
+                        <a href="#queryRun"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>resource&lt;SparqlQueryRun, SparqlQueryRequest | undefined&gt;({
+        params: () &#x3D;&gt; this._runnableRequest(),
+        loader: ({ params, abortSignal }) &#x3D;&gt; this._runQuery(params, abortSignal),
+    })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly resource: queryRun.</p>
+<p>It holds the run of the latest requested query.
+Stale runs are cancelled when a new query is requested.</p>
+<p>Note: <code>resource</code> is still experimental in Angular.</p>
 </div>
                 </td>
             </tr>
@@ -1226,6 +1483,7 @@ from the RDF input data.</p>
                 <td class="col-md-4">
                     <a name="queryTime"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>queryTime</b></span>
                         <a href="#queryTime"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1233,20 +1491,25 @@ from the RDF input data.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.queryRun.value()?.durationMs ?? 0)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:85</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:131</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: queryTime.</p>
-<p>It keeps the duration time of the query.</p>
+                    <div class="io-description"><p>Readonly computed signal: queryTime.</p>
+<p>It holds the duration of the latest query run.</p>
 </div>
                 </td>
             </tr>
@@ -1259,6 +1522,7 @@ from the RDF input data.</p>
                 <td class="col-md-4">
                     <a name="triples"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>triples</b></span>
                         <a href="#triples"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1266,20 +1530,26 @@ from the RDF input data.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>linkedSignal(() &#x3D;&gt; this.rdfData().triples)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:92</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:93</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: triples.</p>
-<p>It keeps the input triple string of the graph visualization.</p>
+                    <div class="io-description"><p>Readonly linked signal: triples.</p>
+<p>It holds the triples of the graph visualization
+(reset to the triples from the RDF input data whenever they change).</p>
 </div>
                 </td>
             </tr>
@@ -1292,15 +1562,24 @@ from the RDF input data.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, ElementRef, inject, Input, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, computed, inject, input, linkedSignal, resource, untracked } from &#x27;@angular/core&#x27;;
 
-import { EMPTY, from, Observable } from &#x27;rxjs&#x27;;
+import { ToastComponent } from &#x27;@awg-shared/toast/toast.component&#x27;;
+import { ToastMessage, ToastService } from &#x27;@awg-shared/toast/toast.service&#x27;;
+import { ERROR_UTILS } from &#x27;@awg-shared/utils/error-utils&#x27;;
+import { GraphQuery, GraphRdfData } from &#x27;@awg-views/edition-view/models/graph.model&#x27;;
 
-import { Toast, ToastMessage, ToastService } from &#x27;@awg-shared/toast/toast.service&#x27;;
-import { GraphRDFData, GraphSparqlQuery } from &#x27;@awg-views/edition-view/models&#x27;;
-import { D3SimulationNode, QueryResult } from &#x27;./models&#x27;;
-
-import { GraphVisualizerService } from &#x27;./services&#x27;;
+import { GraphEditorSparqlComponent } from &#x27;./editor/sparql/graph-editor-sparql.component&#x27;;
+import { GraphEditorTriplesComponent } from &#x27;./editor/triples/graph-editor-triples.component&#x27;;
+import { ResultGraphNode } from &#x27;./models/result-graph.model&#x27;;
+import { SparqlQueryRequest, SparqlQueryRun, SparqlResult } from &#x27;./models/sparql-result.model&#x27;;
+import { GraphResultsConstructComponent } from &#x27;./results/construct/graph-results-construct.component&#x27;;
+import { GraphResultsSelectComponent } from &#x27;./results/select/graph-results-select.component&#x27;;
+import { GraphResultsStatusComponent } from &#x27;./results/status/graph-results-status.component&#x27;;
+import { GraphResultsUnsupportedComponent } from &#x27;./results/unsupported/graph-results-unsupported.component&#x27;;
+import { SparqlQueryService } from &#x27;./services/sparql-query.service&#x27;;
+import { GRAPH_QUERY_UTILS } from &#x27;./utils/graph-query.utils&#x27;;
+import { SPARQL_UTILS } from &#x27;./utils/sparql.utils&#x27;;
 
 /**
  * The GraphVisualizer component.
@@ -1311,82 +1590,24 @@ import { GraphVisualizerService } from &#x27;./services&#x27;;
 @Component({
     selector: &#x27;awg-graph-visualizer&#x27;,
     templateUrl: &#x27;./graph-visualizer.component.html&#x27;,
-    styleUrls: [&#x27;./graph-visualizer.component.scss&#x27;],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    styleUrl: &#x27;./graph-visualizer.component.scss&#x27;,
+    imports: [
+        GraphEditorSparqlComponent,
+        GraphEditorTriplesComponent,
+        GraphResultsConstructComponent,
+        GraphResultsSelectComponent,
+        GraphResultsStatusComponent,
+        GraphResultsUnsupportedComponent,
+        ToastComponent,
+    ],
 })
-export class GraphVisualizerComponent implements OnInit {
+export class GraphVisualizerComponent {
     /**
-     * ViewChild variable: fs.
+     * Private readonly injection variable: _sparqlQueryService.
      *
-     * It keeps the reference to the full screen HTMLElement.
+     * It keeps the instance of the injected SparqlQueryService.
      */
-    @ViewChild(&#x27;fs&#x27;) fs: ElementRef&lt;HTMLElement&gt;;
-
-    /**
-     * Input variable: graphRDFInputData.
-     *
-     * It keeps the input data for the RDF graph.
-     */
-    @Input()
-    graphRDFInputData: GraphRDFData;
-
-    /**
-     * Input variable: isFullscreen.
-     *
-     * It keeps a boolean flag if fullscreenMode is active.
-     */
-    @Input()
-    isFullscreen: boolean;
-
-    /**
-     * Public variable: defaultForceGraphHeight.
-     *
-     * It keeps the default height for the force graph.
-     */
-    defaultForceGraphHeight &#x3D; 500;
-
-    /**
-     * Public variable: query.
-     *
-     * It keeps the input query string of the graph visualization.
-     */
-    query: GraphSparqlQuery;
-
-    /**
-     * Public variable: queryList.
-     *
-     * It keeps the input query list of the graph visualization.
-     */
-    queryList: GraphSparqlQuery[];
-
-    /**
-     * Public variable: queryResult$.
-     *
-     * It keeps the result of the query as an observable of QueryResult.
-     */
-    queryResult$: Observable&lt;QueryResult&gt;;
-
-    /**
-     * Public variable: queryTime.
-     *
-     * It keeps the duration time of the query.
-     */
-    queryTime: number;
-
-    /**
-     * Public variable: triples.
-     *
-     * It keeps the input triple string of the graph visualization.
-     */
-    triples: string;
-
-    /**
-     * Private readonly injection variable: _graphVisualizerService.
-     *
-     * It keeps the instance of the injected GraphVisualizerService.
-     */
-    private readonly _graphVisualizerService &#x3D; inject(GraphVisualizerService);
+    private readonly _sparqlQueryService &#x3D; inject(SparqlQueryService);
 
     /**
      * Private readonly injection variable: _toastService.
@@ -1396,52 +1617,134 @@ export class GraphVisualizerComponent implements OnInit {
     private readonly _toastService &#x3D; inject(ToastService);
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Readonly input signal: rdfData.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It holds the RDF data (triples and queries) of the graph.
      */
-    ngOnInit() {
-        // Set initial values
-        this.resetTriples();
-        this.resetQuery();
-    }
+    readonly rdfData &#x3D; input.required&lt;GraphRdfData&gt;();
+
+    /**
+     * Readonly input signal: isFullscreenMode.
+     *
+     * It holds a boolean flag if fullscreenMode is active.
+     */
+    readonly isFullscreenMode &#x3D; input&lt;boolean&gt;(false);
+
+    /**
+     * Readonly variable: defaultForceGraphHeight.
+     *
+     * It keeps the default height for the force graph.
+     */
+    readonly defaultForceGraphHeight &#x3D; 500;
+
+    /**
+     * Readonly computed signal: queryList.
+     *
+     * It holds the query list from the RDF input data.
+     */
+    readonly queryList &#x3D; computed(() &#x3D;&gt; this.rdfData().queryList);
+
+    /**
+     * Readonly linked signal: triples.
+     *
+     * It holds the triples of the graph visualization
+     * (reset to the triples from the RDF input data whenever they change).
+     */
+    readonly triples &#x3D; linkedSignal(() &#x3D;&gt; this.rdfData().triples);
+
+    /**
+     * Readonly linked signal: query.
+     *
+     * It holds the query of the graph visualization
+     * (reset to the first query of the query list whenever it changes).
+     */
+    readonly query &#x3D; linkedSignal&lt;GraphQuery&gt;(() &#x3D;&gt; GRAPH_QUERY_UTILS.initialQuery(this.queryList()));
+
+    /**
+     * Readonly resource: queryRun.
+     *
+     * It holds the run of the latest requested query.
+     * Stale runs are cancelled when a new query is requested.
+     *
+     * Note: &#x60;resource&#x60; is still experimental in Angular.
+     */
+    readonly queryRun &#x3D; resource&lt;SparqlQueryRun, SparqlQueryRequest | undefined&gt;({
+        params: () &#x3D;&gt; this._runnableRequest(),
+        loader: ({ params, abortSignal }) &#x3D;&gt; this._runQuery(params, abortSignal),
+    });
+
+    /**
+     * Readonly computed signal: queryResult.
+     *
+     * It holds the result of the latest query run
+     * (undefined while the query is running).
+     */
+    readonly queryResult &#x3D; computed&lt;SparqlResult | undefined&gt;(() &#x3D;&gt;
+        this.queryRun.isLoading() ? undefined : this.queryRun.value()?.result
+    );
+
+    /**
+     * Readonly computed signal: queryTime.
+     *
+     * It holds the duration of the latest query run.
+     */
+    readonly queryTime &#x3D; computed(() &#x3D;&gt; this.queryRun.value()?.durationMs ?? 0);
+
+    /**
+     * Private readonly linked signal: _queryRequest.
+     *
+     * It holds the latest requested query (reset to the current query and triples on input change,
+     * which are reset themselves). Only {@link performQuery} requests a new run, not edits of query or triples.
+     */
+    private readonly _queryRequest &#x3D; linkedSignal&lt;GraphRdfData, SparqlQueryRequest&gt;({
+        source: this.rdfData,
+        computation: () &#x3D;&gt; untracked(() &#x3D;&gt; this._createQueryRequest()),
+    });
+
+    /**
+     * Private readonly computed signal: _runnableRequest.
+     *
+     * It holds the latest requested query if it can be run
+     * (only construct and select queries for now), otherwise undefined.
+     */
+    private readonly _runnableRequest &#x3D; computed&lt;SparqlQueryRequest | undefined&gt;(() &#x3D;&gt; {
+        const request &#x3D; this._queryRequest();
+        return GRAPH_QUERY_UTILS.isRunnableQueryType(request.queryType) ? request : undefined;
+    });
 
     /**
      * Public method: resetTriples.
      *
-     * It (re-)sets the initial value of the triples variable
+     * It resets the triples to the triples
      * from the RDF input data.
      *
-     * @returns {void} (Re-)Sets the initial triples.
+     * @returns {void} Resets the triples.
      */
     resetTriples(): void {
-        if (!this.graphRDFInputData.triples) {
+        const initialTriples &#x3D; this.rdfData().triples;
+        if (!initialTriples) {
             return;
         }
-        this.triples &#x3D; this.graphRDFInputData.triples;
+        this.triples.set(initialTriples);
     }
 
     /**
      * Public method: resetQuery.
      *
-     * It resets the initial value of a given query
-     * if it is known from the RDF input data.
+     * It resets a given query to its initial value
+     * if it is known from the query list (or to the first query of the list
+     * if no query is given), and performs it.
      *
-     * @param {GraphSparqlQuery} query The given sample query.
-     *
-     * @returns {void} Resets the initial query.
+     * @param {GraphQuery} [query] The given sample query.
+     * @returns {void} Resets and performs the query.
      */
-    resetQuery(query?: GraphSparqlQuery): void {
-        if (!this.graphRDFInputData.queryList) {
+    resetQuery(query?: GraphQuery): void {
+        const queryList &#x3D; this.queryList();
+        if (!queryList.length) {
             return;
         }
 
-        this.queryList &#x3D; structuredClone(this.graphRDFInputData.queryList);
-        const resetted &#x3D; query
-            ? this.queryList.find(q &#x3D;&gt; query.queryLabel &#x3D;&#x3D;&#x3D; q.queryLabel &amp;&amp; query.queryType &#x3D;&#x3D;&#x3D; q.queryType) || query
-            : this.queryList[0];
-        this.query &#x3D; { ...resetted };
+        this.query.set({ ...GRAPH_QUERY_UTILS.findQuery(queryList, query) });
 
         this.performQuery();
     }
@@ -1449,28 +1752,15 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public method: performQuery.
      *
-     * It performs a SPARQL query against the rdfstore.
+     * It requests a run of the current query against the current triples.
      *
      * @returns {void} Performs the query.
      */
     performQuery(): void {
-        // If no namespace is defined in the query, get it from the turtle file
-        this.query.queryString &#x3D; this._graphVisualizerService.checkNamespacesInQuery(
-            this.query.queryString,
-            this.triples
-        );
+        const queryType &#x3D; SPARQL_UTILS.getQueryType(this.query().queryString);
+        this.query.update(currentQuery &#x3D;&gt; ({ ...currentQuery, queryType }));
 
-        // Get the query type
-        this.query.queryType &#x3D; this._graphVisualizerService.getQuerytype(this.query.queryString);
-
-        // Perform only construct queries for now
-        if (this.query.queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27; || this.query.queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;) {
-            // Query local store
-            const result &#x3D; this._queryLocalStore(this.query.queryType, this.query.queryString, this.triples);
-            this.queryResult$ &#x3D; from(result);
-        } else {
-            this.queryResult$ &#x3D; EMPTY;
-        }
+        this._queryRequest.set(this._createQueryRequest());
     }
 
     /**
@@ -1480,15 +1770,15 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {void} Logs the click event.
      */
-    onGraphNodeClick(node: D3SimulationNode): void {
+    onGraphNodeClick(node: ResultGraphNode): void {
         if (!node) {
             return;
         }
 
         this.showToastMessage(
             new ToastMessage(
-                node.id,
-                &#x60;GraphVisualizerComponent# graphClick on node ${node.id}\n\n Label: ${node.label}&#x60;,
+                node.shortName,
+                &#x60;GraphVisualizerComponent# graphClick on node ${node.shortName}\n\n Label: ${node.label}&#x60;,
                 5000
             ),
             &#x27;info&#x27;
@@ -1501,7 +1791,6 @@ export class GraphVisualizerComponent implements OnInit {
      * It performs a query for a given URI from the result table.
      *
      * @param {string} URI The given URI.
-     *
      * @returns {void} Performs the query with the given URI.
      */
     onTableNodeClick(URI: string): void {
@@ -1520,74 +1809,65 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public method: showToastMessage.
      *
-     * It shows a given toast message with the specified type.
+     * It shows a given toast message with the specified type via the ToastService.
      *
      * @param {ToastMessage} toastMessage The given toast message.
      * @param {&#x27;error&#x27; | &#x27;info&#x27;} type The type of message to display.
-     *
      * @returns {void} Shows the message.
      */
     showToastMessage(toastMessage: ToastMessage, type: &#x27;error&#x27; | &#x27;info&#x27; &#x3D; &#x27;info&#x27;): void {
-        if (!toastMessage?.message) {
-            return;
-        }
-
-        const toast &#x3D; new Toast(toastMessage.message, {
-            header: toastMessage.name,
-            classname: type &#x3D;&#x3D;&#x3D; &#x27;error&#x27; ? &#x27;bg-danger text-light&#x27; : &#x27;bg-info text-light&#x27;,
-            delay: toastMessage.duration,
-        });
-        this._toastService.add(toast);
-
-        if (type &#x3D;&#x3D;&#x3D; &#x27;error&#x27;) {
-            console.error(toastMessage.name, &#x27;:&#x27;, toastMessage.message);
-        } else {
-            console.info(toastMessage.name, &#x27;:&#x27;, toastMessage.message);
-        }
+        this._toastService.showMessage(toastMessage, type);
     }
 
     /**
-     * Private method: _queryLocalStore
+     * Private method: _createQueryRequest.
      *
-     * It performs a query against the local rdfstore.
+     * It creates a request of the current query against the current triples.
      *
-     * @param {string} queryType The given query type.
-     * @param {string} queryString The given queryString.
-     * @param {string} triples THe given triples.
-     *
-     * @returns {Promise&lt;QueryResult&gt;} The result of the query.
+     * @returns {SparqlQueryRequest} The query request.
      */
-    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise&lt;QueryResult&gt; {
+    private _createQueryRequest(): SparqlQueryRequest {
+        const { queryType, queryString } &#x3D; this.query();
+        return { queryType, queryString, triples: this.triples() };
+    }
+
+    /**
+     * Private method: _runQuery.
+     *
+     * It runs a requested query and shows the completed query in the editor (unless edited meanwhile).
+     * On errors, it logs, shows a toast and returns an empty result. Cancelled runs have no side effects.
+     *
+     * @param {SparqlQueryRequest} request The given query request.
+     * @param {AbortSignal} abortSignal The given abort signal of the run.
+     * @returns {Promise&lt;SparqlQueryRun&gt;} The run of the query.
+     */
+    private async _runQuery(request: SparqlQueryRequest, abortSignal: AbortSignal): Promise&lt;SparqlQueryRun&gt; {
         // Capture start time of query
-        const t1 &#x3D; Date.now();
+        const startTime &#x3D; performance.now();
 
-        let result: QueryResult;
-
-        // Perform query with client based rdfstore
         try {
-            result &#x3D; await this._graphVisualizerService.doQuery(queryType, queryString, triples);
+            const queryRun &#x3D; await this._sparqlQueryService.run(request.queryString, request.triples);
 
-            // Capture query time
-            this.queryTime &#x3D; Date.now() - t1;
-        } catch (err) {
-            console.error(&#x27;#queryLocalstore got error:&#x27;, err);
-
-            if (err.message &amp;&amp; err.name) {
-                if (err.message.includes(&#x27;undefined&#x27;)) {
-                    this.showToastMessage(
-                        new ToastMessage(err.name, &#x27;The query did not return any results.&#x27;, 5000),
-                        &#x27;error&#x27;
-                    );
-                }
-                this.showToastMessage(new ToastMessage(err.name, err.message, 5000), &#x27;error&#x27;);
+            // Do not overwrite edits of the query made while the query was running
+            if (!abortSignal.aborted &amp;&amp; this.query().queryString &#x3D;&#x3D;&#x3D; request.queryString) {
+                this.query.update(currentQuery &#x3D;&gt; ({ ...currentQuery, queryString: queryRun.query }));
             }
 
-            // Capture query time
-            this.queryTime &#x3D; Date.now() - t1;
+            return queryRun;
+        } catch (err) {
+            if (!abortSignal.aborted) {
+                console.error(&#x27;#runQuery got error:&#x27;, err);
 
-            result &#x3D; [];
+                const errorTitle &#x3D; err instanceof Error ? err.name : &#x27;Query Error&#x27;;
+                this.showToastMessage(new ToastMessage(errorTitle, ERROR_UTILS.getErrorMessage(err), 5000), &#x27;error&#x27;);
+            }
+
+            return {
+                query: request.queryString,
+                result: GRAPH_QUERY_UTILS.emptyResult(request.queryType),
+                durationMs: performance.now() - startTime,
+            };
         }
-        return result;
     }
 }
 </code></pre>
@@ -1595,60 +1875,62 @@ export class GraphVisualizerComponent implements OnInit {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- Data: Triples, SPARQL query, result --&gt;
-@if (graphRDFInputData) {
-    &lt;div #fs class&#x3D;&quot;row awg-graph-visualizer&quot; [class.is-fullscreen]&#x3D;&quot;isFullscreen&quot;&gt;
-        &lt;div [ngClass]&#x3D;&quot;isFullscreen ? &#x27;col-4 col-lg-3 px-0 awg-fullscreen&#x27; : &#x27;col-12&#x27;&quot;&gt;
-            &lt;div [ngClass]&#x3D;&quot;{ row: !isFullscreen }&quot;&gt;
-                &lt;div [ngClass]&#x3D;&quot;{ &#x27;col-12 col-lg-6 py-0 pe-lg-0&#x27;: !isFullscreen }&quot;&gt;
-                    &lt;!-- awg-graph-triples-editor --&gt;
-                    &lt;awg-triples-editor
-                        [triples]&#x3D;&quot;triples&quot;
-                        [isFullscreen]&#x3D;&quot;isFullscreen&quot;
-                        (errorMessageRequest)&#x3D;&quot;showToastMessage($event, &#x27;error&#x27;)&quot;
-                        (performQueryRequest)&#x3D;&quot;performQuery()&quot;
-                        (resetTriplesRequest)&#x3D;&quot;resetTriples()&quot;
-                        (updateTriplesRequest)&#x3D;&quot;triples &#x3D; $event&quot;&gt;&lt;/awg-triples-editor&gt;
-                &lt;/div&gt;
-                &lt;div [ngClass]&#x3D;&quot;{ &#x27;col-12 col-lg-6 py-0 ps-lg-0&#x27;: !isFullscreen }&quot;&gt;
-                    &lt;!-- awg-graph-sparql-editor --&gt;
-                    &lt;awg-sparql-editor
-                        [queryList]&#x3D;&quot;queryList&quot;
-                        [query]&#x3D;&quot;query&quot;
-                        [isFullscreen]&#x3D;&quot;isFullscreen&quot;
-                        (errorMessageRequest)&#x3D;&quot;showToastMessage($event, &#x27;error&#x27;)&quot;
-                        (performQueryRequest)&#x3D;&quot;performQuery()&quot;
-                        (resetQueryRequest)&#x3D;&quot;resetQuery($event)&quot;
-                        (updateQueryStringRequest)&#x3D;&quot;query.queryString &#x3D; $event&quot;&gt;&lt;/awg-sparql-editor&gt;
-                &lt;/div&gt;
+
+@let isFullscreen &#x3D; isFullscreenMode();
+@let currentQuery &#x3D; query();
+@let isConstructQuery &#x3D; currentQuery.queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;;
+@let isSelectQuery &#x3D; currentQuery.queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;;
+
+&lt;div class&#x3D;&quot;row awg-graph-visualizer&quot; [class.is-fullscreen]&#x3D;&quot;isFullscreen&quot;&gt;
+    &lt;div [class]&#x3D;&quot;isFullscreen ? &#x27;col-4 col-lg-3 px-0 awg-fullscreen&#x27; : &#x27;col-12&#x27;&quot;&gt;
+        &lt;div [class.row]&#x3D;&quot;!isFullscreen&quot;&gt;
+            &lt;div [class]&#x3D;&quot;isFullscreen ? &#x27;&#x27; : &#x27;col-12 col-lg-6 py-0 pe-lg-0&#x27;&quot;&gt;
+                &lt;!-- awg-graph-editor-triples --&gt;
+                &lt;awg-graph-editor-triples
+                    [(triples)]&#x3D;&quot;triples&quot;
+                    [isFullscreenMode]&#x3D;&quot;isFullscreen&quot;
+                    (errorMessageRequest)&#x3D;&quot;showToastMessage($event, &#x27;error&#x27;)&quot;
+                    (performQueryRequest)&#x3D;&quot;performQuery()&quot;
+                    (resetTriplesRequest)&#x3D;&quot;resetTriples()&quot; /&gt;
+            &lt;/div&gt;
+            &lt;div [class]&#x3D;&quot;isFullscreen ? &#x27;&#x27; : &#x27;col-12 col-lg-6 py-0 ps-lg-0&#x27;&quot;&gt;
+                &lt;!-- awg-graph-editor-sparql --&gt;
+                &lt;awg-graph-editor-sparql
+                    [queryList]&#x3D;&quot;queryList()&quot;
+                    [(query)]&#x3D;&quot;query&quot;
+                    [isFullscreenMode]&#x3D;&quot;isFullscreen&quot;
+                    (errorMessageRequest)&#x3D;&quot;showToastMessage($event, &#x27;error&#x27;)&quot;
+                    (performQueryRequest)&#x3D;&quot;performQuery()&quot;
+                    (resetQueryRequest)&#x3D;&quot;resetQuery($event)&quot; /&gt;
             &lt;/div&gt;
         &lt;/div&gt;
-        &lt;!-- Results --&gt;
-        &lt;div [ngClass]&#x3D;&quot;isFullscreen ? &#x27;col-8 col-lg-9 px-0 awg-fullscreen&#x27; : &#x27;col-12&#x27;&quot;&gt;
-            @if (query.queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;) {
-                &lt;awg-construct-results
-                    #queryConstructResultAcc
-                    [queryResult$]&#x3D;&quot;$any(queryResult$)&quot;
-                    [defaultForceGraphHeight]&#x3D;&quot;isFullscreen ? 1000 : defaultForceGraphHeight&quot;
-                    [isFullscreen]&#x3D;&quot;isFullscreen&quot;
-                    (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot;&gt;&lt;/awg-construct-results&gt;
-            } @else {
-                @if (query.queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;) {
-                    &lt;awg-select-results
-                        [queryResult$]&#x3D;&quot;$any(queryResult$)&quot;
-                        [queryTime]&#x3D;&quot;queryTime&quot;
-                        [isFullscreen]&#x3D;&quot;isFullscreen&quot;
-                        (clickedTableRequest)&#x3D;&quot;onTableNodeClick($event)&quot;&gt;&lt;/awg-select-results&gt;
-                } @else {
-                    &lt;awg-unsupported-type-results
-                        [queryType]&#x3D;&quot;query.queryType&quot;
-                        [isFullscreen]&#x3D;&quot;isFullscreen&quot;&gt;&lt;/awg-unsupported-type-results&gt;
-                }
-            }
-        &lt;/div&gt;
     &lt;/div&gt;
-}
+    &lt;!-- Results --&gt;
+    &lt;div [class]&#x3D;&quot;isFullscreen ? &#x27;col-8 col-lg-9 px-0 awg-fullscreen&#x27; : &#x27;col-12&#x27;&quot;&gt;
+        @if (isConstructQuery) {
+            &lt;awg-graph-results-construct
+                [queryResult]&#x3D;&quot;queryResult()&quot;
+                [defaultForceGraphHeight]&#x3D;&quot;isFullscreen ? 1000 : defaultForceGraphHeight&quot;
+                [isFullscreenMode]&#x3D;&quot;isFullscreen&quot;
+                (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot; /&gt;
+        } @else if (isSelectQuery) {
+            &lt;awg-graph-results-select
+                [queryResult]&#x3D;&quot;queryResult()&quot;
+                [isFullscreenMode]&#x3D;&quot;isFullscreen&quot;
+                (clickedTableRequest)&#x3D;&quot;onTableNodeClick($event)&quot; /&gt;
+        } @else {
+            &lt;awg-graph-results-unsupported
+                [queryType]&#x3D;&quot;currentQuery.queryType || &#x27;&#x27;&quot;
+                [isFullscreenMode]&#x3D;&quot;isFullscreen&quot; /&gt;
+        }
+        @if (isConstructQuery || isSelectQuery) {
+            &lt;!-- awg-graph-results-status --&gt;
+            &lt;awg-graph-results-status [queryResult]&#x3D;&quot;queryResult()&quot; [queryTime]&#x3D;&quot;queryTime()&quot; /&gt;
+        }
+    &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;awg-toast aria-live&#x3D;&quot;polite&quot; aria-atomic&#x3D;&quot;true&quot;&gt;&lt;/awg-toast&gt;
+&lt;awg-toast aria-live&#x3D;&quot;polite&quot; aria-atomic&#x3D;&quot;true&quot; /&gt;
 </code></pre>
     </div>
 
@@ -1661,12 +1943,6 @@ export class GraphVisualizerComponent implements OnInit {
         .awg-fullscreen {
             .collapse.show {
                 height: 100vh;
-            }
-            #awg-graph-visualizer-triples.collapse.show {
-                height: 45vh;
-            }
-            #awg-graph-visualizer-query.collapse.show {
-                height: 50vh;
             }
         }
     }
@@ -1699,9 +1975,9 @@ export class GraphVisualizerComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Data: Triples, SPARQL query, result -->@if (graphRDFInputData) {    <div #fs class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen">        <div [ngClass]="isFullscreen ? \'col-4 col-lg-3 px-0 awg-fullscreen\' : \'col-12\'">            <div [ngClass]="{ row: !isFullscreen }">                <div [ngClass]="{ \'col-12 col-lg-6 py-0 pe-lg-0\': !isFullscreen }">                    <!-- awg-graph-triples-editor -->                    <awg-triples-editor                        [triples]="triples"                        [isFullscreen]="isFullscreen"                        (errorMessageRequest)="showToastMessage($event, \'error\')"                        (performQueryRequest)="performQuery()"                        (resetTriplesRequest)="resetTriples()"                        (updateTriplesRequest)="triples = $event"></awg-triples-editor>                </div>                <div [ngClass]="{ \'col-12 col-lg-6 py-0 ps-lg-0\': !isFullscreen }">                    <!-- awg-graph-sparql-editor -->                    <awg-sparql-editor                        [queryList]="queryList"                        [query]="query"                        [isFullscreen]="isFullscreen"                        (errorMessageRequest)="showToastMessage($event, \'error\')"                        (performQueryRequest)="performQuery()"                        (resetQueryRequest)="resetQuery($event)"                        (updateQueryStringRequest)="query.queryString = $event"></awg-sparql-editor>                </div>            </div>        </div>        <!-- Results -->        <div [ngClass]="isFullscreen ? \'col-8 col-lg-9 px-0 awg-fullscreen\' : \'col-12\'">            @if (query.queryType === \'construct\') {                <awg-construct-results                    #queryConstructResultAcc                    [queryResult$]="$any(queryResult$)"                    [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"                    [isFullscreen]="isFullscreen"                    (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>            } @else {                @if (query.queryType === \'select\') {                    <awg-select-results                        [queryResult$]="$any(queryResult$)"                        [queryTime]="queryTime"                        [isFullscreen]="isFullscreen"                        (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>                } @else {                    <awg-unsupported-type-results                        [queryType]="query.queryType"                        [isFullscreen]="isFullscreen"></awg-unsupported-type-results>                }            }        </div>    </div>}<awg-toast aria-live="polite" aria-atomic="true"></awg-toast></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionContentsComponent', 'selector': 'awg-source-description-contents'},{'name': 'SourceDescriptionContentTableComponent', 'selector': 'awg-source-description-content-table'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceDescriptionWritingMaterialsComponent', 'selector': 'awg-source-description-writing-materials'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
-    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Data: Triples, SPARQL query, result -->@let isFullscreen = isFullscreenMode();@let currentQuery = query();@let isConstructQuery = currentQuery.queryType === \'construct\';@let isSelectQuery = currentQuery.queryType === \'select\';<div class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen">    <div [class]="isFullscreen ? \'col-4 col-lg-3 px-0 awg-fullscreen\' : \'col-12\'">        <div [class.row]="!isFullscreen">            <div [class]="isFullscreen ? \'\' : \'col-12 col-lg-6 py-0 pe-lg-0\'">                <!-- awg-graph-editor-triples -->                <awg-graph-editor-triples                    [(triples)]="triples"                    [isFullscreenMode]="isFullscreen"                    (errorMessageRequest)="showToastMessage($event, \'error\')"                    (performQueryRequest)="performQuery()"                    (resetTriplesRequest)="resetTriples()" />            </div>            <div [class]="isFullscreen ? \'\' : \'col-12 col-lg-6 py-0 ps-lg-0\'">                <!-- awg-graph-editor-sparql -->                <awg-graph-editor-sparql                    [queryList]="queryList()"                    [(query)]="query"                    [isFullscreenMode]="isFullscreen"                    (errorMessageRequest)="showToastMessage($event, \'error\')"                    (performQueryRequest)="performQuery()"                    (resetQueryRequest)="resetQuery($event)" />            </div>        </div>    </div>    <!-- Results -->    <div [class]="isFullscreen ? \'col-8 col-lg-9 px-0 awg-fullscreen\' : \'col-12\'">        @if (isConstructQuery) {            <awg-graph-results-construct                [queryResult]="queryResult()"                [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"                [isFullscreenMode]="isFullscreen"                (clickedNodeRequest)="onGraphNodeClick($event)" />        } @else if (isSelectQuery) {            <awg-graph-results-select                [queryResult]="queryResult()"                [isFullscreenMode]="isFullscreen"                (clickedTableRequest)="onTableNodeClick($event)" />        } @else {            <awg-graph-results-unsupported                [queryType]="currentQuery.queryType || \'\'"                [isFullscreenMode]="isFullscreen" />        }        @if (isConstructQuery || isSelectQuery) {            <!-- awg-graph-results-status -->            <awg-graph-results-status [queryResult]="queryResult()" [queryTime]="queryTime()" />        }    </div></div><awg-toast aria-live="polite" aria-atomic="true" /></div>'
+    var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'ButtonExpandAllComponent', 'selector': 'awg-button-expand-all'},{'name': 'ButtonMoreComponent', 'selector': 'awg-button-more'},{'name': 'ButtonScrollToTopComponent', 'selector': 'awg-button-scroll-to-top'},{'name': 'CanvasTooltipComponent', 'selector': 'awg-canvas-tooltip'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'ConditionalLinkComponent', 'selector': 'awg-conditional-link'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionComplexPlaceholderComponent', 'selector': 'awg-edition-complex-placeholder'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionDisclaimerWorkeditionsComponent', 'selector': 'awg-edition-disclaimer-workeditions'},{'name': 'EditionFoliosLegendComponent', 'selector': 'awg-edition-folios-legend'},{'name': 'EditionFoliosPanelComponent', 'selector': 'awg-edition-folios-panel'},{'name': 'EditionFoliosViewerComponent', 'selector': 'awg-edition-folios-viewer'},{'name': 'EditionFoliosViewerSvgComponent', 'selector': 'awg-edition-folios-viewer-svg'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionGraphDescriptionComponent', 'selector': 'awg-edition-graph-description'},{'name': 'EditionGraphDynamicComponent', 'selector': 'awg-edition-graph-dynamic'},{'name': 'EditionGraphStaticComponent', 'selector': 'awg-edition-graph-static'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionOutlineComponent', 'selector': 'awg-edition-outline'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionCardComponent', 'selector': 'awg-edition-section-card'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailCoverComponent', 'selector': 'awg-edition-section-detail-cover'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesCardComponent', 'selector': 'awg-edition-series-card'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetFacetComponent', 'selector': 'awg-edition-sheet-facet'},{'name': 'EditionSheetFacetGroupComponent', 'selector': 'awg-edition-sheet-facet-group'},{'name': 'EditionSheetFacetItemComponent', 'selector': 'awg-edition-sheet-facet-item'},{'name': 'EditionSheetFacetToggleComponent', 'selector': 'awg-edition-sheet-facet-toggle'},{'name': 'EditionSheetFooterComponent', 'selector': 'awg-edition-sheet-footer'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSheetsPanelComponent', 'selector': 'awg-edition-sheets-panel'},{'name': 'EditionSheetViewerAdditionsPanelComponent', 'selector': 'awg-edition-sheet-viewer-additions-panel'},{'name': 'EditionSheetViewerComponent', 'selector': 'awg-edition-sheet-viewer'},{'name': 'EditionSheetViewerNavComponent', 'selector': 'awg-edition-sheet-viewer-nav'},{'name': 'EditionSheetViewerSvgComponent', 'selector': 'awg-edition-sheet-viewer-svg'},{'name': 'EditionSideInfoComponent', 'selector': 'awg-edition-side-info'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExampleQueriesComponent', 'selector': 'awg-example-queries'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphCanvasComponent', 'selector': 'awg-force-graph-canvas'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphLimitComponent', 'selector': 'awg-force-graph-limit'},{'name': 'FormSwitchComponent', 'selector': 'awg-form-switch'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphEditorActionButtonsComponent', 'selector': 'awg-graph-editor-action-buttons'},{'name': 'GraphEditorSparqlComponent', 'selector': 'awg-graph-editor-sparql'},{'name': 'GraphEditorTriplesComponent', 'selector': 'awg-graph-editor-triples'},{'name': 'GraphResultsConstructComponent', 'selector': 'awg-graph-results-construct'},{'name': 'GraphResultsEmptyComponent', 'selector': 'awg-graph-results-empty'},{'name': 'GraphResultsSelectComponent', 'selector': 'awg-graph-results-select'},{'name': 'GraphResultsStatusComponent', 'selector': 'awg-graph-results-status'},{'name': 'GraphResultsUnsupportedComponent', 'selector': 'awg-graph-results-unsupported'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'NavLinkGroupComponent', 'selector': 'awg-nav-link-group'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'SelectTableComponent', 'selector': 'awg-select-table'},{'name': 'SourceDescComponent', 'selector': 'awg-source-desc'},{'name': 'SourceDescContentFolioComponent', 'selector': 'awg-source-desc-content-folio'},{'name': 'SourceDescContentGridComponent', 'selector': 'awg-source-desc-content-grid'},{'name': 'SourceDescContentItemComponent', 'selector': 'awg-source-desc-content-item'},{'name': 'SourceDescContentsComponent', 'selector': 'awg-source-desc-contents'},{'name': 'SourceDescContentSystemComponent', 'selector': 'awg-source-desc-content-system'},{'name': 'SourceDescCorrectionsComponent', 'selector': 'awg-source-desc-corrections'},{'name': 'SourceDescDetailsComponent', 'selector': 'awg-source-desc-details'},{'name': 'SourceDescItemComponent', 'selector': 'awg-source-desc-item'},{'name': 'SourceDescWritingInstrumentsComponent', 'selector': 'awg-source-desc-writing-instruments'},{'name': 'SourceDescWritingMaterialComponent', 'selector': 'awg-source-desc-writing-material'},{'name': 'SourceDescWritingMaterialsComponent', 'selector': 'awg-source-desc-writing-materials'},{'name': 'SourceDescWritingTrademarkComponent', 'selector': 'awg-source-desc-writing-trademark'},{'name': 'SourceDescWritingWatermarkComponent', 'selector': 'awg-source-desc-writing-watermark'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourceSiglumComponent', 'selector': 'awg-source-siglum'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UsageHintsComponent', 'selector': 'awg-usage-hints'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'},{'name': 'ZoomSliderComponent', 'selector': 'awg-zoom-slider'}];
+    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'CanvasDragDirective', 'selector': 'canvas[awgCanvasDrag]'},{'name': 'CanvasViewportDirective', 'selector': 'canvas[awgCanvasViewport]'},{'name': 'CanvasZoomDirective', 'selector': 'canvas[awgCanvasZoom]'},{'name': 'ClickDirective', 'selector': '[awgClick]'},{'name': 'CompileHtmlDirective', 'selector': '[awgCompileHtml]'},{'name': 'EditionIntroScrollDirective', 'selector': '[awgEditionIntroScroll]'},{'name': 'EditionSheetFacetItemLinkDirective', 'selector': 'a[awgEditionSheetFacetItemLink]'},{'name': 'EditionSheetFacetScrollDirective', 'selector': '[awgEditionSheetFacetScroll]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'SvgZoomDirective', 'selector': 'svg[awgSvgZoom]'},{'name': 'ZoomBaseDirective', 'selector': ''}];
     var ACTUAL_COMPONENT = {'name': 'GraphVisualizerComponent'};
 </script>
 <script src="../js/tree.js"></script>
@@ -1754,6 +2030,24 @@ export class GraphVisualizerComponent implements OnInit {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -1769,7 +2063,6 @@ export class GraphVisualizerComponent implements OnInit {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

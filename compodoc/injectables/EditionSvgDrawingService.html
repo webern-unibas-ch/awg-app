@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -113,12 +120,23 @@
   <li class="breadcrumb-item" >EditionSvgDrawingService</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/services/edition-svg-drawing.service.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" 
@@ -130,13 +148,6 @@
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app/views/edition-view/services/edition-svg-drawing.service.ts</code>
-        </p>
-
 
             <p class="comment">
                 <h3>Description</h3>
@@ -144,88 +155,75 @@
             <p class="comment">
                 <p>The EditionSvgDrawing service.</p>
 <p>It handles the creation and handling with SVGs via the D3 library.</p>
-<p>Provided in: <code>root</code>.</p>
 
             </p>
 
 
 
+
+            </div>
+
+    <div class="tab-pane fade " id="api">
             <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_suppliedClasses" >_suppliedClasses</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#_suppliedClassesLabelLookup" >_suppliedClassesLabelLookup</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Methods</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_fetchSvgFile" >_fetchSvgFile</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_getViewBox" >_getViewBox</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Async</span>
                                 <a href="#createSvg" >createSvg</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#fillD3SelectionWithColor" >fillD3SelectionWithColor</a>
                             </li>
                             <li>
-                                <a href="#getContainerDimensions" >getContainerDimensions</a>
-                            </li>
-                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#getD3SelectionByDataId" >getD3SelectionByDataId</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#getD3SelectionById" >getD3SelectionById</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#getGroupsBySelector" >getGroupsBySelector</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#getSuppliedClasses" >getSuppliedClasses</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#toggleSuppliedClassOpacity" >toggleSuppliedClassOpacity</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
 
 
 
-        </tbody>
-    </table>
 </section>
 
 
@@ -256,8 +254,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="259"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:259</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:209</a></div>
                         </td>
                     </tr>
 
@@ -334,8 +332,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="272"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:272</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="221"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:221</a></div>
                         </td>
                     </tr>
 
@@ -405,15 +403,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createSvg(svgFilePath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, svgEl: SVGSVGElement, svgRootGroupEl: SVGGElement)</code>
+                    <code>createSvg(svgFilePath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, svgEl: SVGSVGElement | undefined, svgRootGroupEl: SVGGElement | undefined)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -457,7 +455,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgEl</td>
                                             <td>
-                                                        <code>SVGSVGElement</code>
+                                                        <code>SVGSVGElement | undefined</code>
                                             </td>
 
                                             <td>
@@ -466,14 +464,14 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given SVGSVGElement.</p>
+                                                    <p>The given SVGSVGElement, or undefined.</p>
 
                                             </td>
                                         </tr>
                                         <tr>
                                                 <td>svgRootGroupEl</td>
                                             <td>
-                                                        <code>SVGGElement</code>
+                                                        <code>SVGGElement | undefined</code>
                                             </td>
 
                                             <td>
@@ -482,7 +480,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given SVGGElement.</p>
+                                                    <p>The given SVGGElement, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -490,11 +488,11 @@ and returns a promise of the selection.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >Promise&lt;D3Selection&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >Promise&lt;D3Selection | undefined&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>A promise that resolves to the D3 selection.</p>
+                                <p>A promise that resolves to the D3 selection, or undefined.</p>
 
                             </div>
                 </td>
@@ -514,15 +512,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>fillD3SelectionWithColor(svgEl: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, color: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>fillD3SelectionWithColor(svgEl: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection | undefined</a>, color: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -549,7 +547,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgEl</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -597,82 +595,6 @@ and returns a promise of the selection.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getContainerDimensions"></a>
-                    <span class="name">
-                        <span ><b>getContainerDimensions</b></span>
-                        <a href="#getContainerDimensions"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getContainerDimensions(containerEl: ElementRef<HTMLElement>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:111</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getContainerDimensions.</p>
-<p>It returns the dimensions (width and height) of a given container element.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>containerEl</td>
-                                            <td>
-                                                        <code>ElementRef&lt;HTMLElement&gt;</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given container element.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>literal type</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The dimensions (width and height) of the container element.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getD3SelectionByDataId"></a>
                     <span class="name">
                         <span ><b>getD3SelectionByDataId</b></span>
@@ -682,15 +604,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getD3SelectionByDataId(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getD3SelectionByDataId(svgRootGroup: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection | undefined</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="153"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:153</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -718,7 +640,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -729,7 +651,7 @@ and returns a promise of the selection.</p>
                                             </td>
 
                                             <td>
-                                                    <p>The D3 selection of the SVG root group.</p>
+                                                    <p>The D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -762,7 +684,7 @@ and returns a promise of the selection.</p>
                                             </td>
 
                                             <td>
-                                                    <code>EditionSvgOverlayTypes.dataTkkId</code>
+                                                    <code>DATA_TKK_ID</code>
                                             </td>
 
                                             <td>
@@ -774,11 +696,11 @@ and returns a promise of the selection.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The D3 selection of the found element(s).</p>
+                                <p>The D3 selection of the found element(s), or undefined.</p>
 
                             </div>
                 </td>
@@ -798,15 +720,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getD3SelectionById(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getD3SelectionById(svgRootGroup: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection | undefined</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="135"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:135</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -833,7 +755,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -842,7 +764,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
+                                                    <p>The given D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -866,11 +788,11 @@ and returns a promise of the selection.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The D3 selection of the found element.</p>
+                                <p>The D3 selection of the found element, or undefined.</p>
 
                             </div>
                 </td>
@@ -890,15 +812,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getGroupsBySelector(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, selector: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getGroupsBySelector(svgRootGroup: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection | undefined</a>, selector: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="176"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:176</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:136</a></div>
                         </td>
                     </tr>
 
@@ -925,7 +847,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -934,7 +856,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
+                                                    <p>The given D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -958,11 +880,11 @@ and returns a promise of the selection.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The D3 selection of all found groups.</p>
+                                <p>The D3 selection of all found groups, or undefined.</p>
 
                             </div>
                 </td>
@@ -982,15 +904,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getSuppliedClasses(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>)</code>
+<code>getSuppliedClasses(svgRootGroup: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection | undefined</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="192"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:192</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="153"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:153</a></div>
                         </td>
                     </tr>
 
@@ -998,7 +920,8 @@ and returns a promise of the selection.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: getSuppliedClasses.</p>
-<p>It gets all supplied classes from the SVG sheet root group.</p>
+<p>It gets the names of all supplied classes from the SVG sheet root group
+(i.e., the class following <code>supplied</code> in the class attribute of a supplied group).</p>
 </div>
 
                             <div class="io-description">
@@ -1017,7 +940,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -1026,7 +949,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
+                                                    <p>The given D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -1034,11 +957,11 @@ and returns a promise of the selection.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Map&lt;string, boolean&gt;</code>
+                            <b>Returns : </b>    <code>string[]</code>
 
                         </div>
                             <div class="io-description">
-                                <p>A map of all supplied classes from the SVG sheet root group.</p>
+                                <p>The unique names of all supplied classes from the SVG sheet root group.</p>
 
                             </div>
                 </td>
@@ -1058,15 +981,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>toggleSuppliedClassOpacity(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, labelOrClassName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, isCurrentlyVisible: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+<code>toggleSuppliedClassOpacity(svgRootGroup: <a href="../miscellaneous/typealiases.html#D3Selection" target="_self">D3Selection | undefined</a>, className: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, isVisible: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="231"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:231</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="185"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:185</a></div>
                         </td>
                     </tr>
 
@@ -1093,7 +1016,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../miscellaneous/typealiases.html#D3Selection" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -1102,12 +1025,12 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
+                                                    <p>The given D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>labelOrClassName</td>
+                                                <td>className</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -1118,12 +1041,12 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given class label or class name if label is not provided.</p>
+                                                    <p>The given class name (or empty string for all classes).</p>
 
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>isCurrentlyVisible</td>
+                                                <td>isVisible</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
                                             </td>
@@ -1134,7 +1057,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given current visibility state of the class.</p>
+                                                    <p>The given requested visibility state of the class.</p>
 
                                             </td>
                                         </tr>
@@ -1154,108 +1077,17 @@ and returns a promise of the selection.</p>
         </tbody>
     </table>
 </section>
-            <section data-compodoc="block-properties">
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_suppliedClasses"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_suppliedClasses</b></span>
-                        <a href="#_suppliedClasses"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>Map&lt;string | boolean&gt;</code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new Map()</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:22</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _suppliedClasses</p>
-<p>It keeps a map of all supplied classes from the SVG sheet root group.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_suppliedClassesLabelLookup"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>_suppliedClassesLabelLookup</b></span>
-                        <a href="#_suppliedClassesLabelLookup"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>Map&lt;string | string&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new Map([
-        [&#x27;foliation&#x27;, &#x27;Blattangabe&#x27;],
-        [&#x27;staffN&#x27;, &#x27;Systemangabe&#x27;],
-        [&#x27;measureN&#x27;, &#x27;Taktzahlen&#x27;],
-        [&#x27;clef&#x27;, &#x27;Schlüssel&#x27;],
-        [&#x27;clef_key&#x27;, &#x27;Schlüssel mit Tonart&#x27;],
-        [&#x27;key&#x27;, &#x27;Tonart&#x27;],
-        [&#x27;accid&#x27;, &#x27;Akzidenzien&#x27;],
-        [&#x27;hyphen&#x27;, &#x27;Silbentrennung&#x27;],
-    ])</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:29</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly variable: _suppliedClassesLabelLookup</p>
-<p>It keeps a lookup table for the supplied classes.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ElementRef, Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Service } from &#x27;@angular/core&#x27;;
 
-import { D3Selection, EditionSvgOverlayTypes, ViewBox } from &#x27;@awg-views/edition-view/models&#x27;;
+import { D3Selection } from &#x27;../models/d3-selection.model&#x27;;
+import { DATA_TKK_ID } from &#x27;../models/edition-svg-overlay.model&#x27;;
+import { ViewBox } from &#x27;../models/view-box.model&#x27;;
 
 import * as D3_FETCH from &#x27;d3-fetch&#x27;;
 import * as D3_SELECTION from &#x27;d3-selection&#x27;;
@@ -1264,34 +1096,9 @@ import * as D3_SELECTION from &#x27;d3-selection&#x27;;
  * The EditionSvgDrawing service.
  *
  * It handles the creation and handling with SVGs via the D3 library.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({ providedIn: &#x27;root&#x27; })
+@Service()
 export class EditionSvgDrawingService {
-    /**
-     * Private variable: _suppliedClasses
-     *
-     * It keeps a map of all supplied classes from the SVG sheet root group.
-     */
-    private _suppliedClasses: Map&lt;string, boolean&gt; &#x3D; new Map();
-
-    /**
-     * Private readonly variable: _suppliedClassesLabelLookup
-     *
-     * It keeps a lookup table for the supplied classes.
-     */
-    private readonly _suppliedClassesLabelLookup: Map&lt;string, string&gt; &#x3D; new Map([
-        [&#x27;foliation&#x27;, &#x27;Blattangabe&#x27;],
-        [&#x27;staffN&#x27;, &#x27;Systemangabe&#x27;],
-        [&#x27;measureN&#x27;, &#x27;Taktzahlen&#x27;],
-        [&#x27;clef&#x27;, &#x27;Schlüssel&#x27;],
-        [&#x27;clef_key&#x27;, &#x27;Schlüssel mit Tonart&#x27;],
-        [&#x27;key&#x27;, &#x27;Tonart&#x27;],
-        [&#x27;accid&#x27;, &#x27;Akzidenzien&#x27;],
-        [&#x27;hyphen&#x27;, &#x27;Silbentrennung&#x27;],
-    ]);
-
     /**
      * Public async method: createSvg.
      *
@@ -1299,12 +1106,15 @@ export class EditionSvgDrawingService {
      * and returns a promise of the selection.
      *
      * @param {string} svgFilePath The given path to the svg file.
-     * @param {SVGSVGElement} svgEl The given SVGSVGElement.
-     * @param {SVGGElement} svgRootGroupEl The given SVGGElement.
-     *
-     * @returns {Promise&lt;D3Selection&gt;} A promise that resolves to the D3 selection.
+     * @param {SVGSVGElement| undefined} svgEl The given SVGSVGElement, or undefined.
+     * @param {SVGGElement| undefined} svgRootGroupEl The given SVGGElement, or undefined.
+     * @returns {Promise&lt;D3Selection | undefined&gt;} A promise that resolves to the D3 selection, or undefined.
      */
-    async createSvg(svgFilePath: string, svgEl: SVGSVGElement, svgRootGroupEl: SVGGElement): Promise&lt;D3Selection&gt; {
+    async createSvg(
+        svgFilePath: string,
+        svgEl: SVGSVGElement | undefined,
+        svgRootGroupEl: SVGGElement | undefined
+    ): Promise&lt;D3Selection | undefined&gt; {
         if (!svgFilePath || !svgEl || !svgRootGroupEl) {
             return undefined;
         }
@@ -1313,7 +1123,11 @@ export class EditionSvgDrawingService {
         const fetchedSvgFile: Document &#x3D; await this._fetchSvgFile(svgFilePath);
 
         // Get the SVG XML DOM tree and its content (svg-root)
-        const fetchedSvgXML: SVGSVGElement &#x3D; fetchedSvgFile.getElementsByTagName(&#x27;svg&#x27;)[0];
+        const fetchedSvgXML: SVGSVGElement | undefined &#x3D; fetchedSvgFile.getElementsByTagName(&#x27;svg&#x27;)[0];
+        if (!fetchedSvgXML) {
+            console.error(&#x27;[EditionSvgDrawingService] The fetched file does not contain a valid &lt;svg&gt; element.&#x27;);
+            return undefined;
+        }
 
         const vb &#x3D; this._getViewBox(fetchedSvgXML);
 
@@ -1344,37 +1158,14 @@ export class EditionSvgDrawingService {
      *
      * @param {D3Selection} svgEl The given D3 selection.
      * @param {string} color The given color.
-     *
      * @returns {void} Fills the selection.
      */
     fillD3SelectionWithColor(svgEl: D3Selection | undefined, color: string): void {
         if (!svgEl || !color) {
             return;
         }
+
         svgEl.attr(&#x27;fill&#x27;, color);
-    }
-
-    /**
-     * Public method: getContainerDimensions.
-     *
-     * It returns the dimensions (width and height) of a given container element.
-     *
-     * @param {ElementRef} containerEl The given container element.
-     *
-     * @returns {{ width: number; height: number }} The dimensions (width and height) of the container element.
-     */
-    getContainerDimensions(containerEl: ElementRef&lt;HTMLElement&gt;): { width: number; height: number } {
-        if (!containerEl) {
-            return { width: undefined, height: undefined };
-        }
-
-        const w &#x3D; containerEl.nativeElement.clientWidth;
-        const h &#x3D; containerEl.nativeElement.clientHeight;
-
-        return {
-            width: w,
-            height: h,
-        };
     }
 
     /**
@@ -1382,15 +1173,15 @@ export class EditionSvgDrawingService {
      *
      * It selects an element with the given id, if available, from the given svgRootGroup.
      *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
      * @param {string} id The given id.
-     *
-     * @returns {D3Selection} The D3 selection of the found element.
+     * @returns {D3Selection | undefined} The D3 selection of the found element, or undefined.
      */
-    getD3SelectionById(svgRootGroup: D3Selection, id: string): D3Selection {
+    getD3SelectionById(svgRootGroup: D3Selection | undefined, id: string): D3Selection | undefined {
         if (!svgRootGroup || !id) {
             return undefined;
         }
+
         return svgRootGroup.select(&#x27;#&#x27; + id);
     }
 
@@ -1399,20 +1190,20 @@ export class EditionSvgDrawingService {
      *
      * Selects elements by a data attribute (default: data-tkk-id) or falls back to id.
      *
-     * @param svgRootGroup The D3 selection of the SVG root group.
-     * @param dataId The data id to select.
-     * @param attr The data attribute name (default: &#x27;data-tkk-id&#x27;).
-     *
-     * @returns {D3Selection} The D3 selection of the found element(s).
+     * @param {D3Selection | undefined} svgRootGroup The D3 selection of the SVG root group, or undefined.
+     * @param {string} dataId The data id to select.
+     * @param {string} attr The data attribute name (default: &#x27;data-tkk-id&#x27;).
+     * @returns {D3Selection | undefined} The D3 selection of the found element(s), or undefined.
      */
     getD3SelectionByDataId(
-        svgRootGroup: D3Selection,
+        svgRootGroup: D3Selection | undefined,
         dataId: string,
-        attr: string &#x3D; EditionSvgOverlayTypes.dataTkkId
-    ): D3Selection {
-        if (!svgRootGroup || !dataId) {
+        attr: string &#x3D; DATA_TKK_ID
+    ): D3Selection | undefined {
+        if (!svgRootGroup) {
             return undefined;
         }
+
         const selector &#x3D; &#x60;[${attr}&#x3D;&quot;${dataId}&quot;]&#x60;;
         const selection &#x3D; svgRootGroup.selectAll(selector);
         return selection.empty() ? this.getD3SelectionById(svgRootGroup, dataId) : selection;
@@ -1423,53 +1214,47 @@ export class EditionSvgDrawingService {
      *
      * It selects all groups with the &quot;given selector class, if available, from the given svgRootGroup.
      *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
      * @param {string} selector The given selector class.
-     *
-     * @returns {D3Selection} The D3 selection of all found groups.
+     * @returns {D3Selection | undefined} The D3 selection of all found groups, or undefined.
      */
-    getGroupsBySelector(svgRootGroup: D3Selection, selector: string): D3Selection {
+    getGroupsBySelector(svgRootGroup: D3Selection | undefined, selector: string): D3Selection | undefined {
         if (!svgRootGroup) {
             return undefined;
         }
+
         return svgRootGroup.selectAll(&#x27;g.&#x27; + selector);
     }
 
     /**
      * Public method: getSuppliedClasses.
      *
-     * It gets all supplied classes from the SVG sheet root group.
+     * It gets the names of all supplied classes from the SVG sheet root group
+     * (i.e., the class following &#x60;supplied&#x60; in the class attribute of a supplied group).
      *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     *
-     * @returns {Map&lt;string, boolean&gt;} A map of all supplied classes from the SVG sheet root group.
+     * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
+     * @returns {string[]} The unique names of all supplied classes from the SVG sheet root group.
      */
-    getSuppliedClasses(svgRootGroup: D3Selection): Map&lt;string, boolean&gt; {
+    getSuppliedClasses(svgRootGroup: D3Selection | undefined): string[] {
         if (!svgRootGroup) {
-            return undefined;
+            return [];
         }
 
-        // (Re-)Initialize the map
-        this._suppliedClasses &#x3D; new Map();
-
         const suppliedSelections &#x3D; this.getGroupsBySelector(svgRootGroup, &#x27;supplied&#x27;);
+        if (!suppliedSelections) {
+            return [];
+        }
 
-        suppliedSelections.each((d, i, nodes) &#x3D;&gt; {
-            const element &#x3D; D3_SELECTION.select(nodes[i]);
-            const classNames &#x3D; element.attr(&#x27;class&#x27;).split(&#x27; &#x27;);
+        const suppliedClasses &#x3D; new Set&lt;string&gt;();
+        suppliedSelections.each((_d, i, nodes) &#x3D;&gt; {
+            const classNames &#x3D; D3_SELECTION.select(nodes[i]).attr(&#x27;class&#x27;).split(&#x27; &#x27;);
             const nextToSupplied &#x3D; classNames[classNames.indexOf(&#x27;supplied&#x27;) + 1];
             if (nextToSupplied) {
-                // Look up the class label in the mapping object
-                const classLabel &#x3D; this._suppliedClassesLabelLookup.get(nextToSupplied) || nextToSupplied;
-
-                // Initialize the visibility state of the class
-                if (!this._suppliedClasses.has(classLabel)) {
-                    this._suppliedClasses.set(classLabel, true);
-                }
+                suppliedClasses.add(nextToSupplied);
             }
         });
 
-        return this._suppliedClasses;
+        return [...suppliedClasses];
     }
 
     /**
@@ -1477,28 +1262,24 @@ export class EditionSvgDrawingService {
      *
      * It toggles the opacity of the supplied class with the given className.
      *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     * @param {string} labelOrClassName The given class label or class name if label is not provided.
-     * @param {boolean} isCurrentlyVisible The given current visibility state of the class.
-     *
+     * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
+     * @param {string} className The given class name (or empty string for all classes).
+     * @param {boolean} isVisible The given requested visibility state of the class.
      * @returns {void} Toggles the opacity of the supplied class with the given className.
      */
-    toggleSuppliedClassOpacity(svgRootGroup: D3Selection, labelOrClassName: string, isCurrentlyVisible: boolean): void {
+    toggleSuppliedClassOpacity(svgRootGroup: D3Selection | undefined, className: string, isVisible: boolean): void {
         if (!svgRootGroup) {
             return;
         }
 
-        // Reverse lookup to get the class name from the lookup table
-        const className &#x3D;
-            Array.from(this._suppliedClassesLabelLookup.entries()).find(
-                ([, value]) &#x3D;&gt; value &#x3D;&#x3D;&#x3D; labelOrClassName
-            )?.[0] || labelOrClassName;
-
         // Get D3 selection of supplied elements
         const selector &#x3D; className ? &#x60;supplied.${className}&#x60; : &#x27;supplied&#x27;;
         const suppliedSelections &#x3D; this.getGroupsBySelector(svgRootGroup, selector);
-        const opacity &#x3D; isCurrentlyVisible ? 0 : 1;
+        if (!suppliedSelections) {
+            return;
+        }
 
+        const opacity &#x3D; isVisible ? 1 : 0;
         suppliedSelections.style(&#x27;opacity&#x27;, opacity);
     }
 
@@ -1508,7 +1289,6 @@ export class EditionSvgDrawingService {
      * It fetches an SVG file from the given path via fetch method from D3 library.
      *
      * @param {string} path The path to the SVG file.
-     *
      * @returns {Promise&lt;Document&gt;} A promise that resolves to the SVG file as Document.
      */
     private _fetchSvgFile(path: string): Promise&lt;Document&gt; {
@@ -1521,7 +1301,6 @@ export class EditionSvgDrawingService {
      * It reads out the viewBox attribute of a given SVGSVGElement and creates a ViewBox object.
      *
      * @param {SVGSVGElement} svgXML The SVGSVGElement.
-     *
      * @returns {ViewBox} The ViewBox object.
      */
     private _getViewBox(svgXML: SVGSVGElement): ViewBox {
@@ -1585,6 +1364,24 @@ export class EditionSvgDrawingService {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -1600,7 +1397,6 @@ export class EditionSvgDrawingService {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

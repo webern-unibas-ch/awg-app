@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -113,12 +120,23 @@
   <li class="breadcrumb-item" >StatisticsService</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/statistics-view/services/statistics.service.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" 
@@ -130,13 +148,6 @@
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app/views/statistics-view/services/statistics-service/statistics.service.ts</code>
-        </p>
-
 
             <p class="comment">
                 <h3>Description</h3>
@@ -145,58 +156,65 @@
                 <p>The Statistics service.</p>
 <p>It handles the calculation and provision of statistics
 for the edition outline data.</p>
-<p>Provided in: <code>root</code>.</p>
 
             </p>
 
 
 
+
+            </div>
+
+    <div class="tab-pane fade " id="api">
             <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
 
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Methods</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_calculateCombinedProgressRate" >_calculateCombinedProgressRate</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_calculateProgressRate" >_calculateProgressRate</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_incrementComplexCounters" >_incrementComplexCounters</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_isMnrX" >_isMnrX</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_processComplexes" >_processComplexes</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#getStatisticsFromOutline" >getStatisticsFromOutline</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
 
 
 
-        </tbody>
-    </table>
 </section>
 
 
@@ -227,8 +245,8 @@ for the edition outline data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="112"
-                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:112</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics.service.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -305,8 +323,8 @@ for the edition outline data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="99"
-                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:99</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics.service.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -399,8 +417,8 @@ for the edition outline data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="132"
-                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:132</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics.service.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -502,15 +520,15 @@ for the edition outline data.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_isMnrX(complex: <a href="../interfaces/EditionOutlineComplexItem.html" target="_self">EditionOutlineComplexItem | undefined</a>)</code>
+                    <code>_isMnrX(complex: <a href="../interfaces/EditionOutlineComplexItem.html" target="_self">EditionOutlineComplexItem</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="149"
-                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:149</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics.service.ts:140</a></div>
                         </td>
                     </tr>
 
@@ -537,7 +555,7 @@ for the edition outline data.</p>
                                         <tr>
                                                 <td>complex</td>
                                             <td>
-                                                            <code><a href="../interfaces/EditionOutlineComplexItem.html" target="_self" >EditionOutlineComplexItem | undefined</a></code>
+                                                            <code><a href="../interfaces/EditionOutlineComplexItem.html" target="_self" >EditionOutlineComplexItem</a></code>
                                             </td>
 
                                             <td>
@@ -580,15 +598,15 @@ for the edition outline data.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_processComplexes(stats: <a href="../classes/Statistics.html" target="_self">Statistics</a>, seriesStats: <a href="../classes/StatisticsSeriesBreakdown.html" target="_self">StatisticsSeriesBreakdown</a>, sectionStats: <a href="../classes/StatisticsSectionBreakdown.html" target="_self">StatisticsSectionBreakdown</a>, complexTypes: <a href="../interfaces/EditionOutlineComplexTypes.html" target="_self">EditionOutlineComplexTypes</a>)</code>
+                    <code>_processComplexes(stats: <a href="../classes/Statistics.html" target="_self">Statistics</a>, seriesStats: <a href="../classes/StatisticsSeriesBreakdown.html" target="_self">StatisticsSeriesBreakdown</a>, sectionStats: <a href="../classes/StatisticsSectionBreakdown.html" target="_self">StatisticsSectionBreakdown</a>, complexTypes: <a href="../interfaces/EditionOutlineComplexTypes.html" target="_self">EditionOutlineComplexTypes | undefined</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="166"
-                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:166</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics.service.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -663,7 +681,7 @@ for the edition outline data.</p>
                                         <tr>
                                                 <td>complexTypes</td>
                                             <td>
-                                                            <code><a href="../interfaces/EditionOutlineComplexTypes.html" target="_self" >EditionOutlineComplexTypes</a></code>
+                                                            <code><a href="../interfaces/EditionOutlineComplexTypes.html" target="_self" >EditionOutlineComplexTypes | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -672,7 +690,7 @@ for the edition outline data.</p>
 
 
                                             <td>
-                                                    <p>The object containing the opus and mnr complex lists.</p>
+                                                    <p>The object containing the opus and mnr complex lists, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -711,8 +729,8 @@ for the edition outline data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/app/views/statistics-view/services/statistics-service/statistics.service.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/views/statistics-view/services/statistics.service.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -769,16 +787,17 @@ for the edition outline data.</p>
     </table>
 </section>
 
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Service } from &#x27;@angular/core&#x27;;
 
-import { EditionOutlineSeries } from &#x27;@awg-views/edition-view/models&#x27;;
 import {
     EditionOutlineComplexItem,
     EditionOutlineComplexTypes,
+    EditionOutlineSeries,
 } from &#x27;@awg-views/edition-view/models/edition-outline.model&#x27;;
 
 import {
@@ -787,19 +806,15 @@ import {
     StatisticsComplexType,
     StatisticsSectionBreakdown,
     StatisticsSeriesBreakdown,
-} from &#x27;@awg-views/statistics-view/models&#x27;;
+} from &#x27;../models/statistics.model&#x27;;
 
 /**
  * The Statistics service.
  *
  * It handles the calculation and provision of statistics
  * for the edition outline data.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Service()
 export class StatisticsService {
     /**
      * Public method: calculateStatistics.
@@ -807,7 +822,6 @@ export class StatisticsService {
      * It calculates comprehensive statistics from the edition outline data.
      *
      * @param {EditionOutlineSeries[]} editionOutline The edition outline data.
-     *
      * @returns {Statistics} The calculated statistics.
      */
     getStatisticsFromOutline(editionOutline: EditionOutlineSeries[]): Statistics {
@@ -868,7 +882,6 @@ export class StatisticsService {
      *
      * @param {number} active The number of active items.
      * @param {number} total The total number of items.
-     *
      * @returns {number} The rounded percentage rate.
      */
     private _calculateProgressRate(active: number, total: number): number {
@@ -881,7 +894,6 @@ export class StatisticsService {
      * It calculates a rounded average value from a list of progress rates.
      *
      * @param {number[]} progressRates The list of progress rates to average.
-     *
      * @returns {number} The rounded averageprogress rate, or 0 if the list is empty.
      */
     private _calculateCombinedProgressRate(progressRates: number[]): number {
@@ -901,7 +913,6 @@ export class StatisticsService {
      * @param {StatisticsComplexCounter[]} targets The statistics targets to update.
      * @param {StatisticsComplexType} complexType The complex category.
      * @param {boolean} isActive Flag indicating whether the complex is active.
-     *
      * @returns {void} Registers the complex in all targets by calling their registerComplex method.
      */
     private _incrementComplexCounters(
@@ -917,12 +928,11 @@ export class StatisticsService {
      *
      * It checks whether a complex belongs to the MNR_X category.
      *
-     * @param {unknown} complex The complex object to inspect.
-     *
+     * @param {EditionOutlineComplexItem} complex The complex object to inspect.
      * @returns {boolean} True if the complex route starts with &#x60;/mx&#x60;, otherwise false.
      */
-    private _isMnrX(complex: EditionOutlineComplexItem | undefined): boolean {
-        const route &#x3D; complex?.complex?.complexId?.route;
+    private _isMnrX(complex: EditionOutlineComplexItem): boolean {
+        const route &#x3D; complex.complex?.complexId?.route;
         return typeof route &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; route.startsWith(&#x27;/mx&#x27;);
     }
 
@@ -934,15 +944,14 @@ export class StatisticsService {
      * @param {Statistics} stats The overall edition statistics.
      * @param {StatisticsSeriesBreakdown} seriesStats The current series statistics.
      * @param {StatisticsSectionBreakdown} sectionStats The current section statistics.
-     * @param {Object} complexTypes The object containing the opus and mnr complex lists.
-     *
+     * @param {EditionOutlineComplexTypes | undefined} complexTypes The object containing the opus and mnr complex lists, or undefined.
      * @returns {void} Processes all complexes and updates the counters in the provided statistics objects.
      */
     private _processComplexes(
         stats: Statistics,
         seriesStats: StatisticsSeriesBreakdown,
         sectionStats: StatisticsSectionBreakdown,
-        complexTypes: EditionOutlineComplexTypes
+        complexTypes: EditionOutlineComplexTypes | undefined
     ): void {
         if (!complexTypes) {
             return;
@@ -1007,6 +1016,24 @@ export class StatisticsService {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -1022,7 +1049,6 @@ export class StatisticsService {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -117,12 +124,23 @@
   <li class="breadcrumb-item" >EditionSvgSheet</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/models/edition-svg-sheets.model.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" 
@@ -134,13 +152,6 @@
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app/views/edition-view/models/edition-svg-sheet.model.ts</code>
-        </p>
-
 
             <p class="comment">
                 <h3>Description</h3>
@@ -156,38 +167,42 @@ in a svg sheet json file.</p>
 
 
 
+            </div>
+
+    <div class="tab-pane fade " id="api">
             <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Properties</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                 <a href="#content" >content</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                 <a href="#label" >label</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
 
 
 
 
-        </tbody>
-    </table>
 </section>
 
 
@@ -209,13 +224,18 @@ in a svg sheet json file.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>EditionSvgSheetContent[]</code>
+                        <i>Type : </i>        <code><a href="../interfaces/EditionSvgSheetContent.html" target="_self" >EditionSvgSheetContent[]</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheets.model.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -245,9 +265,14 @@ in a svg sheet json file.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheets.model.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -277,9 +302,14 @@ in a svg sheet json file.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheets.model.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -304,7 +334,16 @@ in a svg sheet json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class EditionSvgSheetContent {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionTypeKey } from &#x27;./edition-type.model&#x27;;
+
+/**
+ * The EditionSvgSheetContent interface.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the content of a single svg sheet
+ * in a svg sheet json file.
+ */
+export interface EditionSvgSheetContent {
     /**
      * The path to the svg file of the sheet.
      */
@@ -323,7 +362,7 @@ in a svg sheet json file.</p>
     /**
      * The associated convolute of the sheet.
      */
-    convolute?: string;
+    convolute: string;
 }
 
 /**
@@ -337,35 +376,79 @@ export class EditionSvgSheet {
     /**
      * The sheet&#x27;s id (string).
      */
-    id: string;
+    id &#x3D; &#x27;&#x27;;
 
     /**
      * The label for the sheet.
      */
-    label: string;
+    label &#x3D; &#x27;&#x27;;
 
     /**
      * The content of the sheet.
      */
-    content: EditionSvgSheetContent[];
+    content: EditionSvgSheetContent[] &#x3D; [];
 }
 
 /**
- * The EditionSvgSheetList class.
+ * The EditionSvgSheetsList class.
  *
  * It is used in the context of the edition view
- * to store the data for a svg sheet list
+ * to store the data for a svg sheets list
  * from a svg sheet json file.
  */
-export class EditionSvgSheetList {
+export class EditionSvgSheetsList {
     /**
      * The array of sheets from a svg sheet list.
      */
-    sheets: {
-        workEditions: EditionSvgSheet[];
-        textEditions: EditionSvgSheet[];
-        sketchEditions: EditionSvgSheet[];
+    sheets: Record&lt;EditionTypeKey, EditionSvgSheet[]&gt; &#x3D; {
+        workEditions: [],
+        textEditions: [],
+        sketchEditions: [],
     };
+}
+
+/**
+ * The EditionSvgSheetSelection interface.
+ *
+ * It is used in the context of the edition view
+ * to store a selected svg sheet: its id,
+ * its full id (incl. the selected partial)
+ * and its selected content.
+ */
+export interface EditionSvgSheetSelection {
+    /**
+     * The sheet&#x27;s id (string).
+     */
+    id: string;
+
+    /**
+     * The sheet&#x27;s full id, i.e. the sheet id incl. the selected partial id, if any (string).
+     */
+    fullId: string;
+
+    /**
+     * The selected content (partial) of the sheet.
+     */
+    content: EditionSvgSheetContent;
+}
+
+/**
+ * The EditionSvgSheetContext interface.
+ *
+ * It is used in the context of the edition view
+ * to store a selected svg sheet
+ * together with its edition type.
+ */
+export interface EditionSvgSheetContext {
+    /**
+     * The selected svg sheet.
+     */
+    selection: EditionSvgSheetSelection;
+
+    /**
+     * The edition type of the selected svg sheet.
+     */
+    editionType: EditionTypeKey;
 }
 </code></pre>
     </div>
@@ -411,6 +494,24 @@ export class EditionSvgSheetList {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -426,7 +527,6 @@ export class EditionSvgSheetList {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

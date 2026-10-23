@@ -4,9 +4,9 @@
             "id": "M112_TF1",
             "label": "M 112 Textfassung 1",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> enthält Skizzen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> bezieht sich auf Textfassung 3.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Ba_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nach Korrekturen 1. Referenzquelle bei unklaren Stellen ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>."
+                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 1 ist <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>a</sup></strong></a> relevante Quelle. <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a> enthält Skizzen, <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a> bezieht sich auf Textfassung 3.",
+                "<a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a data-complex-id='m112' data-report-fragment-id='source_Ba_corr_1'>Korrekturen 1</a> mit Tinte sowie die später erfolgten <a data-complex-id='m112' data-report-fragment-id='source_Ba_corr_2'>Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 1 ist <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>a</sup></strong></a> nach Korrekturen 1. Referenzquelle bei unklaren Stellen ist <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -51,9 +51,9 @@
             "id": "M112_TF2",
             "label": "M 112 Textfassung 2",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> enthalten Skizzen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> bezieht sich auf Textfassung 3.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Da_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Da_corr_2'})\">Korrekturen 2</a> mit Bleistift und rotem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>."
+                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 2 ist <a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>a</sup></strong></a> relevante Quelle. <a data-complex-id='m112' data-report-fragment-id='source_A'><strong>A</strong></a>, <a data-complex-id='m112' data-report-fragment-id='source_C'><strong>C</strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>b</sup></strong></a> enthalten Skizzen, <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a> bezieht sich auf Textfassung 3.",
+                "<a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a data-complex-id='m112' data-report-fragment-id='source_Da_corr_1'>Korrekturen 1</a> mit Tinte sowie die später erfolgten <a data-complex-id='m112' data-report-fragment-id='source_Da_corr_2'>Korrekturen 2</a> mit Bleistift und rotem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 2 ist <a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>a</sup></strong></a> nach Korrekturen 1. Referenzquellen bei unklaren Stellen sind <a data-complex-id='m112' data-report-fragment-id='source_A'><strong>A</strong></a>, <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B</strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -66,7 +66,7 @@
                                 "measure": "55",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt analog <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a> in <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-002",
@@ -87,21 +87,21 @@
                                 "measure": "61",
                                 "system": "Klav. u.",
                                 "position": "6/8",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-005",
                                 "measure": "62",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-006",
                                 "measure": "65",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4a'})\"><strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}}</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk4a'><strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}}</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-007",
@@ -122,14 +122,14 @@
                                 "measure": "74",
                                 "system": "Klav. u.",
                                 "position": "",
-                                "comment": "Stimmführung: sic (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_Da_corr_1'})\">Korrekturen 1</a>)."
+                                "comment": "Stimmführung: sic (vgl. <a data-complex-id='m112' data-report-fragment-id='source_Da_corr_1'>Korrekturen 1</a>)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-010",
                                 "measure": "76",
                                 "system": "Klav. o.",
                                 "position": "2/4",
-                                "comment": "<a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5c'})\"><strong>Sk5</strong> T. 76</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> hat <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu d<sup>1</sup> notiert."
+                                "comment": "<a data-complex-id='m112' data-sheet-id='M112_Sk5c'><strong>Sk5</strong> T. 76</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a> hat <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu d<sup>1</sup> notiert."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-011",
@@ -143,21 +143,21 @@
                                 "measure": "79",
                                 "system": "Klav. o.",
                                 "position": "2/8",
-                                "comment": "sic: gis<sup>2</sup> und as<sup>2</sup> durch Ligatur verbunden. Vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5c'})\"><strong>Sk5</strong> T. {{'{'}}79B{{'}'}}</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5d'})\">79C</a> sowie <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a>, wo die enharmonische Verwechslung aufgehoben und 2–3/8 zu einer Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup> zusammengefasst ist."
+                                "comment": "sic: gis<sup>2</sup> und as<sup>2</sup> durch Ligatur verbunden. Vgl. <a data-complex-id='m112' data-sheet-id='M112_Sk5c'><strong>Sk5</strong> T. {{'{'}}79B{{'}'}}</a> und <a data-complex-id='m112' data-sheet-id='M112_Sk5d'>79C</a> sowie <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a>, wo die enharmonische Verwechslung aufgehoben und 2–3/8 zu einer Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup> zusammengefasst ist."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-013",
                                 "measure": "80",
                                 "system": "Klav. o.",
                                 "position": "4/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5d'})\"><strong>Sk5</strong> T. 80</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk5d'><strong>Sk5</strong> T. 80</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-014",
                                 "measure": "82",
                                 "system": "Klav.",
                                 "position": "1/4",
-                                "comment": "<a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>: Drei Notenhälse vorhanden mit unklarer Zuordnung: zwei nach oben (horizontal versetzt), einer nach unten. Alle drei Notenhälse zu einem zusammengefasst."
+                                "comment": "<a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>a</sup></strong></a>: Drei Notenhälse vorhanden mit unklarer Zuordnung: zwei nach oben (horizontal versetzt), einer nach unten. Alle drei Notenhälse zu einem zusammengefasst."
                             }
                         ]
                     }
@@ -168,9 +168,9 @@
             "id": "M112_TF3",
             "label": "M 112 Textfassung 3 (Abschrift Friedrich Wildgans)",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> enthalten Skizzen, <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> beziehen sich auf Textfassung 1 bzw. Textafssung 2. <strong>[E]</strong> und <strong>[F]</strong> sind verschollen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> sind im Notentext bildidentisch und basieren auf der verschollenen Abschrift <strong>[F]</strong> von Friedrichh Wildgans. <strong>[F]</strong> geht mutmaßlich zurück auf die ebenfalls verschollene Tintenniederschrift <strong>[E]</strong>. Wie genau <strong>[E]</strong> und <strong>[F]</strong> im Notentext übereinstimmten, ist nicht dokumentiert. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> weist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1_corr_1'})\">Korrekturen mit Tinte</a> auf, die auf die Reprografievorlage <strong>[F]</strong> zurückgehen, sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1_corr_2'})\">Nachzeichnungen mit Kugelschreiber</a> aus der Hand von Else Stock-Hug. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> weist <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2_corr_1'})\">Korrekturen mit Tinte</a> auf, die auf die Reprografievorlage <strong>[F]</strong> zurückgehen, sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2_corr_2'})\">Nachzeichnungen mit Kugelschreiber</a> aus der Hand von Else Stock-Hug und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2_corr_3'})\">Eintragungen mit Bleistift</a> aus der Hand von Hans Moldenhauer. Der Zustand vor den Korrekturen mit Tinte ist nicht immer zu entziffern. Der Zustand nach den Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR2'})\"><strong>F<sup>R2</sup></strong></a> nach den Korrekturen. Referenzquellen bei unklaren Stellen sind <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>."
+                "Für die Textedition der Studienkomposition für Klavier M 112 Textfassung 3 sind <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_FR2'><strong>F<sup>R2</sup></strong></a> relevante Quellen. <a data-complex-id='m112' data-report-fragment-id='source_A'><strong>A</strong></a>, <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a>, <a data-complex-id='m112' data-report-fragment-id='source_C'><strong>C</strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>b</sup></strong></a> enthalten Skizzen, <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>a</sup></strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>a</sup></strong></a> beziehen sich auf Textfassung 1 bzw. Textafssung 2. <strong>[E]</strong> und <strong>[F]</strong> sind verschollen.",
+                "<a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_FR2'><strong>F<sup>R2</sup></strong></a> sind im Notentext bildidentisch und basieren auf der verschollenen Abschrift <strong>[F]</strong> von Friedrichh Wildgans. <strong>[F]</strong> geht mutmaßlich zurück auf die ebenfalls verschollene Tintenniederschrift <strong>[E]</strong>. Wie genau <strong>[E]</strong> und <strong>[F]</strong> im Notentext übereinstimmten, ist nicht dokumentiert. <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a> weist <a data-complex-id='m112' data-report-fragment-id='source_FR1_corr_1'>Korrekturen mit Tinte</a> auf, die auf die Reprografievorlage <strong>[F]</strong> zurückgehen, sowie <a data-complex-id='m112' data-report-fragment-id='source_FR1_corr_2'>Nachzeichnungen mit Kugelschreiber</a> aus der Hand von Else Stock-Hug. <a data-complex-id='m112' data-report-fragment-id='source_FR2'><strong>F<sup>R2</sup></strong></a> weist <a data-complex-id='m112' data-report-fragment-id='source_FR2_corr_1'>Korrekturen mit Tinte</a> auf, die auf die Reprografievorlage <strong>[F]</strong> zurückgehen, sowie <a data-complex-id='m112' data-report-fragment-id='source_FR2_corr_2'>Nachzeichnungen mit Kugelschreiber</a> aus der Hand von Else Stock-Hug und <a data-complex-id='m112' data-report-fragment-id='source_FR2_corr_3'>Eintragungen mit Bleistift</a> aus der Hand von Hans Moldenhauer. Der Zustand vor den Korrekturen mit Tinte ist nicht immer zu entziffern. Der Zustand nach den Korrekturen in <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_FR2'><strong>F<sup>R2</sup></strong></a> konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 112 Textfassung 3 sind <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_FR2'><strong>F<sup>R2</sup></strong></a> nach den Korrekturen. Referenzquellen bei unklaren Stellen sind <a data-complex-id='m112' data-report-fragment-id='source_A'><strong>A</strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a> sowie <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>a</sup></strong></a> und <a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>a</sup></strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -183,21 +183,21 @@
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "1–2/8",
-                                "comment": "sic. Vgl. T. 94 sowie <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassung 1 T. 2</a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> nach unten aufgelöst in Achteltriole f<sup>1</sup>–e<sup>1</sup>–g<sup>1</sup>."
+                                "comment": "sic. Vgl. T. 94 sowie <a data-complex-id='m112' data-sheet-id='M112_TF1'>Textfassung 1 T. 2</a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> nach unten aufgelöst in Achteltriole f<sup>1</sup>–e<sup>1</sup>–g<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-002",
                                 "measure": "3",
                                 "system": "Klav. o.",
                                 "position": "3.–4. Note",
-                                "comment": "Oberstimmenschicht: sic (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk7'})\"><strong>Sk7</strong> T. 3</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>)."
+                                "comment": "Oberstimmenschicht: sic (vgl. <a data-complex-id='m112' data-sheet-id='M112_Sk7'><strong>Sk7</strong> T. 3</a> in <a data-complex-id='m112' data-report-fragment-id='source_C'><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-003",
                                 "measure": "4",
                                 "system": "Klav. o.",
                                 "position": "6–8/8",
-                                "comment": "sic (vgl. Oktavierung in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassung 1 T. 6</a>)."
+                                "comment": "sic (vgl. Oktavierung in <a data-complex-id='m112' data-sheet-id='M112_TF1'>Textfassung 1 T. 6</a>)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-004",
@@ -211,7 +211,7 @@
                                 "measure": "5",
                                 "system": "Klav. o.",
                                 "position": "3–4/4",
-                                "comment": "sic: Unterstimmenschicht c<sup>1</sup>–h nicht vorhanden (vgl. T. 97 sowie <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassung 1 T. 5</a>)."
+                                "comment": "sic: Unterstimmenschicht c<sup>1</sup>–h nicht vorhanden (vgl. T. 97 sowie <a data-complex-id='m112' data-sheet-id='M112_TF1'>Textfassung 1 T. 5</a>)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-006",
@@ -232,7 +232,7 @@
                                 "measure": "38–39",
                                 "system": "Klav.",
                                 "position": "",
-                                "comment": "sic. Die Skizzen beinhalten zwischen T. 38 und 39 einen zusätzlichen Takt (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1k'})\"><strong>Sk1</strong> T. 38</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>; dort zudem am Ende der Vierteltriole jeweils <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>)."
+                                "comment": "sic. Die Skizzen beinhalten zwischen T. 38 und 39 einen zusätzlichen Takt (vgl. <a data-complex-id='m112' data-sheet-id='M112_Sk1k'><strong>Sk1</strong> T. 38</a> in <a data-complex-id='m112' data-report-fragment-id='source_A'><strong>A</strong></a>; dort zudem am Ende der Vierteltriole jeweils <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-009",
@@ -274,7 +274,7 @@
                                 "measure": "60",
                                 "system": "Klav. o.",
                                 "position": "7/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> ergänzt analog Textfassung 2 und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk2a'})\"><strong>Sk2</strong> T. 60</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> ergänzt analog Textfassung 2 und mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk2a'><strong>Sk2</strong> T. 60</a> in <a data-complex-id='m112' data-report-fragment-id='source_A'><strong>A</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-015",
@@ -288,7 +288,7 @@
                                 "measure": "61",
                                 "system": "Klav. o.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu a<sup>2</sup> ergänzt analog Textfassung 2 und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk2b'})\"><strong>Sk2</strong> T. 61</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_A'})\"><strong>A</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu a<sup>2</sup> ergänzt analog Textfassung 2 und mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk2b'><strong>Sk2</strong> T. 61</a> in <a data-complex-id='m112' data-report-fragment-id='source_A'><strong>A</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-017",
@@ -302,35 +302,35 @@
                                 "measure": "63",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassung 2</a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt analog <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassung 2</a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-019",
                                 "measure": "63",
                                 "system": "Klav. o.",
                                 "position": "4/4",
-                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
+                                "comment": "sic: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>1</sup>. <a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>a</sup></strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-020",
                                 "measure": "65",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4a'})\"><strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}}</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk4a'><strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}}</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-021",
                                 "measure": "66",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "d<sup>1 </sup>korrigiert zu cis<sup>1</sup> mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassung 2</a> sowie motivischen und harmonischen Kontext (vgl. auch T. 57)."
+                                "comment": "d<sup>1 </sup>korrigiert zu cis<sup>1</sup> mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassung 2</a> sowie motivischen und harmonischen Kontext (vgl. auch T. 57)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-022",
                                 "measure": "69",
                                 "system": "Klav. o.",
                                 "position": "6/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>3</sup> ergänzt analog <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassung 2</a> und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5a'})\"><strong>Sk5</strong> T. 69</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es<sup>3</sup> ergänzt analog <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassung 2</a> und mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk5a'><strong>Sk5</strong> T. 69</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-023",
@@ -351,21 +351,21 @@
                                 "measure": "80",
                                 "system": "Klav. o.",
                                 "position": "4/8",
-                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5d'})\"><strong>Sk5</strong> T. 80</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>."
+                                "comment": "Oberstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk5d'><strong>Sk5</strong> T. 80</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-026",
                                 "measure": "89",
                                 "system": "Klav. o.",
                                 "position": "5/8",
-                                "comment": "Deutung der obersten Note unsicher: In <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a> ist e<sup>3</sup> überschrieben zu d<sup>3</sup> (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1_corr_1'})\">Korrekturen 1</a>). In <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6a'})\"><strong>Sk6</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> dagegen steht e<sup>2</sup> (<a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6c'})\">T. 89B</a>) bzw. e<sup>3</sup> (<a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6d'})\">T. 90D</a>)."
+                                "comment": "Deutung der obersten Note unsicher: In <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a> ist e<sup>3</sup> überschrieben zu d<sup>3</sup> (vgl. <a data-complex-id='m112' data-report-fragment-id='source_FR1_corr_1'>Korrekturen 1</a>). In <a data-complex-id='m112' data-sheet-id='M112_Sk6a'><strong>Sk6</strong></a> in <a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>b</sup></strong></a> dagegen steht e<sup>2</sup> (<a data-complex-id='m112' data-sheet-id='M112_Sk6c'>T. 89B</a>) bzw. e<sup>3</sup> (<a data-complex-id='m112' data-sheet-id='M112_Sk6d'>T. 90D</a>)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-027",
                                 "measure": "89",
                                 "system": "Klav. o.",
                                 "position": "letzte Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> ergänzt analog T. 90 und mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6c'})\"><strong>Sk6</strong> T. 90B</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6d'})\">90D</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> ergänzt analog T. 90 und mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk6c'><strong>Sk6</strong> T. 90B</a> und <a data-complex-id='m112' data-sheet-id='M112_Sk6d'>90D</a> in <a data-complex-id='m112' data-report-fragment-id='source_D'><strong>D<sup>b</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-028",
@@ -379,7 +379,7 @@
                                 "measure": "95",
                                 "system": "Klav. o.",
                                 "position": "3.–4. Note",
-                                "comment": "Oberstimmenschicht: sic (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk7'})\"><strong>Sk7</strong> T. 3</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>.)"
+                                "comment": "Oberstimmenschicht: sic (vgl. <a data-complex-id='m112' data-sheet-id='M112_Sk7'><strong>Sk7</strong> T. 3</a> in <a data-complex-id='m112' data-report-fragment-id='source_C'><strong>C</strong></a>: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>gis<sup>2</sup>–a<sup>2</sup>.)"
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-030",
@@ -400,28 +400,28 @@
                                 "measure": "106",
                                 "system": "Klav. u.",
                                 "position": "7/8",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk10e'})\"><strong>Sk10</strong> T. 109B</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk10e'><strong>Sk10</strong> T. 109B</a> in <a data-complex-id='m112' data-report-fragment-id='source_C'><strong>C</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-033",
                                 "measure": "112–113",
                                 "system": "Klav.",
                                 "position": "",
-                                "comment": "sic. Die Skizzen beinhalten zwischen T. 112 und 113 einen zusätzlichen Takt (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk10f'})\"><strong>Sk10</strong> T. 116B</a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
+                                "comment": "sic. Die Skizzen beinhalten zwischen T. 112 und 113 einen zusätzlichen Takt (vgl. <a data-complex-id='m112' data-sheet-id='M112_Sk10f'><strong>Sk10</strong> T. 116B</a> in <a data-complex-id='m112' data-report-fragment-id='source_C'><strong>C</strong></a>)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-034",
                                 "measure": "113",
                                 "system": "Klav. u.",
                                 "position": "letzte Note",
-                                "comment": "Oberstimmenschicht: as versetzt aus dem oberen System mit Blick auf Ligatur zu T. 114. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>: Akkoladenwechsel nach T. 113."
+                                "comment": "Oberstimmenschicht: as versetzt aus dem oberen System mit Blick auf Ligatur zu T. 114. <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a>: Akkoladenwechsel nach T. 113."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-035",
                                 "measure": "119",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "D auch als E lesbar. Hier D gesetzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk10j'})\"><strong>Sk10</strong> T. 123B</a>."
+                                "comment": "D auch als E lesbar. Hier D gesetzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk10j'><strong>Sk10</strong> T. 123B</a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-036",
@@ -470,7 +470,7 @@
                                 "measure": "148",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm112', fragmentId: 'source_FR1'})\"><strong>F<sup>R1</sup></strong></a>: Kein Taktstrich vorhanden."
+                                "comment": "Schlussstrich ergänzt. <a data-complex-id='m112' data-report-fragment-id='source_FR1'><strong>F<sup>R1</sup></strong></a>: Kein Taktstrich vorhanden."
                             }
                         ]
                     }
@@ -481,7 +481,7 @@
             "id": "M112_Sk1",
             "label": "M 112 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist der erste Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5'})\"><strong>Sk5</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk10'})\"><strong>Sk10</strong></a>), der die vollständige Exposition enthält, aber zu Beginn der Durchführung im Satz bald ausdünnt und schliesslich abbricht. <strong>Sk1</strong> bietet zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1_1'})\"><strong>Sk1.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1_2'})\"><strong>Sk1.2</strong></a> jene Version der Exposition, auf der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassung 1</a> beruht. Der Durchführungsteil von <strong>Sk1</strong> entspricht den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">3</a> nur in den ersten fünf Takten."
+                "<strong>Sk1</strong> ist der erste Teil einer mehrteiligen Verlaufsskizze zu der <a data-complex-id='m112' data-sheet-id='M112_TF3'>Studienkomposition für Klavier M 112</a> (zusammen mit <a data-complex-id='m112' data-sheet-id='M112_Sk2'><strong>Sk2</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk4'><strong>Sk4</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk5'><strong>Sk5</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk6'><strong>Sk6</strong></a> und <a data-complex-id='m112' data-sheet-id='M112_Sk10'><strong>Sk10</strong></a>), der die vollständige Exposition enthält, aber zu Beginn der Durchführung im Satz bald ausdünnt und schliesslich abbricht. <strong>Sk1</strong> bietet zusammen mit <a data-complex-id='m112' data-sheet-id='M112_Sk1_1'><strong>Sk1.1</strong></a> und <a data-complex-id='m112' data-sheet-id='M112_Sk1_2'><strong>Sk1.2</strong></a> jene Version der Exposition, auf der <a data-complex-id='m112' data-sheet-id='M112_TF1'>Textfassung 1</a> beruht. Der Durchführungsteil von <strong>Sk1</strong> entspricht den <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassungen 2</a> und <a data-complex-id='m112' data-sheet-id='M112_TF3'>3</a> nur in den ersten fünf Takten."
             ],
             "commentary": {
                 "preamble": "",
@@ -1235,7 +1235,7 @@
             "id": "M112_Sk1_1",
             "label": "M 112 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> fügt einen zusätzlichen Takt nach T. 3 in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1'})\"><strong>Sk1</strong></a> ein."
+                "<strong>Sk1.1</strong> fügt einen zusätzlichen Takt nach T. 3 in <a data-complex-id='m112' data-sheet-id='M112_Sk1'><strong>Sk1</strong></a> ein."
             ],
             "commentary": {
                 "preamble": "",
@@ -1262,7 +1262,7 @@
             "id": "M112_Sk1_2",
             "label": "M 112 Sk1.2",
             "evaluations": [
-                "<strong>Sk1.2</strong> ersetzt T. 8 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1'})\"><strong>Sk1</strong></a>."
+                "<strong>Sk1.2</strong> ersetzt T. 8 aus <a data-complex-id='m112' data-sheet-id='M112_Sk1'><strong>Sk1</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -1320,7 +1320,7 @@
             "id": "M112_Sk2",
             "label": "M 112 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> ist der zweite Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5'})\"><strong>Sk5</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk10'})\"><strong>Sk10</strong></a>). <strong>Sk2</strong> setzt nach dem fünften Takt der Durchführung von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1'})\"><strong>Sk1</strong></a> neu an und elaboriert eine vollständige Durchführung bis zur Reprise, die besonders auf dem zweiten Thema des Seitensatzes aufbaut und zwischenzeitlilch kurz nach E-Dur moduliert. Damit weicht <strong>Sk2</strong> deutlich von den Durchführungen in den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">3</a> ab, die nur mit den ersten sechs Takten von <strong>Sk2</strong> übereinstimmen."
+                "<strong>Sk2</strong> ist der zweite Teil einer mehrteiligen Verlaufsskizze zu der <a data-complex-id='m112' data-sheet-id='M112_TF3'>Studienkomposition für Klavier M 112</a> (zusammen mit <a data-complex-id='m112' data-sheet-id='M112_Sk1'><strong>Sk1</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk4'><strong>Sk4</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk5'><strong>Sk5</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk6'><strong>Sk6</strong></a> und <a data-complex-id='m112' data-sheet-id='M112_Sk10'><strong>Sk10</strong></a>). <strong>Sk2</strong> setzt nach dem fünften Takt der Durchführung von <a data-complex-id='m112' data-sheet-id='M112_Sk1'><strong>Sk1</strong></a> neu an und elaboriert eine vollständige Durchführung bis zur Reprise, die besonders auf dem zweiten Thema des Seitensatzes aufbaut und zwischenzeitlilch kurz nach E-Dur moduliert. Damit weicht <strong>Sk2</strong> deutlich von den Durchführungen in den <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassungen 2</a> und <a data-complex-id='m112' data-sheet-id='M112_TF3'>3</a> ab, die nur mit den ersten sechs Takten von <strong>Sk2</strong> übereinstimmen."
             ],
             "commentary": {
                 "preamble": "",
@@ -1708,7 +1708,7 @@
             "id": "M112_Sk3",
             "label": "M 112 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> ist eine fragmentarische Skizze, die sich im Umfeld der Skizzen zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Studienkomposition für Klavier M 112</a> befindet, deren Verlauf aber nicht eindeutig zugeordnet werden kann. Möglicherweise ist <strong>Sk3</strong> auch in einem anderen kompositorischen Zusammenhang entstanden."
+                "<strong>Sk3</strong> ist eine fragmentarische Skizze, die sich im Umfeld der Skizzen zu der <a data-complex-id='m112' data-sheet-id='M112_TF3'>Studienkomposition für Klavier M 112</a> befindet, deren Verlauf aber nicht eindeutig zugeordnet werden kann. Möglicherweise ist <strong>Sk3</strong> auch in einem anderen kompositorischen Zusammenhang entstanden."
             ],
             "commentary": {
                 "preamble": "",
@@ -1735,7 +1735,7 @@
             "id": "M112_Sk4",
             "label": "M 112 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> ist der dritte Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5'})\"><strong>Sk5</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk10'})\"><strong>Sk10</strong></a>). <strong>Sk4</strong> setzt nach dem sechsten Takt von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk2'})\"><strong>Sk2</strong></a> neu an und bietet eine weitere Variante zur Durchführung, die vorwiegend mit dem ersten Seitenthema in Begleitung durchgehender Vierteltriolen operiert, bevor sie zuletzt die zwischenzeitlich in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4_1'})\"><strong>Sk4.1</strong></a> präsentierte Verquickung von Hauptthema und erstem Seitenthema aufgreift. <strong>Sk4</strong> weicht damit wie <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk2'})\"><strong>Sk2</strong></a> wesentlich von der Durchführung in den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">3</a> ab, nur die ersten vier Takte stimmen genau überein, während die letzten paar Takte von <strong>Sk4</strong> noch eine transponierte Version von T. 73f in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">3</a> enhalten (die Idee des variierten ersten Seitenthemas mit Vierteltriolen wird in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassungen 1</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">2</a> außerdem in der Reprise aufgegriffen)."
+                "<strong>Sk4</strong> ist der dritte Teil einer mehrteiligen Verlaufsskizze zu der <a data-complex-id='m112' data-sheet-id='M112_TF3'>Studienkomposition für Klavier M 112</a> (zusammen mit <a data-complex-id='m112' data-sheet-id='M112_Sk1'><strong>Sk1</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk2'><strong>Sk2</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk5'><strong>Sk5</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk6'><strong>Sk6</strong></a> und <a data-complex-id='m112' data-sheet-id='M112_Sk10'><strong>Sk10</strong></a>). <strong>Sk4</strong> setzt nach dem sechsten Takt von <a data-complex-id='m112' data-sheet-id='M112_Sk2'><strong>Sk2</strong></a> neu an und bietet eine weitere Variante zur Durchführung, die vorwiegend mit dem ersten Seitenthema in Begleitung durchgehender Vierteltriolen operiert, bevor sie zuletzt die zwischenzeitlich in <a data-complex-id='m112' data-sheet-id='M112_Sk4_1'><strong>Sk4.1</strong></a> präsentierte Verquickung von Hauptthema und erstem Seitenthema aufgreift. <strong>Sk4</strong> weicht damit wie <a data-complex-id='m112' data-sheet-id='M112_Sk2'><strong>Sk2</strong></a> wesentlich von der Durchführung in den <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassungen 2</a> und <a data-complex-id='m112' data-sheet-id='M112_TF3'>3</a> ab, nur die ersten vier Takte stimmen genau überein, während die letzten paar Takte von <strong>Sk4</strong> noch eine transponierte Version von T. 73f in <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassungen 2</a> und <a data-complex-id='m112' data-sheet-id='M112_TF3'>3</a> enhalten (die Idee des variierten ersten Seitenthemas mit Vierteltriolen wird in <a data-complex-id='m112' data-sheet-id='M112_TF1'>Textfassungen 1</a> und <a data-complex-id='m112' data-sheet-id='M112_TF2'>2</a> außerdem in der Reprise aufgegriffen)."
             ],
             "commentary": {
                 "preamble": "",
@@ -2055,7 +2055,7 @@
             "id": "M112_Sk4_1",
             "label": "M 112 Sk4.1",
             "evaluations": [
-                "<strong>Sk4.1</strong> bezieht sich auf die Durchführung in <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4'})\"><strong>Sk4</strong></a> und präsentiert erstmals die kontrapunktische Idee, das Hauptthema mit dem ersten Thema aus dem Seitensatz zu kombinieren."
+                "<strong>Sk4.1</strong> bezieht sich auf die Durchführung in <a data-complex-id='m112' data-sheet-id='M112_Sk4'><strong>Sk4</strong></a> und präsentiert erstmals die kontrapunktische Idee, das Hauptthema mit dem ersten Thema aus dem Seitensatz zu kombinieren."
             ],
             "commentary": {
                 "preamble": "",
@@ -2116,7 +2116,7 @@
             "id": "M112_Sk5",
             "label": "M 112 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> ist der vierte Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6'})\"><strong>Sk6</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk10'})\"><strong>Sk10</strong></a>). <strong>Sk5</strong> setzt nach dem vierten Takt von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4'})\"><strong>Sk4</strong></a> neu an und beinhaltet die zweite Hälfte der Durchführung mitsamt Überleitung zur Reprise. Während der Durchführungsabschnitt in grundsätzlicher Übereinstimmung mit den <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">3</a> steht, ist der Überleitungsabschnitt verhältnismäßig flüchtig und teils lückenhaft notiert und in der Schlusskadenzierung nur verbal ausformuliert."
+                "<strong>Sk5</strong> ist der vierte Teil einer mehrteiligen Verlaufsskizze zu der <a data-complex-id='m112' data-sheet-id='M112_TF3'>Studienkomposition für Klavier M 112</a> (zusammen mit <a data-complex-id='m112' data-sheet-id='M112_Sk1'><strong>Sk1</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk2'><strong>Sk2</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk4'><strong>Sk4</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk6'><strong>Sk6</strong></a> und <a data-complex-id='m112' data-sheet-id='M112_Sk10'><strong>Sk10</strong></a>). <strong>Sk5</strong> setzt nach dem vierten Takt von <a data-complex-id='m112' data-sheet-id='M112_Sk4'><strong>Sk4</strong></a> neu an und beinhaltet die zweite Hälfte der Durchführung mitsamt Überleitung zur Reprise. Während der Durchführungsabschnitt in grundsätzlicher Übereinstimmung mit den <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassungen 2</a> und <a data-complex-id='m112' data-sheet-id='M112_TF3'>3</a> steht, ist der Überleitungsabschnitt verhältnismäßig flüchtig und teils lückenhaft notiert und in der Schlusskadenzierung nur verbal ausformuliert."
             ],
             "commentary": {
                 "preamble": "",
@@ -2527,7 +2527,7 @@
             "id": "M112_Sk6",
             "label": "M 112 Sk6",
             "evaluations": [
-                "<strong>Sk6</strong> ist der fünfte Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5'})\"><strong>Sk5</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk10'})\"><strong>Sk10</strong></a>). <strong>Sk6</strong>, enstanden nach der Niederschrift von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF2'})\">Textfassung 2</a>, setzt nochmals beim Überleitungsabschnitt zur Reprise an und formuliert diesen nun – übere kleinere Umwege – in weitgehender Übereinstimmung mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a> vollständig aus."
+                "<strong>Sk6</strong> ist der fünfte Teil einer mehrteiligen Verlaufsskizze zu der <a data-complex-id='m112' data-sheet-id='M112_TF3'>Studienkomposition für Klavier M 112</a> (zusammen mit <a data-complex-id='m112' data-sheet-id='M112_Sk1'><strong>Sk1</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk2'><strong>Sk2</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk4'><strong>Sk4</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk5'><strong>Sk5</strong></a> und <a data-complex-id='m112' data-sheet-id='M112_Sk10'><strong>Sk10</strong></a>). <strong>Sk6</strong>, enstanden nach der Niederschrift von <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassung 2</a>, setzt nochmals beim Überleitungsabschnitt zur Reprise an und formuliert diesen nun – übere kleinere Umwege – in weitgehender Übereinstimmung mit <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a> vollständig aus."
             ],
             "commentary": {
                 "preamble": "",
@@ -2754,7 +2754,7 @@
             "id": "M112_Sk7",
             "label": "M 112 Sk7",
             "evaluations": [
-                "<strong>Sk7</strong> enthält einen kurzen Ausschnitt aus dem Hauptthema der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Studienkomposition für Klavier M 112</a>, der eine neue Variante für T. 3–4 von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a> vorsieht. Die Bass- und Melodielinine sind gegenüber <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1'})\"><strong>Sk1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF1'})\">Textfassung 1</a> leicht verändert. (Die Divergenz zwischen <strong>Sk7</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Textfassung 3</a> hinsichtlich der 3.–4. Note in der Melodielinie liegt wohl entweder in einer nochmaligen Veränderung in der verschollenen vollständigen Tintenniederschrift oder in einer fehlerhaften Abschrift durch Wildgans begründet.)"
+                "<strong>Sk7</strong> enthält einen kurzen Ausschnitt aus dem Hauptthema der <a data-complex-id='m112' data-sheet-id='M112_TF3'>Studienkomposition für Klavier M 112</a>, der eine neue Variante für T. 3–4 von <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a> vorsieht. Die Bass- und Melodielinine sind gegenüber <a data-complex-id='m112' data-sheet-id='M112_Sk1'><strong>Sk1</strong></a> und <a data-complex-id='m112' data-sheet-id='M112_TF1'>Textfassung 1</a> leicht verändert. (Die Divergenz zwischen <strong>Sk7</strong> und <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a> hinsichtlich der 3.–4. Note in der Melodielinie liegt wohl entweder in einer nochmaligen Veränderung in der verschollenen vollständigen Tintenniederschrift oder in einer fehlerhaften Abschrift durch Wildgans begründet.)"
             ],
             "commentary": {
                 "preamble": "",
@@ -2876,7 +2876,7 @@
             "id": "M112_Sk9",
             "label": "M 112 Sk9",
             "evaluations": [
-                "<strong>Sk9</strong> skizziert unter der Prämisse, dass der Formaufbau der Reprise mit jenem aus der Exposition grundsätzlich identisch sein werde, eine zu <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk8'})\"><strong>Sk8</strong></a> analoge Überleitung, die nun jedoch um eine Quinte nach unten versetzt wird, um das Seitenthema auf der Tonika einzuleiten."
+                "<strong>Sk9</strong> skizziert unter der Prämisse, dass der Formaufbau der Reprise mit jenem aus der Exposition grundsätzlich identisch sein werde, eine zu <a data-complex-id='m112' data-sheet-id='M112_Sk8'><strong>Sk8</strong></a> analoge Überleitung, die nun jedoch um eine Quinte nach unten versetzt wird, um das Seitenthema auf der Tonika einzuleiten."
             ],
             "commentary": {
                 "preamble": "",
@@ -2916,7 +2916,7 @@
             "id": "M112_Sk10",
             "label": "M 112 Sk10",
             "evaluations": [
-                "<strong>Sk10</strong> ist der sechste und letzte Teil einer mehrteiligen Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_TF3'})\">Studienkomposition für Klavier M 112</a> (zusammen mit <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk1'})\"><strong>Sk1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk2'})\"><strong>Sk2</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk4'})\"><strong>Sk4</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk5'})\"><strong>Sk5</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk6'})\"><strong>Sk6</strong></a>). <strong>Sk10</strong> verwirft die unter <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk9'})\"><strong>Sk9</strong></a> noch geltende Prämisse weitgehend und setzt in der Reprise nach den ersten zehn Takten des Hauptthemas (die implizit analog zur Exposition beibehalten werden) neu an, um von da an die Überleitung, das Seitenthema (beide gegenüber der Exposition stark variiert) und die Coda auszuformulieren. Die Lücke von T. 142–148 erklärt sich aus der Gründen der Arbeitsökonomie: Die entsprechenden Takte aus der Exposition sind hier um eine Quinte nach unten transponiert einzufüllen."
+                "<strong>Sk10</strong> ist der sechste und letzte Teil einer mehrteiligen Verlaufsskizze zu der <a data-complex-id='m112' data-sheet-id='M112_TF3'>Studienkomposition für Klavier M 112</a> (zusammen mit <a data-complex-id='m112' data-sheet-id='M112_Sk1'><strong>Sk1</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk2'><strong>Sk2</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk4'><strong>Sk4</strong></a>, <a data-complex-id='m112' data-sheet-id='M112_Sk5'><strong>Sk5</strong></a> und <a data-complex-id='m112' data-sheet-id='M112_Sk6'><strong>Sk6</strong></a>). <strong>Sk10</strong> verwirft die unter <a data-complex-id='m112' data-sheet-id='M112_Sk9'><strong>Sk9</strong></a> noch geltende Prämisse weitgehend und setzt in der Reprise nach den ersten zehn Takten des Hauptthemas (die implizit analog zur Exposition beibehalten werden) neu an, um von da an die Überleitung, das Seitenthema (beide gegenüber der Exposition stark variiert) und die Coda auszuformulieren. Die Lücke von T. 142–148 erklärt sich aus der Gründen der Arbeitsökonomie: Die entsprechenden Takte aus der Exposition sind hier um eine Quinte nach unten transponiert einzufüllen."
             ],
             "commentary": {
                 "preamble": "",
@@ -3467,7 +3467,7 @@
             "id": "M112_Sk10_1",
             "label": "M 112 Sk10.1",
             "evaluations": [
-                "<strong>Sk10.1</strong> überarbeitet die ersten Takte von <a (click)=\"ref.selectSvgSheet({complexId: 'm112', sheetId: 'M112_Sk10'})\"><strong>Sk10</strong></a>, indem die überleitende Sequenzierung gestrafft wird."
+                "<strong>Sk10.1</strong> überarbeitet die ersten Takte von <a data-complex-id='m112' data-sheet-id='M112_Sk10'><strong>Sk10</strong></a>, indem die überleitende Sequenzierung gestrafft wird."
             ],
             "commentary": {
                 "preamble": "",

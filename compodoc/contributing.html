@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -113,6 +120,7 @@ email, or any other method with the owners of this repository before making a ch
 <li><a href="#commit-message-schema">Commit Message Schema</a></li>
 <li><a href="#pull-requests">Pull Requests</a></li>
 <li><a href="#release-versioning-convention">Release Versioning Convention</a></li>
+<li><a href="#release-process">Release Process</a></li>
 <li><a href="#issue-reporting">Issue Reporting</a></li>
 </ul>
 </li>
@@ -228,6 +236,25 @@ email, or any other method with the owners of this repository before making a ch
 <p>For more information about pull requests go check out the GitHub Help <a href="https://help.github.com/en/articles/about-pull-requests">About pull requests</a>.</p>
 <h3>Release Versioning Convention</h3>
 <p>We use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/absolute-version/commit-and-tag-version">commit-and-tag-version</a>. See also <a href="README.md#releases">README#releases</a>.</p>
+<h3>Release Process</h3>
+<p>Releases are prepared on a release branch and merged via pull requests. Both pull requests are merged with <strong>&quot;Create a merge commit&quot;</strong> (no squash), so that <code>main</code> and <code>develop</code> share the release commit and the release tag stays reachable from <code>develop</code>.</p>
+<ol>
+<li><p>Create the branch <code>release/vX.Y.Z</code> from <code>develop</code>.</p>
+</li>
+<li><p>Run <code>yarn pre-release --skip.commit</code> to update the version and generate the CHANGELOG. Review and complete the new CHANGELOG section, then commit it as <code>chore(release): X.Y.Z</code> and push the branch.</p>
+</li>
+<li><p>Open a pull request from <code>release/vX.Y.Z</code> into <code>main</code> and merge it with a merge commit. The push to <code>main</code> deploys the app.</p>
+</li>
+<li><p>Tag the merge commit on <code>main</code> with a signed tag and push it. The tag creates the GitHub release:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">git switch main &amp;&amp; git pull
+git tag -s vX.Y.Z -m &quot;vX.Y.Z&quot;
+git push origin vX.Y.Z</code></pre></div></li>
+<li><p>Open a pull request from <code>main</code> into <code>develop</code> (back-merge) and merge it with a merge commit, e.g. titled <code>Merge tag &#39;vX.Y.Z&#39; into develop</code>. Don&#39;t merge the release branch itself into <code>develop</code>: the tag would not be reachable from <code>develop</code>, and the next CHANGELOG would contain old commits again.</p>
+</li>
+<li><p>Delete the release branch.</p>
+</li>
+</ol>
+<p>Hotfixes follow the same steps, with a branch <code>hotfix/vX.Y.Z</code> created from <code>main</code>.</p>
 <h3>Issue Reporting</h3>
 <p>If you encounter a bug or any issue with the application, please report it by creating a new issue in the GitHub repository. When creating an issue, try to provide as much information as possible to help us understand and reproduce the problem.</p>
 <p>For security concerns, please do not create a public issue. Instead, send an email directly to &lt;info-awg[at]unibas.ch&gt;, following our <a href="SECURITY.md">Security Policy</a>. We take all security issues seriously and will respond as quickly as possible to resolve the matter.</p>
@@ -299,6 +326,24 @@ email, or any other method with the owners of this repository before making a ch
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -314,7 +359,6 @@ email, or any other method with the owners of this repository before making a ch
        <script src="./js/libs/lit-html.js"></script>
 
        <script src="./js/menu-wc.js" defer></script>
-       <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 

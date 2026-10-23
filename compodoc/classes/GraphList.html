@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -117,12 +124,23 @@
   <li class="breadcrumb-item" >GraphList</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/models/graph.model.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" 
@@ -134,13 +152,6 @@
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app/views/edition-view/models/graph.model.ts</code>
-        </p>
-
 
             <p class="comment">
                 <h3>Description</h3>
@@ -156,32 +167,34 @@ from a graph json file.</p>
 
 
 
+            </div>
+
+    <div class="tab-pane fade " id="api">
             <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Properties</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                 <a href="#graph" >graph</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
 
 
 
 
-        </tbody>
-    </table>
 </section>
 
 
@@ -207,9 +220,14 @@ from a graph json file.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -234,75 +252,84 @@ from a graph json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class Graph {
-    /**
-     * The id of a graph.
-     */
-    id: string;
-
-    /**
-     * The title of a graph.
-     */
-    title: string;
-
-    /**
-     * The description of a graph
-     * with additional information.
-     */
-    description: string[];
-
-    /**
-     * The RDF data for a graph.
-     */
-    rdfData: GraphRDFData;
-
-    /**
-     * An optional staticImage of a graph.
-     */
-    staticImage?: string;
-}
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export type GraphQueryType &#x3D; &#x27;select&#x27; | &#x27;construct&#x27; | &#x27;ask&#x27; | &#x27;describe&#x27; | &#x27;update&#x27; | null;
 
 /**
- * The GraphRDFData class.
- *
- * It is used in the context of the edition view
- * to store the RDF data for a single graph
- * from a graph json file.
- */
-export class GraphRDFData {
-    /**
-     * The predefined query list for a graph.
-     */
-    queryList: GraphSparqlQuery[];
-
-    /**
-     * The predefined triples for a graph.
-     */
-    triples: string;
-}
-
-/**
- * The GraphSparqlQuery class.
+ * The GraphQuery class.
  *
  * It is used in the context of the edition view
  * to store the data for a graph query
  * from a graph json file.
  */
-export class GraphSparqlQuery {
+export class GraphQuery {
     /**
      * The type of a query.
      */
-    queryType: string;
+    queryType: GraphQueryType &#x3D; null;
 
     /**
      * The label of a query.
      */
-    queryLabel: string;
+    queryLabel &#x3D; &#x27;&#x27;;
 
     /**
      * The string of the query itself.
      */
-    queryString: string;
+    queryString &#x3D; &#x27;&#x27;;
+}
+
+/**
+ * The GraphRdfData class.
+ *
+ * It is used in the context of the edition view
+ * to store the RDF data for a single graph
+ * from a graph json file.
+ */
+export class GraphRdfData {
+    /**
+     * The predefined query list for a graph.
+     */
+    queryList: GraphQuery[] &#x3D; [];
+
+    /**
+     * The predefined triples for a graph.
+     */
+    triples &#x3D; &#x27;&#x27;;
+}
+
+/**
+ * The Graph class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single graph
+ * from a graph json file.
+ */
+export class Graph {
+    /**
+     * The id of a graph.
+     */
+    id &#x3D; &#x27;&#x27;;
+
+    /**
+     * The title of a graph.
+     */
+    title &#x3D; &#x27;&#x27;;
+
+    /**
+     * The description of a graph
+     * with additional information.
+     */
+    description: string[] &#x3D; [];
+
+    /**
+     * The RDF data for a graph.
+     */
+    rdfData: GraphRdfData &#x3D; new GraphRdfData();
+
+    /**
+     * An optional staticImage of a graph.
+     */
+    staticImage?: string;
 }
 
 /**
@@ -316,7 +343,7 @@ export class GraphList {
     /**
      * The array of graphs from a graph list.
      */
-    graph: Graph[];
+    graph: Graph[] &#x3D; [];
 }
 </code></pre>
     </div>
@@ -362,6 +389,24 @@ export class GraphList {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -377,7 +422,6 @@ export class GraphList {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

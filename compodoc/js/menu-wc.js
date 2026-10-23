@@ -19,7 +19,14 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                 </li>
 
                 <li class="divider"></li>
-                ${ isNormalMode ? `<div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>` : '' }
+                ${ isNormalMode ? `<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+` : '' }
                 <li class="chapter">
                     <a data-type="chapter-link" href="index.html"><span class="icon ion-ios-home"></span>Getting started</a>
                     <ul class="links">
@@ -51,6 +58,11 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </a>
                         </li>
                                 <li class="link">
+                                    <a href="architecture.html" data-type="chapter-link">
+                                        <span class="icon ion-ios-git-branch"></span>Architecture
+                                    </a>
+                                </li>
+                                <li class="link">
                                     <a href="dependencies.html" data-type="chapter-link">
                                         <span class="icon ion-ios-list"></span>Dependencies
                                     </a>
@@ -63,767 +75,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
 
                     </ul>
                 </li>
-                    <li class="chapter modules">
-                        <a data-type="chapter-link" href="modules.html">
-                            <div class="menu-toggler linked" data-bs-toggle="collapse" ${ isNormalMode ?
-                                'data-bs-target="#modules-links"' : 'data-bs-target="#xs-modules-links"' }>
-                                <span class="icon ion-ios-archive"></span>
-                                <span class="link-name">Modules</span>
-                                <span class="icon ion-ios-arrow-down"></span>
-                            </div>
-                        </a>
-                        <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
-                            <li class="link">
-                                <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-AppModule-ccf5a971bf2a6566a6733af0e45d08d6d7dab2737b33f9c85753f4a14ba86f5a677027fad94e5cc8762a740c3e18d4a6f1db9b6e117963f5d552ccf3ad8db437"' : 'data-bs-target="#xs-components-links-module-AppModule-ccf5a971bf2a6566a6733af0e45d08d6d7dab2737b33f9c85753f4a14ba86f5a677027fad94e5cc8762a740c3e18d4a6f1db9b6e117963f5d552ccf3ad8db437"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-ccf5a971bf2a6566a6733af0e45d08d6d7dab2737b33f9c85753f4a14ba86f5a677027fad94e5cc8762a740c3e18d4a6f1db9b6e117963f5d552ccf3ad8db437"' :
-                                            'id="xs-components-links-module-AppModule-ccf5a971bf2a6566a6733af0e45d08d6d7dab2737b33f9c85753f4a14ba86f5a677027fad94e5cc8762a740c3e18d4a6f1db9b6e117963f5d552ccf3ad8db437"' }>
-                                            <li class="link">
-                                                <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/HomeViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HomeViewComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/AppRoutingModule.html" data-type="entity-link" >AppRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/CodeMirrorModule.html" data-type="entity-link" >CodeMirrorModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-CodeMirrorModule-e980061e575128eb2ab90649a7d1904d0b17644951174981ead18669977172e0cdae663933cb3c2712df0ae24fba55b4260db0025e4043fb68a1a5131e3473d3"' : 'data-bs-target="#xs-components-links-module-CodeMirrorModule-e980061e575128eb2ab90649a7d1904d0b17644951174981ead18669977172e0cdae663933cb3c2712df0ae24fba55b4260db0025e4043fb68a1a5131e3473d3"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CodeMirrorModule-e980061e575128eb2ab90649a7d1904d0b17644951174981ead18669977172e0cdae663933cb3c2712df0ae24fba55b4260db0025e4043fb68a1a5131e3473d3"' :
-                                            'id="xs-components-links-module-CodeMirrorModule-e980061e575128eb2ab90649a7d1904d0b17644951174981ead18669977172e0cdae663933cb3c2712df0ae24fba55b4260db0025e4043fb68a1a5131e3473d3"' }>
-                                            <li class="link">
-                                                <a href="components/CodeMirrorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CodeMirrorComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/CompileHtmlModule.html" data-type="entity-link" >CompileHtmlModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-CompileHtmlModule-d8501a955a97369b10271f6f5d0a86ff3310e84b67b981ae00210d6d361c852fc3f990b06338df769d61f2112591375eb31f27ccac292a20fba7587aed9d1e75"' : 'data-bs-target="#xs-components-links-module-CompileHtmlModule-d8501a955a97369b10271f6f5d0a86ff3310e84b67b981ae00210d6d361c852fc3f990b06338df769d61f2112591375eb31f27ccac292a20fba7587aed9d1e75"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CompileHtmlModule-d8501a955a97369b10271f6f5d0a86ff3310e84b67b981ae00210d6d361c852fc3f990b06338df769d61f2112591375eb31f27ccac292a20fba7587aed9d1e75"' :
-                                            'id="xs-components-links-module-CompileHtmlModule-d8501a955a97369b10271f6f5d0a86ff3310e84b67b981ae00210d6d361c852fc3f990b06338df769d61f2112591375eb31f27ccac292a20fba7587aed9d1e75"' }>
-                                            <li class="link">
-                                                <a href="components/CompileHtmlComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CompileHtmlComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/ContactViewModule.html" data-type="entity-link" >ContactViewModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-ContactViewModule-993edd1f3e2ebf378b68626ed1de564f66d93d2a7f81109b2be5e3622d9986b23443c87c870fe0873bb63bae8d8afba4935d8d3c7b375a98ed1c2c6b9be802b0"' : 'data-bs-target="#xs-components-links-module-ContactViewModule-993edd1f3e2ebf378b68626ed1de564f66d93d2a7f81109b2be5e3622d9986b23443c87c870fe0873bb63bae8d8afba4935d8d3c7b375a98ed1c2c6b9be802b0"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ContactViewModule-993edd1f3e2ebf378b68626ed1de564f66d93d2a7f81109b2be5e3622d9986b23443c87c870fe0873bb63bae8d8afba4935d8d3c7b375a98ed1c2c6b9be802b0"' :
-                                            'id="xs-components-links-module-ContactViewModule-993edd1f3e2ebf378b68626ed1de564f66d93d2a7f81109b2be5e3622d9986b23443c87c870fe0873bb63bae8d8afba4935d8d3c7b375a98ed1c2c6b9be802b0"' }>
-                                            <li class="link">
-                                                <a href="components/ContactInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContactInfoComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ContactViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContactViewComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/ContactViewRoutingModule.html" data-type="entity-link" >ContactViewRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/CoreModule.html" data-type="entity-link" >CoreModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-CoreModule-61aa312e5c2d3d4056889fb35a300ab6451cb18405cfab459d25dd9c74340c98e6733d945cd73c58ce46284017184a1bf00f0f6e873c0041b38671de50dbab6b"' : 'data-bs-target="#xs-components-links-module-CoreModule-61aa312e5c2d3d4056889fb35a300ab6451cb18405cfab459d25dd9c74340c98e6733d945cd73c58ce46284017184a1bf00f0f6e873c0041b38671de50dbab6b"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CoreModule-61aa312e5c2d3d4056889fb35a300ab6451cb18405cfab459d25dd9c74340c98e6733d945cd73c58ce46284017184a1bf00f0f6e873c0041b38671de50dbab6b"' :
-                                            'id="xs-components-links-module-CoreModule-61aa312e5c2d3d4056889fb35a300ab6451cb18405cfab459d25dd9c74340c98e6733d945cd73c58ce46284017184a1bf00f0f6e873c0041b38671de50dbab6b"' }>
-                                            <li class="link">
-                                                <a href="components/NavbarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NavbarComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ViewContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ViewContainerComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionAccoladeModule.html" data-type="entity-link" >EditionAccoladeModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionAccoladeModule-a8d10a09261affea4f0e49089b845860738e3a46799a19a17e5a2a6d8abfa0ba7ad16c25f06d16bdd202fe11c19724d624dc4ca558e19dc9a6bd46352c5b7f11"' : 'data-bs-target="#xs-components-links-module-EditionAccoladeModule-a8d10a09261affea4f0e49089b845860738e3a46799a19a17e5a2a6d8abfa0ba7ad16c25f06d16bdd202fe11c19724d624dc4ca558e19dc9a6bd46352c5b7f11"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionAccoladeModule-a8d10a09261affea4f0e49089b845860738e3a46799a19a17e5a2a6d8abfa0ba7ad16c25f06d16bdd202fe11c19724d624dc4ca558e19dc9a6bd46352c5b7f11"' :
-                                            'id="xs-components-links-module-EditionAccoladeModule-a8d10a09261affea4f0e49089b845860738e3a46799a19a17e5a2a6d8abfa0ba7ad16c25f06d16bdd202fe11c19724d624dc4ca558e19dc9a6bd46352c5b7f11"' }>
-                                            <li class="link">
-                                                <a href="components/EditionAccoladeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionAccoladeComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionConvoluteModule.html" data-type="entity-link" >EditionConvoluteModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionConvoluteModule-db3858753027d8d3f0cb2b5da8f065809205d8d08a6dfa80e235975703f8bb01338254c29709cc60808a9afaff0877871fbc654128aa53d8ca4a97bd4a04c2cb"' : 'data-bs-target="#xs-components-links-module-EditionConvoluteModule-db3858753027d8d3f0cb2b5da8f065809205d8d08a6dfa80e235975703f8bb01338254c29709cc60808a9afaff0877871fbc654128aa53d8ca4a97bd4a04c2cb"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionConvoluteModule-db3858753027d8d3f0cb2b5da8f065809205d8d08a6dfa80e235975703f8bb01338254c29709cc60808a9afaff0877871fbc654128aa53d8ca4a97bd4a04c2cb"' :
-                                            'id="xs-components-links-module-EditionConvoluteModule-db3858753027d8d3f0cb2b5da8f065809205d8d08a6dfa80e235975703f8bb01338254c29709cc60808a9afaff0877871fbc654128aa53d8ca4a97bd4a04c2cb"' }>
-                                            <li class="link">
-                                                <a href="components/EditionConvoluteComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionConvoluteComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionFolioViewerFolioModule.html" data-type="entity-link" >EditionFolioViewerFolioModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionFolioViewerFolioModule-91d1ae354eece29850e9e75dec632f5a63b12e888937af3749fb1ade9de5fe24e3c9239bb2411efbdac236a80f09de7d4fe0c23a5e0d61e634eb57b5034cf6f4"' : 'data-bs-target="#xs-components-links-module-EditionFolioViewerFolioModule-91d1ae354eece29850e9e75dec632f5a63b12e888937af3749fb1ade9de5fe24e3c9239bb2411efbdac236a80f09de7d4fe0c23a5e0d61e634eb57b5034cf6f4"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionFolioViewerFolioModule-91d1ae354eece29850e9e75dec632f5a63b12e888937af3749fb1ade9de5fe24e3c9239bb2411efbdac236a80f09de7d4fe0c23a5e0d61e634eb57b5034cf6f4"' :
-                                            'id="xs-components-links-module-EditionFolioViewerFolioModule-91d1ae354eece29850e9e75dec632f5a63b12e888937af3749fb1ade9de5fe24e3c9239bb2411efbdac236a80f09de7d4fe0c23a5e0d61e634eb57b5034cf6f4"' }>
-                                            <li class="link">
-                                                <a href="components/EditionFolioViewerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionFolioViewerComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionGraphModule.html" data-type="entity-link" >EditionGraphModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionGraphModule-8d9169519dc4d77c68a3eee526286fbbac67d2dc90fef8f4883f5e84191412ad5791d9d381179659de149670dd739b7f2bf4b07fb3c78536041c21fb64b1cf9b"' : 'data-bs-target="#xs-components-links-module-EditionGraphModule-8d9169519dc4d77c68a3eee526286fbbac67d2dc90fef8f4883f5e84191412ad5791d9d381179659de149670dd739b7f2bf4b07fb3c78536041c21fb64b1cf9b"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionGraphModule-8d9169519dc4d77c68a3eee526286fbbac67d2dc90fef8f4883f5e84191412ad5791d9d381179659de149670dd739b7f2bf4b07fb3c78536041c21fb64b1cf9b"' :
-                                            'id="xs-components-links-module-EditionGraphModule-8d9169519dc4d77c68a3eee526286fbbac67d2dc90fef8f4883f5e84191412ad5791d9d381179659de149670dd739b7f2bf4b07fb3c78536041c21fb64b1cf9b"' }>
-                                            <li class="link">
-                                                <a href="components/EditionGraphComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionGraphComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionGraphRoutingModule.html" data-type="entity-link" >EditionGraphRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionIntroModule.html" data-type="entity-link" >EditionIntroModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionIntroModule-83e4b5b73a3a4ba39b8252f7e782b56b116d114f07746baabb25425bfd24ebd3b996e3f6016c0699e4de024580d8e0f92bd9576892ab72c634e567a18fb7bda5"' : 'data-bs-target="#xs-components-links-module-EditionIntroModule-83e4b5b73a3a4ba39b8252f7e782b56b116d114f07746baabb25425bfd24ebd3b996e3f6016c0699e4de024580d8e0f92bd9576892ab72c634e567a18fb7bda5"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionIntroModule-83e4b5b73a3a4ba39b8252f7e782b56b116d114f07746baabb25425bfd24ebd3b996e3f6016c0699e4de024580d8e0f92bd9576892ab72c634e567a18fb7bda5"' :
-                                            'id="xs-components-links-module-EditionIntroModule-83e4b5b73a3a4ba39b8252f7e782b56b116d114f07746baabb25425bfd24ebd3b996e3f6016c0699e4de024580d8e0f92bd9576892ab72c634e567a18fb7bda5"' }>
-                                            <li class="link">
-                                                <a href="components/EditionIntroComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionIntroContentComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroContentComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionIntroNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroNavComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionIntroPartialDisclaimerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroPartialDisclaimerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionIntroPlaceholderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroPlaceholderComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionIntroRoutingModule.html" data-type="entity-link" >EditionIntroRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionPrefaceModule.html" data-type="entity-link" >EditionPrefaceModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionPrefaceModule-6308526cb957d60016464287e7fdcc29d38a79eb6c7f14fe8326f991e3d44276cf894b0916594ec3ac136f746abda7aeb9ee01a86f3b0ce87c92151cb5bd14d3"' : 'data-bs-target="#xs-components-links-module-EditionPrefaceModule-6308526cb957d60016464287e7fdcc29d38a79eb6c7f14fe8326f991e3d44276cf894b0916594ec3ac136f746abda7aeb9ee01a86f3b0ce87c92151cb5bd14d3"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionPrefaceModule-6308526cb957d60016464287e7fdcc29d38a79eb6c7f14fe8326f991e3d44276cf894b0916594ec3ac136f746abda7aeb9ee01a86f3b0ce87c92151cb5bd14d3"' :
-                                            'id="xs-components-links-module-EditionPrefaceModule-6308526cb957d60016464287e7fdcc29d38a79eb6c7f14fe8326f991e3d44276cf894b0916594ec3ac136f746abda7aeb9ee01a86f3b0ce87c92151cb5bd14d3"' }>
-                                            <li class="link">
-                                                <a href="components/EditionPrefaceComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionPrefaceComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionPrefaceRoutingModule.html" data-type="entity-link" >EditionPrefaceRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionReportModule.html" data-type="entity-link" >EditionReportModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionReportModule-4b42b9acb88dcfaec53b17c3ce7312d4774c856ce6e55d37fa11f12b169bf977e825562e19aa8aadd853e6992b4be013dd4ead0e8faf6d0dfaf1e2c1582528e0"' : 'data-bs-target="#xs-components-links-module-EditionReportModule-4b42b9acb88dcfaec53b17c3ce7312d4774c856ce6e55d37fa11f12b169bf977e825562e19aa8aadd853e6992b4be013dd4ead0e8faf6d0dfaf1e2c1582528e0"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionReportModule-4b42b9acb88dcfaec53b17c3ce7312d4774c856ce6e55d37fa11f12b169bf977e825562e19aa8aadd853e6992b4be013dd4ead0e8faf6d0dfaf1e2c1582528e0"' :
-                                            'id="xs-components-links-module-EditionReportModule-4b42b9acb88dcfaec53b17c3ce7312d4774c856ce6e55d37fa11f12b169bf977e825562e19aa8aadd853e6992b4be013dd4ead0e8faf6d0dfaf1e2c1582528e0"' }>
-                                            <li class="link">
-                                                <a href="components/EditionReportComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionReportComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SourceEvaluationComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceEvaluationComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SourceListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceListComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TextcriticsListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TextcriticsListComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionReportRoutingModule.html" data-type="entity-link" >EditionReportRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionRowTablesModule.html" data-type="entity-link" >EditionRowTablesModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionRowTablesModule-b560cf4d406a0a9b5791854105ffc5088b98d520daf78ce88c1cd937d66ceb9d689903d6cc4f4e2ca20f4afa959e0b1d58cfbc8b4714c1ebfc8a461f375df38a"' : 'data-bs-target="#xs-components-links-module-EditionRowTablesModule-b560cf4d406a0a9b5791854105ffc5088b98d520daf78ce88c1cd937d66ceb9d689903d6cc4f4e2ca20f4afa959e0b1d58cfbc8b4714c1ebfc8a461f375df38a"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionRowTablesModule-b560cf4d406a0a9b5791854105ffc5088b98d520daf78ce88c1cd937d66ceb9d689903d6cc4f4e2ca20f4afa959e0b1d58cfbc8b4714c1ebfc8a461f375df38a"' :
-                                            'id="xs-components-links-module-EditionRowTablesModule-b560cf4d406a0a9b5791854105ffc5088b98d520daf78ce88c1cd937d66ceb9d689903d6cc4f4e2ca20f4afa959e0b1d58cfbc8b4714c1ebfc8a461f375df38a"' }>
-                                            <li class="link">
-                                                <a href="components/EditionRowTablesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionRowTablesComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionRowTablesRoutingModule.html" data-type="entity-link" >EditionRowTablesRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSectionDetailModule.html" data-type="entity-link" >EditionSectionDetailModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSectionDetailModule-8fb96e3fdfced04928c799e3f9acfb72181f3070746cab5ef13c42cc07428f282f1b430fd15e47022a9256bed1a3673bd7f04c07346a0b079ba7f3398abcfb04"' : 'data-bs-target="#xs-components-links-module-EditionSectionDetailModule-8fb96e3fdfced04928c799e3f9acfb72181f3070746cab5ef13c42cc07428f282f1b430fd15e47022a9256bed1a3673bd7f04c07346a0b079ba7f3398abcfb04"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSectionDetailModule-8fb96e3fdfced04928c799e3f9acfb72181f3070746cab5ef13c42cc07428f282f1b430fd15e47022a9256bed1a3673bd7f04c07346a0b079ba7f3398abcfb04"' :
-                                            'id="xs-components-links-module-EditionSectionDetailModule-8fb96e3fdfced04928c799e3f9acfb72181f3070746cab5ef13c42cc07428f282f1b430fd15e47022a9256bed1a3673bd7f04c07346a0b079ba7f3398abcfb04"' }>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailComplexCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailComplexCardComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailDisclaimerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailDisclaimerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailIntroCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailIntroCardComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailOverviewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailOverviewComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailPlaceholderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailPlaceholderComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSectionDetailRoutingModule.html" data-type="entity-link" >EditionSectionDetailRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSheetsModule.html" data-type="entity-link" >EditionSheetsModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSheetsModule-02c8e5b6b620a4541b6156f3732bf8745fcb8433d81322943fdc4c60794d476386ac924f986b8080add4ab820aaf8ac3ed684e1df420dcd79cffe11b6dd71246"' : 'data-bs-target="#xs-components-links-module-EditionSheetsModule-02c8e5b6b620a4541b6156f3732bf8745fcb8433d81322943fdc4c60794d476386ac924f986b8080add4ab820aaf8ac3ed684e1df420dcd79cffe11b6dd71246"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSheetsModule-02c8e5b6b620a4541b6156f3732bf8745fcb8433d81322943fdc4c60794d476386ac924f986b8080add4ab820aaf8ac3ed684e1df420dcd79cffe11b6dd71246"' :
-                                            'id="xs-components-links-module-EditionSheetsModule-02c8e5b6b620a4541b6156f3732bf8745fcb8433d81322943fdc4c60794d476386ac924f986b8080add4ab820aaf8ac3ed684e1df420dcd79cffe11b6dd71246"' }>
-                                            <li class="link">
-                                                <a href="components/EditionSheetsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSheetsComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSheetsRoutingModule.html" data-type="entity-link" >EditionSheetsRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSvgSheetFacetModule.html" data-type="entity-link" >EditionSvgSheetFacetModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSvgSheetFacetModule-56b57ce5591b22e321e31e1bc382ee909f0817f05aad68abe7dbe1bf32d010a80a10e3e66a3ea072bee3d9282bad52bc771f987693b1027db50de040fbdacc99"' : 'data-bs-target="#xs-components-links-module-EditionSvgSheetFacetModule-56b57ce5591b22e321e31e1bc382ee909f0817f05aad68abe7dbe1bf32d010a80a10e3e66a3ea072bee3d9282bad52bc771f987693b1027db50de040fbdacc99"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSvgSheetFacetModule-56b57ce5591b22e321e31e1bc382ee909f0817f05aad68abe7dbe1bf32d010a80a10e3e66a3ea072bee3d9282bad52bc771f987693b1027db50de040fbdacc99"' :
-                                            'id="xs-components-links-module-EditionSvgSheetFacetModule-56b57ce5591b22e321e31e1bc382ee909f0817f05aad68abe7dbe1bf32d010a80a10e3e66a3ea072bee3d9282bad52bc771f987693b1027db50de040fbdacc99"' }>
-                                            <li class="link">
-                                                <a href="components/EditionSvgSheetFacetComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetFacetComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSvgSheetFacetItemComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetFacetItemComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSvgSheetFooterModule.html" data-type="entity-link" >EditionSvgSheetFooterModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSvgSheetFooterModule-b6421ed0b2b4f4f8803de316c59179a233fac20beeb0e26af5f4606a3773a99527e9cfbc87ca0d82aa6f545827c7d9bed25ad4c206e4cf8560b22a0e5378be6e"' : 'data-bs-target="#xs-components-links-module-EditionSvgSheetFooterModule-b6421ed0b2b4f4f8803de316c59179a233fac20beeb0e26af5f4606a3773a99527e9cfbc87ca0d82aa6f545827c7d9bed25ad4c206e4cf8560b22a0e5378be6e"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSvgSheetFooterModule-b6421ed0b2b4f4f8803de316c59179a233fac20beeb0e26af5f4606a3773a99527e9cfbc87ca0d82aa6f545827c7d9bed25ad4c206e4cf8560b22a0e5378be6e"' :
-                                            'id="xs-components-links-module-EditionSvgSheetFooterModule-b6421ed0b2b4f4f8803de316c59179a233fac20beeb0e26af5f4606a3773a99527e9cfbc87ca0d82aa6f545827c7d9bed25ad4c206e4cf8560b22a0e5378be6e"' }>
-                                            <li class="link">
-                                                <a href="components/EditionSvgSheetFooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetFooterComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSvgSheetViewerModule.html" data-type="entity-link" >EditionSvgSheetViewerModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSvgSheetViewerModule-5f5da467b9f257805215935e0942f63aa7bd51b7b43cd1f34868f8376d4f389e63e572d94619d900b1c97681c35448acaf10a1e32453c42eb6d324f0e50ac931"' : 'data-bs-target="#xs-components-links-module-EditionSvgSheetViewerModule-5f5da467b9f257805215935e0942f63aa7bd51b7b43cd1f34868f8376d4f389e63e572d94619d900b1c97681c35448acaf10a1e32453c42eb6d324f0e50ac931"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSvgSheetViewerModule-5f5da467b9f257805215935e0942f63aa7bd51b7b43cd1f34868f8376d4f389e63e572d94619d900b1c97681c35448acaf10a1e32453c42eb6d324f0e50ac931"' :
-                                            'id="xs-components-links-module-EditionSvgSheetViewerModule-5f5da467b9f257805215935e0942f63aa7bd51b7b43cd1f34868f8376d4f389e63e572d94619d900b1c97681c35448acaf10a1e32453c42eb6d324f0e50ac931"' }>
-                                            <li class="link">
-                                                <a href="components/EditionSvgSheetViewerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetViewerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSvgSheetViewerNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetViewerNavComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSvgSheetViewerSwitchComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetViewerSwitchComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionTkaModule.html" data-type="entity-link" >EditionTkaModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionTkaModule-30716d8a6bbbd821bb450720ed9b3ca01ab857f0ef1320784a1b5916cfb124b2f464a51295ac4c11da23b074c89afa78c91598f1cce656584248b3919bacd2eb"' : 'data-bs-target="#xs-components-links-module-EditionTkaModule-30716d8a6bbbd821bb450720ed9b3ca01ab857f0ef1320784a1b5916cfb124b2f464a51295ac4c11da23b074c89afa78c91598f1cce656584248b3919bacd2eb"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionTkaModule-30716d8a6bbbd821bb450720ed9b3ca01ab857f0ef1320784a1b5916cfb124b2f464a51295ac4c11da23b074c89afa78c91598f1cce656584248b3919bacd2eb"' :
-                                            'id="xs-components-links-module-EditionTkaModule-30716d8a6bbbd821bb450720ed9b3ca01ab857f0ef1320784a1b5916cfb124b2f464a51295ac4c11da23b074c89afa78c91598f1cce656584248b3919bacd2eb"' }>
-                                            <li class="link">
-                                                <a href="components/EditionTkaEvaluationsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionTkaEvaluationsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionTkaLabelComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionTkaLabelComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionTkaTableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionTkaTableComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionViewModule.html" data-type="entity-link" >EditionViewModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionViewModule-1ebde573e74851890a50c1dfe4a5daeb23911232411cacf456a25c9a7d4150babbd47627b3500a1fdf585f3e02c2abf95c0bedd62b71cf3095e4f73487115111"' : 'data-bs-target="#xs-components-links-module-EditionViewModule-1ebde573e74851890a50c1dfe4a5daeb23911232411cacf456a25c9a7d4150babbd47627b3500a1fdf585f3e02c2abf95c0bedd62b71cf3095e4f73487115111"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionViewModule-1ebde573e74851890a50c1dfe4a5daeb23911232411cacf456a25c9a7d4150babbd47627b3500a1fdf585f3e02c2abf95c0bedd62b71cf3095e4f73487115111"' :
-                                            'id="xs-components-links-module-EditionViewModule-1ebde573e74851890a50c1dfe4a5daeb23911232411cacf456a25c9a7d4150babbd47627b3500a1fdf585f3e02c2abf95c0bedd62b71cf3095e4f73487115111"' }>
-                                            <li class="link">
-                                                <a href="components/EditionComplexComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionComplexComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionDetailNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionDetailNavComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionInfoComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionJumbotronComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionJumbotronComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSeriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSeriesComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSeriesDetailComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSeriesDetailComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionViewComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionViewRoutingModule.html" data-type="entity-link" >EditionViewRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/FooterModule.html" data-type="entity-link" >FooterModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-FooterModule-3387534495db8a5f45f28ac2fa8ea95a05ed494ea3ed1434538bacd79c9606c4fc7e90672c282d82ae4cb7407a524ea9e57b59a67d16724ae228221de11a5f54"' : 'data-bs-target="#xs-components-links-module-FooterModule-3387534495db8a5f45f28ac2fa8ea95a05ed494ea3ed1434538bacd79c9606c4fc7e90672c282d82ae4cb7407a524ea9e57b59a67d16724ae228221de11a5f54"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FooterModule-3387534495db8a5f45f28ac2fa8ea95a05ed494ea3ed1434538bacd79c9606c4fc7e90672c282d82ae4cb7407a524ea9e57b59a67d16724ae228221de11a5f54"' :
-                                            'id="xs-components-links-module-FooterModule-3387534495db8a5f45f28ac2fa8ea95a05ed494ea3ed1434538bacd79c9606c4fc7e90672c282d82ae4cb7407a524ea9e57b59a67d16724ae228221de11a5f54"' }>
-                                            <li class="link">
-                                                <a href="components/FooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterCopyrightComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterCopyrightComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterDeclarationComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterDeclarationComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterLogoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterLogoComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterPoweredbyComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterPoweredbyComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/GraphVisualizerModule.html" data-type="entity-link" >GraphVisualizerModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' : 'data-bs-target="#xs-components-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' :
-                                            'id="xs-components-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' }>
-                                            <li class="link">
-                                                <a href="components/ConstructResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ConstructResultsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ForceGraphComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ForceGraphComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/GraphVisualizerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GraphVisualizerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SelectResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SelectResultsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SparqlEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SparqlEditorComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SparqlNoResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SparqlNoResultsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SparqlTableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SparqlTableComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TriplesEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TriplesEditorComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/UnsupportedTypeResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UnsupportedTypeResultsComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' : 'data-bs-target="#xs-injectables-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' }>
-                                        <span class="icon ion-md-arrow-round-down"></span>
-                                        <span>Injectables</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' :
-                                        'id="xs-injectables-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' }>
-                                        <li class="link">
-                                            <a href="injectables/GraphVisualizerService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GraphVisualizerService</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#pipes-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' : 'data-bs-target="#xs-pipes-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' }>
-                                            <span class="icon ion-md-add"></span>
-                                            <span>Pipes</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' :
-                                            'id="xs-pipes-links-module-GraphVisualizerModule-7283910c0d388525251ccefdc7739b193ca19efd5c676873cf6a3edd07c9d92f9da2ca9858e70d1dff5d6ccb1b926cd8f318cb66232cf522f1ecf7f8d17ff861"' }>
-                                            <li class="link">
-                                                <a href="pipes/PrefixPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PrefixPipe</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/HomeViewModule.html" data-type="entity-link" >HomeViewModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-HomeViewModule-37ffdee2d76166ff2efbe60b251057e6a43acba0eb5772a81eda59570ccc32fd8495f03cfe153b1ee05529ed3e4caf87eb6d4216db693a4c83199b21fd83e7d4"' : 'data-bs-target="#xs-components-links-module-HomeViewModule-37ffdee2d76166ff2efbe60b251057e6a43acba0eb5772a81eda59570ccc32fd8495f03cfe153b1ee05529ed3e4caf87eb6d4216db693a4c83199b21fd83e7d4"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-HomeViewModule-37ffdee2d76166ff2efbe60b251057e6a43acba0eb5772a81eda59570ccc32fd8495f03cfe153b1ee05529ed3e4caf87eb6d4216db693a4c83199b21fd83e7d4"' :
-                                            'id="xs-components-links-module-HomeViewModule-37ffdee2d76166ff2efbe60b251057e6a43acba0eb5772a81eda59570ccc32fd8495f03cfe153b1ee05529ed3e4caf87eb6d4216db693a4c83199b21fd83e7d4"' }>
-                                            <li class="link">
-                                                <a href="components/HomeViewCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HomeViewCardComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/PageNotFoundViewModule.html" data-type="entity-link" >PageNotFoundViewModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-PageNotFoundViewModule-6fb441cf7af1fdd72b6b55fd648e7f28ee06124c8598d55c6c9b9039bc46df818a33697b39ade2423a89fade03bcd5aec04551c49b503bd066a2640ad50a3e4c"' : 'data-bs-target="#xs-components-links-module-PageNotFoundViewModule-6fb441cf7af1fdd72b6b55fd648e7f28ee06124c8598d55c6c9b9039bc46df818a33697b39ade2423a89fade03bcd5aec04551c49b503bd066a2640ad50a3e4c"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-PageNotFoundViewModule-6fb441cf7af1fdd72b6b55fd648e7f28ee06124c8598d55c6c9b9039bc46df818a33697b39ade2423a89fade03bcd5aec04551c49b503bd066a2640ad50a3e4c"' :
-                                            'id="xs-components-links-module-PageNotFoundViewModule-6fb441cf7af1fdd72b6b55fd648e7f28ee06124c8598d55c6c9b9039bc46df818a33697b39ade2423a89fade03bcd5aec04551c49b503bd066a2640ad50a3e4c"' }>
-                                            <li class="link">
-                                                <a href="components/PageNotFoundViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PageNotFoundViewComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/PageNotFoundViewRoutingModule.html" data-type="entity-link" >PageNotFoundViewRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/SharedModule.html" data-type="entity-link" >SharedModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' : 'data-bs-target="#xs-components-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' :
-                                            'id="xs-components-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' }>
-                                            <li class="link">
-                                                <a href="components/AddressComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AddressComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/AlertErrorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AlertErrorComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/AlertInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AlertInfoComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/DisclaimerWorkeditionsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DisclaimerWorkeditionsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FullscreenToggleComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FullscreenToggleComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/HeadingComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HeadingComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/JsonViewerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >JsonViewerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/LanguageSwitcherComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LanguageSwitcherComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/LicenseComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LicenseComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/MetaIdentifierBadgesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MetaIdentifierBadgesComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ModalComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ModalComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/OpenStreetMapComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OpenStreetMapComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/RouterLinkButtonGroupComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RouterLinkButtonGroupComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ScrollToTopComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ScrollToTopComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TableComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TablePaginationComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TablePaginationComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ToastComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ToastComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TwelveToneSpinnerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TwelveToneSpinnerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ViewHandleButtonGroupComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ViewHandleButtonGroupComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#directives-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' : 'data-bs-target="#xs-directives-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' }>
-                                        <span class="icon ion-md-code-working"></span>
-                                        <span>Directives</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' :
-                                        'id="xs-directives-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' }>
-                                        <li class="link">
-                                            <a href="directives/AbbrDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AbbrDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/ExternalLinkDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ExternalLinkDirective</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#pipes-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' : 'data-bs-target="#xs-pipes-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' }>
-                                            <span class="icon ion-md-add"></span>
-                                            <span>Pipes</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' :
-                                            'id="xs-pipes-links-module-SharedModule-25c464797d52a2eed2e539bcb885295f64cb0b7333534478a1478e1ab52b4769f2c33769ca093fc9339cd0ba08a3d178f1ade93e30e1203e1d77ec75ebfff6c4"' }>
-                                            <li class="link">
-                                                <a href="pipes/OrderByPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OrderByPipe</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/SharedNgbootstrapModule.html" data-type="entity-link" >SharedNgbootstrapModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/SideInfoModule.html" data-type="entity-link" >SideInfoModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/SourceDescriptionModule.html" data-type="entity-link" >SourceDescriptionModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-SourceDescriptionModule-8ce28c5325dc69ad7a2b5d59413567e5848039b386a68d887deff3a768ff13210515b4d6383ac6a4e8471ee1f63630618b111898175d93a9d00cb36077145e83"' : 'data-bs-target="#xs-components-links-module-SourceDescriptionModule-8ce28c5325dc69ad7a2b5d59413567e5848039b386a68d887deff3a768ff13210515b4d6383ac6a4e8471ee1f63630618b111898175d93a9d00cb36077145e83"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SourceDescriptionModule-8ce28c5325dc69ad7a2b5d59413567e5848039b386a68d887deff3a768ff13210515b4d6383ac6a4e8471ee1f63630618b111898175d93a9d00cb36077145e83"' :
-                                            'id="xs-components-links-module-SourceDescriptionModule-8ce28c5325dc69ad7a2b5d59413567e5848039b386a68d887deff3a768ff13210515b4d6383ac6a4e8471ee1f63630618b111898175d93a9d00cb36077145e83"' }>
-                                            <li class="link">
-                                                <a href="components/SourceDescriptionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SourceDescriptionContentTableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionContentTableComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SourceDescriptionContentsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionContentsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SourceDescriptionCorrectionsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionCorrectionsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SourceDescriptionDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionDetailsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SourceDescriptionWritingMaterialsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionWritingMaterialsComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/StructureViewModule.html" data-type="entity-link" >StructureViewModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-StructureViewModule-a6dba9f61520c8531f282a268711c072e40574126f3ec6fee6ba635c5d4fa022195ea3feca7cad9928d77f5251b8109edafb2c33378886736cc816e917d4062f"' : 'data-bs-target="#xs-components-links-module-StructureViewModule-a6dba9f61520c8531f282a268711c072e40574126f3ec6fee6ba635c5d4fa022195ea3feca7cad9928d77f5251b8109edafb2c33378886736cc816e917d4062f"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-StructureViewModule-a6dba9f61520c8531f282a268711c072e40574126f3ec6fee6ba635c5d4fa022195ea3feca7cad9928d77f5251b8109edafb2c33378886736cc816e917d4062f"' :
-                                            'id="xs-components-links-module-StructureViewModule-a6dba9f61520c8531f282a268711c072e40574126f3ec6fee6ba635c5d4fa022195ea3feca7cad9928d77f5251b8109edafb2c33378886736cc816e917d4062f"' }>
-                                            <li class="link">
-                                                <a href="components/StructureInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StructureInfoComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/StructureViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StructureViewComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/StructureViewRoutingModule.html" data-type="entity-link" >StructureViewRoutingModule</a>
-                            </li>
-                </ul>
-                </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#components-links"' :
                             'data-bs-target="#xs-components-links"' }>
@@ -833,10 +84,85 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
                             <li class="link">
-                                <a href="components/ConstructResultsComponent.html" data-type="entity-link" >ConstructResultsComponent</a>
+                                <a href="components/AlertErrorComponent.html" data-type="entity-link" >AlertErrorComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionDetailComponent.html" data-type="entity-link" >EditionDetailComponent</a>
+                                <a href="components/AlertInfoComponent.html" data-type="entity-link" >AlertInfoComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/AppComponent.html" data-type="entity-link" >AppComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ButtonExpandAllComponent.html" data-type="entity-link" >ButtonExpandAllComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ButtonMoreComponent.html" data-type="entity-link" >ButtonMoreComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ButtonScrollToTopComponent.html" data-type="entity-link" >ButtonScrollToTopComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/CanvasTooltipComponent.html" data-type="entity-link" >CanvasTooltipComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/CodeMirrorComponent.html" data-type="entity-link" >CodeMirrorComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ConditionalLinkComponent.html" data-type="entity-link" >ConditionalLinkComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ContactAddressComponent.html" data-type="entity-link" >ContactAddressComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ContactMapComponent.html" data-type="entity-link" >ContactMapComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ContactSideInfoComponent.html" data-type="entity-link" >ContactSideInfoComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ContactViewComponent.html" data-type="entity-link" >ContactViewComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionBreadcrumbComponent.html" data-type="entity-link" >EditionBreadcrumbComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionComplexComponent.html" data-type="entity-link" >EditionComplexComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionComplexPlaceholderComponent.html" data-type="entity-link" >EditionComplexPlaceholderComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionDetailNavComponent.html" data-type="entity-link" >EditionDetailNavComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionDisclaimerWorkeditionsComponent.html" data-type="entity-link" >EditionDisclaimerWorkeditionsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionFoliosLegendComponent.html" data-type="entity-link" >EditionFoliosLegendComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionFoliosPanelComponent.html" data-type="entity-link" >EditionFoliosPanelComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionFoliosViewerComponent.html" data-type="entity-link" >EditionFoliosViewerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionFoliosViewerSvgComponent.html" data-type="entity-link" >EditionFoliosViewerSvgComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionGraphComponent.html" data-type="entity-link" >EditionGraphComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionGraphDescriptionComponent.html" data-type="entity-link" >EditionGraphDescriptionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionGraphDynamicComponent.html" data-type="entity-link" >EditionGraphDynamicComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionGraphStaticComponent.html" data-type="entity-link" >EditionGraphStaticComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionIntroComponent.html" data-type="entity-link" >EditionIntroComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionIntroContentComponent.html" data-type="entity-link" >EditionIntroContentComponent</a>
@@ -848,13 +174,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionIntroPartialDisclaimerComponent.html" data-type="entity-link" >EditionIntroPartialDisclaimerComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionIntroPlaceholderComponent.html" data-type="entity-link" >EditionIntroPlaceholderComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/EditionJumbotronComponent.html" data-type="entity-link" >EditionJumbotronComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionOutlineComponent.html" data-type="entity-link" >EditionOutlineComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionPrefaceComponent.html" data-type="entity-link" >EditionPrefaceComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionReportComponent.html" data-type="entity-link" >EditionReportComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionRowtablesComponent.html" data-type="entity-link" >EditionRowtablesComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSectionCardComponent.html" data-type="entity-link" >EditionSectionCardComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionSectionDetailComplexCardComponent.html" data-type="entity-link" >EditionSectionDetailComplexCardComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSectionDetailComponent.html" data-type="entity-link" >EditionSectionDetailComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSectionDetailCoverComponent.html" data-type="entity-link" >EditionSectionDetailCoverComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionSectionDetailDisclaimerComponent.html" data-type="entity-link" >EditionSectionDetailDisclaimerComponent</a>
@@ -863,13 +207,55 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionSectionDetailIntroCardComponent.html" data-type="entity-link" >EditionSectionDetailIntroCardComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionSectionDetailOverviewComponent.html" data-type="entity-link" >EditionSectionDetailOverviewComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionSectionDetailPlaceholderComponent.html" data-type="entity-link" >EditionSectionDetailPlaceholderComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionSvgSheetViewerNavComponent.html" data-type="entity-link" >EditionSvgSheetViewerNavComponent</a>
+                                <a href="components/EditionSectionsComponent.html" data-type="entity-link" >EditionSectionsComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionSvgSheetViewerSwitchComponent.html" data-type="entity-link" >EditionSvgSheetViewerSwitchComponent</a>
+                                <a href="components/EditionSeriesCardComponent.html" data-type="entity-link" >EditionSeriesCardComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSeriesDetailComponent.html" data-type="entity-link" >EditionSeriesDetailComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetFacetComponent.html" data-type="entity-link" >EditionSheetFacetComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetFacetGroupComponent.html" data-type="entity-link" >EditionSheetFacetGroupComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetFacetItemComponent.html" data-type="entity-link" >EditionSheetFacetItemComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetFacetToggleComponent.html" data-type="entity-link" >EditionSheetFacetToggleComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetFooterComponent.html" data-type="entity-link" >EditionSheetFooterComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetsComponent.html" data-type="entity-link" >EditionSheetsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetsPanelComponent.html" data-type="entity-link" >EditionSheetsPanelComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetViewerAdditionsPanelComponent.html" data-type="entity-link" >EditionSheetViewerAdditionsPanelComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetViewerComponent.html" data-type="entity-link" >EditionSheetViewerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetViewerNavComponent.html" data-type="entity-link" >EditionSheetViewerNavComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetViewerSvgComponent.html" data-type="entity-link" >EditionSheetViewerSvgComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSideInfoComponent.html" data-type="entity-link" >EditionSideInfoComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionTkaEvaluationsComponent.html" data-type="entity-link" >EditionTkaEvaluationsComponent</a>
@@ -881,25 +267,151 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionTkaTableComponent.html" data-type="entity-link" >EditionTkaTableComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionViewComponent.html" data-type="entity-link" >EditionViewComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ExampleQueriesComponent.html" data-type="entity-link" >ExampleQueriesComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterComponent.html" data-type="entity-link" >FooterComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterCopyrightComponent.html" data-type="entity-link" >FooterCopyrightComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterDeclarationComponent.html" data-type="entity-link" >FooterDeclarationComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/FooterPoweredbyComponent.html" data-type="entity-link" >FooterPoweredbyComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ForceGraphCanvasComponent.html" data-type="entity-link" >ForceGraphCanvasComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ForceGraphComponent.html" data-type="entity-link" >ForceGraphComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SelectResultsComponent.html" data-type="entity-link" >SelectResultsComponent</a>
+                                <a href="components/ForceGraphLimitComponent.html" data-type="entity-link" >ForceGraphLimitComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SourceDescriptionContentsComponent.html" data-type="entity-link" >SourceDescriptionContentsComponent</a>
+                                <a href="components/FormSwitchComponent.html" data-type="entity-link" >FormSwitchComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SourceDescriptionContentTableComponent.html" data-type="entity-link" >SourceDescriptionContentTableComponent</a>
+                                <a href="components/FullscreenToggleComponent.html" data-type="entity-link" >FullscreenToggleComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SourceDescriptionCorrectionsComponent.html" data-type="entity-link" >SourceDescriptionCorrectionsComponent</a>
+                                <a href="components/GraphEditorActionButtonsComponent.html" data-type="entity-link" >GraphEditorActionButtonsComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SourceDescriptionDetailsComponent.html" data-type="entity-link" >SourceDescriptionDetailsComponent</a>
+                                <a href="components/GraphEditorSparqlComponent.html" data-type="entity-link" >GraphEditorSparqlComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SourceDescriptionWritingMaterialsComponent.html" data-type="entity-link" >SourceDescriptionWritingMaterialsComponent</a>
+                                <a href="components/GraphEditorTriplesComponent.html" data-type="entity-link" >GraphEditorTriplesComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsConstructComponent.html" data-type="entity-link" >GraphResultsConstructComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsEmptyComponent.html" data-type="entity-link" >GraphResultsEmptyComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsSelectComponent.html" data-type="entity-link" >GraphResultsSelectComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsStatusComponent.html" data-type="entity-link" >GraphResultsStatusComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsUnsupportedComponent.html" data-type="entity-link" >GraphResultsUnsupportedComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphVisualizerComponent.html" data-type="entity-link" >GraphVisualizerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/HeadingComponent.html" data-type="entity-link" >HeadingComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/HomeViewCardComponent.html" data-type="entity-link" >HomeViewCardComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/HomeViewComponent.html" data-type="entity-link" >HomeViewComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/JsonViewerComponent.html" data-type="entity-link" >JsonViewerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/LanguageSwitcherComponent.html" data-type="entity-link" >LanguageSwitcherComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/LicenseComponent.html" data-type="entity-link" >LicenseComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/LogoComponent.html" data-type="entity-link" >LogoComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/MetaIdentifierBadgesComponent.html" data-type="entity-link" >MetaIdentifierBadgesComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ModalComponent.html" data-type="entity-link" >ModalComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/NavbarComponent.html" data-type="entity-link" >NavbarComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/NavbarDropdownLinkComponent.html" data-type="entity-link" >NavbarDropdownLinkComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/NavbarItemComponent.html" data-type="entity-link" >NavbarItemComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/NavLinkGroupComponent.html" data-type="entity-link" >NavLinkGroupComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/PageNotFoundViewComponent.html" data-type="entity-link" >PageNotFoundViewComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SelectTableComponent.html" data-type="entity-link" >SelectTableComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescComponent.html" data-type="entity-link" >SourceDescComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescContentFolioComponent.html" data-type="entity-link" >SourceDescContentFolioComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescContentGridComponent.html" data-type="entity-link" >SourceDescContentGridComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescContentItemComponent.html" data-type="entity-link" >SourceDescContentItemComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescContentsComponent.html" data-type="entity-link" >SourceDescContentsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescContentSystemComponent.html" data-type="entity-link" >SourceDescContentSystemComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescCorrectionsComponent.html" data-type="entity-link" >SourceDescCorrectionsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescDetailsComponent.html" data-type="entity-link" >SourceDescDetailsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescItemComponent.html" data-type="entity-link" >SourceDescItemComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescWritingInstrumentsComponent.html" data-type="entity-link" >SourceDescWritingInstrumentsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescWritingMaterialComponent.html" data-type="entity-link" >SourceDescWritingMaterialComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescWritingMaterialsComponent.html" data-type="entity-link" >SourceDescWritingMaterialsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescWritingTrademarkComponent.html" data-type="entity-link" >SourceDescWritingTrademarkComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescWritingWatermarkComponent.html" data-type="entity-link" >SourceDescWritingWatermarkComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/SourceEvaluationComponent.html" data-type="entity-link" >SourceEvaluationComponent</a>
@@ -908,13 +420,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/SourceListComponent.html" data-type="entity-link" >SourceListComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SparqlEditorComponent.html" data-type="entity-link" >SparqlEditorComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/SparqlNoResultsComponent.html" data-type="entity-link" >SparqlNoResultsComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/SparqlTableComponent.html" data-type="entity-link" >SparqlTableComponent</a>
+                                <a href="components/SourceSiglumComponent.html" data-type="entity-link" >SourceSiglumComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/StatisticsBreakdownBadgeComponent.html" data-type="entity-link" >StatisticsBreakdownBadgeComponent</a>
@@ -941,16 +447,86 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/StatisticsViewComponent.html" data-type="entity-link" >StatisticsViewComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/StructureSideInfoComponent.html" data-type="entity-link" >StructureSideInfoComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/StructureViewComponent.html" data-type="entity-link" >StructureViewComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/TableComponent.html" data-type="entity-link" >TableComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/TablePaginationComponent.html" data-type="entity-link" >TablePaginationComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/TextcriticsListComponent.html" data-type="entity-link" >TextcriticsListComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/TriplesEditorComponent.html" data-type="entity-link" >TriplesEditorComponent</a>
+                                <a href="components/ToastComponent.html" data-type="entity-link" >ToastComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/UnsupportedTypeResultsComponent.html" data-type="entity-link" >UnsupportedTypeResultsComponent</a>
+                                <a href="components/TwelveToneSpinnerComponent.html" data-type="entity-link" >TwelveToneSpinnerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/UsageHintsComponent.html" data-type="entity-link" >UsageHintsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ViewContainerComponent.html" data-type="entity-link" >ViewContainerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ViewHandleButtonGroupComponent.html" data-type="entity-link" >ViewHandleButtonGroupComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ZoomSliderComponent.html" data-type="entity-link" >ZoomSliderComponent</a>
                             </li>
                         </ul>
                     </li>
+                        <li class="chapter">
+                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#directives-links"' :
+                                'data-bs-target="#xs-directives-links"' }>
+                                <span class="icon ion-md-code-working"></span>
+                                <span>Directives</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                            <ul class="links collapse " ${ isNormalMode ? 'id="directives-links"' : 'id="xs-directives-links"' }>
+                                <li class="link">
+                                    <a href="directives/AbbrDirective.html" data-type="entity-link" >AbbrDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/CanvasDragDirective.html" data-type="entity-link" >CanvasDragDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/CanvasViewportDirective.html" data-type="entity-link" >CanvasViewportDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/CanvasZoomDirective.html" data-type="entity-link" >CanvasZoomDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/ClickDirective.html" data-type="entity-link" >ClickDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/CompileHtmlDirective.html" data-type="entity-link" >CompileHtmlDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/EditionIntroScrollDirective.html" data-type="entity-link" >EditionIntroScrollDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/EditionSheetFacetItemLinkDirective.html" data-type="entity-link" >EditionSheetFacetItemLinkDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/EditionSheetFacetScrollDirective.html" data-type="entity-link" >EditionSheetFacetScrollDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/ExternalLinkDirective.html" data-type="entity-link" >ExternalLinkDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/SvgZoomDirective.html" data-type="entity-link" >SvgZoomDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/ZoomBaseDirective.html" data-type="entity-link" >ZoomBaseDirective</a>
+                                </li>
+                            </ul>
+                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#classes-links"' :
                             'data-bs-target="#xs-classes-links"' }>
@@ -959,33 +535,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
-                            <li class="link">
-                                <a href="classes/AppConfig.html" data-type="entity-link" >AppConfig</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/D3ForceSimulation.html" data-type="entity-link" >D3ForceSimulation</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/D3SimulationData.html" data-type="entity-link" >D3SimulationData</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/D3SimulationLink.html" data-type="entity-link" >D3SimulationLink</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/D3SimulationNode.html" data-type="entity-link" >D3SimulationNode</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/D3SimulationNodeTriple.html" data-type="entity-link" >D3SimulationNodeTriple</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EDITION_CATALOGUE_TYPE_CONSTANTS.html" data-type="entity-link" >EDITION_CATALOGUE_TYPE_CONSTANTS</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EDITION_ROUTE_CONSTANTS.html" data-type="entity-link" >EDITION_ROUTE_CONSTANTS</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EDITION_TYPE_CONSTANTS.html" data-type="entity-link" >EDITION_TYPE_CONSTANTS</a>
-                            </li>
                             <li class="link">
                                 <a href="classes/EditionComplex.html" data-type="entity-link" >EditionComplex</a>
                             </li>
@@ -996,85 +545,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EditionComplexPubStatement.html" data-type="entity-link" >EditionComplexPubStatement</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionComplexRespStatement.html" data-type="entity-link" >EditionComplexRespStatement</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EditionComplexTitleStatement.html" data-type="entity-link" >EditionComplexTitleStatement</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/EditionOutline.html" data-type="entity-link" >EditionOutline</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EditionRouteConstant.html" data-type="entity-link" >EditionRouteConstant</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionRowTables.html" data-type="entity-link" >EditionRowTables</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EditionRowTablesList.html" data-type="entity-link" >EditionRowTablesList</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EditionSvgLinkBox.html" data-type="entity-link" >EditionSvgLinkBox</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EditionSvgOverlay.html" data-type="entity-link" >EditionSvgOverlay</a>
+                                <a href="classes/EditionSectionLink.html" data-type="entity-link" >EditionSectionLink</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EditionSvgSheet.html" data-type="entity-link" >EditionSvgSheet</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionSvgSheetContent.html" data-type="entity-link" >EditionSvgSheetContent</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EditionSvgSheetList.html" data-type="entity-link" >EditionSvgSheetList</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/Folio.html" data-type="entity-link" >Folio</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculation.html" data-type="entity-link" >FolioCalculation</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationContentSegment.html" data-type="entity-link" >FolioCalculationContentSegment</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationContentSegmentCenteredPositions.html" data-type="entity-link" >FolioCalculationContentSegmentCenteredPositions</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationContentSegmentLabel.html" data-type="entity-link" >FolioCalculationContentSegmentLabel</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationContentSegmentVertices.html" data-type="entity-link" >FolioCalculationContentSegmentVertices</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationLine.html" data-type="entity-link" >FolioCalculationLine</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationPoint.html" data-type="entity-link" >FolioCalculationPoint</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationRectangle.html" data-type="entity-link" >FolioCalculationRectangle</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSheet.html" data-type="entity-link" >FolioCalculationSheet</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystems.html" data-type="entity-link" >FolioCalculationSystems</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystemsDimensions.html" data-type="entity-link" >FolioCalculationSystemsDimensions</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystemsLabels.html" data-type="entity-link" >FolioCalculationSystemsLabels</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystemsLines.html" data-type="entity-link" >FolioCalculationSystemsLines</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystemsMargins.html" data-type="entity-link" >FolioCalculationSystemsMargins</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioContent.html" data-type="entity-link" >FolioContent</a>
+                                <a href="classes/EditionSvgSheetsList.html" data-type="entity-link" >EditionSvgSheetsList</a>
                             </li>
                             <li class="link">
                                 <a href="classes/FolioConvolute.html" data-type="entity-link" >FolioConvolute</a>
@@ -1083,25 +566,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/FolioConvoluteList.html" data-type="entity-link" >FolioConvoluteList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioDimensions.html" data-type="entity-link" >FolioDimensions</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSegment.html" data-type="entity-link" >FolioSegment</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSettings.html" data-type="entity-link" >FolioSettings</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSvgContentSegment.html" data-type="entity-link" >FolioSvgContentSegment</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSvgData.html" data-type="entity-link" >FolioSvgData</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSvgSheet.html" data-type="entity-link" >FolioSvgSheet</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSvgSystems.html" data-type="entity-link" >FolioSvgSystems</a>
+                                <a href="classes/ForceGraphSimulationPin.html" data-type="entity-link" >ForceGraphSimulationPin</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Graph.html" data-type="entity-link" >Graph</a>
@@ -1110,115 +575,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/GraphList.html" data-type="entity-link" >GraphList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GraphRDFData.html" data-type="entity-link" >GraphRDFData</a>
+                                <a href="classes/GraphQuery.html" data-type="entity-link" >GraphQuery</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GraphSparqlQuery.html" data-type="entity-link" >GraphSparqlQuery</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/HomeViewCard.html" data-type="entity-link" >HomeViewCard</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/HttpCache.html" data-type="entity-link" >HttpCache</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/Intro.html" data-type="entity-link" >Intro</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/IntroBlock.html" data-type="entity-link" >IntroBlock</a>
+                                <a href="classes/GraphRdfData.html" data-type="entity-link" >GraphRdfData</a>
                             </li>
                             <li class="link">
                                 <a href="classes/IntroList.html" data-type="entity-link" >IntroList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Logo.html" data-type="entity-link" >Logo</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/Logos.html" data-type="entity-link" >Logos</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/Meta.html" data-type="entity-link" >Meta</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/MetaContact.html" data-type="entity-link" >MetaContact</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/MetaIdentifiers.html" data-type="entity-link" >MetaIdentifiers</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/MetaPage.html" data-type="entity-link" >MetaPage</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/MetaPerson.html" data-type="entity-link" >MetaPerson</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/MetaStructure.html" data-type="entity-link" >MetaStructure</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/Preface.html" data-type="entity-link" >Preface</a>
+                                <a href="classes/NavLink.html" data-type="entity-link" >NavLink</a>
                             </li>
                             <li class="link">
                                 <a href="classes/PrefaceList.html" data-type="entity-link" >PrefaceList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Prefix.html" data-type="entity-link" >Prefix</a>
+                                <a href="classes/RowtablesList.html" data-type="entity-link" >RowtablesList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/RouterLinkButton.html" data-type="entity-link" >RouterLinkButton</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SliderConfig.html" data-type="entity-link" >SliderConfig</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/Source.html" data-type="entity-link" >Source</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescription.html" data-type="entity-link" >SourceDescription</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionContent.html" data-type="entity-link" >SourceDescriptionContent</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionFolio.html" data-type="entity-link" >SourceDescriptionFolio</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionList.html" data-type="entity-link" >SourceDescriptionList</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionPhysDesc.html" data-type="entity-link" >SourceDescriptionPhysDesc</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionSystem.html" data-type="entity-link" >SourceDescriptionSystem</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionSystemRow.html" data-type="entity-link" >SourceDescriptionSystemRow</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionWritingInstruments.html" data-type="entity-link" >SourceDescriptionWritingInstruments</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterial.html" data-type="entity-link" >SourceDescriptionWritingMaterial</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterialDimension.html" data-type="entity-link" >SourceDescriptionWritingMaterialDimension</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterialDimensions.html" data-type="entity-link" >SourceDescriptionWritingMaterialDimensions</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterialItemLocus.html" data-type="entity-link" >SourceDescriptionWritingMaterialItemLocus</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterialSystems.html" data-type="entity-link" >SourceDescriptionWritingMaterialSystems</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterialTrademark.html" data-type="entity-link" >SourceDescriptionWritingMaterialTrademark</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterialWatermark.html" data-type="entity-link" >SourceDescriptionWritingMaterialWatermark</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/SourceEvaluation.html" data-type="entity-link" >SourceEvaluation</a>
+                                <a href="classes/SourceDescList.html" data-type="entity-link" >SourceDescList</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SourceEvaluationList.html" data-type="entity-link" >SourceEvaluationList</a>
@@ -1242,34 +617,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/StatisticsSeriesBreakdown.html" data-type="entity-link" >StatisticsSeriesBreakdown</a>
                             </li>
                             <li class="link">
-                                <a href="classes/TableData.html" data-type="entity-link" >TableData</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/TableOptions.html" data-type="entity-link" >TableOptions</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/TablePaginatorOptions.html" data-type="entity-link" >TablePaginatorOptions</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/TextcriticalComment.html" data-type="entity-link" >TextcriticalComment</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/TextcriticalCommentary.html" data-type="entity-link" >TextcriticalCommentary</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/TextcriticalCommentBlock.html" data-type="entity-link" >TextcriticalCommentBlock</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Textcritics.html" data-type="entity-link" >Textcritics</a>
                             </li>
                             <li class="link">
                                 <a href="classes/TextcriticsList.html" data-type="entity-link" >TextcriticsList</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/TextSource.html" data-type="entity-link" >TextSource</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/TkaTableHeaderColumn.html" data-type="entity-link" >TkaTableHeaderColumn</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Toast.html" data-type="entity-link" >Toast</a>
@@ -1282,6 +636,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/ViewHandle.html" data-type="entity-link" >ViewHandle</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ZoomConfig.html" data-type="entity-link" >ZoomConfig</a>
                             </li>
                         </ul>
                     </li>
@@ -1297,10 +654,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/AnalyticsService.html" data-type="entity-link" >AnalyticsService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/CoreService.html" data-type="entity-link" >CoreService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/D3Service.html" data-type="entity-link" >D3Service</a>
+                                    <a href="injectables/EditionBreadcrumbService.html" data-type="entity-link" >EditionBreadcrumbService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/EditionComplexesService.html" data-type="entity-link" >EditionComplexesService</a>
@@ -1309,16 +663,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/EditionDataService.html" data-type="entity-link" >EditionDataService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/EditionFolioDrawingService.html" data-type="entity-link" >EditionFolioDrawingService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/EditionFolioSegmentService.html" data-type="entity-link" >EditionFolioSegmentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/EditionGlyphService.html" data-type="entity-link" >EditionGlyphService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/EditionInitService.html" data-type="entity-link" >EditionInitService</a>
+                                    <a href="injectables/EditionModalService.html" data-type="entity-link" >EditionModalService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/EditionNavigationService.html" data-type="entity-link" >EditionNavigationService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/EditionOutlineService.html" data-type="entity-link" >EditionOutlineService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/EditionSheetsService.html" data-type="entity-link" >EditionSheetsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/EditionSnippetService.html" data-type="entity-link" >EditionSnippetService</a>
@@ -1333,19 +693,28 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/EditionSvgOverlayService.html" data-type="entity-link" >EditionSvgOverlayService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/FolioService.html" data-type="entity-link" >FolioService</a>
+                                    <a href="injectables/EditionViewService.html" data-type="entity-link" >EditionViewService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ForceGraphCanvasService.html" data-type="entity-link" >ForceGraphCanvasService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ForceGraphSimulationService.html" data-type="entity-link" >ForceGraphSimulationService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/FullscreenService.html" data-type="entity-link" >FullscreenService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/GraphVisualizerService.html" data-type="entity-link" >GraphVisualizerService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/HttpCacheService.html" data-type="entity-link" >HttpCacheService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/LoadingService.html" data-type="entity-link" >LoadingService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ModalService.html" data-type="entity-link" >ModalService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/RdfStoreService.html" data-type="entity-link" >RdfStoreService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/SparqlQueryService.html" data-type="entity-link" >SparqlQueryService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/StatisticsService.html" data-type="entity-link" >StatisticsService</a>
@@ -1353,24 +722,36 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="injectables/ToastService.html" data-type="entity-link" >ToastService</a>
                                 </li>
-                                <li class="link">
-                                    <a href="injectables/UtilityService.html" data-type="entity-link" >UtilityService</a>
-                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
-                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#interceptors-links"' :
-                            'data-bs-target="#xs-interceptors-links"' }>
-                            <span class="icon ion-ios-swap"></span>
-                            <span>Interceptors</span>
+                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#guards-links"' :
+                            'data-bs-target="#xs-guards-links"' }>
+                            <span class="icon ion-ios-lock"></span>
+                            <span>Guards</span>
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
-                        <ul class="links collapse " ${ isNormalMode ? 'id="interceptors-links"' : 'id="xs-interceptors-links"' }>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="guards-links"' : 'id="xs-guards-links"' }>
                             <li class="link">
-                                <a href="interceptors/CachingInterceptor.html" data-type="entity-link" >CachingInterceptor</a>
+                                <a href="guards/editionComplexGuard.html" data-type="entity-link" >editionComplexGuard</a>
                             </li>
                             <li class="link">
-                                <a href="interceptors/LoadingInterceptor.html" data-type="entity-link" >LoadingInterceptor</a>
+                                <a href="guards/editionComplexResolver.html" data-type="entity-link" >editionComplexResolver</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionSectionGuard.html" data-type="entity-link" >editionSectionGuard</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionSectionResolver.html" data-type="entity-link" >editionSectionResolver</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionSeriesGuard.html" data-type="entity-link" >editionSeriesGuard</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionSeriesResolver.html" data-type="entity-link" >editionSeriesResolver</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionStateResetResolver.html" data-type="entity-link" >editionStateResetResolver</a>
                             </li>
                         </ul>
                     </li>
@@ -1383,31 +764,52 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/AbstractTriple.html" data-type="entity-link" >AbstractTriple</a>
+                                <a href="interfaces/AlertError.html" data-type="entity-link" >AlertError</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3DragBehaviour.html" data-type="entity-link" >D3DragBehaviour</a>
+                                <a href="interfaces/CanvasBounds.html" data-type="entity-link" >CanvasBounds</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3ForceSimulationOptions.html" data-type="entity-link" >D3ForceSimulationOptions</a>
+                                <a href="interfaces/CanvasDragGesture.html" data-type="entity-link" >CanvasDragGesture&lt;T&gt;</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3Selection.html" data-type="entity-link" >D3Selection</a>
+                                <a href="interfaces/CanvasDragMove.html" data-type="entity-link" >CanvasDragMove&lt;T&gt;</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3Simulation.html" data-type="entity-link" >D3Simulation</a>
+                                <a href="interfaces/CanvasFrameScheduler.html" data-type="entity-link" >CanvasFrameScheduler</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3ZoomBehaviour.html" data-type="entity-link" >D3ZoomBehaviour</a>
+                                <a href="interfaces/CanvasPoint.html" data-type="entity-link" >CanvasPoint</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CanvasSize.html" data-type="entity-link" >CanvasSize</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CanvasViewport.html" data-type="entity-link" >CanvasViewport</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DynamicViewContexts.html" data-type="entity-link" >DynamicViewContexts</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionComplexesJsonData.html" data-type="entity-link" >EditionComplexesJsonData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EditionComplexJsonData.html" data-type="entity-link" >EditionComplexJsonData</a>
+                                <a href="interfaces/EditionComplexJsonPersonRef.html" data-type="entity-link" >EditionComplexJsonPersonRef</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EditionComplexJsonPersonRef.html" data-type="entity-link" >EditionComplexJsonPersonRef</a>
+                                <a href="interfaces/EditionComplexRespStatement.html" data-type="entity-link" >EditionComplexRespStatement</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionComplexTitleStatement.html" data-type="entity-link" >EditionComplexTitleStatement</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionDataAssetsError.html" data-type="entity-link" >EditionDataAssetsError</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionNavigationFragmentTarget.html" data-type="entity-link" >EditionNavigationFragmentTarget</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionNavigationSheetTarget.html" data-type="entity-link" >EditionNavigationSheetTarget</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionOutlineComplexItem.html" data-type="entity-link" >EditionOutlineComplexItem</a>
@@ -1440,52 +842,301 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionOutlineSeriesJsonData.html" data-type="entity-link" >EditionOutlineSeriesJsonData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EditionSvgOverlayState.html" data-type="entity-link" >EditionSvgOverlayState</a>
+                                <a href="interfaces/EditionSheetFacetPartialLink.html" data-type="entity-link" >EditionSheetFacetPartialLink</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IFolioLegend.html" data-type="entity-link" >IFolioLegend</a>
+                                <a href="interfaces/EditionSheetFacetVisibleRange.html" data-type="entity-link" >EditionSheetFacetVisibleRange</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IMockAnalytics.html" data-type="entity-link" >IMockAnalytics</a>
+                                <a href="interfaces/EditionSheetViewerAdditionsPanelChange.html" data-type="entity-link" >EditionSheetViewerAdditionsPanelChange</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IMockCache.html" data-type="entity-link" >IMockCache</a>
+                                <a href="interfaces/EditionSvgLinkBox.html" data-type="entity-link" >EditionSvgLinkBox</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IMockConsole.html" data-type="entity-link" >IMockConsole</a>
+                                <a href="interfaces/EditionSvgOverlayLinkBox.html" data-type="entity-link" >EditionSvgOverlayLinkBox</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Namespace.html" data-type="entity-link" >Namespace</a>
+                                <a href="interfaces/EditionSvgOverlaysState.html" data-type="entity-link" >EditionSvgOverlaysState</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QuerySelectResult.html" data-type="entity-link" >QuerySelectResult</a>
+                                <a href="interfaces/EditionSvgOverlayTkk.html" data-type="entity-link" >EditionSvgOverlayTkk</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QuerySelectResultBindings.html" data-type="entity-link" >QuerySelectResultBindings</a>
+                                <a href="interfaces/EditionSvgSheetContent.html" data-type="entity-link" >EditionSvgSheetContent</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QuerySelectResultBody.html" data-type="entity-link" >QuerySelectResultBody</a>
+                                <a href="interfaces/EditionSvgSheetContext.html" data-type="entity-link" >EditionSvgSheetContext</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QuerySelectResultHead.html" data-type="entity-link" >QuerySelectResultHead</a>
+                                <a href="interfaces/EditionSvgSheetSelection.html" data-type="entity-link" >EditionSvgSheetSelection</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreConstructResponse.html" data-type="entity-link" >RDFStoreConstructResponse</a>
+                                <a href="interfaces/EditionViewData.html" data-type="entity-link" >EditionViewData&lt;K extends EditionViewKey&gt;</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreConstructResponseTriple.html" data-type="entity-link" >RDFStoreConstructResponseTriple</a>
+                                <a href="interfaces/EditionViewDataTypeMapping.html" data-type="entity-link" >EditionViewDataTypeMapping</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreConstructResponseTripleSegment.html" data-type="entity-link" >RDFStoreConstructResponseTripleSegment</a>
+                                <a href="interfaces/ExpandAllState.html" data-type="entity-link" >ExpandAllState&lt;K&gt;</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreSelectResponse.html" data-type="entity-link" >RDFStoreSelectResponse</a>
+                                <a href="interfaces/Folio.html" data-type="entity-link" >Folio</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreSelectResponseTriple.html" data-type="entity-link" >RDFStoreSelectResponseTriple</a>
+                                <a href="interfaces/FolioContent.html" data-type="entity-link" >FolioContent</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreSelectResponseTripleSegment.html" data-type="entity-link" >RDFStoreSelectResponseTripleSegment</a>
+                                <a href="interfaces/FolioDimensions.html" data-type="entity-link" >FolioDimensions</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioLegend.html" data-type="entity-link" >FolioLegend</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSegment.html" data-type="entity-link" >FolioSegment</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSettings.html" data-type="entity-link" >FolioSettings</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgContentSegment.html" data-type="entity-link" >FolioSvgContentSegment</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgData.html" data-type="entity-link" >FolioSvgData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgLine.html" data-type="entity-link" >FolioSvgLine</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgPoint.html" data-type="entity-link" >FolioSvgPoint</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgRectangle.html" data-type="entity-link" >FolioSvgRectangle</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgSheet.html" data-type="entity-link" >FolioSvgSheet</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgSystems.html" data-type="entity-link" >FolioSvgSystems</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSystemsLayout.html" data-type="entity-link" >FolioSystemsLayout</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphBounds.html" data-type="entity-link" >ForceGraphBounds</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasEdgeLabel.html" data-type="entity-link" >ForceGraphCanvasEdgeLabel</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasHoveredNode.html" data-type="entity-link" >ForceGraphCanvasHoveredNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasLimits.html" data-type="entity-link" >ForceGraphCanvasLimits</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasStyles.html" data-type="entity-link" >ForceGraphCanvasStyles</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphCanvasView.html" data-type="entity-link" >ForceGraphCanvasView</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphD3SimulationNode.html" data-type="entity-link" >ForceGraphD3SimulationNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphData.html" data-type="entity-link" >ForceGraphData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphEdge.html" data-type="entity-link" >ForceGraphEdge</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphNode.html" data-type="entity-link" >ForceGraphNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphPoint.html" data-type="entity-link" >ForceGraphPoint</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulation.html" data-type="entity-link" >ForceGraphSimulation</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationConfig.html" data-type="entity-link" >ForceGraphSimulationConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationForces.html" data-type="entity-link" >ForceGraphSimulationForces</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationInput.html" data-type="entity-link" >ForceGraphSimulationInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationProgress.html" data-type="entity-link" >ForceGraphSimulationProgress</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphSimulationScheduler.html" data-type="entity-link" >ForceGraphSimulationScheduler</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForceGraphVisibleNode.html" data-type="entity-link" >ForceGraphVisibleNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FullscreenToggleConfig.html" data-type="entity-link" >FullscreenToggleConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/HomeViewCard.html" data-type="entity-link" >HomeViewCard</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/HomeViewCardExternalLink.html" data-type="entity-link" >HomeViewCardExternalLink</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/HomeViewCardInternalLink.html" data-type="entity-link" >HomeViewCardInternalLink</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Intro.html" data-type="entity-link" >Intro</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IntroBlock.html" data-type="entity-link" >IntroBlock</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/LabeledRoute.html" data-type="entity-link" >LabeledRoute</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Logo.html" data-type="entity-link" >Logo</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Meta.html" data-type="entity-link" >Meta</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/MetaContact.html" data-type="entity-link" >MetaContact</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/MetaIdentifierBadge.html" data-type="entity-link" >MetaIdentifierBadge</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/MetaIdentifiers.html" data-type="entity-link" >MetaIdentifiers</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/MetaPage.html" data-type="entity-link" >MetaPage</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/MetaPerson.html" data-type="entity-link" >MetaPerson</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/MetaStructure.html" data-type="entity-link" >MetaStructure</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ModalData.html" data-type="entity-link" >ModalData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/NavbarItem.html" data-type="entity-link" >NavbarItem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/NavbarItems.html" data-type="entity-link" >NavbarItems</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Preface.html" data-type="entity-link" >Preface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/QueryTypeConversion.html" data-type="entity-link" >QueryTypeConversion</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RdfStore.html" data-type="entity-link" >RdfStore</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RdfStoreConstructResponse.html" data-type="entity-link" >RdfStoreConstructResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RdfStoreGlobal.html" data-type="entity-link" >RdfStoreGlobal</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RdfStoreNode.html" data-type="entity-link" >RdfStoreNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RdfStoreSelectResult.html" data-type="entity-link" >RdfStoreSelectResult</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RdfStoreToken.html" data-type="entity-link" >RdfStoreToken</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RdfStoreTriple.html" data-type="entity-link" >RdfStoreTriple</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ResultGraph.html" data-type="entity-link" >ResultGraph</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ResultGraphEdge.html" data-type="entity-link" >ResultGraphEdge</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ResultGraphNode.html" data-type="entity-link" >ResultGraphNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ResultGraphNodeDraft.html" data-type="entity-link" >ResultGraphNodeDraft</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Rowtables.html" data-type="entity-link" >Rowtables</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SelectTableCell.html" data-type="entity-link" >SelectTableCell</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Source.html" data-type="entity-link" >Source</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDesc.html" data-type="entity-link" >SourceDesc</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescContent.html" data-type="entity-link" >SourceDescContent</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescDetails.html" data-type="entity-link" >SourceDescDetails</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescFolio.html" data-type="entity-link" >SourceDescFolio</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescPhysDesc.html" data-type="entity-link" >SourceDescPhysDesc</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescSystem.html" data-type="entity-link" >SourceDescSystem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescSystemRow.html" data-type="entity-link" >SourceDescSystemRow</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescWritingInstruments.html" data-type="entity-link" >SourceDescWritingInstruments</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescWritingMaterial.html" data-type="entity-link" >SourceDescWritingMaterial</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescWritingMaterialDimension.html" data-type="entity-link" >SourceDescWritingMaterialDimension</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescWritingMaterialDimensions.html" data-type="entity-link" >SourceDescWritingMaterialDimensions</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescWritingMaterialItemLocus.html" data-type="entity-link" >SourceDescWritingMaterialItemLocus</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescWritingMaterialSystems.html" data-type="entity-link" >SourceDescWritingMaterialSystems</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescWritingMaterialTrademark.html" data-type="entity-link" >SourceDescWritingMaterialTrademark</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceDescWritingMaterialWatermark.html" data-type="entity-link" >SourceDescWritingMaterialWatermark</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SourceEvaluation.html" data-type="entity-link" >SourceEvaluation</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SparqlConstructResult.html" data-type="entity-link" >SparqlConstructResult</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SparqlQueryRun.html" data-type="entity-link" >SparqlQueryRun</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SparqlSelectResult.html" data-type="entity-link" >SparqlSelectResult</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SparqlUnsupportedResult.html" data-type="entity-link" >SparqlUnsupportedResult</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/StatisticsBreakDownBadge.html" data-type="entity-link" >StatisticsBreakDownBadge</a>
@@ -1500,26 +1151,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/StatisticsSummaryCardData.html" data-type="entity-link" >StatisticsSummaryCardData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/TableRows.html" data-type="entity-link" >TableRows</a>
+                                <a href="interfaces/TableCell.html" data-type="entity-link" >TableCell</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Triple.html" data-type="entity-link" >Triple</a>
+                                <a href="interfaces/TableSortState.html" data-type="entity-link" >TableSortState</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TextcriticalComment.html" data-type="entity-link" >TextcriticalComment</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TextcriticalCommentBlock.html" data-type="entity-link" >TextcriticalCommentBlock</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TextSource.html" data-type="entity-link" >TextSource</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TkaTableHeaderColumn.html" data-type="entity-link" >TkaTableHeaderColumn</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ToastOptions.html" data-type="entity-link" >ToastOptions</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TurtleParseResult.html" data-type="entity-link" >TurtleParseResult</a>
                             </li>
                         </ul>
                     </li>
-                        <li class="chapter">
-                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#pipes-links"' :
-                                'data-bs-target="#xs-pipes-links"' }>
-                                <span class="icon ion-md-add"></span>
-                                <span>Pipes</span>
-                                <span class="icon ion-ios-arrow-down"></span>
-                            </div>
-                            <ul class="links collapse " ${ isNormalMode ? 'id="pipes-links"' : 'id="xs-pipes-links"' }>
-                                <li class="link">
-                                    <a href="pipes/PrefixPipe.html" data-type="entity-link" >PrefixPipe</a>
-                                </li>
-                            </ul>
-                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#miscellaneous-links"'
                             : 'data-bs-target="#xs-miscellaneous-links"' }>
