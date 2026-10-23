@@ -1,8 +1,8 @@
 name: CI Workflow
 on:
     push:
-        # trigger on all branches except for dependabot-triggered push events
-        branches-ignore: [dependabot/**]
+        # trigger only on the long-lived branches and tags; other branches are covered by their pull requests
+        branches: [develop, main]
         tags:
             - 'v*' # trigger on all tags
         paths-ignore:
