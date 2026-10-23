@@ -162,14 +162,14 @@ ul.nobullets {
     padding-left: 25px;
 }
 
-// Glyphs
+// Glyphs (subset of Bravura, created with create_glyph_subset in awg-utils)
 @font-face {
-    font-family: 'Bravura';
-    src: url('../fonts/bravura-1.380/woff/Bravura.woff2') format('woff2');
+    font-family: 'AWG Edition Glyphs';
+    src: url('../fonts/awg-edition-glyphs/AWGEditionGlyphs-Regular.woff2') format('woff2');
 }
 
 .glyph {
-    font-family: 'Bravura';
+    font-family: 'AWG Edition Glyphs';
     font-size: 24px;
     line-height: 1;
 
