@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe } from '@testing/expect-helper';
-import { createRealRdfstore, RDFSTORE_INTEGRATION_TIMEOUT_MS, setGlobalRdfstore } from '@testing/rdfstore-helper';
+import { RDFSTORE_INTEGRATION_TIMEOUT_MS } from '@testing/rdfstore-helper';
 
 import { GraphList } from '@awg-views/edition-view/models/graph.model';
 
-import { RdfStoreGlobal } from '@awg-graph/graph-visualizer/rdf-store/rdf-store.model';
 import { SparqlQueryService } from '@awg-graph/graph-visualizer/services/sparql-query.service';
 
 import { toTableRows } from './select-table.utils';
@@ -20,23 +19,15 @@ describe(
     () => {
         let service: SparqlQueryService;
 
-        let realRdfstore: RdfStoreGlobal;
         let turtle: string;
 
         beforeAll(() => {
-            realRdfstore = createRealRdfstore();
             turtle = (graphDataOp25 as GraphList).graph[0].rdfData.triples;
         });
 
         beforeEach(() => {
-            setGlobalRdfstore(realRdfstore);
-
             TestBed.configureTestingModule({});
             service = TestBed.inject(SparqlQueryService);
-        });
-
-        afterEach(() => {
-            setGlobalRdfstore(undefined);
         });
 
         it('... should convert the bindings of a select query into table rows', async () => {

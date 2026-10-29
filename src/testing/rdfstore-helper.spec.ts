@@ -1,6 +1,9 @@
+import { TestBed } from '@angular/core/testing';
+
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { RdfStore, RdfStoreGlobal } from '@awg-graph/graph-visualizer/rdf-store/rdf-store.model';
+import { RdfStore, RdfStoreModule } from '@awg-graph/graph-visualizer/rdf-store/rdf-store.model';
+import { RdfStoreService } from '@awg-graph/graph-visualizer/rdf-store/rdf-store.service';
 
 import { expectSpyCall, expectToBe, expectToEqual } from './expect-helper';
 import {
@@ -8,8 +11,7 @@ import {
     createRdfStoreNode,
     createRdfStoreToken,
     RDFSTORE_INTEGRATION_TIMEOUT_MS,
-    createRealRdfstore,
-    setGlobalRdfstore,
+    spyOnRdfstoreImport,
 } from './rdfstore-helper';
 
 /**
@@ -17,53 +19,28 @@ import {
  *
  * It creates a store from the given rdfstore and resolves it (or rejects with the error).
  */
-const createStore = (rdfstore: RdfStoreGlobal): Promise<RdfStore> =>
+const createStore = (rdfstore: RdfStoreModule): Promise<RdfStore> =>
     // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors -- rdfstore passes its errors as unknown
     new Promise((resolve, reject) => rdfstore.create((err, store) => (err ? reject(err) : resolve(store))));
 
 describe('rdfstore-helper', () => {
     afterEach(() => {
-        setGlobalRdfstore(undefined);
+        vi.restoreAllMocks();
     });
 
-    describe('#setGlobalRdfstore()', () => {
-        it('... should have a method `setGlobalRdfstore`', () => {
-            expect(setGlobalRdfstore).toBeDefined();
+    describe('#spyOnRdfstoreImport()', () => {
+        it('... should have a method `spyOnRdfstoreImport`', () => {
+            expect(spyOnRdfstoreImport).toBeDefined();
         });
 
-        it('... should set the global rdfstore', () => {
+        it('... should let the service import the given rdfstore', async () => {
+            const service = TestBed.inject(RdfStoreService);
             const { rdfstore } = createMockRdfstore();
 
-            setGlobalRdfstore(rdfstore);
+            const importSpy = spyOnRdfstoreImport(service, rdfstore);
 
-            expectToBe((globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore, rdfstore);
-        });
-
-        it('... should remove the global rdfstore', () => {
-            setGlobalRdfstore(createMockRdfstore().rdfstore);
-
-            setGlobalRdfstore(undefined);
-
-            expect((globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore).toBeUndefined();
-        });
-    });
-
-    describe('#createRealRdfstore()', () => {
-        it('... should have a method `createRealRdfstore`', () => {
-            expect(createRealRdfstore).toBeDefined();
-        });
-
-        it('... should load an rdfstore that creates stores with `load` and `execute`', async () => {
-            const store = await createStore(createRealRdfstore());
-
-            expectToBe(typeof store.load, 'function');
-            expectToBe(typeof store.execute, 'function');
-        });
-
-        it('... should not set a global rdfstore', () => {
-            createRealRdfstore();
-
-            expect((globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore).toBeUndefined();
+            expectToBe(await service['_importRdfstore'](), rdfstore);
+            expectSpyCall(importSpy, 1);
         });
     });
 

@@ -29,7 +29,7 @@ describe('EDITION_GRAPH_ROUTES (DONE)', () => {
         expectToEqual(EDITION_GRAPH_ROUTES[0].data, { title: 'AWG Online Edition – Graph' });
     });
 
-    it('... should preload the rdfstore script when the route injector is created', () => {
+    it('... should preload the rdfstore module when the route injector is created', () => {
         const preloadSpy = vi.spyOn(rdfStoreService, 'preload').mockResolvedValue(undefined);
 
         const routeInjector = createEnvironmentInjector(

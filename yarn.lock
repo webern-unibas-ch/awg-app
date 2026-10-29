@@ -4167,7 +4167,7 @@ __metadata:
     ngx-json-viewer: "npm:^3.2.1"
     playwright: "npm:^1.64.1"
     prettier: "npm:^3.9.10"
-    rdfstore: "musicEnfanthen/rdfstore-js#v0.9.18-alpha.23"
+    rdfstore: "webern-unibas-ch/rdfstore-js#v0.9.18-alpha.24"
     rxjs: "npm:~7.8.2"
     stream: "npm:^0.0.3"
     tslib: "npm:^2.8.1"
@@ -7751,7 +7751,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"n3@npm:^2.0.3, n3@npm:^2.13.12":
+"n3@npm:^2.13.0, n3@npm:^2.13.12":
   version: 2.13.12
   resolution: "n3@npm:2.13.12"
   dependencies:
@@ -8651,13 +8651,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rdfstore@musicEnfanthen/rdfstore-js#v0.9.18-alpha.23":
-  version: 0.9.18-alpha.23
-  resolution: "rdfstore@https://github.com/musicEnfanthen/rdfstore-js.git#commit=e5f5f14c682fcca6a74fe91d9938d8493b94a6ac"
+"rdfstore@webern-unibas-ch/rdfstore-js#v0.9.18-alpha.24":
+  version: 0.9.18-alpha.24
+  resolution: "rdfstore@https://github.com/webern-unibas-ch/rdfstore-js.git#commit=5533f646b02b895b26d4fafbcb2f1d125041334d"
   dependencies:
     jsonld: "npm:^9.0.0"
-    n3: "npm:^2.0.3"
-  checksum: 10c0/acd24bbdbb1b8bbaad9d9f86ce88f6a9bf6f86854dea7291d4928e8d1318a8abd58f4981ad581844f815cafda79a151dc62f087797f2174cff26bdb427adaf36
+    n3: "npm:^2.13.0"
+  checksum: 10c0/eecfc035fc197e57e3e7ffe4dcc8792184ec49e362b9aa8f7ac502eebd7aac7a7d94679d2f053bc0077187772b82b9fbfc158eee56697d3b96d3f2afd337eb70
   languageName: node
   linkType: hard
 
