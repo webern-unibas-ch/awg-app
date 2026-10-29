@@ -143,14 +143,14 @@ export interface FolioContent {
     linkTo?: string;
 
     /**
-     * The folio content's optional segmentSplit.
+     * The folio content's segmentSplit.
      */
-    segmentSplit?: number;
+    segmentSplit: number;
 
     /**
-     * The folio content's optional segments array.
+     * The folio content's segments array.
      */
-    segments?: FolioSegment[];
+    segments: FolioSegment[];
 }
 
 /**
@@ -172,9 +172,9 @@ export interface FolioSegment {
     endSystem: number;
 
     /**
-     * The folio segment's optional position.
+     * The folio segment's position.
      */
-    position?: number;
+    position: number;
 
     /**
      * The folio segment's optional position relative to the system.

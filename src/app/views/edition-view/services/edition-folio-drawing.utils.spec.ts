@@ -234,30 +234,12 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                     );
                 });
 
-                it.each<[string, number | undefined]>([
-                    ['without position', undefined],
-                    ['with a position bigger than the segment split', 3],
-                ])(
-                    '... should calculate the vertices at the first position of a split segment %s',
-                    (_description, position) => {
-                        const [contentSegment] = calculate(
-                            withContent({ segmentSplit: 2, segments: [{ position, startSystem: 2, endSystem: 4 }] })
-                        ).contentSegments;
+                it('... should calculate the vertices at the first position for a position beyond the split', () => {
+                    const [contentSegment] = calculate(
+                        withContent({ segmentSplit: 2, segments: [{ position: 3, startSystem: 2, endSystem: 4 }] })
+                    ).contentSegments;
 
-                        expectToBe(
-                            contentSegment.vertices,
-                            '59.07 52.93 212.6 52.93 212.6 83.39 59.07 83.39 59.07 52.93'
-                        );
-                    }
-                );
-
-                it('... should calculate the vertices of an unsplit segment without segment split', () => {
-                    const [contentSegment] = calculate(withContent({ segmentSplit: undefined })).contentSegments;
-
-                    expectToBe(
-                        contentSegment.vertices,
-                        '59.07 52.93 370.12 52.93 370.12 83.39 59.07 83.39 59.07 52.93'
-                    );
+                    expectToBe(contentSegment.vertices, '59.07 52.93 212.6 52.93 212.6 83.39 59.07 83.39 59.07 52.93');
                 });
 
                 it('... should throw for a segment outside the systems of the folio', () => {
