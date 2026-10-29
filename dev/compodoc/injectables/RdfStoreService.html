@@ -157,7 +157,7 @@
 <p>It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
 executes SPARQL queries and converts the responses into RDF/JS terms.
 It is the only place that knows the rdfstore API and response formats.
-The rdfstore script is loaded on first use, so it is not part of the initial bundle.</p>
+The rdfstore module is imported on first use, so it is a separate lazy chunk.</p>
 
             </p>
 
@@ -169,30 +169,6 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
     <div class="tab-pane fade " id="api">
             <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-        <table class="table table-sm table-bordered index-table">
-            <tbody>
-                <tr>
-                    <td class="col-md-3">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                    <td class="col-md-9">
-                        <ul class="index-list">
-                            <li>
-                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#_document" >_document</a>
-                            </li>
-                            <li>
-                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
-                                    <span class="modifier">Private</span>
-                                <a href="#_rdfstoreLoading" >_rdfstoreLoading</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
         <table class="table table-sm table-bordered index-table">
             <tbody>
@@ -222,7 +198,7 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
-                                <a href="#_getGlobalRdfstore" >_getGlobalRdfstore</a>
+                                <a href="#_importRdfstore" >_importRdfstore</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
@@ -329,8 +305,8 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="148"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:148</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -375,8 +351,8 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="378"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:378</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="315"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:315</a></div>
                         </td>
                     </tr>
 
@@ -470,8 +446,8 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -554,42 +530,42 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_getGlobalRdfstore"></a>
+                    <a name="_importRdfstore"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_getGlobalRdfstore</b></span>
-                        <a href="#_getGlobalRdfstore"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_importRdfstore</b></span>
+                        <a href="#_importRdfstore"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getGlobalRdfstore()</code>
+                    <code>_importRdfstore()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="217"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:217</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="155"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:155</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _getGlobalRdfstore.</p>
-<p>It gets the global rdfstore, if available.</p>
+                        <div class="io-description"><p>Private method: _importRdfstore.</p>
+<p>It imports the rdfstore module.</p>
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>    <code>RdfStoreGlobal | undefined</code>
+                            <b>Returns : </b>    <code>Promise&lt;RdfStoreModule&gt;</code>
 
                         </div>
                             <div class="io-description">
-                                <p>The global rdfstore or undefined.</p>
+                                <p>A promise of the rdfstore module.</p>
 
                             </div>
                 </td>
@@ -618,8 +594,8 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="320"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:320</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="257"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:257</a></div>
                         </td>
                     </tr>
 
@@ -728,8 +704,8 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="231"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:231</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:168</a></div>
                         </td>
                     </tr>
 
@@ -822,8 +798,8 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="171"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:171</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:142</a></div>
                         </td>
                     </tr>
 
@@ -831,17 +807,17 @@ The rdfstore script is loaded on first use, so it is not part of the initial bun
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Private method: _loadRdfstore.</p>
-<p>It gets the global rdfstore and loads its script once if it is not available yet.
-Parallel calls share the pending loading. A failed loading removes the script
-and is not cached, so the next call loads the script again.</p>
+<p>It imports the rdfstore module and converts a failed import into an Error of the service.
+The module loader caches the module and shares pending imports,
+so only the first call loads the chunk.</p>
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;RdfStoreGlobal&gt;</code>
+                            <b>Returns : </b>    <code>Promise&lt;RdfStoreModule&gt;</code>
 
                         </div>
                             <div class="io-description">
-                                <p>A promise of the global rdfstore.</p>
+                                <p>A promise of the rdfstore module.</p>
 
                             </div>
                 </td>
@@ -870,8 +846,8 @@ and is not cached, so the next call loads the script again.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="272"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:272</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:209</a></div>
                         </td>
                     </tr>
 
@@ -948,8 +924,8 @@ and is not cached, so the next call loads the script again.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="252"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:252</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:189</a></div>
                         </td>
                     </tr>
 
@@ -1050,8 +1026,8 @@ and is not cached, so the next call loads the script again.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="365"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:365</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="302"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:302</a></div>
                         </td>
                     </tr>
 
@@ -1128,8 +1104,8 @@ and is not cached, so the next call loads the script again.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="392"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:392</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="329"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:329</a></div>
                         </td>
                     </tr>
 
@@ -1223,8 +1199,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="295"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:295</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:232</a></div>
                         </td>
                     </tr>
 
@@ -1301,8 +1277,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="350"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:350</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="287"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:287</a></div>
                         </td>
                     </tr>
 
@@ -1379,8 +1355,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="335"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:335</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="272"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:272</a></div>
                         </td>
                     </tr>
 
@@ -1457,8 +1433,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -1549,8 +1525,8 @@ The original error is kept as <code>cause</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:118</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -1558,8 +1534,8 @@ The original error is kept as <code>cause</code>.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: preload.</p>
-<p>It starts loading the rdfstore script ahead of the first query.
-Errors are ignored here: the next query loads the script again and reports them.</p>
+<p>It starts importing the rdfstore module ahead of the first query.
+Errors are ignored here: the next query imports the module again and reports them.</p>
 </div>
 
                         <div class="io-description">
@@ -1596,8 +1572,8 @@ Errors are ignored here: the next query loads the script again and reports them.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -1670,97 +1646,12 @@ Errors are ignored here: the next query loads the script again and reports them.
     </table>
 </section>
 
-            <section data-compodoc="block-properties">
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_document"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>_document</b></span>
-                        <a href="#_document"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>inject(DOCUMENT)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:54</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly injection variable: _document.</p>
-<p>It keeps the instance of the injected DOCUMENT.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_rdfstoreLoading"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_rdfstoreLoading</b></span>
-                        <a href="#_rdfstoreLoading"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>Promise&lt;RdfStoreGlobal&gt; | null</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>null</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:61</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _rdfstoreLoading.</p>
-<p>It keeps the promise of a pending loading of the rdfstore script, or null if none is pending.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, inject, Service } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Service } from &#x27;@angular/core&#x27;;
 
 import type { Quad, Quad_Object, Quad_Predicate, Quad_Subject } from &#x27;@rdfjs/types&#x27;;
 import { DataFactory } from &#x27;n3&#x27;;
@@ -1769,7 +1660,7 @@ import { RdfTerm } from &#x27;../models/rdf.model&#x27;;
 import {
     RdfStore,
     RdfStoreConstructResponse,
-    RdfStoreGlobal,
+    RdfStoreModule,
     RdfStoreNode,
     RdfStoreSelectResponse,
     RdfStoreSelectResult,
@@ -1784,44 +1675,15 @@ import {
 const ERROR_LOCATION &#x3D; &#x27;[RdfStoreService]&#x27;;
 
 /**
- * String constant: RDFSTORE_SCRIPT_URL.
- *
- * It keeps the url of the rdfstore script, relative to the base href
- * (built as separate bundle via angular.json, not injected into the index.html).
- */
-const RDFSTORE_SCRIPT_URL &#x3D; &#x27;rdfstore.js&#x27;;
-
-/**
- * Number constant: RDFSTORE_SCRIPT_TIMEOUT_MS.
- *
- * It keeps the time after which a pending loading of the rdfstore script fails.
- */
-const RDFSTORE_SCRIPT_TIMEOUT_MS &#x3D; 30_000;
-
-/**
  * The RdfStore service.
  *
  * It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
  * executes SPARQL queries and converts the responses into RDF/JS terms.
  * It is the only place that knows the rdfstore API and response formats.
- * The rdfstore script is loaded on first use, so it is not part of the initial bundle.
+ * The rdfstore module is imported on first use, so it is a separate lazy chunk.
  */
 @Service()
 export class RdfStoreService {
-    /**
-     * Private readonly injection variable: _document.
-     *
-     * It keeps the instance of the injected DOCUMENT.
-     */
-    private readonly _document &#x3D; inject(DOCUMENT);
-
-    /**
-     * Private variable: _rdfstoreLoading.
-     *
-     * It keeps the promise of a pending loading of the rdfstore script, or null if none is pending.
-     */
-    private _rdfstoreLoading: Promise&lt;RdfStoreGlobal&gt; | null &#x3D; null;
-
     /**
      * Public method: construct.
      *
@@ -1872,8 +1734,8 @@ export class RdfStoreService {
     /**
      * Public method: preload.
      *
-     * It starts loading the rdfstore script ahead of the first query.
-     * Errors are ignored here: the next query loads the script again and reports them.
+     * It starts importing the rdfstore module ahead of the first query.
+     * Errors are ignored here: the next query imports the module again and reports them.
      *
      * @returns {Promise&lt;void&gt;} A promise that resolves when the loading has settled.
      */
@@ -1924,61 +1786,27 @@ export class RdfStoreService {
     /**
      * Private method: _loadRdfstore.
      *
-     * It gets the global rdfstore and loads its script once if it is not available yet.
-     * Parallel calls share the pending loading. A failed loading removes the script
-     * and is not cached, so the next call loads the script again.
+     * It imports the rdfstore module and converts a failed import into an Error of the service.
+     * The module loader caches the module and shares pending imports,
+     * so only the first call loads the chunk.
      *
-     * @returns {Promise&lt;RdfStoreGlobal&gt;} A promise of the global rdfstore.
+     * @returns {Promise&lt;RdfStoreModule&gt;} A promise of the rdfstore module.
      */
-    private _loadRdfstore(): Promise&lt;RdfStoreGlobal&gt; {
-        const rdfstore &#x3D; this._getGlobalRdfstore();
-        if (rdfstore) {
-            return Promise.resolve(rdfstore);
-        }
-
-        this._rdfstoreLoading ??&#x3D; new Promise&lt;RdfStoreGlobal&gt;((resolve, reject) &#x3D;&gt; {
-            const script &#x3D; this._document.createElement(&#x27;script&#x27;);
-            const fail &#x3D; (message: string): void &#x3D;&gt; {
-                script.remove();
-                reject(this._error(message));
-            };
-            const timeoutId &#x3D; setTimeout(
-                () &#x3D;&gt; fail(&#x60;Timed out loading the rdfstore script (${RDFSTORE_SCRIPT_URL}).&#x60;),
-                RDFSTORE_SCRIPT_TIMEOUT_MS
-            );
-
-            script.src &#x3D; RDFSTORE_SCRIPT_URL;
-            script.addEventListener(&#x27;load&#x27;, () &#x3D;&gt; {
-                clearTimeout(timeoutId);
-                const loadedRdfstore &#x3D; this._getGlobalRdfstore();
-                if (loadedRdfstore) {
-                    resolve(loadedRdfstore);
-                } else {
-                    fail(&#x27;rdfstore is not available in the current runtime.&#x27;);
-                }
-            });
-            script.addEventListener(&#x27;error&#x27;, () &#x3D;&gt; {
-                clearTimeout(timeoutId);
-                fail(&#x60;Failed to load the rdfstore script (${RDFSTORE_SCRIPT_URL}).&#x60;);
-            });
-            this._document.head.appendChild(script);
-        }).finally(() &#x3D;&gt; {
-            this._rdfstoreLoading &#x3D; null;
+    private _loadRdfstore(): Promise&lt;RdfStoreModule&gt; {
+        return this._importRdfstore().catch((err: unknown) &#x3D;&gt; {
+            throw this._toError(err, &#x27;Failed to import the rdfstore module.&#x27;);
         });
-
-        return this._rdfstoreLoading;
     }
 
     /**
-     * Private method: _getGlobalRdfstore.
+     * Private method: _importRdfstore.
      *
-     * It gets the global rdfstore, if available.
+     * It imports the rdfstore module.
      *
-     * @returns {RdfStoreGlobal | undefined} The global rdfstore or undefined.
+     * @returns {Promise&lt;RdfStoreModule&gt;} A promise of the rdfstore module.
      */
-    private _getGlobalRdfstore(): RdfStoreGlobal | undefined {
-        const rdfstore &#x3D; (globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore;
-        return rdfstore?.create ? rdfstore : undefined;
+    private _importRdfstore(): Promise&lt;RdfStoreModule&gt; {
+        return import(&#x27;rdfstore&#x27;);
     }
 
     /**

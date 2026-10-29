@@ -462,12 +462,6 @@
                             <a href="#RDFS_LABEL" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/term.utils.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>RDFS_LABEL</b>&nbsp;&nbsp;&nbsp;(src/.../term.utils.ts)</span></a>
                         </li>
                         <li>
-                            <a href="#RDFSTORE_SCRIPT_TIMEOUT_MS" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>RDFSTORE_SCRIPT_TIMEOUT_MS</b>&nbsp;&nbsp;&nbsp;(src/.../rdf-store.service.ts)</span></a>
-                        </li>
-                        <li>
-                            <a href="#RDFSTORE_SCRIPT_URL" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>RDFSTORE_SCRIPT_URL</b>&nbsp;&nbsp;&nbsp;(src/.../rdf-store.service.ts)</span></a>
-                        </li>
-                        <li>
                             <a href="#RESULT_GRAPH_UTILS" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/result-graph.utils.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>RESULT_GRAPH_UTILS</b>&nbsp;&nbsp;&nbsp;(src/.../result-graph.utils.ts)</span></a>
                         </li>
                         <li>
@@ -1072,7 +1066,7 @@ http client (with loading interceptor), locale and the initialization of the edi
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.1.0-8-ge8cb7276c&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.1.0-9-gd846fd0ae&#x27;</code>
                     </td>
                 </tr>
 
@@ -3289,7 +3283,7 @@ to store graph images data.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The routes of the EditionGraph.</p>
-<p>The rdfstore script starts loading when the route is first activated,
+<p>The rdfstore module starts loading when the route is first activated,
 in parallel with the graph data.</p>
 </div>
                 </td>
@@ -4711,73 +4705,6 @@ to define the available labels for the edition types.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>String constant: ERROR_LOCATION.</p>
 <p>It keeps the location prefix of all error messages of the service.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="RDFSTORE_SCRIPT_TIMEOUT_MS"></a>
-                    <span class="name">
-                        <span ><b>RDFSTORE_SCRIPT_TIMEOUT_MS</b></span>
-                        <a href="#RDFSTORE_SCRIPT_TIMEOUT_MS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>30_000</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Number constant: RDFSTORE_SCRIPT_TIMEOUT_MS.</p>
-<p>It keeps the time after which a pending loading of the rdfstore script fails.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="RDFSTORE_SCRIPT_URL"></a>
-                    <span class="name">
-                        <span ><b>RDFSTORE_SCRIPT_URL</b></span>
-                        <a href="#RDFSTORE_SCRIPT_URL"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;rdfstore.js&#x27;</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>String constant: RDFSTORE_SCRIPT_URL.</p>
-<p>It keeps the url of the rdfstore script, relative to the base href
-(built as separate bundle via angular.json, not injected into the index.html).</p>
 </div>
                 </td>
             </tr>

@@ -1043,7 +1043,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/RdfStoreConstructResponse.html" data-type="entity-link" >RdfStoreConstructResponse</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RdfStoreGlobal.html" data-type="entity-link" >RdfStoreGlobal</a>
+                                <a href="interfaces/RdfStoreModule.html" data-type="entity-link" >RdfStoreModule</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/RdfStoreNode.html" data-type="entity-link" >RdfStoreNode</a>
