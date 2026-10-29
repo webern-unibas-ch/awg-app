@@ -50,12 +50,12 @@
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
                 "contents": [
                     {
                         "item": "M 41 Sk1",
@@ -451,12 +451,12 @@
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift"]
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
                 "contents": [
                     {
                         "item": "M 34",

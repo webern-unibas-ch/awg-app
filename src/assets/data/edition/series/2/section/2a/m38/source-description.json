@@ -50,12 +50,12 @@
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
                 "contents": [
                     {
                         "item": "M 34 Sk1",
@@ -701,12 +701,12 @@
                     "main": "schwarze Tinte, Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
                 "contents": [
                     {
                         "item": "M 34",
