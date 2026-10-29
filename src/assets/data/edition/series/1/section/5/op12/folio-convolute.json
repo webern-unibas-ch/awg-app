@@ -142,6 +142,7 @@
                             "sigleAddendum": "T. 18–22",
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 6,
                                     "endSystem": 10
                                 }
