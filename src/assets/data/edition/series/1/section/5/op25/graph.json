@@ -29,7 +29,7 @@
                     {
                         "queryType": "construct",
                         "queryLabel": "Finde alle mit Skizze \"M 317 Sk4\" verknüpften Objekte",
-                        "queryString": "PREFIX dcterms: <http://purl.org/dc/terms/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t awg:M317_Sk4 ?predicate ?object . \n }"
+                        "queryString": "PREFIX dcterms: <http://purl.org/dc/terms/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT { \n\t ?subject ?predicate ?object . \n } \n WHERE { \n\t { ?subject ?predicate ?object . FILTER (?subject = awg:M317_Sk4) } \n\t UNION \n\t { ?subject ?predicate ?object . FILTER (?object = awg:M317_Sk4) } \n }"
                     },
                     {
                         "queryType": "construct",
@@ -69,7 +69,7 @@
                     {
                         "queryType": "select",
                         "queryLabel": "Finde alle mit Skizze \"M 317 Sk4\" verknüpften Objekte",
-                        "queryString": "PREFIX dcterms: <http://purl.org/dc/terms/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t awg:M317_Sk4 ?predicate ?object . \n }"
+                        "queryString": "PREFIX dcterms: <http://purl.org/dc/terms/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t { ?subject ?predicate ?object . FILTER (?subject = awg:M317_Sk4) } \n\t UNION \n\t { ?subject ?predicate ?object . FILTER (?object = awg:M317_Sk4) } \n }"
                     },
                     {
                         "queryType": "select",
