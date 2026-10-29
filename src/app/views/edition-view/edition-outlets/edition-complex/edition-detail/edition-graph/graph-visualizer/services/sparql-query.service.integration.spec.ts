@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe } from '@testing/expect-helper';
-import { createRealRdfstore, RDFSTORE_INTEGRATION_TIMEOUT_MS, setGlobalRdfstore } from '@testing/rdfstore-helper';
+import { RDFSTORE_INTEGRATION_TIMEOUT_MS } from '@testing/rdfstore-helper';
 
 import { GraphList, GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
-import { RdfStoreGlobal } from '../rdf-store/rdf-store.model';
 import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
 import { SparqlQueryService } from './sparql-query.service';
 
@@ -19,27 +18,18 @@ describe(
     () => {
         let service: SparqlQueryService;
 
-        let realRdfstore: RdfStoreGlobal;
         let turtle: string;
         let queryList: GraphQuery[];
 
         beforeAll(() => {
-            realRdfstore = createRealRdfstore();
-
             const graph = (graphDataOp25 as GraphList).graph[0];
             turtle = graph.rdfData.triples;
             queryList = graph.rdfData.queryList;
         });
 
         beforeEach(() => {
-            setGlobalRdfstore(realRdfstore);
-
             TestBed.configureTestingModule({});
             service = TestBed.inject(SparqlQueryService);
-        });
-
-        afterEach(() => {
-            setGlobalRdfstore(undefined);
         });
 
         describe('#parseTurtle()', () => {

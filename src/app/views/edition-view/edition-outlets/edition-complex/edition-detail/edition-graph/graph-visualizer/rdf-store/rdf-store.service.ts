@@ -1,4 +1,4 @@
-import { DOCUMENT, inject, Service } from '@angular/core';
+import { Service } from '@angular/core';
 
 import type { Quad, Quad_Object, Quad_Predicate, Quad_Subject } from '@rdfjs/types';
 import { DataFactory } from 'n3';
@@ -7,7 +7,7 @@ import { RdfTerm } from '../models/rdf.model';
 import {
     RdfStore,
     RdfStoreConstructResponse,
-    RdfStoreGlobal,
+    RdfStoreModule,
     RdfStoreNode,
     RdfStoreSelectResponse,
     RdfStoreSelectResult,
@@ -22,44 +22,15 @@ import {
 const ERROR_LOCATION = '[RdfStoreService]';
 
 /**
- * String constant: RDFSTORE_SCRIPT_URL.
- *
- * It keeps the url of the rdfstore script, relative to the base href
- * (built as separate bundle via angular.json, not injected into the index.html).
- */
-const RDFSTORE_SCRIPT_URL = 'rdfstore.js';
-
-/**
- * Number constant: RDFSTORE_SCRIPT_TIMEOUT_MS.
- *
- * It keeps the time after which a pending loading of the rdfstore script fails.
- */
-const RDFSTORE_SCRIPT_TIMEOUT_MS = 30_000;
-
-/**
  * The RdfStore service.
  *
  * It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
  * executes SPARQL queries and converts the responses into RDF/JS terms.
  * It is the only place that knows the rdfstore API and response formats.
- * The rdfstore script is loaded on first use, so it is not part of the initial bundle.
+ * The rdfstore module is imported on first use, so it is a separate lazy chunk.
  */
 @Service()
 export class RdfStoreService {
-    /**
-     * Private readonly injection variable: _document.
-     *
-     * It keeps the instance of the injected DOCUMENT.
-     */
-    private readonly _document = inject(DOCUMENT);
-
-    /**
-     * Private variable: _rdfstoreLoading.
-     *
-     * It keeps the promise of a pending loading of the rdfstore script, or null if none is pending.
-     */
-    private _rdfstoreLoading: Promise<RdfStoreGlobal> | null = null;
-
     /**
      * Public method: construct.
      *
@@ -110,8 +81,8 @@ export class RdfStoreService {
     /**
      * Public method: preload.
      *
-     * It starts loading the rdfstore script ahead of the first query.
-     * Errors are ignored here: the next query loads the script again and reports them.
+     * It starts importing the rdfstore module ahead of the first query.
+     * Errors are ignored here: the next query imports the module again and reports them.
      *
      * @returns {Promise<void>} A promise that resolves when the loading has settled.
      */
@@ -162,61 +133,27 @@ export class RdfStoreService {
     /**
      * Private method: _loadRdfstore.
      *
-     * It gets the global rdfstore and loads its script once if it is not available yet.
-     * Parallel calls share the pending loading. A failed loading removes the script
-     * and is not cached, so the next call loads the script again.
+     * It imports the rdfstore module and converts a failed import into an Error of the service.
+     * The module loader caches the module and shares pending imports,
+     * so only the first call loads the chunk.
      *
-     * @returns {Promise<RdfStoreGlobal>} A promise of the global rdfstore.
+     * @returns {Promise<RdfStoreModule>} A promise of the rdfstore module.
      */
-    private _loadRdfstore(): Promise<RdfStoreGlobal> {
-        const rdfstore = this._getGlobalRdfstore();
-        if (rdfstore) {
-            return Promise.resolve(rdfstore);
-        }
-
-        this._rdfstoreLoading ??= new Promise<RdfStoreGlobal>((resolve, reject) => {
-            const script = this._document.createElement('script');
-            const fail = (message: string): void => {
-                script.remove();
-                reject(this._error(message));
-            };
-            const timeoutId = setTimeout(
-                () => fail(`Timed out loading the rdfstore script (${RDFSTORE_SCRIPT_URL}).`),
-                RDFSTORE_SCRIPT_TIMEOUT_MS
-            );
-
-            script.src = RDFSTORE_SCRIPT_URL;
-            script.addEventListener('load', () => {
-                clearTimeout(timeoutId);
-                const loadedRdfstore = this._getGlobalRdfstore();
-                if (loadedRdfstore) {
-                    resolve(loadedRdfstore);
-                } else {
-                    fail('rdfstore is not available in the current runtime.');
-                }
-            });
-            script.addEventListener('error', () => {
-                clearTimeout(timeoutId);
-                fail(`Failed to load the rdfstore script (${RDFSTORE_SCRIPT_URL}).`);
-            });
-            this._document.head.appendChild(script);
-        }).finally(() => {
-            this._rdfstoreLoading = null;
+    private _loadRdfstore(): Promise<RdfStoreModule> {
+        return this._importRdfstore().catch((err: unknown) => {
+            throw this._toError(err, 'Failed to import the rdfstore module.');
         });
-
-        return this._rdfstoreLoading;
     }
 
     /**
-     * Private method: _getGlobalRdfstore.
+     * Private method: _importRdfstore.
      *
-     * It gets the global rdfstore, if available.
+     * It imports the rdfstore module.
      *
-     * @returns {RdfStoreGlobal | undefined} The global rdfstore or undefined.
+     * @returns {Promise<RdfStoreModule>} A promise of the rdfstore module.
      */
-    private _getGlobalRdfstore(): RdfStoreGlobal | undefined {
-        const rdfstore = (globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore;
-        return rdfstore?.create ? rdfstore : undefined;
+    private _importRdfstore(): Promise<RdfStoreModule> {
+        return import('rdfstore');
     }
 
     /**

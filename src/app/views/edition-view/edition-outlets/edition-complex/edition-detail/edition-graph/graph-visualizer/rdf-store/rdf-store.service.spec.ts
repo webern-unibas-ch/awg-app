@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, MockInstance, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
@@ -10,7 +10,7 @@ import {
     createMockRdfstore,
     createRdfStoreNode,
     createRdfStoreToken,
-    setGlobalRdfstore,
+    spyOnRdfstoreImport,
 } from '@testing/rdfstore-helper';
 
 import { RdfStoreService } from './rdf-store.service';
@@ -31,7 +31,6 @@ describe('RdfStoreService (DONE)', () => {
     });
 
     afterEach(() => {
-        setGlobalRdfstore(undefined);
         vi.restoreAllMocks();
     });
 
@@ -46,7 +45,7 @@ describe('RdfStoreService (DONE)', () => {
 
         it('... should load the turtle data and execute the query in a new store', async () => {
             const { rdfstore, store } = createMockRdfstore({ response: { triples: [] } });
-            setGlobalRdfstore(rdfstore);
+            spyOnRdfstoreImport(service, rdfstore);
 
             await service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }');
 
@@ -84,7 +83,7 @@ describe('RdfStoreService (DONE)', () => {
                     object: createRdfStoreNode('Literal', '6', { datatype: { nominalValue: XSD_INTEGER } }),
                 },
             ];
-            setGlobalRdfstore(createMockRdfstore({ response: { triples } }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response: { triples } }).rdfstore);
 
             const quads = await service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }');
 
@@ -102,10 +101,10 @@ describe('RdfStoreService (DONE)', () => {
         });
 
         it('... should resolve an empty array if the response has no triples', async () => {
-            setGlobalRdfstore(createMockRdfstore({ response: {} }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response: {} }).rdfstore);
             expectToEqual(await service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }'), []);
 
-            setGlobalRdfstore(createMockRdfstore({ response: null }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response: null }).rdfstore);
             expectToEqual(await service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }'), []);
         });
 
@@ -117,7 +116,7 @@ describe('RdfStoreService (DONE)', () => {
                     object: createRdfStoreNode('NamedNode', `${EX}b`),
                 },
             ];
-            setGlobalRdfstore(createMockRdfstore({ response: { triples } }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response: { triples } }).rdfstore);
 
             await expect(service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }')).rejects.toThrow(
                 '[RdfStoreService] Invalid subject: literal "x".'
@@ -132,7 +131,7 @@ describe('RdfStoreService (DONE)', () => {
                     object: createRdfStoreNode('NamedNode', `${EX}b`),
                 },
             ];
-            setGlobalRdfstore(createMockRdfstore({ response: { triples } }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response: { triples } }).rdfstore);
 
             await expect(service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }')).rejects.toThrow(
                 '[RdfStoreService] Invalid predicate: BlankNode "1".'
@@ -147,7 +146,7 @@ describe('RdfStoreService (DONE)', () => {
                     object: createRdfStoreNode('NamedNode', `${EX}b`),
                 },
             ];
-            setGlobalRdfstore(createMockRdfstore({ response: { triples } }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response: { triples } }).rdfstore);
 
             await expect(service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }')).rejects.toThrow(
                 '[RdfStoreService] Unknown node type: Variable.'
@@ -160,7 +159,7 @@ describe('RdfStoreService (DONE)', () => {
             expect(service.preload).toBeDefined();
         });
 
-        it('... should start loading the rdfstore script', async () => {
+        it('... should start loading the rdfstore module', async () => {
             const loadRdfstoreSpy = vi
                 .spyOn(service as any, '_loadRdfstore')
                 .mockResolvedValue(createMockRdfstore().rdfstore);
@@ -184,7 +183,7 @@ describe('RdfStoreService (DONE)', () => {
 
         it('... should return the variables of the first row (also unbound ones)', async () => {
             const response = [{ s: createRdfStoreToken('uri', `${EX}a`), x: null }];
-            setGlobalRdfstore(createMockRdfstore({ response }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response }).rdfstore);
 
             const result = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
 
@@ -203,7 +202,7 @@ describe('RdfStoreService (DONE)', () => {
                     x: null,
                 },
             ];
-            setGlobalRdfstore(createMockRdfstore({ response }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response }).rdfstore);
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
             const binding = bindings[0];
@@ -218,7 +217,10 @@ describe('RdfStoreService (DONE)', () => {
         });
 
         it('... should keep blank node values without `_:` prefix as id', async () => {
-            setGlobalRdfstore(createMockRdfstore({ response: [{ b: createRdfStoreToken('blank', '8') }] }).rdfstore);
+            spyOnRdfstoreImport(
+                service,
+                createMockRdfstore({ response: [{ b: createRdfStoreToken('blank', '8') }] }).rdfstore
+            );
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
 
@@ -226,7 +228,10 @@ describe('RdfStoreService (DONE)', () => {
         });
 
         it('... should return frozen bindings', async () => {
-            setGlobalRdfstore(createMockRdfstore({ response: [{ s: createRdfStoreToken('uri', `${EX}a`) }] }).rdfstore);
+            spyOnRdfstoreImport(
+                service,
+                createMockRdfstore({ response: [{ s: createRdfStoreToken('uri', `${EX}a`) }] }).rdfstore
+            );
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
 
@@ -234,15 +239,16 @@ describe('RdfStoreService (DONE)', () => {
         });
 
         it('... should resolve empty variables and bindings for an empty or missing response', async () => {
-            setGlobalRdfstore(createMockRdfstore({ response: [] }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response: [] }).rdfstore);
             expectToEqual(await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }'), { variables: [], bindings: [] });
 
-            setGlobalRdfstore(createMockRdfstore({ response: null }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ response: null }).rdfstore);
             expectToEqual(await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }'), { variables: [], bindings: [] });
         });
 
         it('... should reject for an unknown token type', async () => {
-            setGlobalRdfstore(
+            spyOnRdfstoreImport(
+                service,
                 createMockRdfstore({ response: [{ s: createRdfStoreToken('variable' as any, 'x') }] }).rdfstore
             );
 
@@ -257,7 +263,7 @@ describe('RdfStoreService (DONE)', () => {
 
         it('... should prefix the message of Error instances and keep them as cause', async () => {
             const error = new Error('Parse error at line 3');
-            setGlobalRdfstore(createMockRdfstore({ loadError: error }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ loadError: error }).rdfstore);
 
             await expect(service.select(TURTLE, query)).rejects.toMatchObject({
                 message: '[RdfStoreService] Parse error at line 3',
@@ -266,7 +272,10 @@ describe('RdfStoreService (DONE)', () => {
         });
 
         it('... should prefix string errors and keep them as cause', async () => {
-            setGlobalRdfstore(createMockRdfstore({ executeError: 'Unknown filter expression type' }).rdfstore);
+            spyOnRdfstoreImport(
+                service,
+                createMockRdfstore({ executeError: 'Unknown filter expression type' }).rdfstore
+            );
 
             await expect(service.select(TURTLE, query)).rejects.toMatchObject({
                 message: '[RdfStoreService] Unknown filter expression type',
@@ -276,7 +285,7 @@ describe('RdfStoreService (DONE)', () => {
 
         it('... should use the fallback message for Error instances without message', async () => {
             const error = new Error('');
-            setGlobalRdfstore(createMockRdfstore({ loadError: error }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ loadError: error }).rdfstore);
 
             await expect(service.select(TURTLE, query)).rejects.toMatchObject({
                 message: '[RdfStoreService] An unknown error occurred while loading the triples.',
@@ -284,33 +293,20 @@ describe('RdfStoreService (DONE)', () => {
             });
         });
 
-        it('... should reject with the error of a failed script loading without cause', async () => {
-            // Keeps the script out of the document, so neither jsdom nor the browser fetches it
-            const appendChildSpy = vi.spyOn(document.head, 'appendChild').mockImplementation(node => node);
-
-            const selection = service.select(TURTLE, query);
-            (appendChildSpy.mock.calls[0][0] as HTMLScriptElement).dispatchEvent(new Event('error'));
-            const error = await selection.catch((err: unknown) => err);
-
-            expect(error).toBeInstanceOf(Error);
-            expectToBe((error as Error).message, '[RdfStoreService] Failed to load the rdfstore script (rdfstore.js).');
-            expect((error as Error).cause).toBeUndefined();
-        });
-
         it('... should use a fallback message for other errors per step and keep them as cause', async () => {
             const createError = { code: 1 };
-            setGlobalRdfstore(createMockRdfstore({ createError }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ createError }).rdfstore);
             await expect(service.select(TURTLE, query)).rejects.toMatchObject({
                 message: '[RdfStoreService] An unknown error occurred while creating the store.',
                 cause: createError,
             });
 
-            setGlobalRdfstore(createMockRdfstore({ loadError: { code: 2 } }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ loadError: { code: 2 } }).rdfstore);
             await expect(service.select(TURTLE, query)).rejects.toThrow(
                 '[RdfStoreService] An unknown error occurred while loading the triples.'
             );
 
-            setGlobalRdfstore(createMockRdfstore({ executeError: { code: 3 } }).rdfstore);
+            spyOnRdfstoreImport(service, createMockRdfstore({ executeError: { code: 3 } }).rdfstore);
             await expect(service.select(TURTLE, query)).rejects.toThrow(
                 '[RdfStoreService] An unknown error occurred while executing the query.'
             );
@@ -318,113 +314,55 @@ describe('RdfStoreService (DONE)', () => {
     });
 
     describe('#_loadRdfstore()', () => {
-        let appendChildSpy: MockInstance<(node: Node) => Node>;
-
-        const getAppendedScripts = (): HTMLScriptElement[] =>
-            appendChildSpy.mock.calls.map(([node]) => node as HTMLScriptElement);
-
-        beforeEach(() => {
-            // Fakes the timeout of pending loadings, so it neither outlasts nor slows down the tests
-            vi.useFakeTimers();
-            // Keeps the script out of the document, so neither jsdom nor the browser fetches it
-            appendChildSpy = vi.spyOn(document.head, 'appendChild').mockImplementation(node => node);
-        });
-
-        afterEach(() => {
-            vi.useRealTimers();
-        });
-
         it('... should have a method `_loadRdfstore`', () => {
             expect(service['_loadRdfstore']).toBeDefined();
         });
 
-        it('... should return the global rdfstore without loading the script if it is available', async () => {
+        it('... should return the imported rdfstore', async () => {
             const { rdfstore } = createMockRdfstore();
-            setGlobalRdfstore(rdfstore);
+            const importSpy = spyOnRdfstoreImport(service, rdfstore);
 
             const loadedRdfstore = await service['_loadRdfstore']();
 
             expectToBe(loadedRdfstore, rdfstore);
-            expectSpyCall(appendChildSpy, 0);
+            expectSpyCall(importSpy, 1);
         });
 
-        it('... should load the script once and return the global rdfstore after loading', async () => {
+        it('... should reject with the error of a failed import and keep it as cause', async () => {
+            const error = new Error('Failed to fetch dynamically imported module');
+            spyOnRdfstoreImport(service).mockRejectedValue(error);
+
+            await expect(service['_loadRdfstore']()).rejects.toMatchObject({
+                message: '[RdfStoreService] Failed to fetch dynamically imported module',
+                cause: error,
+            });
+        });
+
+        it('... should use a fallback message for a failed import without message', async () => {
+            spyOnRdfstoreImport(service).mockRejectedValue({ code: 1 });
+
+            await expect(service['_loadRdfstore']()).rejects.toThrow(
+                '[RdfStoreService] Failed to import the rdfstore module.'
+            );
+        });
+
+        it('... should import again after a failed import', async () => {
             const { rdfstore } = createMockRdfstore();
+            const importSpy = spyOnRdfstoreImport(service)
+                .mockRejectedValueOnce(new Error('Failed'))
+                .mockResolvedValueOnce(rdfstore);
 
-            const firstLoading = service['_loadRdfstore']();
-            const secondLoading = service['_loadRdfstore']();
-            const scripts = getAppendedScripts();
-            setGlobalRdfstore(rdfstore);
-            scripts[0].dispatchEvent(new Event('load'));
-            const loadedRdfstores = await Promise.all([firstLoading, secondLoading]);
+            await expect(service['_loadRdfstore']()).rejects.toThrow('[RdfStoreService] Failed');
+            const loadedRdfstore = await service['_loadRdfstore']();
 
-            expectSpyCall(appendChildSpy, 1);
-            expectToBe(scripts[0].getAttribute('src'), 'rdfstore.js');
-            expectToEqual(loadedRdfstores, [rdfstore, rdfstore]);
+            expectToBe(loadedRdfstore, rdfstore);
+            expectSpyCall(importSpy, 2);
         });
+    });
 
-        it('... should hold no pending loading after a successful loading', async () => {
-            const loading = service['_loadRdfstore']();
-            setGlobalRdfstore(createMockRdfstore().rdfstore);
-            getAppendedScripts()[0].dispatchEvent(new Event('load'));
-            await loading;
-
-            expectToBe(service['_rdfstoreLoading'], null);
-        });
-
-        it('... should reject and remove the script if rdfstore is not available after loading the script', async () => {
-            const loading = service['_loadRdfstore']();
-            const script = getAppendedScripts()[0];
-            const removeSpy = vi.spyOn(script, 'remove');
-            script.dispatchEvent(new Event('load'));
-
-            await expect(loading).rejects.toThrow(
-                '[RdfStoreService] rdfstore is not available in the current runtime.'
-            );
-            expectSpyCall(removeSpy, 1);
-        });
-
-        it('... should reject and remove the script if it fails to load, and load it again on the next call', async () => {
-            const failedLoading = service['_loadRdfstore']();
-            const script = getAppendedScripts()[0];
-            const removeSpy = vi.spyOn(script, 'remove');
-            script.dispatchEvent(new Event('error'));
-
-            await expect(failedLoading).rejects.toThrow(
-                '[RdfStoreService] Failed to load the rdfstore script (rdfstore.js).'
-            );
-            expectSpyCall(removeSpy, 1);
-
-            void service['_loadRdfstore']();
-
-            expectSpyCall(appendChildSpy, 2);
-        });
-
-        it('... should reject and remove the script if the loading times out, and load it again on the next call', async () => {
-            const pendingLoading = service['_loadRdfstore']();
-            const removeSpy = vi.spyOn(getAppendedScripts()[0], 'remove');
-            vi.advanceTimersByTime(30_000);
-
-            await expect(pendingLoading).rejects.toThrow(
-                '[RdfStoreService] Timed out loading the rdfstore script (rdfstore.js).'
-            );
-            expectSpyCall(removeSpy, 1);
-
-            void service['_loadRdfstore']();
-
-            expectSpyCall(appendChildSpy, 2);
-        });
-
-        it('... should not time out after a successful loading', async () => {
-            const loading = service['_loadRdfstore']();
-            const script = getAppendedScripts()[0];
-            const removeSpy = vi.spyOn(script, 'remove');
-            setGlobalRdfstore(createMockRdfstore().rdfstore);
-            script.dispatchEvent(new Event('load'));
-            await loading;
-            vi.advanceTimersByTime(30_000);
-
-            expectSpyCall(removeSpy, 0);
+    describe('#_importRdfstore()', () => {
+        it('... should have a method `_importRdfstore`', () => {
+            expect(service['_importRdfstore']).toBeDefined();
         });
     });
 });
