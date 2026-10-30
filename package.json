@@ -84,6 +84,7 @@
         "check:cycles": "madge --circular --extensions ts --ts-config tsconfig.json src",
         "check:glyphs": "node scripts/check-glyphs.js",
         "check:snippets": "node scripts/check-snippets.js",
+        "check:sources": "node scripts/check-shared-sources.js",
         "-- DEPLOY --": "",
         "pre-release": "commit-and-tag-version -a",
         "update-appversion": "sh ./version.sh",
