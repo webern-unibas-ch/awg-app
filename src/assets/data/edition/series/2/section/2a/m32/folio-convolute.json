@@ -1086,6 +1086,7 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
                         "height": 347,
