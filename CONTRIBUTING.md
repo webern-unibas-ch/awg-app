@@ -108,9 +108,9 @@ Scopes (specific to this project, not part of the Angular convention):
     - `edition`
     - `home`
     - `page-not-found`
-    - `search`
     - `shared`
     - `side-info`
+    - `statistics`
     - `structure`
     - `views`
 
@@ -118,6 +118,7 @@ Scopes (specific to this project, not part of the Angular convention):
     - `deps`
     - `deps-dev`
     - `gh-actions`
+    - `scripts`
     - `testing`
 
 - related to documentation

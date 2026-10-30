@@ -18,12 +18,13 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn check:cycles`: madge check for circular imports (incl. path aliases; runs in CI)
 - `yarn check:glyphs`: checks the glyph chain edition data → `EDITION_GLYPHS_DATA` → glyph font subset (manifest, sha256); runs in CI and pre-commit
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
+- `yarn check:sources`: reports sources described in several complexes and their differences (HTML in `reports/`, ignored); `--since <ref>` adds the changed fields since a git ref, `--open` opens the report in the browser
 
 Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; afterwards the pre-commit hook runs `check:glyphs` if glyph files are staged.
 
 ## Git
 
-- Conventional Commits (commitlint, `@commitlint/config-angular`), header **at most 72 characters** (also PR titles, since PRs are squash-merged). **Scope is mandatory**: `app, assets, contact, core, deps, deps-dev, edition, gh-actions, home, page-not-found, search, shared, side-info, statistics, structure, testing, views, CHANGELOG, CONTRIBUTING, LICENSE, README`. CHANGELOG and versions are generated from commits.
+- Conventional Commits (commitlint, `@commitlint/config-angular`), header **at most 72 characters** (also PR titles, since PRs are squash-merged). **Scope is mandatory**: `app, assets, contact, core, deps, deps-dev, edition, gh-actions, home, page-not-found, scripts, shared, side-info, statistics, structure, testing, views, CHANGELOG, CONTRIBUTING, LICENSE, README`. CHANGELOG and versions are generated from commits.
 - Gitflow: feature branches from `develop`, PRs to `develop`; `main` holds releases. Releases (and the back-merge into `develop`) are PRs with merge commits, not squashed: see [CONTRIBUTING.md#release-process](CONTRIBUTING.md#release-process).
 - **Never commit, push or create PRs unless explicitly asked, and don't offer to.** Leave changes in the working tree and propose a commit message. Don't stage or unstage (delete in the working tree, no `git rm`; `git mv` is fine). For multi-step work, stop at each buildable step with its files and message.
 
