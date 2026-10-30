@@ -17,7 +17,7 @@ module.exports = {
                 'gh-actions',
                 'home',
                 'page-not-found',
-                'search',
+                'scripts',
                 'shared',
                 'side-info',
                 'statistics',

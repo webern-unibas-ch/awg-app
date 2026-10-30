@@ -23,7 +23,7 @@ Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; 
 
 ## Git
 
-- Conventional Commits (commitlint, `@commitlint/config-angular`), header **at most 72 characters** (also PR titles, since PRs are squash-merged). **Scope is mandatory**: `app, assets, contact, core, deps, deps-dev, edition, gh-actions, home, page-not-found, search, shared, side-info, statistics, structure, testing, views, CHANGELOG, CONTRIBUTING, LICENSE, README`. CHANGELOG and versions are generated from commits.
+- Conventional Commits (commitlint, `@commitlint/config-angular`), header **at most 72 characters** (also PR titles, since PRs are squash-merged). **Scope is mandatory**: `app, assets, contact, core, deps, deps-dev, edition, gh-actions, home, page-not-found, scripts, shared, side-info, statistics, structure, testing, views, CHANGELOG, CONTRIBUTING, LICENSE, README`. CHANGELOG and versions are generated from commits.
 - Gitflow: feature branches from `develop`, PRs to `develop`; `main` holds releases. Releases (and the back-merge into `develop`) are PRs with merge commits, not squashed: see [CONTRIBUTING.md#release-process](CONTRIBUTING.md#release-process).
 - **Never commit, push or create PRs unless explicitly asked, and don't offer to.** Leave changes in the working tree and propose a commit message. Don't stage or unstage (delete in the working tree, no `git rm`; `git mv` is fine). For multi-step work, stop at each buildable step with its files and message.
 
