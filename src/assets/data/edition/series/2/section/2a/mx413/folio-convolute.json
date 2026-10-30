@@ -161,6 +161,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 9,
                                     "endSystem": 10
                                 }
@@ -174,6 +175,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 11,
                                     "endSystem": 12
                                 }
@@ -201,6 +203,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 15,
                                     "endSystem": 16
                                 }
@@ -295,6 +298,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 1,
                                     "endSystem": 2
                                 }
@@ -309,6 +313,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 3,
                                     "endSystem": 4
                                 }
@@ -351,6 +356,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 7,
                                     "endSystem": 8
                                 }
@@ -378,6 +384,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 10,
                                     "endSystem": 11
                                 }

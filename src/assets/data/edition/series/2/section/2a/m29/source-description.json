@@ -17,12 +17,12 @@
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
                 "contents": [
                     {
                         "item": "M 22 Sk29",
@@ -376,12 +376,12 @@
                     "main": "Bleistift",
                     "secondary": ["schwarze Tinte"]
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
                 "contents": [
                     {
                         "item": "M 29",

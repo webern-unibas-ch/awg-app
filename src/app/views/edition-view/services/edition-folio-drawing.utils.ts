@@ -164,13 +164,6 @@ const CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET = 5;
 const CONTENT_SEGMENT_MAX_GAP_SHARE = 0.3;
 
 /**
- * Type: ValidFolioContent.
- *
- * A folio content with its segments (checked by {@link isValidFolioContent}).
- */
-type ValidFolioContent = FolioContent & { segments: FolioSegment[] };
-
-/**
  * Interface: FolioSystemsLayout.
  *
  * The calculated systems of a folio together with
@@ -210,12 +203,12 @@ interface FolioSystemsLayout {
  * @param {number} numberOfSystems The given number of systems of the folio.
  * @returns {boolean} The result of the check.
  */
-function isValidFolioContent(content: FolioContent, numberOfSystems: number): content is ValidFolioContent {
+function isValidFolioContent(content: FolioContent, numberOfSystems: number): boolean {
     if (content.segments?.length !== 1) {
         console.error('[FolioCalculation] Content needs exactly one segment', content);
         return false;
     }
-    if (content.segments.length > (content.segmentSplit ?? 1)) {
+    if (content.segments.length > content.segmentSplit) {
         console.error('[FolioCalculation] Segments array is bigger than segmentSplit', content);
         return false;
     }
@@ -386,7 +379,7 @@ function calculateContentSegmentX(
     isStart: boolean
 ): number {
     const width = NUMBER_UTILS.roundToDecimals(systemsWidth / segmentSplit, 2);
-    const splitIndex = segment.position && segment.position <= segmentSplit ? segment.position - 1 : 0;
+    const splitIndex = segment.position <= segmentSplit ? segment.position - 1 : 0;
 
     const xValue = startX + splitIndex * width + offsetCorrection / 2;
     const correction = isStart ? 0 : width - offsetCorrection;
@@ -444,23 +437,32 @@ function calculateContentSegmentY(
  *
  * It calculates a content segment (polygon vertices, label and its center) of a given valid folio content.
  *
- * @param {ValidFolioContent} content The given valid folio content.
+ * @param {FolioContent} content The given valid folio content.
  * @param {FolioSystemsLayout} folioSystemsLayout The given calculated systems layout.
  * @param {number} segmentOffsetCorrection The given segment offset correction.
  * @returns {FolioSvgContentSegment} The calculated content segment.
  */
 function calculateContentSegment(
-    content: ValidFolioContent,
+    content: FolioContent,
     folioSystemsLayout: FolioSystemsLayout,
     segmentOffsetCorrection: number
 ): FolioSvgContentSegment {
-    const { complexId, sheetId, selectable = true, reversed = false, linkTo = '', sigle, sigleAddendum } = content;
+    const {
+        complexId,
+        sheetId,
+        selectable = true,
+        reversed = false,
+        linkTo = '',
+        sigle,
+        sigleAddendum,
+        segmentSplit,
+        segments,
+    } = content;
     const { systems } = folioSystemsLayout;
 
     // Dynamically adjust the offset correction based on the number of systems (reference: 18 systems)
     const offsetCorrection = segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.lines.length);
-    const segmentSplit = content.segmentSplit ?? 1;
-    const segment = content.segments[0];
+    const segment = segments[0];
 
     const startX = calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, true);
     const endX = calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, false);
