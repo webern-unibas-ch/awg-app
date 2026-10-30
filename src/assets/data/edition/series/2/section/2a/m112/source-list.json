@@ -3,6 +3,7 @@
         {
             "siglum": "A",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0098",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 1–3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -11,6 +12,7 @@
         {
             "siglum": "B",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0099",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 1 (<strong>B<sup>a</sup></strong>).<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 2 (<strong>B<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -19,6 +21,7 @@
         {
             "siglum": "C",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0100",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 2–3.<br />Enthält auch nicht identifizierte Skizze.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -27,6 +30,7 @@
         {
             "siglum": "D",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0101",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 2 (<strong>D<sup>a</sup></strong>).<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3 (<strong>D<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -35,6 +39,7 @@
         {
             "siglum": "E",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0102",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "Verschollen.",
             "missing": true,
@@ -44,6 +49,7 @@
         {
             "siglum": "F",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0103",
             "type": "Abschrift Friedrich Wildgans von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "Verschollen.",
             "missing": true,
@@ -53,6 +59,7 @@
         {
             "siglum": "F",
             "siglumAddendum": "R1",
+            "documentId": "awg_doc_0104",
             "type": "Reprografie der Abschrift Friedrich Wildgans von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -61,6 +68,7 @@
         {
             "siglum": "F",
             "siglumAddendum": "R2",
+            "documentId": "awg_doc_0105",
             "type": "Reprografie der Abschrift Friedrich Wildgans von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 112: Textfassung 3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
