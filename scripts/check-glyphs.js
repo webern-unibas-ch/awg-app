@@ -34,8 +34,8 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.resolve(__dirname, '..');
-const EDITION_DATA_DIR = path.join(ROOT, 'src', 'assets', 'data', 'edition');
+const { ROOT, EDITION_DATA_DIR, relPath, editionJsonFiles, readJson } = require('./check-utils');
+
 const GLYPHS_DATA_FILE = path.join(ROOT, 'src', 'app', 'views', 'edition-view', 'data', 'edition-glyphs.data.ts');
 const FONT_DIR = path.join(ROOT, 'src', 'assets', 'themes', 'fonts', 'awg-edition-glyphs');
 const MANIFEST_FILE = path.join(FONT_DIR, 'AWGEditionGlyphs.json');
@@ -50,10 +50,6 @@ const DATA_HINT = 'Add the glyph to EDITION_GLYPHS_DATA, or fix the placeholder 
 const GLYPHS_HINT = `Fix the entry in ${path.basename(GLYPHS_DATA_FILE)} (and create the subset again).`;
 const SUBSET_HINT =
     'Create the subset again with create_glyph_subset in awg-utils and copy its output into the font folder.';
-
-function relPath(filePath) {
-    return path.relative(ROOT, filePath).replace(/\\/g, '/');
-}
 
 // The sorted entries of an iterable that are not in a set (or map)
 function without(entries, excluded) {
@@ -111,9 +107,7 @@ function readEditionPlaceholders(errors) {
     let total = 0;
     let fileCount = 0;
 
-    const jsonFiles = fs.readdirSync(EDITION_DATA_DIR, { recursive: true }).filter(file => file.endsWith('.json'));
-    for (const jsonFile of jsonFiles) {
-        const filePath = path.join(EDITION_DATA_DIR, jsonFile);
+    for (const filePath of editionJsonFiles()) {
         const content = fs.readFileSync(filePath, 'utf8');
         if (!content.includes('ref.getGlyph')) continue;
 
@@ -152,7 +146,7 @@ function readEditionPlaceholders(errors) {
 function readManifest(errors) {
     let manifest;
     try {
-        manifest = JSON.parse(fs.readFileSync(MANIFEST_FILE, 'utf8'));
+        manifest = readJson(MANIFEST_FILE);
     } catch (e) {
         errors.push(`Cannot read the manifest ${relPath(MANIFEST_FILE)}: ${e.message}`);
         return null;
