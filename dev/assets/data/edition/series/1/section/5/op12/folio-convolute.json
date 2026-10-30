@@ -140,8 +140,10 @@
                             "sheetId": "M212_Sk1d",
                             "sigle": "M 212 Sk1",
                             "sigleAddendum": "T. 18–22",
+                            "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 6,
                                     "endSystem": 10
                                 }

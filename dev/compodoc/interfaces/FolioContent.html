@@ -198,13 +198,11 @@ from a folio json file.</p>
                                 </a>
                         </li>
                         <li>
-                                    <span class="modifier">Optional</span>
                                 <a href="#segments" class="reference-link ">
                                     <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">segments</span>
                                 </a>
                         </li>
                         <li>
-                                    <span class="modifier">Optional</span>
                                 <a href="#segmentSplit" class="reference-link ">
                                     <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">segmentSplit</span>
                                 </a>
@@ -414,11 +412,6 @@ from a folio json file.</p>
                             </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <i>Optional</i>
-                                </td>
-                            </tr>
 
 
 
@@ -430,7 +423,7 @@ from a folio json file.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>The folio content&#39;s optional segments array.</p>
+                            <div class="io-description"><p>The folio content&#39;s segments array.</p>
 </div>
                         </td>
                     </tr>
@@ -464,11 +457,6 @@ from a folio json file.</p>
                             </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <i>Optional</i>
-                                </td>
-                            </tr>
 
 
 
@@ -480,7 +468,7 @@ from a folio json file.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>The folio content&#39;s optional segmentSplit.</p>
+                            <div class="io-description"><p>The folio content&#39;s segmentSplit.</p>
 </div>
                         </td>
                     </tr>
@@ -814,14 +802,14 @@ export interface FolioContent {
     linkTo?: string;
 
     /**
-     * The folio content&#x27;s optional segmentSplit.
+     * The folio content&#x27;s segmentSplit.
      */
-    segmentSplit?: number;
+    segmentSplit: number;
 
     /**
-     * The folio content&#x27;s optional segments array.
+     * The folio content&#x27;s segments array.
      */
-    segments?: FolioSegment[];
+    segments: FolioSegment[];
 }
 
 /**
@@ -843,9 +831,9 @@ export interface FolioSegment {
     endSystem: number;
 
     /**
-     * The folio segment&#x27;s optional position.
+     * The folio segment&#x27;s position.
      */
-    position?: number;
+    position: number;
 
     /**
      * The folio segment&#x27;s optional position relative to the system.

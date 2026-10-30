@@ -186,7 +186,6 @@ from a folio json file.</p>
                                 </a>
                         </li>
                         <li>
-                                    <span class="modifier">Optional</span>
                                 <a href="#position" class="reference-link ">
                                     <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">position</span>
                                 </a>
@@ -286,11 +285,6 @@ from a folio json file.</p>
                             </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <i>Optional</i>
-                                </td>
-                            </tr>
 
 
 
@@ -302,7 +296,7 @@ from a folio json file.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>The folio segment&#39;s optional position.</p>
+                            <div class="io-description"><p>The folio segment&#39;s position.</p>
 </div>
                         </td>
                     </tr>
@@ -546,14 +540,14 @@ export interface FolioContent {
     linkTo?: string;
 
     /**
-     * The folio content&#x27;s optional segmentSplit.
+     * The folio content&#x27;s segmentSplit.
      */
-    segmentSplit?: number;
+    segmentSplit: number;
 
     /**
-     * The folio content&#x27;s optional segments array.
+     * The folio content&#x27;s segments array.
      */
-    segments?: FolioSegment[];
+    segments: FolioSegment[];
 }
 
 /**
@@ -575,9 +569,9 @@ export interface FolioSegment {
     endSystem: number;
 
     /**
-     * The folio segment&#x27;s optional position.
+     * The folio segment&#x27;s position.
      */
-    position?: number;
+    position: number;
 
     /**
      * The folio segment&#x27;s optional position relative to the system.
