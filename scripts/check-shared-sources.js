@@ -102,13 +102,17 @@ function appendTo(map, key, value) {
     map.get(key).push(value);
 }
 
-// Text without tags (line breaks as spaces); \s also matches non-breaking spaces
+// Text without tags (line breaks as spaces); \s also matches non-breaking spaces.
+// Tags are removed until none is left, as removing one can join the rest into a new one (e.g. <<b>x>).
+// Plain text for comparisons; the report escapes it like every other value.
 function stripTags(text) {
-    return (text ?? '')
-        .replace(/<br\s*\/?>/g, ' ')
-        .replace(/<[^>]+>/g, '')
-        .replace(/\s+/g, ' ')
-        .trim();
+    let result = (text ?? '').replace(/<br\s*\/?>/g, ' ');
+    let previous;
+    do {
+        previous = result;
+        result = result.replace(/<[^>]*>/g, '');
+    } while (result !== previous);
+    return result.replace(/\s+/g, ' ').trim();
 }
 
 function escapeHtml(text) {
