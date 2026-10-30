@@ -44,7 +44,7 @@
             "siglum": "E",
             "siglumAddendum": "H",
             "type": "Handexemplar von <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2→3.",
-            "location": "CH-Bps, Sammlung Anton Webern.",
+            "location": "CH-Bps, Sammlung Anton Webern, P IV 29.",
             "hasDescription": true,
             "linkTo": "source_EH"
         },
@@ -68,7 +68,7 @@
             "siglum": "G",
             "siglumAddendum": "H",
             "type": "Handexemplar von <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>.",
-            "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder 59/10.",
             "hasDescription": true,
             "linkTo": "source_GH"
         }
