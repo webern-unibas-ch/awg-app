@@ -1,0 +1,3026 @@
+{
+    "documents": [
+        {
+            "id": "awg_doc_0001",
+            "description": "Reihentabelle (op. 24).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "2 Blätter (Bl. 1–2)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "quer",
+                        "height": "198",
+                        "width": "267",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 13,
+                        "orientation": "quer",
+                        "height": "209",
+                        "width": "267",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op24",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0002",
+            "description": "Reihentabelle und Skizze (op. 20).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "3 Blätter (Bl. 1–3)",
+                "papers": [
+                    {
+                        "systems": 9,
+                        "orientation": "quer",
+                        "height": "147–152 (Bl. 1) bzw. 146–147 (Bl. 2)",
+                        "width": "266",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 11,
+                        "orientation": "quer",
+                        "height": "165",
+                        "width": "255",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op20",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0003",
+            "description": "Reihentabelle (op. 22).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "3 Blätter (Bl. 1–3)",
+                "papers": [
+                    {
+                        "systems": 8,
+                        "orientation": "quer",
+                        "height": "170–172",
+                        "width": "270",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 9,
+                        "orientation": "quer",
+                        "height": "135",
+                        "width": "255–260",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 7,
+                        "orientation": "quer",
+                        "height": "170",
+                        "width": "270",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op22",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0004",
+            "description": "Reihentabelle (op. 27).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "3 Blätter (Bl. 1–3)",
+                "papers": [
+                    {
+                        "systems": 8,
+                        "orientation": "quer",
+                        "height": "141",
+                        "width": "268",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 8,
+                        "orientation": "quer",
+                        "height": "143",
+                        "width": "268",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 8,
+                        "orientation": "quer",
+                        "height": "146–149",
+                        "width": "270",
+                        "trademark": "JE_NO6_LIN20_OP27_B"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op27",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0005",
+            "description": "Reihentabelle und Skizze (op. 19).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "quer",
+                        "height": "163",
+                        "width": "255",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op19",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0006",
+            "description": "Autographe von „Dies ist ein Lied“ M 133: Textfassung 1→2 (<strong>A<sup>a</sup></strong>) / „Im Windesweben“ M 134: Textfassung 1→2 (<strong>A<sup>b</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "3 Blätter (Bl. 1–3): 1 Bogen (Bl. 1/2), 1 Blatt (Bl. 3)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "344",
+                        "width": "265",
+                        "trademark": "JE_NO5_LIN18_OP3_A1"
+                    },
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "341",
+                        "width": "265",
+                        "trademark": "JE_NO7_LIN22_OP3_A2"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0007",
+            "description": "Autograph von „Dies ist ein Lied“ M 133: Textfassung 2.",
+            "location": {
+                "repository": "US-Wc",
+                "collection": "Moldenhauer Archives",
+                "shelfmark": "Box-Folder 58/9[a]"
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "342",
+                        "width": "264",
+                        "trademark": "JE_NO7_LIN22_OP3_B"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0008",
+            "description": "Autograph von „Dies ist ein Lied“ M 133: Textfassung 2→3.",
+            "location": {
+                "repository": "A-Wn",
+                "collection": "",
+                "shelfmark": "Mus.Hs.38735.MusA/Webern/4"
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1–2) in Einband mit eingeklebter Seite (S. [a]) auf der vorderen Innenseite des Einbands",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "266",
+                        "trademark": "JE_NO2_LIN12_OP3_C"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0009",
+            "description": "Fragment von „Im Morgentaun“ M 136: Textfassung 1.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "340",
+                        "width": "265",
+                        "trademark": "JE_NO7_LIN22_OP3_B"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "D"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0010",
+            "description": "Autographe von „Dies ist ein Lied“ M 133: Textfassung 4 (<strong>E<sup>a</sup></strong>) / „Im Windesweben“ M 134: Textfassung 2 (<strong>E<sup>b</sup></strong>) / „An Bachesranft“ M 135: Textfassung 1 (<strong>E<sup>c</sup></strong>) / „Im Morgentaun“ M 136: Textfassung 1 (<strong>E<sup>d</sup></strong>) / „Kahl reckt der Baum“ M 137: Textfassung 1→2 (<strong>E<sup>e</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "11 Blätter (Bl. 1–11): 1 Bogen (Bl. 1/11) umschließt 1 Blatt (Bl. 2) und 4 Bögen (Bl. 3/4, 5/6, 7/8, 9/10)",
+                "papers": [
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "265",
+                        "trademark": "JE_NO7_LIN22_OP3_E1"
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "346",
+                        "width": "267",
+                        "trademark": "JE_NO2_LIN12_OP3_E2"
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "265",
+                        "trademark": "JE_NO2_LIN12_OP3_E3"
+                    },
+                    {
+                        "systems": 10,
+                        "orientation": "hoch",
+                        "height": "344",
+                        "width": "264",
+                        "trademark": "JE_NO1_LIN10_OP3_E4"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "E"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0011",
+            "description": "Abschriften fremder Hand von „Dies ist ein Lied“ M 133: Textfassung 2→3→4 (<strong>F<sup>a</sup></strong>) / „Im Windesweben“ M 134: Textfassung 2 (<strong>F<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: Textfassung 1 (<strong>F<sup>c</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "6 Blätter (Bl. 1–6): 3 Bögen (Bl. 1/2, 3/4, 5/6)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "345",
+                        "width": "265",
+                        "trademark": "JE_NO2_LIN12_OP3_F1"
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "346",
+                        "width": "266",
+                        "trademark": "JE_NO2_LIN12_OP3_F2"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "F"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0012",
+            "description": "Autographe von „Im Windesweben“ M 134: Textfassung 3 (<strong>G<sup>a</sup></strong>) / „Im Morgentaun“ M 136: Textfassung 1→2 (<strong>G<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: Textfassung 2→3 (<strong>G<sup>c</sup></strong>); Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
+            "location": {
+                "repository": "US-NYpm",
+                "collection": "Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection",
+                "shelfmark": "W376.L716"
+            },
+            "fingerprint": {
+                "extent": "7 Blätter (Bl. 1–7) in festem rotem Ledereinband mit einem roten Schmutzblatt (Bl. [a]) und drei weißen Schmutzblättern (Bl. [b–d]) vorne sowie drei weißen Schmutzblättern (Bl. [e–g]) und einem roten Schmutzblatt (Bl. [h]) hinten",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "342",
+                        "width": "ca. 270",
+                        "trademark": "JE_NO12_LIN12_OP3_G1"
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "345",
+                        "width": "ca. 270",
+                        "trademark": "JE_NO2_LIN12_OP3_G2"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "G"
+                },
+                {
+                    "complex": "op4",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0013",
+            "description": "Autograph von „An Bachesranft“ M 135: Textfassung 2.",
+            "location": {
+                "repository": "US-Wc",
+                "collection": "Moldenhauer Archives",
+                "shelfmark": "Box-Folder 58/9[b]"
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 16,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "264",
+                        "trademark": "JE_NO4_LIN16_OP3_H"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "H"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0014",
+            "description": "Autograph von „Im Morgentaun“ M 136: Textfassung 2.",
+            "location": {
+                "repository": "US-Wc",
+                "collection": "Moldenhauer Archives",
+                "shelfmark": "Box-Folder 58/9[c]"
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "270",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "I"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0015",
+            "description": "Autograph von „Kahl reckt der Baum“ M 137: Textfassung 4.",
+            "location": {
+                "repository": "US-Wc",
+                "collection": "Moldenhauer Archives",
+                "shelfmark": "Box-Folder 58/9[d]"
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "270",
+                        "trademark": "JE_NO2_LIN12_OP3_J"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "J"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0016",
+            "description": "Stichvorlage für <strong>L</strong> (op. 3).",
+            "location": null,
+            "missing": true,
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "K"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0017",
+            "description": "Druck von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3: I „Dies ist ein Lied“ M 133: Textfassung 4 / II „Im Windesweben“ M 134: Textfassung 3 / III „An Bachesranft“ M 135: Textfassung 3 / IV „Im Morgentaun“ M 136: Textfassung 3 / V „Kahl reckt der Baum“ M 137: Textfassung 5.",
+            "publication": {
+                "imprints": [
+                    {
+                        "place": "Wien",
+                        "publisher": "Verein für musikalische Privataufführungen",
+                        "year": "1919"
+                    },
+                    {
+                        "place": "",
+                        "publisher": "Universal Edition",
+                        "year": "1921"
+                    }
+                ]
+            },
+            "fingerprint": {
+                "extent": "8 Seiten (S. [1]–[8]): 2 fadengeheftete Bögen, Format: hoch 335 × 261 mm"
+            },
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "L"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0018",
+            "description": "Druck von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3: I „Dies ist ein Lied“ M 133: Textfassung 4 / II „Im Windesweben“ M 134: Textfassung 3 / III „An Bachesranft“ M 135: Textfassung 3 / IV „Im Morgentaun“ M 136: Textfassung 3 / V „Kahl reckt der Baum“ M 137: Textfassung 5.",
+            "publication": {
+                "imprints": [
+                    {
+                        "place": "Wien",
+                        "publisher": "Universal Edition",
+                        "year": "1923"
+                    }
+                ]
+            },
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op3",
+                    "siglum": "M"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0019",
+            "description": "Autographe von „Noch zwingt mich Treue“ M 139: Textfassung 1→2 (<strong>B<sup>a</sup></strong>) / „Ja Heil und Dank dir“ M 140: Textfassung 1→2 (<strong>B<sup>b</sup></strong>) / „So ich traurig bin“ M 141: Textfassung 1 (<strong>B<sup>c</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "10 Blätter (Bl. 1–10): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3), 3 Bögen (Bl. 5/6, 7/8, 9/10)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "264",
+                        "trademark": "JE_NO2_LIN12_OP4_B"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0020",
+            "description": "Autograph von „Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
+            "location": null,
+            "missing": true,
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0021",
+            "description": "Abschriften fremder Hand von <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1 (<strong>D<sup>a</sup></strong>) / „Noch zwingt mich Treue“ M 139: Textfassung 1 (<strong>D<sup>b</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "6 Blätter (Bl. 1–6): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3) und 1 Bogen (5/6)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "346",
+                        "width": "262",
+                        "trademark": "JE_NO2II_LIN12_OP4_D1"
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "264",
+                        "trademark": "JE_NO2_LIN12_OP4_D2"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "D"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0022",
+            "description": "Abschrift fremder Hand von „Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
+            "location": null,
+            "missing": true,
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "E"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0023",
+            "description": "Korrekturfahne von <strong>G</strong> (op. 4).",
+            "location": null,
+            "missing": true,
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "F"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0024",
+            "description": "Druck von „Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
+            "publication": {
+                "inPublication": "<em>Der blaue Reiter</em>, München: Piper, 1912"
+            },
+            "fingerprint": {
+                "extent": "150 Seiten"
+            },
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "G"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0025",
+            "description": "Handexemplar von <strong>G</strong> mit Korrekturen Weberns: „Ihr tratet zu dem Herde“ M 142: Textfassung 1→2.",
+            "location": {
+                "repository": "US-NYpm",
+                "collection": "Dept. of Music Manuscripts and Books",
+                "shelfmark": "PMM 21"
+            },
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "GH"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0026",
+            "description": "Autograph von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: I <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 / II „Noch zwingt mich Treue“ M 139: Textfassung 3 / III „Ja Heil und Dank dir“ M 140: Textfassung 2 / IV „So ich traurig bin“ M 141: Textfassung 2 / V „Ihr tratet zu dem Herde“ M 142: Textfassung 3.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "8 Blätter (Bl. 1–8) in Umschlagbogen (Bl. [a]/[b]): 1 Bogen (Bl. 1/8) umschließt 1 Bogen (Bl. 2/3) und 4 Blätter (Bl. 4–7)",
+                "papers": [
+                    {
+                        "systems": null,
+                        "orientation": "hoch",
+                        "height": "354",
+                        "width": "270",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 28,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "265",
+                        "trademark": "JE_NO9_LIN28_OP4_H1"
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "346",
+                        "width": "265",
+                        "trademark": "JE_NO12_LIN12_OP4_H2"
+                    },
+                    {
+                        "systems": 26,
+                        "orientation": "hoch",
+                        "height": "345",
+                        "width": "263",
+                        "trademark": "JE_NO8A_LIN26_OP4_H3"
+                    },
+                    {
+                        "systems": 26,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "267",
+                        "trademark": "JE_NO4_LIN16_OP4_H4"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "H"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0027",
+            "description": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: I <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 / II „Noch zwingt mich Treue“ M 139: Textfassung 3 / III „Ja Heil und Dank dir“ M 140: Textfassung 2 / IV „So ich traurig bin“ M 141: Textfassung 2 / V „Ihr tratet zu dem Herde“ M 142: Textfassung 3. Stichvorlage für <strong>J</strong>.",
+            "location": {
+                "repository": "US-NYpm",
+                "collection": "Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection",
+                "shelfmark": "W376.L716"
+            },
+            "fingerprint": {
+                "extent": "7 Blätter (Bl. 1–7): 1 Blatt (Bl. 1) und 3 ineinander gelegte, fadenheftete Bögen (Bl. 2/7, 3/6, 4/5)",
+                "papers": [
+                    {
+                        "systems": 24,
+                        "orientation": "hoch",
+                        "height": "330",
+                        "width": "253",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "341",
+                        "width": "270",
+                        "trademark": "JE_NO12_LIN12_OP4_I"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "I"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0028",
+            "description": "Druck von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: I <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 / II „Noch zwingt mich Treue“ M 139: Textfassung 3 / III „Ja Heil und Dank dir“ M 140: Textfassung 2 / IV „So ich traurig bin“ M 141: Textfassung 2 / V „Ihr tratet zu dem Herde“ M 142: Textfassung 3.",
+            "publication": {
+                "imprints": [
+                    {
+                        "place": "Wien",
+                        "publisher": "Universal Edition",
+                        "year": "1923"
+                    }
+                ]
+            },
+            "fingerprint": {
+                "extent": "12 Seiten (S. [1]–[12]): 3 fadengeheftete Bögen (S. [1]|2/11|[12], 3|4/9|10 und 5|6/7|8) in Umschlag (S. [a]–[d]), Format: hoch ### × ### mm"
+            },
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "J"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0029",
+            "description": "Handexemplar von <strong>J</strong> mit Eintragungen Weberns (op. 4).",
+            "location": {
+                "repository": "A-Wst",
+                "collection": "Musikhandschriften",
+                "shelfmark": "MHc-14926"
+            },
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op4",
+                    "siglum": "JH"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0030",
+            "description": "Skizzen zu „Der Tag ist vergangen“ M 212: Textfassung 1/2 (<strong>A<sup>a</sup></strong>) / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 (<strong>A<sup>b</sup></strong>) / „Schien mir’s, als ich sah die Sonne“ M 213 (<strong>A<sup>c</sup></strong>) / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216 (<strong>A<sup>d</sup></strong>); Skizze zu „Schien mir’s, als ich sah die Sonne“ für Chor und Instrumente M 198.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0031",
+            "partOf": "awg_doc_0030",
+            "description": "Skizzen zu „Der Tag ist vergangen“ M 212: Textfassung 1/2.",
+            "fingerprint": {
+                "extent": "2 Blätter (Bl. 1–2)",
+                "papers": [
+                    {
+                        "systems": 14,
+                        "orientation": "quer",
+                        "height": "ca. 160–180",
+                        "width": "267",
+                        "trademark": "JE_NO9_LIN28_OP12_AA1"
+                    },
+                    {
+                        "systems": 16,
+                        "orientation": "quer",
+                        "height": "175",
+                        "width": "270",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "Aa"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0032",
+            "partOf": "awg_doc_0030",
+            "description": "Skizzen zu <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217.",
+            "fingerprint": {
+                "extent": "2 Blätter (Bl. 1–2)",
+                "papers": [
+                    {
+                        "systems": 11,
+                        "orientation": "quer",
+                        "height": "ca. 170",
+                        "width": "264",
+                        "trademark": "JE_NO7_LIN22_OP12_AB"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "Ab"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0033",
+            "partOf": "awg_doc_0030",
+            "description": "Skizzen zu „Schien mir’s, als ich sah die Sonne“ M 213.",
+            "fingerprint": {
+                "extent": "3 Blätter (Bl. 1–3)",
+                "papers": [
+                    {
+                        "systems": 16,
+                        "orientation": "quer",
+                        "height": "ca. 170",
+                        "width": "270",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "340",
+                        "width": "264",
+                        "trademark": "JE_NO7_LIN22_OP12_AC"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "Ac"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0034",
+            "partOf": "awg_doc_0030",
+            "description": "Skizzen zu <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216.",
+            "fingerprint": {
+                "extent": "3 Blätter (Bl. 1–3)",
+                "papers": [
+                    {
+                        "systems": 9,
+                        "orientation": "hoch",
+                        "height": "ca. 173",
+                        "width": "264",
+                        "trademark": ""
+                    },
+                    {
+                        "systems": 6,
+                        "orientation": "quer",
+                        "height": "ca. 172–176",
+                        "width": "264",
+                        "trademark": "JE_NO2_LIN12_OP12_AD2"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "Ad"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0035",
+            "description": "Autograph von „Der Tag ist vergangen“ M 212: Textfassung 1→2.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "346",
+                        "width": "266",
+                        "trademark": "JE_NO2_LIN12_OP12_B"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0036",
+            "description": "Autographe von „Der Tag ist vergangen“ M 212: Textfassung 2 (<strong>C<sup>a</sup></strong>) / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: einzige Textfassung (<strong>C<sup>b</sup></strong>) / „Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung (<strong>C<sup>c</sup></strong>) / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1→2 (<strong>C<sup>d</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) 1 Bogen (Bl. 6/8) mit 1 eingelegten Blatt (Bl. 7), 1 Bogen (Bl. 9/10)",
+                "papers": [
+                    {
+                        "systems": 11,
+                        "orientation": "hoch",
+                        "height": "340",
+                        "width": "263",
+                        "trademark": "JE_NO7_LIN22_OP12_C1"
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "345",
+                        "width": "265",
+                        "trademark": "JE_NO2_LIN12_OP12_C2"
+                    },
+                    {
+                        "systems": 7,
+                        "orientation": "quer",
+                        "height": "170",
+                        "width": "270",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0037",
+            "description": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
+            "location": {
+                "repository": "GB-Lbl",
+                "collection": "O. W. Neighbour Collection",
+                "shelfmark": "MS Mus. 1810/163"
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "264",
+                        "trademark": "JE_NO12_LIN12_OP12_D"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "D"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0038",
+            "description": "Druck von „Der Tag ist vergangen“ M 212: Textfassung 2.",
+            "publication": {
+                "inPublication": "<em>Musikblätter des Anbruch</em> IV (Mai 1922)"
+            },
+            "fingerprint": {
+                "extent": "1 Blatt, Verso-Seite nicht bedruckt"
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "E"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0039",
+            "description": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns: „Der Tag ist vergangen“ M 212: Textfassung 2→3.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": "P IV 29"
+            },
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "EH"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0040",
+            "description": "Autograph von <em>Vier Lieder</em> op. 12: I „Der Tag ist vergangen“ M 212: Textfassung 3 / II <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: einzige Textfassung / III „Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung / IV <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 2.",
+            "location": {
+                "repository": "US-NYpm",
+                "collection": "Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection",
+                "shelfmark": "W376.L716"
+            },
+            "fingerprint": {
+                "extent": "10 Blätter (Bl. 1–10): 1 Bogen (Bl. 1/10) schließt 4 aufeinander gelegte Bögen (Bl. 2/3, 4/5, 6/7, 8/9) ein",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "340",
+                        "width": "268",
+                        "trademark": "JE_NO2_LIN12_OP12_F"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "F"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0041",
+            "description": "Druck von <em>Vier Lieder</em> op. 12: I „Der Tag ist vergangen“ M 212: Textfassung 3 / II <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: einzige Textfassung / III „Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung / IV <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 2.",
+            "publication": {
+                "imprints": [
+                    {
+                        "place": "Wien",
+                        "publisher": "Universal Edition",
+                        "year": "1925"
+                    }
+                ]
+            },
+            "fingerprint": {
+                "extent": "10 Seiten (S. [1]–[10]): 2 klammergeheftete ineinander gelegte Bögen (S. [1]|2/9|[10], 3|4/5|6) und 1 mit Klebstoff angeheftetes Blatt (S. 7|8) in Umschlag (S. [a–d]), Format: 306 × 230 mm"
+            },
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "G"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0042",
+            "description": "Handexemplar von <strong>G</strong> (op. 12).",
+            "location": {
+                "repository": "US-Wc",
+                "collection": "Moldenhauer Archives",
+                "shelfmark": "Box-Folder 59/10"
+            },
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op12",
+                    "siglum": "GH"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0043",
+            "description": "Skizzen (in: Skizzenbuch 3) (op. 23).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "17 Seiten in Skizzenbuch 3: Bl. 26v–31r (S. 51–60), Bl. 32r (S. 62) und Bl. 33v–36r (S. 65–70)",
+                "papers": [
+                    {
+                        "systems": 16,
+                        "orientation": "hoch",
+                        "height": "270",
+                        "width": "335",
+                        "trademark": "JE_NO15_LIN16_OP23_A"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op23",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0044",
+            "description": "Reihentabelle (op. 23).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 4,
+                        "orientation": "quer",
+                        "height": "74",
+                        "width": "270",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op23",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0045",
+            "description": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23: I „Das dunkle Herz“ M 314: einzige Textfassung / II „Es stürzt aus Höhen Frische“ M 313: einzige Textfassung / III „Herr Jesus mein“ M 312: einzige Textfassung. Stichvorlage für <strong>D</strong>.",
+            "location": {
+                "repository": "US-NYpm",
+                "collection": "Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection",
+                "shelfmark": "W376.G389 / 115908"
+            },
+            "fingerprint": {
+                "extent": "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 3 aufeinander gelegte Bögen (Bl. 2/3, 4/5, 6/7), 3 Blätter (Bl. 8–10)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "336",
+                        "width": "267",
+                        "trademark": "JE_NO2_LIN12_OP23_C"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op23",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0046",
+            "description": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23: I „Das dunkle Herz“ M 314: einzige Textfassung / II „Es stürzt aus Höhen Frische“ M 313: einzige Textfassung / III „Herr Jesus mein“ M 312: einzige Textfassung.",
+            "publication": {
+                "imprints": [
+                    {
+                        "place": "Wien",
+                        "publisher": "Universal Edition",
+                        "year": "1936"
+                    }
+                ]
+            },
+            "fingerprint": {
+                "extent": "12 Seiten (S. [1]–12): 3 klammergeheftete Bögen in Umschlag (S. [a–d]), Format: hoch 309 × 230 mm"
+            },
+            "usedBy": [
+                {
+                    "complex": "op23",
+                    "siglum": "D"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0047",
+            "description": "Skizzen und Reihentabelle zu „Wie bin ich froh!“ M 317 (in: Skizzenbuch 3).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "2 Seiten in Skizzenbuch 3: Bl. 38v–39r",
+                "papers": [
+                    {
+                        "systems": 16,
+                        "orientation": "quer",
+                        "height": "270",
+                        "width": "335",
+                        "trademark": "JE_NO15_LIN16_OP25_A"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op25",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0048",
+            "description": "Autograph von „Wie bin ich froh!“ M 317: Textfassung 1.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "4 Blätter (Bl. 1–4): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3), archivalische Paginierung von [1] bis [8] auf Bl. 1r–4v innere Seitenecken unten mit Bleistift, mit Ausnahme der archivalischen Paginierung unbeschriftet: Bl. 3v–4v",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "340",
+                        "width": "270",
+                        "trademark": "JE_NO2_LIN12_OP25_B"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op25",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0049",
+            "description": "Reihentabelle (op. 25).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 7,
+                        "orientation": "quer",
+                        "height": "169",
+                        "width": "267",
+                        "trademark": "JE_NO3_LIN14_OP25_C"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op25",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0050",
+            "description": "Skizzen zu „Sterne, Ihr silbernen Bienen“ M 321 und „Des Herzens Purpurvogel“ M 322 (in: Skizzenbuch 4).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "12 Seiten in Skizzenbuch 4: Bl. 2r (S. 2), Bl. 5v–10r (S. 9–18) und Bl. 11r (S. 20)",
+                "papers": [
+                    {
+                        "systems": 16,
+                        "orientation": "hoch",
+                        "height": "270",
+                        "width": "337",
+                        "trademark": "JE_NO15_LIN16_OP25_D"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op25",
+                    "siglum": "D"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0051",
+            "description": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25: I „Wie bin ich froh!“ M 317: Textfassung 1→2 / II „Des Herzens Purpurvogel“ M 322: einzige Textfassung / III „Sterne, Ihr silbernen Bienen“ M 321: einzige Textfassung.",
+            "location": {
+                "repository": "A-Wue",
+                "collection": "",
+                "shelfmark": "UEQ 493"
+            },
+            "fingerprint": {
+                "extent": "12 Blätter (Bl. 1–12): 1 Bogen (Bl. 1/12) umschließt 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) und 3 ineinander gelegte Bögen (Bl. 6/11 umschließt Bl. 7/8, 9/10)",
+                "papers": [
+                    {
+                        "systems": 20,
+                        "orientation": "hoch",
+                        "height": "340",
+                        "width": "270",
+                        "trademark": "J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 6 | 20 linig."
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "336",
+                        "width": "267",
+                        "trademark": "JE_NO2_LIN12_OP25_E2"
+                    },
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "340",
+                        "width": "270",
+                        "trademark": "JE_NO2_LIN12_OP25_E3"
+                    },
+                    {
+                        "systems": 14,
+                        "orientation": "hoch",
+                        "height": "336",
+                        "width": "267",
+                        "trademark": "JE_NO3_LIN14_OP25_E4"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "op25",
+                    "siglum": "E"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0052",
+            "description": "Fotokopien von <strong>E</strong> (op. 25).",
+            "location": null,
+            "missing": true,
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "op25",
+                    "siglum": "EF1–F2"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0053",
+            "description": "Autograph von „Erwachen aus dem tiefsten Traumesschoße“ M 143: einzige Textfassung.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "346",
+                        "width": "265",
+                        "trademark": "JE_NO5_LIN18_M143_A"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m143",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0054",
+            "description": "Autograph von <em>Kunfttag I</em> („Dem bist du Kind“) M 144: einzige Textfassung.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "344",
+                        "width": "265",
+                        "trademark": "JE_NO7_LIN22_M144_A"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m144",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0055",
+            "description": "Autograph von <em>Trauer I</em> („So wart bis ich dies dir noch künde“) M 145: einzige Textfassung.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "2 aufeinander gelegte Bögen (Bl. 1/2, 3/4)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "265",
+                        "trademark": "JE_NO2_LIN12_M145_A"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m145",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0056",
+            "description": "Autograph von „Das lockere Saatgefilde“ M 146: einzige Textfassung.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "265",
+                        "trademark": "JE_NO2_LIN12_M146_A"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m146",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0057",
+            "description": "Skizzen zu Studienkomposition für Klavier M 34; Skizzen zu Studienkompositionen für Klavier M 35/42, M 36–39 und M* 404.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "349",
+                        "width": "265",
+                        "trademark": "JE_NO5_LIN18_M34_A"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m34",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m35_42",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m36",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m37",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m38",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m39",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0058",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 34; Tintenniederschrift von Studienkompositionen für Klavier M 35/42, M 36–38, M 39 Textfassung 1→2 und 2, M 41 sowie Skizzen zu Studienkomposition für Klavier M 35/42 und M 39 Textfassung 2.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "349",
+                        "width": "267",
+                        "trademark": "JE_NO5_LIN18_M34_B"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m34",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m35_42",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m36",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m37",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m38",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m39",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m41",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0059",
+            "description": "Skizzen zu Studienkomposition für Klavier M 35/42; Skizzen zu Studienkomposition für Klavier M 39 Textfassung 2, M 40–41 und M* 405–406.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "348",
+                        "width": "266",
+                        "trademark": "JE_NO5_LIN18_M34_A"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m35_42",
+                    "siglum": "C"
+                },
+                {
+                    "complex": "m39",
+                    "siglum": "C"
+                },
+                {
+                    "complex": "m40",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m41",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0060",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 35/42; Tintenniederschrift von Studienkomposition für Klavier M 39 Textfassung 2 und M 40.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "265",
+                        "trademark": "JE_NO5_LIN18_M34_B"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m35_42",
+                    "siglum": "D"
+                },
+                {
+                    "complex": "m39",
+                    "siglum": "D"
+                },
+                {
+                    "complex": "m40",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0061",
+            "description": "Skizzen zu Studienkomposition für Klavier M 30; Skizzen zu Studienkomposition für Klavier M 31 und M* 403.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "2 Blätter (Bl. 1–2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "349",
+                        "width": "265",
+                        "trademark": "[J.E. & Co.] | No. 5 | 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m30",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m31",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0062",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 30; Tintenniederschrift von Studienkomposition für Klavier M 31 sowie Skizzen zu Studienkomposition für Klavier M* 402.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "265",
+                        "trademark": "JE_NO5_LIN18_M30_B"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m30",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m31",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0063",
+            "description": "Skizzen zu Studienkomposition für Klavier M 29; Skizzen zu Studienkomposition für Klavier/Streichquartett M 22, Studienkomposition für Klavier M* 400–401 und M* 415–416.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m29",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "mx415",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "mx416",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m22",
+                    "siglum": "D"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0064",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 29 (<strong>B<sup>a</sup></strong>). Skizze zu Studienkomposition für Klavier M 29 (<strong>B<sup>b</sup></strong>); Skizzen zu Studienkomposition für Streichquartett M 68 Textfassung 1 und 2.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m29",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0065",
+            "description": "Skizzen zu Studienkomposition für Klavier M 45: Textfassung 1 und 2; Skizzen zu Studienkomposition für Streichquartett M 26.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 28,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "263",
+                        "trademark": "[J.E. & Co.] / No. 9 / 28 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m45",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0066",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 45: Textfassung 1→2; Tintenniederschrift von Studienkomposition für Streichquartett M 26.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "349",
+                        "width": "265",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m45",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0067",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 45: Textfassung 2 (<strong>C<sup>a</sup></strong>). Skizze zu Studienkomposition für Klavier M 45 (<strong>C<sup>b</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "349",
+                        "width": "265",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m45",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0068",
+            "description": "Skizzen zu Studienkomposition für Klavier M 46: Textfassung 1 und 2; Skizzen zu Studienkomposition für Klavier M* 407, Studienkomposition für Streichquartett M 24 und M 27–28 sowie zu <em>Hochsommernacht</em> M 65.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "348",
+                        "width": "265",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m46",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0069",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 46: Textfassung 1 (<strong>B<sup>a</sup></strong>). Skizzen zu Studienkomposition für Klavier M 46: Textfassung 2 (<strong>B<sup>b</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m46",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0070",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 46: Textfassung 2; Tintenniederschrift von Studienkomposition für Streichquartett M 28 sowie Skizzen zu Studienkomposition für Streichquartett M 27–28.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "265",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m46",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0071",
+            "description": "Skizzen zu Studienkomposition für Klavier M 32; Skizzen zu Studienkomposition für Streichquartett M 68 und Tintenniederschrift von Studienkomposition für Streichquartett M 68 Textfassung 1.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "348",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m32",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0072",
+            "description": "Skizzen zu Studienkomposition für Klavier M 32; Skizzen zu Studienkomposition für Streichquartett M 68 Textfassung 2, Tintenniederschrift von Studienkomposition für Streichquartett M 68 Textfassung 2→3→4, 3 und 4.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "2 Blätter (Bl. 1–2)",
+                "papers": [
+                    {
+                        "systems": 28,
+                        "orientation": "hoch",
+                        "height": "348",
+                        "width": "264",
+                        "trademark": "[J.E. & Co.] / No. 9 / 28 linig.unten links"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m32",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0073",
+            "description": "Skizzen zu Studienkomposition für Klavier M 32: Textfassung 1 und 2; Skizzen zu Studienkomposition für Klavier M 33, Studienkomposition für Streichquartett M 68 Textfassung 1–3 und zu „Du bist mein, ich bin dein“ M 9 sowie nicht identifizierte Skizze M* 454.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m32",
+                    "siglum": "C"
+                },
+                {
+                    "complex": "m33",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0074",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 1→2→3 (<strong>D<sup>a</sup></strong>), / Studienkomposition für Klavier M 32: Textfassung 2 (<strong>D<sup>b</sup></strong>); Tintenniederschrift von Studienkomposition für Klavier M 33 Textfassung 1→2 und 2.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m32",
+                    "siglum": "D"
+                },
+                {
+                    "complex": "m33",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0075",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2 (<strong>E<sup>a</sup></strong>). Skizzen zu Studienkomposition für Klavier M 32: Textfassung 3 (<strong>E<sup>b</sup></strong>); Skizzen zu Studienkomposition für Klavier M 22 und M* 413–414.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "267",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m32",
+                    "siglum": "E"
+                },
+                {
+                    "complex": "mx413",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "mx414",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m22",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0076",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 3.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "344",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m32",
+                    "siglum": "F"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0077",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 1→2 (<strong>A<sup>a</sup></strong>), / Studienkomposition für Klavier M* 409: Textfassung 2 (<strong>A<sup>b</sup></strong>); Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22, Studienkomposition für Klavier M 23 Textfassung 1, M* 410, M* 412–416, Studienkompositionen M* 420–422 sowie Skizzen zu Studienkompositionen für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3)",
+                "papers": [
+                    {
+                        "systems": 28,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "264",
+                        "trademark": "[J.E. & Co.] / No. 9 / 28 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "mx409",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "mx410",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "mx412",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "mx413",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "mx414",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "mx415",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "mx416",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m22",
+                    "siglum": "F"
+                },
+                {
+                    "complex": "m23",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0078",
+            "description": "Skizzen zu Studienkomposition für Klavier M* 412; Skizzen zu Studienkomposition für Klavier/Streichquartett M 22 und Studienkomposition für Klavier M* 411 sowie Tintenniederschrift von Studienkomposition für Streichquartett M* 408.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 28,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "264",
+                        "trademark": "[J.E. & Co.] / No. 9 / 28 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "mx412",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "m22",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0079",
+            "description": "Skizzen zu Studienkomposition für Klavier/Streichquartett M 22; Skizzen zu Studienkomposition für Klavier M* 408.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 28,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "264",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m22",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0080",
+            "description": "Skizzen zu Studienkomposition für Klavier/Streichquartett M 22; Skizzen zu Studienkomposition für Klavier M 23 Textfassung 1 und 2, Studienkomposition für Streichquartett M 24, Studienkompositionen M* 417–422, M* 433–451 und zu <em>Hochsommernacht</em> M 65.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 28,
+                        "orientation": "hoch",
+                        "height": "342",
+                        "width": "264",
+                        "trademark": "[J.E. & Co.] / No. 9 / 28 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m22",
+                    "siglum": "E"
+                },
+                {
+                    "complex": "m23",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0081",
+            "description": "Skizzen zu und Tintenniederschrift von Studienkomposition für Klavier M 23: Textfassung 2; Tintenniederschrift von Studienkomposition für Streichquartett M 24.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "2 Bögen (Bl. 1/2, 3/4)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "348",
+                        "width": "266",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m23",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0082",
+            "description": "Skizzen zu Studienkomposition für Klavier M* 465; Tintenniederschrift von Studienkomposition „Komm heilʼger Geist, du Tröster mein“ M 84 sowie Skizzen zu Studienkompositionen M* 464, M* 466–467, M* 472–473, M* 480–483.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "264",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "mx465",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "mx466",
+                    "siglum": "A"
+                },
+                {
+                    "complex": "mx467",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0083",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M* 465; Tintenniederschrift von Studienkomposition M* 464 und M* 466–467 sowie Skizzen zu Studienkompositionen M* 455–463, M* 468–469, „Dämmerstunde“ M 10 sowie Skizze von der Hand Schönbergs.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "264",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "mx465",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "mx466",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "mx467",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0084",
+            "description": "Skizzen zu Studienkomposition für Klavier M* 467; Skizzen zu Studienkompositionen „Komm heilʼger Geist, du Tröster mein“ M 84, M* 470–471 und M* 474–480.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "344",
+                        "width": "264",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "mx467",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0085",
+            "description": "Skizzen zu Studienkomposition für Klavier M 116.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "quer",
+                        "height": "347",
+                        "width": "267",
+                        "trademark": "[J.E. & Co.] / No. 18 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m116",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0086",
+            "description": "Skizzen zu Studienkomposition für Klavier M 116; Skizzen zu Studienkomposition für Klavier M 75.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "quer",
+                        "height": "348",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 18 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m116",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m75",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0087",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 116.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "349",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m116",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0088",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 75; Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "349",
+                        "width": "264",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig. 18 linig"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m75",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m76",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0089",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 76: Textfassung 2; Skizzen zu Studienkomposition für Klavier M 43.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "quer",
+                        "height": "349",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 18 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m76",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m43",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0090",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 43; Tintenniederschrift von Studienkomposition für Klavier M 44.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "349",
+                        "width": "267",
+                        "trademark": ""
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m43",
+                    "siglum": "B"
+                },
+                {
+                    "complex": "m44",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0091",
+            "description": "Skizzen zu Studienkomposition für Klavier M 113; Skizzen zu Studienkomposition für Streichquartett M 26, M 66 Textfassung 1–4, M 78 Textfassung 1–4 sowie Skizze zu M* 452.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3) und 1 Blatt (Bl. 4)",
+                "papers": [
+                    {
+                        "systems": 28,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "263",
+                        "trademark": "[J.E. & Co.] / No. 9 / 28 linig."
+                    },
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m113",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0092",
+            "description": "Skizzen zu Studienkomposition für Klavier M 113; Skizzen zu Studienkomposition für Streichquartett M 78 Textfassung 2 und Tintenniederschrift von Studienkomposition für Streichquartett M 66 Textfassung 4 und M 78 Textfassung 1 und 3.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 28,
+                        "orientation": "hoch",
+                        "height": "343",
+                        "width": "263",
+                        "trademark": "[J.E. & Co.] / No. 9 / 28 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m113",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0093",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 113 (<strong>C<sup>a</sup></strong>). Skizzen zu Studienkomposition für Klavier M 113 (<strong>C<sup>b</sup></strong>); Skizzen zu Studienkomposition für Klavier M 114 Textfassung 3 und 4.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "345",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m113",
+                    "siglum": "C"
+                },
+                {
+                    "complex": "m114",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0094",
+            "description": "Skizzen zu Studienkomposition für Klavier M 114: Textfassung 1 und 4; Skizzen zu und Tintenniederschrift von Studienkomposition für Orchester M 102.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "345",
+                        "width": "260–266",
+                        "trademark": "[J.E. & Co.] / No. 7 / 22 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m114",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0095",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 114: Textfassung 1→2→3 (<strong>C<sup>a</sup></strong>), / Studienkomposition für Klavier M 114: Textfassung 2 (<strong>C<sup>b</sup></strong>), / Studienkomposition für Klavier M 114: Textfassung 3 (<strong>C<sup>c</sup></strong>). Skizzen zu Studienkomposition für Klavier M 114: Textfassung 3 (<strong>C<sup>d</sup></strong>); Skizzen zu Studienkompositionen M* 494–495.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "267",
+                        "trademark": "[J.E. & Co.] / No. 7 / 22 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m114",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0096",
+            "description": "Skizzen zu Studienkomposition für Klavier M 114: Textfassung 4–6.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "2 Blätter (Bl. 1–2)",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "265–268",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m114",
+                    "siglum": "D"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0097",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 114: Textfassung 4→5→6 (<strong>E<sup>a</sup></strong>), / Studienkomposition für Klavier M 114: Textfassung 5→6 (<strong>E<sup>b</sup></strong>), / Studienkomposition für Klavier M 114: Textfassung 6 (<strong>E<sup>c</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "2 Bögen und 1 Blatt: Ein Bogen (Bl. 1/5), der einen Bogen (Bl. 2/3) und ein Blatt (Bl. 4) umschließt",
+                "papers": [
+                    {
+                        "systems": 18,
+                        "orientation": "hoch",
+                        "height": "346",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m114",
+                    "siglum": "E"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0098",
+            "description": "Skizzen zu Studienkomposition für Klavier M 112: Textfassung 1–3.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "349",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 7 / 22 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m112",
+                    "siglum": "A"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0099",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 112: Textfassung 1 (<strong>B<sup>a</sup></strong>). Skizzen zu Studienkomposition für Klavier M 112: Textfassung 2 (<strong>B<sup>b</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Blatt (Bl. 1)",
+                "papers": [
+                    {
+                        "systems": 22,
+                        "orientation": "hoch",
+                        "height": "348",
+                        "width": "265",
+                        "trademark": "[J.E. & Co.] / No. 7 / 22 linig"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m112",
+                    "siglum": "B"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0100",
+            "description": "Skizzen zu Studienkomposition für Klavier M 112: Textfassung 2–3; nicht identifizierte Skizze.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "2 Blätter (Bl. 1–2)",
+                "papers": [
+                    {
+                        "systems": 20,
+                        "orientation": "hoch",
+                        "height": "347",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 6 / 20 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m112",
+                    "siglum": "C"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0101",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 112: Textfassung 2 (<strong>D<sup>a</sup></strong>). Skizzen zu Studienkomposition für Klavier M 112: Textfassung 3 (<strong>D<sup>b</sup></strong>).",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 20,
+                        "orientation": "hoch",
+                        "height": "348",
+                        "width": "266",
+                        "trademark": "[J.E. & Co.] / No. 6 / 20 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m112",
+                    "siglum": "D"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0102",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 112: Textfassung 3.",
+            "location": null,
+            "missing": true,
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "m112",
+                    "siglum": "E"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0103",
+            "description": "Abschrift Friedrich Wildgans von Studienkomposition für Klavier M 112: Textfassung 3.",
+            "location": null,
+            "missing": true,
+            "fingerprint": {},
+            "usedBy": [
+                {
+                    "complex": "m112",
+                    "siglum": "F"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0104",
+            "description": "Reprografie der Abschrift Friedrich Wildgans von Studienkomposition für Klavier M 112: Textfassung 3.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "7 Blätter (Bl. 1–7)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "307",
+                        "width": "217",
+                        "trademark": "»Sünova« Nr. 4 – 12 zeilig"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m112",
+                    "siglum": "FR1"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0105",
+            "description": "Reprografie der Abschrift Friedrich Wildgans von Studienkomposition für Klavier M 112: Textfassung 3.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "7 Blätter (Bl. 1–7)",
+                "papers": [
+                    {
+                        "systems": 12,
+                        "orientation": "hoch",
+                        "height": "295",
+                        "width": "209",
+                        "trademark": "»Sünova« Nr. 4 – 12 zeilig"
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m112",
+                    "siglum": "FR2"
+                }
+            ]
+        },
+        {
+            "id": "awg_doc_0106",
+            "description": "Tintenniederschrift von Kinderstück für Klavier M 267.",
+            "location": {
+                "repository": "CH-Bps",
+                "collection": "Sammlung Anton Webern",
+                "shelfmark": ""
+            },
+            "fingerprint": {
+                "extent": "1 Bogen (Bl. 1/2)",
+                "papers": [
+                    {
+                        "systems": 14,
+                        "orientation": "hoch",
+                        "height": "341",
+                        "width": "271",
+                        "trademark": "[J.E. & Co.] / No. 3 / 14 linig."
+                    }
+                ]
+            },
+            "usedBy": [
+                {
+                    "complex": "m267",
+                    "siglum": "A"
+                }
+            ]
+        }
+    ]
+}

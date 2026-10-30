@@ -3,6 +3,7 @@
         {
             "siglum": "A",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0085",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 116.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -11,6 +12,7 @@
         {
             "siglum": "B",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0086",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 116.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 75.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -19,6 +21,7 @@
         {
             "siglum": "C",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0087",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 116.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,

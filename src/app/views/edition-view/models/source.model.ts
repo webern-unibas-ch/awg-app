@@ -15,6 +15,11 @@ export interface Source {
     siglumAddendum?: string;
 
     /**
+     * The id of the document of a source in the document registry (optional).
+     **/
+    documentId?: string;
+
+    /**
      * The flag if a source is missing (optional).
      **/
     missing?: boolean;

@@ -3,6 +3,7 @@
         {
             "siglum": "A",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0043",
             "type": "Skizzen (in: Skizzenbuch 3).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -11,6 +12,7 @@
         {
             "siglum": "B",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0044",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -19,6 +21,7 @@
         {
             "siglum": "C",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0045",
             "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23:<br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Das dunkle Herz“ M 314: einzige Textfassung<br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Es stürzt aus Höhen Frische“ M 313: einzige Textfassung<br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Herr Jesus mein“ M 312: einzige Textfassung.<br />Stichvorlage für <a data-complex-id='op23' data-report-fragment-id='source_D'><strong>D</strong></a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.G389 / 115908.",
             "hasDescription": true,
@@ -27,6 +30,7 @@
         {
             "siglum": "D",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0046",
             "type": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23:<br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Das dunkle Herz“ M 314: einzige Textfassung<br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Es stürzt aus Höhen Frische“ M 313: einzige Textfassung<br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Herr Jesus mein“ M 312: einzige Textfassung.",
             "location": "Wien: Universal Edition, 1936.",
             "hasDescription": true,
