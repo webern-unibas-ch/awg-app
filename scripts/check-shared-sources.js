@@ -42,11 +42,11 @@ const fs = require('fs');
 const path = require('path');
 const { pathToFileURL } = require('url');
 
-const ROOT = path.resolve(__dirname, '..');
+const { ROOT, EDITION_DATA_DIR, relPath, editionJsonFiles, readJson } = require('./check-utils');
+
 const PACKAGE = require(path.join(ROOT, 'package.json'));
 const PROJECT_LABEL = 'Anton Webern Gesamtausgabe · Online Edition';
-const DATA_DIR = path.join(ROOT, 'src', 'assets', 'data', 'edition');
-const OUTLINE_FILE = path.join(DATA_DIR, 'edition-outline.json');
+const OUTLINE_FILE = path.join(EDITION_DATA_DIR, 'edition-outline.json');
 const REPORT_FILE = path.join(ROOT, 'reports', 'shared-sources.html');
 const SOURCE_DESC_FILE = 'source-description.json';
 const SOURCE_LIST_FILE = 'source-list.json';
@@ -82,14 +82,6 @@ const MAX_WORD_ALIGNMENT = 1_000_000;
 const SIGLUM_REFERENCE_PATTERN =
     /<strong>[A-Z](?:<sup>[^<]*<\/sup>)?<\/strong>|data-report-fragment-id='source_[^']*'/g;
 const MISSING = '<missing>';
-
-function relPath(filePath) {
-    return path.relative(ROOT, filePath).replace(/\\/g, '/');
-}
-
-function readJson(filePath) {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
 
 function readJsonIfExists(filePath, fallback) {
     return fs.existsSync(filePath) ? readJson(filePath) : fallback;
@@ -167,14 +159,13 @@ function readComplexOrder() {
     return order;
 }
 
-// The folders of the complexes with a source description (named by complex id)
+// The folders of the complexes with a source description (named by complex id, under series/)
 function findComplexDirs() {
-    const seriesDir = path.join(DATA_DIR, 'series');
-    return fs
-        .readdirSync(seriesDir, { recursive: true })
+    return editionJsonFiles()
+        .filter(file => relPath(file, EDITION_DATA_DIR).startsWith('series/'))
         .filter(file => path.basename(file) === SOURCE_DESC_FILE)
         .map(file => {
-            const dir = path.dirname(path.join(seriesDir, file));
+            const dir = path.dirname(file);
             return { complexId: path.basename(dir), dir };
         });
 }
@@ -631,7 +622,7 @@ function readChangesSince(ref, groups, find) {
     const othersOf = key => (groupByRoot.get(find(key)) ?? []).filter(copy => copy.key !== key);
 
     // Changed files since the ref, and new files not yet added to git
-    const listFiles = args => git([...args, '--', relPath(DATA_DIR)]).split('\n');
+    const listFiles = args => git([...args, '--', relPath(EDITION_DATA_DIR)]).split('\n');
     const changedFiles = [
         ...new Set([
             ...listFiles(['diff', '--name-only', ref]),
@@ -781,7 +772,7 @@ function readGitState() {
         return {
             branch: git(['rev-parse', '--abbrev-ref', 'HEAD']).trim(),
             commit: git(['rev-parse', '--short', 'HEAD']).trim(),
-            dirty: git(['status', '--porcelain', '--', relPath(DATA_DIR)]).trim() !== '',
+            dirty: git(['status', '--porcelain', '--', relPath(EDITION_DATA_DIR)]).trim() !== '',
         };
     } catch {
         return null;
@@ -813,7 +804,7 @@ function renderReport({ groups, results, nearMatches, changes, copyCount }) {
 <h1>Shared sources report</h1>
 <p class="meta">${meta.join(' · ')}</p>
 </header>
-<p>Sources described in several edition complexes (<code>${relPath(DATA_DIR)}</code>):
+<p>Sources described in several edition complexes (<code>${relPath(EDITION_DATA_DIR)}</code>):
 ${groups.length} groups with ${copyCount} copies; ${identical} identical, ${groups.length - identical} with content differences.
 For each field that differs, the copies are grouped into variants by value (counts most first, e.g. 4/2/1),
 and every other variant is compared with the most frequent one (on equal counts, the first in edition order).
