@@ -81,6 +81,7 @@
         "analyze": "yarn build:prod --stats-json",
         "analyze:local": "yarn analyze && esbuild-visualizer --metadata dist/awg-app/browser-stats.json --filename dist/awg-app/browser-stats.html --title \"AWG App Bundle\" --open",
         "-- CHECK --": "",
+        "check:complexes": "node scripts/check-complexes.js",
         "check:cycles": "madge --circular --extensions ts --ts-config tsconfig.json src",
         "check:glyphs": "node scripts/check-glyphs.js",
         "check:snippets": "node scripts/check-snippets.js",
