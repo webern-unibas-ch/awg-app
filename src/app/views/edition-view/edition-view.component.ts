@@ -6,6 +6,7 @@ import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/but
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 
 import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
+import { EditionComplexPartsComponent } from './edition-complex-parts/edition-complex-parts.component';
 import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
 import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 
@@ -30,6 +31,7 @@ import { EditionViewService } from './services/edition-view.service';
     imports: [
         ButtonScrollToTopComponent,
         EditionBreadcrumbComponent,
+        EditionComplexPartsComponent,
         EditionJumbotronComponent,
         MetaIdentifierBadgesComponent,
         DatePipe,
@@ -92,6 +94,13 @@ export class EditionViewComponent {
      * It holds the state of the selected edition complex.
      */
     readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+
+    /**
+     * Readonly signal: selectedOutlineComplexItem.
+     *
+     * It holds the outline item of the selected edition complex.
+     */
+    readonly selectedOutlineComplexItem = this._editionStateService.selectedOutlineComplexItem;
 
     /**
      * Readonly signal: selectedEditionSection.

@@ -1,6 +1,7 @@
 import { EditionComplex, EditionComplexesList } from '@awg-views/edition-view/models/edition-complex.model';
 import {
     EditionOutline,
+    EditionOutlineComplexItem,
     EditionOutlineSection,
     EditionOutlineSeries,
 } from '@awg-views/edition-view/models/edition-outline.model';
@@ -160,5 +161,28 @@ export const EditionStateHelper = {
             throw new Error(`[EditionStateHelper] Complex ${complexId} not found in the edition complexes data!`);
         }
         return structuredClone(complex);
+    },
+
+    /**
+     * Test helper method: getOutlineComplexItem.
+     *
+     * It retrieves the outline item of a specific complex from the edition outline data
+     * based on the provided complex ID.
+     * If the complex with the given ID is not found in the outline, it throws an error.
+     *
+     * @param {string} complexId The ID of the complex to retrieve.
+     * @returns {EditionOutlineComplexItem} The corresponding outline item of the edition complex.
+     * @throws {Error} If the complex with the given ID is not found in the edition outline data.
+     */
+    getOutlineComplexItem(complexId: string): EditionOutlineComplexItem {
+        const complex = this.getComplex(complexId);
+        const complexItem = _getInitializedOutline()
+            .flatMap(series => series.sections.flatMap(section => section.content.sectionComplexes))
+            .find(item => item.complex.complexId.route === complex.complexId.route);
+
+        if (!complexItem) {
+            throw new Error(`[EditionStateHelper] Complex ${complexId} not found in the edition outline data!`);
+        }
+        return structuredClone(complexItem);
     },
 };
