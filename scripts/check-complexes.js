@@ -13,7 +13,7 @@
  *    needs an entry in the edition complexes and is listed once, not as the complex itself.
  *
  * 3) Types: source list types that number the parts (I, II, … with tab marks, e.g. in the print of
- *    an opus) need to name the works of the parts in the same order. Differences are warnings.
+ *    an opus) need to name the M numbers of the parts in the same order. Differences are warnings.
  *
  * Usage:  node scripts/check-complexes.js
  *         yarn check:complexes
@@ -34,9 +34,9 @@ const OUTLINE_FILE = path.join(EDITION_DATA_DIR, 'edition-outline.json');
 const ROWTABLES_FILE = path.join(EDITION_DATA_DIR, 'rowtables.json');
 // Short forms of the catalogue types (as EDITION_CATALOGUE_TYPE_CONSTANTS in the app)
 const CATALOGUE_SHORT = { OPUS: 'op.', MNR: 'M', MNR_X: 'M*' };
-// The mark of a numbered part in a type (roman numeral between tab marks) and the work number after it
+// The mark of a numbered part in a type (roman numeral between tab marks) and the M number after it
 const NUMBERED_PART_MARK = /<span class="tab"><\/span>[IVX]+<span class="tab"><\/span>/;
-const WORK_NUMBER_PATTERN = /\bM\*? \d+(?:\/\d+)?/;
+const MNR_PATTERN = /\bM\*? \d+(?:\/\d+)?/;
 
 // The catalogue label of a complex (e.g. M 317, op. 25)
 function catalogueLabel(complex) {
@@ -44,12 +44,12 @@ function catalogueLabel(complex) {
     return `${CATALOGUE_SHORT[catalogueType] ?? catalogueType} ${catalogueNumber}`;
 }
 
-// The work numbers of the numbered parts of a type, one per part (each part up to the next mark)
-function numberedWorks(type) {
+// The M numbers of the numbered parts of a type, one per part (each part up to the next mark)
+function numberedMnrs(type) {
     return type
         .split(NUMBERED_PART_MARK)
         .slice(1)
-        .map(part => part.match(WORK_NUMBER_PATTERN)?.[0] ?? '(no work number)');
+        .map(part => part.match(MNR_PATTERN)?.[0] ?? '(no M number)');
 }
 
 // ── Read the complexes, the outline and the row tables ───────────────────────
@@ -155,7 +155,7 @@ function check() {
         const sources = readSourceList(complexId, complex);
         const expected = parts.map(part => (complexes.has(part) ? catalogueLabel(complexes.get(part)) : part));
         for (const source of sources) {
-            const numbered = numberedWorks(source.type ?? '');
+            const numbered = numberedMnrs(source.type ?? '');
             if (numbered.length && numbered.join(', ') !== expected.join(', ')) {
                 const siglum = `${source.siglum}${source.siglumAddendum ?? ''}`;
                 warnings.push(
