@@ -9,18 +9,18 @@ import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testi
 
 import { EditionOutlineCompositeComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
 
-import { EditionComplexCompositesComponent } from './edition-complex-composites.component';
+import { EditionComplexPartOfComponent } from './edition-complex-part-of.component';
 
-describe('EditionComplexCompositesComponent (DONE)', () => {
-    let component: EditionComplexCompositesComponent;
-    let fixture: ComponentFixture<EditionComplexCompositesComponent>;
+describe('EditionComplexPartOfComponent (DONE)', () => {
+    let component: EditionComplexPartOfComponent;
+    let fixture: ComponentFixture<EditionComplexPartOfComponent>;
     let compDe: DebugElement;
 
     let expectedCompositeComplexes: EditionOutlineCompositeComplexItem[];
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditionComplexCompositesComponent],
+            imports: [EditionComplexPartOfComponent],
             providers: [provideRouter([])],
         }).compileComponents();
     });
@@ -30,7 +30,7 @@ describe('EditionComplexCompositesComponent (DONE)', () => {
         expectedCompositeComplexes = EditionStateHelper.getOutlineComplexItem('m217').compositeComplexes ?? [];
 
         // Create component fixture
-        fixture = TestBed.createComponent(EditionComplexCompositesComponent);
+        fixture = TestBed.createComponent(EditionComplexPartOfComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
@@ -53,8 +53,8 @@ describe('EditionComplexCompositesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no p.awg-edition-complex-composite yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-complex-composite', 0, 0);
+            it('... should contain no p.awg-edition-complex-part-of yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-complex-part-of', 0, 0);
             });
         });
     });
@@ -84,7 +84,7 @@ describe('EditionComplexCompositesComponent (DONE)', () => {
             const getPDes = () =>
                 getAndExpectDebugElementByCss(
                     compDe,
-                    'p.awg-edition-complex-composite',
+                    'p.awg-edition-complex-part-of',
                     expectedCompositeComplexes.length,
                     expectedCompositeComplexes.length
                 );

@@ -178,7 +178,7 @@ export interface EditionOutlineComplexItem {
     readonly parts?: EditionOutlineComplexItem[];
 
     /**
-     * The composite edition complexes that hold an edition complex as a part (only if there are any).
+     * The composite edition complexes that contain an edition complex (only if there are any).
      */
     readonly compositeComplexes?: EditionOutlineCompositeComplexItem[];
 }
@@ -188,11 +188,11 @@ export interface EditionOutlineComplexItem {
  *
  * It is used in the context of the edition view
  * to structure outline information of a composite edition complex
- * together with the number of a part in it.
+ * together with the part number of the edition complex it contains.
  */
 export interface EditionOutlineCompositeComplexItem extends EditionOutlineComplexItem {
     /**
-     * The number of the part in the composite edition complex (starting at 1).
+     * The part number of the contained edition complex (starting at 1).
      */
     readonly partNumber: number;
 }
@@ -215,7 +215,7 @@ interface EditionOutlineComplexLookup {
     readonly getComplexParts: (id: string) => EditionComplex[];
 
     /**
-     * Function to get the composite edition complexes of a part by id.
+     * Function to get the composite edition complexes that contain an edition complex, by id.
      */
     readonly getCompositeComplexes: (id: string) => EditionComplexPartOf[];
 
@@ -361,7 +361,7 @@ export class EditionOutline {
      * @param {EditionOutlineSeriesJsonData[] | null | undefined} outlineData The given edition outline.
      * @param {Function} getComplexById Function to get an edition complex by id.
      * @param {Function} [getComplexParts] Optional function to get the parts of a composite edition complex by id.
-     * @param {Function} [getCompositeComplexes] Optional function to get the composite edition complexes of a part by id.
+     * @param {Function} [getCompositeComplexes] Optional function to get the composite edition complexes that contain an edition complex, by id.
      */
     constructor(
         outlineData: EditionOutlineSeriesJsonData[] | null | undefined,

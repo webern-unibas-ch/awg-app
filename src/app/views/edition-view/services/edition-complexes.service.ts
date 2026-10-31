@@ -29,7 +29,8 @@ export class EditionComplexesService {
     /**
      * Private readonly computed signal: _compositeComplexRefs.
      *
-     * It computes the ids of the composite edition complexes and the numbers of the parts in them by the ids of the parts.
+     * It computes for each part id the ids of the composite edition complexes that contain the part,
+     * each with the part number.
      */
     private readonly _compositeComplexRefs = computed<Map<string, { compositeId: string; partNumber: number }[]>>(
         () => {
@@ -98,8 +99,8 @@ export class EditionComplexesService {
     /**
      * Public method: getCompositeComplexes.
      *
-     * It returns the composite edition complexes that hold a given edition complex as a part,
-     * together with the number of the part in them.
+     * It returns the composite edition complexes that contain a given edition complex,
+     * each with the part number of the edition complex.
      *
      * @param {string} id The given id of the edition complex (will be normalized to lowercase).
      * @returns {EditionComplexPartOf[]} The composite edition complexes, empty if there are none.

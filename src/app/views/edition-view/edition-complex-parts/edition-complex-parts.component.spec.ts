@@ -12,7 +12,7 @@ import {
 } from '@testing/expect-helper';
 
 import { EditionOutlineComplexItem } from '../models/edition-outline.model';
-import { EditionComplexCompositesComponent } from '../shared/complex/edition-complex-composites/edition-complex-composites.component';
+import { EditionComplexPartOfComponent } from '../shared/complex/edition-complex-part-of/edition-complex-part-of.component';
 import { EditionComplexPartsListComponent } from '../shared/complex/edition-complex-parts-list/edition-complex-parts-list.component';
 
 import { EditionComplexPartsComponent } from './edition-complex-parts.component';
@@ -30,7 +30,7 @@ describe('EditionComplexPartsComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [EditionComplexPartsComponent],
         })
-            .overrideComponent(EditionComplexCompositesComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPartOfComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionComplexPartsListComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
@@ -105,8 +105,8 @@ describe('EditionComplexPartsComponent (DONE)', () => {
                     expectToEqual(listCmp.parts(), expectedCompositeItem.parts);
                 });
 
-                it('... should contain no EditionComplexCompositesComponent', () => {
-                    getAndExpectDebugElementByDirective(compDe, EditionComplexCompositesComponent, 0, 0);
+                it('... should contain no EditionComplexPartOfComponent', () => {
+                    getAndExpectDebugElementByDirective(compDe, EditionComplexPartOfComponent, 0, 0);
                 });
             });
 
@@ -115,17 +115,12 @@ describe('EditionComplexPartsComponent (DONE)', () => {
                     setOutlineComplexItem(expectedPartItem);
                 });
 
-                it('... should pass down the composite complexes to EditionComplexCompositesComponent (hollow)', () => {
-                    const compositesDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionComplexCompositesComponent,
-                        1,
-                        1
-                    );
-                    const compositesCmp = compositesDes[0].injector.get(EditionComplexCompositesComponent);
+                it('... should pass down the composite complexes to EditionComplexPartOfComponent (hollow)', () => {
+                    const partOfDes = getAndExpectDebugElementByDirective(compDe, EditionComplexPartOfComponent, 1, 1);
+                    const partOfCmp = partOfDes[0].injector.get(EditionComplexPartOfComponent);
 
-                    expectToEqual(compositesCmp.compositeComplexes(), expectedPartItem.compositeComplexes);
-                    expectToBe(compositesCmp.isCompact(), false);
+                    expectToEqual(partOfCmp.compositeComplexes(), expectedPartItem.compositeComplexes);
+                    expectToBe(partOfCmp.isCompact(), false);
                 });
 
                 it('... should contain no label and no EditionComplexPartsListComponent', () => {

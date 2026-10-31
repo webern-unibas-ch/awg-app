@@ -3,7 +3,7 @@ import { Component, input } from '@angular/core';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
-import { EditionComplexCompositesComponent } from '@awg-views/edition-view/shared/complex/edition-complex-composites/edition-complex-composites.component';
+import { EditionComplexPartOfComponent } from '@awg-views/edition-view/shared/complex/edition-complex-part-of/edition-complex-part-of.component';
 import { EditionComplexPartsListComponent } from '@awg-views/edition-view/shared/complex/edition-complex-parts-list/edition-complex-parts-list.component';
 
 /**
@@ -17,7 +17,7 @@ import { EditionComplexPartsListComponent } from '@awg-views/edition-view/shared
     selector: 'awg-edition-section-detail-complex-card',
     templateUrl: './edition-section-detail-complex-card.component.html',
     styleUrl: './edition-section-detail-complex-card.component.scss',
-    imports: [ButtonMoreComponent, EditionComplexCompositesComponent, EditionComplexPartsListComponent, DatePipe],
+    imports: [ButtonMoreComponent, EditionComplexPartOfComponent, EditionComplexPartsListComponent, DatePipe],
 })
 export class EditionSectionDetailComplexCardComponent {
     /**

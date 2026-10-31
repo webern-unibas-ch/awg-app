@@ -282,12 +282,12 @@ export class EditionComplex {
  */
 export interface EditionComplexPartOf {
     /**
-     * The composite edition complex that holds the part.
+     * The composite edition complex that contains the edition complex.
      */
     compositeComplex: EditionComplex;
 
     /**
-     * The number of the part in the composite edition complex (starting at 1).
+     * The part number of the edition complex in the composite edition complex (starting at 1).
      */
     partNumber: number;
 }

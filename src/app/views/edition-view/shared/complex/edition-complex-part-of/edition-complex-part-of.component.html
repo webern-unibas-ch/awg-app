@@ -1,7 +1,7 @@
 @for (composite of compositeComplexes(); track composite.complex.complexId.route) {
     @let label = isCompact() ? composite.complex.complexId.short : composite.complex.complexId.full;
 
-    <p class="awg-edition-complex-composite mb-0">
+    <p class="awg-edition-complex-part-of mb-0">
         Teil von:
         @if (composite.disabled) {
             <span [innerHTML]="label"></span>

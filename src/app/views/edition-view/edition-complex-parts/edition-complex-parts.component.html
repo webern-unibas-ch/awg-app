@@ -3,7 +3,7 @@
 @if (item.parts || item.compositeComplexes) {
     <div class="awg-edition-complex-parts mt-3">
         @if (item.compositeComplexes; as compositeComplexes) {
-            <awg-edition-complex-composites [compositeComplexes]="compositeComplexes" />
+            <awg-edition-complex-part-of [compositeComplexes]="compositeComplexes" />
         }
         @if (item.parts; as parts) {
             <p class="mb-1">Enthält:</p>

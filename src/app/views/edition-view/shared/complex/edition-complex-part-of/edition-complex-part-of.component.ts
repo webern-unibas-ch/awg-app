@@ -4,24 +4,24 @@ import { RouterLink } from '@angular/router';
 import { EditionOutlineCompositeComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
 
 /**
- * The EditionComplexComposites component.
+ * The EditionComplexPartOf component.
  *
- * It contains the composite edition complexes of a part
- * together with the number of the part in them,
- * with links to the enabled composite complexes.
+ * It shows which composite edition complexes an edition complex is a part of,
+ * with its part number in each (e.g. "Teil von: op. 12 (Nr. 2)"),
+ * and links to the enabled composite complexes.
  */
 @Component({
-    selector: 'awg-edition-complex-composites',
-    templateUrl: './edition-complex-composites.component.html',
-    styleUrl: './edition-complex-composites.component.scss',
+    selector: 'awg-edition-complex-part-of',
+    templateUrl: './edition-complex-part-of.component.html',
+    styleUrl: './edition-complex-part-of.component.scss',
     imports: [RouterLink],
 })
-export class EditionComplexCompositesComponent {
+export class EditionComplexPartOfComponent {
     /**
      * Readonly input signal: compositeComplexes.
      *
-     * It holds the outline items of the composite edition complexes of a part
-     * with the number of the part in them.
+     * It holds the outline items of the composite edition complexes
+     * that contain the edition complex, each with its part number.
      */
     readonly compositeComplexes = input.required<EditionOutlineCompositeComplexItem[]>();
 
