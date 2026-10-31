@@ -21,7 +21,7 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
 - `yarn check:sources`: reports sources described in several complexes and their differences (HTML in `reports/`, ignored); `--since <ref>` adds the changed fields since a git ref, `--open` opens the report in the browser
 
-Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; afterwards the pre-commit hook runs `check:glyphs` if glyph files are staged and `check:complexes` if complexes, outline, row tables or source lists are staged.
+Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; afterwards the pre-commit hook runs `check:glyphs` if glyph files are staged and `check:complexes` if complexes, outline, row tables, source lists or the check itself are staged.
 
 ## Git
 
