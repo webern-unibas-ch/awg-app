@@ -100,12 +100,14 @@ function check() {
 
     for (const complexId of outline) {
         if (!complexes.has(complexId)) {
-            errors.push(`${complexId} is in the outline, but not in the edition complexes`);
+            errors.push(`${complexId} is listed in the outline, but missing in the edition complexes`);
         }
     }
     const unlisted = [...complexes.keys()].filter(complexId => !listed.has(complexId));
     if (unlisted.length) {
-        notes.push(`Neither in the outline nor in the row tables: ${unlisted.join(', ')}`);
+        notes.push(
+            `In the edition complexes, but not listed in the app (neither in the outline nor in the row tables): ${unlisted.join(', ')}`
+        );
     }
 
     let partCount = 0;
@@ -115,10 +117,12 @@ function check() {
         const seen = new Set();
         for (const part of parts) {
             if (!complexes.has(part)) {
-                errors.push(`${complexId}: part ${part} is not in the edition complexes`);
+                errors.push(`${complexId}: part ${part} is missing in the edition complexes`);
             }
-            if (part === complexId || seen.has(part)) {
-                errors.push(`${complexId}: part ${part} is listed ${part === complexId ? 'as its own part' : 'twice'}`);
+            if (part === complexId) {
+                errors.push(`${complexId} lists itself as a part`);
+            } else if (seen.has(part)) {
+                errors.push(`${complexId} lists part ${part} twice`);
             }
             seen.add(part);
         }
@@ -130,7 +134,7 @@ function check() {
             if (numbered.length && numbered.join(', ') !== expected.join(', ')) {
                 const siglum = `${source.siglum}${source.siglumAddendum ?? ''}`;
                 warnings.push(
-                    `${complexId}:${siglum}: the type numbers ${numbered.join(', ')}, the parts are ${expected.join(', ') || '(none)'}`
+                    `${complexId}:${siglum}: the type in the source list numbers ${numbered.join(', ')}, but ${complexId} lists ${expected.length ? `${expected.join(', ')} as parts` : 'no parts'}`
                 );
             }
         }
@@ -168,7 +172,7 @@ function main() {
     if (errors.length) {
         process.exitCode = 1;
     } else {
-        console.log('[OK  ] Outline, complexes and parts match');
+        console.log('[OK  ] Outline, edition complexes and parts match');
     }
 }
 
