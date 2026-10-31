@@ -92,10 +92,10 @@ const SIGLUM_REFERENCE_PATTERN =
 const MISSING = '<missing>';
 const DOCUMENTS_FILE = path.join(EDITION_DATA_DIR, 'documents.json');
 const DOCUMENT_ID_PATTERN = /^awg_doc_\d{4}$/;
-// A work number with the numbers listed after it (M 36–38, M* 410, 412 und 414–416)
-const WORK_NUMBER = String.raw`\d+(?:/\d+)?(?:–\d+)?`;
-const WORK_LIST_PATTERN = new RegExp(String.raw`(M\*?) (${WORK_NUMBER}(?:(?:, | und )${WORK_NUMBER})*)`, 'g');
-const WORK_ITEM_PATTERN = /^M\*? \d+(?:\/\d+)?/;
+// An M number with the numbers listed after it (M 36–38, M* 410, 412 und 414–416)
+const MNR_DIGITS = String.raw`\d+(?:/\d+)?(?:–\d+)?`;
+const MNR_LIST_PATTERN = new RegExp(String.raw`(M\*?) (${MNR_DIGITS}(?:(?:, | und )${MNR_DIGITS})*)`, 'g');
+const MNR_ITEM_PATTERN = /^M\*? \d+(?:\/\d+)?/;
 
 function readJsonIfExists(filePath, fallback) {
     return fs.existsSync(filePath) ? readJson(filePath) : fallback;
@@ -755,39 +755,39 @@ function comparableText(text) {
         .trim();
 }
 
-// The works named in a text, with ranges and lists that share a prefix (M 36–38, M* 410, 412)
-function worksInText(text) {
-    const works = new Set();
-    for (const [, prefix, list] of stripTags(text).matchAll(WORK_LIST_PATTERN)) {
+// The M numbers named in a text, with ranges and lists that share a prefix (M 36–38, M* 410, 412)
+function mnrsInText(text) {
+    const mnrs = new Set();
+    for (const [, prefix, list] of stripTags(text).matchAll(MNR_LIST_PATTERN)) {
         for (const part of list.split(/, | und /)) {
             const [from, to] = part.split('–');
             if (to && !from.includes('/')) {
                 for (let number = Number(from); number <= Number(to); number++) {
-                    works.add(`${prefix} ${number}`);
+                    mnrs.add(`${prefix} ${number}`);
                 }
             } else {
-                works.add(`${prefix} ${from}`);
+                mnrs.add(`${prefix} ${from}`);
             }
         }
     }
-    return works;
+    return mnrs;
 }
 
-function worksInContents(physDesc) {
-    const works = new Set();
+function mnrsInContents(physDesc) {
+    const mnrs = new Set();
     for (const content of physDesc?.contents ?? []) {
-        const work = stripTags(content.item).match(WORK_ITEM_PATTERN)?.[0];
-        if (work) {
-            works.add(work);
+        const mnr = stripTags(content.item).match(MNR_ITEM_PATTERN)?.[0];
+        if (mnr) {
+            mnrs.add(mnr);
         }
     }
-    return works;
+    return mnrs;
 }
 
 // Errors in the structure of the registry and its references; warnings for content differences
 function checkRegistry(complexSources, grouping) {
     const errors = [];
-    const warnings = { drift: [], location: [], listDescription: [], works: [] };
+    const warnings = { drift: [], location: [], listDescription: [], mnrs: [] };
     const notes = [];
     const documents = readJson(DOCUMENTS_FILE).documents;
 
@@ -868,14 +868,14 @@ function checkRegistry(complexSources, grouping) {
                     });
                 }
             }
-            // Only types that name works (not e.g. "Reihentabelle.")
-            const contentWorks = worksInContents(description.physDesc);
-            const typeWorks = worksInText(entry.type);
-            if (contentWorks.size && typeWorks.size) {
-                const onlyType = [...typeWorks].filter(work => !contentWorks.has(work));
-                const onlyContents = [...contentWorks].filter(work => !typeWorks.has(work));
+            // Only types that name M numbers (not e.g. "Reihentabelle.")
+            const contentMnrs = mnrsInContents(description.physDesc);
+            const typeMnrs = mnrsInText(entry.type);
+            if (contentMnrs.size && typeMnrs.size) {
+                const onlyType = [...typeMnrs].filter(mnr => !contentMnrs.has(mnr));
+                const onlyContents = [...contentMnrs].filter(mnr => !typeMnrs.has(mnr));
                 if (onlyType.length || onlyContents.length) {
-                    warnings.works.push({ copy: key, onlyType, onlyContents });
+                    warnings.mnrs.push({ copy: key, onlyType, onlyContents });
                 }
             }
         }
@@ -1032,9 +1032,9 @@ ${itemList(warnings.location, ({ copy, list, registry }) => comparison(copy, 'Re
 ${itemList(warnings.listDescription, ({ copy, field, list, description }) =>
     comparison(`${copy} ${field}`, 'Source description', list, description)
 )}
-<h3>Works in the type differ from the contents (${warnings.works.length})</h3>
+<h3>M numbers in the type differ from the contents (${warnings.mnrs.length})</h3>
 ${itemList(
-    warnings.works,
+    warnings.mnrs,
     ({ copy, onlyType, onlyContents }) =>
         `<b>${escapeHtml(copy)}</b>: only in the type: ${escapeHtml(onlyType.join(', ') || '—')}; only in the contents: ${escapeHtml(onlyContents.join(', ') || '—')}`
 )}`;
@@ -1177,9 +1177,9 @@ function main() {
     for (const { copy, field } of warnings.listDescription) {
         console.log(`[WARN] ${copy}: ${field} differs between source list and description`);
     }
-    for (const { copy, onlyType, onlyContents } of warnings.works) {
+    for (const { copy, onlyType, onlyContents } of warnings.mnrs) {
         console.log(
-            `[WARN] ${copy}: works only in the type: ${onlyType.join(', ') || '-'}; only in the contents: ${onlyContents.join(', ') || '-'}`
+            `[WARN] ${copy}: M numbers only in the type: ${onlyType.join(', ') || '-'}; only in the contents: ${onlyContents.join(', ') || '-'}`
         );
     }
     for (const note of notes) {
