@@ -1341,7 +1341,14 @@
                 "pubStatement": {
                     "series": "1",
                     "section": "5"
-                }
+                },
+                "parts": [
+                    { "complex": "m133" },
+                    { "complex": "m134" },
+                    { "complex": "m135" },
+                    { "complex": "m136" },
+                    { "complex": "m137" }
+                ]
             }
         },
         {
@@ -1362,7 +1369,14 @@
                 "pubStatement": {
                     "series": "1",
                     "section": "5"
-                }
+                },
+                "parts": [
+                    { "complex": "m138" },
+                    { "complex": "m139" },
+                    { "complex": "m140" },
+                    { "complex": "m141" },
+                    { "complex": "m142" }
+                ]
             }
         },
         {
@@ -1383,7 +1397,8 @@
                 "pubStatement": {
                     "series": "1",
                     "section": "5"
-                }
+                },
+                "parts": [{ "complex": "m212" }, { "complex": "m217" }, { "complex": "m213" }, { "complex": "m216" }]
             }
         },
         {
@@ -1467,7 +1482,8 @@
                 "pubStatement": {
                     "series": "1",
                     "section": "5"
-                }
+                },
+                "parts": [{ "complex": "m314" }, { "complex": "m313" }, { "complex": "m312" }]
             }
         },
         {
@@ -1509,7 +1525,8 @@
                 "pubStatement": {
                     "series": "1",
                     "section": "5"
-                }
+                },
+                "parts": [{ "complex": "m317" }, { "complex": "m322" }, { "complex": "m321" }]
             }
         },
         {
