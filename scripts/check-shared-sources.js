@@ -23,11 +23,9 @@
  * 4) Document registry (documents.json): every source list entry refers to a document by its
  *    documentId, and the document lists the entry in usedBy. Part documents of a convolute
  *    (descriptions with an addendum, e.g. Aa–Ad of A, without a list entry) refer to the convolute
- *    by partOf. Copies matched as one group need one document. Errors in these references fail
- *    the check. Warnings list content differences: copies of one document that are not matched
- *    as a group, locations that differ from the registry, source list entries that differ from
- *    their description (type, location), and works named in the type but not in the contents
- *    or vice versa.
+ *    by partOf. Copies matched as one group need one document, unless the registry marks the
+ *    documents as distinct (distinctFrom). Errors in these references fail the check; content
+ *    differences between the copies, the source lists and the registry are listed as warnings.
  *
  * With --since <ref>, the report also lists the changed fields of the descriptions since a git ref
  * (commit, branch or tag), each with the copies of the same document that have the new value.
@@ -123,6 +121,11 @@ function stripTags(text) {
     return result.replace(/\s+/g, ' ').trim();
 }
 
+// The siglum with its addendum (e.g. Aa, EH, FR1), as used in copy keys and convolute ids
+function fullSiglum(source) {
+    return `${source.siglum}${source.siglumAddendum ?? ''}`;
+}
+
 function escapeHtml(text) {
     return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
@@ -203,8 +206,7 @@ function readCopies(complexSources) {
 
         for (const source of descriptions) {
             const listEntry = sourcesByLink.get(source.id) ?? source;
-            // The convolute id is the full siglum (with addendum, e.g. Aa, FR1)
-            const siglum = `${source.siglum}${source.siglumAddendum ?? ''}`;
+            const siglum = fullSiglum(source);
             copies.push({
                 key: `${complexId}:${siglum}`,
                 complexId,
@@ -672,7 +674,7 @@ function readChangesSince(ref, groups, find) {
             ? {
                   entries: data => data.sources,
                   id: source => source.id,
-                  key: source => `${complexId}:${source.siglum}${source.siglumAddendum ?? ''}`,
+                  key: source => `${complexId}:${fullSiglum(source)}`,
                   label: '',
                   field: 'physDesc',
                   read: copy => copy.physDesc,
@@ -711,9 +713,18 @@ function readChangesSince(ref, groups, find) {
 
 // ── Check the document registry ──────────────────────────────────────────────
 
-// The short form of a document: the copies that use it (e.g. m43:B = m44:A)
+// The copy key of a usedBy entry (complex:siglum)
+function useKey(use) {
+    return `${use.complex}:${use.siglum}`;
+}
+
+// The short form of copies or of a document (the copies that use it), e.g. m43:B = m44:A
+function copiesLabel(keys) {
+    return keys.join(' = ');
+}
+
 function documentLabel(doc) {
-    return doc.usedBy.map(use => `${use.complex}:${use.siglum}`).join(' = ');
+    return copiesLabel((doc.usedBy ?? []).map(useKey));
 }
 
 // The location string of a registry entry, as written in the source lists
@@ -735,11 +746,11 @@ function renderLocation(doc) {
     return `${[repository, collection, shelfmark].filter(Boolean).join(', ')}.`;
 }
 
-// Text for comparing a list entry with its description: without tags, slashes and line breaks
-// (the list breaks lines where the description separates with a slash)
+// Text for comparing a list entry with its description: without tags and separators
+// (the list breaks lines where the description separates with " / ")
 function comparableText(text) {
     return stripTags(text)
-        .replace(/\s*\/\s*/g, ' ')
+        .replace(/\s+\/\s+/g, ' ')
         .replace(/\s+/g, ' ')
         .trim();
 }
@@ -773,11 +784,11 @@ function worksInContents(physDesc) {
     return works;
 }
 
-// Errors (structure of the registry and the references) and warnings (content: drift, locations,
-// list vs. description, works in the type vs. the contents)
+// Errors in the structure of the registry and its references; warnings for content differences
 function checkRegistry(complexSources, grouping) {
     const errors = [];
     const warnings = { drift: [], location: [], listDescription: [], works: [] };
+    const notes = [];
     const documents = readJson(DOCUMENTS_FILE).documents;
 
     const byId = new Map();
@@ -798,8 +809,16 @@ function checkRegistry(complexSources, grouping) {
         } else if (doc.partOf && byId.get(doc.partOf).partOf) {
             errors.push(`${doc.id}: partOf ${doc.partOf}, which is a part itself`);
         }
+        if (!doc.usedBy?.length) {
+            errors.push(`${doc.id} is not used by any source`);
+        }
+        for (const otherId of doc.distinctFrom ?? []) {
+            if (!byId.has(otherId)) {
+                errors.push(`${doc.id}: distinctFrom ${otherId} does not exist`);
+            }
+        }
         for (const use of doc.usedBy ?? []) {
-            const key = `${use.complex}:${use.siglum}`;
+            const key = useKey(use);
             if (idByUse.has(key)) {
                 errors.push(`${key} is used by ${idByUse.get(key)} and ${doc.id}`);
             }
@@ -813,12 +832,12 @@ function checkRegistry(complexSources, grouping) {
         const linked = new Set(list.map(entry => entry.linkTo));
 
         for (const entry of list) {
-            const key = `${complexId}:${entry.siglum}${entry.siglumAddendum ?? ''}`;
-            const doc = byId.get(entry.documentId);
+            const key = `${complexId}:${fullSiglum(entry)}`;
             if (!entry.documentId) {
                 errors.push(`${key} has no documentId`);
                 continue;
             }
+            const doc = byId.get(entry.documentId);
             if (!doc) {
                 errors.push(`${key}: documentId ${entry.documentId} does not exist`);
                 continue;
@@ -830,8 +849,9 @@ function checkRegistry(complexSources, grouping) {
             if (idByUse.get(key) !== doc.id) {
                 errors.push(`${key} refers to ${doc.id}, but its usedBy does not list ${key}`);
             }
-            if (normalizeSpace(entry.location) !== renderLocation(doc)) {
-                warnings.location.push({ copy: key, list: entry.location, registry: renderLocation(doc) });
+            const registryLocation = renderLocation(doc);
+            if (normalizeSpace(entry.location) !== normalizeSpace(registryLocation)) {
+                warnings.location.push({ copy: key, list: entry.location, registry: registryLocation });
             }
 
             const description = entry.hasDescription ? descriptionsById.get(entry.linkTo) : null;
@@ -863,7 +883,7 @@ function checkRegistry(complexSources, grouping) {
         // Part documents: descriptions with an addendum that no list entry links to (e.g. Aa–Ad of A)
         for (const description of descriptions) {
             if (!description.siglum || linked.has(description.id)) continue;
-            const key = `${complexId}:${description.siglum}${description.siglumAddendum ?? ''}`;
+            const key = `${complexId}:${fullSiglum(description)}`;
             const doc = byId.get(idByUse.get(key));
             const container = list.find(entry => entry.siglum === description.siglum && !entry.siglumAddendum);
             if (!doc?.partOf) {
@@ -884,28 +904,34 @@ function checkRegistry(complexSources, grouping) {
     // Copies of the same document (matched by content) need one id; one id across copies that are not
     // matched points to drift
     const { groups, find } = grouping;
+    // A wrong match is resolved by marking the documents as distinct (distinctFrom, either direction)
+    const isDistinct = (a, b) => byId.get(a).distinctFrom?.includes(b) || byId.get(b).distinctFrom?.includes(a);
     const groupIds = groups.map(group => {
-        const ids = [...new Set(group.copies.map(copy => idByUse.get(copy.key)))];
-        if (ids.length > 1) {
-            errors.push(
-                `${group.copies.map(copy => copy.key).join(' = ')} are one document, but refer to ${ids.join(', ')}`
-            );
+        // Unregistered copies are reported above
+        const ids = [...new Set(group.copies.map(copy => idByUse.get(copy.key)).filter(Boolean))];
+        const label = copiesLabel(group.copies.map(copy => copy.key));
+        if (ids.every((a, index) => ids.slice(index + 1).every(b => isDistinct(a, b)))) {
+            if (ids.length > 1) {
+                notes.push(`${label}: matched, but ${ids.join(', ')} are marked as distinct`);
+            }
+        } else {
+            errors.push(`${label} are one document, but refer to ${ids.join(', ')}`);
         }
-        return ids[0];
+        return ids.join(', ') || undefined;
     });
     const copyKeys = new Set(
         complexSources.flatMap(({ complexId, descriptions }) =>
-            descriptions.map(description => `${complexId}:${description.siglum}${description.siglumAddendum ?? ''}`)
+            descriptions.map(description => `${complexId}:${fullSiglum(description)}`)
         )
     );
     for (const doc of documents) {
-        const described = doc.usedBy.map(use => `${use.complex}:${use.siglum}`).filter(key => copyKeys.has(key));
+        const described = (doc.usedBy ?? []).map(useKey).filter(key => copyKeys.has(key));
         if (new Set(described.map(find)).size > 1) {
             warnings.drift.push({ id: doc.id, label: documentLabel(doc) });
         }
     }
 
-    return { errors, warnings, groupIds, byId };
+    return { errors, warnings, notes, groupIds, byId };
 }
 
 // ── Render the report ────────────────────────────────────────────────────────
@@ -962,7 +988,7 @@ function renderGroup(group, index, result, documentId) {
 
     return `
 <section class="group ${differences.length ? 'drift' : 'ok'}">
-<h2>${index + 1}. ${escapeHtml(documentId ?? '(no document id)')} (${escapeHtml(group.copies.map(copy => copy.key).join(' = '))})</h2>
+<h2>${index + 1}. ${escapeHtml(documentId ?? '(no document id)')} (${escapeHtml(copiesLabel(group.copies.map(copy => copy.key)))})</h2>
 <p class="meta">Matched by: ${group.criteria.join(', ')} · <span class="status">${status}</span></p>
 <table class="list"><tr><th>Copy</th><th>Type (complex-specific)</th><th>Location</th></tr>${members}</table>
 ${differenceItems ? `<h3>Content differences</h3>${differenceItems}` : ''}
@@ -985,8 +1011,8 @@ function renderChanges(ref, changes) {
 <div class="overflow"><table class="list"><tr><th>Copy</th><th>Field</th><th>Before</th><th>After</th><th>Same value in</th></tr>${rows || '<tr><td colspan="5">none</td></tr>'}</table></div>`;
 }
 
-function renderRegistry({ errors, warnings }) {
-    const list = (items, render) =>
+function renderRegistry({ errors, warnings, notes }) {
+    const itemList = (items, render) =>
         items.length
             ? `<ul>${items.map(item => `<li>${render(item)}</li>`).join('')}</ul>`
             : '<p class="meta">none</p>';
@@ -995,17 +1021,19 @@ function renderRegistry({ errors, warnings }) {
     return `
 <h2>Document registry (<code>${relPath(DOCUMENTS_FILE)}</code>)</h2>
 <h3>Errors (${errors.length})</h3>
-${list(errors, escapeHtml)}
+${itemList(errors, escapeHtml)}
+<h3>Matched copies of documents marked as distinct (${notes.length})</h3>
+${itemList(notes, escapeHtml)}
 <h3>Copies of one document that are not matched as one group (${warnings.drift.length})</h3>
-${list(warnings.drift, ({ id, label }) => `<b>${escapeHtml(id)}</b> (${escapeHtml(label)})`)}
+${itemList(warnings.drift, ({ id, label }) => `<b>${escapeHtml(id)}</b> (${escapeHtml(label)})`)}
 <h3>Location in the source list differs from the registry (${warnings.location.length})</h3>
-${list(warnings.location, ({ copy, list: text, registry }) => comparison(copy, 'Registry', text, registry))}
+${itemList(warnings.location, ({ copy, list, registry }) => comparison(copy, 'Registry', list, registry))}
 <h3>Source list differs from the source description (${warnings.listDescription.length})</h3>
-${list(warnings.listDescription, ({ copy, field, list: text, description }) =>
-    comparison(`${copy} ${field}`, 'Source description', text, description)
+${itemList(warnings.listDescription, ({ copy, field, list, description }) =>
+    comparison(`${copy} ${field}`, 'Source description', list, description)
 )}
 <h3>Works in the type differ from the contents (${warnings.works.length})</h3>
-${list(
+${itemList(
     warnings.works,
     ({ copy, onlyType, onlyContents }) =>
         `<b>${escapeHtml(copy)}</b>: only in the type: ${escapeHtml(onlyType.join(', ') || '—')}; only in the contents: ${escapeHtml(onlyContents.join(', ') || '—')}`
@@ -1122,7 +1150,7 @@ function main() {
             .map(({ field, variants }) => `${field} ${formatDistribution(variants)}`)
             .join(', ');
         console.log(
-            `[DIFF] ${index + 1}. ${registry.groupIds[index] ?? '(no document id)'} (${group.copies.map(copy => copy.key).join(' = ')})  (${fields})`
+            `[DIFF] ${index + 1}. ${registry.groupIds[index] ?? '(no document id)'} (${copiesLabel(group.copies.map(copy => copy.key))})  (${fields})`
         );
     }
     if (formatCopies.length) {
@@ -1138,7 +1166,7 @@ function main() {
         console.log(`[INFO] ${changes.length} changed field(s) since ${SINCE_REF}`);
     }
 
-    const { errors, warnings } = registry;
+    const { errors, warnings, notes } = registry;
     console.log(`\nDocument registry: ${registry.byId.size} document(s)`);
     for (const { id, label } of warnings.drift) {
         console.log(`[WARN] ${id} (${label}): copies not matched as one group`);
@@ -1153,6 +1181,9 @@ function main() {
         console.log(
             `[WARN] ${copy}: works only in the type: ${onlyType.join(', ') || '-'}; only in the contents: ${onlyContents.join(', ') || '-'}`
         );
+    }
+    for (const note of notes) {
+        console.log(`[NOTE] ${note}`);
     }
     for (const error of errors) {
         console.error(`[ERR ] ${error}`);
