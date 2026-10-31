@@ -1,0 +1,13 @@
+@for (composite of compositeComplexes(); track composite.complex.complexId.route) {
+    @let label = isCompact() ? composite.complex.complexId.short : composite.complex.complexId.full;
+
+    <p class="awg-edition-complex-composite mb-0">
+        Teil von:
+        @if (composite.disabled) {
+            <span [innerHTML]="label"></span>
+        } @else {
+            <a [routerLink]="[composite.complex.baseRoute]" [innerHTML]="label"></a>
+        }
+        (Nr. {{ composite.partNumber }})
+    </p>
+}

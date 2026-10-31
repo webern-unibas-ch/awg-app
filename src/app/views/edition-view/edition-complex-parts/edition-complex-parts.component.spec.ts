@@ -1,13 +1,19 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import { EditionOutlineComplexItem } from '../models/edition-outline.model';
+import { EditionComplexCompositesComponent } from '../shared/complex/edition-complex-composites/edition-complex-composites.component';
+import { EditionComplexPartsListComponent } from '../shared/complex/edition-complex-parts-list/edition-complex-parts-list.component';
 
 import { EditionComplexPartsComponent } from './edition-complex-parts.component';
 
@@ -23,18 +29,15 @@ describe('EditionComplexPartsComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [EditionComplexPartsComponent],
-            providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionComplexCompositesComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPartsListComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
-        // Test data: the second part of op12 is enabled to test the links
-        const compositeItem = EditionStateHelper.getOutlineComplexItem('op12');
-        const parts = compositeItem.parts ?? [];
-        expectedCompositeItem = {
-            ...compositeItem,
-            parts: parts.map((part, index) => ({ ...part, disabled: index !== 1 })),
-        };
+        // Test data
+        expectedCompositeItem = EditionStateHelper.getOutlineComplexItem('op12');
         expectedPartItem = EditionStateHelper.getOutlineComplexItem('m217');
         expectedSingleItem = EditionStateHelper.getOutlineComplexItem('m22');
 
@@ -86,41 +89,24 @@ describe('EditionComplexPartsComponent (DONE)', () => {
                     setOutlineComplexItem(expectedCompositeItem);
                 });
 
-                it('... should contain one ordered list with one item per part', () => {
-                    const parts = expectedCompositeItem.parts ?? [];
+                it('... should contain a label and one EditionComplexPartsListComponent (hollow)', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex-parts', 1, 1);
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
+                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                    const olDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-complex-parts > ol.awg-edition-complex-parts-list',
-                        1,
-                        1
-                    );
-
-                    getAndExpectDebugElementByCss(olDes[0], 'li', parts.length, parts.length);
+                    expectToBe(pEl.textContent?.trim(), 'Enthält:');
+                    getAndExpectDebugElementByDirective(divDes[0], EditionComplexPartsListComponent, 1, 1);
                 });
 
-                it('... should display the full complex ids of the parts in their order', () => {
-                    const parts = expectedCompositeItem.parts ?? [];
+                it('... should pass down the parts to EditionComplexPartsListComponent (hollow)', () => {
+                    const listDes = getAndExpectDebugElementByDirective(compDe, EditionComplexPartsListComponent, 1, 1);
+                    const listCmp = listDes[0].injector.get(EditionComplexPartsListComponent);
 
-                    const liDes = getAndExpectDebugElementByCss(compDe, 'ol > li', parts.length, parts.length);
-                    const liEls: HTMLLIElement[] = liDes.map(liDe => liDe.nativeElement);
-
-                    liEls.forEach((liEl, index) => {
-                        expectToBe(liEl.innerHTML.includes(parts[index].complex.complexId.full), true);
-                    });
+                    expectToEqual(listCmp.parts(), expectedCompositeItem.parts);
                 });
 
-                it('... should link only the enabled parts to their complexes', () => {
-                    const enabledPart = (expectedCompositeItem.parts ?? [])[1];
-
-                    const linkDes = getAndExpectDebugElementByCss(compDe, 'ol > li > a', 1, 1);
-                    const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
-
-                    expectToBe(linkEl.getAttribute('href'), enabledPart.complex.baseRoute);
-                });
-
-                it('... should contain no paragraph for composite complexes', () => {
-                    getAndExpectDebugElementByCss(compDe, 'p.awg-edition-complex-parts-composite', 0, 0);
+                it('... should contain no EditionComplexCompositesComponent', () => {
+                    getAndExpectDebugElementByDirective(compDe, EditionComplexCompositesComponent, 0, 0);
                 });
             });
 
@@ -129,44 +115,22 @@ describe('EditionComplexPartsComponent (DONE)', () => {
                     setOutlineComplexItem(expectedPartItem);
                 });
 
-                it('... should contain one paragraph per composite complex', () => {
-                    const composites = expectedPartItem.compositeComplexes ?? [];
-
-                    getAndExpectDebugElementByCss(
+                it('... should pass down the composite complexes to EditionComplexCompositesComponent (hollow)', () => {
+                    const compositesDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        'p.awg-edition-complex-parts-composite',
-                        composites.length,
-                        composites.length
+                        EditionComplexCompositesComponent,
+                        1,
+                        1
                     );
+                    const compositesCmp = compositesDes[0].injector.get(EditionComplexCompositesComponent);
+
+                    expectToEqual(compositesCmp.compositeComplexes(), expectedPartItem.compositeComplexes);
+                    expectToBe(compositesCmp.isCompact(), false);
                 });
 
-                it('... should link the enabled composite complex and display the part number', () => {
-                    const composite = (expectedPartItem.compositeComplexes ?? [])[0];
-
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-edition-complex-parts-composite', 1, 1);
-                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
-                    const linkDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
-                    const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
-
-                    expectToBe(linkEl.getAttribute('href'), composite.complex.baseRoute);
-                    expectToBe(pEl.textContent?.includes(`(Nr. ${composite.partNumber})`), true);
-                });
-
-                it('... should display a disabled composite complex without link', () => {
-                    const composites = expectedPartItem.compositeComplexes ?? [];
-                    setOutlineComplexItem({
-                        ...expectedPartItem,
-                        compositeComplexes: composites.map(composite => ({ ...composite, disabled: true })),
-                    });
-
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-edition-complex-parts-composite', 1, 1);
-
-                    getAndExpectDebugElementByCss(pDes[0], 'a', 0, 0);
-                    getAndExpectDebugElementByCss(pDes[0], 'span', 1, 1);
-                });
-
-                it('... should contain no ordered list of parts', () => {
-                    getAndExpectDebugElementByCss(compDe, 'ol.awg-edition-complex-parts-list', 0, 0);
+                it('... should contain no label and no EditionComplexPartsListComponent', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex-parts > p', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, EditionComplexPartsListComponent, 0, 0);
                 });
             });
         });

@@ -18,6 +18,8 @@ import {
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionComplexCompositesComponent } from '@awg-views/edition-view/shared/complex/edition-complex-composites/edition-complex-composites.component';
+import { EditionComplexPartsListComponent } from '@awg-views/edition-view/shared/complex/edition-complex-parts-list/edition-complex-parts-list.component';
 
 import { EditionSectionDetailComplexCardComponent } from './edition-section-detail-complex-card.component';
 
@@ -39,6 +41,8 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             providers: [provideRouter([]), { provide: LOCALE_ID, useValue: 'de-DE' }],
         })
             .overrideComponent(ButtonMoreComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexCompositesComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPartsListComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -330,12 +334,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 const getPartsCardBodyDes = () => getAndExpectDebugElementByCss(compDe, 'div.card-body', 3, 3);
 
                 beforeEach(() => {
-                    // The second part of op12 is enabled to test the links
-                    const opusItem = EditionStateHelper.getOutlineComplexItem('op12');
-                    compositeItem = {
-                        ...opusItem,
-                        parts: (opusItem.parts ?? []).map((part, index) => ({ ...part, disabled: index !== 1 })),
-                    };
+                    compositeItem = EditionStateHelper.getOutlineComplexItem('op12');
                     partItem = EditionStateHelper.getOutlineComplexItem('m217');
                     singleItem = EditionStateHelper.getOutlineComplexItem('m22');
 
@@ -343,90 +342,45 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     fixture.detectChanges();
                 });
 
-                it('... should have an ordered list of the parts only in the card of a composite complex', () => {
+                it('... should contain one EditionComplexPartsListComponent (hollow) only in the card of a composite complex', () => {
                     const [compositeBodyDe, partBodyDe, singleBodyDe] = getPartsCardBodyDes();
 
-                    getAndExpectDebugElementByCss(compositeBodyDe, 'ol.awg-edition-card-parts', 1, 1);
-                    getAndExpectDebugElementByCss(partBodyDe, 'ol.awg-edition-card-parts', 0, 0);
-                    getAndExpectDebugElementByCss(singleBodyDe, 'ol.awg-edition-card-parts', 0, 0);
+                    getAndExpectDebugElementByDirective(compositeBodyDe, EditionComplexPartsListComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(partBodyDe, EditionComplexPartsListComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(singleBodyDe, EditionComplexPartsListComponent, 0, 0);
                 });
 
-                it('... should display the full complex ids of the parts in their order', () => {
-                    const parts = compositeItem.parts ?? [];
-
-                    const liDes = getAndExpectDebugElementByCss(
+                it('... should pass down the parts to EditionComplexPartsListComponent (hollow)', () => {
+                    const listDes = getAndExpectDebugElementByDirective(
                         getPartsCardBodyDes()[0],
-                        'ol.awg-edition-card-parts > li',
-                        parts.length,
-                        parts.length
-                    );
-                    const liEls: HTMLLIElement[] = liDes.map(liDe => liDe.nativeElement);
-
-                    liEls.forEach((liEl, index) => {
-                        expectToBe(liEl.innerHTML.includes(parts[index].complex.complexId.full), true);
-                    });
-                });
-
-                it('... should link only the enabled parts and text-mute the disabled ones', () => {
-                    const parts = compositeItem.parts ?? [];
-
-                    const liDes = getAndExpectDebugElementByCss(
-                        getPartsCardBodyDes()[0],
-                        'ol.awg-edition-card-parts > li',
-                        parts.length,
-                        parts.length
-                    );
-                    const linkDes = getAndExpectDebugElementByCss(getPartsCardBodyDes()[0], 'li > a', 1, 1);
-                    const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
-
-                    expectToBe(linkEl.getAttribute('href'), parts[1].complex.baseRoute);
-                    liDes.forEach((liDe, index) => {
-                        const liEl: HTMLLIElement = liDe.nativeElement;
-
-                        expectToBe(liEl.classList.contains('text-muted'), parts[index].disabled);
-                    });
-                });
-
-                it('... should have a paragraph for the composite complex only in the card of a part', () => {
-                    const [compositeBodyDe, partBodyDe, singleBodyDe] = getPartsCardBodyDes();
-
-                    getAndExpectDebugElementByCss(compositeBodyDe, 'p.awg-edition-card-composite', 0, 0);
-                    getAndExpectDebugElementByCss(partBodyDe, 'p.awg-edition-card-composite', 1, 1);
-                    getAndExpectDebugElementByCss(singleBodyDe, 'p.awg-edition-card-composite', 0, 0);
-                });
-
-                it('... should link the enabled composite complex and display the part number', () => {
-                    const composite = (partItem.compositeComplexes ?? [])[0];
-
-                    const pDes = getAndExpectDebugElementByCss(
-                        getPartsCardBodyDes()[1],
-                        'p.awg-edition-card-composite',
+                        EditionComplexPartsListComponent,
                         1,
                         1
                     );
-                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
-                    const linkDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
-                    const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
+                    const listCmp = listDes[0].injector.get(EditionComplexPartsListComponent);
 
-                    expectToBe(linkEl.getAttribute('href'), composite.complex.baseRoute);
-                    expectToBe(linkEl.innerHTML, composite.complex.complexId.short);
-                    expectToBe(pEl.textContent?.includes(`(Nr. ${composite.partNumber})`), true);
+                    expectToEqual(listCmp.parts(), compositeItem.parts);
                 });
 
-                it('... should display a disabled composite complex without link', () => {
-                    const composites = partItem.compositeComplexes ?? [];
-                    fixture.componentRef.setInput('displayedComplexes', [
-                        {
-                            ...partItem,
-                            compositeComplexes: composites.map(composite => ({ ...composite, disabled: true })),
-                        },
-                    ]);
-                    fixture.detectChanges();
+                it('... should contain one EditionComplexCompositesComponent (hollow) only in the card of a part', () => {
+                    const [compositeBodyDe, partBodyDe, singleBodyDe] = getPartsCardBodyDes();
 
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-edition-card-composite', 1, 1);
+                    getAndExpectDebugElementByDirective(compositeBodyDe, EditionComplexCompositesComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(partBodyDe, EditionComplexCompositesComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(singleBodyDe, EditionComplexCompositesComponent, 0, 0);
+                });
 
-                    getAndExpectDebugElementByCss(pDes[0], 'a', 0, 0);
-                    getAndExpectDebugElementByCss(pDes[0], 'span', 1, 1);
+                it('... should pass down the composite complexes and `isCompact` to EditionComplexCompositesComponent (hollow)', () => {
+                    const compositesDes = getAndExpectDebugElementByDirective(
+                        getPartsCardBodyDes()[1],
+                        EditionComplexCompositesComponent,
+                        1,
+                        1
+                    );
+                    const compositesCmp = compositesDes[0].injector.get(EditionComplexCompositesComponent);
+
+                    expectToEqual(compositesCmp.compositeComplexes(), partItem.compositeComplexes);
+                    expectToBe(compositesCmp.isCompact(), true);
                 });
             });
         });

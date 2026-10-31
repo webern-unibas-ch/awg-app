@@ -1,7 +1,8 @@
 import { Component, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 import { EditionOutlineComplexItem } from '../models/edition-outline.model';
+import { EditionComplexCompositesComponent } from '../shared/complex/edition-complex-composites/edition-complex-composites.component';
+import { EditionComplexPartsListComponent } from '../shared/complex/edition-complex-parts-list/edition-complex-parts-list.component';
 
 /**
  * The EditionComplexParts component.
@@ -14,7 +15,7 @@ import { EditionOutlineComplexItem } from '../models/edition-outline.model';
     selector: 'awg-edition-complex-parts',
     templateUrl: './edition-complex-parts.component.html',
     styleUrl: './edition-complex-parts.component.scss',
-    imports: [RouterLink],
+    imports: [EditionComplexCompositesComponent, EditionComplexPartsListComponent],
 })
 export class EditionComplexPartsComponent {
     /**
