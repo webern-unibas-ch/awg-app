@@ -97,6 +97,10 @@ jobs:
               run: |
                   yarn run check:glyphs
 
+            - name: Check edition complexes
+              run: |
+                  yarn run check:complexes
+
     sonar:
         # perform SonarQube scan only for current node version, and only on non-PR runs in the main repository (token issue)
         if: github.event_name != 'pull_request' && github.repository_owner == vars.MAIN_REPO_OWNER
