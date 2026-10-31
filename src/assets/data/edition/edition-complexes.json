@@ -1009,6 +1009,27 @@
             }
         },
         {
+            "m313": {
+                "titleStatement": {
+                    "title": "„Es stürzt aus Höhen Frische“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "313"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "$ref": "thomas_ahrend"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
             "m314": {
                 "titleStatement": {
                     "title": "„Das dunkle Herz“",
