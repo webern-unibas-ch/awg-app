@@ -794,6 +794,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionComplexesJsonData.html" data-type="entity-link" >EditionComplexesJsonData</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionComplexJsonPart.html" data-type="entity-link" >EditionComplexJsonPart</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionComplexJsonPersonRef.html" data-type="entity-link" >EditionComplexJsonPersonRef</a>
                             </li>
                             <li class="link">
