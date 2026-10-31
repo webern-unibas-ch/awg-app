@@ -1,47 +1,41 @@
-import {
-    EditionComplex,
-    EditionComplexesJsonData,
-    EditionComplexesList,
-} from '@awg-views/edition-view/models/edition-complex.model';
+import { EditionComplex, EditionComplexesList } from '@awg-views/edition-view/models/edition-complex.model';
 import {
     EditionOutline,
     EditionOutlineSection,
     EditionOutlineSeries,
 } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionComplexesService } from '@awg-views/edition-view/services/edition-complexes.service';
 
-import jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
 import jsonEditionOutline from 'assets/data/edition/edition-outline.json';
 
 let initializedOutline: EditionOutlineSeries[] | null = null;
-let initializedComplexesList: EditionComplexesList | null = null;
+let initializedComplexesService: EditionComplexesService | null = null;
+
+/**
+ * Private helper function: _getInitializedComplexesService.
+ *
+ * It initializes an edition complexes service with the edition complexes data
+ * if it hasn't been initialized yet and returns the initialized service.
+ *
+ * @returns {EditionComplexesService} The initialized edition complexes service.
+ */
+function _getInitializedComplexesService(): EditionComplexesService {
+    if (!initializedComplexesService) {
+        initializedComplexesService = new EditionComplexesService();
+        initializedComplexesService.initializeEditionComplexesList();
+    }
+    return initializedComplexesService;
+}
 
 /**
  * Private helper function: _getInitializedComplexesList.
  *
- * It initializes the edition complexes list if it hasn't been initialized yet and returns the initialized list.
+ * It returns the initialized edition complexes list.
  *
  * @returns {{ [key: string]: EditionComplex }} The initialized edition complexes list.
  */
 function _getInitializedComplexesList(): EditionComplexesList {
-    if (!initializedComplexesList) {
-        const complexesData: EditionComplexesJsonData = jsonEditionComplexes;
-        const complexesList: Record<string, EditionComplex> = {};
-
-        complexesData.editionComplexes.forEach(complex => {
-            Object.entries(complex).forEach(([complexKey, complexValue]) => {
-                if (!complexValue) {
-                    return;
-                }
-                complexesList[complexKey] = new EditionComplex(
-                    complexValue.titleStatement,
-                    complexValue.respStatement,
-                    complexValue.pubStatement
-                );
-            });
-        });
-        initializedComplexesList = complexesList;
-    }
-    return initializedComplexesList;
+    return _getInitializedComplexesService().editionComplexesList();
 }
 
 /**
@@ -54,9 +48,15 @@ function _getInitializedComplexesList(): EditionComplexesList {
 function _getInitializedOutline(): EditionOutlineSeries[] {
     if (!initializedOutline) {
         const rawOutlineData = jsonEditionOutline.editionOutline;
-        const complexesList = _getInitializedComplexesList();
+        const complexesService = _getInitializedComplexesService();
+        const complexesList = complexesService.editionComplexesList();
 
-        const outlineModel = new EditionOutline(rawOutlineData, id => complexesList[id.toLowerCase()]);
+        const outlineModel = new EditionOutline(
+            rawOutlineData,
+            id => complexesList[id.toLowerCase()],
+            id => complexesService.getComplexParts(id),
+            id => complexesService.getCompositeComplexes(id)
+        );
 
         initializedOutline = outlineModel.outline;
     }

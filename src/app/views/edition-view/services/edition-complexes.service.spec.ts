@@ -11,12 +11,20 @@ import { EditionComplex, EditionComplexJsonPersonRef } from '../models/edition-c
 
 import { EditionComplexesService } from './edition-complexes.service';
 
+const createComplex = (catalogueType: string, catalogueNumber: string): EditionComplex =>
+    new EditionComplex(
+        { title: `Test ${catalogueType} Complex`, catalogueType, catalogueNumber },
+        { editors: [], lastModified: '---' },
+        { series: '1', section: '5' }
+    );
+
 describe('EditionComplexesService (DONE)', () => {
     let service: EditionComplexesService;
 
     let initializeEditionComplexesListSpy: Spy;
     let setEditionComplexesListSpy: Spy;
     let fetchEditionComplexesDataSpy: Spy;
+    let fetchEditionComplexPartIdsSpy: Spy;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -30,6 +38,7 @@ describe('EditionComplexesService (DONE)', () => {
         initializeEditionComplexesListSpy = vi.spyOn(service, 'initializeEditionComplexesList');
         setEditionComplexesListSpy = vi.spyOn(service, 'setEditionComplexesList');
         fetchEditionComplexesDataSpy = vi.spyOn(service, '_fetchEditionComplexesData' as any);
+        fetchEditionComplexPartIdsSpy = vi.spyOn(service, '_fetchEditionComplexPartIds' as any);
     });
 
     afterEach(() => {
@@ -44,6 +53,38 @@ describe('EditionComplexesService (DONE)', () => {
         expectToBe(isSignal(service['_editionComplexesListSignal']), true);
 
         expectToEqual(service['_editionComplexesListSignal'](), {});
+    });
+
+    it('... should have signal `_complexPartIdsSignal` to hold an empty object', () => {
+        expectToBe(isSignal(service['_complexPartIdsSignal']), true);
+
+        expectToEqual(service['_complexPartIdsSignal'](), {});
+    });
+
+    describe('... computed signal `_compositeComplexRefs`', () => {
+        it('... should have computed signal `_compositeComplexRefs` to hold an empty map', () => {
+            expectToBe(isSignal(service['_compositeComplexRefs']), true);
+
+            expectToEqual(service['_compositeComplexRefs'](), new Map());
+        });
+
+        it('... should hold the ids of the composite complexes and the part numbers by the ids of the parts', () => {
+            service.setEditionComplexesList({}, { op100: ['m1', 'm2'], op101: ['m2'] });
+
+            expectToEqual(
+                service['_compositeComplexRefs'](),
+                new Map([
+                    ['m1', [{ compositeId: 'op100', partNumber: 1 }]],
+                    [
+                        'm2',
+                        [
+                            { compositeId: 'op100', partNumber: 2 },
+                            { compositeId: 'op101', partNumber: 1 },
+                        ],
+                    ],
+                ])
+            );
+        });
     });
 
     describe('... signal `editionComplexesList`', () => {
@@ -82,10 +123,20 @@ describe('EditionComplexesService (DONE)', () => {
             service.initializeEditionComplexesList();
 
             const editionComplexesList = service.editionComplexesList();
+            const partIds = service['_complexPartIdsSignal']();
 
             expectSpyCall(initializeEditionComplexesListSpy, 1);
             expectSpyCall(fetchEditionComplexesDataSpy, 1);
-            expectSpyCall(setEditionComplexesListSpy, 1, [editionComplexesList]);
+            expectSpyCall(fetchEditionComplexPartIdsSpy, 1);
+            expectSpyCall(setEditionComplexesListSpy, 1, [editionComplexesList, partIds]);
+        });
+
+        it('... should initialize the part ids of the composite complexes', () => {
+            service.initializeEditionComplexesList();
+
+            const partIds = service['_complexPartIdsSignal']();
+
+            expectToEqual(partIds['op25'], ['m317', 'm322', 'm321']);
         });
 
         it('... should initialize the edition complexes list', () => {
@@ -163,6 +214,79 @@ describe('EditionComplexesService (DONE)', () => {
         });
     });
 
+    describe('#getComplexParts()', () => {
+        const opus = createComplex('OPUS', '100');
+        const part1 = createComplex('MNR', '1');
+        const part2 = createComplex('MNR', '2');
+
+        beforeEach(() => {
+            service.setEditionComplexesList({ op100: opus, m1: part1, m2: part2 }, { op100: ['m2', 'unknown', 'm1'] });
+        });
+
+        it('... should have a method `getComplexParts`', () => {
+            expect(service.getComplexParts).toBeDefined();
+        });
+
+        it('... should return the known parts of a composite complex in their order', () => {
+            const parts = service.getComplexParts('op100');
+
+            expectToEqual(parts, [part2, part1]);
+        });
+
+        it('... should return the parts in a case-insensitive way', () => {
+            const parts = service.getComplexParts('OP100');
+
+            expectToEqual(parts, [part2, part1]);
+        });
+
+        it('... should return an empty array for a complex without parts', () => {
+            const parts = service.getComplexParts('m1');
+
+            expectToEqual(parts, []);
+        });
+    });
+
+    describe('#getCompositeComplexes()', () => {
+        const opus1 = createComplex('OPUS', '100');
+        const opus2 = createComplex('OPUS', '101');
+        const part = createComplex('MNR', '1');
+
+        beforeEach(() => {
+            service.setEditionComplexesList(
+                { op100: opus1, op101: opus2, m1: part },
+                { op100: ['m2', 'm1'], op101: ['m1'], unknown: ['m1'] }
+            );
+        });
+
+        it('... should have a method `getCompositeComplexes`', () => {
+            expect(service.getCompositeComplexes).toBeDefined();
+        });
+
+        it('... should return the known composite complexes of a part with its part numbers', () => {
+            const compositeComplexes = service.getCompositeComplexes('m1');
+
+            expectToEqual(compositeComplexes, [
+                { compositeComplex: opus1, partNumber: 2 },
+                { compositeComplex: opus2, partNumber: 1 },
+            ]);
+        });
+
+        it('... should return the composite complexes in a case-insensitive way', () => {
+            const compositeComplexes = service.getCompositeComplexes('M1');
+
+            expectToEqual(compositeComplexes, [
+                { compositeComplex: opus1, partNumber: 2 },
+                { compositeComplex: opus2, partNumber: 1 },
+            ]);
+        });
+
+        it('... should return an empty array for a complex that is not a part', () => {
+            const compositeComplexes = service.getCompositeComplexes('op100');
+
+            expectToEqual(compositeComplexes, []);
+        });
+    });
+
     describe('#setEditionComplexesList()', () => {
         const defaultTitleStmt = {
             title: 'Test OPUS Complex',
@@ -218,6 +342,19 @@ describe('EditionComplexesService (DONE)', () => {
 
             expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA['thomas_ahrend']);
             expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
+        });
+
+        it('... should set the given part ids', () => {
+            service.setEditionComplexesList({}, { op100: ['m1'] });
+
+            expectToEqual(service['_complexPartIdsSignal'](), { op100: ['m1'] });
+        });
+
+        it('... should set empty part ids by default', () => {
+            service.setEditionComplexesList({}, { op100: ['m1'] });
+            service.setEditionComplexesList({});
+
+            expectToEqual(service['_complexPartIdsSignal'](), {});
         });
 
         it('... should fall back to ref-based editor name when editor $ref is not found in PERSONS_DATA', () => {
@@ -276,6 +413,25 @@ describe('EditionComplexesService (DONE)', () => {
             expect(editionComplexesList['op3'].titleStatement).toBeDefined();
             expect(editionComplexesList['op3'].respStatement).toBeDefined();
             expect(editionComplexesList['op3'].pubStatement).toBeDefined();
+        });
+    });
+
+    describe('#_fetchEditionComplexPartIds()', () => {
+        it('... should have a method `_fetchEditionComplexPartIds`', () => {
+            expect(service['_fetchEditionComplexPartIds']).toBeDefined();
+        });
+
+        it('... should return the part ids of the composite complexes in their order', () => {
+            const partIds = service['_fetchEditionComplexPartIds']();
+
+            expectToEqual(partIds['op12'], ['m212', 'm217', 'm213', 'm216']);
+            expectToEqual(partIds['op25'], ['m317', 'm322', 'm321']);
+        });
+
+        it('... should return no part ids for complexes without parts', () => {
+            const partIds = service['_fetchEditionComplexPartIds']();
+
+            expect(partIds['m22']).toBeUndefined();
         });
     });
 });

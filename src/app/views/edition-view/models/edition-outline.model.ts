@@ -5,7 +5,7 @@ import {
     EditionRouteConstantsKey,
 } from '@awg-views/edition-view/edition-routes.constants';
 
-import { EditionComplex } from './edition-complex.model';
+import { EditionComplex, EditionComplexPartOf } from './edition-complex.model';
 
 /**
  * The EditionSectionLink class.
@@ -173,9 +173,57 @@ export interface EditionOutlineComplexItem {
     readonly labeledRoute: LabeledRoute;
 
     /**
-     * The sub-complexes of an edition complex.
+     * The parts of a composite edition complex in their order (only if there are parts).
      */
-    readonly subComplexes?: EditionOutlineComplexItem[];
+    readonly parts?: EditionOutlineComplexItem[];
+
+    /**
+     * The composite edition complexes that hold an edition complex as a part (only if there are any).
+     */
+    readonly compositeComplexes?: EditionOutlineCompositeComplexItem[];
+}
+
+/**
+ * The EditionOutlineCompositeComplexItem interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of a composite edition complex
+ * together with the number of a part in it.
+ */
+export interface EditionOutlineCompositeComplexItem extends EditionOutlineComplexItem {
+    /**
+     * The number of the part in the composite edition complex (starting at 1).
+     */
+    readonly partNumber: number;
+}
+
+/**
+ * The EditionOutlineComplexLookup interface.
+ *
+ * It is used in the context of the edition view
+ * to bundle the functions that resolve the edition complexes of an edition outline.
+ */
+interface EditionOutlineComplexLookup {
+    /**
+     * Function to get an edition complex by id.
+     */
+    readonly getComplexById: (id: string) => EditionComplex | undefined;
+
+    /**
+     * Function to get the parts of a composite edition complex by id.
+     */
+    readonly getComplexParts: (id: string) => EditionComplex[];
+
+    /**
+     * Function to get the composite edition complexes of a part by id.
+     */
+    readonly getCompositeComplexes: (id: string) => EditionComplexPartOf[];
+
+    /**
+     * Function to check if an edition complex is disabled in the outline
+     * (true for complexes missing from the outline).
+     */
+    readonly isDisabled: (complex: EditionComplex) => boolean;
 }
 
 /**
@@ -311,18 +359,59 @@ export class EditionOutline {
      * It initializes the class with an edition outline Object.
      *
      * @param {EditionOutlineSeriesJsonData[] | null | undefined} outlineData The given edition outline.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {Function} getComplexById Function to get an edition complex by id.
+     * @param {Function} [getComplexParts] Optional function to get the parts of a composite edition complex by id.
+     * @param {Function} [getCompositeComplexes] Optional function to get the composite edition complexes of a part by id.
      */
     constructor(
         outlineData: EditionOutlineSeriesJsonData[] | null | undefined,
-        getComplexById: (id: string) => EditionComplex | undefined
+        getComplexById: (id: string) => EditionComplex | undefined,
+        getComplexParts: (id: string) => EditionComplex[] = () => [],
+        getCompositeComplexes: (id: string) => EditionComplexPartOf[] = () => []
     ) {
         if (!outlineData) {
             this.outline = [];
             return;
         }
 
-        this.outline = outlineData.map(data => this._mapSeries(data, getComplexById));
+        const lookup: EditionOutlineComplexLookup = {
+            getComplexById,
+            getComplexParts,
+            getCompositeComplexes,
+            isDisabled: this._getDisabledCheck(outlineData, getComplexById),
+        };
+
+        this.outline = outlineData.map(data => this._mapSeries(data, lookup));
+    }
+
+    /**
+     * Private method: _getDisabledCheck.
+     *
+     * It returns a function that checks if an edition complex is disabled in the given outline.
+     * Complexes missing from the outline count as disabled.
+     *
+     * @param {EditionOutlineSeriesJsonData[]} outlineData The given edition outline.
+     * @param {Function} getComplexById Function to get an edition complex by id.
+     * @returns {Function} The function that checks if an edition complex is disabled.
+     */
+    private _getDisabledCheck(
+        outlineData: EditionOutlineSeriesJsonData[],
+        getComplexById: (id: string) => EditionComplex | undefined
+    ): (complex: EditionComplex) => boolean {
+        const disabledByRoute = new Map<string, boolean>();
+
+        outlineData.forEach(({ sections }) =>
+            sections.forEach(({ content }) =>
+                [...content.complexTypes.opus, ...content.complexTypes.mnr].forEach(({ complex, disabled }) => {
+                    const fullComplex = getComplexById(complex);
+                    if (fullComplex) {
+                        disabledByRoute.set(fullComplex.complexId.route, disabled);
+                    }
+                })
+            )
+        );
+
+        return complex => disabledByRoute.get(complex.complexId.route) ?? true;
     }
 
     /**
@@ -333,18 +422,18 @@ export class EditionOutline {
      * @param {EditionOutlineSeriesJsonData} data The series data to map.
      * @param {string} data.series The given series string.
      * @param {EditionOutlineSectionsJsonData[]} data.sections The given sections data.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {EditionOutlineComplexLookup} lookup The functions to resolve the edition complexes.
      * @returns {EditionOutlineSeries} The mapped series.
      */
     private readonly _mapSeries = (
         { series, sections }: EditionOutlineSeriesJsonData,
-        getComplexById: (id: string) => EditionComplex | undefined
+        lookup: EditionOutlineComplexLookup
     ): EditionOutlineSeries => {
         const seriesConstant: EditionRouteConstant =
             EDITION_ROUTE_CONSTANTS[('SERIES_' + series) as EditionRouteConstantsKey];
         return {
             series: seriesConstant,
-            sections: sections.map(section => this._mapSection(section, seriesConstant, getComplexById)),
+            sections: sections.map(section => this._mapSection(section, seriesConstant, lookup)),
         };
     };
 
@@ -357,13 +446,13 @@ export class EditionOutline {
      * @param {string} data.section The given section string.
      * @param {Object} data.complexTypes The given complex types data.
      * @param {boolean} data.disabled The given disabled flag.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {EditionOutlineComplexLookup} lookup The functions to resolve the edition complexes.
      * @returns {EditionOutlineSection} The mapped section.
      */
     private readonly _mapSection = (
         { section, disabled, content }: EditionOutlineSectionsJsonData,
         seriesConstant: EditionRouteConstant,
-        getComplexById: (id: string) => EditionComplex | undefined
+        lookup: EditionOutlineComplexLookup
     ): EditionOutlineSection => {
         const routes = EDITION_ROUTE_CONSTANTS;
         const sectionConstant: EditionRouteConstant =
@@ -390,7 +479,7 @@ export class EditionOutline {
             seriesParent: seriesConstant,
             section: sectionConstant,
             labeledRoute: labeledSectionRoute,
-            content: this._mapSectionContent(content, labeledIntroRoute, getComplexById),
+            content: this._mapSectionContent(content, labeledIntroRoute, lookup),
             disabled,
         };
     };
@@ -402,16 +491,16 @@ export class EditionOutline {
      *
      * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
      * @param {LabeledRoute} labeledIntroRoute The labeled intro route for the edition section.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {EditionOutlineComplexLookup} lookup The functions to resolve the edition complexes.
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
     private readonly _mapSectionContent = (
         content: EditionOutlineSectionsContentJsonData,
         labeledIntroRoute: LabeledRoute,
-        getComplexById: (id: string) => EditionComplex | undefined
+        lookup: EditionOutlineComplexLookup
     ): EditionOutlineSectionContent => {
-        const opus = this._mapComplexItems(content.complexTypes.opus, getComplexById);
-        const mnr = this._mapComplexItems(content.complexTypes.mnr, getComplexById);
+        const opus = this._mapComplexItems(content.complexTypes.opus, lookup);
+        const mnr = this._mapComplexItems(content.complexTypes.mnr, lookup);
         const sectionComplexes = [...opus, ...mnr];
 
         return {
@@ -431,34 +520,57 @@ export class EditionOutline {
     /**
      * Private readonly method: _mapComplexItems.
      *
-     * It maps the complex items.
+     * It maps the complex items, together with their parts and composite complexes.
      *
-     * @param {EditionOutlineComplexItem[]} complexItems The complex items to map.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {{ complex: string; disabled: boolean }[]} complexItems The complex items to map.
+     * @param {EditionOutlineComplexLookup} lookup The functions to resolve the edition complexes.
      * @returns {EditionOutlineComplexItem[]} The mapped complex items.
      */
     private readonly _mapComplexItems = (
         complexItems: { complex: string; disabled: boolean }[],
-        getComplexById: (id: string) => EditionComplex | undefined
+        lookup: EditionOutlineComplexLookup
     ): EditionOutlineComplexItem[] =>
-        complexItems
-            .map(({ complex, disabled }) => {
-                const fullComplex = getComplexById(complex);
+        complexItems.flatMap(({ complex, disabled }) => {
+            const fullComplex = lookup.getComplexById(complex);
 
-                if (!fullComplex) {
-                    return null;
-                }
+            if (!fullComplex) {
+                return [];
+            }
 
-                const labeledRoute: LabeledRoute = {
-                    label: fullComplex.complexId?.full,
-                    route: [fullComplex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
-                };
+            const parts = lookup
+                .getComplexParts(complex)
+                .map(part => this._mapComplexItem(part, lookup.isDisabled(part)));
+            const compositeComplexes = lookup
+                .getCompositeComplexes(complex)
+                .map(({ compositeComplex, partNumber }) => ({
+                    ...this._mapComplexItem(compositeComplex, lookup.isDisabled(compositeComplex)),
+                    partNumber,
+                }));
 
-                return {
-                    complex: fullComplex,
-                    labeledRoute,
-                    disabled,
-                };
-            })
-            .filter((item): item is EditionOutlineComplexItem => item !== null);
+            return [
+                {
+                    ...this._mapComplexItem(fullComplex, disabled),
+                    ...(parts.length ? { parts } : {}),
+                    ...(compositeComplexes.length ? { compositeComplexes } : {}),
+                },
+            ];
+        });
+
+    /**
+     * Private readonly method: _mapComplexItem.
+     *
+     * It maps an edition complex to a complex item.
+     *
+     * @param {EditionComplex} complex The edition complex to map.
+     * @param {boolean} disabled The disabled flag of the edition complex.
+     * @returns {EditionOutlineComplexItem} The mapped complex item.
+     */
+    private readonly _mapComplexItem = (complex: EditionComplex, disabled: boolean): EditionOutlineComplexItem => ({
+        complex,
+        labeledRoute: {
+            label: complex.complexId?.full,
+            route: [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
+        },
+        disabled,
+    });
 }

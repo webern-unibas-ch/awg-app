@@ -1,6 +1,11 @@
-import { Service, signal } from '@angular/core';
+import { computed, Service, signal } from '@angular/core';
 
-import { EditionComplex, EditionComplexesJsonData, EditionComplexesList } from '../models/edition-complex.model';
+import {
+    EditionComplex,
+    EditionComplexesJsonData,
+    EditionComplexesList,
+    EditionComplexPartOf,
+} from '../models/edition-complex.model';
 
 import jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
 
@@ -15,6 +20,31 @@ export class EditionComplexesService {
      * Private readonly signal holding the edition complexes list.
      */
     private readonly _editionComplexesListSignal = signal<EditionComplexesList>({});
+
+    /**
+     * Private readonly signal holding the part ids of the composite edition complexes (in their order).
+     */
+    private readonly _complexPartIdsSignal = signal<Record<string, string[]>>({});
+
+    /**
+     * Private readonly computed signal: _compositeComplexRefs.
+     *
+     * It computes the ids of the composite edition complexes and the numbers of the parts in them by the ids of the parts.
+     */
+    private readonly _compositeComplexRefs = computed<Map<string, { compositeId: string; partNumber: number }[]>>(
+        () => {
+            const compositeRefs = new Map<string, { compositeId: string; partNumber: number }[]>();
+
+            Object.entries(this._complexPartIdsSignal()).forEach(([compositeId, partIds]) => {
+                partIds.forEach((partId, index) => {
+                    const refs = compositeRefs.get(partId) ?? [];
+                    compositeRefs.set(partId, [...refs, { compositeId, partNumber: index + 1 }]);
+                });
+            });
+
+            return compositeRefs;
+        }
+    );
 
     /**
      * Readonly signal: editionComplexesList.
@@ -32,7 +62,8 @@ export class EditionComplexesService {
      */
     initializeEditionComplexesList(): void {
         const complexes = this._fetchEditionComplexesData();
-        this.setEditionComplexesList(complexes);
+        const partIds = this._fetchEditionComplexPartIds();
+        this.setEditionComplexesList(complexes, partIds);
     }
 
     /**
@@ -50,15 +81,51 @@ export class EditionComplexesService {
     }
 
     /**
+     * Public method: getComplexParts.
+     *
+     * It returns the parts of a composite edition complex in their order.
+     *
+     * @param {string} id The given id of the composite edition complex (will be normalized to lowercase).
+     * @returns {EditionComplex[]} The parts of the edition complex, empty if it has none.
+     */
+    getComplexParts(id: string): EditionComplex[] {
+        const complexesList = this._editionComplexesListSignal();
+        const partIds = this._complexPartIdsSignal()[id.toLowerCase()] ?? [];
+
+        return partIds.flatMap(partId => complexesList[partId] ?? []);
+    }
+
+    /**
+     * Public method: getCompositeComplexes.
+     *
+     * It returns the composite edition complexes that hold a given edition complex as a part,
+     * together with the number of the part in them.
+     *
+     * @param {string} id The given id of the edition complex (will be normalized to lowercase).
+     * @returns {EditionComplexPartOf[]} The composite edition complexes, empty if there are none.
+     */
+    getCompositeComplexes(id: string): EditionComplexPartOf[] {
+        const complexesList = this._editionComplexesListSignal();
+        const compositeRefs = this._compositeComplexRefs().get(id.toLowerCase()) ?? [];
+
+        return compositeRefs.flatMap(({ compositeId, partNumber }) => {
+            const compositeComplex = complexesList[compositeId];
+            return compositeComplex ? [{ compositeComplex, partNumber }] : [];
+        });
+    }
+
+    /**
      * Public method: setEditionComplexesList.
      *
-     * It sets the edition complexes list.
+     * It sets the edition complexes list and the part ids of its composite complexes.
      *
      * @param {EditionComplexesList} complexesList The given edition complexes list.
+     * @param {Record<string, string[]>} [partIds={}] The given part ids by the ids of the composite complexes.
      * @returns {void} Sets the edition complexes list.
      */
-    setEditionComplexesList(complexesList: EditionComplexesList): void {
+    setEditionComplexesList(complexesList: EditionComplexesList, partIds: Record<string, string[]> = {}): void {
         this._editionComplexesListSignal.set(complexesList);
+        this._complexPartIdsSignal.set(partIds);
     }
 
     /**
@@ -88,5 +155,29 @@ export class EditionComplexesService {
         });
 
         return editionComplexesList;
+    }
+
+    /**
+     * Private method: _fetchEditionComplexPartIds.
+     *
+     * It fetches the part ids of the composite complexes
+     * from the JSON file of the edition complexes.
+     *
+     * @returns {Record<string, string[]>} The part ids by the ids of the composite complexes.
+     */
+    private _fetchEditionComplexPartIds(): Record<string, string[]> {
+        const complexesData: EditionComplexesJsonData = jsonEditionComplexes;
+        const partIds: Record<string, string[]> = {};
+
+        complexesData.editionComplexes.forEach(complex => {
+            Object.entries(complex).forEach(([complexKey, complexValue]) => {
+                if (!complexValue?.parts?.length) {
+                    return;
+                }
+                partIds[complexKey] = complexValue.parts.map(part => part.complex);
+            });
+        });
+
+        return partIds;
     }
 }

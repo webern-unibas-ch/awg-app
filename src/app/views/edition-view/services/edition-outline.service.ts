@@ -1,7 +1,9 @@
 import { computed, inject, Service, signal } from '@angular/core';
 
+import { EditionComplex } from '../models/edition-complex.model';
 import {
     EditionOutline,
+    EditionOutlineComplexItem,
     EditionOutlineJsonData,
     EditionOutlineSection,
     EditionOutlineSeries,
@@ -41,11 +43,26 @@ export class EditionOutlineService {
             return [];
         }
 
-        const complexesList = this._editionComplexesService.editionComplexesList();
-        const outlineModel = new EditionOutline(rawOutlineData, id => complexesList[id.toLowerCase()]);
+        const complexesService = this._editionComplexesService;
+        const complexesList = complexesService.editionComplexesList();
+        const outlineModel = new EditionOutline(
+            rawOutlineData,
+            id => complexesList[id.toLowerCase()],
+            id => complexesService.getComplexParts(id),
+            id => complexesService.getCompositeComplexes(id)
+        );
 
         return outlineModel.outline;
     });
+
+    /**
+     * Private readonly computed signal: _complexItems.
+     *
+     * It computes the complex items of all sections of the edition outline.
+     */
+    private readonly _complexItems = computed<EditionOutlineComplexItem[]>(() =>
+        this.editionOutline().flatMap(series => series.sections.flatMap(section => section.content.sectionComplexes))
+    );
 
     /**
      * Public method: initEditionOutline.
@@ -83,5 +100,17 @@ export class EditionOutlineService {
     getEditionSectionById(seriesId: string, sectionId: string): EditionOutlineSection | undefined {
         const series = this.getEditionSeriesById(seriesId);
         return series?.sections.find(section => section.section.route === sectionId);
+    }
+
+    /**
+     * Public method: getEditionOutlineComplexItem.
+     *
+     * It finds the outline item of a given edition complex.
+     *
+     * @param {EditionComplex} complex The given edition complex.
+     * @returns {EditionOutlineComplexItem | undefined} The found outline item, otherwise undefined.
+     */
+    getEditionOutlineComplexItem(complex: EditionComplex): EditionOutlineComplexItem | undefined {
+        return this._complexItems().find(item => item.complex.complexId.route === complex.complexId.route);
     }
 }

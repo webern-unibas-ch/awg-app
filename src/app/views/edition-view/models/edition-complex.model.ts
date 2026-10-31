@@ -275,6 +275,24 @@ export class EditionComplex {
 }
 
 /**
+ * The EditionComplexPartOf interface.
+ *
+ * It is used in the context of the edition view
+ * to describe that an edition complex is a part of a composite edition complex.
+ */
+export interface EditionComplexPartOf {
+    /**
+     * The composite edition complex that holds the part.
+     */
+    compositeComplex: EditionComplex;
+
+    /**
+     * The number of the part in the composite edition complex (starting at 1).
+     */
+    partNumber: number;
+}
+
+/**
  * The EditionComplexesList class.
  *
  * It is used in the context of the edition view
