@@ -925,69 +925,6 @@
             }
         },
         {
-            "m289": {
-                "titleStatement": {
-                    "title": "",
-                    "catalogueType": "MNR",
-                    "catalogueNumber": "289"
-                },
-                "respStatement": {
-                    "editors": [
-                        {
-                            "$ref": "thomas_ahrend"
-                        }
-                    ],
-                    "lastModified": "---"
-                },
-                "pubStatement": {
-                    "series": "1",
-                    "section": "2"
-                }
-            }
-        },
-        {
-            "m290": {
-                "titleStatement": {
-                    "title": "",
-                    "catalogueType": "MNR",
-                    "catalogueNumber": "290"
-                },
-                "respStatement": {
-                    "editors": [
-                        {
-                            "$ref": "thomas_ahrend"
-                        }
-                    ],
-                    "lastModified": "---"
-                },
-                "pubStatement": {
-                    "series": "1",
-                    "section": "2"
-                }
-            }
-        },
-        {
-            "m291": {
-                "titleStatement": {
-                    "title": "",
-                    "catalogueType": "MNR",
-                    "catalogueNumber": "291"
-                },
-                "respStatement": {
-                    "editors": [
-                        {
-                            "$ref": "thomas_ahrend"
-                        }
-                    ],
-                    "lastModified": "---"
-                },
-                "pubStatement": {
-                    "series": "1",
-                    "section": "2"
-                }
-            }
-        },
-        {
             "m312": {
                 "titleStatement": {
                     "title": "„Herr Jesus mein“",
