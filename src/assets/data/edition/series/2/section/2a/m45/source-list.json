@@ -3,6 +3,7 @@
         {
             "siglum": "A",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0065",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45: Textfassung 1 und 2.<br />Enthält auch Skizzen zu Studienkomposition für Streichquartett M 26.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -11,6 +12,7 @@
         {
             "siglum": "B",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0066",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45: Textfassung 1→2.<br />Enthält auch Tintenniederschrift von Studienkomposition für Streichquartett M 26.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -19,6 +21,7 @@
         {
             "siglum": "C",
             "siglumAddendum": "",
+            "documentId": "awg_doc_0067",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45: Textfassung 2 (<strong>C<sup>a</sup></strong>).<br />Skizze zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45 (<strong>C<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
