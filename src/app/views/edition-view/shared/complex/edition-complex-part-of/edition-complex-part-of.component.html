@@ -3,11 +3,9 @@
 
     <p class="awg-edition-complex-part-of mb-0">
         Teil von:
-        @if (composite.disabled) {
+        <awg-conditional-link [isClickable]="!composite.disabled" [targetRoute]="[composite.complex.baseRoute]">
             <span [innerHTML]="label"></span>
-        } @else {
-            <a [routerLink]="[composite.complex.baseRoute]" [innerHTML]="label"></a>
-        }
+        </awg-conditional-link>
         (Nr. {{ composite.partNumber }})
     </p>
 }

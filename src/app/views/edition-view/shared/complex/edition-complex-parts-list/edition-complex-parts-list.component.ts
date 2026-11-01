@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
 
@@ -13,7 +14,7 @@ import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/editio
     selector: 'awg-edition-complex-parts-list',
     templateUrl: './edition-complex-parts-list.component.html',
     styleUrl: './edition-complex-parts-list.component.scss',
-    imports: [RouterLink],
+    imports: [ConditionalLinkComponent],
 })
 export class EditionComplexPartsListComponent {
     /**

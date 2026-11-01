@@ -1,11 +1,18 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
+
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { EditionOutlineCompositeComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
 
@@ -21,8 +28,9 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [EditionComplexPartOfComponent],
-            providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -88,29 +96,41 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
                     expectedCompositeComplexes.length,
                     expectedCompositeComplexes.length
                 );
+            const getLinkDes = () => getAndExpectDebugElementByDirective(getPDes()[0], ConditionalLinkComponent, 1, 1);
+            const getLinkCmp = (): ConditionalLinkComponent => getLinkDes()[0].injector.get(ConditionalLinkComponent);
 
             it('... should contain one paragraph per composite complex', () => {
                 getPDes();
             });
 
-            it('... should link the enabled composite complex with its full complex id', () => {
+            it('... should pass down `isClickable` and `targetRoute` to ConditionalLinkComponent (hollow)', () => {
                 const composite = expectedCompositeComplexes[0];
 
-                const linkDes = getAndExpectDebugElementByCss(getPDes()[0], 'a', 1, 1);
-                const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
+                const linkCmp = getLinkCmp();
 
-                expectToBe(linkEl.getAttribute('href'), composite.complex.baseRoute);
-                expectToBe(linkEl.innerHTML, composite.complex.complexId.full);
+                expectToBe(linkCmp.isClickable(), true);
+                expectToEqual(linkCmp.targetRoute(), [composite.complex.baseRoute]);
+            });
+
+            it('... should label the composite complex with its full complex id', () => {
+                const expectedId = expectedCompositeComplexes[0].complex.complexId.full;
+
+                const labelDes = getAndExpectDebugElementByCss(getLinkDes()[0], 'span', 1, 1);
+                const labelEl: HTMLSpanElement = labelDes[0].nativeElement;
+
+                expectToBe(labelEl.innerHTML, expectedId);
             });
 
             it('... should label the composite complex with its short complex id if `isCompact` is true', () => {
                 fixture.componentRef.setInput('isCompact', true);
                 fixture.detectChanges();
 
-                const linkDes = getAndExpectDebugElementByCss(getPDes()[0], 'a', 1, 1);
-                const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
+                const expectedId = expectedCompositeComplexes[0].complex.complexId.short;
 
-                expectToBe(linkEl.innerHTML, expectedCompositeComplexes[0].complex.complexId.short);
+                const labelDes = getAndExpectDebugElementByCss(getLinkDes()[0], 'span', 1, 1);
+                const labelEl: HTMLSpanElement = labelDes[0].nativeElement;
+
+                expectToBe(labelEl.innerHTML, expectedId);
             });
 
             it('... should display the part number', () => {
@@ -121,7 +141,7 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
                 expectToContain(pEl.textContent, expectedPartNumber);
             });
 
-            it('... should display a disabled composite complex without link', () => {
+            it('... should pass down `isClickable` = false for a disabled composite complex', () => {
                 const disabledCompositeComplexes = expectedCompositeComplexes.map(composite => ({
                     ...composite,
                     disabled: true,
@@ -129,10 +149,7 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
 
                 setCompositeComplexes(disabledCompositeComplexes);
 
-                const pDes = getPDes();
-
-                getAndExpectDebugElementByCss(pDes[0], 'a', 0, 0);
-                getAndExpectDebugElementByCss(pDes[0], 'span', 1, 1);
+                expectToBe(getLinkCmp().isClickable(), false);
             });
         });
     });

@@ -13,11 +13,12 @@
                     @let sectionLabel = section.section.full;
 
                     <li class="list-group-item">
-                        @if (!section.disabled) {
-                            <a [routerLink]="[seriesRoute, 'section', sectionRoute]">{{ sectionLabel }}</a>
-                        } @else {
-                            <span class="text-muted">{{ sectionLabel }}</span>
-                        }
+                        <awg-conditional-link
+                            [class.text-muted]="section.disabled"
+                            [isClickable]="!section.disabled"
+                            [targetRoute]="[seriesRoute, 'section', sectionRoute]">
+                            {{ sectionLabel }}
+                        </awg-conditional-link>
                     </li>
                 }
             </ul>

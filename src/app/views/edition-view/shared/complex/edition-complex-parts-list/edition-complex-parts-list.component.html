@@ -1,11 +1,9 @@
 <ol class="awg-edition-complex-parts-list">
     @for (part of parts(); track part.complex.complexId.route) {
         <li [class.text-muted]="part.disabled">
-            @if (part.disabled) {
+            <awg-conditional-link [isClickable]="!part.disabled" [targetRoute]="[part.complex.baseRoute]">
                 <span [innerHTML]="part.complex.complexId.full"></span>
-            } @else {
-                <a [routerLink]="[part.complex.baseRoute]" [innerHTML]="part.complex.complexId.full"></a>
-            }
+            </awg-conditional-link>
         </li>
     }
 </ol>

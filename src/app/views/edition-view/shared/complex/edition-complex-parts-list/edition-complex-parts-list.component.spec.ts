@@ -1,11 +1,18 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
+
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
 
@@ -21,12 +28,13 @@ describe('EditionComplexPartsListComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [EditionComplexPartsListComponent],
-            providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
-        // Test data: the second part of op12 is enabled to test the links
+        // Test data: only the second part of op12 is enabled
         const parts = EditionStateHelper.getOutlineComplexItem('op12').parts ?? [];
         expectedParts = parts.map((part, index) => ({ ...part, disabled: index !== 1 }));
 
@@ -90,18 +98,36 @@ describe('EditionComplexPartsListComponent (DONE)', () => {
                 });
             });
 
-            it('... should link only the enabled parts to their complexes', () => {
-                const linkDes = getAndExpectDebugElementByCss(compDe, 'li > a', 1, 1);
-                const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
+            it('... should contain one ConditionalLinkComponent (hollow) per part', () => {
+                getLiDes().forEach(liDe => {
+                    getAndExpectDebugElementByDirective(liDe, ConditionalLinkComponent, 1, 1);
+                });
+            });
 
-                expectToBe(linkEl.getAttribute('href'), expectedParts[1].complex.baseRoute);
+            it('... should pass down `isClickable` and `targetRoute` to ConditionalLinkComponent (hollow)', () => {
+                const linkDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    ConditionalLinkComponent,
+                    expectedParts.length,
+                    expectedParts.length
+                );
+
+                linkDes.forEach((linkDe, index) => {
+                    const linkCmp = linkDe.injector.get(ConditionalLinkComponent);
+
+                    expectToBe(linkCmp.isClickable(), !expectedParts[index].disabled);
+                    expectToEqual(linkCmp.targetRoute(), [expectedParts[index].complex.baseRoute]);
+                });
             });
 
             it('... should text-mute only the disabled parts', () => {
                 const liEls: HTMLLIElement[] = getLiDes().map(liDe => liDe.nativeElement);
 
                 liEls.forEach((liEl, index) => {
-                    expectToBe(liEl.classList.contains('text-muted'), expectedParts[index].disabled);
+                    const isPartDisabled = expectedParts[index].disabled;
+                    const isItemTextMuted = liEl.classList.contains('text-muted');
+
+                    expectToBe(isItemTextMuted, isPartDisabled);
                 });
             });
         });
