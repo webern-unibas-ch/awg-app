@@ -520,9 +520,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/EditionIntroScrollDirective.html" data-type="entity-link" >EditionIntroScrollDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="directives/EditionSheetFacetItemLinkDirective.html" data-type="entity-link" >EditionSheetFacetItemLinkDirective</a>
-                                </li>
-                                <li class="link">
                                     <a href="directives/EditionSheetFacetScrollDirective.html" data-type="entity-link" >EditionSheetFacetScrollDirective</a>
                                 </li>
                                 <li class="link">
