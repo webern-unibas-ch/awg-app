@@ -6,13 +6,13 @@ import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/but
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 
 import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
-import { EditionComplexPartsComponent } from './edition-complex-parts/edition-complex-parts.component';
 import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
 import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 
 import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
 import { EditionStateService } from './services/edition-state.service';
 import { EditionViewService } from './services/edition-view.service';
+import { EditionComplexPartsComponent } from './shared/complex/edition-complex-parts/edition-complex-parts.component';
 
 /**
  * The EditionView component.

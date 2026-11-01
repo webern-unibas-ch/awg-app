@@ -9,18 +9,10 @@
                                 class="awg-edition-info-header-title"
                                 [innerHTML]="complex.complex.complexId.full"></span>
                         </h5>
-                        @if (complex.parts || complex.compositeComplexes) {
-                            <div class="mt-auto pt-2 small">
-                                @if (complex.compositeComplexes; as compositeComplexes) {
-                                    <awg-edition-complex-part-of
-                                        [compositeComplexes]="compositeComplexes"
-                                        [isCompact]="true" />
-                                }
-                                @if (complex.parts; as parts) {
-                                    <awg-edition-complex-parts-list [parts]="parts" />
-                                }
-                            </div>
-                        }
+                        <awg-edition-complex-parts
+                            class="mt-auto pt-2 small"
+                            [outlineComplexItem]="complex"
+                            [isCompact]="true" />
                     </div>
                     <div class="card-footer">
                         @if (!complex.disabled) {

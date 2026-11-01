@@ -18,8 +18,7 @@ import {
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
-import { EditionComplexPartOfComponent } from '@awg-views/edition-view/shared/complex/edition-complex-part-of/edition-complex-part-of.component';
-import { EditionComplexPartsListComponent } from '@awg-views/edition-view/shared/complex/edition-complex-parts-list/edition-complex-parts-list.component';
+import { EditionComplexPartsComponent } from '@awg-views/edition-view/shared/complex/edition-complex-parts/edition-complex-parts.component';
 
 import { EditionSectionDetailComplexCardComponent } from './edition-section-detail-complex-card.component';
 
@@ -41,8 +40,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             providers: [provideRouter([]), { provide: LOCALE_ID, useValue: 'de-DE' }],
         })
             .overrideComponent(ButtonMoreComponent, { set: { template: '', imports: [] } })
-            .overrideComponent(EditionComplexPartOfComponent, { set: { template: '', imports: [] } })
-            .overrideComponent(EditionComplexPartsListComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPartsComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -326,61 +324,25 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 });
             });
 
-            describe('... with parts and composite complexes', () => {
-                let compositeItem: EditionOutlineComplexItem;
-                let partItem: EditionOutlineComplexItem;
-                let singleItem: EditionOutlineComplexItem;
-
-                const getPartsCardBodyDes = () => getAndExpectDebugElementByCss(compDe, 'div.card-body', 3, 3);
-
-                beforeEach(() => {
-                    compositeItem = EditionStateHelper.getOutlineComplexItem('op12');
-                    partItem = EditionStateHelper.getOutlineComplexItem('m217');
-                    singleItem = EditionStateHelper.getOutlineComplexItem('m22');
-
-                    fixture.componentRef.setInput('displayedComplexes', [compositeItem, partItem, singleItem]);
-                    fixture.detectChanges();
+            it('... should have an EditionComplexPartsComponent (hollow) in the card body for each complex', () => {
+                const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', expectedLength, expectedLength);
+                bodyDes.forEach(bodyDe => {
+                    getAndExpectDebugElementByDirective(bodyDe, EditionComplexPartsComponent, 1, 1);
                 });
+            });
 
-                it('... should contain one EditionComplexPartsListComponent (hollow) only in the card of a composite complex', () => {
-                    const [compositeBodyDe, partBodyDe, singleBodyDe] = getPartsCardBodyDes();
+            it('... should pass down the outline complex item and `isCompact` to EditionComplexPartsComponent (hollow) for each complex', () => {
+                const partsDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionComplexPartsComponent,
+                    expectedLength,
+                    expectedLength
+                );
+                partsDes.forEach((partsDe, index) => {
+                    const partsCmp = partsDe.injector.get(EditionComplexPartsComponent);
 
-                    getAndExpectDebugElementByDirective(compositeBodyDe, EditionComplexPartsListComponent, 1, 1);
-                    getAndExpectDebugElementByDirective(partBodyDe, EditionComplexPartsListComponent, 0, 0);
-                    getAndExpectDebugElementByDirective(singleBodyDe, EditionComplexPartsListComponent, 0, 0);
-                });
-
-                it('... should pass down the parts to EditionComplexPartsListComponent (hollow)', () => {
-                    const listDes = getAndExpectDebugElementByDirective(
-                        getPartsCardBodyDes()[0],
-                        EditionComplexPartsListComponent,
-                        1,
-                        1
-                    );
-                    const listCmp = listDes[0].injector.get(EditionComplexPartsListComponent);
-
-                    expectToEqual(listCmp.parts(), compositeItem.parts);
-                });
-
-                it('... should contain one EditionComplexPartOfComponent (hollow) only in the card of a part', () => {
-                    const [compositeBodyDe, partBodyDe, singleBodyDe] = getPartsCardBodyDes();
-
-                    getAndExpectDebugElementByDirective(compositeBodyDe, EditionComplexPartOfComponent, 0, 0);
-                    getAndExpectDebugElementByDirective(partBodyDe, EditionComplexPartOfComponent, 1, 1);
-                    getAndExpectDebugElementByDirective(singleBodyDe, EditionComplexPartOfComponent, 0, 0);
-                });
-
-                it('... should pass down the composite complexes and `isCompact` to EditionComplexPartOfComponent (hollow)', () => {
-                    const partOfDes = getAndExpectDebugElementByDirective(
-                        getPartsCardBodyDes()[1],
-                        EditionComplexPartOfComponent,
-                        1,
-                        1
-                    );
-                    const partOfCmp = partOfDes[0].injector.get(EditionComplexPartOfComponent);
-
-                    expectToEqual(partOfCmp.compositeComplexes(), partItem.compositeComplexes);
-                    expectToBe(partOfCmp.isCompact(), true);
+                    expectToEqual(partsCmp.outlineComplexItem(), expectedComplexes[index]);
+                    expectToBe(partsCmp.isCompact(), true);
                 });
             });
         });

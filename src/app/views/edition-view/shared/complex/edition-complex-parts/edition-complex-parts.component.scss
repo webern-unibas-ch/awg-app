@@ -1,0 +1,9 @@
+// The spacing is set by the caller on the host element,
+// which is hidden when there is nothing to show
+:host {
+    display: block;
+}
+
+:host(:empty) {
+    display: none;
+}

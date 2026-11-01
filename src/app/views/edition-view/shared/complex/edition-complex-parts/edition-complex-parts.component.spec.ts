@@ -11,9 +11,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { EditionOutlineComplexItem } from '../models/edition-outline.model';
-import { EditionComplexPartOfComponent } from '../shared/complex/edition-complex-part-of/edition-complex-part-of.component';
-import { EditionComplexPartsListComponent } from '../shared/complex/edition-complex-parts-list/edition-complex-parts-list.component';
+import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
+
+import { EditionComplexPartOfComponent } from '../edition-complex-part-of/edition-complex-part-of.component';
+import { EditionComplexPartsListComponent } from '../edition-complex-parts-list/edition-complex-parts-list.component';
 
 import { EditionComplexPartsComponent } from './edition-complex-parts.component';
 
@@ -58,6 +59,12 @@ describe('EditionComplexPartsComponent (DONE)', () => {
             expect(() => component.outlineComplexItem()).toThrow();
         });
 
+        it('... should have input signal `isCompact` to hold false by default', () => {
+            expectToBe(isSignal(component.isCompact), true);
+
+            expectToBe(component.isCompact(), false);
+        });
+
         describe('VIEW', () => {
             it('... should contain no div.awg-edition-complex-parts yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex-parts', 0, 0);
@@ -77,11 +84,26 @@ describe('EditionComplexPartsComponent (DONE)', () => {
             expectToEqual(component.outlineComplexItem(), expectedCompositeItem);
         });
 
+        it('... should have input signal `isCompact` to hold the provided flag', () => {
+            fixture.componentRef.setInput('isCompact', true);
+            setOutlineComplexItem(expectedCompositeItem);
+
+            expectToBe(component.isCompact(), true);
+        });
+
         describe('VIEW', () => {
             it('... should contain no div.awg-edition-complex-parts for a complex without parts and composite complexes', () => {
                 setOutlineComplexItem(expectedSingleItem);
 
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex-parts', 0, 0);
+            });
+
+            it('... should have an empty host element (hidden by its styles) for a complex without parts and composite complexes', () => {
+                setOutlineComplexItem(expectedSingleItem);
+
+                const hostEl: HTMLElement = compDe.nativeElement;
+
+                expectToBe(hostEl.matches(':empty'), true);
             });
 
             describe('... for a composite complex', () => {
@@ -121,6 +143,16 @@ describe('EditionComplexPartsComponent (DONE)', () => {
 
                     expectToEqual(partOfCmp.compositeComplexes(), expectedPartItem.compositeComplexes);
                     expectToBe(partOfCmp.isCompact(), false);
+                });
+
+                it('... should pass down `isCompact` to EditionComplexPartOfComponent (hollow)', () => {
+                    fixture.componentRef.setInput('isCompact', true);
+                    fixture.detectChanges();
+
+                    const partOfDes = getAndExpectDebugElementByDirective(compDe, EditionComplexPartOfComponent, 1, 1);
+                    const partOfCmp = partOfDes[0].injector.get(EditionComplexPartOfComponent);
+
+                    expectToBe(partOfCmp.isCompact(), true);
                 });
 
                 it('... should contain no label and no EditionComplexPartsListComponent', () => {

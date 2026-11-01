@@ -21,7 +21,6 @@ import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
 import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
-import { EditionComplexPartsComponent } from './edition-complex-parts/edition-complex-parts.component';
 import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
 import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 
@@ -33,6 +32,7 @@ import { EditionBreadcrumbService } from './services/edition-breadcrumb.service'
 import { EditionOutlineService } from './services/edition-outline.service';
 import { EditionStateService } from './services/edition-state.service';
 import { EditionViewService } from './services/edition-view.service';
+import { EditionComplexPartsComponent } from './shared/complex/edition-complex-parts/edition-complex-parts.component';
 
 import { EditionViewComponent } from './edition-view.component';
 
