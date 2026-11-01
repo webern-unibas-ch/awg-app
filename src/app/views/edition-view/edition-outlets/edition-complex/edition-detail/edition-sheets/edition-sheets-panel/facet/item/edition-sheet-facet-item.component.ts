@@ -69,18 +69,17 @@ export class EditionSheetFacetItemComponent {
     readonly isActive = computed(() => this.svgSheet().id === this.selectedSvgSheet()?.id);
 
     /**
-     * Readonly computed signal: sheetPartials.
+     * Private readonly computed signal: _partialLinks.
      *
-     * It computes the partial links (if present) of the svg sheet for the dropdown.
+     * It computes the partial links (if present) of the svg sheet without their active state,
+     * so that their routes are only rebuilt when the svg sheet changes.
      */
-    readonly sheetPartials = computed<EditionSheetFacetPartialLink[]>(() => {
+    private readonly _partialLinks = computed<Omit<EditionSheetFacetPartialLink, 'isActive'>[]>(() => {
         const svgSheet = this.svgSheet();
 
         if (svgSheet.content.length <= 1) {
             return [];
         }
-
-        const selectedFullId = this.selectedSvgSheet()?.fullId;
 
         return svgSheet.content.map((content, index) => {
             const sheetId = EDITION_SHEETS_UTILS.toFullSheetId(svgSheet.id, content.partial);
@@ -89,9 +88,23 @@ export class EditionSheetFacetItemComponent {
             const indexLabel = `${index + 1}/${svgSheet.content.length}`;
             const positionLabel = content.partial ? `${content.partial} · ${indexLabel}` : indexLabel;
 
-            const isPartialActive = sheetId === selectedFullId;
+            return { sheetId, sheetRoute, positionLabel };
+        });
+    });
 
-            return { sheetId, sheetRoute, positionLabel, isActive: isPartialActive };
+    /**
+     * Readonly computed signal: sheetPartials.
+     *
+     * It computes the partial links (if present) of the svg sheet for the dropdown,
+     * with the link of the selected partial marked as active.
+     */
+    readonly sheetPartials = computed<EditionSheetFacetPartialLink[]>(() => {
+        const selectedFullId = this.selectedSvgSheet()?.fullId;
+
+        return this._partialLinks().map(partialLink => {
+            const isPartialActive = partialLink.sheetId === selectedFullId;
+
+            return { ...partialLink, isActive: isPartialActive };
         });
     });
 

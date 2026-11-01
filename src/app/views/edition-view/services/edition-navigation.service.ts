@@ -110,7 +110,8 @@ export class EditionNavigationService {
      * Private method: _getComplexRoute.
      *
      * It returns a target route within the edition complex of the provided complexId,
-     * or of the selected edition complex if no complexId is given.
+     * or of the selected edition complex if no complexId is given
+     * (the series overview if no complex is selected).
      *
      * @param {string} complexId The given complex id.
      * @param {string} targetRoute The given target route.

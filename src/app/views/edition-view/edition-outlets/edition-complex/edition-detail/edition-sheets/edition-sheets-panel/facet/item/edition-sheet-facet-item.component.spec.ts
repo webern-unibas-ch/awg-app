@@ -315,20 +315,23 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have computed signal `sheetPartials` to hold only the index in the position label if a partial id is missing', async () => {
-                const svgSheetWithoutPartialIds = {
+                // Only the first partial without id, so that the sheet ids stay unique
+                const svgSheetWithoutPartialId = {
                     ...expectedSvgSheetWithPartials,
-                    content: expectedSvgSheetWithPartials.content.map(content => ({ ...content, partial: undefined })),
+                    content: expectedSvgSheetWithPartials.content.map((content, index) =>
+                        index === 0 ? { ...content, partial: undefined } : content
+                    ),
                 };
-                fixture.componentRef.setInput('svgSheet', svgSheetWithoutPartialIds);
+                fixture.componentRef.setInput('svgSheet', svgSheetWithoutPartialId);
                 await detectChangesOnPush(fixture);
 
                 expectToEqual(
                     component.sheetPartials().map(link => link.positionLabel),
-                    ['1/2', '2/2']
+                    ['1/2', 'b · 2/2']
                 );
                 expectToEqual(
                     component.sheetPartials().map(link => link.sheetId),
-                    [expectedSvgSheetWithPartials.id, expectedSvgSheetWithPartials.id]
+                    [expectedSvgSheetWithPartials.id, expectedSvgSheetWithPartials.id + 'b']
                 );
             });
 
@@ -382,6 +385,23 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     component.sheetPartials().map(link => link.isActive),
                     [false, true]
                 );
+            });
+
+            it('... should have recomputed signal `sheetPartials` with the same routes if another partial is selected', async () => {
+                const sheetRoutes = component.sheetPartials().map(link => link.sheetRoute);
+
+                fixture.componentRef.setInput('selectedSvgSheet', {
+                    id: expectedSvgSheetWithPartials.id,
+                    fullId: `${expectedSvgSheetWithPartials.id}b`,
+                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                });
+                await detectChangesOnPush(fixture);
+
+                const nextSheetRoutes = component.sheetPartials().map(link => link.sheetRoute);
+
+                nextSheetRoutes.forEach((sheetRoute, index) => {
+                    expectToBe(sheetRoute, sheetRoutes[index]);
+                });
             });
 
             describe('VIEW', () => {
@@ -454,12 +474,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 });
 
                 it('... should display only the numbered position in item anchors if a partial id is missing', async () => {
+                    // Only the first partial without id, so that the sheet ids stay unique
                     fixture.componentRef.setInput('svgSheet', {
                         ...expectedSvgSheetWithPartials,
-                        content: expectedSvgSheetWithPartials.content.map(content => ({
-                            ...content,
-                            partial: undefined,
-                        })),
+                        content: expectedSvgSheetWithPartials.content.map((content, index) =>
+                            index === 0 ? { ...content, partial: undefined } : content
+                        ),
                     });
                     await detectChangesOnPush(fixture);
 
@@ -467,7 +487,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
                     expectToEqual(labels, [
                         `${expectedSvgSheetWithPartials.label} [1/2]`,
-                        `${expectedSvgSheetWithPartials.label} [2/2]`,
+                        `${expectedSvgSheetWithPartials.label} [b · 2/2]`,
                     ]);
                 });
 
