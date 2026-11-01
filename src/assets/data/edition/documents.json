@@ -660,7 +660,7 @@
                 "inPublication": "<em>Der blaue Reiter</em>, München: Piper, 1912"
             },
             "fingerprint": {
-                "extent": "150 Seiten"
+                "extent": "1 Blatt (S. 1–2), Format: hoch 296 × ca. 222 mm"
             },
             "usedBy": [
                 {
@@ -725,7 +725,7 @@
                         "trademark": "JE_NO8A_LIN26_OP4_H3"
                     },
                     {
-                        "systems": 26,
+                        "systems": 16,
                         "orientation": "hoch",
                         "height": "343",
                         "width": "267",
@@ -980,7 +980,7 @@
                 "extent": "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) 1 Bogen (Bl. 6/8) mit 1 eingelegten Blatt (Bl. 7), 1 Bogen (Bl. 9/10)",
                 "papers": [
                     {
-                        "systems": 11,
+                        "systems": 22,
                         "orientation": "hoch",
                         "height": "340",
                         "width": "263",
@@ -1146,7 +1146,7 @@
                 "papers": [
                     {
                         "systems": 16,
-                        "orientation": "hoch",
+                        "orientation": "quer",
                         "height": "270",
                         "width": "335",
                         "trademark": "JE_NO15_LIN16_OP23_A"
@@ -1330,7 +1330,7 @@
                 "papers": [
                     {
                         "systems": 16,
-                        "orientation": "hoch",
+                        "orientation": "quer",
                         "height": "270",
                         "width": "337",
                         "trademark": "JE_NO15_LIN16_OP25_D"
@@ -1910,7 +1910,7 @@
                         "orientation": "hoch",
                         "height": "348",
                         "width": "265",
-                        "trademark": ""
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig"
                     }
                 ]
             },
@@ -2093,7 +2093,7 @@
         },
         {
             "id": "awg_doc_0075",
-            "description": "Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2 (<strong>E<sup>a</sup></strong>). Skizzen zu Studienkomposition für Klavier M 32: Textfassung 3 (<strong>E<sup>b</sup></strong>); Skizzen zu Studienkomposition für Klavier M 22 und M* 413–414.",
+            "description": "Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2 (<strong>E<sup>a</sup></strong>). Skizzen zu Studienkomposition für Klavier M 32: Textfassung 3 (<strong>E<sup>b</sup></strong>); Skizzen zu Studienkomposition für Klavier/Streichquartett M 22 und Studienkomposition für Klavier M* 413–414.",
             "location": {
                 "repository": "CH-Bps",
                 "collection": "Sammlung Anton Webern",
@@ -2249,7 +2249,7 @@
         },
         {
             "id": "awg_doc_0079",
-            "description": "Skizzen zu Studienkomposition für Klavier/Streichquartett M 22; Skizzen zu Studienkomposition für Klavier M* 408.",
+            "description": "Skizzen zu Studienkomposition für Klavier/Streichquartett M 22; Skizzen zu Studienkomposition für Streichquartett M* 408.",
             "location": {
                 "repository": "CH-Bps",
                 "collection": "Sammlung Anton Webern",
@@ -2592,7 +2592,7 @@
                         "orientation": "hoch",
                         "height": "349",
                         "width": "267",
-                        "trademark": ""
+                        "trademark": "[J.E. & Co.] / Protokoll. Schutzmarke / No. 5 / 18 linig."
                     }
                 ]
             },
@@ -2684,7 +2684,7 @@
                         "orientation": "hoch",
                         "height": "345",
                         "width": "266",
-                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
+                        "trademark": "[J.E. & Co.] / No. 7 / 22 linig."
                     }
                 ]
             },
