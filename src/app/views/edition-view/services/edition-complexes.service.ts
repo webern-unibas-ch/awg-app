@@ -62,9 +62,8 @@ export class EditionComplexesService {
      * @returns {void} Initializes the edition complexes list.
      */
     initializeEditionComplexesList(): void {
-        const complexes = this._fetchEditionComplexesData();
-        const partIds = this._fetchEditionComplexPartIds();
-        this.setEditionComplexesList(complexes, partIds);
+        const { complexesList, partIds } = this._fetchEditionComplexesData();
+        this.setEditionComplexesList(complexesList, partIds);
     }
 
     /**
@@ -133,52 +132,37 @@ export class EditionComplexesService {
      * Private method: _fetchEditionComplexesData.
      *
      * It fetches the data from a JSON file
-     * for the complexes of the edition view.
+     * for the complexes of the edition view,
+     * together with the part ids of the composite complexes.
      *
-     * @returns {EditionComplexesList} The EditionComplexesList data.
+     * @returns {{ complexesList: EditionComplexesList; partIds: Record<string, string[]> }}
+     * The edition complexes list and the part ids by the ids of the composite complexes.
      */
-    private _fetchEditionComplexesData(): EditionComplexesList {
+    private _fetchEditionComplexesData(): {
+        complexesList: EditionComplexesList;
+        partIds: Record<string, string[]>;
+    } {
         // Load the JSON data directly from the file
         const complexesData: EditionComplexesJsonData = jsonEditionComplexes;
-        const editionComplexesList: EditionComplexesList = {};
+        const complexesList: EditionComplexesList = {};
+        const partIds: Record<string, string[]> = {};
 
         complexesData.editionComplexes.forEach(complex => {
             Object.entries(complex).forEach(([complexKey, complexValue]) => {
                 if (!complexValue) {
                     return;
                 }
-                editionComplexesList[complexKey] = new EditionComplex(
+                complexesList[complexKey] = new EditionComplex(
                     complexValue.titleStatement,
                     complexValue.respStatement,
                     complexValue.pubStatement
                 );
-            });
-        });
-
-        return editionComplexesList;
-    }
-
-    /**
-     * Private method: _fetchEditionComplexPartIds.
-     *
-     * It fetches the part ids of the composite complexes
-     * from the JSON file of the edition complexes.
-     *
-     * @returns {Record<string, string[]>} The part ids by the ids of the composite complexes.
-     */
-    private _fetchEditionComplexPartIds(): Record<string, string[]> {
-        const complexesData: EditionComplexesJsonData = jsonEditionComplexes;
-        const partIds: Record<string, string[]> = {};
-
-        complexesData.editionComplexes.forEach(complex => {
-            Object.entries(complex).forEach(([complexKey, complexValue]) => {
-                if (!complexValue?.parts?.length) {
-                    return;
+                if (complexValue.parts?.length) {
+                    partIds[complexKey] = complexValue.parts.map(part => part.complex);
                 }
-                partIds[complexKey] = complexValue.parts.map(part => part.complex);
             });
         });
 
-        return partIds;
+        return { complexesList, partIds };
     }
 }

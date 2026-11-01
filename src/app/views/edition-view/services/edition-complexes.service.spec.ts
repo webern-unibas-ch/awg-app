@@ -24,7 +24,6 @@ describe('EditionComplexesService (DONE)', () => {
     let initializeEditionComplexesListSpy: Spy;
     let setEditionComplexesListSpy: Spy;
     let fetchEditionComplexesDataSpy: Spy;
-    let fetchEditionComplexPartIdsSpy: Spy;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -38,7 +37,6 @@ describe('EditionComplexesService (DONE)', () => {
         initializeEditionComplexesListSpy = vi.spyOn(service, 'initializeEditionComplexesList');
         setEditionComplexesListSpy = vi.spyOn(service, 'setEditionComplexesList');
         fetchEditionComplexesDataSpy = vi.spyOn(service, '_fetchEditionComplexesData' as any);
-        fetchEditionComplexPartIdsSpy = vi.spyOn(service, '_fetchEditionComplexPartIds' as any);
     });
 
     afterEach(() => {
@@ -127,7 +125,6 @@ describe('EditionComplexesService (DONE)', () => {
 
             expectSpyCall(initializeEditionComplexesListSpy, 1);
             expectSpyCall(fetchEditionComplexesDataSpy, 1);
-            expectSpyCall(fetchEditionComplexPartIdsSpy, 1);
             expectSpyCall(setEditionComplexesListSpy, 1, [editionComplexesList, partIds]);
         });
 
@@ -398,38 +395,32 @@ describe('EditionComplexesService (DONE)', () => {
             expect(service['_fetchEditionComplexesData']).toBeDefined();
         });
 
-        it('... should fetch the edition complexes data', () => {
-            const editionComplexesList = service['_fetchEditionComplexesData']();
+        it('... should return the edition complexes list', () => {
+            const { complexesList } = service['_fetchEditionComplexesData']();
 
-            expect(editionComplexesList).toBeDefined();
-            expect(editionComplexesList).not.toEqual({});
+            expect(complexesList).toBeDefined();
+            expect(complexesList).not.toEqual({});
 
             // Test for samples
-            expect(Object.keys(editionComplexesList).length).toBeGreaterThan(0);
-            expect(editionComplexesList['op3']).toBeDefined();
-            expect(editionComplexesList['m22']).toBeDefined();
+            expect(Object.keys(complexesList).length).toBeGreaterThan(0);
+            expect(complexesList['op3']).toBeDefined();
+            expect(complexesList['m22']).toBeDefined();
 
             // Test for sample properties
-            expect(editionComplexesList['op3'].titleStatement).toBeDefined();
-            expect(editionComplexesList['op3'].respStatement).toBeDefined();
-            expect(editionComplexesList['op3'].pubStatement).toBeDefined();
-        });
-    });
-
-    describe('#_fetchEditionComplexPartIds()', () => {
-        it('... should have a method `_fetchEditionComplexPartIds`', () => {
-            expect(service['_fetchEditionComplexPartIds']).toBeDefined();
+            expect(complexesList['op3'].titleStatement).toBeDefined();
+            expect(complexesList['op3'].respStatement).toBeDefined();
+            expect(complexesList['op3'].pubStatement).toBeDefined();
         });
 
         it('... should return the part ids of the composite complexes in their order', () => {
-            const partIds = service['_fetchEditionComplexPartIds']();
+            const { partIds } = service['_fetchEditionComplexesData']();
 
             expectToEqual(partIds['op12'], ['m212', 'm217', 'm213', 'm216']);
             expectToEqual(partIds['op25'], ['m317', 'm322', 'm321']);
         });
 
         it('... should return no part ids for complexes without parts', () => {
-            const partIds = service['_fetchEditionComplexPartIds']();
+            const { partIds } = service['_fetchEditionComplexesData']();
 
             expect(partIds['m22']).toBeUndefined();
         });

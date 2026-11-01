@@ -201,13 +201,18 @@ export interface EditionOutlineCompositeComplexItem extends EditionOutlineComple
  * The EditionOutlineComplexLookup interface.
  *
  * It is used in the context of the edition view
- * to bundle the functions that resolve the edition complexes of an edition outline.
+ * to bundle the complex items and functions that resolve the edition complexes of an edition outline.
  */
 interface EditionOutlineComplexLookup {
     /**
-     * Function to get an edition complex by id.
+     * The complex items of the outline by the ids used in the outline.
      */
-    readonly getComplexById: (id: string) => EditionComplex | undefined;
+    readonly itemsById: Map<string, EditionOutlineComplexItem>;
+
+    /**
+     * The complex items of the outline by the routes of their edition complexes.
+     */
+    readonly itemsByRoute: Map<string, EditionOutlineComplexItem>;
 
     /**
      * Function to get the parts of a composite edition complex by id.
@@ -218,12 +223,6 @@ interface EditionOutlineComplexLookup {
      * Function to get the composite edition complexes that contain an edition complex, by id.
      */
     readonly getCompositeComplexes: (id: string) => EditionComplexPartOf[];
-
-    /**
-     * Function to check if an edition complex is disabled in the outline
-     * (true for complexes missing from the outline).
-     */
-    readonly isDisabled: (complex: EditionComplex) => boolean;
 }
 
 /**
@@ -374,44 +373,46 @@ export class EditionOutline {
             return;
         }
 
+        const itemsById = this._mapOutlineComplexItems(outlineData, getComplexById);
+        const itemsByRoute = new Map([...itemsById.values()].map(item => [item.complex.complexId.route, item]));
         const lookup: EditionOutlineComplexLookup = {
-            getComplexById,
+            itemsById,
+            itemsByRoute,
             getComplexParts,
             getCompositeComplexes,
-            isDisabled: this._getDisabledCheck(outlineData, getComplexById),
         };
 
         this.outline = outlineData.map(data => this._mapSeries(data, lookup));
     }
 
     /**
-     * Private method: _getDisabledCheck.
+     * Private method: _mapOutlineComplexItems.
      *
-     * It returns a function that checks if an edition complex is disabled in the given outline.
-     * Complexes missing from the outline count as disabled.
+     * It maps the edition complexes of the given outline to complex items
+     * (without parts and composite complexes), by the ids used in the outline.
      *
      * @param {EditionOutlineSeriesJsonData[]} outlineData The given edition outline.
      * @param {Function} getComplexById Function to get an edition complex by id.
-     * @returns {Function} The function that checks if an edition complex is disabled.
+     * @returns {Map<string, EditionOutlineComplexItem>} The complex items by the ids used in the outline.
      */
-    private _getDisabledCheck(
+    private _mapOutlineComplexItems(
         outlineData: EditionOutlineSeriesJsonData[],
         getComplexById: (id: string) => EditionComplex | undefined
-    ): (complex: EditionComplex) => boolean {
-        const disabledByRoute = new Map<string, boolean>();
+    ): Map<string, EditionOutlineComplexItem> {
+        const itemsById = new Map<string, EditionOutlineComplexItem>();
 
         outlineData.forEach(({ sections }) =>
             sections.forEach(({ content }) =>
                 [...content.complexTypes.opus, ...content.complexTypes.mnr].forEach(({ complex, disabled }) => {
                     const fullComplex = getComplexById(complex);
                     if (fullComplex) {
-                        disabledByRoute.set(fullComplex.complexId.route, disabled);
+                        itemsById.set(complex, this._mapComplexItem(fullComplex, disabled));
                     }
                 })
             )
         );
 
-        return complex => disabledByRoute.get(complex.complexId.route) ?? true;
+        return itemsById;
     }
 
     /**
@@ -422,7 +423,7 @@ export class EditionOutline {
      * @param {EditionOutlineSeriesJsonData} data The series data to map.
      * @param {string} data.series The given series string.
      * @param {EditionOutlineSectionsJsonData[]} data.sections The given sections data.
-     * @param {EditionOutlineComplexLookup} lookup The functions to resolve the edition complexes.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
      * @returns {EditionOutlineSeries} The mapped series.
      */
     private readonly _mapSeries = (
@@ -446,7 +447,7 @@ export class EditionOutline {
      * @param {string} data.section The given section string.
      * @param {Object} data.complexTypes The given complex types data.
      * @param {boolean} data.disabled The given disabled flag.
-     * @param {EditionOutlineComplexLookup} lookup The functions to resolve the edition complexes.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
      * @returns {EditionOutlineSection} The mapped section.
      */
     private readonly _mapSection = (
@@ -491,7 +492,7 @@ export class EditionOutline {
      *
      * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
      * @param {LabeledRoute} labeledIntroRoute The labeled intro route for the edition section.
-     * @param {EditionOutlineComplexLookup} lookup The functions to resolve the edition complexes.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
     private readonly _mapSectionContent = (
@@ -523,38 +524,52 @@ export class EditionOutline {
      * It maps the complex items, together with their parts and composite complexes.
      *
      * @param {{ complex: string; disabled: boolean }[]} complexItems The complex items to map.
-     * @param {EditionOutlineComplexLookup} lookup The functions to resolve the edition complexes.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
      * @returns {EditionOutlineComplexItem[]} The mapped complex items.
      */
     private readonly _mapComplexItems = (
         complexItems: { complex: string; disabled: boolean }[],
         lookup: EditionOutlineComplexLookup
     ): EditionOutlineComplexItem[] =>
-        complexItems.flatMap(({ complex, disabled }) => {
-            const fullComplex = lookup.getComplexById(complex);
+        complexItems.flatMap(({ complex }) => {
+            const item = lookup.itemsById.get(complex);
 
-            if (!fullComplex) {
+            if (!item) {
                 return [];
             }
 
-            const parts = lookup
-                .getComplexParts(complex)
-                .map(part => this._mapComplexItem(part, lookup.isDisabled(part)));
+            const parts = lookup.getComplexParts(complex).map(part => this._getComplexItem(part, lookup));
             const compositeComplexes = lookup
                 .getCompositeComplexes(complex)
                 .map(({ compositeComplex, partNumber }) => ({
-                    ...this._mapComplexItem(compositeComplex, lookup.isDisabled(compositeComplex)),
+                    ...this._getComplexItem(compositeComplex, lookup),
                     partNumber,
                 }));
 
             return [
                 {
-                    ...this._mapComplexItem(fullComplex, disabled),
+                    ...item,
                     ...(parts.length ? { parts } : {}),
                     ...(compositeComplexes.length ? { compositeComplexes } : {}),
                 },
             ];
         });
+
+    /**
+     * Private readonly method: _getComplexItem.
+     *
+     * It returns the complex item of an edition complex from the outline.
+     * Complexes missing from the outline are mapped as disabled.
+     *
+     * @param {EditionComplex} complex The edition complex.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
+     * @returns {EditionOutlineComplexItem} The complex item.
+     */
+    private readonly _getComplexItem = (
+        complex: EditionComplex,
+        lookup: EditionOutlineComplexLookup
+    ): EditionOutlineComplexItem =>
+        lookup.itemsByRoute.get(complex.complexId.route) ?? this._mapComplexItem(complex, true);
 
     /**
      * Private readonly method: _mapComplexItem.
