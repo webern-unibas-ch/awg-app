@@ -423,5 +423,57 @@ describe('EditionComplexesService (DONE)', () => {
 
             expect(partIds['m22']).toBeUndefined();
         });
+
+        it('... should return the Werkedition of the composite complexes', () => {
+            const { complexesList } = service['_fetchEditionComplexesData']();
+
+            expectToEqual(complexesList['op12'].workEdition, {
+                textVersions: { m212: '3', m217: 'einzige', m213: 'einzige', m216: '2' },
+            });
+        });
+
+        it('... should return the protection period of the Werkedition in the pub statement', () => {
+            const { complexesList } = service['_fetchEditionComplexesData']();
+
+            expectToEqual(complexesList['op12'].pubStatement.availability, {
+                workEdition: { protectedUntil: '2049' },
+            });
+        });
+
+        it('... should return no Werkedition and no availability for complexes without them', () => {
+            const { complexesList } = service['_fetchEditionComplexesData']();
+
+            expect(complexesList['m22'].workEdition).toBeUndefined();
+            expect(complexesList['m22'].pubStatement.availability).toBeUndefined();
+        });
+    });
+
+    describe('#_mapWorkEdition()', () => {
+        it('... should have a method `_mapWorkEdition`', () => {
+            expect(service['_mapWorkEdition']).toBeDefined();
+        });
+
+        it('... should return the text versions of the parts', () => {
+            const workEdition = service['_mapWorkEdition']([
+                { complex: 'm317', textVersion: '2' },
+                { complex: 'm322', textVersion: 'einzige' },
+            ]);
+
+            expectToEqual(workEdition, { textVersions: { m317: '2', m322: 'einzige' } });
+        });
+
+        it('... should return only the given text versions of the parts', () => {
+            const workEdition = service['_mapWorkEdition']([
+                { complex: 'm317', textVersion: '2' },
+                { complex: 'm322' },
+            ]);
+
+            expectToEqual(workEdition, { textVersions: { m317: '2' } });
+        });
+
+        it('... should return undefined without text versions', () => {
+            expect(service['_mapWorkEdition']([{ complex: 'm317' }])).toBeUndefined();
+            expect(service['_mapWorkEdition']()).toBeUndefined();
+        });
     });
 });

@@ -1277,14 +1277,15 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
                 },
                 "parts": [
-                    { "complex": "m133" },
-                    { "complex": "m134" },
-                    { "complex": "m135" },
-                    { "complex": "m136" },
-                    { "complex": "m137" }
+                    { "complex": "m133", "textVersion": "4" },
+                    { "complex": "m134", "textVersion": "3" },
+                    { "complex": "m135", "textVersion": "3" },
+                    { "complex": "m136", "textVersion": "3" },
+                    { "complex": "m137", "textVersion": "5" }
                 ]
             }
         },
@@ -1305,14 +1306,15 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
                 },
                 "parts": [
-                    { "complex": "m138" },
-                    { "complex": "m139" },
-                    { "complex": "m140" },
-                    { "complex": "m141" },
-                    { "complex": "m142" }
+                    { "complex": "m138", "textVersion": "3" },
+                    { "complex": "m139", "textVersion": "3" },
+                    { "complex": "m140", "textVersion": "2" },
+                    { "complex": "m141", "textVersion": "2" },
+                    { "complex": "m142", "textVersion": "3" }
                 ]
             }
         },
@@ -1333,9 +1335,15 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
                 },
-                "parts": [{ "complex": "m212" }, { "complex": "m217" }, { "complex": "m213" }, { "complex": "m216" }]
+                "parts": [
+                    { "complex": "m212", "textVersion": "3" },
+                    { "complex": "m217", "textVersion": "einzige" },
+                    { "complex": "m213", "textVersion": "einzige" },
+                    { "complex": "m216", "textVersion": "2" }
+                ]
             }
         },
         {
@@ -1418,9 +1426,14 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
                 },
-                "parts": [{ "complex": "m314" }, { "complex": "m313" }, { "complex": "m312" }]
+                "parts": [
+                    { "complex": "m314", "textVersion": "einzige" },
+                    { "complex": "m313", "textVersion": "einzige" },
+                    { "complex": "m312", "textVersion": "einzige" }
+                ]
             }
         },
         {
@@ -1461,9 +1474,14 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
                 },
-                "parts": [{ "complex": "m317" }, { "complex": "m322" }, { "complex": "m321" }]
+                "parts": [
+                    { "complex": "m317", "textVersion": "2" },
+                    { "complex": "m322", "textVersion": "einzige" },
+                    { "complex": "m321", "textVersion": "einzige" }
+                ]
             }
         },
         {

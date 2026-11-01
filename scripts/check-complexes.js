@@ -10,8 +10,10 @@
  *    one entry in the edition complexes. Complexes that are neither
  *    in the outline nor in the row tables are listed as a note.
  *
- * 2) Parts: a composite complex lists its parts in their order (parts: [{ complex }]). Every part
- *    needs an entry in the edition complexes and is listed once, not as the complex itself.
+ * 2) Parts: a composite complex lists its parts in their order (parts: [{ complex, textVersion }]).
+ *    Every part needs an entry in the edition complexes and is listed once, not as the complex
+ *    itself. The Werkedition names a valid text version for all parts or for none, and its
+ *    protection period (pubStatement.availability) is a year.
  *
  * 3) Types: source list types that number the parts (I, II, … with tab marks, e.g. in the print of
  *    an opus) need to name the M numbers of the parts in the same order. Differences are warnings.
@@ -143,8 +145,20 @@ function check() {
     for (const [complexId, complex] of complexes) {
         const parts = (complex.parts ?? []).map(part => part.complex);
         partCount += parts.length;
+        const textVersions = (complex.parts ?? []).filter(part => part.textVersion !== undefined).length;
+        if (textVersions && textVersions < parts.length) {
+            errors.push(`${complexId}: only ${textVersions} of ${parts.length} parts have a text version`);
+        }
+        const workEdition = complex.pubStatement?.availability?.workEdition;
+        const protectedUntil = workEdition?.protectedUntil;
+        if (workEdition && !/^\d{4}$/.test(protectedUntil ?? '')) {
+            errors.push(`${complexId}: the Werkedition has an invalid protection period "${protectedUntil}"`);
+        }
         const seen = new Set();
-        for (const part of parts) {
+        for (const { complex: part, textVersion } of complex.parts ?? []) {
+            if (textVersion !== undefined && !/^(\d+|einzige)$/.test(textVersion)) {
+                errors.push(`${complexId}: part ${part} has an invalid text version "${textVersion}"`);
+            }
             if (!complexes.has(part)) {
                 errors.push(`${complexId}: part ${part} is missing in the edition complexes`);
             }

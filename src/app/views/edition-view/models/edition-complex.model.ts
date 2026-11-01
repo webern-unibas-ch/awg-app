@@ -35,6 +35,32 @@ export interface EditionComplexJsonPart {
      * The id of the edition complex of the part.
      */
     complex: string;
+
+    /**
+     * The text version of the part in the Werkedition of the composite complex
+     * (a number or `einzige`), if any.
+     */
+    textVersion?: string;
+}
+
+/**
+ * The EditionComplexAvailability interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the restrictions on publishing an edition complex online,
+ * e.g. the protection period of its Werkedition.
+ */
+export interface EditionComplexAvailability {
+    /**
+     * The availability of the Werkedition (optional).
+     */
+    workEdition?: {
+        /**
+         * The last year of the protection period of the Werkedition (editio princeps),
+         * during which its music text is not shown online.
+         */
+        protectedUntil: string;
+    };
 }
 
 /**
@@ -50,7 +76,7 @@ export type EditionComplexJsonData = Partial<
         {
             titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
             respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
-            pubStatement: { series: string; section: string };
+            pubStatement: { series: string; section: string; availability?: EditionComplexAvailability };
             /**
              * The parts of a composite edition complex in their order (optional).
              */
@@ -134,6 +160,27 @@ export class EditionComplexPubStatement {
      * The route for the current section.
      */
     section: EditionRouteConstant = new EditionRouteConstant();
+
+    /**
+     * The restrictions on publishing the current edition complex online, if any.
+     */
+    availability?: EditionComplexAvailability;
+}
+
+/**
+ * The EditionComplexWorkEdition interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the Werkedition of an edition complex
+ * with the text versions of its parts.
+ */
+export interface EditionComplexWorkEdition {
+    /**
+     * The text versions of the parts in the Werkedition (number or `einzige`) by part id.
+     *
+     * @example { m212: '3', m217: 'einzige' }
+     */
+    textVersions: Record<string, string>;
 }
 
 /**
@@ -171,18 +218,25 @@ export class EditionComplex {
     baseRoute: string;
 
     /**
+     * The Werkedition of an edition complex, if any.
+     */
+    workEdition?: EditionComplexWorkEdition;
+
+    /**
      * Constructor of the EditionComplex class.
      *
      * It initializes the class with an edition complex Object from the EditionConstants.
      *
      * @param {{ title: string; catalogueType: string; catalogueNumber: string }} titleStatement The given TitleStatement for the edition complex.
      * @param {{ editors: EditionComplexJsonPersonRef[]; lastModified: string }} respStatement The given ResponsibilityStatement for the edition complex.
-     * @param {{ series: string; section: string }} pubStatement The given PublicationStatement for the edition complex.
+     * @param {{ series: string; section: string; availability?: EditionComplexAvailability }} pubStatement The given PublicationStatement for the edition complex.
+     * @param {EditionComplexWorkEdition} [workEdition] The optional Werkedition of the edition complex.
      */
     constructor(
         titleStatement: { title: string; catalogueType: string; catalogueNumber: string },
         respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string },
-        pubStatement: { series: string; section: string }
+        pubStatement: { series: string; section: string; availability?: EditionComplexAvailability },
+        workEdition?: EditionComplexWorkEdition
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
             throw new Error(
@@ -227,6 +281,8 @@ export class EditionComplex {
                   }
                 : new EditionComplexPubStatement();
 
+        this.pubStatement.availability = pubStatement?.availability;
+
         this.complexId = new EditionRouteConstant();
         this.complexId.route = this.titleStatement.catalogueType.route;
         // For routes, replace slashes in catalogue number with underscores
@@ -237,6 +293,8 @@ export class EditionComplex {
         // Set base route
         const rootPath = `${routes.EDITION.route}${routes.COMPLEX.route}`;
         this.baseRoute = `${rootPath}${this.complexId.route}`;
+
+        this.workEdition = workEdition;
     }
 
     /**

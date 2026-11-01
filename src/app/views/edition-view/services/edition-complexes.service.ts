@@ -4,7 +4,9 @@ import {
     EditionComplex,
     EditionComplexesJsonData,
     EditionComplexesList,
+    EditionComplexJsonPart,
     EditionComplexPartOf,
+    EditionComplexWorkEdition,
 } from '../models/edition-complex.model';
 
 import jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
@@ -155,7 +157,8 @@ export class EditionComplexesService {
                 complexesList[complexKey] = new EditionComplex(
                     complexValue.titleStatement,
                     complexValue.respStatement,
-                    complexValue.pubStatement
+                    complexValue.pubStatement,
+                    this._mapWorkEdition(complexValue.parts)
                 );
                 if (complexValue.parts?.length) {
                     partIds[complexKey] = complexValue.parts.map(part => part.complex);
@@ -164,5 +167,22 @@ export class EditionComplexesService {
         });
 
         return { complexesList, partIds };
+    }
+
+    /**
+     * Private method: _mapWorkEdition.
+     *
+     * It maps the Werkedition of an edition complex with the text versions of its parts
+     * from the JSON data, if any.
+     *
+     * @param {EditionComplexJsonPart[]} [parts] The given parts JSON data.
+     * @returns {EditionComplexWorkEdition | undefined} The mapped Werkedition, or undefined.
+     */
+    private _mapWorkEdition(parts?: EditionComplexJsonPart[]): EditionComplexWorkEdition | undefined {
+        const textVersions = Object.fromEntries(
+            (parts ?? []).flatMap(({ complex, textVersion }) => (textVersion ? [[complex, textVersion]] : []))
+        );
+
+        return Object.keys(textVersions).length ? { textVersions } : undefined;
     }
 }
