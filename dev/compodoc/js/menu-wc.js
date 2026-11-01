@@ -797,6 +797,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/DynamicViewContexts.html" data-type="entity-link" >DynamicViewContexts</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionComplexAvailability.html" data-type="entity-link" >EditionComplexAvailability</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionComplexesJsonData.html" data-type="entity-link" >EditionComplexesJsonData</a>
                             </li>
                             <li class="link">
@@ -813,6 +816,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionComplexTitleStatement.html" data-type="entity-link" >EditionComplexTitleStatement</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionComplexWorkEdition.html" data-type="entity-link" >EditionComplexWorkEdition</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionDataAssetsError.html" data-type="entity-link" >EditionDataAssetsError</a>
