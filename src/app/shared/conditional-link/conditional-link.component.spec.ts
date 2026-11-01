@@ -1,10 +1,16 @@
 import { createComponent, DebugElement, EnvironmentInjector, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import { ConditionalLinkComponent } from './conditional-link.component';
 
@@ -16,6 +22,7 @@ describe('ConditionalLinkComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [ConditionalLinkComponent],
+            providers: [provideRouter([])],
         }).compileComponents();
     });
 
@@ -35,6 +42,12 @@ describe('ConditionalLinkComponent', () => {
             expectToBe(isSignal(component.isClickable), true);
 
             expectToBe(component.isClickable(), false);
+        });
+
+        it('... should have input signal `targetRoute` to hold the default value', () => {
+            expectToBe(isSignal(component.targetRoute), true);
+
+            expectToBe(component.targetRoute(), null);
         });
 
         it('... should have output `clicked`', () => {
@@ -61,6 +74,44 @@ describe('ConditionalLinkComponent', () => {
 
             it('... should render no anchor', () => {
                 getAndExpectDebugElementByCss(compDe, 'a', 0, 0);
+            });
+
+            it('... should render no anchor even with a targetRoute', () => {
+                fixture.componentRef.setInput('targetRoute', ['/edition']);
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(compDe, 'a', 0, 0);
+            });
+        });
+
+        describe('... with isClickable = true and a targetRoute', () => {
+            describe('VIEW', () => {
+                describe('... should contain a router link with the expected href for a targetRoute given as', () => {
+                    it.each([
+                        { desc: 'commands array', getTargetRoute: () => ['/edition/complex/op12'] },
+                        {
+                            desc: 'UrlTree',
+                            getTargetRoute: () =>
+                                TestBed.inject(Router).parseUrl('/edition/complex/op12/sheets?id=test'),
+                        },
+                    ])('... $desc', ({ getTargetRoute }) => {
+                        const router = TestBed.inject(Router);
+                        const targetRoute = getTargetRoute();
+                        const expectedHref = Array.isArray(targetRoute)
+                            ? router.serializeUrl(router.createUrlTree(targetRoute))
+                            : router.serializeUrl(targetRoute);
+
+                        fixture.componentRef.setInput('isClickable', true);
+                        fixture.componentRef.setInput('targetRoute', targetRoute);
+                        fixture.detectChanges();
+
+                        const anchorDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
+                        const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
+
+                        expectToBe(anchorEl.getAttribute('href'), expectedHref);
+                        expectToBe(anchorEl.getAttribute('role'), null);
+                    });
+                });
             });
         });
 
