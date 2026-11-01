@@ -129,6 +129,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionComplexComponent.html" data-type="entity-link" >EditionComplexComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionComplexPartOfComponent.html" data-type="entity-link" >EditionComplexPartOfComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionComplexPartsComponent.html" data-type="entity-link" >EditionComplexPartsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionComplexPartsListComponent.html" data-type="entity-link" >EditionComplexPartsListComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionComplexPlaceholderComponent.html" data-type="entity-link" >EditionComplexPlaceholderComponent</a>
                             </li>
                             <li class="link">
@@ -800,6 +809,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionComplexJsonPersonRef.html" data-type="entity-link" >EditionComplexJsonPersonRef</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionComplexPartOf.html" data-type="entity-link" >EditionComplexPartOf</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionComplexRespStatement.html" data-type="entity-link" >EditionComplexRespStatement</a>
                             </li>
                             <li class="link">
@@ -818,7 +830,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionOutlineComplexItem.html" data-type="entity-link" >EditionOutlineComplexItem</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionOutlineComplexLookup.html" data-type="entity-link" >EditionOutlineComplexLookup</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionOutlineComplexTypes.html" data-type="entity-link" >EditionOutlineComplexTypes</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionOutlineCompositeComplexItem.html" data-type="entity-link" >EditionOutlineCompositeComplexItem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionOutlineIntroItem.html" data-type="entity-link" >EditionOutlineIntroItem</a>

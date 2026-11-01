@@ -222,15 +222,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getComplexBreadcrumbs(rootItem: <a href="../interfaces/LabeledRoute.html" target="_self">LabeledRoute</a>, complex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex</a>)</code>
+                    <code>_getComplexBreadcrumbs(rootItem: <a href="../interfaces/LabeledRoute.html" target="_self">LabeledRoute</a>, complex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex</a>, outlineComplexItem: <a href="../interfaces/EditionOutlineComplexItem.html" target="_self">EditionOutlineComplexItem | null</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-breadcrumb.service.ts:70</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-breadcrumb.service.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -238,7 +238,9 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Private method: _getComplexBreadcrumbs.</p>
-<p>It returns the labeled route items for the breadcrumb of a selected edition complex.</p>
+<p>It returns the labeled route items for the breadcrumb of a selected edition complex.
+For a part of a composite edition complex, the composite complex (e.g. Op. 12)
+is placed before the part (e.g. M 217).</p>
 </div>
 
                             <div class="io-description">
@@ -286,6 +288,22 @@
 
                                             </td>
                                         </tr>
+                                        <tr>
+                                                <td>outlineComplexItem</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionOutlineComplexItem.html" target="_self" >EditionOutlineComplexItem | null</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The outline item of the selected edition complex.</p>
+
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -323,8 +341,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-breadcrumb.service.ts:92</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-breadcrumb.service.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -440,15 +458,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getBreadcrumbItems(viewContext: <a href="../miscellaneous/variables.html#w" target="_self">Signal&lt;EditionViewContext&gt;</a>, editionComplex: <a href="../classes/EditionComplex.html" target="_self">Signal&lt;EditionComplex | null&gt;</a>, editionSeries: <a href="../interfaces/EditionOutlineSeries.html" target="_self">Signal&lt;EditionOutlineSeries | null&gt;</a>, editionSection: <a href="../interfaces/EditionOutlineSection.html" target="_self">Signal&lt;EditionOutlineSection | null&gt;</a>)</code>
+<code>getBreadcrumbItems(viewContext: <a href="../miscellaneous/variables.html#w" target="_self">Signal&lt;EditionViewContext&gt;</a>, editionComplex: <a href="../classes/EditionComplex.html" target="_self">Signal&lt;EditionComplex | null&gt;</a>, editionOutlineComplexItem: <a href="../interfaces/EditionOutlineComplexItem.html" target="_self">Signal&lt;EditionOutlineComplexItem | null&gt;</a>, editionSeries: <a href="../interfaces/EditionOutlineSeries.html" target="_self">Signal&lt;EditionOutlineSeries | null&gt;</a>, editionSection: <a href="../interfaces/EditionOutlineSection.html" target="_self">Signal&lt;EditionOutlineSection | null&gt;</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-breadcrumb.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-breadcrumb.service.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -501,6 +519,22 @@
 
                                             <td>
                                                     <p>The selected edition complex.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>editionOutlineComplexItem</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionOutlineComplexItem.html" target="_self" >Signal&lt;EditionOutlineComplexItem | null&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The outline item of the selected edition complex.</p>
 
                                             </td>
                                         </tr>
@@ -565,7 +599,11 @@ import { LabeledRoute } from &#x27;@awg-shared/models/labeled-route.model&#x27;;
 import { EDITION_ROUTE_CONSTANTS } from &#x27;../edition-routes.constants&#x27;;
 import { EditionComplex } from &#x27;../models/edition-complex.model&#x27;;
 import { EditionViewContext } from &#x27;../models/edition-data.model&#x27;;
-import { EditionOutlineSection, EditionOutlineSeries } from &#x27;../models/edition-outline.model&#x27;;
+import {
+    EditionOutlineComplexItem,
+    EditionOutlineSection,
+    EditionOutlineSeries,
+} from &#x27;../models/edition-outline.model&#x27;;
 
 /**
  * The EditionBreadcrumbService.
@@ -581,6 +619,7 @@ export class EditionBreadcrumbService {
      *
      * @param {Signal&lt;EditionViewContext&gt;} viewContext The current view context.
      * @param {Signal&lt;EditionComplex | null&gt;} editionComplex The selected edition complex.
+     * @param {Signal&lt;EditionOutlineComplexItem | null&gt;} editionOutlineComplexItem The outline item of the selected edition complex.
      * @param {Signal&lt;EditionOutlineSeries | null&gt;} editionSeries The selected edition series.
      * @param {Signal&lt;EditionOutlineSection | null&gt;} editionSection The selected edition section.
      * @returns {Signal&lt;LabeledRoute[]&gt;} The labeled route items for the breadcrumb of the edition view.
@@ -588,12 +627,14 @@ export class EditionBreadcrumbService {
     getBreadcrumbItems(
         viewContext: Signal&lt;EditionViewContext&gt;,
         editionComplex: Signal&lt;EditionComplex | null&gt;,
+        editionOutlineComplexItem: Signal&lt;EditionOutlineComplexItem | null&gt;,
         editionSeries: Signal&lt;EditionOutlineSeries | null&gt;,
         editionSection: Signal&lt;EditionOutlineSection | null&gt;
     ): Signal&lt;LabeledRoute[]&gt; {
         return computed&lt;LabeledRoute[]&gt;(() &#x3D;&gt; {
             const context &#x3D; viewContext();
             const complex &#x3D; editionComplex();
+            const outlineComplexItem &#x3D; editionOutlineComplexItem();
             const series &#x3D; editionSeries();
             const section &#x3D; editionSection();
 
@@ -611,7 +652,7 @@ export class EditionBreadcrumbService {
             }
 
             if (complex) {
-                return this._getComplexBreadcrumbs(editionRootItem, complex);
+                return this._getComplexBreadcrumbs(editionRootItem, complex, outlineComplexItem);
             }
 
             return this._getOverviewBreadcrumbs(editionRootItem, context, series, section);
@@ -622,18 +663,34 @@ export class EditionBreadcrumbService {
      * Private method: _getComplexBreadcrumbs.
      *
      * It returns the labeled route items for the breadcrumb of a selected edition complex.
+     * For a part of a composite edition complex, the composite complex (e.g. Op. 12)
+     * is placed before the part (e.g. M 217).
      *
      * @param {LabeledRoute} rootItem The root labeled route item.
      * @param {EditionComplex} complex The selected edition complex.
+     * @param {EditionOutlineComplexItem | null} outlineComplexItem The outline item of the selected edition complex.
      * @returns {LabeledRoute[]} The labeled route items for the breadcrumb of a selected edition complex.
      */
-    private _getComplexBreadcrumbs(rootItem: LabeledRoute, complex: EditionComplex): LabeledRoute[] {
+    private _getComplexBreadcrumbs(
+        rootItem: LabeledRoute,
+        complex: EditionComplex,
+        outlineComplexItem: EditionOutlineComplexItem | null
+    ): LabeledRoute[] {
         const { series, section, labeledSectionRoute } &#x3D; complex.pubStatement;
+        const composite &#x3D; outlineComplexItem?.compositeComplexes?.[0];
 
         return [
             rootItem,
             { label: series.full, route: [...rootItem.route, series.route] },
             { label: section.full, route: labeledSectionRoute.route },
+            ...(composite
+                ? [
+                      {
+                          label: composite.complex.complexId.short,
+                          route: composite.disabled ? [] : [composite.complex.baseRoute],
+                      },
+                  ]
+                : []),
             { label: complex.complexId.short, route: [] },
         ];
     }

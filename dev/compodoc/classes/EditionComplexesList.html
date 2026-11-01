@@ -185,7 +185,7 @@ to describe a list of edition complexes.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:283</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:301</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -480,6 +480,24 @@ export class EditionComplex {
             ) ?? [];
         return { editors, lastModified: respStatement?.lastModified ?? &#x27;&#x27; };
     }
+}
+
+/**
+ * The EditionComplexPartOf interface.
+ *
+ * It is used in the context of the edition view
+ * to describe that an edition complex is a part of a composite edition complex.
+ */
+export interface EditionComplexPartOf {
+    /**
+     * The composite edition complex that contains the edition complex.
+     */
+    compositeComplex: EditionComplex;
+
+    /**
+     * The part number of the edition complex in the composite edition complex (starting at 1).
+     */
+    partNumber: number;
 }
 
 /**
