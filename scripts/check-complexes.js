@@ -5,8 +5,9 @@
  * Checks the edition complexes (edition-complexes.json) against the edition outline and row tables,
  * and the parts of composite complexes (e.g. the songs of an opus).
  *
- * 1) Outline: every complex of the outline (edition-outline.json) and every enabled row table
- *    (rowtables.json) needs exactly one entry in the edition complexes. Complexes that are neither
+ * 1) Outline: every complex of the outline (edition-outline.json) is listed there once (the app
+ *    keeps one entry per complex). It and every enabled row table (rowtables.json) need exactly
+ *    one entry in the edition complexes. Complexes that are neither
  *    in the outline nor in the row tables are listed as a note.
  *
  * 2) Parts: a composite complex lists its parts in their order (parts: [{ complex }]). Every part
@@ -115,10 +116,15 @@ function check() {
     const rowtables = readRowtables();
     const listed = new Set([...outline, ...rowtables.map(rowtable => rowtable.complexId)]);
 
+    const outlineSeen = new Set();
     for (const complexId of outline) {
         if (!complexes.has(complexId)) {
             errors.push(`${complexId} is listed in the outline, but missing in the edition complexes`);
         }
+        if (outlineSeen.has(complexId)) {
+            errors.push(`${complexId} is listed twice in the outline`);
+        }
+        outlineSeen.add(complexId);
     }
     // Disabled row tables may wait for their complex
     for (const { complexId, disabled } of rowtables) {
