@@ -773,12 +773,15 @@ function mnrsInText(text) {
     return mnrs;
 }
 
+// The M numbers of the contents: from the item, or from its description if the item names none
 function mnrsInContents(physDesc) {
     const mnrs = new Set();
     for (const content of physDesc?.contents ?? []) {
         const mnr = stripTags(content.item).match(MNR_ITEM_PATTERN)?.[0];
         if (mnr) {
             mnrs.add(mnr);
+        } else {
+            mnrsInText(content.itemDescription).forEach(descriptionMnr => mnrs.add(descriptionMnr));
         }
     }
     return mnrs;
@@ -868,8 +871,13 @@ function checkRegistry(complexSources, grouping) {
                     });
                 }
             }
-            // Only types that name M numbers (not e.g. "Reihentabelle.")
-            const contentMnrs = mnrsInContents(description.physDesc);
+            // Only types that name M numbers (not e.g. "Reihentabelle."); a convolute with the contents of its parts
+            const parts = descriptions.filter(
+                part => byId.get(idByUse.get(`${complexId}:${fullSiglum(part)}`))?.partOf === doc.id
+            );
+            const contentMnrs = new Set(
+                [description, ...parts].flatMap(({ physDesc }) => [...mnrsInContents(physDesc)])
+            );
             const typeMnrs = mnrsInText(entry.type);
             if (contentMnrs.size && typeMnrs.size) {
                 const onlyType = [...typeMnrs].filter(mnr => !contentMnrs.has(mnr));
