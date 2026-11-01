@@ -1,9 +1,11 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { UrlTree } from '@angular/router';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 import { OBJECT_UTILS } from '@awg-shared/utils/object-utils';
 
 import { SourceDescSystem, SourceDescSystemRow } from '@awg-views/edition-view/models/source-desc.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -21,6 +23,21 @@ import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-htm
 })
 export class SourceDescContentSystemComponent {
     /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService = inject(EditionNavigationService);
+
+    /**
+     * Readonly input signal: complexId.
+     *
+     * It holds the id of the complex the system links to
+     * (empty for the selected complex).
+     */
+    readonly complexId = input<string>('');
+
+    /**
      * Readonly input signal: contentSystem.
      *
      * It holds the content system data.
@@ -33,13 +50,6 @@ export class SourceDescContentSystemComponent {
      * It determines whether this item is the last one.
      */
     readonly isLastItem = input<boolean>(false);
-
-    /**
-     * Readonly output signal: clicked.
-     *
-     * It emits an event when the target is clicked.
-     */
-    readonly clicked = output();
 
     /**
      * Readonly computed signal: validRow.
@@ -68,4 +78,14 @@ export class SourceDescContentSystemComponent {
      * It checks whether the current system has a link target.
      */
     readonly isClickable = computed<boolean>(() => !!this.contentSystem().linkTo);
+
+    /**
+     * Readonly computed signal: targetRoute.
+     *
+     * It holds the route to the sheet the system links to, or null if it is not clickable.
+     */
+    readonly targetRoute = computed<UrlTree | null>(() => {
+        const sheetId = this.contentSystem().linkTo;
+        return sheetId ? this._navigationService.getSvgSheetRoute({ complexId: this.complexId(), sheetId }) : null;
+    });
 }

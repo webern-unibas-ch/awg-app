@@ -32,7 +32,8 @@ export class ConditionalLinkComponent {
     /**
      * Readonly output signal: clicked.
      *
-     * It emits an event when the target is clicked.
+     * It emits an event when the clickable target without a target route is clicked
+     * (with a target route, the router link navigates instead).
      */
     readonly clicked = output();
 }

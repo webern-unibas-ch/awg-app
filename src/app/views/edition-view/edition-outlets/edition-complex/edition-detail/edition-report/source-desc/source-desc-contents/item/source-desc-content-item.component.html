@@ -1,6 +1,6 @@
 <span class="awg-source-desc-content-item">
     @if (content().item; as item) {
-        <awg-conditional-link [isClickable]="isClickable()" (clicked)="selectSvgSheet(sheetTarget())">
+        <awg-conditional-link [isClickable]="isClickable()" [targetRoute]="targetRoute()">
             <strong>{{ item }}</strong>
         </awg-conditional-link>
     }

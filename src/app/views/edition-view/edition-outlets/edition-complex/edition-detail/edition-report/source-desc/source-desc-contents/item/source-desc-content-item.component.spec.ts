@@ -1,5 +1,6 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UrlTree } from '@angular/router';
 import { By } from '@angular/platform-browser';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -31,22 +32,19 @@ describe('SourceDescContentItemComponent (DONE)', () => {
 
     let mockNavigationService: Partial<EditionNavigationService>;
 
-    let selectSvgSheetSpy: Spy;
-    let serviceNavigateToSvgSheetSpy: Spy;
+    let serviceGetSvgSheetRouteSpy: Spy;
 
     let expectedContents: SourceDescContent[];
     let expectedContent: SourceDescContent;
     let expectedContentWithoutLink: SourceDescContent;
     let expectedContentWithoutDescription: SourceDescContent;
-    let expectedComplexId: string;
-    let expectedNextComplexId: string;
-    let expectedSheetId: string;
-    let expectedNextSheetId: string;
+    let expectedSheetTarget: EditionNavigationSheetTarget;
+    let expectedSheetRoute: UrlTree;
 
     beforeEach(async () => {
         // Mock services
         mockNavigationService = {
-            navigateToSvgSheet: vi.fn(),
+            getSvgSheetRoute: vi.fn(),
         };
 
         await TestBed.configureTestingModule({
@@ -59,7 +57,10 @@ describe('SourceDescContentItemComponent (DONE)', () => {
 
     beforeEach(() => {
         // Service spies
-        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
+        expectedSheetRoute = new UrlTree();
+        serviceGetSvgSheetRouteSpy = vi
+            .spyOn(mockNavigationService, 'getSvgSheetRoute')
+            .mockReturnValue(expectedSheetRoute);
 
         // Test data
         expectedContents = JSON.parse(
@@ -68,18 +69,12 @@ describe('SourceDescContentItemComponent (DONE)', () => {
         expectedContent = expectedContents[0]; // Item with link and description
         expectedContentWithoutLink = expectedContents[1]; // Item with description, but without link
         expectedContentWithoutDescription = expectedContents[2]; // Item with link, but without description
-        expectedComplexId = 'testComplex1';
-        expectedNextComplexId = 'testComplex2';
-        expectedSheetId = 'test_item_id_1';
-        expectedNextSheetId = 'test_item_id_2';
+        expectedSheetTarget = { complexId: 'testComplex1', sheetId: 'test_item_id_1' };
 
         // Create component fixture
         fixture = TestBed.createComponent(SourceDescContentItemComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Component spies
-        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
     });
 
     afterEach(() => {
@@ -117,7 +112,7 @@ describe('SourceDescContentItemComponent (DONE)', () => {
             });
 
             it('... should hold the complexId and sheetId of itemLinkTo', () => {
-                expectToEqual(component.sheetTarget(), { complexId: expectedComplexId, sheetId: expectedSheetId });
+                expectToEqual(component.sheetTarget(), expectedSheetTarget);
             });
 
             it('... should hold empty ids if itemLinkTo is undefined', async () => {
@@ -185,6 +180,24 @@ describe('SourceDescContentItemComponent (DONE)', () => {
             });
         });
 
+        describe('... computed signal `targetRoute`', () => {
+            it('... should have a computed signal `targetRoute`', () => {
+                expectToBe(isSignal(component.targetRoute), true);
+            });
+
+            it('... should hold the sheet route of the sheet target from the navigation service', () => {
+                expectToBe(component.targetRoute(), expectedSheetRoute);
+                expectSpyCall(serviceGetSvgSheetRouteSpy, 1, expectedSheetTarget);
+            });
+
+            it('... should hold null if not clickable', async () => {
+                fixture.componentRef.setInput('content', { ...expectedContent, itemLinkTo: undefined });
+                await detectChangesOnPush(fixture);
+
+                expectToBe(component.targetRoute(), null);
+            });
+        });
+
         describe('VIEW', () => {
             it('... should contain one span.awg-source-desc-content-item', () => {
                 getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-item', 1, 1);
@@ -202,11 +215,12 @@ describe('SourceDescContentItemComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
                 });
 
-                it('... should pass down `isClickable` to ConditionalLinkComponent (hollow)', () => {
+                it('... should pass down `isClickable` and `targetRoute` to ConditionalLinkComponent (hollow)', () => {
                     const linkDes = getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
                     const linkCmp = linkDes[0].injector.get(ConditionalLinkComponent);
 
-                    expectToBe(linkCmp.isClickable(), component.isClickable());
+                    expectToBe(linkCmp.isClickable(), true);
+                    expectToBe(linkCmp.targetRoute(), expectedSheetRoute);
                 });
 
                 it('... should pass down `isClickable` = false to ConditionalLinkComponent (hollow) if not clickable', async () => {
@@ -364,65 +378,6 @@ describe('SourceDescContentItemComponent (DONE)', () => {
                     const compileHtmlIns = compileHtmlDes[0].injector.get(CompileHtmlDirective);
 
                     expectToBe(compileHtmlIns.htmlContent(), expectedContent.itemDescription);
-                });
-            });
-        });
-
-        describe('METHODS', () => {
-            describe('#selectSvgSheet()', () => {
-                it('... should have a method `selectSvgSheet`', () => {
-                    expect(component.selectSvgSheet).toBeDefined();
-                });
-
-                it('... should trigger when ConditionalLinkComponent (hollow) is clicked', () => {
-                    const linkDes = getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
-
-                    linkDes[0].injector.get(ConditionalLinkComponent).clicked.emit();
-
-                    expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
-                });
-
-                it('... should do nothing if no sheetId is provided', () => {
-                    const expectedSheetIds: EditionNavigationSheetTarget = { complexId: 'op25', sheetId: '' };
-                    component.selectSvgSheet(expectedSheetIds);
-
-                    expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
-                });
-
-                it('... should trigger NavigationService with selected svg sheet within same complex', () => {
-                    const expectedSheetIds: EditionNavigationSheetTarget = {
-                        complexId: expectedComplexId,
-                        sheetId: expectedSheetId,
-                    };
-                    component.selectSvgSheet(expectedSheetIds);
-
-                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
-
-                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
-                        complexId: expectedComplexId,
-                        sheetId: expectedNextSheetId,
-                    };
-                    component.selectSvgSheet(expectedNextSheetIds);
-
-                    expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
-                });
-
-                it('... should trigger NavigationService with selected svg sheet for another complex', () => {
-                    const expectedSheetIds: EditionNavigationSheetTarget = {
-                        complexId: expectedComplexId,
-                        sheetId: expectedSheetId,
-                    };
-                    component.selectSvgSheet(expectedSheetIds);
-
-                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
-
-                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
-                        complexId: expectedNextComplexId,
-                        sheetId: expectedNextSheetId,
-                    };
-                    component.selectSvgSheet(expectedNextSheetIds);
-
-                    expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
                 });
             });
         });

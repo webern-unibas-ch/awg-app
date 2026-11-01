@@ -1,9 +1,7 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { UrlTree } from '@angular/router';
 
-import { EditionNavigationFragmentTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceList } from '@awg-views/edition-view/models/source-list.model';
-import { Source } from '@awg-views/edition-view/models/source.model';
-import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -24,13 +22,6 @@ import { SourceSiglumComponent } from '../source-siglum/source-siglum.component'
 })
 export class SourceListComponent {
     /**
-     * Private readonly injection variable: _editionModalService
-     *
-     * It keeps the instance of the injected EditionModalService.
-     */
-    private readonly _editionModalService = inject(EditionModalService);
-
-    /**
      * Private readonly injection variable: _navigationService
      *
      * It keeps the instance of the injected EditionNavigationService.
@@ -45,53 +36,16 @@ export class SourceListComponent {
     readonly sourceListData = input.required<SourceList | null>();
 
     /**
-     * Public method: onSourceClick.
+     * Readonly computed signal: sourceReportRoutes.
      *
-     * It navigates to a report fragment or opens a modal
-     * on a source click event.
-     *
-     * @param {Source} source The given source.
-     * @returns {void} Navigates to a report fragment or opens a modal.
+     * It holds the route to the report fragment of each source with a description,
+     * or null for sources without one.
      */
-    onSourceClick(source: Source): void {
-        if (source.hasDescription) {
-            this._navigateToReportFragment({
-                complexId: '',
-                fragmentId: source.linkTo,
-            });
-        } else {
-            this._openModal(source.linkTo);
-        }
-    }
-
-    /**
-     * Private method: navigateToReportFragment.
-     *
-     * It delegates the navigation for the given complex and report fragment IDs
-     * directly to the {@link EditionNavigationService}.
-     *
-     * @param {EditionNavigationFragmentTarget} reportTarget The given report fragment navigation target.
-     * @returns {void} Navigates to the selected report fragment.
-     */
-    private _navigateToReportFragment(reportTarget: EditionNavigationFragmentTarget): void {
-        if (!reportTarget.fragmentId) {
-            return;
-        }
-        this._navigationService.navigateToReportFragment(reportTarget);
-    }
-
-    /**
-     * Private method: openModal.
-     *
-     * It opens a text modal snippet via the {@link EditionModalService} for a given id.
-     *
-     * @param {string} id The given modal snippet id.
-     * @returns {void} Opens the text modal.
-     */
-    private _openModal(id: string): void {
-        if (!id) {
-            return;
-        }
-        this._editionModalService.openTextModal(id);
-    }
+    readonly sourceReportRoutes = computed<(UrlTree | null)[]>(() =>
+        (this.sourceListData()?.sources ?? []).map(({ hasDescription, linkTo }) =>
+            hasDescription && linkTo
+                ? this._navigationService.getReportFragmentRoute({ complexId: '', fragmentId: linkTo })
+                : null
+        )
+    );
 }

@@ -1,5 +1,6 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UrlTree } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
@@ -16,6 +17,7 @@ import {
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { SourceDescSystem } from '@awg-views/edition-view/models/source-desc.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -26,21 +28,39 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
     let fixture: ComponentFixture<SourceDescContentSystemComponent>;
     let compDe: DebugElement;
 
-    let clickedEmitSpy: Spy;
+    let mockNavigationService: Partial<EditionNavigationService>;
+
+    let serviceGetSvgSheetRouteSpy: Spy;
+
+    let expectedComplexId: string;
+    let expectedSheetRoute: UrlTree;
 
     let expectedContentSystem: SourceDescSystem;
     let expectedIsLastItem: boolean;
 
     beforeEach(async () => {
+        // Mock services
+        mockNavigationService = {
+            getSvgSheetRoute: vi.fn(),
+        };
+
         await TestBed.configureTestingModule({
             imports: [AbbrDirective, CompileHtmlDirective, ConditionalLinkComponent, SourceDescContentSystemComponent],
+            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         })
             .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
             .compileComponents();
     });
 
     beforeEach(() => {
+        // Service spies
+        expectedSheetRoute = new UrlTree();
+        serviceGetSvgSheetRouteSpy = vi
+            .spyOn(mockNavigationService, 'getSvgSheetRoute')
+            .mockReturnValue(expectedSheetRoute);
+
         // Test data
+        expectedComplexId = 'testComplex1';
         expectedContentSystem = {
             system: '1',
             systemDescription: 'Test system description',
@@ -54,9 +74,6 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
         fixture = TestBed.createComponent(SourceDescContentSystemComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Spies
-        clickedEmitSpy = vi.spyOn(component.clicked, 'emit');
     });
 
     it('... should create', () => {
@@ -94,8 +111,16 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
             expect(() => component.isClickable()).toThrow();
         });
 
-        it('... should have output `clicked`', () => {
-            expect(component.clicked).toBeDefined();
+        it('... should have input signal `complexId` to hold the default value', () => {
+            expectToBe(isSignal(component.complexId), true);
+
+            expectToBe(component.complexId(), '');
+        });
+
+        it('... should throw when accessing computed signal `targetRoute` due to missing input', () => {
+            expectToBe(isSignal(component.targetRoute), true);
+
+            expect(() => component.targetRoute()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -108,6 +133,7 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('complexId', expectedComplexId);
             fixture.componentRef.setInput('contentSystem', expectedContentSystem);
             fixture.componentRef.setInput('isLastItem', expectedIsLastItem);
 
@@ -117,6 +143,10 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
 
         it('... should have input signal `contentSystem` to hold the provided content system', () => {
             expectToEqual(component.contentSystem(), expectedContentSystem);
+        });
+
+        it('... should have input signal `complexId` to hold the provided complex id', () => {
+            expectToBe(component.complexId(), expectedComplexId);
         });
 
         it('... should have input signal `isLastItem` to hold the provided value', () => {
@@ -183,6 +213,24 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
                 fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, linkTo });
 
                 expectToBe(component.isClickable(), false);
+            });
+        });
+
+        it('... should have computed signal `targetRoute` to hold the sheet route from the navigation service', () => {
+            const expectedSheetTarget = { complexId: expectedComplexId, sheetId: expectedContentSystem.linkTo };
+
+            expectToBe(component.targetRoute(), expectedSheetRoute);
+            expectSpyCall(serviceGetSvgSheetRouteSpy, 1, expectedSheetTarget);
+        });
+
+        describe('... should have recomputed signal `targetRoute` to hold null if linkTo is', () => {
+            it.each([
+                { desc: 'empty', linkTo: '' },
+                { desc: 'undefined', linkTo: undefined },
+            ])('... $desc', ({ linkTo }) => {
+                fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, linkTo });
+
+                expectToBe(component.targetRoute(), null);
             });
         });
 
@@ -352,12 +400,14 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 2, 2);
                 });
 
-                it('... should pass down `isClickable` = true to ConditionalLinkComponents (hollow) if linkTo is given', () => {
+                it('... should pass down `isClickable` = true and `targetRoute` to ConditionalLinkComponents (hollow) if linkTo is given', () => {
                     const linkDes = getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 2, 2);
 
                     linkDes.forEach(linkDe => {
                         const linkCmp = linkDe.injector.get(ConditionalLinkComponent);
+
                         expectToBe(linkCmp.isClickable(), true);
+                        expectToBe(linkCmp.targetRoute(), expectedSheetRoute);
                     });
                 });
 
@@ -371,29 +421,6 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
                         const linkCmp = linkDe.injector.get(ConditionalLinkComponent);
                         expectToBe(linkCmp.isClickable(), false);
                     });
-                });
-
-                it('... should emit `clicked` when the ConditionalLinkComponent (hollow) of the measure is clicked', () => {
-                    const measureDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'span.awg-source-desc-content-grid-measure',
-                        1,
-                        1
-                    );
-                    const linkDes = getAndExpectDebugElementByDirective(measureDes[0], ConditionalLinkComponent, 1, 1);
-
-                    linkDes[0].injector.get(ConditionalLinkComponent).clicked.emit();
-
-                    expectSpyCall(clickedEmitSpy, 1);
-                });
-
-                it('... should emit `clicked` when the ConditionalLinkComponent (hollow) of the row is clicked', () => {
-                    const rowDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-grid-row', 1, 1);
-                    const linkDes = getAndExpectDebugElementByDirective(rowDes[0], ConditionalLinkComponent, 1, 1);
-
-                    linkDes[0].injector.get(ConditionalLinkComponent).clicked.emit();
-
-                    expectSpyCall(clickedEmitSpy, 1);
                 });
             });
         });
