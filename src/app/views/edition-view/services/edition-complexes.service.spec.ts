@@ -67,21 +67,20 @@ describe('EditionComplexesService (DONE)', () => {
         });
 
         it('... should hold the ids of the composite complexes and the part numbers by the ids of the parts', () => {
+            const expectedRefs = new Map([
+                ['m1', [{ compositeId: 'op100', partNumber: 1 }]],
+                [
+                    'm2',
+                    [
+                        { compositeId: 'op100', partNumber: 2 },
+                        { compositeId: 'op101', partNumber: 1 },
+                    ],
+                ],
+            ]);
+
             service.setEditionComplexesList({}, { op100: ['m1', 'm2'], op101: ['m2'] });
 
-            expectToEqual(
-                service['_compositeComplexRefs'](),
-                new Map([
-                    ['m1', [{ compositeId: 'op100', partNumber: 1 }]],
-                    [
-                        'm2',
-                        [
-                            { compositeId: 'op100', partNumber: 2 },
-                            { compositeId: 'op101', partNumber: 1 },
-                        ],
-                    ],
-                ])
-            );
+            expectToEqual(service['_compositeComplexRefs'](), expectedRefs);
         });
     });
 

@@ -43,14 +43,12 @@ export class EditionOutlineService {
             return [];
         }
 
-        const complexesService = this._editionComplexesService;
-        const complexesList = complexesService.editionComplexesList();
-        const outlineModel = new EditionOutline(
-            rawOutlineData,
-            id => complexesList[id.toLowerCase()],
-            id => complexesService.getComplexParts(id),
-            id => complexesService.getCompositeComplexes(id)
-        );
+        const complexesList = this._editionComplexesService.editionComplexesList();
+        const getComplexById = (id: string) => complexesList[id.toLowerCase()];
+        const getComplexParts = (id: string) => this._editionComplexesService.getComplexParts(id);
+        const getCompositeComplexes = (id: string) => this._editionComplexesService.getCompositeComplexes(id);
+
+        const outlineModel = new EditionOutline(rawOutlineData, getComplexById, getComplexParts, getCompositeComplexes);
 
         return outlineModel.outline;
     });

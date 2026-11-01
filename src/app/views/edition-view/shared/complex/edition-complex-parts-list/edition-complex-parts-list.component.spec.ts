@@ -5,7 +5,7 @@ import { provideRouter } from '@angular/router';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
 
@@ -84,7 +84,9 @@ describe('EditionComplexPartsListComponent (DONE)', () => {
                 const liEls: HTMLLIElement[] = getLiDes().map(liDe => liDe.nativeElement);
 
                 liEls.forEach((liEl, index) => {
-                    expectToBe(liEl.innerHTML.includes(expectedParts[index].complex.complexId.full), true);
+                    const expectedId = expectedParts[index].complex.complexId.full;
+
+                    expectToContain(liEl.innerHTML, expectedId);
                 });
             });
 

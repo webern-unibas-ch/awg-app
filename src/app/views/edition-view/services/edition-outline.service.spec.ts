@@ -174,10 +174,12 @@ describe('EditionOutlineService (DONE)', () => {
             service['_rawOutlineDataSignal'].set(rawOutlineDataWithParts);
 
             const { opus: opusItems, mnr: mnrItems } = service.editionOutline()[0].sections[0].content.complexTypes;
+            const partItem = opusItems[0].parts?.[0];
+            const compositeItem = mnrItems[0].compositeComplexes?.[0];
 
-            expectToBe(opusItems[0].parts?.[0].complex.complexId.route, part.complexId.route);
-            expectToBe(mnrItems[0].compositeComplexes?.[0].complex.complexId.route, opus.complexId.route);
-            expectToBe(mnrItems[0].compositeComplexes?.[0].partNumber, 1);
+            expectToBe(partItem?.complex.complexId.route, part.complexId.route);
+            expectToBe(compositeItem?.complex.complexId.route, opus.complexId.route);
+            expectToBe(compositeItem?.partNumber, 1);
         });
 
         describe('... should hold an empty array if the given raw edition data is', () => {
@@ -251,19 +253,21 @@ describe('EditionOutlineService (DONE)', () => {
 
             it('... should hold the parts of a composite complex with their disabled flags', () => {
                 const opusItem = model.outline[0].sections[0].content.complexTypes.opus[0];
-
-                expectToEqual(opusItem.parts, [
+                const expectedParts = [
                     { complex: part1, labeledRoute: getLabeledRoute(part1), disabled: false },
                     { complex: part2, labeledRoute: getLabeledRoute(part2), disabled: true },
-                ]);
+                ];
+
+                expectToEqual(opusItem.parts, expectedParts);
             });
 
             it('... should hold the composite complexes of a part with their disabled flags and part numbers', () => {
                 const partItem = model.outline[0].sections[0].content.complexTypes.mnr[0];
-
-                expectToEqual(partItem.compositeComplexes, [
+                const expectedCompositeComplexes = [
                     { complex: opus, labeledRoute: getLabeledRoute(opus), disabled: true, partNumber: 1 },
-                ]);
+                ];
+
+                expectToEqual(partItem.compositeComplexes, expectedCompositeComplexes);
             });
 
             it('... should hold no parts and composite complexes for complexes without them', () => {

@@ -8,6 +8,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -17,11 +18,11 @@ import {
 } from '@testing/expect-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
-import { EDITION_ROUTE_CONSTANTS, EditionRouteConstant } from '../edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 
-import { EditionStateHelper } from '@testing/edition-state-helper';
+import { EDITION_ROUTE_CONSTANTS, EditionRouteConstant } from '../edition-routes.constants';
+
 import { EditionBreadcrumbComponent } from './edition-breadcrumb.component';
 
 describe('EditionBreadcrumbComponent (DONE)', () => {
@@ -502,18 +503,20 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                     });
 
                     it('... should display the composite complex before the part', () => {
-                        const toText = (label: string): string => label.replace(/&nbsp;/g, ' ');
-
                         const itemTexts = getItemTexts(5);
 
-                        expectToEqual(itemTexts.slice(3), [toText(opus.complexId.short), toText(part.complexId.short)]);
+                        const toText = (label: string): string => label.replace(/&nbsp;/g, ' ');
+                        const expectedTexts = [toText(opus.complexId.short), toText(part.complexId.short)];
+
+                        expectToEqual(itemTexts.slice(3), expectedTexts);
                     });
 
                     it('... should have a router link to the composite complex as fourth link', () => {
                         const linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 4, 4);
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+                        const urlTreeString = routerLinks[3].urlTree?.toString() ?? '';
 
-                        expectToBe(routerLinks[3].urlTree?.toString(), opus.baseRoute);
+                        expectToBe(urlTreeString, opus.baseRoute);
                     });
                 });
             });

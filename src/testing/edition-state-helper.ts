@@ -51,13 +51,11 @@ function _getInitializedOutline(): EditionOutlineSeries[] {
         const rawOutlineData = jsonEditionOutline.editionOutline;
         const complexesService = _getInitializedComplexesService();
         const complexesList = complexesService.editionComplexesList();
+        const getComplexById = (id: string) => complexesList[id.toLowerCase()];
+        const getComplexParts = (id: string) => complexesService.getComplexParts(id);
+        const getCompositeComplexes = (id: string) => complexesService.getCompositeComplexes(id);
 
-        const outlineModel = new EditionOutline(
-            rawOutlineData,
-            id => complexesList[id.toLowerCase()],
-            id => complexesService.getComplexParts(id),
-            id => complexesService.getCompositeComplexes(id)
-        );
+        const outlineModel = new EditionOutline(rawOutlineData, getComplexById, getComplexParts, getCompositeComplexes);
 
         initializedOutline = outlineModel.outline;
     }

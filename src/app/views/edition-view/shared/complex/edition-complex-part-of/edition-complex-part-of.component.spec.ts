@@ -5,7 +5,7 @@ import { provideRouter } from '@angular/router';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionOutlineCompositeComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
 
@@ -114,13 +114,20 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
             });
 
             it('... should display the part number', () => {
+                const expectedPartNumber = `(Nr. ${expectedCompositeComplexes[0].partNumber})`;
+
                 const pEl: HTMLParagraphElement = getPDes()[0].nativeElement;
 
-                expectToBe(pEl.textContent?.includes(`(Nr. ${expectedCompositeComplexes[0].partNumber})`), true);
+                expectToContain(pEl.textContent, expectedPartNumber);
             });
 
             it('... should display a disabled composite complex without link', () => {
-                setCompositeComplexes(expectedCompositeComplexes.map(composite => ({ ...composite, disabled: true })));
+                const disabledCompositeComplexes = expectedCompositeComplexes.map(composite => ({
+                    ...composite,
+                    disabled: true,
+                }));
+
+                setCompositeComplexes(disabledCompositeComplexes);
 
                 const pDes = getPDes();
 
