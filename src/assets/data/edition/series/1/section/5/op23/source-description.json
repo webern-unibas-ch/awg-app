@@ -22,7 +22,7 @@
                             "additionalInfo": ""
                         },
                         "dimensions": {
-                            "orientation": "hoch",
+                            "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
                                 "value": "270"

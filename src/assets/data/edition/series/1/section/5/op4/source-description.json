@@ -3188,7 +3188,7 @@
                     "unliniertes Papier, Format: hoch 354 × 270 mm (Bl. [a]/[b])",
                     "Notenpapier, 28 Systeme, Format: hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 9 | 28 linig.</em> recto unten links (Bl. 1/8)",
                     "Notenpapier, 12 Systeme, 4 vorgedruckte Akkoladen (1 + 2 Systeme), Format: hoch 346 × 265 mm, Firmenzeichen: [JE] | <em>No. 12</em> recto unten links (Bl. 2/3, 4, 7)",
-                    "Notenpapier, 26 Systeme, Format: hoch 345 × 263 mm, Firmenzeichen: [JE##DEPOSÉ##] | <em>No. 3 a | 26 linig.</em> auf Bl. 5<sup>v</sup> auf dem Kopf stehend oben rechts (Bl. 5)",
+                    "Notenpapier, 26 Systeme, Format: hoch 345 × 263 mm, Firmenzeichen: [JE##DEPOSÉ##] | <em>No. 8a | 26 linig.</em> auf Bl. 5<sup>v</sup> auf dem Kopf stehend oben rechts (Bl. 5)",
                     "Notenpapier, 16 Systeme, Format: hoch 343 × 267 mm, Firmenzeichen: [JE] | <em>No. 4 | 16 linig.</em> recto unten links (Bl. 6)"
                 ],
                 "writingMaterials": [
@@ -3313,7 +3313,7 @@
                     {
                         "materialType": "Notenpapier",
                         "systems": {
-                            "totalSystems": 26,
+                            "totalSystems": 16,
                             "totalSystemsAddendum": "",
                             "additionalInfo": ""
                         },
