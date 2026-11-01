@@ -471,9 +471,15 @@ describe('EditionComplexesService (DONE)', () => {
             expectToEqual(workEdition, { textVersions: { m317: '2' } });
         });
 
-        it('... should return undefined without text versions', () => {
-            expect(service['_mapWorkEdition']([{ complex: 'm317' }])).toBeUndefined();
-            expect(service['_mapWorkEdition']()).toBeUndefined();
+        describe('... should return undefined for', () => {
+            it.each([
+                { desc: 'parts without text versions', parts: [{ complex: 'm317' }] },
+                { desc: 'no parts', parts: undefined },
+            ])('... $desc', ({ parts }) => {
+                const workEdition = service['_mapWorkEdition'](parts);
+
+                expect(workEdition).toBeUndefined();
+            });
         });
     });
 });
