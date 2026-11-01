@@ -226,6 +226,7 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(getBreadcrumbItemsSpy, 1, [
                     component.viewContext,
                     component.selectedEditionComplex,
+                    component.selectedOutlineComplexItem,
                     component.selectedEditionSeries,
                     component.selectedEditionSection,
                 ]);

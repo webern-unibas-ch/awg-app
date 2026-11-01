@@ -128,6 +128,18 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(navDes[0], 'span', 0, 0);
             });
 
+            it('... should render the label of an anchor tag as innerHTML', () => {
+                fixture.componentRef.setInput('items', [{ label: 'Op.&nbsp;12', route: ['/edition/complex/op12'] }]);
+
+                fixture.detectChanges();
+
+                const navDes = getAndExpectDebugElementByCss(compDe, 'nav.awg-edition-info-breadcrumb', 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(navDes[0], 'a', 1, 1);
+                const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
+
+                expectToBe(anchorEl.textContent, 'Op. 12');
+            });
+
             it('... should render a span with innerHTML for items without a route', () => {
                 fixture.componentRef.setInput('items', [{ label: 'op. 27', route: [] }]);
 
@@ -467,6 +479,41 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                         expectToEqual(urlTreeString1, expectedRootUrl);
                         expectToEqual(urlTreeString2, expectedSeriesUrl);
                         expectToEqual(urlTreeString3, expectedSectionUrl);
+                    });
+                });
+
+                describe('... if a part of a composite complex is given', () => {
+                    let part: EditionComplex;
+                    let opus: EditionComplex;
+
+                    beforeEach(() => {
+                        part = EditionStateHelper.getComplex('m217');
+                        opus = EditionStateHelper.getComplex('op12');
+                        const { series, section, labeledSectionRoute } = part.pubStatement;
+
+                        fixture.componentRef.setInput('items', [
+                            expectedRootItem,
+                            { label: series.full, route: [...expectedRootItem.route, series.route] },
+                            { label: section.full, route: labeledSectionRoute.route },
+                            { label: opus.complexId.short, route: [opus.baseRoute] },
+                            { label: part.complexId.short, route: [] },
+                        ]);
+                        fixture.detectChanges();
+                    });
+
+                    it('... should display the composite complex before the part', () => {
+                        const toText = (label: string): string => label.replace(/&nbsp;/g, ' ');
+
+                        const itemTexts = getItemTexts(5);
+
+                        expectToEqual(itemTexts.slice(3), [toText(opus.complexId.short), toText(part.complexId.short)]);
+                    });
+
+                    it('... should have a router link to the composite complex as fourth link', () => {
+                        const linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 4, 4);
+                        const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+
+                        expectToBe(routerLinks[3].urlTree?.toString(), opus.baseRoute);
                     });
                 });
             });

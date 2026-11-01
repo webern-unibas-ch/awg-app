@@ -124,6 +124,7 @@ export class EditionViewComponent {
     readonly breadcrumbItems = this._editionBreadcrumbService.getBreadcrumbItems(
         this.viewContext,
         this.selectedEditionComplex,
+        this.selectedOutlineComplexItem,
         this.selectedEditionSeries,
         this.selectedEditionSection
     );
