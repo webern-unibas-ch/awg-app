@@ -1,4 +1,5 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { UrlTree } from '@angular/router';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
@@ -33,18 +34,18 @@ export class SourceSiglumComponent {
     readonly isClickable = input<boolean>(false);
 
     /**
+     * Readonly input signal: targetRoute.
+     *
+     * It holds the route the clickable source siglum links to, if any.
+     */
+    readonly targetRoute = input<UrlTree | null>(null);
+
+    /**
      * Readonly input signal: classPrefix.
      *
      * It holds the class prefix for the component.
      */
     readonly classPrefix = input<string>('awg-source-list');
-
-    /**
-     * Readonly output signal: clicked.
-     *
-     * It emits an event when the source siglum is clicked.
-     */
-    readonly clicked = output();
 
     /**
      * Readonly computed signal: hasMissingFlag.

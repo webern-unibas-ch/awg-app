@@ -1,7 +1,11 @@
 import { computed, inject, Service, signal } from '@angular/core';
 
 import { EditionComplex } from '../models/edition-complex.model';
-import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
+import {
+    EditionOutlineComplexItem,
+    EditionOutlineSection,
+    EditionOutlineSeries,
+} from '../models/edition-outline.model';
 
 import { EditionOutlineService } from './edition-outline.service';
 
@@ -44,6 +48,18 @@ export class EditionStateService {
      * It holds the state of the selected edition complex.
      */
     readonly selectedEditionComplex = this._selectedEditionComplexSignal.asReadonly();
+
+    /**
+     * Readonly computed signal: selectedOutlineComplexItem.
+     *
+     * It holds the outline item of the selected edition complex
+     * with its parts and composite complexes, otherwise null.
+     */
+    readonly selectedOutlineComplexItem = computed<EditionOutlineComplexItem | null>(() => {
+        const complex = this._selectedEditionComplexSignal();
+
+        return complex ? (this._editionOutlineService.getEditionOutlineComplexItem(complex) ?? null) : null;
+    });
 
     /**
      * Readonly computed signal: selectedEditionSection.

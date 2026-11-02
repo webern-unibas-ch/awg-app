@@ -1,12 +1,11 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UrlTree } from '@angular/router';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToEqual,
     getAndExpectDebugElementByCss,
@@ -16,7 +15,6 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { SourceList } from '@awg-views/edition-view/models/source-list.model';
 import { Source, TextSource } from '@awg-views/edition-view/models/source.model';
-import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -28,57 +26,40 @@ describe('SourceListComponent (DONE)', () => {
     let fixture: ComponentFixture<SourceListComponent>;
     let compDe: DebugElement;
 
-    let mockModalService: Partial<EditionModalService>;
     let mockNavigationService: Partial<EditionNavigationService>;
 
-    let onSourceClickSpy: Spy;
-    let navigateToReportFragmentSpy: Spy;
-    let openModalSpy: Spy;
-    let serviceOpenModalSpy: Spy;
-    let serviceNavigateToReportFragmentSpy: Spy;
-
     let expectedSourceListData: SourceList;
-    let expectedFragment: string;
+
+    // Fake report route that keeps the fragment to compare it
+    const toReportRoute = (fragmentId: string): UrlTree => new UrlTree(undefined, {}, fragmentId);
+
+    const getExpectedReportRoutes = (): (UrlTree | null)[] =>
+        expectedSourceListData.sources.map(({ hasDescription, linkTo }) =>
+            hasDescription && linkTo ? toReportRoute(linkTo) : null
+        );
 
     beforeEach(async () => {
         // Mock services
-        mockModalService = {
-            openTextModal: vi.fn(),
-        };
-
         mockNavigationService = {
-            navigateToReportFragment: vi.fn(),
+            getReportFragmentRoute: vi.fn(({ fragmentId }) => toReportRoute(fragmentId)),
         };
 
         await TestBed.configureTestingModule({
             imports: [CompileHtmlDirective, SourceListComponent, SourceSiglumComponent],
-            providers: [
-                { provide: EditionModalService, useValue: mockModalService },
-                { provide: EditionNavigationService, useValue: mockNavigationService },
-            ],
+            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         })
             .overrideComponent(SourceSiglumComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
     beforeEach(() => {
-        // Service spies
-        serviceOpenModalSpy = vi.spyOn(mockModalService, 'openTextModal');
-        serviceNavigateToReportFragmentSpy = vi.spyOn(mockNavigationService, 'navigateToReportFragment');
-
         // Test data
         expectedSourceListData = structuredClone(mockEditionData.mockSourceListData);
-        expectedFragment = 'source_A';
 
         // Create component fixture
         fixture = TestBed.createComponent(SourceListComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Component spies
-        onSourceClickSpy = vi.spyOn(component, 'onSourceClick');
-        navigateToReportFragmentSpy = vi.spyOn(component, '_navigateToReportFragment' as any);
-        openModalSpy = vi.spyOn(component, '_openModal' as any);
     });
 
     afterEach(() => {
@@ -94,6 +75,12 @@ describe('SourceListComponent (DONE)', () => {
             expectToBe(isSignal(component.sourceListData), true);
 
             expect(() => component.sourceListData()).toThrow();
+        });
+
+        it('... should throw when accessing computed signal `sourceReportRoutes` due to missing input', () => {
+            expectToBe(isSignal(component.sourceReportRoutes), true);
+
+            expect(() => component.sourceReportRoutes()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -114,6 +101,12 @@ describe('SourceListComponent (DONE)', () => {
 
         it('... should have input signal `sourceListData` to hold the expected data', () => {
             expectToEqual(component.sourceListData(), expectedSourceListData);
+        });
+
+        it('... should have computed signal `sourceReportRoutes` to hold the report routes of the sources with description', () => {
+            const expectedReportRoutes = getExpectedReportRoutes();
+
+            expectToEqual(component.sourceReportRoutes(), expectedReportRoutes);
         });
 
         describe('VIEW', () => {
@@ -209,6 +202,8 @@ describe('SourceListComponent (DONE)', () => {
                     });
 
                     it('... should pass down the correct values to SourceSiglumComponent (hollow)', () => {
+                        const expectedReportRoutes = getExpectedReportRoutes();
+
                         const sourceSiglumDes = getAndExpectDebugElementByDirective(
                             compDe,
                             SourceSiglumComponent,
@@ -222,7 +217,8 @@ describe('SourceListComponent (DONE)', () => {
 
                             expectToEqual(sourceSiglumCmp.siglumData(), source);
                             expectToBe(sourceSiglumCmp.classPrefix(), 'awg-source-list');
-                            expectToBe(sourceSiglumCmp.isClickable(), !!(source.hasDescription || source.linkTo));
+                            expectToBe(sourceSiglumCmp.isClickable(), !!expectedReportRoutes[index]);
+                            expectToEqual(sourceSiglumCmp.targetRoute(), expectedReportRoutes[index]);
                         });
                     });
                 });
@@ -480,136 +476,6 @@ describe('SourceListComponent (DONE)', () => {
                         });
                     });
                 });
-            });
-        });
-
-        describe('#onSourceClick()', () => {
-            it('... should have a method `onSourceClick`', () => {
-                expect(component.onSourceClick).toBeDefined();
-            });
-
-            it('... should trigger when each SourceSiglumComponent (hollow) is clicked', () => {
-                const expectedSourcesLength = expectedSourceListData.sources.length;
-                const sourceSiglumDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    SourceSiglumComponent,
-                    expectedSourcesLength,
-                    expectedSourcesLength
-                );
-
-                for (const [index, sourceSiglumDe] of sourceSiglumDes.entries()) {
-                    const sourceSiglumCmp = sourceSiglumDe.componentInstance as SourceSiglumComponent;
-                    sourceSiglumCmp.clicked.emit();
-
-                    expectSpyCall(onSourceClickSpy, index + 1, expectedSourceListData.sources[index]);
-                }
-            });
-
-            it('... should call `navigateToReportFragment` if `source.hasDescription` is given', () => {
-                const source = expectedSourceListData.sources[0];
-
-                // Call with a source that has description
-                component.onSourceClick(source);
-
-                expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: source.linkTo });
-                expectSpyCall(openModalSpy, 0);
-            });
-
-            it('... should call `_openModal` if `source.hasDescription` is not given', () => {
-                let source = expectedSourceListData.sources[1];
-
-                // Call with a source that has no description
-                component.onSourceClick(source);
-
-                expectSpyCall(openModalSpy, 1, source.linkTo);
-                expectSpyCall(navigateToReportFragmentSpy, 0);
-
-                source = expectedSourceListData.sources[2];
-
-                component.onSourceClick(source);
-
-                expectSpyCall(openModalSpy, 2, source.linkTo);
-                expectSpyCall(navigateToReportFragmentSpy, 0);
-            });
-        });
-
-        describe('#_navigateToReportFragment()', () => {
-            it('... should have a method `_navigateToReportFragment`', () => {
-                expect(component['_navigateToReportFragment']).toBeDefined();
-            });
-
-            it('... should trigger from `onSourceClick` method', () => {
-                const source = expectedSourceListData.sources[0];
-
-                component.onSourceClick(source);
-
-                expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedFragment });
-            });
-
-            it('... should do nothing if fragment id is empty string', () => {
-                component['_navigateToReportFragment']({ complexId: 'testComplex', fragmentId: '' });
-
-                expectSpyCall(serviceNavigateToReportFragmentSpy, 0);
-            });
-
-            it('... should trigger NavigationService with selected report fragment within same complex', () => {
-                const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                component['_navigateToReportFragment'](expectedReportIds);
-
-                expectSpyCall(serviceNavigateToReportFragmentSpy, 1, expectedReportIds);
-
-                const otherFragment = 'source_B';
-                const expectedNextReportIds = { complexId: 'testComplex', fragmentId: otherFragment };
-                component['_navigateToReportFragment'](expectedNextReportIds);
-
-                expectSpyCall(serviceNavigateToReportFragmentSpy, 2, expectedNextReportIds);
-            });
-
-            it('... should trigger NavigationService with selected report fragment for another complex', () => {
-                const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                component['_navigateToReportFragment'](expectedReportIds);
-
-                expectSpyCall(serviceNavigateToReportFragmentSpy, 1, expectedReportIds);
-
-                const otherFragment = 'source_B';
-                const expectedNextReportIds = { complexId: 'anotherTestComplex', fragmentId: otherFragment };
-                component['_navigateToReportFragment'](expectedNextReportIds);
-
-                expectSpyCall(serviceNavigateToReportFragmentSpy, 2, expectedNextReportIds);
-            });
-        });
-
-        describe('#_openModal()', () => {
-            it('... should have a method `_openModal`', () => {
-                expect(component['_openModal']).toBeDefined();
-            });
-
-            it('... should trigger from `onSourceClick` method', () => {
-                let source = expectedSourceListData.sources[1];
-
-                component.onSourceClick(source);
-
-                expectSpyCall(openModalSpy, 1, source.linkTo);
-                expectSpyCall(navigateToReportFragmentSpy, 0);
-
-                source = expectedSourceListData.sources[2];
-
-                component.onSourceClick(source);
-
-                expectSpyCall(openModalSpy, 2, source.linkTo);
-                expectSpyCall(navigateToReportFragmentSpy, 0);
-            });
-
-            it('... should do nothing if id is empty string', () => {
-                component['_openModal']('');
-
-                expectSpyCall(serviceOpenModalSpy, 0);
-            });
-
-            it('... should trigger EditionModalService with id of given modal snippet', () => {
-                component['_openModal'](expectedSourceListData.sources[2].linkTo);
-
-                expectSpyCall(serviceOpenModalSpy, 1, expectedSourceListData.sources[2].linkTo);
             });
         });
     });

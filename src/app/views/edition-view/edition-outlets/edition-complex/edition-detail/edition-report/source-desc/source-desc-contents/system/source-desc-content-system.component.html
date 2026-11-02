@@ -23,7 +23,7 @@
         <!-- Measures -->
         @if (system.measure) {
             <span class="awg-source-desc-content-grid-measure">
-                <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
+                <awg-conditional-link [isClickable]="isClickable()" [targetRoute]="targetRoute()">
                     <span><span awgAbbr="T."></span>&nbsp;{{ system.measure }}</span>
                 </awg-conditional-link>
             </span>
@@ -32,7 +32,7 @@
         <!-- Rows -->
         @if (validRow(); as row) {
             <span class="awg-source-desc-content-grid-row">
-                <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
+                <awg-conditional-link [isClickable]="isClickable()" [targetRoute]="targetRoute()">
                     <span>
                         <span
                             >{{ row.rowType }}<sub>{{ row.rowBase }}</sub></span

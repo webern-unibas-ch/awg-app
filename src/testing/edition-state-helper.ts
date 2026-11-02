@@ -1,47 +1,42 @@
-import {
-    EditionComplex,
-    EditionComplexesJsonData,
-    EditionComplexesList,
-} from '@awg-views/edition-view/models/edition-complex.model';
+import { EditionComplex, EditionComplexesList } from '@awg-views/edition-view/models/edition-complex.model';
 import {
     EditionOutline,
+    EditionOutlineComplexItem,
     EditionOutlineSection,
     EditionOutlineSeries,
 } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionComplexesService } from '@awg-views/edition-view/services/edition-complexes.service';
 
-import jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
 import jsonEditionOutline from 'assets/data/edition/edition-outline.json';
 
 let initializedOutline: EditionOutlineSeries[] | null = null;
-let initializedComplexesList: EditionComplexesList | null = null;
+let initializedComplexesService: EditionComplexesService | null = null;
+
+/**
+ * Private helper function: _getInitializedComplexesService.
+ *
+ * It initializes an edition complexes service with the edition complexes data
+ * if it hasn't been initialized yet and returns the initialized service.
+ *
+ * @returns {EditionComplexesService} The initialized edition complexes service.
+ */
+function _getInitializedComplexesService(): EditionComplexesService {
+    if (!initializedComplexesService) {
+        initializedComplexesService = new EditionComplexesService();
+        initializedComplexesService.initializeEditionComplexesList();
+    }
+    return initializedComplexesService;
+}
 
 /**
  * Private helper function: _getInitializedComplexesList.
  *
- * It initializes the edition complexes list if it hasn't been initialized yet and returns the initialized list.
+ * It returns the initialized edition complexes list.
  *
  * @returns {{ [key: string]: EditionComplex }} The initialized edition complexes list.
  */
 function _getInitializedComplexesList(): EditionComplexesList {
-    if (!initializedComplexesList) {
-        const complexesData: EditionComplexesJsonData = jsonEditionComplexes;
-        const complexesList: Record<string, EditionComplex> = {};
-
-        complexesData.editionComplexes.forEach(complex => {
-            Object.entries(complex).forEach(([complexKey, complexValue]) => {
-                if (!complexValue) {
-                    return;
-                }
-                complexesList[complexKey] = new EditionComplex(
-                    complexValue.titleStatement,
-                    complexValue.respStatement,
-                    complexValue.pubStatement
-                );
-            });
-        });
-        initializedComplexesList = complexesList;
-    }
-    return initializedComplexesList;
+    return _getInitializedComplexesService().editionComplexesList();
 }
 
 /**
@@ -54,9 +49,13 @@ function _getInitializedComplexesList(): EditionComplexesList {
 function _getInitializedOutline(): EditionOutlineSeries[] {
     if (!initializedOutline) {
         const rawOutlineData = jsonEditionOutline.editionOutline;
-        const complexesList = _getInitializedComplexesList();
+        const complexesService = _getInitializedComplexesService();
+        const complexesList = complexesService.editionComplexesList();
+        const getComplexById = (id: string) => complexesList[id.toLowerCase()];
+        const getComplexParts = (id: string) => complexesService.getComplexParts(id);
+        const getCompositeComplexes = (id: string) => complexesService.getCompositeComplexes(id);
 
-        const outlineModel = new EditionOutline(rawOutlineData, id => complexesList[id.toLowerCase()]);
+        const outlineModel = new EditionOutline(rawOutlineData, getComplexById, getComplexParts, getCompositeComplexes);
 
         initializedOutline = outlineModel.outline;
     }
@@ -160,5 +159,28 @@ export const EditionStateHelper = {
             throw new Error(`[EditionStateHelper] Complex ${complexId} not found in the edition complexes data!`);
         }
         return structuredClone(complex);
+    },
+
+    /**
+     * Test helper method: getOutlineComplexItem.
+     *
+     * It retrieves the outline item of a specific complex from the edition outline data
+     * based on the provided complex ID.
+     * If the complex with the given ID is not found in the outline, it throws an error.
+     *
+     * @param {string} complexId The ID of the complex to retrieve.
+     * @returns {EditionOutlineComplexItem} The corresponding outline item of the edition complex.
+     * @throws {Error} If the complex with the given ID is not found in the edition outline data.
+     */
+    getOutlineComplexItem(complexId: string): EditionOutlineComplexItem {
+        const complex = this.getComplex(complexId);
+        const complexItem = _getInitializedOutline()
+            .flatMap(series => series.sections.flatMap(section => section.content.sectionComplexes))
+            .find(item => item.complex.complexId.route === complex.complexId.route);
+
+        if (!complexItem) {
+            throw new Error(`[EditionStateHelper] Complex ${complexId} not found in the edition outline data!`);
+        }
+        return structuredClone(complexItem);
     },
 };

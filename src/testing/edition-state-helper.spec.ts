@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe } from './expect-helper';
+import { expectToBe, expectToEqual } from './expect-helper';
 
 import { EditionStateHelper } from './edition-state-helper';
 
@@ -232,6 +232,48 @@ describe('EditionStateHelper (DONE)', () => {
             expect(complex).toHaveProperty('pubStatement');
             expect(complex).toHaveProperty('complexId');
             expect(complex).toHaveProperty('baseRoute');
+        });
+    });
+
+    describe('#getOutlineComplexItem()', () => {
+        it('... should have a method `getOutlineComplexItem`', () => {
+            expect(EditionStateHelper.getOutlineComplexItem).toBeDefined();
+        });
+
+        it('... should return the outline item of a composite complex with its parts', () => {
+            const complexItem = EditionStateHelper.getOutlineComplexItem('op12');
+
+            const partRoutes = complexItem.parts?.map(part => part.complex.complexId.route);
+
+            expectToBe(complexItem.complex.complexId.route, '/op12');
+            expectToEqual(partRoutes, ['/m212', '/m217', '/m213', '/m216']);
+        });
+
+        it('... should return the outline item of a part with its composite complex', () => {
+            const complexItem = EditionStateHelper.getOutlineComplexItem('m217');
+
+            const composite = complexItem.compositeComplexes?.[0];
+
+            expectToBe(composite?.complex.complexId.route, '/op12');
+            expectToBe(composite?.partNumber, 2);
+        });
+
+        it('... should throw an error if the complexId is not found', () => {
+            const invalidComplexId = 'UNKNOWN_COMPLEX';
+
+            expect(() => EditionStateHelper.getOutlineComplexItem(invalidComplexId)).toThrow(
+                `[EditionStateHelper] Complex ${invalidComplexId} not found in the edition complexes data!`
+            );
+        });
+
+        it('... should return a structured clone that protects the cache from mutations', () => {
+            const firstRun = EditionStateHelper.getOutlineComplexItem('op12');
+
+            firstRun.complex.titleStatement.title = 'MUTATED_TITLE';
+
+            const secondRun = EditionStateHelper.getOutlineComplexItem('op12');
+
+            expect(secondRun.complex.titleStatement.title).not.toBe('MUTATED_TITLE');
         });
     });
 });

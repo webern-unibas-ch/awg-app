@@ -6,7 +6,7 @@
                     <fa-icon class="awg-edition-breadcrumb-divider" [icon]="faChevronRight" />
                 }
                 @if (item.route.length) {
-                    <a [routerLink]="item.route">{{ item.label }}</a>
+                    <a [routerLink]="item.route" [innerHTML]="item.label"></a>
                 } @else {
                     <span [innerHTML]="item.label"></span>
                 }

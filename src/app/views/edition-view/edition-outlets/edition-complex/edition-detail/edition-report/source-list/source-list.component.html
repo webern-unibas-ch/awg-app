@@ -10,11 +10,12 @@
                             @let sourceId = source.siglum + (source.siglumAddendum ?? '');
                             <tr>
                                 <th scope="row" [id]="sourceId" class="text-nowrap">
+                                    @let reportRoute = sourceReportRoutes()[$index];
                                     <awg-source-siglum
-                                        [siglumData]="source"
                                         classPrefix="awg-source-list"
-                                        [isClickable]="!!(source.hasDescription || source.linkTo)"
-                                        (clicked)="onSourceClick(source)" />
+                                        [siglumData]="source"
+                                        [isClickable]="!!reportRoute"
+                                        [targetRoute]="reportRoute" />
                                 </th>
                                 <td>
                                     <span [awgCompileHtml]="source.type"></span> <br />

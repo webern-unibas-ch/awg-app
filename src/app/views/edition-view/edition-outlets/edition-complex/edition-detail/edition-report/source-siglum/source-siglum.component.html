@@ -1,6 +1,6 @@
 @if (siglumData(); as siglum) {
     <span [class]="siglumContainerClass()">
-        <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
+        <awg-conditional-link [isClickable]="isClickable()" [targetRoute]="targetRoute()">
             @if (hasMissingFlag()) {
                 <span>[</span>
             }

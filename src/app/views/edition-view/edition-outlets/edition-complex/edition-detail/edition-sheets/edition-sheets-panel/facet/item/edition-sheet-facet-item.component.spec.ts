@@ -1,7 +1,9 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink, UrlTree } from '@angular/router';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -19,10 +21,10 @@ import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
 import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
 
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
-import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-link.directive';
 import { EditionSheetFacetItemComponent } from './edition-sheet-facet-item.component';
 
 describe('EditionSheetFacetItemComponent (DONE)', () => {
@@ -31,6 +33,8 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockNavigationService: Partial<EditionNavigationService>;
+
+    let navigateByUrlSpy: Spy;
 
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartials: EditionSvgSheet;
@@ -52,21 +56,28 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             expectedSvgSheetWithPartials.content.length,
             expectedSvgSheetWithPartials.content.length
         );
-    const getLinkDirective = (de: DebugElement) => de.injector.get(EditionSheetFacetItemLinkDirective, null);
+    const getRouterLink = (de: DebugElement) => de.injector.get(RouterLink, null);
+
+    // Fake sheet route that keeps the sheet target to compare it
+    const toSheetRoute = ({ complexId, sheetId }: EditionNavigationSheetTarget): UrlTree =>
+        new UrlTree(undefined, { complexId, id: sheetId });
 
     beforeEach(async () => {
         // Mock services
         mockNavigationService = {
-            navigateToSvgSheet: vi.fn(),
+            getSvgSheetRoute: vi.fn(toSheetRoute),
         };
 
         await TestBed.configureTestingModule({
             imports: [EditionSheetFacetItemComponent],
-            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
+            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }, provideRouter([])],
         }).compileComponents();
     });
 
     beforeEach(() => {
+        // Router spies
+        navigateByUrlSpy = vi.spyOn(TestBed.inject(Router), 'navigateByUrl').mockResolvedValue(true);
+
         // Test data
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedSvgSheetWithPartials = structuredClone(mockEditionData.mockSvgSheet_Sk2);
@@ -123,7 +134,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             { name: 'isActive' as const },
             { name: 'dropdownId' as const },
             { name: 'sheetPartials' as const },
-            { name: 'sheetTarget' as const },
+            { name: 'sheetRoute' as const },
         ])('... should throw when accessing computed signal `$name` due to missing inputs', ({ name }) => {
             const computedSignal = component[name];
 
@@ -181,15 +192,22 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 expectToBe(component.isActive(), false);
             });
 
-            it('... should have computed signal `sheetTarget` to hold the expected sheet target', () => {
-                expectToEqual(component.sheetTarget(), { complexId: '', sheetId: expectedSvgSheet.id });
+            it('... should have computed signal `sheetRoute` to hold the sheet route from the navigation service', () => {
+                const expectedSheetRoute = toSheetRoute({ complexId: '', sheetId: expectedSvgSheet.id });
+
+                expectToEqual(component.sheetRoute(), expectedSheetRoute);
             });
 
-            it('... should have recomputed signal `sheetTarget` when another svg sheet is provided', async () => {
+            it('... should have recomputed signal `sheetRoute` when another svg sheet is provided', async () => {
                 fixture.componentRef.setInput('svgSheet', mockEditionData.mockSvgSheet_Sk4);
                 await detectChangesOnPush(fixture);
 
-                expectToEqual(component.sheetTarget(), { complexId: '', sheetId: mockEditionData.mockSvgSheet_Sk4.id });
+                const expectedSheetRoute = toSheetRoute({
+                    complexId: '',
+                    sheetId: mockEditionData.mockSvgSheet_Sk4.id,
+                });
+
+                expectToEqual(component.sheetRoute(), expectedSheetRoute);
             });
 
             it('... should have computed signal `dropdownId` to hold the expected id (unused without partials)', () => {
@@ -225,32 +243,11 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     expectToBe(aEl.textContent.trim(), expectedSvgSheet.label);
                 });
 
-                describe('EditionSheetFacetItemLinkDirective', () => {
-                    it('... should be applied to the direct anchor', () => {
-                        const linkDir = getLinkDirective(getDirectLinkDes()[0]);
+                describe('RouterLink', () => {
+                    it('... should pass down `sheetRoute` to the RouterLink of the direct anchor', () => {
+                        const routerLink = getRouterLink(getDirectLinkDes()[0]);
 
-                        expect(linkDir).toBeTruthy();
-                    });
-
-                    it('... should pass down `sheetTarget` to the directive of the direct anchor', () => {
-                        const linkDir = getLinkDirective(getDirectLinkDes()[0]);
-
-                        expectToEqual(linkDir?.sheetTarget(), component.sheetTarget());
-                    });
-
-                    it('... should pass down `isActive` to the directive of the direct anchor', () => {
-                        const linkDir = getLinkDirective(getDirectLinkDes()[0]);
-
-                        expectToBe(linkDir?.isActive(), true);
-                    });
-
-                    it('... should pass down updated `isActive` to the directive if another svg sheet is selected', async () => {
-                        fixture.componentRef.setInput('selectedSvgSheet', expectedNextSelection);
-                        await detectChangesOnPush(fixture);
-
-                        const linkDir = getLinkDirective(getDirectLinkDes()[0]);
-
-                        expectToBe(linkDir?.isActive(), false);
+                        expectToBe(routerLink?.urlTree, component.sheetRoute());
                     });
 
                     it('... should have `active` class on the direct anchor if the svg sheet is selected', () => {
@@ -270,10 +267,10 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                         expectToNotContain(aEl.classList, 'active');
                     });
 
-                    it('... should navigate to `sheetTarget` on click of the direct anchor', async () => {
+                    it('... should navigate to `sheetRoute` on click of the direct anchor', async () => {
                         await clickAndAwaitChanges(getDirectLinkDes()[0], fixture);
 
-                        expectSpyCall(mockNavigationService.navigateToSvgSheet as any, 1, component.sheetTarget());
+                        expectSpyCall(navigateByUrlSpy, 1, component.sheetRoute());
                     });
                 });
             });
@@ -303,12 +300,14 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             it('... should have computed signal `sheetPartials` to hold the expected links', () => {
                 expectToEqual(component.sheetPartials(), [
                     {
-                        sheetTarget: { complexId: '', sheetId: expectedSvgSheetWithPartials.id + 'a' },
+                        sheetId: expectedSvgSheetWithPartials.id + 'a',
+                        sheetRoute: toSheetRoute({ complexId: '', sheetId: expectedSvgSheetWithPartials.id + 'a' }),
                         positionLabel: 'a · 1/2',
                         isActive: true,
                     },
                     {
-                        sheetTarget: { complexId: '', sheetId: expectedSvgSheetWithPartials.id + 'b' },
+                        sheetId: expectedSvgSheetWithPartials.id + 'b',
+                        sheetRoute: toSheetRoute({ complexId: '', sheetId: expectedSvgSheetWithPartials.id + 'b' }),
                         positionLabel: 'b · 2/2',
                         isActive: false,
                     },
@@ -316,20 +315,23 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have computed signal `sheetPartials` to hold only the index in the position label if a partial id is missing', async () => {
-                const svgSheetWithoutPartialIds = {
+                // Only the first partial without id, so that the sheet ids stay unique
+                const svgSheetWithoutPartialId = {
                     ...expectedSvgSheetWithPartials,
-                    content: expectedSvgSheetWithPartials.content.map(content => ({ ...content, partial: undefined })),
+                    content: expectedSvgSheetWithPartials.content.map((content, index) =>
+                        index === 0 ? { ...content, partial: undefined } : content
+                    ),
                 };
-                fixture.componentRef.setInput('svgSheet', svgSheetWithoutPartialIds);
+                fixture.componentRef.setInput('svgSheet', svgSheetWithoutPartialId);
                 await detectChangesOnPush(fixture);
 
                 expectToEqual(
                     component.sheetPartials().map(link => link.positionLabel),
-                    ['1/2', '2/2']
+                    ['1/2', 'b · 2/2']
                 );
                 expectToEqual(
-                    component.sheetPartials().map(link => link.sheetTarget.sheetId),
-                    [expectedSvgSheetWithPartials.id, expectedSvgSheetWithPartials.id]
+                    component.sheetPartials().map(link => link.sheetId),
+                    [expectedSvgSheetWithPartials.id, expectedSvgSheetWithPartials.id + 'b']
                 );
             });
 
@@ -383,6 +385,23 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     component.sheetPartials().map(link => link.isActive),
                     [false, true]
                 );
+            });
+
+            it('... should have recomputed signal `sheetPartials` with the same routes if another partial is selected', async () => {
+                const sheetRoutes = component.sheetPartials().map(link => link.sheetRoute);
+
+                fixture.componentRef.setInput('selectedSvgSheet', {
+                    id: expectedSvgSheetWithPartials.id,
+                    fullId: `${expectedSvgSheetWithPartials.id}b`,
+                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                });
+                await detectChangesOnPush(fixture);
+
+                const nextSheetRoutes = component.sheetPartials().map(link => link.sheetRoute);
+
+                nextSheetRoutes.forEach((sheetRoute, index) => {
+                    expectToBe(sheetRoute, sheetRoutes[index]);
+                });
             });
 
             describe('VIEW', () => {
@@ -455,12 +474,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 });
 
                 it('... should display only the numbered position in item anchors if a partial id is missing', async () => {
+                    // Only the first partial without id, so that the sheet ids stay unique
                     fixture.componentRef.setInput('svgSheet', {
                         ...expectedSvgSheetWithPartials,
-                        content: expectedSvgSheetWithPartials.content.map(content => ({
-                            ...content,
-                            partial: undefined,
-                        })),
+                        content: expectedSvgSheetWithPartials.content.map((content, index) =>
+                            index === 0 ? { ...content, partial: undefined } : content
+                        ),
                     });
                     await detectChangesOnPush(fixture);
 
@@ -468,7 +487,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
                     expectToEqual(labels, [
                         `${expectedSvgSheetWithPartials.label} [1/2]`,
-                        `${expectedSvgSheetWithPartials.label} [2/2]`,
+                        `${expectedSvgSheetWithPartials.label} [b · 2/2]`,
                     ]);
                 });
 
@@ -483,64 +502,54 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     expectToEqual(isTextMuted, [false, true]);
                 });
 
-                describe('EditionSheetFacetItemLinkDirective', () => {
-                    it('... should be applied to each item anchor', () => {
-                        getDropdownItemDes().forEach(itemDe => {
-                            const linkDir = getLinkDirective(itemDe);
+                describe('RouterLink', () => {
+                    it('... should pass down the `sheetRoute` (incl. partial) to the RouterLink of each item anchor', () => {
+                        const urlTrees = getDropdownItemDes().map(itemDe => getRouterLink(itemDe)?.urlTree);
 
-                            expect(linkDir).toBeTruthy();
+                        const expectedUrlTrees = component.sheetPartials().map(link => link.sheetRoute);
+
+                        expectToEqual(urlTrees, expectedUrlTrees);
+                    });
+
+                    it('... should not apply a RouterLink to the dropdown toggle anchor', () => {
+                        const routerLink = getRouterLink(getDropdownToggleDes()[0]);
+
+                        expect(routerLink).toBeNull();
+                    });
+
+                    it('... should have `active` class only on the item anchor of the selected partial', () => {
+                        const isActiveValues = getDropdownItemDes().map(itemDe => {
+                            const itemEl: HTMLAnchorElement = itemDe.nativeElement;
+
+                            return itemEl.classList.contains('active');
                         });
-                    });
-
-                    it('... should not be applied to the dropdown toggle anchor', () => {
-                        const linkDir = getLinkDirective(getDropdownToggleDes()[0]);
-
-                        expect(linkDir).toBeNull();
-                    });
-
-                    it('... should pass down `sheetTarget` (incl. partial) to the directive of each item anchor', () => {
-                        const linkDirs = getDropdownItemDes().map(itemDe => getLinkDirective(itemDe));
-
-                        const sheetTarget = linkDirs.map(linkDir => linkDir?.sheetTarget());
-
-                        expectToEqual(sheetTarget, [
-                            { complexId: '', sheetId: expectedSvgSheetWithPartials.id + 'a' },
-                            { complexId: '', sheetId: expectedSvgSheetWithPartials.id + 'b' },
-                        ]);
-                    });
-
-                    it('... should pass down `isActive` to the directive of each item anchor (only selected partial)', () => {
-                        const linkDirs = getDropdownItemDes().map(itemDe => getLinkDirective(itemDe));
-
-                        const isActiveValues = linkDirs.map(linkDir => linkDir?.isActive());
 
                         expectToEqual(isActiveValues, [true, false]);
                     });
 
-                    it('... should pass down updated `isActive` to the directives if another svg sheet is selected', async () => {
+                    it('... should have `active` class on no item anchor if another svg sheet is selected', async () => {
                         fixture.componentRef.setInput('selectedSvgSheet', expectedOtherSelectionWithPartialB);
                         await detectChangesOnPush(fixture);
 
-                        const linkDirs = getDropdownItemDes().map(itemDe => getLinkDirective(itemDe));
+                        const isActiveValues = getDropdownItemDes().map(itemDe => {
+                            const itemEl: HTMLAnchorElement = itemDe.nativeElement;
 
-                        const isActiveValues = linkDirs.map(linkDir => linkDir?.isActive());
+                            return itemEl.classList.contains('active');
+                        });
 
                         expectToEqual(isActiveValues, [false, false]);
                     });
 
-                    it('... should navigate to the `sheetTarget` of the partial on click of an item anchor', async () => {
+                    it('... should navigate to the `sheetRoute` of the partial on click of an item anchor', async () => {
                         await clickAndAwaitChanges(getDropdownItemDes()[1], fixture);
 
-                        expectSpyCall(mockNavigationService.navigateToSvgSheet as any, 1, {
-                            complexId: '',
-                            sheetId: expectedSvgSheetWithPartials.id + 'b',
-                        });
+                        expectSpyCall(navigateByUrlSpy, 1, component.sheetPartials()[1].sheetRoute);
                     });
 
                     it('... should not navigate on click of the dropdown toggle anchor', async () => {
                         await clickAndAwaitChanges(getDropdownToggleDes()[0], fixture);
 
-                        expectSpyCall(mockNavigationService.navigateToSvgSheet as any, 0);
+                        expectSpyCall(navigateByUrlSpy, 0);
                     });
                 });
             });
@@ -562,8 +571,10 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 expectToEqual(component.sheetPartials(), []);
             });
 
-            it('... should have computed signal `sheetTarget` to hold the expected sheet target', () => {
-                expectToEqual(component.sheetTarget(), { complexId: '', sheetId: expectedSvgSheet.id });
+            it('... should have computed signal `sheetRoute` to hold the sheet route from the navigation service', () => {
+                const expectedSheetRoute = toSheetRoute({ complexId: '', sheetId: expectedSvgSheet.id });
+
+                expectToEqual(component.sheetRoute(), expectedSheetRoute);
             });
 
             describe('VIEW', () => {

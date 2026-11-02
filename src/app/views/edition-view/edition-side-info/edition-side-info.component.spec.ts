@@ -20,6 +20,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
+
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
@@ -39,32 +41,20 @@ function getExpectedRouterlinks(sections: EditionOutlineSection[]): string[] {
             links.push(section.content.intro.labeledRoute.route.join('/'));
         }
 
-        const activeComplexes = (section.content?.sectionComplexes || []).filter(complex => !complex.disabled);
-
-        activeComplexes.forEach(complex => {
-            if (complex.labeledRoute?.route) {
-                links.push(complex.labeledRoute.route.join('/'));
-            }
-        });
-
         return links;
     });
 
     return baseLinks.concat(itemLinks);
 }
 
-function getExpectedItemTitles(sections: EditionOutlineSection[], includeDisabled: boolean): string[] {
+function getExpectedItemTitles(sections: EditionOutlineSection[]): string[] {
     let itemTitles = EDITION_GENERAL_LINKS.map(link => link.label);
 
     (sections || []).forEach(section => {
         if (!section.content?.intro?.disabled && section.content?.intro?.labeledRoute?.label) {
             itemTitles.push(section.content.intro.labeledRoute.label);
         }
-        const activeComplexes = (section.content?.sectionComplexes || []).filter(
-            complex => includeDisabled || !complex.disabled
-        );
-
-        const complexTitles = activeComplexes
+        const complexTitles = (section.content?.sectionComplexes || [])
             .map(c => c.labeledRoute?.label)
             .filter((label): label is string => !!label);
 
@@ -93,13 +83,14 @@ describe('EditionSideInfoComponent (DONE)', () => {
 
     let expectedRouterLinks: string[];
     let expectedItemTitles: string[];
-    let expectedItemTitlesWithLinks: string[];
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [EditionSideInfoComponent],
             providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
+            .compileComponents();
 
         // Disable ng-bootstrap animations
         TestBed.inject(NgbConfig).animation = false;
@@ -126,8 +117,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
         // Test data
         expectedSections = [EditionStateHelper.getSection('1', '5'), EditionStateHelper.getSection('2', '2a')];
         expectedRouterLinks = getExpectedRouterlinks(expectedSections);
-        expectedItemTitles = getExpectedItemTitles(expectedSections, true);
-        expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);
+        expectedItemTitles = getExpectedItemTitles(expectedSections);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSideInfoComponent);
@@ -455,24 +445,46 @@ describe('EditionSideInfoComponent (DONE)', () => {
                     });
                 });
 
-                it('... should render links only for non-disabled edition info items', () => {
-                    const itemTitles = expectedItemTitlesWithLinks;
+                describe('... ConditionalLinkComponent (hollow) for the complexes', () => {
+                    const getExpectedComplexes = () =>
+                        expectedSections.flatMap(section => section.content?.sectionComplexes || []);
 
-                    const aDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'a.awg-edition-info-item-link',
-                        itemTitles.length,
-                        itemTitles.length
-                    );
+                    const getLinkDes = () => {
+                        const expectedCount = getExpectedComplexes().length;
+                        return getAndExpectDebugElementByDirective(
+                            compDe,
+                            ConditionalLinkComponent,
+                            expectedCount,
+                            expectedCount
+                        );
+                    };
 
-                    aDes.forEach((aDe, index) => {
-                        const spanDes = getAndExpectDebugElementByCss(aDe, 'span.awg-edition-info-item-title', 1, 1);
-                        const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+                    it('... should contain one ConditionalLinkComponent (hollow) per complex', () => {
+                        getLinkDes();
+                    });
 
-                        const mockSpan = mockDocument.createElement('span');
-                        mockSpan.innerHTML = itemTitles[index];
+                    it('... should pass down `isClickable` and `targetRoute` to ConditionalLinkComponent (hollow)', () => {
+                        const expectedComplexes = getExpectedComplexes();
 
-                        expectToBe(spanEl.textContent.trim(), mockSpan.textContent.trim());
+                        getLinkDes().forEach((linkDe, index) => {
+                            const linkCmp = linkDe.injector.get(ConditionalLinkComponent);
+
+                            expectToBe(linkCmp.isClickable(), !expectedComplexes[index].disabled);
+                            expectToEqual(linkCmp.targetRoute(), expectedComplexes[index].labeledRoute.route);
+                        });
+                    });
+
+                    it('... should text-mute only the links of disabled complexes', () => {
+                        const expectedComplexes = getExpectedComplexes();
+
+                        getLinkDes().forEach((linkDe, index) => {
+                            const isComplexDisabled = expectedComplexes[index].disabled;
+
+                            const linkEl: HTMLElement = linkDe.nativeElement;
+                            const isLinkTextMuted = linkEl.classList.contains('text-muted');
+
+                            expectToBe(isLinkTextMuted, isComplexDisabled);
+                        });
                     });
                 });
             });

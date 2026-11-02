@@ -18,6 +18,7 @@ import {
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionComplexPartsComponent } from '@awg-views/edition-view/shared/complex/edition-complex-parts/edition-complex-parts.component';
 
 import { EditionSectionDetailComplexCardComponent } from './edition-section-detail-complex-card.component';
 
@@ -39,6 +40,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             providers: [provideRouter([]), { provide: LOCALE_ID, useValue: 'de-DE' }],
         })
             .overrideComponent(ButtonMoreComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPartsComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -319,6 +321,28 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
                     expectToBe(buttonMoreCmp.disabled(), expectedComplexes[index].disabled);
+                });
+            });
+
+            it('... should have an EditionComplexPartsComponent (hollow) in the card body for each complex', () => {
+                const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', expectedLength, expectedLength);
+                bodyDes.forEach(bodyDe => {
+                    getAndExpectDebugElementByDirective(bodyDe, EditionComplexPartsComponent, 1, 1);
+                });
+            });
+
+            it('... should pass down the outline complex item and `isCompact` to EditionComplexPartsComponent (hollow) for each complex', () => {
+                const partsDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionComplexPartsComponent,
+                    expectedLength,
+                    expectedLength
+                );
+                partsDes.forEach((partsDe, index) => {
+                    const partsCmp = partsDe.injector.get(EditionComplexPartsComponent);
+
+                    expectToEqual(partsCmp.outlineComplexItem(), expectedComplexes[index]);
+                    expectToBe(partsCmp.isCompact(), true);
                 });
             });
         });

@@ -1,0 +1,13 @@
+@let item = outlineComplexItem();
+
+@if (item.parts || item.compositeComplexes) {
+    <div class="awg-edition-complex-parts">
+        @if (item.compositeComplexes; as compositeComplexes) {
+            <awg-edition-complex-part-of [compositeComplexes]="compositeComplexes" [isCompact]="isCompact()" />
+        }
+        @if (item.parts; as parts) {
+            <p class="mb-1">Enthält:</p>
+            <awg-edition-complex-parts-list [parts]="parts" />
+        }
+    </div>
+}

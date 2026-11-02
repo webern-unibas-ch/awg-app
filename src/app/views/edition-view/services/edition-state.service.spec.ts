@@ -8,7 +8,11 @@ import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { EditionComplex } from '../models/edition-complex.model';
-import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
+import {
+    EditionOutlineComplexItem,
+    EditionOutlineSection,
+    EditionOutlineSeries,
+} from '../models/edition-outline.model';
 
 import { EditionOutlineService } from './edition-outline.service';
 import { EditionStateService } from './edition-state.service';
@@ -19,8 +23,10 @@ describe('EditionStateService (DONE)', () => {
 
     let outlineServiceGetEditionSeriesByIdSpy: Spy;
     let outlineServiceGetEditionSectionByIdSpy: Spy;
+    let outlineServiceGetEditionOutlineComplexItemSpy: Spy;
 
     let expectedComplex: EditionComplex;
+    let expectedOutlineComplexItem: EditionOutlineComplexItem;
     let expectedSeries: EditionOutlineSeries;
     let expectedSection: EditionOutlineSection;
 
@@ -52,8 +58,13 @@ describe('EditionStateService (DONE)', () => {
                 }
             });
 
+        outlineServiceGetEditionOutlineComplexItemSpy = vi
+            .spyOn(editionOutlineService, 'getEditionOutlineComplexItem')
+            .mockImplementation(() => expectedOutlineComplexItem);
+
         // Test data (default)
         expectedComplex = EditionStateHelper.getComplex('op12');
+        expectedOutlineComplexItem = EditionStateHelper.getOutlineComplexItem('op12');
         expectedSeries = EditionStateHelper.getSeries('1');
         expectedSection = EditionStateHelper.getSection('1', '5');
     });
@@ -82,6 +93,29 @@ describe('EditionStateService (DONE)', () => {
         expectToBe(isSignal(editionStateService.selectedEditionComplex), true);
 
         expectToBe(editionStateService.selectedEditionComplex(), null);
+    });
+
+    describe('... computed signal `selectedOutlineComplexItem`', () => {
+        it('... should have computed signal `selectedOutlineComplexItem` to hold null', () => {
+            expectToBe(isSignal(editionStateService.selectedOutlineComplexItem), true);
+
+            expectToBe(editionStateService.selectedOutlineComplexItem(), null);
+            expectSpyCall(outlineServiceGetEditionOutlineComplexItemSpy, 0);
+        });
+
+        it('... should hold the outline item of the selected complex', () => {
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
+
+            expectToEqual(editionStateService.selectedOutlineComplexItem(), expectedOutlineComplexItem);
+            expectSpyCall(outlineServiceGetEditionOutlineComplexItemSpy, 1, expectedComplex);
+        });
+
+        it('... should hold null if the selected complex has no outline item', () => {
+            outlineServiceGetEditionOutlineComplexItemSpy.mockReturnValue(undefined);
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
+
+            expectToBe(editionStateService.selectedOutlineComplexItem(), null);
+        });
     });
 
     it('... should have computed signal `selectedEditionSection` to hold null', () => {

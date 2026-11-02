@@ -1,8 +1,8 @@
 import { Component, computed, inject, input } from '@angular/core';
+import { UrlTree } from '@angular/router';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
@@ -50,18 +50,15 @@ export class SourceDescContentGridComponent {
     readonly parentComplexId = computed<string>(() => this.content()?.itemLinkTo?.complexId ?? '');
 
     /**
-     * Public method: selectSvgSheet.
+     * Readonly computed signal: folioRoutes.
      *
-     * It delegates the navigation to the given sheet navigation target
-     * directly to the {@link EditionNavigationService}.
-     *
-     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
-     * @returns {void} Navigates to the selected SVG sheet.
+     * It holds the route to the sheet of each folio, or null if a folio has no link target.
      */
-    selectSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
-        if (!sheetTarget?.sheetId) {
-            return;
-        }
-        this._navigationService.navigateToSvgSheet(sheetTarget);
-    }
+    readonly folioRoutes = computed<(UrlTree | null)[]>(() => {
+        const complexId = this.parentComplexId();
+
+        return (this.content()?.folios ?? []).map(({ folioLinkTo }) =>
+            folioLinkTo ? this._navigationService.getSvgSheetRoute({ complexId, sheetId: folioLinkTo }) : null
+        );
+    });
 }

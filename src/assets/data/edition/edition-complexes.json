@@ -925,74 +925,32 @@
             }
         },
         {
-            "m289": {
-                "titleStatement": {
-                    "title": "",
-                    "catalogueType": "MNR",
-                    "catalogueNumber": "289"
-                },
-                "respStatement": {
-                    "editors": [
-                        {
-                            "$ref": "thomas_ahrend"
-                        }
-                    ],
-                    "lastModified": "---"
-                },
-                "pubStatement": {
-                    "series": "1",
-                    "section": "2"
-                }
-            }
-        },
-        {
-            "m290": {
-                "titleStatement": {
-                    "title": "",
-                    "catalogueType": "MNR",
-                    "catalogueNumber": "290"
-                },
-                "respStatement": {
-                    "editors": [
-                        {
-                            "$ref": "thomas_ahrend"
-                        }
-                    ],
-                    "lastModified": "---"
-                },
-                "pubStatement": {
-                    "series": "1",
-                    "section": "2"
-                }
-            }
-        },
-        {
-            "m291": {
-                "titleStatement": {
-                    "title": "",
-                    "catalogueType": "MNR",
-                    "catalogueNumber": "291"
-                },
-                "respStatement": {
-                    "editors": [
-                        {
-                            "$ref": "thomas_ahrend"
-                        }
-                    ],
-                    "lastModified": "---"
-                },
-                "pubStatement": {
-                    "series": "1",
-                    "section": "2"
-                }
-            }
-        },
-        {
             "m312": {
                 "titleStatement": {
                     "title": "„Herr Jesus mein“",
                     "catalogueType": "MNR",
                     "catalogueNumber": "312"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "$ref": "thomas_ahrend"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "m313": {
+                "titleStatement": {
+                    "title": "„Es stürzt aus Höhen Frische“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "313"
                 },
                 "respStatement": {
                     "editors": [
@@ -1319,8 +1277,16 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
-                }
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
+                },
+                "parts": [
+                    { "complex": "m133", "textVersion": "4" },
+                    { "complex": "m134", "textVersion": "3" },
+                    { "complex": "m135", "textVersion": "3" },
+                    { "complex": "m136", "textVersion": "3" },
+                    { "complex": "m137", "textVersion": "5" }
+                ]
             }
         },
         {
@@ -1340,8 +1306,16 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
-                }
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
+                },
+                "parts": [
+                    { "complex": "m138", "textVersion": "3" },
+                    { "complex": "m139", "textVersion": "3" },
+                    { "complex": "m140", "textVersion": "2" },
+                    { "complex": "m141", "textVersion": "2" },
+                    { "complex": "m142", "textVersion": "3" }
+                ]
             }
         },
         {
@@ -1361,8 +1335,15 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
-                }
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
+                },
+                "parts": [
+                    { "complex": "m212", "textVersion": "3" },
+                    { "complex": "m217", "textVersion": "einzige" },
+                    { "complex": "m213", "textVersion": "einzige" },
+                    { "complex": "m216", "textVersion": "2" }
+                ]
             }
         },
         {
@@ -1445,8 +1426,14 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
-                }
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
+                },
+                "parts": [
+                    { "complex": "m314", "textVersion": "einzige" },
+                    { "complex": "m313", "textVersion": "einzige" },
+                    { "complex": "m312", "textVersion": "einzige" }
+                ]
             }
         },
         {
@@ -1487,8 +1474,14 @@
                 },
                 "pubStatement": {
                     "series": "1",
-                    "section": "5"
-                }
+                    "section": "5",
+                    "availability": { "workEdition": { "protectedUntil": "2049" } }
+                },
+                "parts": [
+                    { "complex": "m317", "textVersion": "2" },
+                    { "complex": "m322", "textVersion": "einzige" },
+                    { "complex": "m321", "textVersion": "einzige" }
+                ]
             }
         },
         {

@@ -4,11 +4,7 @@
             <div class="awg-source-desc-content-grid">
                 <div class="awg-source-desc-content-grid-folio" [class.span-full]="!folio.systemGroups?.length">
                     @if (folio.folio) {
-                        <awg-conditional-link
-                            [isClickable]="!!folio.folioLinkTo"
-                            (clicked)="
-                                selectSvgSheet({ complexId: parentComplexId(), sheetId: folio.folioLinkTo ?? '' })
-                            ">
+                        <awg-conditional-link [isClickable]="!!folio.folioLinkTo" [targetRoute]="folioRoutes()[$index]">
                             <awg-source-desc-content-folio [folioLabel]="folio.folio" [isPage]="!!folio.isPage" />
                         </awg-conditional-link>
                     }
@@ -26,14 +22,9 @@
                             <div class="awg-source-desc-content-grid-system-group">
                                 @for (system of systemGroup; track $index; let lastSystem = $last) {
                                     <awg-source-desc-content-system
+                                        [complexId]="parentComplexId()"
                                         [contentSystem]="system"
-                                        [isLastItem]="lastFolio && lastSystemGroup && lastSystem"
-                                        (clicked)="
-                                            selectSvgSheet({
-                                                complexId: parentComplexId(),
-                                                sheetId: system.linkTo ?? '',
-                                            })
-                                        " />
+                                        [isLastItem]="lastFolio && lastSystemGroup && lastSystem" />
                                 }
                             </div>
                         }

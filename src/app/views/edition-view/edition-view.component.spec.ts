@@ -26,11 +26,13 @@ import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 
 import { EditionComplex } from './models/edition-complex.model';
 import { EditionViewContext } from './models/edition-data.model';
-import { EditionOutlineSection, EditionOutlineSeries } from './models/edition-outline.model';
+import { EditionOutlineComplexItem, EditionOutlineSection, EditionOutlineSeries } from './models/edition-outline.model';
 
 import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
+import { EditionOutlineService } from './services/edition-outline.service';
 import { EditionStateService } from './services/edition-state.service';
 import { EditionViewService } from './services/edition-view.service';
+import { EditionComplexPartsComponent } from './shared/complex/edition-complex-parts/edition-complex-parts.component';
 
 import { EditionViewComponent } from './edition-view.component';
 
@@ -44,6 +46,7 @@ describe('EditionViewComponent (DONE)', () => {
     let editionStateService: EditionStateService;
 
     let getBreadcrumbItemsSpy: Spy;
+    let getEditionOutlineComplexItemSpy: Spy;
     let resetEditionStateOnDestroySpy: Spy;
     let stateServiceUpdateSelectedEditionComplexSpy: Spy;
 
@@ -55,6 +58,7 @@ describe('EditionViewComponent (DONE)', () => {
     let expectedPrefaceViewContext: EditionViewContext;
     let expectedRowtablesViewContext: EditionViewContext;
     let expectedComplex: EditionComplex;
+    let expectedOutlineComplexItem: EditionOutlineComplexItem;
     let expectedSeries: EditionOutlineSeries;
     let expectedSection: EditionOutlineSection;
 
@@ -82,6 +86,7 @@ describe('EditionViewComponent (DONE)', () => {
         })
             .overrideComponent(ButtonScrollToTopComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionBreadcrumbComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPartsComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionJumbotronComponent, { set: { template: '', imports: [] } })
             .overrideComponent(MetaIdentifierBadgesComponent, { set: { template: '', imports: [] } })
             .compileComponents();
@@ -91,9 +96,13 @@ describe('EditionViewComponent (DONE)', () => {
         // Inject services
         editionStateService = TestBed.inject(EditionStateService);
         const breadcrumbService = TestBed.inject(EditionBreadcrumbService);
+        const outlineService = TestBed.inject(EditionOutlineService);
 
         // Spies
         getBreadcrumbItemsSpy = vi.spyOn(breadcrumbService, 'getBreadcrumbItems');
+        getEditionOutlineComplexItemSpy = vi
+            .spyOn(outlineService, 'getEditionOutlineComplexItem')
+            .mockImplementation(() => expectedOutlineComplexItem);
         stateServiceUpdateSelectedEditionComplexSpy = vi.spyOn(editionStateService, 'updateSelectedEditionComplex');
 
         // Prototype spies (to catch calls in constructor)
@@ -106,6 +115,7 @@ describe('EditionViewComponent (DONE)', () => {
 
         const complexId = 'op12';
         expectedComplex = EditionStateHelper.getComplex(complexId);
+        expectedOutlineComplexItem = EditionStateHelper.getOutlineComplexItem(complexId);
         expectedSeries = EditionStateHelper.getSeries('1');
         expectedSection = EditionStateHelper.getSection('1', '5');
 
@@ -145,6 +155,12 @@ describe('EditionViewComponent (DONE)', () => {
             expectToBe(isSignal(component.selectedEditionComplex), true);
 
             expectToBe(component.selectedEditionComplex(), null);
+        });
+
+        it('... should have signal `selectedOutlineComplexItem` to hold null', () => {
+            expectToBe(isSignal(component.selectedOutlineComplexItem), true);
+
+            expectToBe(component.selectedOutlineComplexItem(), null);
         });
 
         it('... should have signal `viewContext` to hold the default view context', () => {
@@ -210,6 +226,7 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(getBreadcrumbItemsSpy, 1, [
                     component.viewContext,
                     component.selectedEditionComplex,
+                    component.selectedOutlineComplexItem,
                     component.selectedEditionSeries,
                     component.selectedEditionSection,
                 ]);
@@ -496,6 +513,29 @@ describe('EditionViewComponent (DONE)', () => {
 
                     expectToBe(jumbotronCmp.id(), expectedId);
                     expectToBe(jumbotronCmp.title(), expectedComplex.complexId.full);
+                });
+
+                it('... should have signal `selectedOutlineComplexItem` to hold the outline item of the expected complex', () => {
+                    expectToEqual(component.selectedOutlineComplexItem(), expectedOutlineComplexItem);
+                });
+
+                it('... should pass down `selectedOutlineComplexItem` to EditionComplexPartsComponent (hollow)', () => {
+                    const partsDes = getAndExpectDebugElementByDirective(
+                        getComplexDes()[0],
+                        EditionComplexPartsComponent,
+                        1,
+                        1
+                    );
+                    const partsCmp = partsDes[0].injector.get(EditionComplexPartsComponent);
+
+                    expectToEqual(partsCmp.outlineComplexItem(), expectedOutlineComplexItem);
+                });
+
+                it('... should contain no EditionComplexPartsComponent if the complex has no outline item', () => {
+                    getEditionOutlineComplexItemSpy.mockReturnValue(undefined);
+                    renderSelectedEditionComplex(EditionStateHelper.getComplex('m22'));
+
+                    getAndExpectDebugElementByDirective(getComplexDes()[0], EditionComplexPartsComponent, 0, 0);
                 });
 
                 it('... should have one paragraph with editor and version in responsibility div', () => {

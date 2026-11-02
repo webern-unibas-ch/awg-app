@@ -1,9 +1,9 @@
 @if (svgSheet().content.length === 1) {
     <a
         class="btn btn-default w-100 awg-edition-sheet-facet-item-link card-text text-start"
+        [class.active]="isActive()"
         [class.text-muted]="!isActive()"
-        [awgEditionSheetFacetItemLink]="sheetTarget()"
-        [isActive]="isActive()">
+        [routerLink]="sheetRoute()">
         {{ svgSheet().label }}
     </a>
 } @else if (svgSheet().content.length > 1) {
@@ -19,12 +19,12 @@
             >
         </a>
         <div ngbDropdownMenu [attr.aria-labelledby]="dropdownId()">
-            @for (sheetPartial of sheetPartials(); track sheetPartial.sheetTarget.sheetId) {
+            @for (sheetPartial of sheetPartials(); track sheetPartial.sheetId) {
                 <div>
                     <a
                         class="dropdown-item"
-                        [awgEditionSheetFacetItemLink]="sheetPartial.sheetTarget"
-                        [isActive]="sheetPartial.isActive"
+                        [class.active]="sheetPartial.isActive"
+                        [routerLink]="sheetPartial.sheetRoute"
                         >{{ svgSheet().label }}
                         <span [class.text-muted]="!sheetPartial.isActive">[{{ sheetPartial.positionLabel }}]</span></a
                     >

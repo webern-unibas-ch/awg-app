@@ -1,4 +1,4 @@
-import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { UrlTree } from '@angular/router';
 
 /**
  * The EditionSheetFacetPartialLink interface.
@@ -9,9 +9,14 @@ import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edi
  */
 export interface EditionSheetFacetPartialLink {
     /**
-     * The sheet navigation target (incl. partial).
+     * The full sheet id (incl. partial).
      */
-    sheetTarget: EditionNavigationSheetTarget;
+    sheetId: string;
+
+    /**
+     * The route to the sheet (incl. partial).
+     */
+    sheetRoute: UrlTree;
 
     /**
      * The position label of the partial, i.e. the partial id

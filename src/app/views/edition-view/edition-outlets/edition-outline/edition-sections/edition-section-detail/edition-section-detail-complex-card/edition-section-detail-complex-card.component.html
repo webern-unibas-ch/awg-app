@@ -3,12 +3,16 @@
         @for (complex of complexes; track complex.complex.complexId.short) {
             <div class="col">
                 <div class="card awg-edition-card h-100">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title" [class.text-muted]="complex.disabled">
                             <span
                                 class="awg-edition-info-header-title"
                                 [innerHTML]="complex.complex.complexId.full"></span>
                         </h5>
+                        <awg-edition-complex-parts
+                            class="mt-auto pt-2 small"
+                            [outlineComplexItem]="complex"
+                            [isCompact]="true" />
                     </div>
                     <div class="card-footer">
                         @if (!complex.disabled) {

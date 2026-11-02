@@ -53,19 +53,14 @@
                                     track complex.complex.complexId.short
                                 ) {
                                     <p>
-                                        @if (complex.disabled) {
+                                        <awg-conditional-link
+                                            [class.text-muted]="complex.disabled"
+                                            [isClickable]="!complex.disabled"
+                                            [targetRoute]="complex.labeledRoute.route">
                                             <span
-                                                class="text-muted awg-edition-info-item-title"
+                                                class="awg-edition-info-item-title"
                                                 [innerHTML]="complex.labeledRoute.label"></span>
-                                        } @else {
-                                            <a
-                                                class="awg-edition-info-item-link"
-                                                [routerLink]="complex.labeledRoute.route">
-                                                <span
-                                                    class="awg-edition-info-item-title"
-                                                    [innerHTML]="complex.labeledRoute.label"></span>
-                                            </a>
-                                        }
+                                        </awg-conditional-link>
                                     </p>
                                 }
                             </ng-template>

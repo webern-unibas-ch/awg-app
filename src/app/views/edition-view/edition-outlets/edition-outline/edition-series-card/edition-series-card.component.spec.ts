@@ -1,6 +1,5 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
@@ -13,6 +12,8 @@ import {
 } from '@testing/expect-helper';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
+
 import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 
 import { EditionSeriesCardComponent } from './edition-series-card.component';
@@ -26,10 +27,10 @@ describe('EditionSeriesCardComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditionSeriesCardComponent, ButtonMoreComponent, RouterLink],
-            providers: [provideRouter([])],
+            imports: [EditionSeriesCardComponent],
         })
             .overrideComponent(ButtonMoreComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
             .compileComponents();
     });
 
@@ -136,29 +137,34 @@ describe('EditionSeriesCardComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain a routerLink and no span.text-muted in li.list-group-item if section is not disabled', () => {
-                const liDes = getListItemDes();
-
-                liDes.forEach((liDe, index) => {
-                    const expectedSection = expectedSeries.sections[index];
-
-                    if (!expectedSection.disabled) {
-                        getAndExpectDebugElementByDirective(liDe, RouterLink, 1, 1);
-                        getAndExpectDebugElementByCss(liDe, 'span.text-muted', 0, 0);
-                    }
+            it('... should contain one ConditionalLinkComponent (hollow) in each li.list-group-item', () => {
+                getListItemDes().forEach(liDe => {
+                    getAndExpectDebugElementByDirective(liDe, ConditionalLinkComponent, 1, 1);
                 });
             });
 
-            it('... should contain no routerLink, but a span.text-muted in li.list-group-item if section is disabled', () => {
-                const liDes = getListItemDes();
-
-                liDes.forEach((liDe, index) => {
+            it('... should pass down `isClickable` and `targetRoute` to ConditionalLinkComponent (hollow)', () => {
+                getListItemDes().forEach((liDe, index) => {
                     const expectedSection = expectedSeries.sections[index];
+                    const expectedTargetRoute = [expectedSeries.series.route, 'section', expectedSection.section.route];
 
-                    if (expectedSection.disabled) {
-                        getAndExpectDebugElementByDirective(liDe, RouterLink, 0, 0);
-                        getAndExpectDebugElementByCss(liDe, 'span.text-muted', 1, 1);
-                    }
+                    const linkDes = getAndExpectDebugElementByDirective(liDe, ConditionalLinkComponent, 1, 1);
+                    const linkCmp = linkDes[0].injector.get(ConditionalLinkComponent);
+
+                    expectToBe(linkCmp.isClickable(), !expectedSection.disabled);
+                    expectToEqual(linkCmp.targetRoute(), expectedTargetRoute);
+                });
+            });
+
+            it('... should text-mute only the links of disabled sections', () => {
+                getListItemDes().forEach((liDe, index) => {
+                    const isSectionDisabled = expectedSeries.sections[index].disabled;
+
+                    const linkDes = getAndExpectDebugElementByDirective(liDe, ConditionalLinkComponent, 1, 1);
+                    const linkEl: HTMLElement = linkDes[0].nativeElement;
+                    const isLinkTextMuted = linkEl.classList.contains('text-muted');
+
+                    expectToBe(isLinkTextMuted, isSectionDisabled);
                 });
             });
 

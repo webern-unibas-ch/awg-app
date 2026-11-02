@@ -6,3 +6,8 @@ yarn run lint-staged --max-arg-length 6000
 if git diff --cached --name-only | grep -qE '^(src/app/views/edition-view/data/edition-glyphs\.data\.ts|src/assets/data/edition/.+\.json|src/assets/themes/fonts/awg-edition-glyphs/)'; then
     yarn run check:glyphs
 fi
+
+# Check the edition complexes and their parts, only if complexes, outline, row tables, source lists or the check are staged
+if git diff --cached --name-only | grep -qE '^src/assets/data/edition/((edition-complexes|edition-outline|rowtables)\.json|series/.+/source-list\.json)$|^scripts/check-(complexes|utils)\.js$'; then
+    yarn run check:complexes
+fi
