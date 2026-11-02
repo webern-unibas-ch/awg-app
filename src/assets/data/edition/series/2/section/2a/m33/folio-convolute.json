@@ -6,6 +6,7 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {

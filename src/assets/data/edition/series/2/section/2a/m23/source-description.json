@@ -28,7 +28,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk31a"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXI)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. XXI)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -90,7 +90,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk28_1"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XIX)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. XIX)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -114,7 +114,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk32"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXII)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. XXII)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -138,7 +138,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk32_1"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXII)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. XXII)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -162,7 +162,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk32_1_1"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXII)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. XXII)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -186,7 +186,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk33"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXIII)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. XXIII)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1642,7 +1642,7 @@
                     "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3). Horizontale Knickfalte auf Blatt und Bogen. Kleiner Stockfleck oben rechts auf Blatt und Bogen. Ecke unten rechts von Bl. 1 abgerissen. Bogen unten in der Falte eingerissen."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>, 2<sup>r</sup> und 3<sup>r</sup>"
+                    "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9 | 28 linig.</em> unten links auf Bl. 1<sup>r</sup>, 2<sup>r</sup> und 3<sup>r</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -1761,7 +1761,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_TF1"
                         },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -2837,7 +2837,7 @@
                     "2 Bögen (Bl. 1/2, 3/4). Horizontale Knickfalte in Bogen 1. Stockfleck oben rechts auf Bogen 1 und 2. Kleiner Riss unten rechts auf Bl. 4."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier (auf dem Kopf stehend), 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen ### oben rechts auf Bl. 1<sup>v</sup>, 2<sup>v</sup>, 3<sup>v</sup> und 4<sup>v</sup>"
+                    "Notenpapier (auf dem Kopf stehend), 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> oben rechts auf Bl. 1<sup>v</sup>, 2<sup>v</sup>, 3<sup>v</sup> und 4<sup>v</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
