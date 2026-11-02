@@ -390,7 +390,8 @@
             "convoluteLabel": "B Skizzen (CH-Bps)",
             "folios": [
                 {
-                    "folioId": "3r",
+                    "folioId": "1r",
+                    "trademarkPosition": "unten links",
                     "systems": "28",
                     "dimensions": {
                         "height": 348,
@@ -475,7 +476,7 @@
                     ]
                 },
                 {
-                    "folioId": "3v",
+                    "folioId": "1v",
                     "systems": "28",
                     "dimensions": {
                         "height": 348,
@@ -484,7 +485,8 @@
                     "content": []
                 },
                 {
-                    "folioId": "4r",
+                    "folioId": "2r",
+                    "trademarkPosition": "unten links",
                     "systems": "28",
                     "dimensions": {
                         "height": 348,
@@ -599,7 +601,7 @@
                     ]
                 },
                 {
-                    "folioId": "4v",
+                    "folioId": "2v",
                     "systems": "28",
                     "dimensions": {
                         "height": 348,

@@ -332,7 +332,7 @@
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 68: Textfassung 2→3→4)",
                         "folios": [
                             {
-                                "folio": "3r",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -381,7 +381,7 @@
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 68: Textfassung 3→4)",
                         "folios": [
                             {
-                                "folio": "4r",
+                                "folio": "2r",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -416,7 +416,7 @@
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 68: Textfassung 4)",
                         "folios": [
                             {
-                                "folio": "4r",
+                                "folio": "2r",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -458,7 +458,7 @@
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 2)",
                         "folios": [
                             {
-                                "folio": "4v",
+                                "folio": "2v",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -482,7 +482,7 @@
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
                         "folios": [
                             {
-                                "folio": "4v",
+                                "folio": "2v",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [

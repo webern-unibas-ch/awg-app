@@ -447,7 +447,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": []
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -525,6 +525,20 @@
                                         {
                                             "system": "16–17",
                                             "measure": "17–23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "24–29",
                                             "linkTo": ""
                                         }
                                     ]
