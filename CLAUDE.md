@@ -21,9 +21,9 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn check:glyphs`: checks the glyph chain edition data → `EDITION_GLYPHS_DATA` → glyph font subset (manifest, sha256); runs in CI and pre-commit
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
 - `yarn check:source-data`: checks the writing instruments, locations and types of the source descriptions and lists (errors), and the writing instruments named in the texts against the declared ones (warnings, see `WARNING_RULES`); `--all` lists all warnings, `--summary` only counts them, one line per rule (pre-commit hook), `--open` writes an HTML report to `reports/` and opens it; runs in CI and pre-commit
-- `yarn check:sources`: checks the document registry `documents.json` against the source lists (fails on broken references; runs in CI) and reports sources described in several complexes and their differences (HTML in `reports/`, ignored); `--since <ref>` adds the changed fields since a git ref, `--open` opens the report in the browser
+- `yarn check:sources`: checks the document registry `documents.json` against the source lists (fails on broken references; runs in CI and pre-commit) and reports sources described in several complexes and their differences (HTML in `reports/`, ignored); `--since <ref>` adds the changed fields since a git ref, `--open` opens the report in the browser
 
-Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; afterwards the pre-commit hook runs `check:glyphs`, `check:complexes` and `check:source-data` if files they check are staged.
+Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; afterwards the pre-commit hook runs `check:glyphs`, `check:complexes`, `check:sources` and `check:source-data` if files they check are staged.
 
 ## Git
 

@@ -12,6 +12,11 @@ if git diff --cached --name-only | grep -qE '^src/assets/data/edition/((edition-
     yarn run check:complexes
 fi
 
+# Check the document registry and the shared sources, only if the registry, outline, source files or the check are staged
+if git diff --cached --name-only | grep -qE '^src/assets/data/edition/((documents|edition-outline)\.json|series/.+/(source-list|source-description|folio-convolute)\.json)$|^scripts/check-(shared-sources|utils)\.js$'; then
+    yarn run check:sources
+fi
+
 # Check the source data (writing instruments, locations, types), only if source descriptions, source lists, textcritics or the check are staged
 if git diff --cached --name-only | grep -qE '^src/assets/data/edition/series/.+/(source-description|source-list|textcritics)\.json$|^scripts/check-(source-data|utils)\.js$'; then
     yarn run check:source-data --summary
