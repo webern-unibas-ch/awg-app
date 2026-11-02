@@ -698,8 +698,8 @@
                     }
                 ],
                 "writingInstruments": {
-                    "main": "schwarze Tinte, Bleistift",
-                    "secondary": []
+                    "main": "schwarze Tinte",
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
