@@ -353,7 +353,7 @@
                                 "measure": "{16A–18A}",
                                 "system": "8–9",
                                 "position": "",
-                                "comment": "Takte zusammen mit T. {{ '{' }}19B{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
+                                "comment": "Takte zusammen mit T. {19B} und T. {16B–18B} durch Einkreisung getilgt."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m31_sk4-004",
@@ -388,7 +388,7 @@
                                 "measure": "{19B}",
                                 "system": "",
                                 "position": "",
-                                "comment": "Takt zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
+                                "comment": "Takt zusammen mit T. {16A–18A} und T. {16B–18B} durch Einkreisung getilgt."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m31_sk4-009",
@@ -409,7 +409,7 @@
                                 "measure": "{16B–18B}",
                                 "system": "13–14",
                                 "position": "",
-                                "comment": "Takte zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}19B{{ '}' }} durch Einkreisung getilgt."
+                                "comment": "Takte zusammen mit T. {16A–18A} und T. {19B} durch Einkreisung getilgt."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m31_sk4-012",
