@@ -8,7 +8,7 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
-                    "1 Blatt (Bl. 1). Horizontale Knickfalte. Stockflecken unten mittig–rechts. Ecke unten links abgerissen (inkl. Firmenzeichen). Rissspuren am linken Rand: von Bogen abgetrennt."
+                    "1 Blatt (Bl. 1). Horizontale Knickfalte. Stockflecken unten mittig-rechts. Ecke unten links abgerissen (vermutlich inkl. Firmenzeichen auf Bl. 1<sup>r</sup>). Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen (vermutlich): [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9 | 28 linig.</em> unten links auf Bl. 1<sup>r</sup>"
@@ -27,7 +27,7 @@
                     {
                         "item": "M* 408",
                         "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 408)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M* 408)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -72,7 +72,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk1"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Thema)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Thema)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -183,7 +183,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk2"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. I)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. I)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -207,7 +207,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk3a"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. II)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. II)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -238,7 +238,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk4a"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. III)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. III)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -269,7 +269,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk5"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. IV)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. IV)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -293,7 +293,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk6"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. V)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. V)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -317,7 +317,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk7"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. VI)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. VI)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -341,7 +341,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk22a"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. VIII)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. VIII)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -379,7 +379,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk8"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: verworfene Var.)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: verworfene Var.)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -403,7 +403,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk9a"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. VII)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. VII)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -434,7 +434,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk10"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. IX)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. IX)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -458,7 +458,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk11"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. IX)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. IX)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -482,7 +482,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk12"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. X)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. X)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -507,7 +507,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 412.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22, Studienkomposition für Klavier M 23 Textfassung 1, M* 409 Textfassung 1→2 und 2, M* 410, M* 413–416, Studienkompositionen M* 420–422 sowie Skizzen zu Studienkompositionen für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 412.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22, Studienkomposition für Klavier M 23 Textfassung 1, M* 409 Textfassung 1→2 und 2, M* 410, M* 413–416, Studienkompositionen M* 420–422 sowie Skizzen zu Studienkomposition für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -633,7 +633,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_TF1"
                         },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22)",
                         "folios": [
                             {
                                 "folio": "1r",

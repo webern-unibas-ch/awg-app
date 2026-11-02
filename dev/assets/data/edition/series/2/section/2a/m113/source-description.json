@@ -1442,7 +1442,7 @@
                     "1 Bogen (Bl. 1/2). Zweifache horizontale Knickfalte (auf halber und viertel Höhe). Stockflecken und rötliche Verfärbung in der Ecke oben rechts."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier (auf dem Kopf stehend), 22 Systeme, Format: hoch 345 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
+                    "Notenpapier (auf dem Kopf stehend), 22 Systeme, Format: hoch 345 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 7 | 22 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -1714,7 +1714,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "3b–2a",
+                                            "system": "3b–2a (Bleistift)",
                                             "measure": "39–41A",
                                             "linkTo": "M113_Sk5a"
                                         }

@@ -8,14 +8,14 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
-                    "1 Blatt (Bl. 1). Kleinere Flecken am rechten Rand Mitte von Bl. 1v. Rissspuren am linken Rand: von Bogen abgetrennt."
+                    "1 Blatt (Bl. 1). Kleinere Flecken am rechten Rand Mitte von Bl. 1<sup>v</sup>. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],
                 "writingInstruments": {
-                    "main": "Bleistift",
-                    "secondary": []
+                    "main": "schwarze Tinte",
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -321,7 +321,7 @@
                     "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Kleinere Risse am Rand oben. Ecke oben rechts geknickt. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 18 Systeme, Format: quer 349 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 18 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                    "Notenpapier, 18 Systeme, Format: quer 266 × 349 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 18 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
