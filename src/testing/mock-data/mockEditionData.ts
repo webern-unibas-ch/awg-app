@@ -689,7 +689,7 @@ export const mockSourceDescListData: SourceDescList = {
             siglumAddendum: 'H',
             missing: true,
             type: 'Handexemplar von <strong>G</strong>.',
-            location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
+            location: 'US-Wc, Moldenhauer Archives, Box-Folder 59/10.',
             physDesc: {
                 conditions: [
                     "Siehe <a data-complex-id='testComplex1' data-report-fragment-id='source_G'><strong>G</strong></a>.",
