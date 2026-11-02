@@ -749,10 +749,7 @@ function renderLocation(doc) {
 // Text for comparing a list entry with its description: without tags and separators
 // (the list breaks lines where the description separates with " / ")
 function comparableText(text) {
-    return stripTags(text)
-        .replace(/\s+\/\s+/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
+    return stripTags(text).replace(/ \/ /g, ' ');
 }
 
 // The M numbers named in a text, with ranges and lists that share a prefix (M 36–38, M* 410, 412)
@@ -845,11 +842,13 @@ function checkRegistry(complexSources, grouping) {
                 errors.push(`${key}: documentId ${entry.documentId} does not exist`);
                 continue;
             }
-            referenced.add(key);
             if (doc.partOf) {
                 errors.push(`${key} refers to ${doc.id}, which is a part of ${doc.partOf}`);
             }
-            if (idByUse.get(key) !== doc.id) {
+            // A use listed by another document stays unreferenced and is reported below
+            if (idByUse.get(key) === doc.id) {
+                referenced.add(key);
+            } else {
                 errors.push(`${key} refers to ${doc.id}, but its usedBy does not list ${key}`);
             }
             const registryLocation = renderLocation(doc);
@@ -893,7 +892,8 @@ function checkRegistry(complexSources, grouping) {
             if (!description.siglum || linked.has(description.id)) continue;
             const key = `${complexId}:${fullSiglum(description)}`;
             const doc = byId.get(idByUse.get(key));
-            const container = list.find(entry => entry.siglum === description.siglum && !entry.siglumAddendum);
+            // The convolute's full siglum is the part's without the part letter (A for Aa, FR1 for FR1a)
+            const container = list.find(entry => fullSiglum(entry) === fullSiglum(description).slice(0, -1));
             if (!doc?.partOf) {
                 errors.push(`${key} is neither in the source list nor a registered part`);
             } else if (doc.partOf !== container?.documentId) {
