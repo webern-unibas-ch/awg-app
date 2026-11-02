@@ -156,8 +156,8 @@
                     "trademarkPosition": "unten links",
                     "systems": "18",
                     "dimensions": {
-                        "height": 349,
-                        "width": 266
+                        "height": 266,
+                        "width": 349
                     },
                     "content": [
                         {
@@ -239,8 +239,8 @@
                     "folioId": "1v",
                     "systems": "18",
                     "dimensions": {
-                        "height": 349,
-                        "width": 266
+                        "height": 266,
+                        "width": 349
                     },
                     "content": []
                 }
