@@ -930,7 +930,7 @@
                     "<em>19. IX. 34</em> auf Bl. 6<sup>r</sup> oben links",
                     "<em>8. X. 34</em> auf Bl. 7<sup>v</sup> System 12–13 (zu <strong>M 321 Sk8</strong> T. 21B–26B)",
                     "<em>M. am 30. IX. nach Zürich abgereist.</em> auf Bl. 7<sup>v</sup> System 16 rechts",
-                    "<em>24. X</em>[.] <em>34</em> auf Bl. 8<sup>v</sup> System 4–5 halbrechts (zu <strong>M 322 Sk3</strong> T. {1A}, {1B}, {1C‒2A}, 1D‒2B)",
+                    "<em>24. X</em>[.] <em>34</em> auf Bl. 8<sup>v</sup> System 4–5 halbrechts (zu <strong>M 322 Sk3</strong> T. {1A}, {1B}, {1C–2A}, 1D–2B)",
                     "<em>15. XI</em>[.] <em>34</em> auf Bl. 11<sup>r</sup> System 9–10 (nach <strong>M 322 Sk4</strong> T. 21C)",
                     "<em>34 M. am 9</em>[.] <em>XII. aus Z. zurückgekom̅en. | M. am 10. I. 35 operiert worden | Ma</em> [Unterführungszeichen für „am“] <em>21. I.</em> [Unterführungszeichen für „35“] <em>erkrankt</em> auf Bl. 11<sup>r</sup> System 10–11 rechts"
                 ],
@@ -1102,7 +1102,7 @@
                                     [
                                         {
                                             "system": "10–13",
-                                            "measure": "{1A}, {1B‒2A}, 1C‒2B, {3A}",
+                                            "measure": "{1A}, {1B–2A}, 1C–2B, {3A}",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1137,7 +1137,7 @@
                                     [
                                         {
                                             "system": "2–8a",
-                                            "measure": "{5B‒6B}, {5C‒6C}, 5D‒6D",
+                                            "measure": "{5B–6B}, {5C–6C}, 5D–6D",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1266,7 +1266,7 @@
                                     [
                                         {
                                             "system": "12c–15b",
-                                            "measure": "3‒6",
+                                            "measure": "3–6",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1576,14 +1576,14 @@
                                     [
                                         {
                                             "system": "5–10",
-                                            "measure": "{1A}, {1B}, {1C‒2A}, 1D‒2B",
+                                            "measure": "{1A}, {1B}, {1C–2A}, 1D–2B",
                                             "linkTo": "M322_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11–16",
-                                            "measure": "{3A‒4A}, {5A}, 3B‒5B",
+                                            "measure": "{3A–4A}, {5A}, 3B–5B",
                                             "linkTo": "M322_Sk3b"
                                         }
                                     ]
@@ -1597,7 +1597,7 @@
                                     [
                                         {
                                             "system": "1–5a",
-                                            "measure": "6‒11",
+                                            "measure": "6–11",
                                             "linkTo": "M322_Sk3c"
                                         }
                                     ]
@@ -1681,14 +1681,14 @@
                                     [
                                         {
                                             "system": "6a–10",
-                                            "measure": "1‒4",
+                                            "measure": "1–4",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11–16",
-                                            "measure": "5‒8",
+                                            "measure": "5–8",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1709,14 +1709,14 @@
                                     [
                                         {
                                             "system": "6b–11",
-                                            "measure": "11B, 10B‒12",
+                                            "measure": "11B, 10B–12",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12–16",
-                                            "measure": "13B‒16",
+                                            "measure": "13B–16",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1758,7 +1758,7 @@
                                     [
                                         {
                                             "system": "2–6",
-                                            "measure": "17B‒20B",
+                                            "measure": "17B–20B",
                                             "linkTo": ""
                                         }
                                     ],
@@ -1849,7 +1849,7 @@
                                     [
                                         {
                                             "system": "11–15",
-                                            "measure": "19‒20",
+                                            "measure": "19–20",
                                             "linkTo": ""
                                         }
                                     ]
