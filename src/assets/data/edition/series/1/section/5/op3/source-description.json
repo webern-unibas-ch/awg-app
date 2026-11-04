@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Autographe von „Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M133_TF2'>2</a> (<strong>A<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M134_TF2'>2</a> (<strong>A<sup>b</sup></strong>).",
+            "type": "Autographe von<br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M133_TF2'>2</a> (<strong>A<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M134_TF2'>2</a> (<strong>A<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -533,7 +533,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Autograph von „Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[a].",
             "physDesc": {
                 "conditions": [
@@ -699,7 +699,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Autograph von „Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M133_TF3'>3</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M133_TF3'>3</a>.",
             "location": "A-Wn, Mus.Hs.38735.MusA/Webern/4.",
             "physDesc": {
                 "conditions": [
@@ -1176,7 +1176,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Fragment von „Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a>.",
+            "type": "Fragment von <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1262,7 +1262,7 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Autographe von „Dies ist ein Lied“ M 133: <span class='link-todo'>Textfassung 4</span> (<strong>E<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF2'>Textfassung 2</a> (<strong>E<sup>b</sup></strong>) / „An Bachesranft“ M 135: <a data-complex-id='op3' data-sheet-id='M135_TF1'>Textfassung 1</a> (<strong>E<sup>c</sup></strong>) / „Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a> (<strong>E<sup>d</sup></strong>) / „Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M137_TF2'>2</a> (<strong>E<sup>e</sup></strong>).",
+            "type": "Autographe von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <span class='link-todo'>Textfassung 4</span> (<strong>E<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF2'>Textfassung 2</a> (<strong>E<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„An Bachesranft“ M 135: <a data-complex-id='op3' data-sheet-id='M135_TF1'>Textfassung 1</a> (<strong>E<sup>c</sup></strong>) <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a> (<strong>E<sup>d</sup></strong>) <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M137_TF2'>2</a> (<strong>E<sup>e</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -3051,7 +3051,7 @@
             "id": "source_F",
             "siglum": "F",
             "siglumAddendum": "",
-            "type": "Abschriften fremder Hand von „Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M133_TF2'>3</a>→<span class='link-todo'>4</span> (<strong>F<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF2'>Textfassung 2</a> (<strong>F<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF1'>Textfassung 1</a> (<strong>F<sup>c</sup></strong>).",
+            "type": "Abschriften fremder Hand von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M133_TF3'>3</a>→<span class='link-todo'>4</span> (<strong>F<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF2'>Textfassung 2</a> (<strong>F<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF1'>Textfassung 1</a> (<strong>F<sup>c</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -4740,7 +4740,7 @@
             "id": "source_G",
             "siglum": "G",
             "siglumAddendum": "",
-            "type": "Autographe von „Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span> (<strong>G<sup>a</sup></strong>) / „Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M136_TF2'>2</a> (<strong>G<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M137_TF3'>3</a> (<strong>G<sup>c</sup></strong>). Enthält auch Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <a data-complex-id='op4' data-report-fragment-id='source_A'><em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4</a>.",
+            "type": "Autographe von <br /><span class=\"tab\"></span>„Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span> (<strong>G<sup>a</sup></strong>) <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M136_TF2'>2</a> (<strong>G<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M137_TF3'>3</a> (<strong>G<sup>c</sup></strong>). <br />Enthält auch Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <a data-complex-id='op4' data-report-fragment-id='source_A'><em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4</a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
             "physDesc": {
                 "conditions": [
@@ -5639,7 +5639,7 @@
             "id": "source_H",
             "siglum": "H",
             "siglumAddendum": "",
-            "type": "Autograph von „An Bachesranft“ M 135: <a data-complex-id='op3' data-sheet-id='M135_TF2'>Textfassung 2</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„An Bachesranft“ M 135: <a data-complex-id='op3' data-sheet-id='M135_TF2'>Textfassung 2</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[b].",
             "physDesc": {
                 "conditions": [
@@ -5978,7 +5978,7 @@
             "id": "source_I",
             "siglum": "I",
             "siglumAddendum": "",
-            "type": "Autograph von „Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF2'>Textfassung 2</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF2'>Textfassung 2</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[c].",
             "physDesc": {
                 "conditions": [
@@ -6323,7 +6323,7 @@
             "id": "source_J",
             "siglum": "J",
             "siglumAddendum": "",
-            "type": "Autograph von „Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF4'>Textfassung 4</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF4'>Textfassung 4</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[d].",
             "physDesc": {
                 "conditions": [

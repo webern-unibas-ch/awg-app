@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138: <a data-complex-id='op4' data-sheet-id='M138_TF1'>Textfassung 1</a>→<a data-complex-id='op4' data-sheet-id='M138_TF2'>2</a>. Enthält auch Autographe von „Im Windesweben“ M 134, „Im Morgentaun“ M 136 und „Kahl reckt der Baum“ M 137 aus <a data-complex-id='op3' data-report-fragment-id='source_G'><em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: <a data-complex-id='op4' data-sheet-id='M138_TF1'>Textfassung 1</a>→<a data-complex-id='op4' data-sheet-id='M138_TF2'>2</a>. <br />Enthält auch Autographe von „Im Windesweben“ M 134, „Im Morgentaun“ M 136 und „Kahl reckt der Baum“ M 137 aus <a data-complex-id='op3' data-report-fragment-id='source_G'><em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3</a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
             "physDesc": {
                 "conditions": [
@@ -860,7 +860,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Autographe von „Noch zwingt mich Treue“ M 139: <a data-complex-id='op4' data-sheet-id='M139_TF1'>Textfassung 1</a>→<a data-complex-id='op4' data-sheet-id='M139_TF2'>2</a> (<strong>B<sup>a</sup></strong>) / „Ja Heil und Dank dir“ M 140: <a data-complex-id='op4' data-sheet-id='M140_TF1'>Textfassung 1</a>→<a data-complex-id='op4' data-sheet-id='M140_TF2'>2</a> (<strong>B<sup>b</sup></strong>) / „So ich traurig bin“ M 141: <a data-complex-id='op4' data-sheet-id='M141_TF1'>Textfassung 1</a> (<strong>B<sup>c</sup></strong>).",
+            "type": "Autographe von <br /><span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: <a data-complex-id='op4' data-sheet-id='M139_TF1'>Textfassung 1</a>→<a data-complex-id='op4' data-sheet-id='M139_TF2'>2</a> (<strong>B<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Ja Heil und Dank dir“ M 140: <a data-complex-id='op4' data-sheet-id='M140_TF1'>Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>B<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„So ich traurig bin“ M 141: <a data-complex-id='op4' data-sheet-id='M141_TF1'>Textfassung 1</a> (<strong>B<sup>c</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1844,7 +1844,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Abschriften fremder Hand von <em>Eingang</em> („Welt der Gestalten“) M 138: <a data-complex-id='op4' data-sheet-id='M138_TF1'>Textfassung 1</a> (<strong>D<sup>a</sup></strong>) / „Noch zwingt mich Treue“ M 139: <a data-complex-id='op4' data-sheet-id='M139_TF1'>Textfassung 1</a> (<strong>D<sup>b</sup></strong>).",
+            "type": "Abschriften fremder Hand von <br /><span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: <a data-complex-id='op4' data-sheet-id='M138_TF1'>Textfassung 1</a> (<strong>D<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: <a data-complex-id='op4' data-sheet-id='M139_TF1'>Textfassung 1</a> (<strong>D<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -2869,7 +2869,7 @@
             "id": "source_G",
             "siglum": "G",
             "siglumAddendum": "",
-            "type": "Druck von „Ihr tratet zu dem Herde“ M 142: <a data-complex-id='op4' data-sheet-id='M142_TF1'>Textfassung 1</a>.",
+            "type": "Druck von <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: <a data-complex-id='op4' data-sheet-id='M142_TF1'>Textfassung 1</a>.",
             "location": "Beilage in: <em>Der blaue Reiter</em>, München: Piper, 1912.",
             "physDesc": {
                 "conditions": [
@@ -2961,7 +2961,7 @@
             "id": "source_GH",
             "siglum": "G",
             "siglumAddendum": "H",
-            "type": "Handexemplar von <strong>G</strong> mit Korrekturen Weberns: „Ihr tratet zu dem Herde“ M 142: <a data-complex-id='op4' data-sheet-id='M142_TF1'>Textfassung 1</a>→<a data-complex-id='op4' data-sheet-id='M142_TF2'>2</a>.",
+            "type": "Handexemplar von <a data-complex-id='op4' data-report-fragment-id='source_G'><strong>G</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: <a data-complex-id='op4' data-sheet-id='M142_TF1'>Textfassung 1</a>→<a data-complex-id='op4' data-sheet-id='M142_TF2'>2</a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, PMM 21.",
             "physDesc": {
                 "conditions": [
