@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -11,6 +11,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { SourceDesc } from '@awg-views/edition-view/models/source-desc.model';
@@ -30,8 +31,6 @@ describe('SourceDescItemComponent (DONE)', () => {
     let component: SourceDescItemComponent;
     let fixture: ComponentFixture<SourceDescItemComponent>;
     let compDe: DebugElement;
-
-    let mockDocument: Document;
 
     let expectedSourceDescWithoutPhysDesc: SourceDesc;
     let expectedSourceDescWithAllEntries: SourceDesc;
@@ -98,9 +97,6 @@ describe('SourceDescItemComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
         const sources = structuredClone(mockEditionData.mockSourceDescListData).sources;
         expectedSourceDescWithoutPhysDesc = sources[0]; // No physDesc entries
@@ -515,12 +511,10 @@ describe('SourceDescItemComponent (DONE)', () => {
                 it('... the second paragraph displaying the source type', () => {
                     const pEl: HTMLParagraphElement = paragraphDes[1].nativeElement;
 
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML = expectedSourceDescWithWritingMaterials.type;
+                    const expectedType = toTextContent(expectedSourceDescWithWritingMaterials.type);
 
                     expectToContain(pEl.classList, 'awg-source-desc-type');
-                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                    expectToBe(pEl.textContent.trim(), expectedType.trim());
                 });
 
                 it('... the third paragraph displaying the source location', () => {

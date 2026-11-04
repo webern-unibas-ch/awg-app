@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -8,6 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 
 import { ModalComponent } from './modal.component';
 import { MODAL_DATA, ModalData } from './modal.model';
@@ -17,7 +18,6 @@ describe('ModalComponent (DONE)', () => {
     let fixture: ComponentFixture<ModalComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
     let mockActiveModal: Partial<NgbActiveModal>;
 
     let modalCloseSpy: Spy;
@@ -49,9 +49,6 @@ describe('ModalComponent (DONE)', () => {
                 },
             ],
         }).compileComponents();
-
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
 
         // Create component fixture
         fixture = TestBed.createComponent(ModalComponent);
@@ -201,10 +198,9 @@ describe('ModalComponent (DONE)', () => {
                     const innerDivDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.text-start', 1, 1);
                     const innerDivEl: HTMLDivElement = innerDivDes[0].nativeElement;
 
-                    const htmlSnippet = mockDocument.createElement('p');
-                    htmlSnippet.innerHTML = expectedTextData.content;
+                    const expectedContent = toTextContent(expectedTextData.content);
 
-                    expectToBe(innerDivEl.textContent.trim(), htmlSnippet.textContent.trim());
+                    expectToBe(innerDivEl.textContent.trim(), expectedContent.trim());
                 });
 
                 it('... should not render an image tag when type is text', () => {

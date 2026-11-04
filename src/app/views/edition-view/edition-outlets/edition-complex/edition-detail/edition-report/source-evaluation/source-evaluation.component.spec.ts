@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -12,6 +12,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
@@ -26,8 +27,6 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let fixture: ComponentFixture<SourceEvaluationComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
-
     let expectedComplex: EditionComplex;
     let expectedSourceEvaluationListData: SourceEvaluationList;
     let expectedSourceEvaluationListEmptyData: SourceEvaluationList;
@@ -41,9 +40,6 @@ describe('SourceEvaluationComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
         expectedComplex = EditionStateHelper.getComplex('op25');
         expectedSourceEvaluationListData = structuredClone(mockEditionData.mockSourceEvaluationListData);
@@ -171,15 +167,11 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const pEl0: HTMLParagraphElement = pDes[0].nativeElement;
                 const pEl1: HTMLParagraphElement = pDes[1].nativeElement;
 
-                let htmlEvaluationEntry = mockDocument.createElement('p');
-                htmlEvaluationEntry.innerHTML = expectedContent[0];
+                const expectedEntry0 = toTextContent(expectedContent[0]);
+                const expectedEntry1 = toTextContent(expectedContent[1]);
 
-                expectToEqual(pEl0.textContent.trim(), htmlEvaluationEntry.textContent.trim());
-
-                htmlEvaluationEntry = mockDocument.createElement('p');
-                htmlEvaluationEntry.innerHTML = expectedContent[1];
-
-                expectToEqual(pEl1.textContent.trim(), htmlEvaluationEntry.textContent.trim());
+                expectToEqual(pEl0.textContent.trim(), expectedEntry0.trim());
+                expectToEqual(pEl1.textContent.trim(), expectedEntry1.trim());
             });
 
             describe('... if evaluation data is empty', () => {

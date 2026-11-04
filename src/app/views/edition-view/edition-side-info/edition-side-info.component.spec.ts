@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
@@ -19,6 +19,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
@@ -71,7 +72,6 @@ describe('EditionSideInfoComponent (DONE)', () => {
 
     let router: Router;
 
-    let mockDocument: Document;
     let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
@@ -100,7 +100,6 @@ describe('EditionSideInfoComponent (DONE)', () => {
         // Inject services
         editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
-        mockDocument = TestBed.inject(DOCUMENT);
         router = TestBed.inject(Router);
 
         // Service spies
@@ -438,10 +437,9 @@ describe('EditionSideInfoComponent (DONE)', () => {
                     spanDes.forEach((spanDe, index) => {
                         const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
-                        const mockSpan = mockDocument.createElement('span');
-                        mockSpan.innerHTML = itemTitles[index];
+                        const expectedTitle = toTextContent(itemTitles[index]);
 
-                        expectToBe(spanEl.textContent.trim(), mockSpan.textContent.trim());
+                        expectToBe(spanEl.textContent.trim(), expectedTitle.trim());
                     });
                 });
 

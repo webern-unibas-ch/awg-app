@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -11,6 +11,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
@@ -26,8 +27,6 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
     let component: SourceDescCorrectionsComponent;
     let fixture: ComponentFixture<SourceDescCorrectionsComponent>;
     let compDe: DebugElement;
-
-    let mockDocument: Document;
 
     let expectedCorrections: Textcritics[];
     let expectedOpenAllCorrectionDetails: boolean;
@@ -49,9 +48,6 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
         const expectedSourceDescListData = structuredClone(mockEditionData.mockSourceDescListData);
         expectedCorrections = expectedSourceDescListData.sources[1].physDesc.corrections ?? [];
@@ -329,11 +325,10 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                             );
                             const summaryEl: HTMLElement = summaryDes[0].nativeElement;
 
-                            const expectedHtmlTextContent = mockDocument.createElement('summary');
-                            expectedHtmlTextContent.innerHTML = expectedCorrections[index].label + ':';
+                            const expectedSummary = toTextContent(expectedCorrections[index].label + ':');
 
                             expect(summaryEl).toBeTruthy();
-                            expectToBe(summaryEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                            expectToBe(summaryEl.textContent.trim(), expectedSummary.trim());
                         });
                     });
                 });

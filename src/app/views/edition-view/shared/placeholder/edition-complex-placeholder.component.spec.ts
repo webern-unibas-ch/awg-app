@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 
@@ -20,21 +21,8 @@ describe('EditionComplexPlaceholderComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionComplexPlaceholderComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
-
     let expectedComplex: EditionComplex;
     let expectedType: EditionComplexPlaceholderType;
-
-    /**
-     * Helper function: getTextContent.
-     *
-     * It gets the text content of the given HTML string (e.g. of a complex id).
-     */
-    const getTextContent = (html: string): string => {
-        const spanEl = mockDocument.createElement('span');
-        spanEl.innerHTML = html;
-        return spanEl.textContent;
-    };
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -43,9 +31,6 @@ describe('EditionComplexPlaceholderComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
         expectedComplex = EditionStateHelper.getComplex('op12');
         expectedType = 'intro';
@@ -126,7 +111,7 @@ describe('EditionComplexPlaceholderComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     const { subject, verb } = EDITION_COMPLEX_PLACEHOLDER_SUBJECTS[type];
-                    const fullComplexId = getTextContent(expectedComplex.complexId.full);
+                    const fullComplexId = toTextContent(expectedComplex.complexId.full);
                     const shortComplexId = expectedComplex.complexId.short;
                     const sectionLabel = expectedComplex.pubStatement.labeledSectionRoute.label;
                     const expectedText = `[${subject} zum Editionskomplex ${fullComplexId} ${verb} im Zusammenhang der vollständigen Edition von ${shortComplexId} in ${sectionLabel}.]`;

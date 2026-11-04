@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -15,6 +15,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { TextcriticalCommentary } from '@awg-views/edition-view/models/textcritics.model';
@@ -31,7 +32,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionTkaTableComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
     let mockEditionSnippetService: EditionSnippetService;
     let glyphService: EditionGlyphService;
 
@@ -59,7 +59,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
         mockEditionSnippetService = TestBed.inject(EditionSnippetService);
         glyphService = TestBed.inject(EditionGlyphService);
 
@@ -432,8 +431,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                             const positionCell: HTMLTableCellElement = rowCellDes[2].nativeElement;
                             const commentCell: HTMLTableCellElement = rowCellDes[3].nativeElement;
 
-                            const measureCellHtmlSnippet = mockDocument.createElement('span');
-                            measureCellHtmlSnippet.innerHTML = index === 2 ? '{13}' : comment.measure;
+                            const expectedMeasure = toTextContent(index === 2 ? '{13}' : comment.measure);
 
                             let expectedCommentHtml = comment.comment;
                             if (expectedCommentHtml.includes('ref.getGlyph')) {
@@ -443,13 +441,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
                                 );
                             }
 
-                            const commentCellHtmlSnippet = mockDocument.createElement('span');
-                            commentCellHtmlSnippet.innerHTML = expectedCommentHtml;
+                            const expectedComment = toTextContent(expectedCommentHtml);
 
-                            expectToBe(measureCell.textContent, measureCellHtmlSnippet.textContent);
+                            expectToBe(measureCell.textContent, expectedMeasure);
                             expectToBe(systemCell.textContent, comment.system);
                             expectToBe(positionCell.textContent, comment.position);
-                            expectToBe(commentCell.textContent, commentCellHtmlSnippet.textContent);
+                            expectToBe(commentCell.textContent, expectedComment);
 
                             rowIndex++;
                         });

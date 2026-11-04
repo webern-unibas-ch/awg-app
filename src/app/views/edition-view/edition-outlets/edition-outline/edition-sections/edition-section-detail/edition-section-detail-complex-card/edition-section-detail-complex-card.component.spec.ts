@@ -15,6 +15,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toInnerHtml } from '@testing/html-helper';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
@@ -153,7 +154,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     );
                     const titleSpanEl: HTMLSpanElement = titleSpanDes[0].nativeElement;
 
-                    expectToBe(titleSpanEl.innerHTML, expectedComplexes[index].complex.complexId.full);
+                    const expectedTitle = toInnerHtml(expectedComplexes[index].complex.complexId.full);
+
+                    expectToBe(titleSpanEl.innerHTML, expectedTitle);
                 });
             });
 
