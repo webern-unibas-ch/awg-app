@@ -572,8 +572,8 @@ to store information about an edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="308"
-                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:308</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="309"
+                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:309</a></div>
                         </td>
                     </tr>
 
@@ -650,8 +650,8 @@ to store information about an edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="323"
-                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:323</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="324"
+                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:324</a></div>
                         </td>
                     </tr>
 
@@ -966,7 +966,8 @@ export class EditionComplex {
 
         // Helper constants
         const delimiter &#x3D; &#x27;/&#x27;;
-        const spacer &#x3D; &#x27;&amp;nbsp;&#x27;;
+        // No-break space keeps catalogue type and number together on one line
+        const spacer &#x3D; &#x27;\u00A0&#x27;;
         const routes &#x3D; EDITION_ROUTE_CONSTANTS;
 
         // Set dynamic routes

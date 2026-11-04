@@ -233,7 +233,7 @@ to describe that an edition complex is a part of a composite edition complex.</p
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:345</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="346" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:346</a></div>
                                 </td>
                             </tr>
 
@@ -278,7 +278,7 @@ to describe that an edition complex is a part of a composite edition complex.</p
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="350" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:350</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="351" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:351</a></div>
                                 </td>
                             </tr>
 
@@ -543,7 +543,8 @@ export class EditionComplex {
 
         // Helper constants
         const delimiter &#x3D; &#x27;/&#x27;;
-        const spacer &#x3D; &#x27;&amp;nbsp;&#x27;;
+        // No-break space keeps catalogue type and number together on one line
+        const spacer &#x3D; &#x27;\u00A0&#x27;;
         const routes &#x3D; EDITION_ROUTE_CONSTANTS;
 
         // Set dynamic routes
