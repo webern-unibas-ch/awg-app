@@ -141,7 +141,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                     const glyphSpan = "{{ref.getGlyph('[b]')}}";
                     const glyphString = mockEditionGlyphService.getGlyph('[b]');
                     const expectedEvaluation = toTextContent(
-                        expectedEvaluations[index].replace(glyphSpan, glyphString)
+                        expectedEvaluations[index].replaceAll(glyphSpan, glyphString)
                     );
 
                     expectToBe(spanEl.textContent.trim(), expectedEvaluation.trim());

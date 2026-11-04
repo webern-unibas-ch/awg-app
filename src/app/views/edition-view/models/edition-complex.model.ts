@@ -246,6 +246,7 @@ export class EditionComplex {
 
         // Helper constants
         const delimiter = '/';
+        // No-break space keeps catalogue type and number together on one line
         const spacer = '\u00A0';
         const routes = EDITION_ROUTE_CONSTANTS;
 

@@ -1,4 +1,13 @@
 /**
+ * Parses the given HTML string into a detached span element.
+ */
+function parseHtml(html: string): HTMLSpanElement {
+    const spanEl = document.createElement('span');
+    spanEl.innerHTML = html;
+    return spanEl;
+}
+
+/**
  * Test helper function: toInnerHtml.
  *
  * It returns the given HTML string as the browser serializes it
@@ -8,9 +17,7 @@
  * @returns {string} The serialized HTML string.
  */
 export function toInnerHtml(html: string): string {
-    const spanEl = document.createElement('span');
-    spanEl.innerHTML = html;
-    return spanEl.innerHTML;
+    return parseHtml(html).innerHTML;
 }
 
 /**
@@ -23,7 +30,5 @@ export function toInnerHtml(html: string): string {
  * @returns {string} The text content.
  */
 export function toTextContent(html: string): string {
-    const spanEl = document.createElement('span');
-    spanEl.innerHTML = html;
-    return spanEl.textContent;
+    return parseHtml(html).textContent;
 }

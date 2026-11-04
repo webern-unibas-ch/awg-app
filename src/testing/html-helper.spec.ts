@@ -1,25 +1,33 @@
-import { describe, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { expectToBe } from './expect-helper';
 
 import { toInnerHtml, toTextContent } from './html-helper';
 
-describe('htmlHelper', () => {
+describe('html-helper', () => {
     describe('#toInnerHtml()', () => {
-        it('... should return the HTML string with a no-break space serialized as entity', () => {
-            const serializedHtml = toInnerHtml('<em>Vier Lieder</em> op.\u00A012');
+        it('... should have a method `toInnerHtml`', () => {
+            expect(toInnerHtml).toBeDefined();
+        });
 
-            expectToBe(serializedHtml, '<em>Vier Lieder</em> op.&nbsp;12');
+        it('... should return the HTML string with a no-break space serialized as entity', () => {
+            const innerHtml = toInnerHtml('<em>Vier Lieder</em> op.\u00A012');
+
+            expectToBe(innerHtml, '<em>Vier Lieder</em> op.&nbsp;12');
         });
 
         it('... should return an HTML string without special characters unchanged', () => {
-            const serializedHtml = toInnerHtml('<em>Vier Lieder</em> op. 12');
+            const innerHtml = toInnerHtml('<em>Vier Lieder</em> op. 12');
 
-            expectToBe(serializedHtml, '<em>Vier Lieder</em> op. 12');
+            expectToBe(innerHtml, '<em>Vier Lieder</em> op. 12');
         });
     });
 
     describe('#toTextContent()', () => {
+        it('... should have a method `toTextContent`', () => {
+            expect(toTextContent).toBeDefined();
+        });
+
         it('... should return the text content without tags', () => {
             const textContent = toTextContent('<em>Vier Lieder</em> op. 12');
 

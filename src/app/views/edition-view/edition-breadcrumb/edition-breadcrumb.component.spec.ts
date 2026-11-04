@@ -16,6 +16,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
@@ -130,7 +131,8 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
             });
 
             it('... should render the label of an anchor tag as innerHTML', () => {
-                fixture.componentRef.setInput('items', [{ label: 'Op.&nbsp;12', route: ['/edition/complex/op12'] }]);
+                const label = 'Op.&nbsp;12';
+                fixture.componentRef.setInput('items', [{ label, route: ['/edition/complex/op12'] }]);
 
                 fixture.detectChanges();
 
@@ -138,7 +140,9 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(navDes[0], 'a', 1, 1);
                 const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
 
-                expectToBe(anchorEl.textContent, 'Op. 12');
+                const expectedText = toTextContent(label);
+
+                expectToBe(anchorEl.textContent, expectedText);
             });
 
             it('... should render a span with innerHTML for items without a route', () => {
