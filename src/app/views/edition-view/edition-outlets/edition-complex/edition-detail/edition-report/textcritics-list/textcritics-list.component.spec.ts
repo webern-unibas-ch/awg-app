@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -17,6 +17,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
@@ -35,7 +36,6 @@ describe('TextcriticsListComponent (DONE)', () => {
     let fixture: ComponentFixture<TextcriticsListComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
     let mockNavigationService: Partial<EditionNavigationService>;
 
     let selectSvgSheetSpy: Spy;
@@ -76,9 +76,6 @@ describe('TextcriticsListComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Service spies
         serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
 
@@ -244,11 +241,10 @@ describe('TextcriticsListComponent (DONE)', () => {
                     itemHeaderBtnDes.forEach((itemHeaderBtnDe, index) => {
                         const btnEl: HTMLButtonElement = itemHeaderBtnDe.nativeElement;
 
-                        const expectedButtonLabel = mockDocument.createElement('span');
-                        expectedButtonLabel.innerHTML = expectedTextcritics[index].label;
+                        const expectedButtonLabel = toTextContent(expectedTextcritics[index].label);
 
                         expectToContain(btnEl.classList, 'text-start');
-                        expectToBe(btnEl.textContent.trim(), expectedButtonLabel.textContent.trim());
+                        expectToBe(btnEl.textContent.trim(), expectedButtonLabel.trim());
                     });
                 });
             });

@@ -11,6 +11,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toInnerHtml } from '@testing/html-helper';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
@@ -92,7 +93,7 @@ describe('EditionComplexPartsListComponent (DONE)', () => {
                 const liEls: HTMLLIElement[] = getLiDes().map(liDe => liDe.nativeElement);
 
                 liEls.forEach((liEl, index) => {
-                    const expectedId = expectedParts[index].complex.complexId.full;
+                    const expectedId = toInnerHtml(expectedParts[index].complex.complexId.full);
 
                     expectToContain(liEl.innerHTML, expectedId);
                 });

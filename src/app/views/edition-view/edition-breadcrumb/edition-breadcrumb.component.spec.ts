@@ -16,6 +16,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
@@ -130,7 +131,8 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
             });
 
             it('... should render the label of an anchor tag as innerHTML', () => {
-                fixture.componentRef.setInput('items', [{ label: 'Op.&nbsp;12', route: ['/edition/complex/op12'] }]);
+                const label = 'Op.&nbsp;12';
+                fixture.componentRef.setInput('items', [{ label, route: ['/edition/complex/op12'] }]);
 
                 fixture.detectChanges();
 
@@ -138,7 +140,9 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(navDes[0], 'a', 1, 1);
                 const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
 
-                expectToBe(anchorEl.textContent, 'Op. 12');
+                const expectedText = toTextContent(label);
+
+                expectToBe(anchorEl.textContent, expectedText);
             });
 
             it('... should render a span with innerHTML for items without a route', () => {
@@ -448,8 +452,12 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                     });
 
                     it('... should display edition root, series, section and complex', () => {
-                        const complexShortWithSpace = expectedComplex.complexId.short.replace(/&nbsp;/g, '\u00A0');
-                        const expectedItemTexts = [EDITION.short, series.full, section.full, complexShortWithSpace];
+                        const expectedItemTexts = [
+                            EDITION.short,
+                            series.full,
+                            section.full,
+                            expectedComplex.complexId.short,
+                        ];
 
                         const itemTexts = getItemTexts(expectedItemTexts.length);
 
@@ -505,8 +513,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                     it('... should display the composite complex before the part', () => {
                         const itemTexts = getItemTexts(5);
 
-                        const toText = (label: string): string => label.replace(/&nbsp;/g, ' ');
-                        const expectedTexts = [toText(opus.complexId.short), toText(part.complexId.short)];
+                        const expectedTexts = [opus.complexId.short, part.complexId.short];
 
                         expectToEqual(itemTexts.slice(3), expectedTexts);
                     });

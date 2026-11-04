@@ -11,6 +11,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toInnerHtml } from '@testing/html-helper';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
@@ -113,7 +114,7 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
             });
 
             it('... should label the composite complex with its full complex id', () => {
-                const expectedId = expectedCompositeComplexes[0].complex.complexId.full;
+                const expectedId = toInnerHtml(expectedCompositeComplexes[0].complex.complexId.full);
 
                 const labelDes = getAndExpectDebugElementByCss(getLinkDes()[0], 'span', 1, 1);
                 const labelEl: HTMLSpanElement = labelDes[0].nativeElement;
@@ -125,7 +126,7 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
                 fixture.componentRef.setInput('isCompact', true);
                 fixture.detectChanges();
 
-                const expectedId = expectedCompositeComplexes[0].complex.complexId.short;
+                const expectedId = toInnerHtml(expectedCompositeComplexes[0].complex.complexId.short);
 
                 const labelDes = getAndExpectDebugElementByCss(getLinkDes()[0], 'span', 1, 1);
                 const labelEl: HTMLSpanElement = labelDes[0].nativeElement;

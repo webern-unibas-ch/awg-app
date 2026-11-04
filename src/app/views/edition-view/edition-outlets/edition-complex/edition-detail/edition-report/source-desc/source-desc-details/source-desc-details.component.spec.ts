@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -10,6 +10,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -19,8 +20,6 @@ describe('SourceDescDetailsComponent (DONE)', () => {
     let component: SourceDescDetailsComponent;
     let fixture: ComponentFixture<SourceDescDetailsComponent>;
     let compDe: DebugElement;
-
-    let mockDocument: Document;
 
     let expectedDetails: string[];
     let expectedDetailsClass: string;
@@ -33,9 +32,6 @@ describe('SourceDescDetailsComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
         expectedDetails = ['testDetails1 ', 'testDetails2', 'testDetails3'];
         expectedDetailsClass = 'test-details-class';
@@ -147,11 +143,9 @@ describe('SourceDescDetailsComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span.smallcaps', 1, 1);
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                // Process HTML expression of expected text content
-                const expectedHtmlTextContent = mockDocument.createElement('span');
-                expectedHtmlTextContent.innerHTML = expectedDetailsLabel + ':&nbsp;';
+                const expectedLabel = toTextContent(expectedDetailsLabel + ':&nbsp;');
 
-                expectToBe(spanEl.textContent, expectedHtmlTextContent.textContent);
+                expectToBe(spanEl.textContent, expectedLabel);
             });
 
             it('... should contain a details content span', () => {
