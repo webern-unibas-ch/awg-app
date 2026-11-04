@@ -127,7 +127,7 @@ describe('EditionComplexPlaceholderComponent (DONE)', () => {
 
                     const { subject, verb } = EDITION_COMPLEX_PLACEHOLDER_SUBJECTS[type];
                     const fullComplexId = getTextContent(expectedComplex.complexId.full);
-                    const shortComplexId = getTextContent(expectedComplex.complexId.short);
+                    const shortComplexId = expectedComplex.complexId.short;
                     const sectionLabel = expectedComplex.pubStatement.labeledSectionRoute.label;
                     const expectedText = `[${subject} zum Editionskomplex ${fullComplexId} ${verb} im Zusammenhang der vollständigen Edition von ${shortComplexId} in ${sectionLabel}.]`;
 

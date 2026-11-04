@@ -246,7 +246,7 @@ export class EditionComplex {
 
         // Helper constants
         const delimiter = '/';
-        const spacer = '&nbsp;';
+        const spacer = '\u00A0';
         const routes = EDITION_ROUTE_CONSTANTS;
 
         // Set dynamic routes

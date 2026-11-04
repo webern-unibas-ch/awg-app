@@ -44,7 +44,7 @@ describe('EditionComplex (DONE)', () => {
         );
 
         expectToBe(complex.complexId.route, `${EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.route}100_2`);
-        expectToBe(complex.complexId.short, `${EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.short}&nbsp;100/2`);
+        expectToBe(complex.complexId.short, `${EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.short}\u00A0100/2`);
     });
 
     it('... should have an empty resp statement if it is missing', () => {

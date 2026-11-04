@@ -448,8 +448,12 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                     });
 
                     it('... should display edition root, series, section and complex', () => {
-                        const complexShortWithSpace = expectedComplex.complexId.short.replace(/&nbsp;/g, '\u00A0');
-                        const expectedItemTexts = [EDITION.short, series.full, section.full, complexShortWithSpace];
+                        const expectedItemTexts = [
+                            EDITION.short,
+                            series.full,
+                            section.full,
+                            expectedComplex.complexId.short,
+                        ];
 
                         const itemTexts = getItemTexts(expectedItemTexts.length);
 
@@ -505,8 +509,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                     it('... should display the composite complex before the part', () => {
                         const itemTexts = getItemTexts(5);
 
-                        const toText = (label: string): string => label.replace(/&nbsp;/g, ' ');
-                        const expectedTexts = [toText(opus.complexId.short), toText(part.complexId.short)];
+                        const expectedTexts = [opus.complexId.short, part.complexId.short];
 
                         expectToEqual(itemTexts.slice(3), expectedTexts);
                     });
