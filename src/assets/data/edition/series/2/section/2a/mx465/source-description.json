@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 465.<br />Enthält auch Tintenniederschrift von Studienkomposition „Komm heilʼger Geist, du Tröster mein“ M 84 sowie Skizzen zu Studienkompositionen M* 464, M* 466–467, M* 472–473, M* 480–483.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition M* 465.<br />Enthält auch Tintenniederschrift von Studienkomposition „Komm heilʼger Geist, du Tröster mein“ M 84 sowie Skizzen zu Studienkompositionen M* 464, M* 466–467, M* 472–473, M* 480–483.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -247,7 +247,7 @@
                             "complexId": "mx465",
                             "sheetId": "Mx465_Sk1"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 465)",
+                        "itemDescription": "(Skizze zu Studienkomposition M* 465)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -271,7 +271,7 @@
                             "complexId": "mx466",
                             "sheetId": "Mx466_Sk1"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 466)",
+                        "itemDescription": "(Skizze zu Studienkomposition M* 466)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -295,7 +295,7 @@
                             "complexId": "mx467",
                             "sheetId": "Mx467_Sk1"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 467)",
+                        "itemDescription": "(Skizze zu Studienkomposition M* 467)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -502,7 +502,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 465.<br />Enthält auch Tintenniederschrift von Studienkompositionen M* 464 und M* 466–467 sowie Skizzen zu Studienkompositionen M* 455–463, M* 468–469, „Dämmerstunde“ M 10 sowie Skizze von der Hand Schönbergs.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition M* 465.<br />Enthält auch Tintenniederschrift von Studienkompositionen M* 464 und M* 466–467 sowie Skizzen zu Studienkompositionen M* 455–463, M* 468–469, „Dämmerstunde“ M 10 sowie Skizze von der Hand Schönbergs.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": ["1 Bogen (Bl. 1/2). Horizontale Knickfalte, der Bogen ist in der Falte eingerissen."],
@@ -813,7 +813,7 @@
                             "complexId": "mx465",
                             "sheetId": "Mx465_TF1"
                         },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 465)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition M* 465)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -837,7 +837,7 @@
                             "complexId": "mx466",
                             "sheetId": "Mx466_TF1"
                         },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 466)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition M* 466)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -861,7 +861,7 @@
                             "complexId": "mx467",
                             "sheetId": "Mx467_TF1"
                         },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 467)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition M* 467)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -1005,7 +1005,7 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 465: <a data-complex-id='mx465' data-sheet-id='Mx465_TF1'>einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition M* 465: <a data-complex-id='mx465' data-sheet-id='Mx465_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1034,7 +1034,7 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit blauem Buntstift von der Hand Schönbergs)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 465: <a data-complex-id='mx465' data-sheet-id='Mx465_TF1'>einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition M* 465: <a data-complex-id='mx465' data-sheet-id='Mx465_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
