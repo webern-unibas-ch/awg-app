@@ -5,13 +5,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 
 import * as D3_ZOOM from 'd3-zoom';
 
-import {
-    expectSpyCall,
-    expectToBe,
-    expectToEqual,
-    getAndExpectDebugElementByDirective,
-    getItemAt,
-} from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
 
 import { ZoomConfig } from './zoom.model';
@@ -38,8 +32,8 @@ describe('SvgZoomDirective (DONE)', () => {
     let svgEl: SVGSVGElement;
     let targetEl: SVGGElement;
 
-    const getDirectiveDes = (): DebugElement[] =>
-        getAndExpectDebugElementByDirective(fixture.debugElement, SvgZoomDirective, 1, 1);
+    const getDirectiveDe = (): DebugElement =>
+        getAndExpectDebugElementByDirective(fixture.debugElement, SvgZoomDirective, 1, 1)[0];
     const getCurrentTransform = () => D3_ZOOM.zoomTransform(svgEl);
 
     beforeAll(() => {
@@ -57,7 +51,7 @@ describe('SvgZoomDirective (DONE)', () => {
         fixture = TestBed.createComponent(SvgZoomTestHostComponent);
         host = fixture.componentInstance;
 
-        const directiveDe = getItemAt(getDirectiveDes(), 0);
+        const directiveDe = getDirectiveDe();
         directive = directiveDe.injector.get(SvgZoomDirective);
         svgEl = directiveDe.nativeElement;
         targetEl = svgEl.querySelector('g') as SVGGElement;

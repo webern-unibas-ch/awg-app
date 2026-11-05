@@ -5,13 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import * as D3_ZOOM from 'd3-zoom';
 
-import {
-    expectSpyCall,
-    expectToBe,
-    expectToEqual,
-    getAndExpectDebugElementByDirective,
-    getItemAt,
-} from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
@@ -40,8 +34,8 @@ describe('CanvasZoomDirective (DONE)', () => {
     let directive: CanvasZoomDirective;
     let canvasEl: HTMLCanvasElement;
 
-    const getDirectiveDes = (): DebugElement[] =>
-        getAndExpectDebugElementByDirective(fixture.debugElement, CanvasZoomDirective, 1, 1);
+    const getDirectiveDe = (): DebugElement =>
+        getAndExpectDebugElementByDirective(fixture.debugElement, CanvasZoomDirective, 1, 1)[0];
     const getCurrentTransform = () => D3_ZOOM.zoomTransform(canvasEl);
     const filter = (event: Partial<MouseEvent | WheelEvent | TouchEvent>): boolean =>
         directive['_zoomBehaviour'].filter().call(canvasEl, event as MouseEvent, undefined);
@@ -56,7 +50,7 @@ describe('CanvasZoomDirective (DONE)', () => {
         fixture = TestBed.createComponent(CanvasZoomTestHostComponent);
         host = fixture.componentInstance;
 
-        const directiveDe = getItemAt(getDirectiveDes(), 0);
+        const directiveDe = getDirectiveDe();
         directive = directiveDe.injector.get(CanvasZoomDirective);
         canvasEl = directiveDe.nativeElement;
     });
