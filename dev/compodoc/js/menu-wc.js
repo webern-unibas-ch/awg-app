@@ -941,6 +941,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/FolioSvgSheet.html" data-type="entity-link" >FolioSvgSheet</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/FolioSvgSystem.html" data-type="entity-link" >FolioSvgSystem</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/FolioSvgSystems.html" data-type="entity-link" >FolioSvgSystems</a>
                             </li>
                             <li class="link">

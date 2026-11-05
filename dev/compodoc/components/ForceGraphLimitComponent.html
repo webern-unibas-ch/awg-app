@@ -371,7 +371,7 @@ displayed by the <a href="../components/ForceGraphComponent.html">ForceGraphComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:90</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -404,7 +404,7 @@ displayed by the <a href="../components/ForceGraphComponent.html">ForceGraphComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:83</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -436,7 +436,7 @@ displayed by the <a href="../components/ForceGraphComponent.html">ForceGraphComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:90</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -483,7 +483,7 @@ displayed by the <a href="../components/ForceGraphComponent.html">ForceGraphComp
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:105</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:111</a></div>
                         </td>
                     </tr>
 
@@ -522,7 +522,7 @@ displayed by the <a href="../components/ForceGraphComponent.html">ForceGraphComp
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:98</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -561,7 +561,7 @@ displayed by the <a href="../components/ForceGraphComponent.html">ForceGraphComp
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:91</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts:97</a></div>
                         </td>
                     </tr>
 
@@ -603,21 +603,20 @@ const FORCE_GRAPH_LIMIT_MIN &#x3D; 5;
 const FORCE_GRAPH_LIMIT_STEPS: readonly number[] &#x3D; [1, 2.5, 5];
 
 /**
- * Private function: _toLimitValue.
+ * Private generator function: _generateLimitValues.
  *
- * It gets the limit value (number of triples) at the given index of the sequence
+ * It generates the endless sequence of limit values (number of triples)
  * 5, 10, 25, 50, 100, 250, 500, 1000, 2500, ...
  *
- * @param {number} index The given index.
- * @returns {number} The limit value.
+ * @returns {Generator&lt;number&gt;} The limit values in ascending order.
  */
-function _toLimitValue(index: number): number {
-    if (index &#x3D;&#x3D;&#x3D; 0) {
-        return FORCE_GRAPH_LIMIT_MIN;
+function* _generateLimitValues(): Generator&lt;number&gt; {
+    yield FORCE_GRAPH_LIMIT_MIN;
+    for (let magnitude &#x3D; 10; ; magnitude *&#x3D; 10) {
+        for (const step of FORCE_GRAPH_LIMIT_STEPS) {
+            yield step * magnitude;
+        }
     }
-    const stepIndex &#x3D; index - 1;
-    const magnitude &#x3D; 10 ** (1 + Math.floor(stepIndex / FORCE_GRAPH_LIMIT_STEPS.length));
-    return FORCE_GRAPH_LIMIT_STEPS[stepIndex % FORCE_GRAPH_LIMIT_STEPS.length] * magnitude;
 }
 
 /**
@@ -631,9 +630,16 @@ function _toLimitValue(index: number): number {
  */
 function _toLimitValues(tripleCount: number): number[] {
     const limitValues: number[] &#x3D; [];
+    // Only a finite triple count ends the endless sequence
+    if (!Number.isFinite(tripleCount)) {
+        return limitValues;
+    }
 
-    for (let index &#x3D; 0; _toLimitValue(index) &lt; tripleCount; index++) {
-        limitValues.push(_toLimitValue(index));
+    for (const limitValue of _generateLimitValues()) {
+        if (limitValue &gt;&#x3D; tripleCount) {
+            break;
+        }
+        limitValues.push(limitValue);
     }
 
     return limitValues;

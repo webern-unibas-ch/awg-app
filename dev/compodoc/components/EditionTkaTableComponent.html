@@ -665,12 +665,12 @@ Multiple occurrences are disambiguated with an <code>a</code>, <code>b</code>, â
         const isCorrections &#x3D; this.isCorrections();
         const isRowtable &#x3D; this.isRowtable();
 
-        let tableHeader &#x3D; TKA_TABLE_HEADERS[&#x27;default&#x27;];
+        let tableHeader &#x3D; TKA_TABLE_HEADERS.default;
 
         if (isRowtable) {
-            tableHeader &#x3D; TKA_TABLE_HEADERS[&#x27;rowtable&#x27;];
+            tableHeader &#x3D; TKA_TABLE_HEADERS.rowtable;
         } else if (isCorrections) {
-            tableHeader &#x3D; TKA_TABLE_HEADERS[&#x27;corrections&#x27;];
+            tableHeader &#x3D; TKA_TABLE_HEADERS.corrections;
         }
 
         if (EDITION_UTILS.isSketchId(id) &amp;&amp; !isCorrections) {
@@ -773,12 +773,12 @@ export class EditionTkaTableComponent {
         const isCorrections &#x3D; this.isCorrections();
         const isRowtable &#x3D; this.isRowtable();
 
-        let tableHeader &#x3D; TKA_TABLE_HEADERS[&#x27;default&#x27;];
+        let tableHeader &#x3D; TKA_TABLE_HEADERS.default;
 
         if (isRowtable) {
-            tableHeader &#x3D; TKA_TABLE_HEADERS[&#x27;rowtable&#x27;];
+            tableHeader &#x3D; TKA_TABLE_HEADERS.rowtable;
         } else if (isCorrections) {
-            tableHeader &#x3D; TKA_TABLE_HEADERS[&#x27;corrections&#x27;];
+            tableHeader &#x3D; TKA_TABLE_HEADERS.corrections;
         }
 
         if (EDITION_UTILS.isSketchId(id) &amp;&amp; !isCorrections) {

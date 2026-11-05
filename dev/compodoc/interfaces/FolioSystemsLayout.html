@@ -585,6 +585,13 @@ interface FolioSystemsLayout {
 }
 
 /**
+ * Type: ValidFolioContent.
+ *
+ * It describes a folio content that can be calculated (see {@link isValidFolioContent}).
+ */
+type ValidFolioContent &#x3D; FolioContent &amp; { segments: [FolioSegment] };
+
+/**
  * Method: isValidFolioContent.
  *
  * It checks if a given folio content can be calculated:
@@ -595,7 +602,7 @@ interface FolioSystemsLayout {
  * @param {number} numberOfSystems The given number of systems of the folio.
  * @returns {boolean} The result of the check.
  */
-function isValidFolioContent(content: FolioContent, numberOfSystems: number): boolean {
+function isValidFolioContent(content: FolioContent, numberOfSystems: number): content is ValidFolioContent {
     if (content.segments?.length !&#x3D;&#x3D; 1) {
         console.error(&#x27;[FolioCalculation] Content needs exactly one segment&#x27;, content);
         return false;
@@ -714,14 +721,13 @@ function calculateSystems(
     const isLineSpaceLimited &#x3D; SYSTEM_LINE_SPACE_FACTOR * factor &gt; maxLineSpace;
     const staffHeight &#x3D;
         (isLineSpaceLimited ? maxLineSpace : SYSTEM_LINE_SPACE_FACTOR * factor) * (SYSTEM_NUMBER_OF_LINES - 1);
-    const yArray &#x3D; Array.from({ length: numberOfSystems }, (_, systemIndex) &#x3D;&gt; {
-        const yStart &#x3D; NUMBER_UTILS.roundToDecimals(startY + systemIndex * spacePerSystem, 2);
-        return Array.from({ length: SYSTEM_NUMBER_OF_LINES }, (__, lineIndex) &#x3D;&gt;
-            isLineSpaceLimited
-                ? NUMBER_UTILS.roundToDecimals(yStart + lineIndex * maxLineSpace, 2)
-                : yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor
-        );
-    });
+    const toLineY &#x3D; (yStart: number, lineIndex: number): number &#x3D;&gt;
+        isLineSpaceLimited
+            ? NUMBER_UTILS.roundToDecimals(yStart + lineIndex * maxLineSpace, 2)
+            : yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor;
+    const yStarts &#x3D; Array.from({ length: numberOfSystems }, (_, systemIndex) &#x3D;&gt;
+        NUMBER_UTILS.roundToDecimals(startY + systemIndex * spacePerSystem, 2)
+    );
 
     // System labels: font size limited by the space per system, right-aligned before the systems,
     // With their digits vertically centered at the middle line
@@ -736,13 +742,16 @@ function calculateSystems(
     return {
         systems: {
             labelFontSize,
-            labelPositions: yArray.map(lineArray &#x3D;&gt; ({
-                x: labelX,
-                y: NUMBER_UTILS.roundToDecimals(lineArray[middleLineIndex] + labelBaselineOffset, 2),
+            items: yStarts.map(yStart &#x3D;&gt; ({
+                labelPosition: {
+                    x: labelX,
+                    y: NUMBER_UTILS.roundToDecimals(toLineY(yStart, middleLineIndex) + labelBaselineOffset, 2),
+                },
+                lines: Array.from({ length: SYSTEM_NUMBER_OF_LINES }, (_, lineIndex): FolioSvgLine &#x3D;&gt; {
+                    const y &#x3D; toLineY(yStart, lineIndex);
+                    return { start: { x: startX, y }, end: { x: endX, y } };
+                }),
             })),
-            lines: yArray.map(lineArray &#x3D;&gt;
-                lineArray.map((y): FolioSvgLine &#x3D;&gt; ({ start: { x: startX, y }, end: { x: endX, y } }))
-            ),
             reversed: folio.reversed ?? false,
         },
         startX,
@@ -792,7 +801,7 @@ function calculateContentSegmentX(
  */
 function calculateContentSegmentY(
     segment: FolioSegment,
-    { lines, reversed }: FolioSvgSystems,
+    { items, reversed }: FolioSvgSystems,
     verticalPadding: number,
     isStart: boolean
 ): number {
@@ -800,9 +809,9 @@ function calculateContentSegmentY(
     let systemIndex &#x3D; systemNumber - 1;
     // Reverse order of the system index if the systems are reversed
     if (reversed) {
-        systemIndex &#x3D; lines.length - 1 - systemIndex;
+        systemIndex &#x3D; items.length - 1 - systemIndex;
     }
-    const systemLines &#x3D; lines[systemIndex];
+    const systemLines &#x3D; items[systemIndex]?.lines;
     const systemLine &#x3D; isStart ? systemLines?.at(0) : systemLines?.at(-1);
 
     if (!systemLine) {
@@ -829,13 +838,13 @@ function calculateContentSegmentY(
  *
  * It calculates a content segment (polygon vertices, label and its center) of a given valid folio content.
  *
- * @param {FolioContent} content The given valid folio content.
+ * @param {ValidFolioContent} content The given valid folio content.
  * @param {FolioSystemsLayout} folioSystemsLayout The given calculated systems layout.
  * @param {number} segmentOffsetCorrection The given segment offset correction.
  * @returns {FolioSvgContentSegment} The calculated content segment.
  */
 function calculateContentSegment(
-    content: FolioContent,
+    content: ValidFolioContent,
     folioSystemsLayout: FolioSystemsLayout,
     segmentOffsetCorrection: number
 ): FolioSvgContentSegment {
@@ -848,13 +857,12 @@ function calculateContentSegment(
         sigle,
         sigleAddendum,
         segmentSplit,
-        segments,
+        segments: [segment],
     } &#x3D; content;
     const { systems } &#x3D; folioSystemsLayout;
 
     // Dynamically adjust the offset correction based on the number of systems (reference: 18 systems)
-    const offsetCorrection &#x3D; segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.lines.length);
-    const segment &#x3D; segments[0];
+    const offsetCorrection &#x3D; segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.items.length);
 
     const startX &#x3D; calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, true);
     const endX &#x3D; calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, false);
@@ -909,7 +917,7 @@ export function calculateFolioSvgData(
 
     const sheet &#x3D; calculateSheet(folioSettings, folio);
     const folioSystemsLayout &#x3D; calculateSystems(folioSettings, sheet, folio);
-    const numberOfSystems &#x3D; folioSystemsLayout.systems.lines.length;
+    const numberOfSystems &#x3D; folioSystemsLayout.systems.items.length;
 
     return {
         viewBox: new ViewBox((formatX + 2 * initialOffsetX) * factor, (formatY + 2 * initialOffsetY) * factor),

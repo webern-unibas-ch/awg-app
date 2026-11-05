@@ -905,8 +905,8 @@ and a group with its lines.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="324"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:324</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="323"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:323</a></div>
                         </td>
                     </tr>
 
@@ -1017,8 +1017,8 @@ a group with the trademark rectangle, the trademark symbol
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="366"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:366</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="365"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:365</a></div>
                         </td>
                     </tr>
 
@@ -1449,8 +1449,8 @@ import {
     FolioSettings,
     FolioSvgContentSegment,
     FolioSvgData,
-    FolioSvgLine,
     FolioSvgRectangle,
+    FolioSvgSystem,
 } from &#x27;../models/folio-svg-data.model&#x27;;
 import { Folio } from &#x27;../models/folio.model&#x27;;
 
@@ -1617,7 +1617,7 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the content segments.
      */
     private _drawContentSegments(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
-        const numberOfSystems &#x3D; folioSvgData.systems.lines.length || FOLIO_DEFAULT_NUMBER_OF_SYSTEMS;
+        const numberOfSystems &#x3D; folioSvgData.systems.items.length || FOLIO_DEFAULT_NUMBER_OF_SYSTEMS;
         // Dynamically adjust the stroke width based on the number of systems (reference: 18 systems)
         const strokeWidth &#x3D; this._contentSegmentStrokeWidth * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / numberOfSystems);
         const { folioId } &#x3D; folioSvgData.sheet;
@@ -1719,11 +1719,10 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the systems.
      */
     private _drawSystems(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
-        const { lines, labelFontSize, labelPositions, reversed } &#x3D; folioSvgData.systems;
+        const { items, labelFontSize, reversed } &#x3D; folioSvgData.systems;
 
-        lines.forEach((systemLines: FolioSvgLine[], systemIndex: number) &#x3D;&gt; {
-            const labelIndex &#x3D; reversed ? lines.length - systemIndex : systemIndex + 1;
-            const labelPosition &#x3D; labelPositions[systemIndex];
+        items.forEach(({ labelPosition, lines }: FolioSvgSystem, systemIndex: number) &#x3D;&gt; {
+            const labelIndex &#x3D; reversed ? items.length - systemIndex : systemIndex + 1;
 
             const systemsGroupSelection &#x3D; this._appendSvgElementWithAttrs(sheetGroupSelection, &#x27;g&#x27;, {
                 class: &#x27;systems-group&#x27;,
@@ -1740,7 +1739,7 @@ export class EditionFolioDrawingService {
                 &#x27;text-anchor&#x27;: &#x27;end&#x27;,
             }).text(labelIndex);
 
-            systemLines.forEach(line &#x3D;&gt; {
+            lines.forEach(line &#x3D;&gt; {
                 this._appendSvgElementWithAttrs(systemLineGroupSelection, &#x27;line&#x27;, {
                     class: &#x27;system-line&#x27;,
                     x1: line.start.x,

@@ -251,7 +251,7 @@ to store information about an edition complex.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:223</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:231</a></div>
                             </td>
                         </tr>
 
@@ -369,7 +369,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:218</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:226</a></div>
                         </td>
                     </tr>
 
@@ -401,7 +401,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:211</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:219</a></div>
                         </td>
                     </tr>
 
@@ -433,7 +433,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:206</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:214</a></div>
                         </td>
                     </tr>
 
@@ -465,7 +465,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:201</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:209</a></div>
                         </td>
                     </tr>
 
@@ -497,7 +497,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:196</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:204</a></div>
                         </td>
                     </tr>
 
@@ -530,7 +530,7 @@ to store information about an edition complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:223</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:231</a></div>
                         </td>
                     </tr>
 
@@ -572,8 +572,8 @@ to store information about an edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="309"
-                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:309</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="317"
+                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:317</a></div>
                         </td>
                     </tr>
 
@@ -650,8 +650,8 @@ to store information about an edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="324"
-                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:324</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="332"
+                                    class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:332</a></div>
                         </td>
                     </tr>
 
@@ -729,6 +729,14 @@ import {
     EditionRouteConstant,
     EditionRouteConstantsKey,
 } from &#x27;../edition-routes.constants&#x27;;
+
+/**
+ * Constant: PERSONS_BY_REF.
+ *
+ * It keeps the persons of PERSONS_DATA by their reference key
+ * (as a map, so a reference from the data never matches an inherited key like &#x60;constructor&#x60;).
+ */
+const PERSONS_BY_REF &#x3D; new Map&lt;string, MetaPerson&gt;(Object.entries(PERSONS_DATA));
 
 /**
  * The EditionComplexJsonPersonRef interface.
@@ -1047,7 +1055,7 @@ export class EditionComplex {
     }): EditionComplexRespStatement {
         const editors: MetaPerson[] &#x3D;
             respStatement?.editors?.map(
-                editor &#x3D;&gt; PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: &#x27;&#x27;, identifiers: {} }
+                editor &#x3D;&gt; PERSONS_BY_REF.get(editor.$ref) ?? { name: editor.$ref, homepage: &#x27;&#x27;, identifiers: {} }
             ) ?? [];
         return { editors, lastModified: respStatement?.lastModified ?? &#x27;&#x27; };
     }

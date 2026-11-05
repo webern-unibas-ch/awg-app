@@ -244,7 +244,7 @@ as calculated by <code>calculateFolioSvgData</code> (see EditionFolioDrawingServ
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:227</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:240</a></div>
                                 </td>
                             </tr>
 
@@ -289,7 +289,7 @@ as calculated by <code>calculateFolioSvgData</code> (see EditionFolioDrawingServ
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:217</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="230" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:230</a></div>
                                 </td>
                             </tr>
 
@@ -334,7 +334,7 @@ as calculated by <code>calculateFolioSvgData</code> (see EditionFolioDrawingServ
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:222</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:235</a></div>
                                 </td>
                             </tr>
 
@@ -379,7 +379,7 @@ as calculated by <code>calculateFolioSvgData</code> (see EditionFolioDrawingServ
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:225</a></div>
                                 </td>
                             </tr>
 
@@ -519,6 +519,25 @@ export interface FolioSvgSheet {
 }
 
 /**
+ * The FolioSvgSystem interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the svg data for a single system of a folio.
+ */
+export interface FolioSvgSystem {
+    /**
+     * The position of the system label (right end of its baseline,
+     * so that the digits are vertically centered at the middle line of the system).
+     */
+    readonly labelPosition: FolioSvgPoint;
+
+    /**
+     * The staff lines of the system.
+     */
+    readonly lines: FolioSvgLine[];
+}
+
+/**
  * The FolioSvgSystems interface.
  *
  * It is used in the context of the edition folio convolutes
@@ -531,15 +550,9 @@ export interface FolioSvgSystems {
     readonly labelFontSize: number;
 
     /**
-     * The positions of the system labels (right end of their baseline,
-     * so that the digits are vertically centered at the middle line of each system).
+     * The systems of the folio (from top to bottom).
      */
-    readonly labelPositions: FolioSvgPoint[];
-
-    /**
-     * The lines of the systems (per system an array of its staff lines).
-     */
-    readonly lines: FolioSvgLine[][];
+    readonly items: FolioSvgSystem[];
 
     /**
      * The boolean flag if the systems are reversed.
