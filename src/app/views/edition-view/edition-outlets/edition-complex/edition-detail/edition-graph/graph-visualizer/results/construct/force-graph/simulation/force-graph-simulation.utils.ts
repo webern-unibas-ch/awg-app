@@ -247,6 +247,9 @@ function _toD3SimulationLinks(links: Int32Array): ForceGraphD3SimulationLink[] {
     for (let index = 0; index < links.length; index += 2) {
         const sourceIndex = links[index];
         const targetIndex = links[index + 1];
+        if (sourceIndex === undefined || targetIndex === undefined) {
+            throw new Error(`[FORCE_GRAPH_SIMULATION_UTILS] Incomplete link pair at index ${index}.`);
+        }
         d3Links.push({ source: sourceIndex, target: targetIndex });
     }
     return d3Links;

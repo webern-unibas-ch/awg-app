@@ -331,7 +331,7 @@ export class EditionViewService {
      */
     private _parseViewFromUrl(url: string): string {
         const tree = this._router.parseUrl(url);
-        const segments = [...(tree.root.children['primary']?.segments || [])];
+        const segments = [...(tree.root.children['primary']?.segments ?? [])];
 
         const lastSegment = segments.pop();
         if (!lastSegment) {

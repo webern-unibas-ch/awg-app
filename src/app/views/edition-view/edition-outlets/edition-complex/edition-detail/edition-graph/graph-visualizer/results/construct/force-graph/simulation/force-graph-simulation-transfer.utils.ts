@@ -32,12 +32,13 @@ function _toLinkIndices(edges: readonly ForceGraphEdge[], nodes: readonly ForceG
 
     const linkIndices: number[] = [];
     edges.forEach(edge => {
-        const path = FORCE_GRAPH_UTILS.edgePath(edge);
         // A link between each two consecutive nodes of the path
-        for (let index = 1; index < path.length; index++) {
-            const sourceIndex = getNodeIndex(path[index - 1]);
-            const targetIndex = getNodeIndex(path[index]);
-            linkIndices.push(sourceIndex, targetIndex);
+        let previousNode: ForceGraphNode | undefined;
+        for (const node of FORCE_GRAPH_UTILS.edgePath(edge)) {
+            if (previousNode) {
+                linkIndices.push(getNodeIndex(previousNode), getNodeIndex(node));
+            }
+            previousNode = node;
         }
     });
     return Int32Array.from(linkIndices);
@@ -46,14 +47,15 @@ function _toLinkIndices(edges: readonly ForceGraphEdge[], nodes: readonly ForceG
 /**
  * Utils method: getPosition.
  *
- * It gets the position of the node with the given index from the given positions (pairs: x, y, x, y, ...).
+ * It gets the position of the node with the given index from the given positions (pairs: x, y, x, y, ...),
+ * with NaN for an unknown position (as for an index beyond the positions).
  *
  * @param {Float32Array} positions The given positions.
  * @param {number} index The given index of the node.
  * @returns {ForceGraphPoint} The position of the node.
  */
 export function getPosition(positions: Float32Array, index: number): ForceGraphPoint {
-    return { x: positions[2 * index], y: positions[2 * index + 1] };
+    return { x: positions[2 * index] ?? Number.NaN, y: positions[2 * index + 1] ?? Number.NaN };
 }
 
 /**

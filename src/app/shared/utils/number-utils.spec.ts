@@ -40,6 +40,15 @@ describe('NumberUtils (DONE)', () => {
                         [2.345, 2.35],
                         [-2.344, -2.34],
                         [10, 10],
+                        [1e21, 1e21],
+                    ],
+                },
+                {
+                    decimals: 8,
+                    cases: [
+                        [1.23456789e-7, 1.2e-7],
+                        [1.25e-7, 1.3e-7],
+                        [0.123456789, 0.12345679],
                     ],
                 },
             ])('... for $decimals decimal places', ({ decimals, cases }) => {
@@ -103,6 +112,20 @@ describe('NumberUtils (DONE)', () => {
                         [1.5, 2],
                         [1.51, 2],
                         [10, 10],
+                    ],
+                },
+                {
+                    stepSize: 1e-7,
+                    cases: [
+                        [1.23e-7, 1e-7],
+                        [1.5e-7, 2e-7],
+                    ],
+                },
+                {
+                    stepSize: 1.5e-7,
+                    cases: [
+                        [1.234e-7, 1.2e-7],
+                        [1.25e-7, 1.3e-7],
                     ],
                 },
             ])('... for the step size $stepSize', ({ stepSize, cases }) => {

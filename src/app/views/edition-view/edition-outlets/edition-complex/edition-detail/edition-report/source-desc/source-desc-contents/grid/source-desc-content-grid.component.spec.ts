@@ -108,10 +108,10 @@ describe('SourceDescContentGridComponent (DONE)', () => {
             expect(() => component.parentComplexId()).toThrow();
         });
 
-        it('... should throw when accessing computed signal `folioRoutes` due to missing input', () => {
-            expectToBe(isSignal(component.folioRoutes), true);
+        it('... should throw when accessing computed signal `folioItems` due to missing input', () => {
+            expectToBe(isSignal(component.folioItems), true);
 
-            expect(() => component.folioRoutes()).toThrow();
+            expect(() => component.folioItems()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -159,15 +159,16 @@ describe('SourceDescContentGridComponent (DONE)', () => {
             });
         });
 
-        describe('... computed signal `folioRoutes`', () => {
-            it('... should hold the sheet route of each folio from the navigation service', () => {
-                const expectedFolioRoutes = expectedFolios.map(folio =>
-                    folio.folioLinkTo
+        describe('... computed signal `folioItems`', () => {
+            it('... should hold each folio with its sheet route from the navigation service', () => {
+                const expectedFolioItems = expectedFolios.map(folio => ({
+                    folio,
+                    sheetRoute: folio.folioLinkTo
                         ? toSheetRoute({ complexId: expectedComplexId, sheetId: folio.folioLinkTo })
-                        : null
-                );
+                        : null,
+                }));
 
-                expectToEqual(component.folioRoutes(), expectedFolioRoutes);
+                expectToEqual(component.folioItems(), expectedFolioItems);
             });
 
             it('... should hold sheet routes with an empty complexId if itemLinkTo is undefined', async () => {
@@ -176,10 +177,10 @@ describe('SourceDescContentGridComponent (DONE)', () => {
 
                 const expectedFolioRoute = toSheetRoute({ complexId: '', sheetId: expectedFolioId });
 
-                expectToEqual(component.folioRoutes()[0], expectedFolioRoute);
+                expectToEqual(component.folioItems()[0].sheetRoute, expectedFolioRoute);
             });
 
-            it('... should hold null for folios without folioLinkTo', async () => {
+            it('... should hold null as sheet route for folios without folioLinkTo', async () => {
                 fixture.componentRef.setInput('content', {
                     ...expectedContent,
                     folios: expectedFolios.map(folio => ({ ...folio, folioLinkTo: undefined })),
@@ -188,7 +189,17 @@ describe('SourceDescContentGridComponent (DONE)', () => {
 
                 const expectedFolioRoutes = expectedFolios.map(() => null);
 
-                expectToEqual(component.folioRoutes(), expectedFolioRoutes);
+                expectToEqual(
+                    component.folioItems().map(folioItem => folioItem.sheetRoute),
+                    expectedFolioRoutes
+                );
+            });
+
+            it('... should hold no folio items for content without folios', async () => {
+                fixture.componentRef.setInput('content', { ...expectedContent, folios: undefined });
+                await detectChangesOnPush(fixture);
+
+                expectToEqual(component.folioItems(), []);
             });
         });
 
@@ -363,7 +374,7 @@ describe('SourceDescContentGridComponent (DONE)', () => {
                         const linkCmp = linkDes[0].injector.get(ConditionalLinkComponent);
 
                         expectToBe(linkCmp.isClickable(), !!expectedFolios[index].folioLinkTo);
-                        expectToBe(linkCmp.targetRoute(), component.folioRoutes()[index]);
+                        expectToBe(linkCmp.targetRoute(), component.folioItems()[index].sheetRoute);
                     });
                 });
 

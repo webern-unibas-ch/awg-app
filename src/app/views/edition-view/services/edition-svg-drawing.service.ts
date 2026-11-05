@@ -222,10 +222,11 @@ export class EditionSvgDrawingService {
         // Get the viewBox attributes from the SVG XML DOM tree
         const svgXMLViewBox: string = D3_SELECTION.select(svgXML).attr('viewBox');
 
-        const viewBoxParts = svgXMLViewBox.split(' ');
-
-        const width = +viewBoxParts[2];
-        const height = +viewBoxParts[3];
+        // The values may be separated by whitespace and/or commas
+        const [, , width = 0, height = 0] = svgXMLViewBox
+            .trim()
+            .split(/[\s,]+/)
+            .map(Number);
 
         return new ViewBox(width, height);
     }

@@ -77,10 +77,10 @@ describe('SourceListComponent (DONE)', () => {
             expect(() => component.sourceListData()).toThrow();
         });
 
-        it('... should throw when accessing computed signal `sourceReportRoutes` due to missing input', () => {
-            expectToBe(isSignal(component.sourceReportRoutes), true);
+        it('... should throw when accessing computed signal `sourceItems` due to missing input', () => {
+            expectToBe(isSignal(component.sourceItems), true);
 
-            expect(() => component.sourceReportRoutes()).toThrow();
+            expect(() => component.sourceItems()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -103,10 +103,21 @@ describe('SourceListComponent (DONE)', () => {
             expectToEqual(component.sourceListData(), expectedSourceListData);
         });
 
-        it('... should have computed signal `sourceReportRoutes` to hold the report routes of the sources with description', () => {
+        it('... should have computed signal `sourceItems` to hold each source with the report route of the sources with description', () => {
             const expectedReportRoutes = getExpectedReportRoutes();
+            const expectedSourceItems = expectedSourceListData.sources.map((source, index) => ({
+                source,
+                reportRoute: expectedReportRoutes[index],
+            }));
 
-            expectToEqual(component.sourceReportRoutes(), expectedReportRoutes);
+            expectToEqual(component.sourceItems(), expectedSourceItems);
+        });
+
+        it('... should have recomputed signal `sourceItems` to hold no source items if sourceListData is null', async () => {
+            fixture.componentRef.setInput('sourceListData', null);
+            await detectChangesOnPush(fixture);
+
+            expectToEqual(component.sourceItems(), []);
         });
 
         describe('VIEW', () => {

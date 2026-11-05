@@ -21,7 +21,7 @@ export interface TkaTableHeaderColumn {
  *
  * It is used in the context of the TkA tables.
  */
-export const TKA_TABLE_HEADERS: Record<string, TkaTableHeaderColumn[]> = {
+export const TKA_TABLE_HEADERS = {
     default: [
         { ref: 'measure', label: 'Takt' },
         { ref: 'system', label: 'System' },
@@ -40,4 +40,4 @@ export const TKA_TABLE_HEADERS: Record<string, TkaTableHeaderColumn[]> = {
         { ref: 'location', label: 'Reihe/Reihenton' },
         { ref: 'comment', label: 'Anmerkung' },
     ],
-};
+} satisfies Record<string, TkaTableHeaderColumn[]>;

@@ -228,7 +228,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
         describe('... systems', () => {
             it('... should draw one systems group with one system line group per system', () => {
-                const systemCount = expectedFolioSvgData.systems.lines.length;
+                const systemCount = expectedFolioSvgData.systems.items.length;
 
                 const rootGroupSelection = render(expectedFolioSvgData);
 
@@ -240,7 +240,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
             });
 
             it('... should draw the system labels numbered from top to bottom with the calculated font size', () => {
-                const { lines, labelFontSize, labelPositions } = expectedFolioSvgData.systems;
+                const { items, labelFontSize } = expectedFolioSvgData.systems;
 
                 const rootGroupSelection = render(expectedFolioSvgData);
                 const labelsSelection = rootGroupSelection.selectAll<SVGTextElement, unknown>(
@@ -249,29 +249,29 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
                 expectToEqual(
                     labelsSelection.nodes().map(node => node.textContent),
-                    lines.map((_line, index) => String(index + 1))
+                    items.map((_system, index) => String(index + 1))
                 );
-                expectToBe(labelsSelection.attr('x'), String(labelPositions[0].x));
-                expectToBe(labelsSelection.attr('y'), String(labelPositions[0].y));
+                expectToBe(labelsSelection.attr('x'), String(items[0].labelPosition.x));
+                expectToBe(labelsSelection.attr('y'), String(items[0].labelPosition.y));
                 expectToBe(labelsSelection.attr('text-anchor'), 'end');
                 expectToBe(labelsSelection.attr('font-size'), String(labelFontSize));
             });
 
             it('... should draw the system labels numbered from bottom to top if the systems are reversed', () => {
                 const svgData = createSvgData(expectedReversedFolio);
-                const systemCount = svgData.systems.lines.length;
+                const systemCount = svgData.systems.items.length;
 
                 const rootGroupSelection = render(svgData);
                 const labelsSelection = rootGroupSelection.selectAll<SVGTextElement, unknown>('text.system-label');
 
                 expectToEqual(
                     labelsSelection.nodes().map(node => node.textContent),
-                    svgData.systems.lines.map((_line, index) => String(systemCount - index))
+                    svgData.systems.items.map((_system, index) => String(systemCount - index))
                 );
             });
 
             it('... should draw the lines of each system', () => {
-                const firstSystemLines = expectedFolioSvgData.systems.lines[0];
+                const firstSystemLines = expectedFolioSvgData.systems.items[0].lines;
 
                 const rootGroupSelection = render(expectedFolioSvgData);
                 const linesSelection = rootGroupSelection.select('g.system-line-group').selectAll('line.system-line');

@@ -103,6 +103,11 @@ describe('GraphQueryUtils (DONE)', () => {
                 expectToBe(foundQuery, expectedQueryList[0]);
             });
 
+            it('... should return undefined for an empty query list, with or without a given query', () => {
+                expect(findQuery([])).toBeUndefined();
+                expect(findQuery([], expectedQueryList[1])).toBeUndefined();
+            });
+
             describe('... should return the given query as is, if', () => {
                 it('... only queryLabel is known but not queryType', () => {
                     const changedQuery: GraphQuery = {

@@ -64,7 +64,8 @@ export class RdfStoreService {
     async select(turtle: string, query: string): Promise<RdfStoreSelectResult> {
         const rows = (await this._execute<RdfStoreSelectResponse | null>(turtle, query)) ?? [];
 
-        const variables = rows.length ? Object.keys(rows[0]) : [];
+        const [firstRow] = rows;
+        const variables = firstRow ? Object.keys(firstRow) : [];
         const bindings = rows.map(row =>
             Object.freeze(
                 Object.fromEntries(

@@ -85,35 +85,35 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 it('... should calculate five staff lines for each system', () => {
                     const { systems } = calculate(expectedFolio);
 
-                    expectToBe(systems.lines.length, 18);
-                    systems.lines.forEach(systemLines => expectToBe(systemLines.length, 5));
+                    expectToBe(systems.items.length, 18);
+                    systems.items.forEach(system => expectToBe(system.lines.length, 5));
                 });
 
                 it('... should calculate the staff lines of the first system within the systems area', () => {
                     const { systems } = calculate(expectedFolio);
 
                     expectToEqual(
-                        systems.lines[0],
+                        systems.items[0].lines,
                         [43.5, 45.11, 46.72, 48.33, 49.93].map(y => ({ start: { x: 57.07, y }, end: { x: 372.12, y } }))
                     );
                 });
 
                 it('... should limit the staff lines to 60 % of the space per system if the space is small', () => {
                     // 18 systems on 193 px: 10.72 px per system, default staff of 9 px would take 84 %
-                    const [firstSystem, secondSystem] = calculate(expectedFolio).systems.lines;
+                    const [firstSystem, secondSystem] = calculate(expectedFolio).systems.items;
 
-                    const spacePerSystem = secondSystem[0].start.y - firstSystem[0].start.y;
-                    const staffHeight = firstSystem[4].start.y - firstSystem[0].start.y;
+                    const spacePerSystem = secondSystem.lines[0].start.y - firstSystem.lines[0].start.y;
+                    const staffHeight = firstSystem.lines[4].start.y - firstSystem.lines[0].start.y;
 
                     expect(staffHeight / spacePerSystem).toBeCloseTo(0.6, 2);
                 });
 
                 it('... should keep the default line space if the space per system is large enough', () => {
                     // 9 systems on 193 px: 21.44 px per system, default staff of 9 px takes 42 %
-                    const [firstSystem] = calculate({ ...expectedFolio, systems: '9' }).systems.lines;
+                    const [firstSystem] = calculate({ ...expectedFolio, systems: '9' }).systems.items;
 
                     expectToEqual(
-                        firstSystem.map(line => line.start.y),
+                        firstSystem.lines.map(line => line.start.y),
                         [43.5, 45.75, 48, 50.25, 52.5]
                     );
                 });
@@ -121,19 +121,18 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 it('... should calculate the last staff line of the last system', () => {
                     const { systems } = calculate(expectedFolio);
 
-                    expectToEqual(systems.lines[17][4], {
+                    expectToEqual(systems.items[17].lines[4], {
                         start: { x: 57.07, y: 232.21 },
                         end: { x: 372.12, y: 232.21 },
                     });
                 });
 
-                it('... should calculate one label position per system before the systems at its middle line', () => {
+                it('... should calculate the label position of each system before the systems at its middle line', () => {
                     const { systems } = calculate(expectedFolio);
 
                     // Right end: 57.07 - 0.6 * 8.58; baseline: middle line + 0.35 * 8.58
-                    expectToBe(systems.labelPositions.length, 18);
-                    expectToEqual(systems.labelPositions[0], { x: 51.92, y: 49.72 });
-                    expectToEqual(systems.labelPositions[1], { x: 51.92, y: 60.44 });
+                    expectToEqual(systems.items[0].labelPosition, { x: 51.92, y: 49.72 });
+                    expectToEqual(systems.items[1].labelPosition, { x: 51.92, y: 60.44 });
                 });
 
                 it('... should limit the label font size to 80 % of the space per system if the space is small', () => {
@@ -161,8 +160,7 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 it('... should not calculate any system for a folio without systems', () => {
                     const { systems } = calculate({ ...expectedFolio, systems: '' });
 
-                    expectToEqual(systems.lines, []);
-                    expectToEqual(systems.labelPositions, []);
+                    expectToEqual(systems.items, []);
                 });
             });
 
@@ -263,7 +261,7 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 it('... should limit the vertical padding of the vertices to 30 % of the gap between the systems', () => {
                     // Gap of 4.29 px between the systems: padding 1.29 px instead of 4 px above the first line
                     const { systems, contentSegments } = calculate(expectedFolio);
-                    const firstLineOfSecondSystem = systems.lines[1][0].start.y;
+                    const firstLineOfSecondSystem = systems.items[1].lines[0].start.y;
                     const segmentTop = Number(contentSegments[0].vertices.split(' ')[1]);
 
                     expect(firstLineOfSecondSystem - segmentTop).toBeCloseTo(1.29, 2);

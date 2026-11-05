@@ -179,12 +179,12 @@ export class GraphVisualizerComponent {
      * @returns {void} Resets and performs the query.
      */
     resetQuery(query?: GraphQuery): void {
-        const queryList = this.queryList();
-        if (!queryList.length) {
+        const foundQuery = GRAPH_QUERY_UTILS.findQuery(this.queryList(), query);
+        if (!foundQuery) {
             return;
         }
 
-        this.query.set({ ...GRAPH_QUERY_UTILS.findQuery(queryList, query) });
+        this.query.set({ ...foundQuery });
 
         this.performQuery();
     }

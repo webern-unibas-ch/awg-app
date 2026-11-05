@@ -108,6 +108,16 @@ describe('EditionComplex (DONE)', () => {
         expectToEqual(complex.respStatement.editors, [{ name: 'PERSON_UNKNOWN', homepage: '', identifiers: {} }]);
     });
 
+    it('... should have a ref-based editor if editor $ref is an inherited object key', () => {
+        const complex = new EditionComplex(
+            { title: 'Test Complex', catalogueType: 'OPUS', catalogueNumber: '12' },
+            { editors: [{ $ref: 'constructor' }], lastModified: '2026-08-12' },
+            defaultPub
+        );
+
+        expectToEqual(complex.respStatement.editors, [{ name: 'constructor', homepage: '', identifiers: {} }]);
+    });
+
     it('... should have the given Werkedition', () => {
         const workEdition = { textVersions: { m212: '3' } };
         const complex = new EditionComplex(
