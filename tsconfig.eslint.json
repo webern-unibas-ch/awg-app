@@ -1,7 +1,9 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "types": ["node"]
+        "types": ["node"],
+        // Used for the specs and testing helpers (not part of app and doc), so unchecked as in tsconfig.spec.json
+        "noUncheckedIndexedAccess": false
     },
     "include": [
         "src/app/**/*.ts",

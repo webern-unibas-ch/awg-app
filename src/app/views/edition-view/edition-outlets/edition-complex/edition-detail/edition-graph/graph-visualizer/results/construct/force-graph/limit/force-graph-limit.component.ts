@@ -20,7 +20,7 @@ const FORCE_GRAPH_LIMIT_MIN = 5;
 const FORCE_GRAPH_LIMIT_STEPS: readonly number[] = [1, 2.5, 5];
 
 /**
- * Private function: _generateLimitValues.
+ * Private generator function: _generateLimitValues.
  *
  * It generates the endless sequence of limit values (number of triples)
  * 5, 10, 25, 50, 100, 250, 500, 1000, 2500, ...

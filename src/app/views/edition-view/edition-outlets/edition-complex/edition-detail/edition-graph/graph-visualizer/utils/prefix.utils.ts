@@ -129,12 +129,18 @@ export function addMissingPrefixes(query: string, prefixes: PrefixMap): { query:
     const declaredPrefixes = extractSparqlPrefixes(query);
     const missingPrefixes = findUsedPrefixes(query).filter(prefix => !Object.hasOwn(declaredPrefixes, prefix));
 
-    const knownPrefixes = missingPrefixes.filter(prefix => Object.hasOwn(prefixes, prefix));
-    const unknownPrefixes = missingPrefixes.filter(prefix => !Object.hasOwn(prefixes, prefix));
+    const declarations: string[] = [];
+    const unknownPrefixes: string[] = [];
+    for (const prefix of missingPrefixes) {
+        const namespace = Object.hasOwn(prefixes, prefix) ? prefixes[prefix] : undefined;
+        if (namespace === undefined) {
+            unknownPrefixes.push(prefix);
+        } else {
+            declarations.push(`PREFIX ${prefix}: <${namespace}>\n`);
+        }
+    }
 
-    const declarations = knownPrefixes.map(prefix => `PREFIX ${prefix}: <${prefixes[prefix]}>\n`).join('');
-
-    return { query: declarations + query, unknownPrefixes };
+    return { query: declarations.join('') + query, unknownPrefixes };
 }
 
 /**

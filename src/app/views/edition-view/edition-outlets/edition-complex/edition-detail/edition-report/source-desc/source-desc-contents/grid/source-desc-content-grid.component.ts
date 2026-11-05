@@ -3,7 +3,7 @@ import { UrlTree } from '@angular/router';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
+import { SourceDescContent, SourceDescFolio } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -50,15 +50,20 @@ export class SourceDescContentGridComponent {
     readonly parentComplexId = computed<string>(() => this.content()?.itemLinkTo?.complexId ?? '');
 
     /**
-     * Readonly computed signal: folioRoutes.
+     * Readonly computed signal: folioItems.
      *
-     * It holds the route to the sheet of each folio, or null if a folio has no link target.
+     * It holds each folio with the route to its sheet, or null if the folio has no link target.
      */
-    readonly folioRoutes = computed<(UrlTree | null)[]>(() => {
+    readonly folioItems = computed<{ folio: SourceDescFolio; sheetRoute: UrlTree | null }[]>(() => {
         const complexId = this.parentComplexId();
 
-        return (this.content()?.folios ?? []).map(({ folioLinkTo }) =>
-            folioLinkTo ? this._navigationService.getSvgSheetRoute({ complexId, sheetId: folioLinkTo }) : null
+        return (
+            this.content()?.folios?.map(folio => ({
+                folio,
+                sheetRoute: folio.folioLinkTo
+                    ? this._navigationService.getSvgSheetRoute({ complexId, sheetId: folio.folioLinkTo })
+                    : null,
+            })) ?? []
         );
     });
 }

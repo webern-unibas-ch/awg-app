@@ -2,6 +2,7 @@ import { Component, computed, inject, input } from '@angular/core';
 import { UrlTree } from '@angular/router';
 
 import { SourceList } from '@awg-views/edition-view/models/source-list.model';
+import { Source } from '@awg-views/edition-view/models/source.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
@@ -36,16 +37,19 @@ export class SourceListComponent {
     readonly sourceListData = input.required<SourceList | null>();
 
     /**
-     * Readonly computed signal: sourceReportRoutes.
+     * Readonly computed signal: sourceItems.
      *
-     * It holds the route to the report fragment of each source with a description,
-     * or null for sources without one.
+     * It holds each source with the route to its report fragment,
+     * or null for sources without a description.
      */
-    readonly sourceReportRoutes = computed<(UrlTree | null)[]>(() =>
-        (this.sourceListData()?.sources ?? []).map(({ hasDescription, linkTo }) =>
-            hasDescription && linkTo
-                ? this._navigationService.getReportFragmentRoute({ complexId: '', fragmentId: linkTo })
-                : null
-        )
+    readonly sourceItems = computed<{ source: Source; reportRoute: UrlTree | null }[]>(
+        () =>
+            this.sourceListData()?.sources.map(source => ({
+                source,
+                reportRoute:
+                    source.hasDescription && source.linkTo
+                        ? this._navigationService.getReportFragmentRoute({ complexId: '', fragmentId: source.linkTo })
+                        : null,
+            })) ?? []
     );
 }

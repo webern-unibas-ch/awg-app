@@ -159,8 +159,8 @@ describe('EditionComplexesService (DONE)', () => {
 
             const editionComplexesList = service.editionComplexesList();
 
-            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA['thomas_ahrend']);
-            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
+            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA.thomas_ahrend);
+            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA.michael_matter);
         });
     });
 
@@ -336,8 +336,8 @@ describe('EditionComplexesService (DONE)', () => {
 
             const editionComplexesList = service.editionComplexesList();
 
-            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA['thomas_ahrend']);
-            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
+            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA.thomas_ahrend);
+            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA.michael_matter);
         });
 
         it('... should set the given part ids', () => {
