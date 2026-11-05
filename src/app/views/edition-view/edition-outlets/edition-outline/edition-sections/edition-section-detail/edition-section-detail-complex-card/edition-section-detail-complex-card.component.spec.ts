@@ -134,9 +134,10 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should text-mute card titles of disabled editionComplexes', () => {
                 const cardTitleDes = getCardTitleDes();
                 cardTitleDes.forEach((cardTitleDe, index) => {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
                     const cardTitleEl: HTMLHeadingElement = cardTitleDe.nativeElement;
 
-                    if (getItemAt(expectedComplexes, index).disabled) {
+                    if (expectedComplex.disabled) {
                         expectToContain(cardTitleEl.classList, 'text-muted');
                     } else {
                         expectToNotContain(cardTitleEl.classList, 'text-muted');
@@ -147,6 +148,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should display complex as card title in span.awg-edition-info-header-title', () => {
                 const cardTitleDes = getCardTitleDes();
                 cardTitleDes.forEach((cardTitleDe, index) => {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
                     const titleSpanDes = getAndExpectDebugElementByCss(
                         cardTitleDe,
                         'span.awg-edition-info-header-title',
@@ -155,7 +157,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     );
                     const titleSpanEl: HTMLSpanElement = titleSpanDes[0].nativeElement;
 
-                    const expectedTitle = toInnerHtml(getItemAt(expectedComplexes, index).complex.complexId.full);
+                    const expectedTitle = toInnerHtml(expectedComplex.complex.complexId.full);
 
                     expectToBe(titleSpanEl.innerHTML, expectedTitle);
                 });
@@ -168,7 +170,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should have edition responsibility statement in div.card-footer if complex is not disabled', () => {
                 const cardFooterDes = getCardFooterDes();
                 cardFooterDes.forEach((cardFooterDe, index) => {
-                    if (!getItemAt(expectedComplexes, index).disabled) {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
+
+                    if (!expectedComplex.disabled) {
                         getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
                     } else {
                         getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 0, 0);
@@ -179,9 +183,11 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should display as many editors in span.editor as there are editors', () => {
                 const cardFooterDes = getCardFooterDes();
                 cardFooterDes.forEach((cardFooterDe, index) => {
-                    if (!getItemAt(expectedComplexes, index).disabled) {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
+
+                    if (!expectedComplex.disabled) {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = getItemAt(expectedComplexes, index).complex.respStatement.editors;
+                        const editors = expectedComplex.complex.respStatement.editors;
                         const editorSpanDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.editor',
@@ -202,9 +208,11 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should link to homepage of editors in span.editor', () => {
                 const cardFooterDes = getCardFooterDes();
                 cardFooterDes.forEach((cardFooterDe, index) => {
-                    if (!getItemAt(expectedComplexes, index).disabled) {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
+
+                    if (!expectedComplex.disabled) {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = getItemAt(expectedComplexes, index).complex.respStatement.editors;
+                        const editors = expectedComplex.complex.respStatement.editors;
                         const editorSpanDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.editor',
@@ -259,8 +267,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 const cardFooterDes = getCardFooterDes();
                 const datePipe = new DatePipe('de-DE');
                 cardFooterDes.forEach((cardFooterDe, index) => {
-                    const lastModified = getItemAt(expectedComplexes, index).complex.respStatement.lastModified;
-                    if (!getItemAt(expectedComplexes, index).disabled && lastModified !== '---') {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
+                    const lastModified = expectedComplex.complex.respStatement.lastModified;
+                    if (!expectedComplex.disabled && lastModified !== '---') {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
                         const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
                         const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;

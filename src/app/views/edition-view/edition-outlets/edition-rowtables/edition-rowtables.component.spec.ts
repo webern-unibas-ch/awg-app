@@ -256,8 +256,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                         const hDes = getAndExpectDebugElementByCss(cardBodyDe, 'h5.card-title', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        const expectedHeading =
-                            'Reihentabelle ' + getItemAt(expectedRowtablesData.rowtables, index).short;
+                        const rowtable = getItemAt(expectedRowtablesData.rowtables, index);
+                        const expectedHeading = 'Reihentabelle ' + rowtable.short;
 
                         expectToBe(hEl.textContent.trim(), expectedHeading);
                     });
@@ -270,7 +270,9 @@ describe('EditionRowTablesComponent (DONE)', () => {
                         const hDes = getAndExpectDebugElementByCss(cardBodyDe, 'h5.card-title', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        if (getItemAt(expectedRowtablesData.rowtables, index).disabled) {
+                        const rowtable = getItemAt(expectedRowtablesData.rowtables, index);
+
+                        if (rowtable.disabled) {
                             expectToContain(hEl.classList, 'text-muted');
                         } else {
                             expectToNotContain(hEl.classList, 'text-muted');
