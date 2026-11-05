@@ -42,9 +42,10 @@ export function toTableRows(result: SparqlSelectResult): TableRow[] {
     return result.bindings.map(binding =>
         Object.freeze(
             Object.fromEntries(
-                result.variables
-                    .filter(variable => Object.hasOwn(binding, variable))
-                    .map(variable => [variable, toTableCell(binding[variable], result.prefixes)])
+                result.variables.flatMap((variable): [string, SelectTableCell][] => {
+                    const term = Object.hasOwn(binding, variable) ? binding[variable] : undefined;
+                    return term ? [[variable, toTableCell(term, result.prefixes)]] : [];
+                })
             )
         )
     );

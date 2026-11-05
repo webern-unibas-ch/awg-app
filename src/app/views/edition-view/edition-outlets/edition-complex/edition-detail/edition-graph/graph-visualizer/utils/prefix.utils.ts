@@ -89,7 +89,7 @@ export function extractSparqlPrefixes(query: string): PrefixMap {
 
     const code = SPARQL_UTILS.maskNonCode(query, { keepIris: true });
 
-    for (const [, prefix = '', namespace] of code.matchAll(PREFIX_DECLARATION_REGEX)) {
+    for (const [, prefix = '', namespace = ''] of code.matchAll(PREFIX_DECLARATION_REGEX)) {
         prefixes[prefix] = namespace;
     }
 
@@ -107,7 +107,7 @@ export function extractSparqlPrefixes(query: string): PrefixMap {
  */
 export function findUsedPrefixes(query: string): string[] {
     const code = SPARQL_UTILS.maskNonCode(query).replaceAll(/PREFIX\s+[a-z][\w.-]*:/gi, ' ');
-    const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX), match => match[1]);
+    const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX)).flatMap(([, prefix]) => (prefix ? [prefix] : []));
 
     return Array.from(new Set(prefixes));
 }

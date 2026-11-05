@@ -61,11 +61,15 @@ export function initialQuery(queryList: GraphQuery[]): GraphQuery {
  *
  * @param {GraphQuery[]} queryList The given query list.
  * @param {GraphQuery} [query] The optional given query.
- * @returns {GraphQuery} The found query.
+ * @returns {GraphQuery | undefined} The found query, or undefined for an empty query list.
  */
-export function findQuery(queryList: GraphQuery[], query?: GraphQuery): GraphQuery {
+export function findQuery(queryList: GraphQuery[], query?: GraphQuery): GraphQuery | undefined {
+    const [firstQuery] = queryList;
+    if (!firstQuery) {
+        return undefined;
+    }
     if (!query) {
-        return queryList[0];
+        return firstQuery;
     }
 
     return (

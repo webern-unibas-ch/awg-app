@@ -239,7 +239,7 @@ export function findVisibleNode(
     // For overlapping nodes (rare due to the collision force), the last node of the list wins
     for (let index = visibleNodes.length - 1; index >= 0; index--) {
         const node = visibleNodes[index];
-        if (isHit(node, graphPoint)) {
+        if (node && isHit(node, graphPoint)) {
             return node;
         }
     }

@@ -154,12 +154,10 @@ export function maskNonCode(query: string, { keepIris = false }: { keepIris?: bo
  * @returns {GraphQueryType} The type of the query, or null if none was found.
  */
 export function getQueryType(query: string): GraphQueryType {
-    const match = QUERY_FORM_REGEX.exec(maskNonCode(query));
-    if (!match) {
+    const keyword = QUERY_FORM_REGEX.exec(maskNonCode(query))?.[1]?.toLowerCase();
+    if (!keyword) {
         return null;
     }
-
-    const keyword = match[1].toLowerCase();
 
     return (UPDATE_KEYWORDS.has(keyword) ? 'update' : keyword) as GraphQueryType;
 }

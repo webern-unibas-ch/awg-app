@@ -34,7 +34,8 @@ function _toLimitValue(index: number): number {
     }
     const stepIndex = index - 1;
     const magnitude = 10 ** (1 + Math.floor(stepIndex / FORCE_GRAPH_LIMIT_STEPS.length));
-    return FORCE_GRAPH_LIMIT_STEPS[stepIndex % FORCE_GRAPH_LIMIT_STEPS.length] * magnitude;
+    const step = FORCE_GRAPH_LIMIT_STEPS[stepIndex % FORCE_GRAPH_LIMIT_STEPS.length] ?? 1;
+    return step * magnitude;
 }
 
 /**
