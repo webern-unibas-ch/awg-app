@@ -314,8 +314,8 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
                     it('... should have one anchor in first paragraph, and 3 in the second one in the first section', () => {
                         const expectedBlockLength = getItemAt(expectedIntroBlockContent, 0).blockContent.length + 1;
-                        const firstSectionDe = getItemAt(sectionDes, 0);
 
+                        const firstSectionDe = getItemAt(sectionDes, 0);
                         const divDes = getAndExpectDebugElementByCss(
                             firstSectionDe,
                             'div.awg-edition-intro-block',

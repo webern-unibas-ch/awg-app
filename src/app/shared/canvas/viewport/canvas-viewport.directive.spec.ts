@@ -108,8 +108,9 @@ describe('CanvasViewportDirective (DONE)', () => {
 
         it('... should have signal `viewport` to hold the new client size on a resize of the canvas', () => {
             setCanvasClientSize(800, 400);
+            const mockFirstResizeObserver = getItemAt(mockResizeObservers, 0);
 
-            getItemAt(mockResizeObservers, 0).trigger();
+            mockFirstResizeObserver.trigger();
 
             expectToEqual(directive.viewport(), { width: 800, height: 400, dpr });
         });
@@ -120,14 +121,17 @@ describe('CanvasViewportDirective (DONE)', () => {
 
         it('... should emit the new viewport on `resized` on a resize of the canvas', () => {
             setCanvasClientSize(800, 400);
+            const mockFirstResizeObserver = getItemAt(mockResizeObservers, 0);
 
-            getItemAt(mockResizeObservers, 0).trigger();
+            mockFirstResizeObserver.trigger();
 
             expectSpyCall(host.resizedSpy, 2, { width: 800, height: 400, dpr });
         });
 
         it('... should not emit on `resized` and keep the backing store for an unchanged size', () => {
-            getItemAt(mockResizeObservers, 0).trigger();
+            const mockFirstResizeObserver = getItemAt(mockResizeObservers, 0);
+
+            mockFirstResizeObserver.trigger();
 
             expectSpyCall(host.resizedSpy, 1);
             expectToBe(canvasEl.width, Math.round(400 * dpr));

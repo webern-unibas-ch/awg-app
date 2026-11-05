@@ -164,9 +164,11 @@ describe('svg-drawing-helper', () => {
             const callback = vi.fn();
 
             new ResizeObserver(callback);
-            getItemAt(mockResizeObservers, 0).trigger();
+            const mockFirstResizeObserver = getItemAt(mockResizeObservers, 0);
 
-            expectSpyCall(callback, 1, [[], mockResizeObservers[0]]);
+            mockFirstResizeObserver.trigger();
+
+            expectSpyCall(callback, 1, [[], mockFirstResizeObserver]);
         });
     });
 });

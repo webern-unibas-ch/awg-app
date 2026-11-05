@@ -201,7 +201,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
             it('... should set `limit` to the limit value of a clicked item', async () => {
                 const itemDes = getItemDes(5);
 
-                await clickAndAwaitChanges(getItemAt(itemDes, 1), fixture);
+                const secondItemDe = getItemAt(itemDes, 1);
+
+                await clickAndAwaitChanges(secondItemDe, fixture);
 
                 expectToBe(component.limit(), 10);
                 expectSpyCall(limitChangeSpy, 1, 10);
@@ -210,7 +212,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
             it('... should set `limit` to the triple count on a click on the item without limit', async () => {
                 const itemDes = getItemDes(5);
 
-                await clickAndAwaitChanges(getItemAt(itemDes, 4), fixture);
+                const fifthItemDe = getItemAt(itemDes, 4);
+
+                await clickAndAwaitChanges(fifthItemDe, fixture);
 
                 expectToBe(component.limit(), expectedTripleCount);
                 expectSpyCall(limitChangeSpy, 1, expectedTripleCount);
