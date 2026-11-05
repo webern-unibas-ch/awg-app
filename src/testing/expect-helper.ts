@@ -9,7 +9,38 @@ interface Spy {
     };
 }
 
-// Test helper functions for expectation statements
+/**
+ * Type: IsUnion.
+ *
+ * It is true for a union type (e.g. `0 | 1`), otherwise false.
+ */
+type IsUnion<T, U = T> = T extends unknown ? ([U] extends [T] ? false : true) : never;
+
+/**
+ * Type: IsLiteralCount.
+ *
+ * It is true for a single literal count (e.g. `1`), false for `number` or a union like `0 | 1`.
+ */
+type IsLiteralCount<N extends number> = [number extends N ? true : false, IsUnion<N>] extends [false, false]
+    ? true
+    : false;
+
+/**
+ * Type: TupleOf.
+ *
+ * It is a tuple of DebugElements with the given length (e.g. `[DebugElement, DebugElement]` for 2).
+ */
+type TupleOf<N extends number, R extends DebugElement[] = []> = R['length'] extends N
+    ? R
+    : TupleOf<N, [...R, DebugElement]>;
+
+/**
+ * Type: DebugElementTuple.
+ *
+ * It is a tuple of DebugElements for a literal count, so that the elements can be accessed
+ * by index without a check, otherwise an array of DebugElements.
+ */
+type DebugElementTuple<N extends number> = IsLiteralCount<N> extends true ? TupleOf<N> : DebugElement[];
 
 /**
  * Test helper function: expectDebugElement (internal).
@@ -60,20 +91,21 @@ function expectDebugElement(
  * @param {number} expected The expected number of elements in the result array.
  * @param {number} expectedFailMsg The expected number of elements in the result array in the fail message.
  * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
- * @returns {DebugElement[]} An array of the found DebugElements.
+ * @returns {DebugElementTuple<N>} The found DebugElements (a tuple for a literal expected number).
  */
-export function getAndExpectDebugElementByCss(
+export function getAndExpectDebugElementByCss<N extends number>(
     inDe: DebugElement,
     selector: string,
-    expected: number,
+    expected: N,
     expectedFailMsg: number,
     suffixMsg = ''
-): DebugElement[] {
+): DebugElementTuple<N> {
     const outDes = inDe.queryAll(By.css(selector));
 
     expectDebugElement(outDes, selector, expected, expectedFailMsg, suffixMsg);
 
-    return outDes;
+    // The expectation has checked the number of elements
+    return outDes as DebugElementTuple<N>;
 }
 
 /**
@@ -89,20 +121,21 @@ export function getAndExpectDebugElementByCss(
  * @param {number } expected The expected number of elements in the result array.
  * @param {number | undefined} expectedFailMsg The expected number of elements in the result array in the fail message.
  * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
- * @returns {DebugElement[]} An array of the found DebugElements.
+ * @returns {DebugElementTuple<N>} The found DebugElements (a tuple for a literal expected number).
  */
-export function getAndExpectDebugElementByDirective(
+export function getAndExpectDebugElementByDirective<N extends number>(
     inDe: DebugElement,
     selectorType: Type<any>,
-    expected: number,
+    expected: N,
     expectedFailMsg: number | undefined,
     suffixMsg = ''
-): DebugElement[] {
+): DebugElementTuple<N> {
     const outDes = inDe.queryAll(By.directive(selectorType));
 
     expectDebugElement(outDes, selectorType, expected, expectedFailMsg, suffixMsg);
 
-    return outDes;
+    // The expectation has checked the number of elements
+    return outDes as DebugElementTuple<N>;
 }
 
 /**
