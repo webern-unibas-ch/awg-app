@@ -250,9 +250,10 @@ describe('TextcriticsListComponent (DONE)', () => {
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 itemDes.forEach((itemDe, index) => {
+                    const expectedTextcritic = getItemAt(expectedTextcriticsListData.textcritics, index);
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDe,
-                        `div#${getItemAt(expectedTextcriticsListData.textcritics, index).id} > div.accordion-header`,
+                        `div#${expectedTextcritic.id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -294,9 +295,10 @@ describe('TextcriticsListComponent (DONE)', () => {
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                     itemDes.forEach((itemDe, index) => {
+                        const workEditionTextcritic = getItemAt(textcriticsListDataWithWorkEdition.textcritics, index);
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             itemDe,
-                            `div#${getItemAt(textcriticsListDataWithWorkEdition.textcritics, index).id} > div.accordion-header`,
+                            `div#${workEditionTextcritic.id} > div.accordion-header`,
                             1,
                             1
                         );
@@ -323,9 +325,10 @@ describe('TextcriticsListComponent (DONE)', () => {
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                     itemDes.forEach((itemDe, index) => {
+                        const workEditionTextcritic = getItemAt(textcriticsListDataWithWorkEdition.textcritics, index);
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             itemDe,
-                            `div#${getItemAt(textcriticsListDataWithWorkEdition.textcritics, index).id} > div.accordion-header`,
+                            `div#${workEditionTextcritic.id} > div.accordion-header`,
                             1,
                             1
                         );
@@ -468,15 +471,17 @@ describe('TextcriticsListComponent (DONE)', () => {
             describe('... with open body', () => {
                 beforeEach(async () => {
                     // Open bodies
+                    const firstTextcritic = getItemAt(expectedTextcriticsListData.textcritics, 0);
+                    const secondTextcritic = getItemAt(expectedTextcriticsListData.textcritics, 1);
                     const headerDes0 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${getItemAt(expectedTextcriticsListData.textcritics, 0).id} > div.accordion-header`,
+                        `div#${firstTextcritic.id} > div.accordion-header`,
                         1,
                         1
                     );
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${getItemAt(expectedTextcriticsListData.textcritics, 1).id} > div.accordion-header`,
+                        `div#${secondTextcritic.id} > div.accordion-header`,
                         1,
                         1
                     );
