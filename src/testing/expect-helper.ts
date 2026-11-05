@@ -160,6 +160,29 @@ export function getItemAt<T>(items: ArrayLike<T>, index: number): T {
 }
 
 /**
+ * Test helper function: getEntryAt.
+ *
+ * It gets the entry for a given key of a given record, typed without `undefined`,
+ * and throws an error that names the key and the existing keys if there is no entry
+ * (an entry `undefined` counts as missing, other falsy entries are returned).
+ *
+ * Exposed to be called from tests.
+ *
+ * @param {Readonly<Record<string, T>>} record The given record.
+ * @param {string} key The given key.
+ * @returns {T} The entry for the key.
+ */
+export function getEntryAt<T>(record: Readonly<Record<string, T>>, key: string): T {
+    const entry = record[key];
+    if (entry === undefined) {
+        const keys = Object.keys(record);
+        const existingKeys = keys.length ? `the keys: ${keys.join(', ')}` : 'no keys';
+        throw new Error(`Expected entry '${key}' to exist, but there are ${existingKeys}.`);
+    }
+    return entry;
+}
+
+/**
  * Test helper function: expectToBe.
  *
  * It checks if a given actual value is defined and if it is the same as the expected value ('toBe').

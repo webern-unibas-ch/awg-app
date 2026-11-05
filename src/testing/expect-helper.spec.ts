@@ -6,6 +6,7 @@ import {
     expectToBe,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getEntryAt,
     getItemAt,
 } from './expect-helper';
 
@@ -145,6 +146,41 @@ describe('expect-helper', () => {
             expectTypeOf(getItemAt(items, 0)).toEqualTypeOf<string>();
             expectTypeOf(getItemAt(listEl.querySelectorAll('li'), 0)).toEqualTypeOf<HTMLLIElement>();
             expectTypeOf(getItemAt(Float32Array.from([1]), 0)).toEqualTypeOf<number>();
+        });
+    });
+
+    describe('#getEntryAt()', () => {
+        it('... should have a method `getEntryAt`', () => {
+            expect(getEntryAt).toBeDefined();
+        });
+
+        it('... should return the entry for the given key', () => {
+            const record: Record<string, string> = { a: 'first', b: 'second' };
+
+            expectToBe(getEntryAt(record, 'a'), 'first');
+            expectToBe(getEntryAt(record, 'b'), 'second');
+        });
+
+        it('... should return falsy entries other than undefined', () => {
+            const record: Record<string, number | string | null> = { zero: 0, empty: '', none: null };
+
+            expectToBe(getEntryAt(record, 'zero'), 0);
+            expectToBe(getEntryAt(record, 'empty'), '');
+            expectToBe(getEntryAt(record, 'none'), null);
+        });
+
+        it('... should throw an error with the key and the existing keys if there is no entry for the key', () => {
+            const record: Record<string, string | undefined> = { a: 'first', b: undefined };
+
+            expect(() => getEntryAt(record, 'c')).toThrow("Expected entry 'c' to exist, but there are the keys: a, b.");
+            expect(() => getEntryAt(record, 'b')).toThrow("Expected entry 'b' to exist, but there are the keys: a, b.");
+            expect(() => getEntryAt({}, 'a')).toThrow("Expected entry 'a' to exist, but there are no keys.");
+        });
+
+        it('... should type the entry without undefined', () => {
+            const record: Record<string, string> = { a: 'first' };
+
+            expectTypeOf(getEntryAt(record, 'a')).toEqualTypeOf<string>();
         });
     });
 });
