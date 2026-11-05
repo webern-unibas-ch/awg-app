@@ -105,7 +105,7 @@ describe('GraphEditorActionButtonsComponent (DONE)', () => {
                     { desc: '`queryRequest` on click of the Query button', index: 0, calls: [1, 0, 0] },
                     { desc: '`resetRequest` on click of the Reset button', index: 1, calls: [0, 1, 0] },
                     { desc: '`clearRequest` on click of the Clear button', index: 2, calls: [0, 0, 1] },
-                ])('... $desc', async ({ index, calls }) => {
+                ] as const)('... $desc', async ({ index, calls }) => {
                     const btnDe = getItemAt(btnDes, index);
                     const [queryCalls, resetCalls, clearCalls] = calls;
 

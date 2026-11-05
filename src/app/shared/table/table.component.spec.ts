@@ -343,7 +343,7 @@ describe('TableComponent (DONE)', () => {
                     const compEl: HTMLElement = compDe.nativeElement;
                     const hostChildren = Array.from(compEl.children);
                     const hostChildClasses = hostChildren.map(
-                        el => el.className.split(' ')[0] || el.tagName.toLowerCase()
+                        el => getItemAt(el.className.split(' '), 0) || el.tagName.toLowerCase()
                     );
 
                     expectToEqual(hostChildClasses, ['form-group', 'awg-pagination', 'table', 'awg-pagination']);

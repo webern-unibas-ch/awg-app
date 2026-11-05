@@ -232,6 +232,9 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
+        // The second visible node (b) of the force graph data, as used by the canvas
+        let nodeB: ForceGraphVisibleNode;
+
         beforeEach(async () => {
             fixture.componentRef.setInput('resultGraph', expectedResultGraph);
             fixture.componentRef.setInput('zoomConfig', expectedZoomConfig);
@@ -242,6 +245,8 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
             await detectChangesOnPush(fixture);
             // The resize has drawn the graph at once
             drawGraphSpy.mockClear();
+
+            nodeB = getItemAt(component.forceGraphData().visibleNodes, 1);
         });
 
         it('... should have input signal `resultGraph` to hold the provided graph data', () => {
@@ -378,7 +383,7 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
 
             it('... should trigger `onNodeDrag` on a drag move of the CanvasDragDirective', () => {
                 const onNodeDragSpy = vi.spyOn(component, 'onNodeDrag');
-                const dragMove = { subject: component.forceGraphData().visibleNodes[1], point: { x: 250, y: 150 } };
+                const dragMove = { subject: nodeB, point: { x: 250, y: 150 } };
 
                 getCanvasDrag().dragMove.emit(dragMove);
 
@@ -387,7 +392,6 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
 
             it('... should trigger `onNodeDragEnd` on a drag end of the CanvasDragDirective', () => {
                 const onNodeDragEndSpy = vi.spyOn(component, 'onNodeDragEnd');
-                const nodeB = getItemAt(component.forceGraphData().visibleNodes, 1);
 
                 getCanvasDrag().dragEnd.emit(nodeB);
 
@@ -717,7 +721,6 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 });
 
                 it('... should move the dragged node to the pointer position and draw', () => {
-                    const nodeB = getItemAt(component.forceGraphData().visibleNodes, 1);
                     flushFrames();
                     drawGraphSpy.mockClear();
 
@@ -730,16 +733,12 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 });
 
                 it('... should send a pin command with the pointer position (in graph coordinates) to the simulation', () => {
-                    const nodeB = component.forceGraphData().visibleNodes[1];
-
                     component.onNodeDrag({ subject: nodeB, point: { x: 250, y: 150 } });
 
                     expectToEqual(simulationCommands, [{ type: 'pin', node: nodeB, point: { x: 50, y: 50 } }]);
                 });
 
                 it('... should keep the simulation running while dragging', () => {
-                    const nodeB = component.forceGraphData().visibleNodes[1];
-
                     component.onNodeDrag({ subject: nodeB, point: { x: 250, y: 150 } });
                     const firstSimulationSubject = getItemAt(simulationSubjects, 0);
 
@@ -747,7 +746,6 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 });
 
                 it('... should keep the dragged node at the pointer position on later simulation results', () => {
-                    const nodeB = getItemAt(component.forceGraphData().visibleNodes, 1);
                     component.onNodeDrag({ subject: nodeB, point: { x: 250, y: 150 } });
 
                     // A layout result computed before the pin arrived in the simulation
@@ -757,7 +755,6 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 });
 
                 it('... should have signal `hoveredNode` to hold undefined', () => {
-                    const nodeB = component.forceGraphData().visibleNodes[1];
                     component.onMouseMove(mouseEvent('mousemove', 300, 100));
 
                     component.onNodeDrag({ subject: nodeB, point: { x: 250, y: 150 } });
@@ -772,7 +769,6 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 });
 
                 it('... should send a release command for the dragged node to the simulation', () => {
-                    const nodeB = getItemAt(component.forceGraphData().visibleNodes, 1);
                     component.onNodeDrag({ subject: nodeB, point: { x: 250, y: 150 } });
 
                     component.onNodeDragEnd(nodeB);
@@ -781,7 +777,6 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                 });
 
                 it('... should let later simulation results move the released node', () => {
-                    const nodeB = getItemAt(component.forceGraphData().visibleNodes, 1);
                     component.onNodeDrag({ subject: nodeB, point: { x: 250, y: 150 } });
                     component.onNodeDragEnd(nodeB);
 
@@ -981,7 +976,6 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
 
                 it('... should return the given node with the point of its tooltip at the node on the canvas', () => {
                     // Node b at (100, 0) is drawn at (300, 100) of the canvas
-                    const nodeB = getItemAt(component.forceGraphData().visibleNodes, 1);
                     const hoveredNode = component['_toHoveredNode'](nodeB);
 
                     expectToEqual(hoveredNode, { node: nodeB, point: { x: 300, y: 100 } });

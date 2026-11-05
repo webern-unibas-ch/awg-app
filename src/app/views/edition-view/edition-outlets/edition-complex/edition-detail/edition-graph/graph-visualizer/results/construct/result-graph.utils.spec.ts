@@ -2,7 +2,7 @@ import type { Quad, Quad_Object, Quad_Predicate, Quad_Subject } from '@rdfjs/typ
 import { DataFactory } from 'n3';
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getEntryAt, getItemAt } from '@testing/expect-helper';
 
 import { ResultGraph } from '@awg-graph/graph-visualizer/models/result-graph.model';
 import { DEFAULT_PREFIXES } from '@awg-graph/graph-visualizer/utils/prefix.utils';
@@ -12,7 +12,7 @@ import { extractLabels, limitResultGraph, RESULT_GRAPH_UTILS, toResultGraph } fr
 
 const { blankNode, literal, namedNode, quad } = DataFactory;
 
-const AWG = DEFAULT_PREFIXES['awg'];
+const AWG = getEntryAt(DEFAULT_PREFIXES, 'awg');
 const XSD = 'http://www.w3.org/2001/XMLSchema#';
 
 const awg = (localName: string) => namedNode(`${AWG}${localName}`);

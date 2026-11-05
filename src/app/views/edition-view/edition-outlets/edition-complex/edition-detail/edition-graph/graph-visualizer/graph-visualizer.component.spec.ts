@@ -13,6 +13,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getEntryAt,
     getItemAt,
 } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
@@ -43,6 +44,8 @@ import { SPARQL_UTILS } from './utils/sparql.utils';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 
 const { literal, namedNode, quad } = DataFactory;
+
+const RDF = getEntryAt(DEFAULT_PREFIXES, 'rdf');
 
 const EXAMPLE = 'https://example.com/onto#';
 
@@ -988,7 +991,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should set the performed query (completed with prefixes) on success', async () => {
-                    const performedQuery = `PREFIX rdf: <${DEFAULT_PREFIXES['rdf']}>\n${expectedRequest.queryString}`;
+                    const performedQuery = `PREFIX rdf: <${RDF}>\n${expectedRequest.queryString}`;
                     serviceRunSpy.mockResolvedValueOnce({
                         query: performedQuery,
                         result: expectedConstructResult,

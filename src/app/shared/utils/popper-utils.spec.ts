@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import type { Modifier, ModifierArguments, Options, State } from '@popperjs/core';
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import {
     createMaxHeightModifier,
@@ -128,9 +128,13 @@ describe('PopperUtils (DONE)', () => {
 
                 const result = fixedDropdownPopperOptions({ modifiers: [offsetModifier] });
 
-                expectToBe(result.modifiers?.length, 2);
-                expectToBe(result.modifiers?.[0], offsetModifier);
-                expectToBe(result.modifiers?.[1].name, 'maxHeight');
+                const modifiers = result.modifiers ?? [];
+                const firstModifier = getItemAt(modifiers, 0);
+                const secondModifier = getItemAt(modifiers, 1);
+
+                expectToBe(modifiers.length, 2);
+                expectToBe(firstModifier, offsetModifier);
+                expectToBe(secondModifier.name, 'maxHeight');
             });
 
             it('... should add the max height modifier if no modifiers are given', () => {

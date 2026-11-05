@@ -201,7 +201,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
 
             draw();
 
-            const callOrders = drawSpies.map(spy => spy.mock.invocationCallOrder[0]);
+            const callOrders = drawSpies.map(spy => getItemAt(spy.mock.invocationCallOrder, 0));
 
             expectToEqual(
                 callOrders,
@@ -323,7 +323,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
 
                 draw();
 
-                const [edge] = edgesById('e1');
+                const edge = getItemAt(edgesById('e1'), 0);
 
                 expectSpyCall(drawEdgeLabelsSpy, 1, [
                     ctx,
@@ -671,7 +671,8 @@ describe('ForceGraphCanvasService (DONE)', () => {
         it('... should clear the whole backing store', () => {
             service['_prepareCanvas'](ctx, view());
 
-            const [resetCall, clearCall] = ctx.calls;
+            const resetCall = getItemAt(ctx.calls, 0);
+            const clearCall = getItemAt(ctx.calls, 1);
 
             expectToEqual(resetCall.method, 'setTransform');
             expectToEqual(resetCall.args, [1, 0, 0, 1, 0, 0]);
@@ -687,7 +688,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
             };
             service['_prepareCanvas'](fractionalCtx, fractionalView);
 
-            const [clearCall] = fractionalCtx.callsOf('clearRect');
+            const clearCall = getItemAt(fractionalCtx.callsOf('clearRect'), 0);
 
             expectToEqual(clearCall.args, [0, 0, 1004, 502]);
         });
@@ -695,7 +696,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
         it('... should set the origin of the graph in the center of the canvas (scaled by the device pixel ratio)', () => {
             service['_prepareCanvas'](ctx, view());
 
-            const [, drawTransformCall] = ctx.callsOf('setTransform');
+            const drawTransformCall = getItemAt(ctx.callsOf('setTransform'), 1);
 
             expectToEqual(drawTransformCall.args, [2, 0, 0, 2, 400, 200]);
         });
@@ -703,7 +704,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
         it('... should apply the zoom transform around the centered origin', () => {
             service['_prepareCanvas'](ctx, view(D3_ZOOM.zoomIdentity.translate(10, 20).scale(2)));
 
-            const [, drawTransformCall] = ctx.callsOf('setTransform');
+            const drawTransformCall = getItemAt(ctx.callsOf('setTransform'), 1);
 
             // Dpr * (t + k * center)
             expectToEqual(drawTransformCall.args, [4, 0, 0, 4, 820, 440]);

@@ -292,7 +292,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
                     );
 
                     it('... should render no preface blocks if preface for selected language is missing', () => {
-                        const prefaceWithoutEnglish = { preface: [expectedPrefaceData.preface[0]] };
+                        const germanPreface = getItemAt(expectedPrefaceData.preface, 0);
+                        const prefaceWithoutEnglish = { preface: [germanPreface] };
 
                         mockViewDataSignal.set(
                             createMockViewData(

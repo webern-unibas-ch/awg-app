@@ -102,7 +102,9 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
 
                 it('... should limit the staff lines to 60 % of the space per system if the space is small', () => {
                     // 18 systems on 193 px: 10.72 px per system, default staff of 9 px would take 84 %
-                    const [firstSystem, secondSystem] = calculate(expectedFolio).systems.items;
+                    const { systems } = calculate(expectedFolio);
+                    const firstSystem = getItemAt(systems.items, 0);
+                    const secondSystem = getItemAt(systems.items, 1);
                     const firstLine = getItemAt(firstSystem.lines, 0);
 
                     const spacePerSystem = getItemAt(secondSystem.lines, 0).start.y - firstLine.start.y;
@@ -113,7 +115,8 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
 
                 it('... should keep the default line space if the space per system is large enough', () => {
                     // 9 systems on 193 px: 21.44 px per system, default staff of 9 px takes 42 %
-                    const [firstSystem] = calculate({ ...expectedFolio, systems: '9' }).systems.items;
+                    const { systems } = calculate({ ...expectedFolio, systems: '9' });
+                    const firstSystem = getItemAt(systems.items, 0);
 
                     expectToEqual(
                         firstSystem.lines.map(line => line.start.y),
@@ -182,35 +185,39 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 });
 
                 it('... should take over linkTo, selectable and reversed from the folio content', () => {
-                    const [contentSegment] = calculate(expectedFolio).contentSegments;
+                    const { contentSegments } = calculate(expectedFolio);
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
-                    expectToBe(contentSegment.linkTo, 'OP12_SOURCE_NOT_AVAILABLE');
-                    expectToBe(contentSegment.selectable, true);
-                    expectToBe(contentSegment.reversed, false);
+                    expectToBe(firstContentSegment.linkTo, 'OP12_SOURCE_NOT_AVAILABLE');
+                    expectToBe(firstContentSegment.selectable, true);
+                    expectToBe(firstContentSegment.reversed, false);
                 });
 
                 it('... should use default values for missing linkTo, selectable and reversed', () => {
-                    const [contentSegment] = calculate(
+                    const { contentSegments } = calculate(
                         withContent({ linkTo: undefined, selectable: undefined, reversed: undefined })
-                    ).contentSegments;
+                    );
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
-                    expectToBe(contentSegment.linkTo, '');
-                    expectToBe(contentSegment.selectable, true);
-                    expectToBe(contentSegment.reversed, false);
+                    expectToBe(firstContentSegment.linkTo, '');
+                    expectToBe(firstContentSegment.selectable, true);
+                    expectToBe(firstContentSegment.reversed, false);
                 });
 
                 it('... should calculate the label and the label lines from sigle and addendum', () => {
-                    const [contentSegment] = calculate(expectedFolio).contentSegments;
+                    const { contentSegments } = calculate(expectedFolio);
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
-                    expectToBe(contentSegment.label, 'M 212 Sk1 T. 1–2, [3–6]');
-                    expectToEqual(contentSegment.labelLines, ['M 212 Sk1', ' T. 1–2, [3–6]']);
+                    expectToBe(firstContentSegment.label, 'M 212 Sk1 T. 1–2, [3–6]');
+                    expectToEqual(firstContentSegment.labelLines, ['M 212 Sk1', ' T. 1–2, [3–6]']);
                 });
 
                 it('... should calculate the label and the label lines without addendum', () => {
-                    const [contentSegment] = calculate(withContent({ sigleAddendum: '' })).contentSegments;
+                    const { contentSegments } = calculate(withContent({ sigleAddendum: '' }));
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
-                    expectToBe(contentSegment.label, 'M 212 Sk1');
-                    expectToEqual(contentSegment.labelLines, ['M 212 Sk1', '']);
+                    expectToBe(firstContentSegment.label, 'M 212 Sk1');
+                    expectToEqual(firstContentSegment.labelLines, ['M 212 Sk1', '']);
                 });
 
                 it('... should calculate the vertices of the content segments (also relative to the systems)', () => {
@@ -229,22 +236,27 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 });
 
                 it('... should calculate the vertices for the given position of a split segment', () => {
-                    const [contentSegment] = calculate(
+                    const { contentSegments } = calculate(
                         withContent({ segmentSplit: 2, segments: [{ position: 2, startSystem: 2, endSystem: 4 }] })
-                    ).contentSegments;
+                    );
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
                     expectToBe(
-                        contentSegment.vertices,
+                        firstContentSegment.vertices,
                         '216.6 52.93 370.13 52.93 370.13 83.39 216.6 83.39 216.6 52.93'
                     );
                 });
 
                 it('... should calculate the vertices at the first position for a position beyond the split', () => {
-                    const [contentSegment] = calculate(
+                    const { contentSegments } = calculate(
                         withContent({ segmentSplit: 2, segments: [{ position: 3, startSystem: 2, endSystem: 4 }] })
-                    ).contentSegments;
+                    );
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
-                    expectToBe(contentSegment.vertices, '59.07 52.93 212.6 52.93 212.6 83.39 59.07 83.39 59.07 52.93');
+                    expectToBe(
+                        firstContentSegment.vertices,
+                        '59.07 52.93 212.6 52.93 212.6 83.39 59.07 83.39 59.07 52.93'
+                    );
                 });
 
                 it('... should throw for a segment outside the systems of the folio', () => {
@@ -257,10 +269,11 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
 
                 it('... should adjust the horizontal offset correction of the vertices to the number of systems', () => {
                     // 9 systems: offset correction 4 * 18 / 9 = 8, so 4 px inset on both sides
-                    const [contentSegment] = calculate({ ...expectedFolio, systems: '9' }).contentSegments;
+                    const { contentSegments } = calculate({ ...expectedFolio, systems: '9' });
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
                     expectToBe(
-                        contentSegment.vertices,
+                        firstContentSegment.vertices,
                         '61.07 61.21 368.12 61.21 368.12 120.56 61.07 120.56 61.07 61.21'
                     );
                 });
@@ -270,35 +283,39 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                     const { systems, contentSegments } = calculate(expectedFolio);
                     const secondSystem = getItemAt(systems.items, 1);
                     const firstLineOfSecondSystem = getItemAt(secondSystem.lines, 0).start.y;
-                    const segmentTop = Number(getItemAt(contentSegments, 0).vertices.split(' ')[1]);
+                    const firstContentSegment = getItemAt(contentSegments, 0);
+                    // The vertices start with the x and y value of the upper left corner
+                    const vertexValues = firstContentSegment.vertices.split(' ');
+                    const segmentTop = Number(getItemAt(vertexValues, 1));
 
                     expect(firstLineOfSecondSystem - segmentTop).toBeCloseTo(1.29, 2);
                 });
 
                 it('... should calculate the center shifted up for a label with addendum', () => {
-                    const [contentSegment] = calculate(expectedFolio).contentSegments;
+                    const { contentSegments } = calculate(expectedFolio);
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
                     // Vertical middle of 52.93 and 83.39 minus 5
-                    expectToEqual(contentSegment.center, { x: 214.595, y: 63.16 });
+                    expectToEqual(firstContentSegment.center, { x: 214.595, y: 63.16 });
                 });
 
                 it('... should calculate the vertices and the center of reversed segments in reversed systems', () => {
-                    const [contentSegment] = calculate(expectedReversedFolio).contentSegments;
+                    const { contentSegments } = calculate(expectedReversedFolio);
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
                     expectToBe(
-                        contentSegment.vertices,
+                        firstContentSegment.vertices,
                         '59.07 192.32 370.12 192.32 370.12 222.78 59.07 222.78 59.07 192.32'
                     );
                     // Without addendum, so no shift
-                    expectToEqual(contentSegment.center, { x: 214.595, y: 207.55 });
+                    expectToEqual(firstContentSegment.center, { x: 214.595, y: 207.55 });
                 });
 
                 it('... should calculate the center shifted down for a reversed label with addendum', () => {
-                    const [contentSegment] = calculate(
-                        withContent({ reversed: true, sigleAddendum: 'T. 1' })
-                    ).contentSegments;
+                    const { contentSegments } = calculate(withContent({ reversed: true, sigleAddendum: 'T. 1' }));
+                    const firstContentSegment = getItemAt(contentSegments, 0);
 
-                    expectToEqual(contentSegment.center, { x: 214.595, y: 73.16 });
+                    expectToEqual(firstContentSegment.center, { x: 214.595, y: 73.16 });
                 });
 
                 it.each<[string, Partial<FolioContent>]>([
@@ -317,9 +334,10 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                     ['with a segment split smaller than its segments', { segmentSplit: 0.5 }],
                 ])('... should skip and log a folio content %s', (_description, content) => {
                     const { contentSegments } = calculate(withContent(content));
+                    const firstMessage = mockConsole.get(0);
 
                     expectToEqual(contentSegments, []);
-                    expectToBe(mockConsole.get(0).startsWith('[FolioCalculation]'), true);
+                    expect(firstMessage).toMatch(/^\[FolioCalculation\]/);
                 });
 
                 it('... should skip and log all folio contents of a folio without systems', () => {

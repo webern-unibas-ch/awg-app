@@ -1,7 +1,7 @@
 import { DataFactory } from 'n3';
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getEntryAt, getItemAt } from '@testing/expect-helper';
 
 import { SparqlSelectResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
 import { DEFAULT_PREFIXES } from '@awg-graph/graph-visualizer/utils/prefix.utils';
@@ -10,7 +10,7 @@ import { SELECT_TABLE_UTILS, toTableCell, toTableRows } from './select-table.uti
 
 const { blankNode, literal, namedNode } = DataFactory;
 
-const AWG = DEFAULT_PREFIXES['awg'];
+const AWG = getEntryAt(DEFAULT_PREFIXES, 'awg');
 const XSD = 'http://www.w3.org/2001/XMLSchema#';
 
 describe('SelectTableUtils (DONE)', () => {

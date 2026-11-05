@@ -60,23 +60,23 @@ describe('GraphQueryUtils (DONE)', () => {
             });
 
             it('... should return the first query of the given query list with its derived query type', () => {
-                const queryList: GraphQuery[] = [
-                    { ...getItemAt(expectedQueryList, 2), queryType: null },
-                    getItemAt(expectedQueryList, 0),
-                ];
+                const firstQuery = getItemAt(expectedQueryList, 0);
+                const thirdQuery = getItemAt(expectedQueryList, 2);
+                const queryList: GraphQuery[] = [{ ...thirdQuery, queryType: null }, firstQuery];
 
                 const query = initialQuery(queryList);
 
-                expectToEqual(query, expectedQueryList[2]);
+                expectToEqual(query, thirdQuery);
             });
 
             it('... should return a copy of the first query without changing the original query', () => {
-                const queryList: GraphQuery[] = [{ ...getItemAt(expectedQueryList, 2), queryType: 'construct' }];
+                const thirdQuery = getItemAt(expectedQueryList, 2);
+                const queryList: GraphQuery[] = [{ ...thirdQuery, queryType: 'construct' }];
 
                 const query = initialQuery(queryList);
                 const firstQuery = getItemAt(queryList, 0);
 
-                expect(query).not.toBe(queryList[0]);
+                expect(query).not.toBe(firstQuery);
                 expectToBe(query.queryType, 'select');
                 expectToBe(firstQuery.queryType, 'construct');
             });
@@ -94,30 +94,37 @@ describe('GraphQueryUtils (DONE)', () => {
             });
 
             it('... should return the query from the query list if queryLabel and queryType are known', () => {
-                const changedQuery = { ...expectedQueryList[1], queryString: 'CONSTRUCT {}' };
+                const secondQuery = getItemAt(expectedQueryList, 1);
+                const changedQuery = { ...secondQuery, queryString: 'CONSTRUCT {}' };
 
                 const foundQuery = findQuery(expectedQueryList, changedQuery);
 
-                expectToBe(foundQuery, expectedQueryList[1]);
+                expectToBe(foundQuery, secondQuery);
             });
 
             it('... should return the first query of the query list if no query is given', () => {
+                const firstQuery = getItemAt(expectedQueryList, 0);
+
                 const foundQuery = findQuery(expectedQueryList);
 
-                expectToBe(foundQuery, expectedQueryList[0]);
+                expectToBe(foundQuery, firstQuery);
             });
 
             it('... should return undefined for an empty query list, with or without a given query', () => {
+                const secondQuery = getItemAt(expectedQueryList, 1);
+
                 expect(findQuery([])).toBeUndefined();
-                expect(findQuery([], expectedQueryList[1])).toBeUndefined();
+                expect(findQuery([], secondQuery)).toBeUndefined();
             });
 
             describe('... should return the given query as is, if', () => {
                 it('... only queryLabel is known but not queryType', () => {
+                    const secondQuery = getItemAt(expectedQueryList, 1);
+                    const thirdQuery = getItemAt(expectedQueryList, 2);
                     const changedQuery: GraphQuery = {
-                        ...expectedQueryList[1],
+                        ...secondQuery,
                         queryType: 'select',
-                        queryString: getItemAt(expectedQueryList, 2).queryString,
+                        queryString: thirdQuery.queryString,
                     };
 
                     const foundQuery = findQuery(expectedQueryList, changedQuery);
@@ -126,7 +133,8 @@ describe('GraphQueryUtils (DONE)', () => {
                 });
 
                 it('... only queryType is known but not queryLabel', () => {
-                    const changedQuery: GraphQuery = { ...expectedQueryList[1], queryLabel: 'select all tests' };
+                    const secondQuery = getItemAt(expectedQueryList, 1);
+                    const changedQuery: GraphQuery = { ...secondQuery, queryLabel: 'select all tests' };
 
                     const foundQuery = findQuery(expectedQueryList, changedQuery);
 

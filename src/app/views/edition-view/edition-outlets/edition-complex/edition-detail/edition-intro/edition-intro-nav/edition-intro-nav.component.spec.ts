@@ -222,8 +222,12 @@ describe('EditionIntroNavComponent (DONE)', () => {
             const getExpectedLength = () => expectedIntroBlockContent.length + 1;
             const getExpectedData = (index: number) => {
                 const isLast = index === getExpectedLength() - 1;
-                const fragment = isLast ? expectedNotesFragment : expectedIntroBlockContent[index]?.blockId;
-                return { fragment, url: `/#${fragment}` };
+                if (isLast) {
+                    return { fragment: expectedNotesFragment, url: `/#${expectedNotesFragment}` };
+                }
+                const expectedBlock = getItemAt(expectedIntroBlockContent, index);
+
+                return { fragment: expectedBlock.blockId, url: `/#${expectedBlock.blockId}` };
             };
 
             beforeEach(() => {

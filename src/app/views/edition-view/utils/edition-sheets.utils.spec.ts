@@ -165,9 +165,10 @@ describe('EditionSheetsUtils (DONE)', () => {
                 });
 
                 it('... the found sheet has no content', () => {
+                    const firstSketchEdition = getItemAt(expectedSheets.sketchEditions, 0);
                     const sheets = {
                         ...expectedSheets,
-                        sketchEditions: [{ ...expectedSheets.sketchEditions[0], content: [] }],
+                        sketchEditions: [{ ...firstSketchEdition, content: [] }],
                     };
 
                     const foundSvgSheet = findSvgSheet(sheets, 'test-1');

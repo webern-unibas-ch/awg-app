@@ -17,6 +17,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getEntryAt,
 } from '@testing/expect-helper';
 
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
@@ -29,6 +30,8 @@ import { GraphResultsSelectComponent } from './graph-results-select.component';
 import { SelectTableComponent } from './table/select-table.component';
 
 const { literal, namedNode } = DataFactory;
+
+const AWG = getEntryAt(DEFAULT_PREFIXES, 'awg');
 
 /**
  * Helper function: createSelectResult.
@@ -75,7 +78,7 @@ describe('GraphResultsSelectComponent (DONE)', () => {
         // Test data
         expectedQueryResult = createSelectResult(
             ['test', 'success'],
-            [{ test: namedNode(`${DEFAULT_PREFIXES['awg']}test`), success: literal('success value') }]
+            [{ test: namedNode(`${AWG}test`), success: literal('success value') }]
         );
         expectedIsFullscreen = false;
 

@@ -176,10 +176,13 @@ describe('SourceListComponent (DONE)', () => {
 
                 describe('... siglum in header column (th)', () => {
                     it('... should use the siglum and optional addendum as the source id', async () => {
+                        const firstSource = getItemAt(expectedSourceListData.sources, 0);
+                        const secondSource = getItemAt(expectedSourceListData.sources, 1);
+                        const thirdSource = getItemAt(expectedSourceListData.sources, 2);
                         const sources = [
-                            { ...expectedSourceListData.sources[0], siglumAddendum: 'a' },
-                            { ...expectedSourceListData.sources[2], siglumAddendum: '' },
-                            { ...expectedSourceListData.sources[1], siglumAddendum: undefined },
+                            { ...firstSource, siglumAddendum: 'a' },
+                            { ...thirdSource, siglumAddendum: '' },
+                            { ...secondSource, siglumAddendum: undefined },
                         ];
                         const sourceListData = { sources };
 

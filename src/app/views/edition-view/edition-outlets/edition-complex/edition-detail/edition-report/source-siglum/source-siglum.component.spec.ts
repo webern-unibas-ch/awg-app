@@ -221,8 +221,9 @@ describe('SourceSiglumComponent (DONE)', () => {
                     { siglum: 'B', addendum: 'H' },
                     { siglum: 'C', addendum: 'F1-F2' },
                 ])('... with addendum $addendum', async ({ siglum, addendum }) => {
+                    const firstSource = getItemAt(mockEditionData.mockSourceListDataWithTexts.sources, 0);
                     expectedSourceData = {
-                        ...mockEditionData.mockSourceListDataWithTexts.sources[0],
+                        ...firstSource,
                         siglum,
                         siglumAddendum: addendum,
                     };

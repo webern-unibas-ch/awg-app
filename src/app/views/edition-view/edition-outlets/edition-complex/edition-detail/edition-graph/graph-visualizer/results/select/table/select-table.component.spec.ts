@@ -6,7 +6,13 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { DataFactory } from 'n3';
 
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByDirective,
+    getEntryAt,
+} from '@testing/expect-helper';
 
 import { TableComponent } from '@awg-shared/table/table.component';
 
@@ -17,6 +23,8 @@ import { SelectTableComponent } from './select-table.component';
 import { SELECT_TABLE_UTILS } from './select-table.utils';
 
 const { literal, namedNode } = DataFactory;
+
+const AWG = getEntryAt(DEFAULT_PREFIXES, 'awg');
 
 describe('SelectTableComponent (DONE)', () => {
     let component: SelectTableComponent;
@@ -42,7 +50,7 @@ describe('SelectTableComponent (DONE)', () => {
         expectedQueryResult = {
             kind: 'select',
             variables: ['test', 'success'],
-            bindings: [{ test: namedNode(`${DEFAULT_PREFIXES['awg']}test`), success: literal('success value') }],
+            bindings: [{ test: namedNode(`${AWG}test`), success: literal('success value') }],
             prefixes: DEFAULT_PREFIXES,
         };
 
@@ -127,7 +135,7 @@ describe('SelectTableComponent (DONE)', () => {
                 expectToBe(tableCmp.rowInputData(), component.tableRows());
                 expectToEqual(tableCmp.rowInputData(), [
                     {
-                        test: { type: 'uri', value: `${DEFAULT_PREFIXES['awg']}test`, label: 'awg:test' },
+                        test: { type: 'uri', value: `${AWG}test`, label: 'awg:test' },
                         success: { type: 'literal', value: 'success value', label: 'success value' },
                     },
                 ]);
