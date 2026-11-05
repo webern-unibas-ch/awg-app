@@ -47,6 +47,10 @@ function* _generateLimitValues(): Generator<number> {
  */
 function _toLimitValues(tripleCount: number): number[] {
     const limitValues: number[] = [];
+    // Only a finite triple count ends the endless sequence
+    if (!Number.isFinite(tripleCount)) {
+        return limitValues;
+    }
 
     for (const limitValue of _generateLimitValues()) {
         if (limitValue >= tripleCount) {

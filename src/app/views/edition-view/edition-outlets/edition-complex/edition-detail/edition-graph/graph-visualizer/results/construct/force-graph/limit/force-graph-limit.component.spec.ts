@@ -117,6 +117,15 @@ describe('ForceGraphLimitComponent (DONE)', () => {
             expectToEqual(component.limitValues(), []);
         });
 
+        it.each([Number.NaN, Number.POSITIVE_INFINITY])(
+            '... should have computed signal `limitValues` to hold no limit values for a triple count of %s',
+            tripleCount => {
+                fixture.componentRef.setInput('tripleCount', tripleCount);
+
+                expectToEqual(component.limitValues(), []);
+            }
+        );
+
         it('... should have computed signal `isLimited` to hold true for a limit below the triple count', () => {
             expectToBe(component.isLimited(), true);
         });

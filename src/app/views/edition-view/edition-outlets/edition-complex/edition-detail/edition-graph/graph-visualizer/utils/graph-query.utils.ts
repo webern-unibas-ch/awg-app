@@ -55,9 +55,8 @@ export function initialQuery(queryList: GraphQuery[]): GraphQuery {
 /**
  * Utils method: findQuery.
  *
- * It finds the query of a given query list with the same label and type as a given query.
- * If the given query is not in a filled list, it is returned as is;
- * if no query is given, the first query of the list is returned. An empty list gives no query.
+ * It finds the query of a given query list with the same label and type as a given query
+ * (the given query itself if it is not in the list, the first query of the list if none is given).
  *
  * @param {GraphQuery[]} queryList The given query list.
  * @param {GraphQuery} [query] The optional given query.

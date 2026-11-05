@@ -2,7 +2,7 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "types": ["node"],
-        // Unchecked as in tsconfig.spec.json (the app code is linted via tsconfig.app.json)
+        // Unchecked as in tsconfig.spec.json (the other code is linted via the app and doc configs)
         "noUncheckedIndexedAccess": false
     },
     "include": ["src/**/*.spec.ts", "src/test.ts", "src/testing/**/*.ts", "src/**/*.d.ts", "vitest-base.config.ts"]

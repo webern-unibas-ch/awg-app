@@ -11,6 +11,14 @@ import {
 } from '../edition-routes.constants';
 
 /**
+ * Constant: PERSONS_BY_REF.
+ *
+ * It keeps the persons of PERSONS_DATA by their reference key
+ * (as a map, so a reference from the data never matches an inherited key like `constructor`).
+ */
+const PERSONS_BY_REF = new Map<string, MetaPerson>(Object.entries(PERSONS_DATA));
+
+/**
  * The EditionComplexJsonPersonRef interface.
  *
  * It is used in the context of the edition view
@@ -325,10 +333,9 @@ export class EditionComplex {
         editors: EditionComplexJsonPersonRef[];
         lastModified: string;
     }): EditionComplexRespStatement {
-        const persons = new Map<string, MetaPerson>(Object.entries(PERSONS_DATA));
         const editors: MetaPerson[] =
             respStatement?.editors?.map(
-                editor => persons.get(editor.$ref) ?? { name: editor.$ref, homepage: '', identifiers: {} }
+                editor => PERSONS_BY_REF.get(editor.$ref) ?? { name: editor.$ref, homepage: '', identifiers: {} }
             ) ?? [];
         return { editors, lastModified: respStatement?.lastModified ?? '' };
     }
