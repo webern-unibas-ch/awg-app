@@ -20,14 +20,15 @@ describe('EditionStateHelper (DONE)', () => {
 
         it('... should return a structured clone (deep copy) that protects the cache from mutations', () => {
             const firstRun = EditionStateHelper.getOutline();
-
-            if (firstRun.length && getItemAt(firstRun, 0).sections?.length) {
-                getItemAt(getItemAt(firstRun, 0).sections, 0).section.route = 'MUTATED_ROUTE';
-            }
+            const firstRunSeries = getItemAt(firstRun, 0);
+            const firstRunSection = getItemAt(firstRunSeries.sections, 0);
+            firstRunSection.section.route = 'MUTATED_ROUTE';
 
             const secondRun = EditionStateHelper.getOutline();
+            const secondRunSeries = getItemAt(secondRun, 0);
+            const secondRunSection = getItemAt(secondRunSeries.sections, 0);
 
-            expect(getItemAt(getItemAt(secondRun, 0).sections, 0).section.route).not.toBe('MUTATED_ROUTE');
+            expect(secondRunSection.section.route).not.toBe('MUTATED_ROUTE');
         });
 
         it('... should check if the returned items are still instances of EditionOutlineSeries', () => {

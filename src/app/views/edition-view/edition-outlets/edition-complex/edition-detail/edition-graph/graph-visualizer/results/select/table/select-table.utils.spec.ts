@@ -132,13 +132,17 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return no cell for unbound variables', () => {
-                expectToBe(Object.hasOwn(getItemAt(toTableRows(result), 1), 'label'), false);
+                const secondRow = getItemAt(toTableRows(result), 1);
+
+                expectToBe(Object.hasOwn(secondRow, 'label'), false);
             });
 
             it('... should order the cells by the variables', () => {
                 const reordered: SparqlSelectResult = { ...result, variables: ['page', 's', 'label'] };
 
-                expectToEqual(Object.keys(getItemAt(toTableRows(reordered), 0)), ['page', 's', 'label']);
+                const firstRow = getItemAt(toTableRows(reordered), 0);
+
+                expectToEqual(Object.keys(firstRow), ['page', 's', 'label']);
             });
 
             it('... should ignore bound values of variables that are not projected', () => {

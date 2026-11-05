@@ -243,8 +243,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const strongDes = getAndExpectDebugElementByCss(tdDes[0], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
 
-                            const expectedSeriesLabel =
-                                'Series ' + getItemAt(expectedSeriesBreakdownData, index).series;
+                            const expectedSeriesBreakdown = getItemAt(expectedSeriesBreakdownData, index);
+                            const expectedSeriesLabel = 'Series ' + expectedSeriesBreakdown.series;
 
                             expectToBe(strongEl.textContent?.trim(), expectedSeriesLabel);
                         });
@@ -268,7 +268,9 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const strongDes = getAndExpectDebugElementByCss(tdDes[0], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
 
-                            if (getItemAt(mockData, index).activeSections === 0) {
+                            const mockSeriesBreakdown = getItemAt(mockData, index);
+
+                            if (mockSeriesBreakdown.activeSections === 0) {
                                 expectToContain(strongEl.classList, 'text-muted');
                             } else {
                                 expectToNotContain(strongEl.classList, 'text-muted');
@@ -289,7 +291,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const smallDes = getAndExpectDebugElementByCss(tdDes[0], 'small.text-muted', 1, 1);
                             const smallEl: HTMLElement = smallDes[0].nativeElement;
 
-                            const expectedActiveSectionsText = `(${getItemAt(expectedSeriesBreakdownData, index).activeSections} active section)`;
+                            const expectedSeriesBreakdown = getItemAt(expectedSeriesBreakdownData, index);
+                            const expectedActiveSectionsText = `(${expectedSeriesBreakdown.activeSections} active section)`;
 
                             expectToContain(smallEl.classList, 'text-muted');
                             expectToBe(smallEl.textContent?.trim(), expectedActiveSectionsText);
@@ -314,7 +317,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const smallDes = getAndExpectDebugElementByCss(tdDes[0], 'small.text-muted', 1, 1);
                             const smallEl: HTMLElement = smallDes[0].nativeElement;
 
-                            const expectedActiveSectionsText = `(${getItemAt(mockData, index).activeSections} active sections)`;
+                            const mockSeriesBreakdown = getItemAt(mockData, index);
+                            const expectedActiveSectionsText = `(${mockSeriesBreakdown.activeSections} active sections)`;
 
                             expectToBe(smallEl.textContent?.trim(), expectedActiveSectionsText);
                         });
@@ -360,7 +364,9 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
 
-                            if (getItemAt(mockData, index).activeSections === 0) {
+                            const mockSeriesBreakdown = getItemAt(mockData, index);
+
+                            if (mockSeriesBreakdown.activeSections === 0) {
                                 expectToContain(tdEl.classList, 'text-muted');
                             } else {
                                 expectToNotContain(tdEl.classList, 'text-muted');
@@ -486,7 +492,9 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
 
-                            if (getItemAt(mockData, index).activeSections === 0) {
+                            const mockSeriesBreakdown = getItemAt(mockData, index);
+
+                            if (mockSeriesBreakdown.activeSections === 0) {
                                 expectToContain(tdEl.classList, 'text-muted');
                             } else {
                                 expectToNotContain(tdEl.classList, 'text-muted');
@@ -604,6 +612,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const firstTdDe = getItemAt(tdDes, 0);
                             const spanDes = getAndExpectDebugElementByCss(firstTdDe, 'span', 1, 1);
                             const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+
                             expectToBe(spanEl.textContent?.trim(), '└');
 
                             // Section Label
@@ -623,6 +632,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const firstTdDe = getItemAt(tdDes, 0);
                             const spanDes = getAndExpectDebugElementByCss(firstTdDe, 'span', 1, 1);
                             const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+
                             expectToContain(spanEl.classList, 'text-muted');
 
                             // Section Label
@@ -645,12 +655,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes, seriesData, sectionData }) => {
-                            const routerLinkDes = getAndExpectDebugElementByDirective(
-                                getItemAt(tdDes, 0),
-                                RouterLink,
-                                1,
-                                1
-                            );
+                            const firstTdDe = getItemAt(tdDes, 0);
+                            const routerLinkDes = getAndExpectDebugElementByDirective(firstTdDe, RouterLink, 1, 1);
                             const routerLinkInstance = routerLinkDes[0].injector.get(RouterLink);
 
                             if (sectionData.disabled) {
@@ -681,7 +687,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                             navigateSpy.mockClear();
 
-                            const aDes = getAndExpectDebugElementByCss(getItemAt(tdDes, 0), 'a', 1, 1);
+                            const firstTdDe = getItemAt(tdDes, 0);
+                            const aDes = getAndExpectDebugElementByCss(firstTdDe, 'a', 1, 1);
 
                             await clickAndAwaitChanges(aDes[0], fixture);
 
@@ -805,12 +812,9 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes }) => {
-                            getAndExpectDebugElementByDirective(
-                                getItemAt(tdDes, 4),
-                                StatisticsProgressBarComponent,
-                                1,
-                                1
-                            );
+                            const fifthTdDe = getItemAt(tdDes, 4);
+
+                            getAndExpectDebugElementByDirective(fifthTdDe, StatisticsProgressBarComponent, 1, 1);
                         });
                     });
 
@@ -818,8 +822,9 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
+                            const fifthTdDe = getItemAt(tdDes, 4);
                             const progressBarDes = getAndExpectDebugElementByDirective(
-                                getItemAt(tdDes, 4),
+                                fifthTdDe,
                                 StatisticsProgressBarComponent,
                                 1,
                                 1

@@ -174,8 +174,9 @@ describe('EditionOutlineService (DONE)', () => {
 
             service['_rawOutlineDataSignal'].set(rawOutlineDataWithParts);
 
-            const { opus: opusItems, mnr: mnrItems } = getItemAt(getItemAt(service.editionOutline(), 0).sections, 0)
-                .content.complexTypes;
+            const firstSeries = getItemAt(service.editionOutline(), 0);
+            const firstSection = getItemAt(firstSeries.sections, 0);
+            const { opus: opusItems, mnr: mnrItems } = firstSection.content.complexTypes;
             const partItem = getItemAt(opusItems, 0).parts?.[0];
             const compositeItem = getItemAt(mnrItems, 0).compositeComplexes?.[0];
 

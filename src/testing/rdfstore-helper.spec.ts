@@ -85,10 +85,11 @@ describe('rdfstore-helper', () => {
             await expect(createStore(rdfstore)).rejects.toBe(createError);
             store.load('text/turtle', '', loadCallback);
             store.execute('', executeCallback);
-            const firstCall = getItemAt(loadCallback.mock.calls, 0);
+            const firstLoadCall = getItemAt(loadCallback.mock.calls, 0);
+            const firstExecuteCall = getItemAt(executeCallback.mock.calls, 0);
 
-            expectToBe(firstCall[0], loadError);
-            expectToBe(getItemAt(executeCallback.mock.calls, 0)[0], executeError);
+            expectToBe(firstLoadCall[0], loadError);
+            expectToBe(firstExecuteCall[0], executeError);
         });
 
         it('... should provide spies for all methods', () => {

@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
+import { MockMediaQueryList, stubMatchMedia } from '@testing/canvas-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -11,7 +12,6 @@ import {
     getAndExpectDebugElementByDirective,
     getItemAt,
 } from '@testing/expect-helper';
-import { MockMediaQueryList, stubMatchMedia } from '@testing/canvas-helper';
 import { MockResizeObserver, stubResizeObserver } from '@testing/svg-drawing-helper';
 
 import { CanvasViewport } from '../canvas.model';
@@ -229,10 +229,9 @@ describe('CanvasViewportDirective (DONE)', () => {
 
                     directive['_observeDevicePixelRatio']();
 
-                    expectToBe(
-                        getItemAt(mockMediaQueryLists, mockMediaQueryLists.length - 1).media,
-                        '(resolution: 1dppx)'
-                    );
+                    const mockLastMediaQueryList = getItemAt(mockMediaQueryLists, mockMediaQueryLists.length - 1);
+
+                    expectToBe(mockLastMediaQueryList.media, '(resolution: 1dppx)');
                 });
 
                 it('... should not observe without `matchMedia`', () => {

@@ -123,8 +123,9 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
 
                 it('... should calculate the last staff line of the last system', () => {
                     const { systems } = calculate(expectedFolio);
+                    const lastSystem = getItemAt(systems.items, 17);
 
-                    expectToEqual(getItemAt(systems.items, 17).lines[4], {
+                    expectToEqual(lastSystem.lines[4], {
                         start: { x: 57.07, y: 232.21 },
                         end: { x: 372.12, y: 232.21 },
                     });

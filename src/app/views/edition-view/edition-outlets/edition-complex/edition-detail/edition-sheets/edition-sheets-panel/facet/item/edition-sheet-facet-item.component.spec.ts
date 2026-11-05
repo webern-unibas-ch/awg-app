@@ -543,9 +543,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     });
 
                     it('... should navigate to the `sheetRoute` of the partial on click of an item anchor', async () => {
-                        await clickAndAwaitChanges(getItemAt(getDropdownItemDes(), 1), fixture);
+                        const secondDropdownItemDe = getItemAt(getDropdownItemDes(), 1);
+                        const secondPartial = getItemAt(component.sheetPartials(), 1);
 
-                        expectSpyCall(navigateByUrlSpy, 1, getItemAt(component.sheetPartials(), 1).sheetRoute);
+                        await clickAndAwaitChanges(secondDropdownItemDe, fixture);
+
+                        expectSpyCall(navigateByUrlSpy, 1, secondPartial.sheetRoute);
                     });
 
                     it('... should not navigate on click of the dropdown toggle anchor', async () => {

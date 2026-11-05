@@ -784,10 +784,11 @@ describe('EditionDataService (DONE)', () => {
                 it('... no block id is given', () => {
                     const result = service['_filterSectionIntroDataByBlockId'](expectedIntroSectionData, '');
                     const firstIntro = getItemAt(result.intro, 0);
+                    const expectedFirstIntro = getItemAt(expectedIntroSectionData.intro, 0);
 
                     expect(result).toBeDefined();
                     expect(result.intro[0]).toBeDefined();
-                    expectToBe(firstIntro.id, getItemAt(expectedIntroSectionData.intro, 0).id);
+                    expectToBe(firstIntro.id, expectedFirstIntro.id);
                     expectToEqual(firstIntro.content, []);
                 });
 
@@ -795,10 +796,11 @@ describe('EditionDataService (DONE)', () => {
                     const blockId = 'notExistingId';
                     const result = service['_filterSectionIntroDataByBlockId'](expectedIntroSectionData, blockId);
                     const firstIntro = getItemAt(result.intro, 0);
+                    const expectedFirstIntro = getItemAt(expectedIntroSectionData.intro, 0);
 
                     expect(result).toBeDefined();
                     expect(result.intro[0]).toBeDefined();
-                    expectToBe(firstIntro.id, getItemAt(expectedIntroSectionData.intro, 0).id);
+                    expectToBe(firstIntro.id, expectedFirstIntro.id);
                     expectToEqual(firstIntro.content, []);
                 });
             });

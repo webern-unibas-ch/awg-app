@@ -367,9 +367,10 @@ describe('ForceGraphUtils (DONE)', () => {
                 };
                 const { edges: forceGraphEdges } = toForceGraphData(graph);
                 const { edges: otherForceGraphEdges } = toForceGraphData(otherGraph);
+                const secondForceGraphEdge = getItemAt(forceGraphEdges, 1);
                 const secondOtherForceGraphEdge = getItemAt(otherForceGraphEdges, 1);
 
-                expect(secondOtherForceGraphEdge.mid?.id).not.toBe(getItemAt(forceGraphEdges, 1).mid?.id);
+                expect(secondOtherForceGraphEdge.mid?.id).not.toBe(secondForceGraphEdge.mid?.id);
             });
 
             it('... should return the force graph nodes of the result graph (without the middle nodes) as visible nodes', () => {

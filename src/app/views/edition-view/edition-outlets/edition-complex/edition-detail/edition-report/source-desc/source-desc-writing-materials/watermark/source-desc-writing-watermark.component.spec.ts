@@ -158,8 +158,9 @@ describe('SourceDescWritingWatermarkComponent (DONE)', () => {
 
                 locusDes.forEach((locusDe, index) => {
                     const directiveIns = locusDe.injector.get(CompileHtmlDirective);
+                    const expectedLocus = getItemAt(expectedLoci, index);
 
-                    expectToBe(directiveIns.htmlContent(), getItemLocus(getItemAt(expectedLoci, index)));
+                    expectToBe(directiveIns.htmlContent(), getItemLocus(expectedLocus));
                 });
             });
 
