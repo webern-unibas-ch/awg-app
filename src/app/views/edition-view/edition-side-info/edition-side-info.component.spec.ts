@@ -18,6 +18,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toTextContent } from '@testing/html-helper';
 
@@ -273,8 +274,18 @@ describe('EditionSideInfoComponent (DONE)', () => {
                         expectedSections.length + 1
                     );
 
-                    const itemHeaderDes1 = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
-                    const itemHeaderDes2 = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-header', 1, 1);
+                    const itemHeaderDes1 = getAndExpectDebugElementByCss(
+                        getItemAt(itemDes, 1),
+                        'div.accordion-header',
+                        1,
+                        1
+                    );
+                    const itemHeaderDes2 = getAndExpectDebugElementByCss(
+                        getItemAt(itemDes, 2),
+                        'div.accordion-header',
+                        1,
+                        1
+                    );
 
                     const btnDes1 = getAndExpectDebugElementByCss(itemHeaderDes1[0], 'button.accordion-button', 1, 1);
                     const btnDes2 = getAndExpectDebugElementByCss(itemHeaderDes2[0], 'button.accordion-button', 1, 1);
@@ -355,7 +366,12 @@ describe('EditionSideInfoComponent (DONE)', () => {
                         expectedSections.length + 1,
                         expectedSections.length + 1
                     );
-                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(
+                        getItemAt(itemDes, 0),
+                        'div.accordion-body',
+                        1,
+                        1
+                    );
 
                     getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 3, 3);
                 });
@@ -374,7 +390,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
                         }
                         const itemBodyDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-body', 1, 1);
 
-                        const currentSection = expectedSections[index - 1];
+                        const currentSection = getItemAt(expectedSections, index - 1);
                         const allComplexesCount = currentSection.content?.sectionComplexes?.length ?? 0;
 
                         const expectedLength = !currentSection.content?.intro?.disabled
@@ -386,12 +402,13 @@ describe('EditionSideInfoComponent (DONE)', () => {
                 });
 
                 it('... should not render intro link when section intro is disabled', async () => {
+                    const expectedFirstSection = getItemAt(expectedSections, 0);
                     const sectionWithDisabledIntro: EditionOutlineSection = {
                         ...expectedSections[0],
                         content: {
-                            ...expectedSections[0].content,
+                            ...expectedFirstSection.content,
                             intro: {
-                                ...expectedSections[0].content?.intro,
+                                ...expectedFirstSection.content?.intro,
                                 disabled: true,
                             },
                         },
@@ -413,11 +430,12 @@ describe('EditionSideInfoComponent (DONE)', () => {
                     );
 
                     // Open the item body for the section with disabled intro
-                    const itemHeaderDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
+                    const secondItemDe = getItemAt(itemDes, 1);
+                    const itemHeaderDes = getAndExpectDebugElementByCss(secondItemDe, 'div.accordion-header', 1, 1);
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     await clickAndAwaitChanges(btnDes[0], freshFixture);
 
-                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(secondItemDe, 'div.accordion-body', 1, 1);
 
                     const allComplexesCount = sectionWithDisabledIntro.content?.sectionComplexes?.length ?? 0;
 
@@ -437,7 +455,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
                     spanDes.forEach((spanDe, index) => {
                         const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
-                        const expectedTitle = toTextContent(itemTitles[index]);
+                        const expectedTitle = toTextContent(getItemAt(itemTitles, index));
 
                         expectToBe(spanEl.textContent.trim(), expectedTitle.trim());
                     });
@@ -466,9 +484,10 @@ describe('EditionSideInfoComponent (DONE)', () => {
 
                         getLinkDes().forEach((linkDe, index) => {
                             const linkCmp = linkDe.injector.get(ConditionalLinkComponent);
+                            const expectedComplex = getItemAt(expectedComplexes, index);
 
-                            expectToBe(linkCmp.isClickable(), !expectedComplexes[index].disabled);
-                            expectToEqual(linkCmp.targetRoute(), expectedComplexes[index].labeledRoute.route);
+                            expectToBe(linkCmp.isClickable(), !expectedComplex.disabled);
+                            expectToEqual(linkCmp.targetRoute(), expectedComplex.labeledRoute.route);
                         });
                     });
 
@@ -476,7 +495,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
                         const expectedComplexes = getExpectedComplexes();
 
                         getLinkDes().forEach((linkDe, index) => {
-                            const isComplexDisabled = expectedComplexes[index].disabled;
+                            const isComplexDisabled = getItemAt(expectedComplexes, index).disabled;
 
                             const linkEl: HTMLElement = linkDe.nativeElement;
                             const isLinkTextMuted = linkEl.classList.contains('text-muted');
@@ -534,13 +553,14 @@ describe('EditionSideInfoComponent (DONE)', () => {
                 for (const [index] of routerLinks.entries()) {
                     navigateSpy.mockClear();
 
-                    const linkDe = linkDes[index];
+                    const linkDe = getItemAt(linkDes, index);
                     const expectedRouterLink = expectedRouterLinks[index];
 
                     await clickAndAwaitChanges(linkDe, fixture);
 
                     expectSpyCall(navigateSpy, 1);
-                    const actualUrl = navigateSpy.mock.calls[0][0].toString();
+                    const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                    const actualUrl = actualUrlTree.toString();
 
                     expectToBe(actualUrl, expectedRouterLink);
                 }

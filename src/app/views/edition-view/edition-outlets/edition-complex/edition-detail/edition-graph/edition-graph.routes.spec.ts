@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, it, vi } from 'vitest';
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { EditionGraphComponent } from './edition-graph.component';
 import { EDITION_GRAPH_ROUTES } from './edition-graph.routes';
@@ -23,17 +23,20 @@ describe('EDITION_GRAPH_ROUTES (DONE)', () => {
     });
 
     it('... should have one route for the EditionGraphComponent', () => {
+        const graphRoute = getItemAt(EDITION_GRAPH_ROUTES, 0);
+
         expectToBe(EDITION_GRAPH_ROUTES.length, 1);
-        expectToBe(EDITION_GRAPH_ROUTES[0].path, '');
-        expectToBe(EDITION_GRAPH_ROUTES[0].component, EditionGraphComponent);
-        expectToEqual(EDITION_GRAPH_ROUTES[0].data, { title: 'AWG Online Edition – Graph' });
+        expectToBe(graphRoute.path, '');
+        expectToBe(graphRoute.component, EditionGraphComponent);
+        expectToEqual(graphRoute.data, { title: 'AWG Online Edition – Graph' });
     });
 
     it('... should preload the rdfstore module when the route injector is created', () => {
         const preloadSpy = vi.spyOn(rdfStoreService, 'preload').mockResolvedValue(undefined);
+        const graphRoute = getItemAt(EDITION_GRAPH_ROUTES, 0);
 
         const routeInjector = createEnvironmentInjector(
-            EDITION_GRAPH_ROUTES[0].providers ?? [],
+            graphRoute.providers ?? [],
             TestBed.inject(EnvironmentInjector)
         );
 

@@ -11,6 +11,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -38,7 +39,7 @@ describe('SourceSiglumComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedSourceData = structuredClone(mockEditionData.mockSourceListData.sources[0]);
+        expectedSourceData = structuredClone(getItemAt(mockEditionData.mockSourceListData.sources, 0));
         expectedTargetRoute = new UrlTree();
 
         // Create component fixture
@@ -260,7 +261,7 @@ describe('SourceSiglumComponent (DONE)', () => {
 
             describe('... missing sources', () => {
                 beforeEach(async () => {
-                    expectedSourceData = structuredClone(mockEditionData.mockSourceListData.sources[2]);
+                    expectedSourceData = structuredClone(getItemAt(mockEditionData.mockSourceListData.sources, 2));
                     fixture.componentRef.setInput('isClickable', true);
                     fixture.componentRef.setInput('classPrefix', 'awg-source-list');
 

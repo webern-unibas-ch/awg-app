@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -34,7 +35,7 @@ describe('SourceDescWritingTrademarkComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         const writingMaterials = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescListData.sources[2].physDesc.writingMaterials)
+            JSON.stringify(getItemAt(mockEditionData.mockSourceDescListData.sources, 2).physDesc.writingMaterials)
         );
         expectedTrademark = writingMaterials[0].trademark; // With variant and locus
 
@@ -202,7 +203,7 @@ describe('SourceDescWritingTrademarkComponent (DONE)', () => {
                 locusDes.forEach((locusDe, index) => {
                     const directiveIns = locusDe.injector.get(CompileHtmlDirective);
 
-                    expectToBe(directiveIns.htmlContent(), getItemLocus(expectedLoci[index]));
+                    expectToBe(directiveIns.htmlContent(), getItemLocus(getItemAt(expectedLoci, index)));
                 });
             });
 

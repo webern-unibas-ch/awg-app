@@ -14,6 +14,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
@@ -101,17 +102,19 @@ describe('HomeViewComponent (DONE)', () => {
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
         expectedSections = [EditionStateHelper.getSection('1', '5'), EditionStateHelper.getSection('2', '2a')];
+        const expectedFirstSection = getItemAt(expectedSections, 0);
+        const expectedSecondSection = getItemAt(expectedSections, 1);
         expectedSectionLinksData = [
             {
-                route: expectedSections[0].labeledRoute.route,
-                shortTitle: expectedSections[0].labeledRoute.label,
-                fullTitle: expectedSections[0].section.full,
+                route: expectedFirstSection.labeledRoute.route,
+                shortTitle: expectedFirstSection.labeledRoute.label,
+                fullTitle: expectedFirstSection.section.full,
                 separator: ' und ',
             },
             {
-                route: expectedSections[1].labeledRoute.route,
-                shortTitle: expectedSections[1].labeledRoute.label,
-                fullTitle: expectedSections[1].section.full,
+                route: expectedSecondSection.labeledRoute.route,
+                shortTitle: expectedSecondSection.labeledRoute.label,
+                fullTitle: expectedSecondSection.section.full,
                 separator: '',
             },
         ];
@@ -406,8 +409,9 @@ describe('HomeViewComponent (DONE)', () => {
             it('... can get correct linkParams from template', () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
                     const urlTreeString = routerLink.urlTree?.toString() ?? '';
+                    const expectedRouterLink = getItemAt(expectedRouterLinks, index);
 
-                    expectToBe(urlTreeString, expectedRouterLinks[index].join('/'));
+                    expectToBe(urlTreeString, expectedRouterLink.join('/'));
                 }
             });
 
@@ -417,14 +421,14 @@ describe('HomeViewComponent (DONE)', () => {
                 for (const [index] of routerLinks.entries()) {
                     navigateSpy.mockClear();
 
-                    const linkDe = linkDes[index];
-                    const expectedRouterLink = expectedRouterLinks[index];
+                    const linkDe = getItemAt(linkDes, index);
+                    const expectedRouterLink = getItemAt(expectedRouterLinks, index);
 
                     await clickAndAwaitChanges(linkDe, fixture);
 
                     expectSpyCall(navigateSpy, 1);
-                    const firstCallArg = navigateSpy.mock.calls[0][0];
-                    const actualUrl = firstCallArg.toString();
+                    const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                    const actualUrl = actualUrlTree.toString();
 
                     expectToBe(actualUrl, expectedRouterLink.join('/'));
                 }

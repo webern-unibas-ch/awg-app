@@ -17,6 +17,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { JsonViewerComponent } from './json-viewer.component';
@@ -59,13 +60,13 @@ function expectNavContents(fixture: ComponentFixture<any>, expected: string[], a
     const contents = getNavContents(fixture);
     expectToBe(contents.length, expected.length);
 
-    for (let i = 0; i < expected.length; ++i) {
+    contents.forEach((contentEl, i) => {
         if (i === activeIndex) {
-            expectToContain(contents[i].classList, 'active');
+            expectToContain(contentEl.classList, 'active');
         } else {
-            expectToNotContain(contents[i].classList, 'active');
+            expectToNotContain(contentEl.classList, 'active');
         }
-    }
+    });
 }
 
 function expectNavPanel(fixture: ComponentFixture<any>, expectedLinks: boolean[], expectedContents: string[]) {
@@ -203,20 +204,24 @@ describe('JsonViewerComponent (DONE)', () => {
 
             it('... should change active navItem on click', async () => {
                 const navLinkDes = getNavLinks(fixture);
+                const formattedLinkDe = getItemAt(navLinkDes, 0);
+                const plainLinkDe = getItemAt(navLinkDes, 1);
 
                 expectNavPanel(fixture, [true, false], ['content1']);
 
-                await clickAndAwaitChanges(navLinkDes[1], fixture);
+                await clickAndAwaitChanges(plainLinkDe, fixture);
 
                 expectNavPanel(fixture, [false, true], ['content2']);
 
-                await clickAndAwaitChanges(navLinkDes[0], fixture);
+                await clickAndAwaitChanges(formattedLinkDe, fixture);
 
                 expectNavPanel(fixture, [true, false], ['content1']);
             });
 
             it('... should contain one ngx-json-viewer component (hollow) only in Formatted view', async () => {
                 const navLinkDes = getNavLinks(fixture);
+                const plainLinkDe = getItemAt(navLinkDes, 1);
+
                 getAndExpectDebugElementByDirective(
                     compDe,
                     NgxJsonViewerComponent,
@@ -225,7 +230,7 @@ describe('JsonViewerComponent (DONE)', () => {
                     'in default (formatted) view'
                 );
 
-                await clickAndAwaitChanges(navLinkDes[1], fixture);
+                await clickAndAwaitChanges(plainLinkDe, fixture);
 
                 getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0, 'in plain view');
             });
@@ -253,18 +258,19 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should render `jsonViewerData` in Plain view', async () => {
-                const navLinkDes = getNavLinks(fixture);
+                const plainLinkDe = getItemAt(getNavLinks(fixture), 1);
 
                 // Change navLink to plain view
-                await clickAndAwaitChanges(navLinkDes[1], fixture);
+                await clickAndAwaitChanges(plainLinkDe, fixture);
 
                 const navContent = getNavContents(fixture);
+                const firstNavContent = getItemAt(navContent, 0);
 
                 const jsonPipe = new JsonPipe();
                 const pipedData = jsonPipe.transform(expectedData);
 
                 expectToBe(navContent.length, 1);
-                expectToContain(navContent[0].textContent, pipedData);
+                expectToContain(firstNavContent.textContent, pipedData);
             });
         });
     });

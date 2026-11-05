@@ -4,7 +4,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByDirective,
+    getItemAt,
+} from '@testing/expect-helper';
 import { MockMediaQueryList, stubMatchMedia } from '@testing/canvas-helper';
 import { MockResizeObserver, stubResizeObserver } from '@testing/svg-drawing-helper';
 
@@ -94,14 +100,16 @@ describe('CanvasViewportDirective (DONE)', () => {
         });
 
         it('... should observe the size of the canvas after the first rendering', () => {
+            const mockFirstResizeObserver = getItemAt(mockResizeObservers, 0);
+
             expectToBe(mockResizeObservers.length, 1);
-            expectToEqual(mockResizeObservers[0].observedElements, [canvasEl]);
+            expectToEqual(mockFirstResizeObserver.observedElements, [canvasEl]);
         });
 
         it('... should have signal `viewport` to hold the new client size on a resize of the canvas', () => {
             setCanvasClientSize(800, 400);
 
-            mockResizeObservers[0].trigger();
+            getItemAt(mockResizeObservers, 0).trigger();
 
             expectToEqual(directive.viewport(), { width: 800, height: 400, dpr });
         });
@@ -113,13 +121,13 @@ describe('CanvasViewportDirective (DONE)', () => {
         it('... should emit the new viewport on `resized` on a resize of the canvas', () => {
             setCanvasClientSize(800, 400);
 
-            mockResizeObservers[0].trigger();
+            getItemAt(mockResizeObservers, 0).trigger();
 
             expectSpyCall(host.resizedSpy, 2, { width: 800, height: 400, dpr });
         });
 
         it('... should not emit on `resized` and keep the backing store for an unchanged size', () => {
-            mockResizeObservers[0].trigger();
+            getItemAt(mockResizeObservers, 0).trigger();
 
             expectSpyCall(host.resizedSpy, 1);
             expectToBe(canvasEl.width, Math.round(400 * dpr));
@@ -128,21 +136,24 @@ describe('CanvasViewportDirective (DONE)', () => {
 
         it('... should disconnect the resize observer on destroy', () => {
             fixture.destroy();
+            const mockFirstResizeObserver = getItemAt(mockResizeObservers, 0);
 
-            expectSpyCall(mockResizeObservers[0].disconnect, 1);
+            expectSpyCall(mockFirstResizeObserver.disconnect, 1);
         });
 
         describe('... device pixel ratio', () => {
             // Changes the device pixel ratio and notifies the media query of the current one
             const changeDevicePixelRatio = (newDpr: number): void => {
                 vi.spyOn(window, 'devicePixelRatio', 'get').mockReturnValue(newDpr);
-                mockMediaQueryLists[mockMediaQueryLists.length - 1].trigger();
+                getItemAt(mockMediaQueryLists, mockMediaQueryLists.length - 1).trigger();
             };
 
             it('... should observe the device pixel ratio after the first rendering', () => {
+                const mockFirstMediaQueryList = getItemAt(mockMediaQueryLists, 0);
+
                 expectToBe(mockMediaQueryLists.length, 1);
-                expectToBe(mockMediaQueryLists[0].media, `(resolution: ${dpr}dppx)`);
-                expectToBe(mockMediaQueryLists[0].listeners.length, 1);
+                expectToBe(mockFirstMediaQueryList.media, `(resolution: ${dpr}dppx)`);
+                expectToBe(mockFirstMediaQueryList.listeners.length, 1);
             });
 
             it('... should have signal `viewport` to hold the new device pixel ratio on a change of the device pixel ratio', () => {
@@ -161,19 +172,22 @@ describe('CanvasViewportDirective (DONE)', () => {
 
             it('... should observe the new device pixel ratio after a change', () => {
                 changeDevicePixelRatio(dpr + 1);
+                const mockSecondMediaQueryList = getItemAt(mockMediaQueryLists, 1);
+                const mockFirstMediaQueryList = getItemAt(mockMediaQueryLists, 0);
 
                 expectToBe(mockMediaQueryLists.length, 2);
-                expectToBe(mockMediaQueryLists[0].listeners.length, 0);
-                expectToBe(mockMediaQueryLists[1].media, `(resolution: ${dpr + 1}dppx)`);
-                expectToBe(mockMediaQueryLists[1].listeners.length, 1);
+                expectToBe(mockFirstMediaQueryList.listeners.length, 0);
+                expectToBe(mockSecondMediaQueryList.media, `(resolution: ${dpr + 1}dppx)`);
+                expectToBe(mockSecondMediaQueryList.listeners.length, 1);
             });
 
             it('... should stop observing the device pixel ratio on destroy', () => {
                 changeDevicePixelRatio(dpr + 1);
 
                 fixture.destroy();
+                const mockSecondMediaQueryList = getItemAt(mockMediaQueryLists, 1);
 
-                expectToBe(mockMediaQueryLists[1].listeners.length, 0);
+                expectToBe(mockSecondMediaQueryList.listeners.length, 0);
             });
         });
 
@@ -211,7 +225,10 @@ describe('CanvasViewportDirective (DONE)', () => {
 
                     directive['_observeDevicePixelRatio']();
 
-                    expectToBe(mockMediaQueryLists[mockMediaQueryLists.length - 1].media, '(resolution: 1dppx)');
+                    expectToBe(
+                        getItemAt(mockMediaQueryLists, mockMediaQueryLists.length - 1).media,
+                        '(resolution: 1dppx)'
+                    );
                 });
 
                 it('... should not observe without `matchMedia`', () => {
@@ -230,7 +247,7 @@ describe('CanvasViewportDirective (DONE)', () => {
 
                 it('... should observe the size of the canvas and remeasure it on a resize', () => {
                     directive['_observeResize']();
-                    const resizeObserver = mockResizeObservers[mockResizeObservers.length - 1];
+                    const resizeObserver = getItemAt(mockResizeObservers, mockResizeObservers.length - 1);
                     setCanvasClientSize(800, 400);
 
                     resizeObserver.trigger();

@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -193,7 +194,7 @@ describe('SourceListComponent (DONE)', () => {
                         );
 
                         sourceSiglumDes.forEach((sourceSiglumDe, index) => {
-                            const source = sources[index];
+                            const source = getItemAt(sources, index);
                             const sourceSiglumEl: HTMLElement = sourceSiglumDe.nativeElement;
                             const sourceRowHeader = sourceSiglumEl.closest('th');
 
@@ -272,8 +273,9 @@ describe('SourceListComponent (DONE)', () => {
                     it('... should pass down source type to CompileHtmlDirective', () => {
                         sourceRowDes.forEach((sourceRowDe, index) => {
                             const directiveIns = sourceRowDe.typeSpanDe.injector.get(CompileHtmlDirective);
+                            const source = getItemAt(sourcesData, index);
 
-                            expectToBe(directiveIns.htmlContent(), sourcesData[index].type);
+                            expectToBe(directiveIns.htmlContent(), source.type);
                         });
                     });
 
@@ -287,8 +289,9 @@ describe('SourceListComponent (DONE)', () => {
                     it('... should pass down source location to CompileHtmlDirective', () => {
                         sourceRowDes.forEach((sourceRowDe, index) => {
                             const directiveIns = sourceRowDe.locationSpanDe.injector.get(CompileHtmlDirective);
+                            const source = getItemAt(sourcesData, index);
 
-                            expectToBe(directiveIns.htmlContent(), sourcesData[index].location);
+                            expectToBe(directiveIns.htmlContent(), source.location);
                         });
                     });
 
@@ -296,9 +299,10 @@ describe('SourceListComponent (DONE)', () => {
                         sourceRowDes.forEach((sourceRowDe, index) => {
                             const typeEl: HTMLSpanElement = sourceRowDe.typeSpanDe.nativeElement;
                             const locationEl: HTMLSpanElement = sourceRowDe.locationSpanDe.nativeElement;
+                            const source = getItemAt(sourcesData, index);
 
-                            expectToBe(typeEl.textContent, sourcesData[index].type);
-                            expectToBe(locationEl.textContent, sourcesData[index].location);
+                            expectToBe(typeEl.textContent, source.type);
+                            expectToBe(locationEl.textContent, source.location);
                         });
                     });
                 });
@@ -374,7 +378,7 @@ describe('SourceListComponent (DONE)', () => {
                             const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
                             const columnEl: HTMLTableCellElement = columnDes[0].nativeElement;
 
-                            const expectedId = textSources[index - 1].id;
+                            const expectedId = getItemAt(textSources, index - 1).id;
 
                             expectToBe(columnEl.id, expectedId);
                         });
@@ -456,8 +460,9 @@ describe('SourceListComponent (DONE)', () => {
                     it('... should pass down text source type to CompileHtmlDirective', () => {
                         textSourceRowDes.forEach((sourceRowDe, index) => {
                             const directiveIns = sourceRowDe.typeSpanDe.injector.get(CompileHtmlDirective);
+                            const textSource = getItemAt(textSourcesData, index);
 
-                            expectToBe(directiveIns.htmlContent(), textSourcesData[index].type);
+                            expectToBe(directiveIns.htmlContent(), textSource.type);
                         });
                     });
 
@@ -472,8 +477,9 @@ describe('SourceListComponent (DONE)', () => {
                     it('... should pass down text source location to CompileHtmlDirective', () => {
                         textSourceRowDes.forEach((sourceRowDe, index) => {
                             const directiveIns = sourceRowDe.locationSpanDe.injector.get(CompileHtmlDirective);
+                            const textSource = getItemAt(textSourcesData, index);
 
-                            expectToBe(directiveIns.htmlContent(), textSourcesData[index].location);
+                            expectToBe(directiveIns.htmlContent(), textSource.location);
                         });
                     });
 
@@ -481,9 +487,10 @@ describe('SourceListComponent (DONE)', () => {
                         textSourceRowDes.forEach((rowDe, index) => {
                             const typeSpanEl: HTMLSpanElement = rowDe.typeSpanDe.nativeElement;
                             const locationSpanEl: HTMLSpanElement = rowDe.locationSpanDe.nativeElement;
+                            const textSource = getItemAt(textSourcesData, index);
 
-                            expectToBe(typeSpanEl.textContent, textSourcesData[index].type);
-                            expectToBe(locationSpanEl.textContent, textSourcesData[index].location);
+                            expectToBe(typeSpanEl.textContent, textSource.type);
+                            expectToBe(locationSpanEl.textContent, textSource.location);
                         });
                     });
                 });

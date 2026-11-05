@@ -12,6 +12,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
@@ -71,12 +72,14 @@ describe('EditionGraphComponent (DONE)', () => {
 
         expectedGraphDataOp25 = new GraphList();
         expectedGraphDataOp25.graph = [new Graph(), new Graph()];
-        expectedGraphDataOp25.graph[0].id = 'test-graph-id-op25-1';
-        expectedGraphDataOp25.graph[0].description = ['Description for test-graph-id-op25-1'];
-        expectedGraphDataOp25.graph[0].staticImage = 'OP25';
-        expectedGraphDataOp25.graph[1].id = 'test-graph-id-op25-2';
-        expectedGraphDataOp25.graph[1].rdfData.triples = 'example:test example:has example:Success';
-        expectedGraphDataOp25.graph[1].staticImage = 'OP12';
+        const firstGraph = getItemAt(expectedGraphDataOp25.graph, 0);
+        firstGraph.id = 'test-graph-id-op25-1';
+        firstGraph.description = ['Description for test-graph-id-op25-1'];
+        firstGraph.staticImage = 'OP25';
+        const secondGraph = getItemAt(expectedGraphDataOp25.graph, 1);
+        secondGraph.id = 'test-graph-id-op25-2';
+        secondGraph.rdfData.triples = 'example:test example:has example:Success';
+        secondGraph.staticImage = 'OP12';
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionGraphComponent);
@@ -309,8 +312,9 @@ describe('EditionGraphComponent (DONE)', () => {
 
                         dynamicDes.forEach((de, index) => {
                             const dynamicCmp = de.injector.get(EditionGraphDynamicComponent);
+                            const expectedGraph = getItemAt(expectedGraphDataOp25.graph, index);
 
-                            expectToEqual(dynamicCmp.rdfData(), expectedGraphDataOp25.graph[index].rdfData);
+                            expectToEqual(dynamicCmp.rdfData(), expectedGraph.rdfData);
                         });
                     });
                 });
@@ -330,8 +334,9 @@ describe('EditionGraphComponent (DONE)', () => {
 
                         staticDes.forEach((de, index) => {
                             const staticCmp = de.injector.get(EditionGraphStaticComponent);
+                            const expectedGraph = getItemAt(expectedGraphDataOp25.graph, index);
 
-                            expectToBe(staticCmp.imageKey(), expectedGraphDataOp25.graph[index].staticImage);
+                            expectToBe(staticCmp.imageKey(), expectedGraph.staticImage);
                         });
                     });
                 });

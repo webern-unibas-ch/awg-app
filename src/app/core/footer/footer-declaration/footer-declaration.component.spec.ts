@@ -14,6 +14,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { META_DATA } from '@awg-shared/meta/meta.data';
@@ -208,8 +209,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const urlTreeString1 = routerLinks[0].urlTree?.toString();
-                const urlTreeString2 = routerLinks[1].urlTree?.toString();
+                const urlTreeString1 = getItemAt(routerLinks, 0).urlTree?.toString();
+                const urlTreeString2 = getItemAt(routerLinks, 1).urlTree?.toString();
 
                 expectToBe(urlTreeString1, '/contact#awg-imprint');
                 expectToBe(urlTreeString2, '/contact#awg-documentation');
@@ -218,13 +219,13 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
                 navigateSpy.mockClear();
 
-                const imprintLinkDe = linkDes[0];
+                const imprintLinkDe = getItemAt(linkDes, 0);
 
                 await clickAndAwaitChanges(imprintLinkDe, fixture);
 
                 expectSpyCall(navigateSpy, 1);
-                const firstCallArg = navigateSpy.mock.calls[0][0];
-                const actualUrl = firstCallArg.toString();
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                const actualUrl = actualUrlTree.toString();
 
                 expectToBe(actualUrl, '/contact#awg-imprint');
 
@@ -235,13 +236,13 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
                 navigateSpy.mockClear();
 
-                const documentationLinkDe = linkDes[1]; // Contact link DebugElement
+                const documentationLinkDe = getItemAt(linkDes, 1); // Contact link DebugElement
 
                 await clickAndAwaitChanges(documentationLinkDe, fixture);
 
                 expectSpyCall(navigateSpy, 1);
-                const firstCallArg = navigateSpy.mock.calls[0][0];
-                const actualUrl = firstCallArg.toString();
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                const actualUrl = actualUrlTree.toString();
 
                 expectToBe(actualUrl, '/contact#awg-documentation');
 

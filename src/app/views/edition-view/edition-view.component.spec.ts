@@ -14,6 +14,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
@@ -560,9 +561,11 @@ describe('EditionViewComponent (DONE)', () => {
                     const editorLinkEls: HTMLAnchorElement[] = editorLinkDes.map(editor => editor.nativeElement);
 
                     editorLinkEls.forEach((editorLinkEl, i: number) => {
-                        expectToBe(editorLinkEl.href, expectedEditors[i].homepage);
+                        const expectedEditor = getItemAt(expectedEditors, i);
 
-                        expectToBe(editorLinkEl.textContent?.trim(), expectedEditors[i].name);
+                        expectToBe(editorLinkEl.href, expectedEditor.homepage);
+
+                        expectToBe(editorLinkEl.textContent?.trim(), expectedEditor.name);
                     });
                 });
 
@@ -617,7 +620,9 @@ describe('EditionViewComponent (DONE)', () => {
                     const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesComponent));
 
                     badgeCmps.forEach((badgeCmp, i: number) => {
-                        expectToEqual(badgeCmp.identifiers(), expectedEditors[i].identifiers);
+                        const expectedEditor = getItemAt(expectedEditors, i);
+
+                        expectToEqual(badgeCmp.identifiers(), expectedEditor.identifiers);
                     });
                 });
             });

@@ -11,6 +11,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
@@ -119,7 +120,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
             });
 
             it('... should render author link', () => {
-                const expectedAuthor = expectedStructureMetaData.authors[0];
+                const expectedAuthor = getItemAt(expectedStructureMetaData.authors, 0);
 
                 const authorLinkDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author a', 1, 1);
                 const authorLinkEl: HTMLAnchorElement = authorLinkDes[0].nativeElement;
@@ -135,7 +136,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
             });
 
             it('... should pass down the correct values to MetaIdentifierBadgesComponent (hollow) (`identifiers`)', () => {
-                const expectedIdentifiers = expectedStructureMetaData.authors[0].identifiers;
+                const expectedIdentifiers = getItemAt(expectedStructureMetaData.authors, 0).identifiers;
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
                 const badgeDes = getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesComponent, 1, 1);
                 const badgeCmp = badgeDes[0].injector.get(MetaIdentifierBadgesComponent);

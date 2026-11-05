@@ -112,6 +112,15 @@ describe('expect-helper', () => {
             expectToBe(getItemAt(items, 2), 'c');
         });
 
+        it('... should return the item at the given index of a node list or a typed array', () => {
+            const listEl = document.createElement('ul');
+            listEl.innerHTML = '<li>first</li><li>second</li>';
+            const positions = Float32Array.from([1.5, 2.5]);
+
+            expectToBe(getItemAt(listEl.querySelectorAll('li'), 1).textContent, 'second');
+            expectToBe(getItemAt(positions, 0), 1.5);
+        });
+
         it('... should return falsy items other than undefined', () => {
             const items = [0, null, ''];
 
@@ -130,8 +139,12 @@ describe('expect-helper', () => {
 
         it('... should type the item without undefined', () => {
             const items: string[] = ['a'];
+            const listEl = document.createElement('ul');
+            listEl.innerHTML = '<li>first</li>';
 
             expectTypeOf(getItemAt(items, 0)).toEqualTypeOf<string>();
+            expectTypeOf(getItemAt(listEl.querySelectorAll('li'), 0)).toEqualTypeOf<HTMLLIElement>();
+            expectTypeOf(getItemAt(Float32Array.from([1]), 0)).toEqualTypeOf<number>();
         });
     });
 });

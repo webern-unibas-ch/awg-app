@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
@@ -21,7 +21,8 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
         vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
 
         // Test data: folio of 267 x 180 => sheet of 400.5 x 270 (factor 1.5), 18 systems
-        expectedFolio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
+        const firstConvolute = getItemAt(mockEditionData.mockFolioConvoluteData.convolutes, 0);
+        expectedFolio = structuredClone(getItemAt(firstConvolute.folios, 0));
         expectedReversedFolio = structuredClone(mockEditionData.mockReversedFolio);
         expectedFolioSettings = {
             factor: 1.5,
@@ -44,7 +45,7 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
 
             const withContent = (content: Partial<FolioContent>): Folio => ({
                 ...expectedFolio,
-                content: [{ ...expectedFolio.content[0], ...content }],
+                content: [{ ...getItemAt(expectedFolio.content, 0), ...content }],
             });
 
             it('... should have a method `calculateFolioSvgData`', () => {
@@ -91,9 +92,10 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
 
                 it('... should calculate the staff lines of the first system within the systems area', () => {
                     const { systems } = calculate(expectedFolio);
+                    const firstSystem = getItemAt(systems.items, 0);
 
                     expectToEqual(
-                        systems.items[0].lines,
+                        firstSystem.lines,
                         [43.5, 45.11, 46.72, 48.33, 49.93].map(y => ({ start: { x: 57.07, y }, end: { x: 372.12, y } }))
                     );
                 });
@@ -101,9 +103,10 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 it('... should limit the staff lines to 60 % of the space per system if the space is small', () => {
                     // 18 systems on 193 px: 10.72 px per system, default staff of 9 px would take 84 %
                     const [firstSystem, secondSystem] = calculate(expectedFolio).systems.items;
+                    const firstLine = getItemAt(firstSystem.lines, 0);
 
-                    const spacePerSystem = secondSystem.lines[0].start.y - firstSystem.lines[0].start.y;
-                    const staffHeight = firstSystem.lines[4].start.y - firstSystem.lines[0].start.y;
+                    const spacePerSystem = getItemAt(secondSystem.lines, 0).start.y - firstLine.start.y;
+                    const staffHeight = getItemAt(firstSystem.lines, 4).start.y - firstLine.start.y;
 
                     expect(staffHeight / spacePerSystem).toBeCloseTo(0.6, 2);
                 });
@@ -121,7 +124,7 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 it('... should calculate the last staff line of the last system', () => {
                     const { systems } = calculate(expectedFolio);
 
-                    expectToEqual(systems.items[17].lines[4], {
+                    expectToEqual(getItemAt(systems.items, 17).lines[4], {
                         start: { x: 57.07, y: 232.21 },
                         end: { x: 372.12, y: 232.21 },
                     });
@@ -131,8 +134,11 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                     const { systems } = calculate(expectedFolio);
 
                     // Right end: 57.07 - 0.6 * 8.58; baseline: middle line + 0.35 * 8.58
-                    expectToEqual(systems.items[0].labelPosition, { x: 51.92, y: 49.72 });
-                    expectToEqual(systems.items[1].labelPosition, { x: 51.92, y: 60.44 });
+                    const firstSystem = getItemAt(systems.items, 0);
+                    const secondSystem = getItemAt(systems.items, 1);
+
+                    expectToEqual(firstSystem.labelPosition, { x: 51.92, y: 49.72 });
+                    expectToEqual(secondSystem.labelPosition, { x: 51.92, y: 60.44 });
                 });
 
                 it('... should limit the label font size to 80 % of the space per system if the space is small', () => {
@@ -261,8 +267,9 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 it('... should limit the vertical padding of the vertices to 30 % of the gap between the systems', () => {
                     // Gap of 4.29 px between the systems: padding 1.29 px instead of 4 px above the first line
                     const { systems, contentSegments } = calculate(expectedFolio);
-                    const firstLineOfSecondSystem = systems.items[1].lines[0].start.y;
-                    const segmentTop = Number(contentSegments[0].vertices.split(' ')[1]);
+                    const secondSystem = getItemAt(systems.items, 1);
+                    const firstLineOfSecondSystem = getItemAt(secondSystem.lines, 0).start.y;
+                    const segmentTop = Number(getItemAt(contentSegments, 0).vertices.split(' ')[1]);
 
                     expect(firstLineOfSecondSystem - segmentTop).toBeCloseTo(1.29, 2);
                 });

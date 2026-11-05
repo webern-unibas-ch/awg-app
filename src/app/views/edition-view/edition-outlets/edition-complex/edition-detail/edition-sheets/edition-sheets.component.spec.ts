@@ -14,6 +14,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
@@ -143,15 +144,18 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedNextSheetId = 'test-2a';
 
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
-        expectedSelection = EDITION_SHEETS_UTILS.toSvgSheetSelection(expectedSvgSheet, expectedSvgSheet.content[0]);
+        expectedSelection = EDITION_SHEETS_UTILS.toSvgSheetSelection(
+            expectedSvgSheet,
+            getItemAt(expectedSvgSheet.content, 0)
+        );
         expectedSelectionWithPartial = EDITION_SHEETS_UTILS.toSvgSheetSelection(
             mockEditionData.mockSvgSheet_Sk2,
-            mockEditionData.mockSvgSheet_Sk2.content[0]
+            getItemAt(mockEditionData.mockSvgSheet_Sk2.content, 0)
         );
         // Convolute A of the sketch edition test-1
-        expectedConvolute = expectedFolioConvoluteData.convolutes[0];
+        expectedConvolute = getItemAt(expectedFolioConvoluteData.convolutes, 0);
         // Textcritics of the sketch edition test-1
-        expectedSelectedTextcritics = expectedTextcriticsListData.textcritics[0];
+        expectedSelectedTextcritics = getItemAt(expectedTextcriticsListData.textcritics, 0);
 
         // Route with the expected sheet id
         await setSheetIdInRoute(expectedSheetId);
@@ -304,13 +308,11 @@ describe('EditionSheetsComponent (DONE)', () => {
 
             it('... should hold the selection of another partial given by the route', async () => {
                 await setSheetIdInRoute('test-2b');
+                const secondContent = getItemAt(mockEditionData.mockSvgSheet_Sk2.content, 1);
 
                 expectToEqual(
                     component.selectedSvgSheet(),
-                    EDITION_SHEETS_UTILS.toSvgSheetSelection(
-                        mockEditionData.mockSvgSheet_Sk2,
-                        mockEditionData.mockSvgSheet_Sk2.content[1]
-                    )
+                    EDITION_SHEETS_UTILS.toSvgSheetSelection(mockEditionData.mockSvgSheet_Sk2, secondContent)
                 );
             });
 

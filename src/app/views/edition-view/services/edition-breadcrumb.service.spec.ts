@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
@@ -238,14 +238,18 @@ describe('EditionBreadcrumbService (DONE)', () => {
                 );
 
                 const prefaceBreadcrumbs = breadcrumbSignal();
+                const secondPrefaceBreadcrumb = getItemAt(prefaceBreadcrumbs, 1);
+
                 expectToBe(prefaceBreadcrumbs.length, 2);
-                expectToBe(prefaceBreadcrumbs[1].label, PREFACE.short);
+                expectToBe(secondPrefaceBreadcrumb.label, PREFACE.short);
 
                 mockViewContextSignal.set({ name: 'rowtables', isIntro: false, isPreface: false, isRowtables: true });
 
                 const rowtablesBreadcrumbs = breadcrumbSignal();
+                const secondRowtablesBreadcrumb = getItemAt(rowtablesBreadcrumbs, 1);
+
                 expectToBe(rowtablesBreadcrumbs.length, 2);
-                expectToBe(rowtablesBreadcrumbs[1].label, ROWTABLES.full);
+                expectToBe(secondRowtablesBreadcrumb.label, ROWTABLES.full);
             });
         });
 

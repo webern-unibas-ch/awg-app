@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -35,7 +36,10 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
     const getFolioSvgDes = (expectedCount: number): DebugElement[] =>
         getAndExpectDebugElementByDirective(compDe, EditionFoliosViewerSvgComponent, expectedCount, expectedCount);
     const createFolios = (numberOfFolios: number): Folio[] =>
-        Array.from({ length: numberOfFolios }, (_, index) => ({ ...expectedFolios[0], folioId: `${index + 1}` }));
+        Array.from({ length: numberOfFolios }, (_, index) => ({
+            ...getItemAt(expectedFolios, 0),
+            folioId: `${index + 1}`,
+        }));
 
     beforeEach(async () => {
         // Mocked services for the real EditionFoliosViewerSvgComponent
@@ -58,12 +62,13 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        const folio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
+        const firstConvolute = getItemAt(mockEditionData.mockFolioConvoluteData.convolutes, 0);
+        const folio = structuredClone(getItemAt(firstConvolute.folios, 0));
         expectedFolios = [folio, { ...structuredClone(folio), folioId: '2' }];
         expectedSelection = {
             id: mockEditionData.mockSvgSheet_Sk1.id,
             fullId: mockEditionData.mockSvgSheet_Sk1.id,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0),
         };
 
         // Create component fixture
@@ -173,7 +178,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const folioSvgDes = getFolioSvgDes(1);
-                const folioSvgEl: HTMLElement = folioSvgDes[0].nativeElement;
+                const folioSvgEl: HTMLElement = getItemAt(folioSvgDes, 0).nativeElement;
 
                 expectToContain(folioSvgEl.classList, 'col-lg-12');
             });

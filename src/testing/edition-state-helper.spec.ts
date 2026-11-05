@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from './expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from './expect-helper';
 
 import { EditionStateHelper } from './edition-state-helper';
 
@@ -21,13 +21,13 @@ describe('EditionStateHelper (DONE)', () => {
         it('... should return a structured clone (deep copy) that protects the cache from mutations', () => {
             const firstRun = EditionStateHelper.getOutline();
 
-            if (firstRun.length && firstRun[0].sections?.length) {
-                firstRun[0].sections[0].section.route = 'MUTATED_ROUTE';
+            if (firstRun.length && getItemAt(firstRun, 0).sections?.length) {
+                getItemAt(getItemAt(firstRun, 0).sections, 0).section.route = 'MUTATED_ROUTE';
             }
 
             const secondRun = EditionStateHelper.getOutline();
 
-            expect(secondRun[0].sections[0].section.route).not.toBe('MUTATED_ROUTE');
+            expect(getItemAt(getItemAt(secondRun, 0).sections, 0).section.route).not.toBe('MUTATED_ROUTE');
         });
 
         it('... should check if the returned items are still instances of EditionOutlineSeries', () => {
@@ -70,11 +70,12 @@ describe('EditionStateHelper (DONE)', () => {
         it('... should return a structured clone (deep copy) that protects the cache from mutations', () => {
             const firstRun = EditionStateHelper.getSeries('1');
 
-            firstRun.sections[0].section.route = 'MUTATED_ROUTE';
+            getItemAt(firstRun.sections, 0).section.route = 'MUTATED_ROUTE';
 
             const secondRun = EditionStateHelper.getSeries('1');
+            const firstSection = getItemAt(secondRun.sections, 0);
 
-            expect(secondRun.sections[0].section.route).not.toBe('MUTATED_ROUTE');
+            expect(firstSection.section.route).not.toBe('MUTATED_ROUTE');
         });
 
         it('... should check if the returned series is still an instance of EditionOutlineSeries', () => {
@@ -161,7 +162,7 @@ describe('EditionStateHelper (DONE)', () => {
 
         it('... should return a structured clone that protects the cache from mutations', () => {
             const firstRun = EditionStateHelper.getComplexesList();
-            const firstKey = Object.keys(firstRun)[0];
+            const firstKey = getItemAt(Object.keys(firstRun), 0);
 
             firstRun[firstKey].titleStatement.title = 'MUTATED_TITLE';
 
@@ -173,7 +174,7 @@ describe('EditionStateHelper (DONE)', () => {
         it('... should check if the returned items are still instances of EditionComplex', () => {
             const list = EditionStateHelper.getComplexesList();
 
-            const firstKey = Object.keys(list)[0];
+            const firstKey = getItemAt(Object.keys(list), 0);
             const complexItem = list[firstKey];
 
             expect(complexItem).toHaveProperty('titleStatement');

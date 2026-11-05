@@ -11,6 +11,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -47,7 +48,9 @@ describe('EditionIntroNavComponent (DONE)', () => {
         router = TestBed.inject(Router);
 
         // Test data
-        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content ?? []);
+        expectedIntroBlockContent = structuredClone(
+            getItemAt(mockEditionData.mockIntroSectionData.intro, 0).content ?? []
+        );
         expectedNotesLabel = 'Test notes label';
         expectedSelectedLanguage = LanguageId.DE;
 
@@ -205,7 +208,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
                     const expectedText =
                         index === expectedIntroBlockContent.length
                             ? expectedNotesLabel
-                            : expectedIntroBlockContent[index].blockHeader;
+                            : getItemAt(expectedIntroBlockContent, index).blockHeader;
 
                     expectToBe(aEl.textContent, expectedText);
                 });
@@ -266,7 +269,8 @@ describe('EditionIntroNavComponent (DONE)', () => {
                     await clickAndAwaitChanges(linkDe, fixture);
 
                     expectSpyCall(navigateSpy, 1);
-                    const actualUrl = navigateSpy.mock.calls[0][0].toString();
+                    const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                    const actualUrl = actualUrlTree.toString();
 
                     expectToBe(actualUrl, expected.url);
                 }

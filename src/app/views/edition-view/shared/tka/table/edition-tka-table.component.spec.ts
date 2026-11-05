@@ -14,6 +14,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -68,7 +69,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
         // Test data
         expectedComplexId = 'testComplex1';
         expectedSketchId = 'test_Sk1';
-        expectedCommentary = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0].commentary);
+        expectedCommentary = structuredClone(
+            getItemAt(mockEditionData.mockTextcriticsListData.textcritics, 0).commentary
+        );
 
         const totalBlockHeaderRows = expectedCommentary.comments.filter(block => block.blockHeader).length;
         expectedTotalCommentRows = expectedCommentary.comments.reduce(
@@ -347,14 +350,14 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     const expected = expectedTableHeaders['default'];
-                    expected[3].label = 'Kommentar';
+                    getItemAt(expected, 3).label = 'Kommentar';
 
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
                         const columnEl: HTMLTableCellElement = columnDe.nativeElement;
-                        expectToBe(columnEl.textContent.trim(), expected[index].label);
+                        expectToBe(columnEl.textContent.trim(), getItemAt(expected, index).label);
                     });
                 });
             });
@@ -387,7 +390,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         const rowDes = getRowDes();
 
                         if (block.blockHeader) {
-                            const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 1, 1);
+                            const tdDes = getAndExpectDebugElementByCss(getItemAt(rowDes, rowIndex), 'td', 1, 1);
                             const tdEl: HTMLTableCellElement = tdDes[0].nativeElement;
 
                             expectToBe(tdEl.getAttribute('colspan'), '4');
@@ -397,7 +400,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         }
 
                         block.blockComments.forEach(() => {
-                            getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
+                            getAndExpectDebugElementByCss(getItemAt(rowDes, rowIndex), 'td', 4, 4);
 
                             rowIndex++;
                         });
@@ -411,7 +414,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                         if (block.blockHeader) {
                             const tdDes = getAndExpectDebugElementByCss(
-                                rowDes[rowIndex],
+                                getItemAt(rowDes, rowIndex),
                                 'td.awg-edition-tka-table-block-header',
                                 1,
                                 1
@@ -424,7 +427,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         }
 
                         block.blockComments.forEach((comment, index) => {
-                            const rowCellDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
+                            const rowCellDes = getAndExpectDebugElementByCss(getItemAt(rowDes, rowIndex), 'td', 4, 4);
 
                             const measureCell: HTMLTableCellElement = rowCellDes[0].nativeElement;
                             const systemCell: HTMLTableCellElement = rowCellDes[1].nativeElement;
@@ -467,11 +470,16 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     });
 
                     rowDes.forEach((rowDe, index) => {
-                        const { totalTds, targetTdIndex } = expectedRowConfig[index];
+                        const { totalTds, targetTdIndex } = getItemAt(expectedRowConfig, index);
 
                         const tdDes = getAndExpectDebugElementByCss(rowDe, 'td', totalTds, totalTds);
 
-                        getAndExpectDebugElementByDirective(tdDes[targetTdIndex], CompileHtmlDirective, 1, 1);
+                        getAndExpectDebugElementByDirective(
+                            getItemAt(tdDes, targetTdIndex),
+                            CompileHtmlDirective,
+                            1,
+                            1
+                        );
                         getAndExpectDebugElementByDirective(rowDe, CompileHtmlDirective, 1, 1);
                     });
                 });
@@ -508,7 +516,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     let rowIndex = 0;
                     expectedCommentary.comments.forEach(block => {
                         block.blockComments.forEach(comment => {
-                            const trEl: HTMLTableRowElement = trDes[rowIndex].nativeElement;
+                            const trEl: HTMLTableRowElement = getItemAt(trDes, rowIndex).nativeElement;
                             expectToBe(trEl.getAttribute('id'), `${comment.svgGroupId ?? ''}-entry`);
                             rowIndex++;
                         });
@@ -526,7 +534,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     let rowIndex = 0;
                     expectedCommentary.comments.forEach(block => {
                         block.blockComments.forEach(comment => {
-                            const trEl: HTMLTableRowElement = trDes[rowIndex].nativeElement;
+                            const trEl: HTMLTableRowElement = getItemAt(trDes, rowIndex).nativeElement;
                             expectToBe(trEl.getAttribute('data-svg-group-id'), comment.svgGroupId);
                             rowIndex++;
                         });
@@ -545,7 +553,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     expectedCommentary.comments.forEach(block => {
                         block.blockComments.forEach(comment => {
                             // NgbTooltip is on the tr element itself, so get it directly from its injector
-                            const tooltipCmp = trDes[rowIndex].injector.get(NgbTooltip);
+                            const tooltipCmp = getItemAt(trDes, rowIndex).injector.get(NgbTooltip);
 
                             expectToBe(tooltipCmp.ngbTooltip as string, comment.svgGroupId);
                             expectToBe(tooltipCmp.tooltipClass, 'awg-group-id-tooltip');

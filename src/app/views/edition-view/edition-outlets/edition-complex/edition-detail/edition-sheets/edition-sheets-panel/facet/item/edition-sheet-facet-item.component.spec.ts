@@ -14,6 +14,7 @@ import {
     expectToEqual,
     expectToNotContain,
     getAndExpectDebugElementByCss,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -81,26 +82,27 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         // Test data
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedSvgSheetWithPartials = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
 
         expectedSelection = {
             id: expectedSvgSheet.id,
             fullId: expectedSvgSheet.id,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
         expectedNextSelection = {
             id: mockEditionData.mockSvgSheet_Sk4.id,
             fullId: mockEditionData.mockSvgSheet_Sk4.id,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
         expectedSelectionWithPartialA = {
             id: expectedSvgSheetWithPartials.id,
             fullId: `${expectedSvgSheetWithPartials.id}a`,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
         expectedOtherSelectionWithPartialB = {
             id: mockEditionData.mockSvgSheet_Sk3b.id,
             fullId: `${mockEditionData.mockSvgSheet_Sk3b.id}b`,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
 
         // Create component fixture
@@ -464,7 +466,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
                     getDropdownItemDes().forEach((itemDe, index) => {
                         const itemEl: HTMLAnchorElement = itemDe.nativeElement;
-                        const partial = expectedSvgSheetWithPartials.content[index].partial;
+                        const partial = getItemAt(expectedSvgSheetWithPartials.content, index).partial;
 
                         expectToBe(
                             itemEl.textContent.trim(),
@@ -541,9 +543,9 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     });
 
                     it('... should navigate to the `sheetRoute` of the partial on click of an item anchor', async () => {
-                        await clickAndAwaitChanges(getDropdownItemDes()[1], fixture);
+                        await clickAndAwaitChanges(getItemAt(getDropdownItemDes(), 1), fixture);
 
-                        expectSpyCall(navigateByUrlSpy, 1, component.sheetPartials()[1].sheetRoute);
+                        expectSpyCall(navigateByUrlSpy, 1, getItemAt(component.sheetPartials(), 1).sheetRoute);
                     });
 
                     it('... should not navigate on click of the dropdown toggle anchor', async () => {

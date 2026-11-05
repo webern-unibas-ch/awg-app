@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByCss, getItemAt } from '@testing/expect-helper';
 
 import { SourceDescWritingMaterialWatermark } from '@awg-views/edition-view/models/source-desc.model';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
@@ -159,7 +159,7 @@ describe('SourceDescWritingWatermarkComponent (DONE)', () => {
                 locusDes.forEach((locusDe, index) => {
                     const directiveIns = locusDe.injector.get(CompileHtmlDirective);
 
-                    expectToBe(directiveIns.htmlContent(), getItemLocus(expectedLoci[index]));
+                    expectToBe(directiveIns.htmlContent(), getItemLocus(getItemAt(expectedLoci, index)));
                 });
             });
 

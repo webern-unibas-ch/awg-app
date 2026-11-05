@@ -2,7 +2,7 @@ import type { Quad, Quad_Object, Quad_Predicate, Quad_Subject } from '@rdfjs/typ
 import { DataFactory } from 'n3';
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { ResultGraph } from '@awg-graph/graph-visualizer/models/result-graph.model';
 import { DEFAULT_PREFIXES } from '@awg-graph/graph-visualizer/utils/prefix.utils';
@@ -106,18 +106,20 @@ describe('ResultGraphUtils (DONE)', () => {
                     ],
                     DEFAULT_PREFIXES
                 );
+                const secondEdge = getItemAt(graph.edges, 1);
 
-                expectToBe(graph.edges[1].label, 'geht voraus');
+                expectToBe(secondEdge.label, 'geht voraus');
             });
 
             it('... should mark the subject of rdf:type as instance and the object as class', () => {
                 const graph = toResultGraph([q(awg('Sk1'), RDF_TYPE, awg('Sketch'))], DEFAULT_PREFIXES);
+                const firstEdge = getItemAt(graph.edges, 0);
 
                 expectToEqual(
                     graph.nodes.map(node => node.kind),
                     ['instance', 'class']
                 );
-                expectToBe(graph.edges[0].label, 'rdf:type');
+                expectToBe(firstEdge.label, 'rdf:type');
             });
 
             it('... should return blank nodes and literals with their kind and formatted short name', () => {

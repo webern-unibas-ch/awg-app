@@ -5,7 +5,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import * as D3_ZOOM from 'd3-zoom';
 
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByDirective,
+    getItemAt,
+} from '@testing/expect-helper';
 
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
@@ -50,7 +56,7 @@ describe('CanvasZoomDirective (DONE)', () => {
         fixture = TestBed.createComponent(CanvasZoomTestHostComponent);
         host = fixture.componentInstance;
 
-        const directiveDe = getDirectiveDes()[0];
+        const directiveDe = getItemAt(getDirectiveDes(), 0);
         directive = directiveDe.injector.get(CanvasZoomDirective);
         canvasEl = directiveDe.nativeElement;
     });

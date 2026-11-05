@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -34,7 +35,9 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content ?? []);
+        expectedIntroBlockContent = structuredClone(
+            getItemAt(mockEditionData.mockIntroSectionData.intro, 0).content ?? []
+        );
         expectedLength = expectedIntroBlockContent.length;
         expectedNotesLabel = 'Test notes label';
 
@@ -116,7 +119,8 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 );
 
                 sectionDes.forEach((sectionDe, index) => {
-                    const expectedId = index < expectedLength ? expectedIntroBlockContent[index].blockId : 'notes';
+                    const expectedId =
+                        index < expectedLength ? getItemAt(expectedIntroBlockContent, index).blockId : 'notes';
 
                     expectToBe(sectionDe.attributes['id'], expectedId);
                 });
@@ -185,7 +189,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     it('... should pass the correct header string to the CompileHtmlDirective', () => {
                         sectionDes.forEach((sectionDe, index) => {
                             if (index < expectedLength) {
-                                const currentBlock = expectedIntroBlockContent[index];
+                                const currentBlock = getItemAt(expectedIntroBlockContent, index);
 
                                 if (currentBlock.blockHeader) {
                                     const expectedTotalDirectiveInstances = 1 + currentBlock.blockContent.length;
@@ -196,7 +200,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                                         expectedTotalDirectiveInstances,
                                         expectedTotalDirectiveInstances
                                     );
-                                    const headerDirectiveDe = allDirectiveDes[0];
+                                    const headerDirectiveDe = getItemAt(allDirectiveDes, 0);
                                     const headerDirectiveIns = headerDirectiveDe.injector.get(CompileHtmlDirective);
 
                                     expectToBe(headerDirectiveIns.htmlContent(), currentBlock.blockHeader);
@@ -218,8 +222,8 @@ describe('EditionIntroContentComponent (DONE)', () => {
                             );
 
                             if (index < expectedLength) {
-                                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
-                                expectToBe(pEl.textContent, expectedIntroBlockContent[index].blockHeader);
+                                const pEl: HTMLParagraphElement = getItemAt(pDes, 0).nativeElement;
+                                expectToBe(pEl.textContent, getItemAt(expectedIntroBlockContent, index).blockHeader);
                             }
                         });
                     });
@@ -261,8 +265,8 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     it('... should contain as many intro blocks as block content items in data', () => {
                         sectionDes.forEach((sectionDe, index) => {
                             if (index < expectedLength) {
-                                const expectedBlockContent = expectedIntroBlockContent[index].blockContent;
-                                const expectedBlockHeader = expectedIntroBlockContent[index].blockHeader;
+                                const expectedBlockContent = getItemAt(expectedIntroBlockContent, index).blockContent;
+                                const expectedBlockHeader = getItemAt(expectedIntroBlockContent, index).blockHeader;
                                 const expectedBlockLength = expectedBlockHeader
                                     ? expectedBlockContent.length + 1
                                     : expectedBlockContent.length;
@@ -280,7 +284,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     it('... should pass the correct html content strings to the CompileHtmlDirective', () => {
                         sectionDes.forEach((sectionDe, index) => {
                             if (index < expectedLength) {
-                                const currentBlock = expectedIntroBlockContent[index];
+                                const currentBlock = getItemAt(expectedIntroBlockContent, index);
 
                                 const expectedTotalDirectiveInstances =
                                     (currentBlock.blockHeader ? 1 : 0) + currentBlock.blockContent.length;
@@ -297,7 +301,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                                     : allDirectiveDes;
 
                                 currentBlock.blockContent.forEach((expectedText, contentIndex) => {
-                                    const currentDirectiveDe = contentDirectiveDes[contentIndex];
+                                    const currentDirectiveDe = getItemAt(contentDirectiveDes, contentIndex);
                                     const currentDirectiveIns = currentDirectiveDe.injector.get(CompileHtmlDirective);
 
                                     expectToBe(currentDirectiveIns.htmlContent(), expectedText);
@@ -307,18 +311,18 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     });
 
                     it('... should have one anchor in first paragraph, and 3 in the second one in the first section', () => {
-                        const expectedBlockLength = expectedIntroBlockContent[0].blockContent.length + 1;
+                        const expectedBlockLength = getItemAt(expectedIntroBlockContent, 0).blockContent.length + 1;
 
                         const divDes = getAndExpectDebugElementByCss(
-                            sectionDes[0],
+                            getItemAt(sectionDes, 0),
                             'div.awg-edition-intro-block',
                             expectedBlockLength,
                             expectedBlockLength
                         );
 
                         // First div has header
-                        getAndExpectDebugElementByCss(divDes[1], 'a', 1, 1);
-                        getAndExpectDebugElementByCss(divDes[2], 'a', 3, 3);
+                        getAndExpectDebugElementByCss(getItemAt(divDes, 1), 'a', 1, 1);
+                        getAndExpectDebugElementByCss(getItemAt(divDes, 2), 'a', 3, 3);
                     });
                 });
             });
@@ -398,7 +402,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     const allExpectedNotes = expectedIntroBlockContent.flatMap(block => block.blockNotes);
 
                     allExpectedNotes.forEach((expectedNoteText, noteIndex) => {
-                        const currentDirectiveDe = noteDirectiveDes[noteIndex];
+                        const currentDirectiveDe = getItemAt(noteDirectiveDes, noteIndex);
                         const currentDirectiveIns = currentDirectiveDe.injector.get(CompileHtmlDirective);
 
                         expectToBe(currentDirectiveIns.htmlContent(), expectedNoteText);

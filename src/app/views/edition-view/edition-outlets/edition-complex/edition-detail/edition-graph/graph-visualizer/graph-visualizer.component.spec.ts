@@ -13,6 +13,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
@@ -54,6 +55,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let toastService: ToastService;
 
     let expectedRdfData: GraphRdfData;
+    let expectedFirstQuery: GraphQuery;
+    let expectedSecondQuery: GraphQuery;
+    let expectedThirdQuery: GraphQuery;
     let expectedConstructResult: SparqlConstructResult;
     let expectedSelectResult: SparqlSelectResult;
     let expectedDurationMs: number;
@@ -137,27 +141,23 @@ describe('GraphVisualizerComponent (DONE)', () => {
         toastService = TestBed.inject(ToastService);
 
         // Test data
+        expectedFirstQuery = {
+            queryType: 'construct',
+            queryLabel: 'Test Query 1',
+            queryString: 'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }',
+        };
+        expectedSecondQuery = {
+            queryType: 'construct',
+            queryLabel: 'Test Query 2',
+            queryString: 'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
+        };
+        expectedThirdQuery = {
+            queryType: 'select',
+            queryLabel: 'Test Query 3',
+            queryString: 'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
+        };
         expectedRdfData = new GraphRdfData();
-        expectedRdfData.queryList = [
-            {
-                queryType: 'construct',
-                queryLabel: 'Test Query 1',
-                queryString:
-                    'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }',
-            },
-            {
-                queryType: 'construct',
-                queryLabel: 'Test Query 2',
-                queryString:
-                    'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
-            },
-            {
-                queryType: 'select',
-                queryLabel: 'Test Query 3',
-                queryString:
-                    'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
-            },
-        ];
+        expectedRdfData.queryList = [expectedFirstQuery, expectedSecondQuery, expectedThirdQuery];
         expectedRdfData.triples =
             '@prefix example: <https://example.com/onto#> .\n\n example:Test example:has example:Success .';
         expectedChangedTriples =
@@ -280,16 +280,16 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         it('... should have linked signal `query` to hold the initial query', () => {
-            expectToEqual(component.query(), expectedRdfData.queryList[0]);
+            expectToEqual(component.query(), expectedFirstQuery);
         });
 
         it('... should have resource `queryRun` to hold the initial query run', () => {
             expectToEqual(component.queryRun.value(), {
-                query: expectedRdfData.queryList[0].queryString,
+                query: expectedFirstQuery.queryString,
                 result: expectedConstructResult,
                 durationMs: expectedDurationMs,
             });
-            expectSpyCall(serviceRunSpy, 1, [expectedRdfData.queryList[0].queryString, expectedRdfData.triples]);
+            expectSpyCall(serviceRunSpy, 1, [expectedFirstQuery.queryString, expectedRdfData.triples]);
         });
 
         it('... should have computed signal `queryResult` to hold the expected result', () => {
@@ -333,11 +333,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
             beforeEach(async () => {
                 // Edit triples and query locally
                 component.triples.set(expectedChangedTriples);
-                component.query.set({ ...expectedRdfData.queryList[2] });
+                component.query.set({ ...expectedThirdQuery });
                 await detectChangesOnPush(fixture);
 
                 changedRdfData = {
-                    queryList: [expectedRdfData.queryList[1]],
+                    queryList: [expectedSecondQuery],
                     triples: '@prefix example: <https://example.com/onto#> .\n\n example:A example:b example:C .',
                 };
                 fixture.componentRef.setInput('rdfData', changedRdfData);
@@ -349,17 +349,21 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should have linked signal `query` to hold the changed initial query', () => {
-                expectToEqual(component.query(), changedRdfData.queryList[0]);
+                const changedInitialQuery = getItemAt(changedRdfData.queryList, 0);
+
+                expectToEqual(component.query(), changedInitialQuery);
             });
 
             it('... should have resource `queryRun` to hold the run of the changed initial query', () => {
-                expectSpyCall(serviceRunSpy, 2, [changedRdfData.queryList[0].queryString, changedRdfData.triples]);
+                const changedInitialQuery = getItemAt(changedRdfData.queryList, 0);
+
+                expectSpyCall(serviceRunSpy, 2, [changedInitialQuery.queryString, changedRdfData.triples]);
             });
         });
 
         it('... should not run a query on local edits of `triples` or `query`', async () => {
             component.triples.set(expectedChangedTriples);
-            component.query.set({ ...expectedRdfData.queryList[2] });
+            component.query.set({ ...expectedThirdQuery });
             await detectChangesOnPush(fixture);
 
             expectSpyCall(serviceRunSpy, 1);
@@ -573,7 +577,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     const editorCmp = getChildCmp(GraphEditorSparqlComponent);
 
                     expectToEqual(editorCmp.queryList(), expectedRdfData.queryList);
-                    expectToEqual(editorCmp.query(), expectedRdfData.queryList[0]);
+                    expectToEqual(editorCmp.query(), expectedFirstQuery);
                 });
 
                 it('... should have `isFullscreenMode` passed down from main component', () => {
@@ -584,7 +588,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should have linked signal `query` to hold the two-way bound query', () => {
                     const changedQuery: GraphQuery = {
-                        ...expectedRdfData.queryList[0],
+                        ...expectedFirstQuery,
                         queryString:
                             'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
                     };
@@ -594,9 +598,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should trigger `resetQuery()` on resetQueryRequest event', () => {
-                    getChildCmp(GraphEditorSparqlComponent).resetQueryRequest.emit(expectedRdfData.queryList[1]);
+                    getChildCmp(GraphEditorSparqlComponent).resetQueryRequest.emit(expectedSecondQuery);
 
-                    expectSpyCall(resetQuerySpy, 1, expectedRdfData.queryList[1]);
+                    expectSpyCall(resetQuerySpy, 1, expectedSecondQuery);
                 });
 
                 it('... should trigger `performQuery()` on performQueryRequest event', () => {
@@ -647,7 +651,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             describe('GraphResultsSelectComponent (hollow)', () => {
                 beforeEach(async () => {
                     // Perform select query
-                    component.query.set({ ...expectedRdfData.queryList[2] });
+                    component.query.set({ ...expectedThirdQuery });
                     component.performQuery();
                     await fixture.whenStable();
                 });
@@ -741,29 +745,29 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should find and reset a query from queryList if queryLabel and queryType are known', () => {
-                    const changedQuery = { ...expectedRdfData.queryList[1], queryString: 'CONSTRUCT {}' };
+                    const changedQuery = { ...expectedSecondQuery, queryString: 'CONSTRUCT {}' };
 
                     component.resetQuery(changedQuery);
 
-                    expectToEqual(component.query(), expectedRdfData.queryList[1]);
+                    expectToEqual(component.query(), expectedSecondQuery);
                 });
 
                 it('... should set initial query (queryList[0]) if no query is provided', () => {
-                    component.query.set({ ...expectedRdfData.queryList[1] });
+                    component.query.set({ ...expectedSecondQuery });
 
                     component.resetQuery();
 
-                    expectToEqual(component.query(), expectedRdfData.queryList[0]);
+                    expectToEqual(component.query(), expectedFirstQuery);
                 });
 
                 it('... should set a copy of the query from queryList', () => {
-                    component.resetQuery(expectedRdfData.queryList[1]);
+                    component.resetQuery(expectedSecondQuery);
 
-                    expect(component.query()).not.toBe(expectedRdfData.queryList[1]);
+                    expect(component.query()).not.toBe(expectedSecondQuery);
                 });
 
                 it('... should trigger `performQuery()`', () => {
-                    component.resetQuery(expectedRdfData.queryList[1]);
+                    component.resetQuery(expectedSecondQuery);
 
                     expectSpyCall(performQuerySpy, 1);
                 });
@@ -773,7 +777,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                     const query = component.query();
 
-                    component.resetQuery(expectedRdfData.queryList[1]);
+                    component.resetQuery(expectedSecondQuery);
 
                     expectToBe(component.query(), query);
                     expectSpyCall(performQuerySpy, 0);
@@ -787,8 +791,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should have linked signal `query` to hold a new query with the query type from the query string', () => {
                     const previousQuery: GraphQuery = {
-                        ...expectedRdfData.queryList[0],
-                        queryString: expectedRdfData.queryList[2].queryString,
+                        ...expectedFirstQuery,
+                        queryString: expectedThirdQuery.queryString,
                     };
                     component.query.set(previousQuery);
 
@@ -801,12 +805,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... should run the current query against the current triples', async () => {
                     component.triples.set(expectedChangedTriples);
-                    component.query.set({ ...expectedRdfData.queryList[2] });
+                    component.query.set({ ...expectedThirdQuery });
 
                     component.performQuery();
                     await fixture.whenStable();
 
-                    expectSpyCall(serviceRunSpy, 2, [expectedRdfData.queryList[2].queryString, expectedChangedTriples]);
+                    expectSpyCall(serviceRunSpy, 2, [expectedThirdQuery.queryString, expectedChangedTriples]);
                     expectToEqual(component.queryResult(), expectedSelectResult);
                 });
 
@@ -814,10 +818,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     component.performQuery();
                     await fixture.whenStable();
 
-                    expectSpyCall(serviceRunSpy, 2, [
-                        expectedRdfData.queryList[0].queryString,
-                        expectedRdfData.triples,
-                    ]);
+                    expectSpyCall(serviceRunSpy, 2, [expectedFirstQuery.queryString, expectedRdfData.triples]);
                 });
 
                 it('... should not run update queries', async () => {
@@ -935,7 +936,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should return a request of the current query against the current triples', () => {
-                    const currentQuery = { ...expectedRdfData.queryList[2], queryType: 'select' as const };
+                    const currentQuery = { ...expectedThirdQuery, queryType: 'select' as const };
                     component.triples.set(expectedChangedTriples);
                     component.query.set(currentQuery);
 
@@ -953,7 +954,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 beforeEach(() => {
                     expectedRequest = {
                         queryType: 'construct',
-                        queryString: expectedRdfData.queryList[0].queryString,
+                        queryString: expectedFirstQuery.queryString,
                         triples: expectedRdfData.triples,
                     };
                 });
@@ -1033,14 +1034,14 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     // Start a run that is outdated by the next query request
                     component.performQuery();
                     TestBed.tick();
-                    component.query.set({ ...expectedRdfData.queryList[2] });
+                    component.query.set({ ...expectedThirdQuery });
                     component.performQuery();
                     await fixture.whenStable();
 
                     deferredRun.resolve({ query: 'PREFIX stale', result: expectedConstructResult, durationMs: 1 });
                     await fixture.whenStable();
 
-                    expectToBe(component.query().queryString, expectedRdfData.queryList[2].queryString);
+                    expectToBe(component.query().queryString, expectedThirdQuery.queryString);
                     expectToEqual(component.queryResult(), expectedSelectResult);
                 });
 
@@ -1119,7 +1120,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         // Start a run that is outdated by the next query request
                         component.performQuery();
                         TestBed.tick();
-                        component.query.set({ ...expectedRdfData.queryList[2] });
+                        component.query.set({ ...expectedThirdQuery });
                         component.performQuery();
                         await fixture.whenStable();
 

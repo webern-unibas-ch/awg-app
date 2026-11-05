@@ -2,7 +2,7 @@ import type { Quad } from '@rdfjs/types';
 import { Parser } from 'n3';
 import { beforeAll, describe, expect, it } from 'vitest';
 
-import { expectToBe } from '@testing/expect-helper';
+import { expectToBe, getItemAt } from '@testing/expect-helper';
 
 import { GraphList } from '@awg-views/edition-view/models/graph.model';
 
@@ -20,7 +20,10 @@ describe('ResultGraphUtils (integration with the op. 25 graph data) (DONE)', () 
     let graph: ResultGraph;
 
     beforeAll(() => {
-        quads = new Parser().parse((graphDataOp25 as GraphList).graph[0].rdfData.triples);
+        const { graph: graphs } = graphDataOp25 as GraphList;
+        const firstGraph = getItemAt(graphs, 0);
+
+        quads = new Parser().parse(firstGraph.rdfData.triples);
         graph = toResultGraph(quads, DEFAULT_PREFIXES);
     });
 

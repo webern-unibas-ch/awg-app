@@ -10,6 +10,7 @@ import {
     expectToEqual,
     expectToNotContain,
     getAndExpectDebugElementByCss,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { StatisticsBreakDownBadge, StatisticsComplexBreakdown } from '../models/statistics.model';
@@ -179,10 +180,13 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                 );
 
                 const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
+                const firstBadge = getItemAt(badges, 0);
+                const secondBadge = getItemAt(badges, 1);
+                const thirdBadge = getItemAt(badges, 2);
 
-                expectToBe(badges[0].label, 'Op');
-                expectToBe(badges[1].label, 'M');
-                expectToBe(badges[2].label, 'M*');
+                expectToBe(firstBadge.label, 'Op');
+                expectToBe(secondBadge.label, 'M');
+                expectToBe(thirdBadge.label, 'M*');
             });
 
             it('... should map correct colors to the badges', () => {
@@ -192,10 +196,13 @@ describe('StatisticsBreakdownBadgeComponent', () => {
                 );
 
                 const badges: StatisticsBreakDownBadge[] = component.displayedBadges();
+                const firstBadge = getItemAt(badges, 0);
+                const secondBadge = getItemAt(badges, 1);
+                const thirdBadge = getItemAt(badges, 2);
 
-                expectToBe(badges[0].type, 'primary');
-                expectToBe(badges[1].type, 'secondary');
-                expectToBe(badges[2].type, 'info');
+                expectToBe(firstBadge.type, 'primary');
+                expectToBe(secondBadge.type, 'secondary');
+                expectToBe(thirdBadge.type, 'info');
             });
         });
 

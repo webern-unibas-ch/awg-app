@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper/mock-console';
 import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
@@ -34,7 +34,7 @@ describe('EditionSheetsUtils (DONE)', () => {
         expectedSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets);
         expectedConvolutes = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes);
         expectedTextcriticsArray = structuredClone(mockEditionData.mockTextcriticsListData.textcritics);
-        expectedCommentary = structuredClone(expectedTextcriticsArray[0].commentary);
+        expectedCommentary = structuredClone(getItemAt(expectedTextcriticsArray, 0).commentary);
 
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
     });
@@ -118,7 +118,7 @@ describe('EditionSheetsUtils (DONE)', () => {
             it('... should create the selection of a sheet without partials', () => {
                 const sheet = mockEditionData.mockSvgSheet_Sk1;
 
-                const svgSheetSelection = toSvgSheetSelection(sheet, sheet.content[0]);
+                const svgSheetSelection = toSvgSheetSelection(sheet, getItemAt(sheet.content, 0));
 
                 expectToEqual(svgSheetSelection, {
                     id: 'test-1',
@@ -130,7 +130,7 @@ describe('EditionSheetsUtils (DONE)', () => {
             it('... should create the selection of a given partial of a sheet with partials', () => {
                 const sheet = mockEditionData.mockSvgSheet_Sk2;
 
-                const svgSheetSelection = toSvgSheetSelection(sheet, sheet.content[1]);
+                const svgSheetSelection = toSvgSheetSelection(sheet, getItemAt(sheet.content, 1));
 
                 expectToEqual(svgSheetSelection, {
                     id: 'test-2',
@@ -142,7 +142,7 @@ describe('EditionSheetsUtils (DONE)', () => {
             it('... should keep the reference of the given content', () => {
                 const sheet = mockEditionData.mockSvgSheet_Sk2;
 
-                const svgSheetSelection = toSvgSheetSelection(sheet, sheet.content[0]);
+                const svgSheetSelection = toSvgSheetSelection(sheet, getItemAt(sheet.content, 0));
 
                 expectToBe(svgSheetSelection.content, sheet.content[0]);
             });
@@ -188,9 +188,10 @@ describe('EditionSheetsUtils (DONE)', () => {
                     }
 
                     const foundSvgSheet = findSvgSheet(expectedSheets, id);
+                    const firstContent = getItemAt(sheet.content, 0);
 
                     expectToEqual(foundSvgSheet, {
-                        selection: toSvgSheetSelection(sheet, sheet.content[0]),
+                        selection: toSvgSheetSelection(sheet, firstContent),
                         editionType,
                     });
                 });
@@ -389,7 +390,10 @@ describe('EditionSheetsUtils (DONE)', () => {
             });
 
             const sk1Selection = () =>
-                toSvgSheetSelection(mockEditionData.mockSvgSheet_Sk1, mockEditionData.mockSvgSheet_Sk1.content[0]);
+                toSvgSheetSelection(
+                    mockEditionData.mockSvgSheet_Sk1,
+                    getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0)
+                );
 
             it('... should return the convolute of the selected content of a sketch edition', () => {
                 const foundConvolute = findConvolute(expectedConvolutes, sk1Selection(), 'sketchEditions');
@@ -403,7 +407,7 @@ describe('EditionSheetsUtils (DONE)', () => {
             it.each(['workEditions', 'textEditions'] as const)('... should return undefined for %s', editionType => {
                 const tf1Selection = toSvgSheetSelection(
                     mockEditionData.mockSvgSheet_TF1,
-                    mockEditionData.mockSvgSheet_TF1.content[0]
+                    getItemAt(mockEditionData.mockSvgSheet_TF1.content, 0)
                 );
 
                 const foundConvolute = findConvolute(expectedConvolutes, tf1Selection, editionType);

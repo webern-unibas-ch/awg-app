@@ -11,7 +11,7 @@ import { EMPTY, lastValueFrom, Observable, of as observableOf } from 'rxjs';
 
 import { createMockResponseData } from '@testing/edition-data-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
@@ -358,7 +358,8 @@ describe('EditionDataService (DONE)', () => {
                 const matchingRequests = httpTestingController.match(expectedUrl);
 
                 // Use latest matching request to ignore requests from initialization
-                const latestReq = matchingRequests[matchingRequests.length - 1];
+                const latestReq = getItemAt(matchingRequests, matchingRequests.length - 1);
+
                 expectToBe(latestReq.request.method, 'GET');
                 latestReq.flush(expectedPrefaceData);
 
@@ -382,7 +383,8 @@ describe('EditionDataService (DONE)', () => {
                 const matchingRequests = httpTestingController.match(expectedUrl);
 
                 // Use latest matching request to ignore requests from initialization
-                const latestReq = matchingRequests[matchingRequests.length - 1];
+                const latestReq = getItemAt(matchingRequests, matchingRequests.length - 1);
+
                 expectToBe(latestReq.request.method, 'GET');
                 latestReq.flush('404 error', { status: 404, statusText: 'Not Found' });
 
@@ -766,35 +768,38 @@ describe('EditionDataService (DONE)', () => {
 
             it('... should return the correct section intro data for a given block id', () => {
                 const blockId = 'test_block_id_2';
-                const expectedIntro = expectedIntroSectionData.intro[0];
+                const expectedIntro = getItemAt(expectedIntroSectionData.intro, 0);
                 const expectedBlock = expectedIntro.content?.find(block => block.blockId === blockId);
 
                 const result = service['_filterSectionIntroDataByBlockId'](expectedIntroSectionData, blockId);
+                const firstIntro = getItemAt(result.intro, 0);
 
                 expect(result).toBeDefined();
                 expect(result.intro[0]).toBeDefined();
-                expectToBe(result.intro[0].id, expectedIntro.id);
-                expectToEqual(result.intro[0].content, [expectedBlock]);
+                expectToBe(firstIntro.id, expectedIntro.id);
+                expectToEqual(firstIntro.content, [expectedBlock]);
             });
 
             describe('... should return an empty content array or original data if', () => {
                 it('... no block id is given', () => {
                     const result = service['_filterSectionIntroDataByBlockId'](expectedIntroSectionData, '');
+                    const firstIntro = getItemAt(result.intro, 0);
 
                     expect(result).toBeDefined();
                     expect(result.intro[0]).toBeDefined();
-                    expectToBe(result.intro[0].id, expectedIntroSectionData.intro[0].id);
-                    expectToEqual(result.intro[0].content, []);
+                    expectToBe(firstIntro.id, getItemAt(expectedIntroSectionData.intro, 0).id);
+                    expectToEqual(firstIntro.content, []);
                 });
 
                 it('... no intro data section is found for given block id', () => {
                     const blockId = 'notExistingId';
                     const result = service['_filterSectionIntroDataByBlockId'](expectedIntroSectionData, blockId);
+                    const firstIntro = getItemAt(result.intro, 0);
 
                     expect(result).toBeDefined();
                     expect(result.intro[0]).toBeDefined();
-                    expectToBe(result.intro[0].id, expectedIntroSectionData.intro[0].id);
-                    expectToEqual(result.intro[0].content, []);
+                    expectToBe(firstIntro.id, getItemAt(expectedIntroSectionData.intro, 0).id);
+                    expectToEqual(firstIntro.content, []);
                 });
             });
 
@@ -813,10 +818,11 @@ describe('EditionDataService (DONE)', () => {
                     intro: [{ id: 'intro_1', content: undefined }],
                 };
                 const result = service['_filterSectionIntroDataByBlockId'](incompleteData, blockId);
+                const firstIntro = getItemAt(result.intro, 0);
 
                 expect(result).toBeDefined();
                 expect(result.intro[0]).toBeDefined();
-                expectToEqual(result.intro[0].content, []);
+                expectToEqual(firstIntro.content, []);
             });
         });
 

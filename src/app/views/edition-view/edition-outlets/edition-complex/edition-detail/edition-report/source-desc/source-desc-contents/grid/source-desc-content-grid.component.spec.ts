@@ -12,6 +12,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -73,9 +74,9 @@ describe('SourceDescContentGridComponent (DONE)', () => {
         expectedContents = JSON.parse(
             JSON.stringify(mockEditionData.mockSourceDescListData?.sources[1]?.physDesc?.contents)
         );
-        expectedContent = expectedContents[0]; // Folios with one system per system group
-        expectedContentWithTwoSystems = expectedContents[1]; // Folios with two systems per system group, no itemLinkTo
-        expectedContentWithoutSystems = expectedContents[3]; // One folio with description, no system groups
+        expectedContent = getItemAt(expectedContents, 0); // Folios with one system per system group
+        expectedContentWithTwoSystems = getItemAt(expectedContents, 1); // Folios with two systems per system group, no itemLinkTo
+        expectedContentWithoutSystems = getItemAt(expectedContents, 3); // One folio with description, no system groups
         expectedFolios = expectedContent.folios ?? [];
         expectedFoliosWithoutSystems = expectedContentWithoutSystems.folios ?? [];
         expectedComplexId = 'testComplex1';
@@ -177,7 +178,7 @@ describe('SourceDescContentGridComponent (DONE)', () => {
 
                 const expectedFolioRoute = toSheetRoute({ complexId: '', sheetId: expectedFolioId });
 
-                expectToEqual(component.folioItems()[0].sheetRoute, expectedFolioRoute);
+                expectToEqual(getItemAt(component.folioItems(), 0).sheetRoute, expectedFolioRoute);
             });
 
             it('... should hold null as sheet route for folios without folioLinkTo', async () => {
@@ -340,7 +341,7 @@ describe('SourceDescContentGridComponent (DONE)', () => {
 
                     labelDes.forEach((labelDe, index) => {
                         const labelCmp = labelDe.injector.get(SourceDescContentFolioComponent);
-                        const expectedFolio = expectedFolios[index];
+                        const expectedFolio = getItemAt(expectedFolios, index);
 
                         expectToBe(labelCmp.folioLabel(), expectedFolio.folio);
                         expectToBe(labelCmp.isPage(), !!expectedFolio.isPage);
@@ -372,14 +373,15 @@ describe('SourceDescContentGridComponent (DONE)', () => {
                     folioDes.forEach((folioDe, index) => {
                         const linkDes = getAndExpectDebugElementByCss(folioDe, 'awg-conditional-link', 1, 1);
                         const linkCmp = linkDes[0].injector.get(ConditionalLinkComponent);
+                        const expectedFolio = getItemAt(expectedFolios, index);
 
-                        expectToBe(linkCmp.isClickable(), !!expectedFolios[index].folioLinkTo);
-                        expectToBe(linkCmp.targetRoute(), component.folioItems()[index].sheetRoute);
+                        expectToBe(linkCmp.isClickable(), !!expectedFolio.folioLinkTo);
+                        expectToBe(linkCmp.targetRoute(), getItemAt(component.folioItems(), index).sheetRoute);
                     });
                 });
 
                 it('... should not render a folio label if folio is not given', async () => {
-                    expectedFolios[0].folio = '';
+                    getItemAt(expectedFolios, 0).folio = '';
                     fixture.componentRef.setInput('content', { ...expectedContent });
                     await detectChangesOnPush(fixture);
 
@@ -390,7 +392,7 @@ describe('SourceDescContentGridComponent (DONE)', () => {
                         expectedFolios.length
                     );
 
-                    getAndExpectDebugElementByDirective(folioDes[0], SourceDescContentFolioComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(getItemAt(folioDes, 0), SourceDescContentFolioComponent, 0, 0);
                 });
             });
 
@@ -412,8 +414,9 @@ describe('SourceDescContentGridComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(descriptionDes[0], CompileHtmlDirective, 1, 1);
 
                     const descriptionEl: HTMLSpanElement = descriptionDes[0].nativeElement;
+                    const expectedFirstFoliosWithoutSystem = getItemAt(expectedFoliosWithoutSystems, 0);
 
-                    expectToBe(descriptionEl.textContent.trim(), expectedFoliosWithoutSystems[0].folioDescription);
+                    expectToBe(descriptionEl.textContent.trim(), expectedFirstFoliosWithoutSystem.folioDescription);
                 });
             });
 
@@ -472,7 +475,7 @@ describe('SourceDescContentGridComponent (DONE)', () => {
                     );
 
                     containerDes.forEach((containerDe, index) => {
-                        const expectedLength = expectedFolios[index].systemGroups?.length ?? 0;
+                        const expectedLength = getItemAt(expectedFolios, index).systemGroups?.length ?? 0;
 
                         getAndExpectDebugElementByCss(
                             containerDe,

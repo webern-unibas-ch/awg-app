@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 import {
     createMockRdfstore,
     createRdfStoreNode,
@@ -205,7 +205,7 @@ describe('RdfStoreService (DONE)', () => {
             spyOnRdfstoreImport(service, createMockRdfstore({ response }).rdfstore);
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
-            const binding = bindings[0];
+            const binding = getItemAt(bindings, 0);
 
             expectToEqual(Object.keys(binding), ['s', 'b', 'l', 't', 'n', 'p']);
             expectToBe(binding['s'].equals(namedNode(`${EX}a`)), true);
@@ -223,8 +223,9 @@ describe('RdfStoreService (DONE)', () => {
             );
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
+            const firstBinding = getItemAt(bindings, 0);
 
-            expectToBe(bindings[0]['b'].equals(blankNode('8')), true);
+            expectToBe(firstBinding['b'].equals(blankNode('8')), true);
         });
 
         it('... should return frozen bindings', async () => {

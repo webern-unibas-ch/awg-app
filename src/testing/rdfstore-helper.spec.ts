@@ -5,7 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { RdfStore, RdfStoreModule } from '@awg-graph/graph-visualizer/rdf-store/rdf-store.model';
 import { RdfStoreService } from '@awg-graph/graph-visualizer/rdf-store/rdf-store.service';
 
-import { expectSpyCall, expectToBe, expectToEqual } from './expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from './expect-helper';
 import {
     createMockRdfstore,
     createRdfStoreNode,
@@ -85,9 +85,10 @@ describe('rdfstore-helper', () => {
             await expect(createStore(rdfstore)).rejects.toBe(createError);
             store.load('text/turtle', '', loadCallback);
             store.execute('', executeCallback);
+            const firstCall = getItemAt(loadCallback.mock.calls, 0);
 
-            expectToBe(loadCallback.mock.calls[0][0], loadError);
-            expectToBe(executeCallback.mock.calls[0][0], executeError);
+            expectToBe(firstCall[0], loadError);
+            expectToBe(getItemAt(executeCallback.mock.calls, 0)[0], executeError);
         });
 
         it('... should provide spies for all methods', () => {

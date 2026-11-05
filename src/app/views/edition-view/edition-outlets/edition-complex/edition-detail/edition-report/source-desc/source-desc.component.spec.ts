@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -105,8 +106,9 @@ describe('SourceDescComponent (DONE)', () => {
             it('... should set the source id as id of each description div', () => {
                 sourceDescDes.forEach((divDe, index) => {
                     const divEl: HTMLDivElement = divDe.nativeElement;
+                    const source = getItemAt(expectedSourceDescListData.sources, index);
 
-                    expectToBe(divEl.id, expectedSourceDescListData.sources[index].id);
+                    expectToBe(divEl.id, source.id);
                 });
             });
 

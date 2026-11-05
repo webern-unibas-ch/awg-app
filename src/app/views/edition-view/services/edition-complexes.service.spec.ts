@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
 import { EditionComplex, EditionComplexJsonPersonRef } from '../models/edition-complex.model';
@@ -361,8 +361,9 @@ describe('EditionComplexesService (DONE)', () => {
                 { editors: [unknownRef], lastModified: '---' },
                 'op100'
             );
+            const firstEditor = getItemAt(complex.respStatement.editors, 0);
 
-            expectToEqual(complex.respStatement.editors[0], {
+            expectToEqual(firstEditor, {
                 name: unknownRef.$ref,
                 homepage: '',
                 identifiers: {},

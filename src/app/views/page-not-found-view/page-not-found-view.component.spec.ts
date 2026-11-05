@@ -11,6 +11,7 @@ import {
     expectToContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { APP_CONSTANTS } from '@awg-app/app.constants';
@@ -265,7 +266,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                 expectToBe(urlTreeString, '/home');
             });
@@ -274,13 +275,13 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
                 navigateSpy.mockClear();
 
-                const homeLinkDe = linkDes[0];
+                const homeLinkDe = getItemAt(linkDes, 0);
 
                 await clickAndAwaitChanges(homeLinkDe, fixture);
 
                 expectSpyCall(navigateSpy, 1);
-                const firstCallArg = navigateSpy.mock.calls[0][0];
-                const actualUrl = firstCallArg.toString();
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                const actualUrl = actualUrlTree.toString();
 
                 expectToBe(actualUrl, '/home');
 

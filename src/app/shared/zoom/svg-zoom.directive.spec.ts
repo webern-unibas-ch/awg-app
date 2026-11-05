@@ -5,7 +5,13 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 
 import * as D3_ZOOM from 'd3-zoom';
 
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByDirective,
+    getItemAt,
+} from '@testing/expect-helper';
 import { patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
 
 import { ZoomConfig } from './zoom.model';
@@ -51,7 +57,7 @@ describe('SvgZoomDirective (DONE)', () => {
         fixture = TestBed.createComponent(SvgZoomTestHostComponent);
         host = fixture.componentInstance;
 
-        const directiveDe = getDirectiveDes()[0];
+        const directiveDe = getItemAt(getDirectiveDes(), 0);
         directive = directiveDe.injector.get(SvgZoomDirective);
         svgEl = directiveDe.nativeElement;
         targetEl = svgEl.querySelector('g') as SVGGElement;

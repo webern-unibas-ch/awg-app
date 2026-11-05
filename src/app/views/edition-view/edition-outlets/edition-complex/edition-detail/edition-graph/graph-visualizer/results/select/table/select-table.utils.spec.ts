@@ -1,7 +1,7 @@
 import { DataFactory } from 'n3';
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { SparqlSelectResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
 import { DEFAULT_PREFIXES } from '@awg-graph/graph-visualizer/utils/prefix.utils';
@@ -132,13 +132,13 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return no cell for unbound variables', () => {
-                expectToBe(Object.hasOwn(toTableRows(result)[1], 'label'), false);
+                expectToBe(Object.hasOwn(getItemAt(toTableRows(result), 1), 'label'), false);
             });
 
             it('... should order the cells by the variables', () => {
                 const reordered: SparqlSelectResult = { ...result, variables: ['page', 's', 'label'] };
 
-                expectToEqual(Object.keys(toTableRows(reordered)[0]), ['page', 's', 'label']);
+                expectToEqual(Object.keys(getItemAt(toTableRows(reordered), 0)), ['page', 's', 'label']);
             });
 
             it('... should ignore bound values of variables that are not projected', () => {

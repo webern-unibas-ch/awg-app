@@ -13,6 +13,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -255,7 +256,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                         const hDes = getAndExpectDebugElementByCss(cardBodyDe, 'h5.card-title', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        const expectedHeading = 'Reihentabelle ' + expectedRowtablesData.rowtables[index].short;
+                        const expectedHeading =
+                            'Reihentabelle ' + getItemAt(expectedRowtablesData.rowtables, index).short;
 
                         expectToBe(hEl.textContent.trim(), expectedHeading);
                     });
@@ -268,7 +270,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                         const hDes = getAndExpectDebugElementByCss(cardBodyDe, 'h5.card-title', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        if (expectedRowtablesData.rowtables[index].disabled) {
+                        if (getItemAt(expectedRowtablesData.rowtables, index).disabled) {
                             expectToContain(hEl.classList, 'text-muted');
                         } else {
                             expectToNotContain(hEl.classList, 'text-muted');
@@ -296,7 +298,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                         );
                         const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
-                        const rowtable = expectedRowtablesData.rowtables[index];
+                        const rowtable = getItemAt(expectedRowtablesData.rowtables, index);
                         const expectedTargetRoute = ['../complex' + rowtable.route, 'sheets'];
 
                         expectToEqual(buttonMoreCmp.targetRoute(), expectedTargetRoute);
@@ -315,7 +317,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                         );
                         const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
-                        const rowtable = expectedRowtablesData.rowtables[index];
+                        const rowtable = getItemAt(expectedRowtablesData.rowtables, index);
                         const expectedQueryParams = { id: rowtable.id };
 
                         expectToEqual(buttonMoreCmp.queryParams(), expectedQueryParams);
@@ -334,7 +336,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                         );
                         const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
 
-                        const rowtable = expectedRowtablesData.rowtables[index];
+                        const rowtable = getItemAt(expectedRowtablesData.rowtables, index);
 
                         expectToBe(buttonMoreCmp.disabled(), rowtable.disabled);
                     });

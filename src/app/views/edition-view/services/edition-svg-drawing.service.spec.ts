@@ -6,7 +6,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import * as D3_SELECTION from 'd3-selection';
 
-import { expectSpyCall, expectToBe, expectToContain, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToContain, expectToEqual, getItemAt } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 import {
     createD3TestLinkBoxGroups,
@@ -394,9 +394,11 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 expectToBe(d3Selections?.nodes().length, expectedOverlays.length);
 
                 d3Selections?.nodes().forEach((node, index) => {
+                    const expectedOverlay = getItemAt(expectedOverlays, index);
+
                     expectToContain(node.classList, 'tkk');
 
-                    expectToBe(node.id, expectedOverlays[index].id);
+                    expectToBe(node.id, expectedOverlay.id);
                 });
             });
 
@@ -408,9 +410,11 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 expectToBe(d3Selections?.nodes().length, expectedLinkBoxes.length);
 
                 d3Selections?.nodes().forEach((node, index) => {
+                    const expectedLinkBox = getItemAt(expectedLinkBoxes, index);
+
                     expectToContain(node.classList, 'link-box');
 
-                    expectToBe(node.id, expectedLinkBoxes[index].svgGroupId);
+                    expectToBe(node.id, expectedLinkBox.svgGroupId);
                 });
             });
 
@@ -494,7 +498,8 @@ describe('EditionSvgDrawingService (DONE)', () => {
             let opacityBefore: string;
 
             beforeEach(() => {
-                suppliedClassName = expectedSuppliedClassNames[0].split(' ')[1];
+                const expectedFirstSuppliedClassName = getItemAt(expectedSuppliedClassNames, 0);
+                suppliedClassName = getItemAt(expectedFirstSuppliedClassName.split(' '), 1);
                 const suppliedSelections = service.getGroupsBySelector(expectedSvgRootGroup, suppliedClassName);
 
                 expect(suppliedSelections).toBeTruthy();
@@ -527,7 +532,8 @@ describe('EditionSvgDrawingService (DONE)', () => {
         });
 
         it('... should toggle opacity of a single supplied class', () => {
-            const suppliedClassName = expectedSuppliedClassNames[0].split(' ')[1];
+            const expectedFirstSuppliedClassName = getItemAt(expectedSuppliedClassNames, 0);
+            const suppliedClassName = getItemAt(expectedFirstSuppliedClassName.split(' '), 1);
             const suppliedSelections = service.getGroupsBySelector(expectedSvgRootGroup, suppliedClassName);
             expect(suppliedSelections).toBeTruthy();
 

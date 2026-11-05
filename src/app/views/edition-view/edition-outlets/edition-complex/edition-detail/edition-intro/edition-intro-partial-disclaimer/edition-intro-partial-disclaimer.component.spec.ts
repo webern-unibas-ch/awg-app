@@ -13,6 +13,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -143,7 +144,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                 expectToBe(urlTreeString, expectedRouterLink);
             });
@@ -151,12 +152,13 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
             it('... can click all links in template', async () => {
                 const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
 
-                const linkDe = linkDes[0];
+                const linkDe = getItemAt(linkDes, 0);
 
                 await clickAndAwaitChanges(linkDe, fixture);
 
                 expectSpyCall(navigateSpy, 1);
-                const actualUrl = navigateSpy.mock.calls[0][0].toString();
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                const actualUrl = actualUrlTree.toString();
 
                 expectToBe(actualUrl, expectedRouterLink);
 

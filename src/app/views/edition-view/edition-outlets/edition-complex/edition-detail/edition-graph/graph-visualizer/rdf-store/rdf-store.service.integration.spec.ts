@@ -5,7 +5,7 @@ import { beforeEach, describe, it } from 'vitest';
 import type { Literal, Quad, Term } from '@rdfjs/types';
 import { DataFactory, Parser } from 'n3';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 import { RDFSTORE_INTEGRATION_TIMEOUT_MS, spyOnRdfstoreImport } from '@testing/rdfstore-helper';
 
 import { RdfStoreService } from './rdf-store.service';
@@ -125,9 +125,10 @@ describe(
                 const query = `${PREFIXES}\nSELECT ?count ?name WHERE { ex:a ex:count ?count ; ex:knows ?b . ?b ex:name ?name }`;
 
                 const { bindings } = await service.select(TURTLE, query);
+                const firstBinding = getItemAt(bindings, 0);
 
-                expectToBe(bindings[0]['count'].equals(literal('5', namedNode(XSD_INTEGER))), true);
-                expectToBe(bindings[0]['name'].equals(literal('B')), true);
+                expectToBe(firstBinding['count'].equals(literal('5', namedNode(XSD_INTEGER))), true);
+                expectToBe(firstBinding['name'].equals(literal('B')), true);
             });
 
             it('... should count grouped results as integer literals (COUNT with GROUP BY)', async () => {
@@ -152,7 +153,8 @@ describe(
 
                 expectToEqual(variables, ['n']);
                 expectToBe(bindings.length, 1);
-                const count = bindings[0]['n'] as Literal;
+                const count = getItemAt(bindings, 0)['n'] as Literal;
+
                 expectToBe(count.value, String(TURTLE_QUADS.length));
                 expectToBe(count.datatype.value, XSD_INTEGER);
             });
@@ -189,7 +191,8 @@ describe(
             it('... should count all results as an integer literal (COUNT without GROUP BY)', async () => {
                 const { bindings } = await service.select(TURTLE, 'SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }');
 
-                const count = bindings[0]['n'] as Literal;
+                const count = getItemAt(bindings, 0)['n'] as Literal;
+
                 expectToBe(count.value, String(TURTLE_QUADS.length));
                 expectToBe(count.datatype.value, XSD_INTEGER);
             });

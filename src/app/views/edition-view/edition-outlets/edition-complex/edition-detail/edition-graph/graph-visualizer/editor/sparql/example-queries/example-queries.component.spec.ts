@@ -14,6 +14,7 @@ import {
     expectToEqual,
     expectToNotContain,
     getAndExpectDebugElementByCss,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
@@ -230,8 +231,8 @@ describe('ExampleQueriesComponent (DONE)', () => {
                     expectedQueryList.length,
                     expectedQueryList.length
                 );
-                const firstAEl: HTMLAnchorElement = aDes[0].nativeElement;
-                const thirdAEl: HTMLAnchorElement = aDes[2].nativeElement;
+                const firstAEl: HTMLAnchorElement = getItemAt(aDes, 0).nativeElement;
+                const thirdAEl: HTMLAnchorElement = getItemAt(aDes, 2).nativeElement;
 
                 expectToNotContain(firstAEl.classList, 'disabled');
                 expectToContain(thirdAEl.classList, 'disabled');
@@ -257,8 +258,9 @@ describe('ExampleQueriesComponent (DONE)', () => {
                     expectedQueryList.length,
                     expectedQueryList.length
                 );
+                const aDe = getItemAt(aDes, 1);
 
-                aDes[1].injector.get(ClickDirective).awgClick.emit(new Event('click'));
+                aDe.injector.get(ClickDirective).awgClick.emit(new Event('click'));
 
                 expectSpyCall(emitQuerySelectRequestSpy, 1, expectedConstructQuery2);
             });

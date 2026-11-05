@@ -13,6 +13,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockStatisticsData } from '@testing/mock-data';
 
@@ -146,7 +147,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                 ];
 
                 thDes.forEach((thDe, index) => {
-                    const expectedHeader = expectedHeaders[index];
+                    const expectedHeader = getItemAt(expectedHeaders, index);
                     const thEl: HTMLTableCellElement = thDe.nativeElement;
 
                     expectToBe(thEl.textContent?.trim(), expectedHeader.text);
@@ -170,7 +171,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                 ];
 
                 thDes.forEach((thDe, index) => {
-                    const expectedHeader = expectedHeaders[index];
+                    const expectedHeader = getItemAt(expectedHeaders, index);
                     const thEl: HTMLTableCellElement = thDe.nativeElement;
 
                     expectToBe(thEl.textContent?.trim(), expectedHeader.text);
@@ -242,7 +243,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const strongDes = getAndExpectDebugElementByCss(tdDes[0], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
 
-                            const expectedSeriesLabel = 'Series ' + expectedSeriesBreakdownData[index].series;
+                            const expectedSeriesLabel =
+                                'Series ' + getItemAt(expectedSeriesBreakdownData, index).series;
 
                             expectToBe(strongEl.textContent?.trim(), expectedSeriesLabel);
                         });
@@ -250,7 +252,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                     it('... should mute series label if activeSections is zero', () => {
                         const mockData = structuredClone(expectedSeriesBreakdownData);
-                        mockData[0].activeSections = 0;
+                        getItemAt(mockData, 0).activeSections = 0;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
@@ -266,7 +268,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const strongDes = getAndExpectDebugElementByCss(tdDes[0], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
 
-                            if (mockData[index].activeSections === 0) {
+                            if (getItemAt(mockData, index).activeSections === 0) {
                                 expectToContain(strongEl.classList, 'text-muted');
                             } else {
                                 expectToNotContain(strongEl.classList, 'text-muted');
@@ -287,7 +289,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const smallDes = getAndExpectDebugElementByCss(tdDes[0], 'small.text-muted', 1, 1);
                             const smallEl: HTMLElement = smallDes[0].nativeElement;
 
-                            const expectedActiveSectionsText = `(${expectedSeriesBreakdownData[index].activeSections} active section)`;
+                            const expectedActiveSectionsText = `(${getItemAt(expectedSeriesBreakdownData, index).activeSections} active section)`;
 
                             expectToContain(smallEl.classList, 'text-muted');
                             expectToBe(smallEl.textContent?.trim(), expectedActiveSectionsText);
@@ -296,7 +298,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                     it('... should adjust section indicator depending on number of active sections', () => {
                         const mockData = structuredClone(expectedSeriesBreakdownData);
-                        mockData[0].activeSections = 2;
+                        getItemAt(mockData, 0).activeSections = 2;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
@@ -312,7 +314,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const smallDes = getAndExpectDebugElementByCss(tdDes[0], 'small.text-muted', 1, 1);
                             const smallEl: HTMLElement = smallDes[0].nativeElement;
 
-                            const expectedActiveSectionsText = `(${mockData[index].activeSections} active sections)`;
+                            const expectedActiveSectionsText = `(${getItemAt(mockData, index).activeSections} active sections)`;
 
                             expectToBe(smallEl.textContent?.trim(), expectedActiveSectionsText);
                         });
@@ -334,18 +336,16 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                             const strongDes = getAndExpectDebugElementByCss(tdDes[1], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
+                            const expectedSeriesBreakdown = getItemAt(expectedSeriesBreakdownData, index);
 
                             expectToContain(tdEl.classList, 'text-center');
-                            expectToBe(
-                                strongEl.textContent?.trim(),
-                                expectedSeriesBreakdownData[index].totalComplexes.toString()
-                            );
+                            expectToBe(strongEl.textContent?.trim(), expectedSeriesBreakdown.totalComplexes.toString());
                         });
                     });
 
                     it('... should mute total complexes if activeSections is zero', () => {
                         const mockData = structuredClone(expectedSeriesBreakdownData);
-                        mockData[0].activeSections = 0;
+                        getItemAt(mockData, 0).activeSections = 0;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
@@ -360,7 +360,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
 
-                            if (mockData[index].activeSections === 0) {
+                            if (getItemAt(mockData, index).activeSections === 0) {
                                 expectToContain(tdEl.classList, 'text-muted');
                             } else {
                                 expectToNotContain(tdEl.classList, 'text-muted');
@@ -381,7 +381,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         seriesTrDes.forEach(seriesTrDe => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
-                            const expectedBadgeCount = expectedSeriesBreakdownData[0].totalComplexes > 0 ? 1 : 0;
+                            const expectedBadgeCount =
+                                getItemAt(expectedSeriesBreakdownData, 0).totalComplexes > 0 ? 1 : 0;
 
                             expectToContain(tdEl.classList, 'text-center');
                             getAndExpectDebugElementByDirective(
@@ -395,7 +396,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                     it('... should not have breakdown badge component if total complexes is zero', () => {
                         const mockData = structuredClone(expectedSeriesBreakdownData);
-                        mockData[0].totalComplexes = 0;
+                        getItemAt(mockData, 0).totalComplexes = 0;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
@@ -408,7 +409,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                         seriesTrDes.forEach(seriesTrDe => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
-                            const expectedBadgeCount = mockData[0].totalComplexes > 0 ? 1 : 0;
+                            const expectedBadgeCount = getItemAt(mockData, 0).totalComplexes > 0 ? 1 : 0;
 
                             getAndExpectDebugElementByDirective(
                                 tdDes[2],
@@ -436,11 +437,9 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                                 1
                             );
                             const badgeCmp = badgeDes[0].injector.get(StatisticsBreakdownBadgeComponent);
+                            const expectedSeriesBreakdown = getItemAt(expectedSeriesBreakdownData, index);
 
-                            expectToEqual(
-                                badgeCmp.breakdown(),
-                                expectedSeriesBreakdownData[index].activeComplexBreakdown
-                            );
+                            expectToEqual(badgeCmp.breakdown(), expectedSeriesBreakdown.activeComplexBreakdown);
                         });
                     });
                 });
@@ -460,18 +459,19 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                             const strongDes = getAndExpectDebugElementByCss(tdDes[3], 'strong', 1, 1);
                             const strongEl: HTMLElement = strongDes[0].nativeElement;
+                            const expectedSeriesBreakdown = getItemAt(expectedSeriesBreakdownData, index);
 
                             expectToContain(tdEl.classList, 'text-center');
                             expectToBe(
                                 strongEl.textContent?.trim(),
-                                expectedSeriesBreakdownData[index].activeComplexes.toString()
+                                expectedSeriesBreakdown.activeComplexes.toString()
                             );
                         });
                     });
 
                     it('... should mute active complexes if activeSections is zero', () => {
                         const mockData = structuredClone(expectedSeriesBreakdownData);
-                        mockData[0].activeSections = 0;
+                        getItemAt(mockData, 0).activeSections = 0;
                         fixture.componentRef.setInput('seriesBreakdownData', mockData);
                         fixture.detectChanges();
 
@@ -486,7 +486,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
 
-                            if (mockData[index].activeSections === 0) {
+                            if (getItemAt(mockData, index).activeSections === 0) {
                                 expectToContain(tdEl.classList, 'text-muted');
                             } else {
                                 expectToNotContain(tdEl.classList, 'text-muted');
@@ -529,7 +529,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarComponent);
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'percentage',
-                                percentage: expectedSeriesBreakdownData[0].progressRate,
+                                percentage: getItemAt(expectedSeriesBreakdownData, 0).progressRate,
                             };
                             const expectedHeight = '20px';
                             const expectedBoldPercentageLabel = true;
@@ -570,7 +570,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                                 sectionTrDe: sectionTrDe,
                                 tdDes: tdDes,
                                 seriesData: series,
-                                sectionData: series.sectionBreakdown[index],
+                                sectionData: getItemAt(series.sectionBreakdown, index),
                             });
                         });
                     });
@@ -601,12 +601,13 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                         sectionRows.forEach(({ tdDes, seriesData, sectionData }) => {
                             // Prefix
-                            const spanDes = getAndExpectDebugElementByCss(tdDes[0], 'span', 1, 1);
+                            const firstTdDe = getItemAt(tdDes, 0);
+                            const spanDes = getAndExpectDebugElementByCss(firstTdDe, 'span', 1, 1);
                             const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                             expectToBe(spanEl.textContent?.trim(), '└');
 
                             // Section Label
-                            const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
+                            const aDes = getAndExpectDebugElementByCss(firstTdDe, 'a', 1, 1);
                             const aEl: HTMLAnchorElement = aDes[0].nativeElement;
                             const expectedSectionLabel = `Section ${seriesData.series}/${sectionData.section}`;
 
@@ -619,12 +620,13 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             // Prefix
-                            const spanDes = getAndExpectDebugElementByCss(tdDes[0], 'span', 1, 1);
+                            const firstTdDe = getItemAt(tdDes, 0);
+                            const spanDes = getAndExpectDebugElementByCss(firstTdDe, 'span', 1, 1);
                             const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                             expectToContain(spanEl.classList, 'text-muted');
 
                             // Section Label
-                            const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
+                            const aDes = getAndExpectDebugElementByCss(firstTdDe, 'a', 1, 1);
                             const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                             if (sectionData.disabled) {
@@ -643,7 +645,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes, seriesData, sectionData }) => {
-                            const routerLinkDes = getAndExpectDebugElementByDirective(tdDes[0], RouterLink, 1, 1);
+                            const routerLinkDes = getAndExpectDebugElementByDirective(
+                                getItemAt(tdDes, 0),
+                                RouterLink,
+                                1,
+                                1
+                            );
                             const routerLinkInstance = routerLinkDes[0].injector.get(RouterLink);
 
                             if (sectionData.disabled) {
@@ -674,13 +681,13 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                             navigateSpy.mockClear();
 
-                            const aDes = getAndExpectDebugElementByCss(tdDes[0], 'a', 1, 1);
+                            const aDes = getAndExpectDebugElementByCss(getItemAt(tdDes, 0), 'a', 1, 1);
 
                             await clickAndAwaitChanges(aDes[0], fixture);
 
                             expectSpyCall(navigateSpy, 1);
-                            const firstCallArg = navigateSpy.mock.calls[0][0];
-                            const actualUrl = firstCallArg.toString();
+                            const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                            const actualUrl = actualUrlTree.toString();
 
                             const {
                                 EDITION: edition,
@@ -701,7 +708,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
-                            const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
+                            const tdEl: HTMLTableCellElement = getItemAt(tdDes, 1).nativeElement;
 
                             expectToContain(tdEl.classList, 'text-center');
                             expectToBe(tdEl.textContent?.trim(), sectionData.totalComplexes.toString());
@@ -712,7 +719,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
-                            const tdEl: HTMLTableCellElement = tdDes[1].nativeElement;
+                            const tdEl: HTMLTableCellElement = getItemAt(tdDes, 1).nativeElement;
 
                             if (sectionData.disabled) {
                                 expectToContain(tdEl.classList, 'text-muted');
@@ -728,12 +735,13 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
-                            const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
+                            const thirdTdDe = getItemAt(tdDes, 2);
+                            const tdEl: HTMLTableCellElement = thirdTdDe.nativeElement;
                             const expectedBadgeCount = sectionData.totalComplexes > 0 ? 1 : 0;
 
                             expectToContain(tdEl.classList, 'text-center');
                             getAndExpectDebugElementByDirective(
-                                tdDes[2],
+                                thirdTdDe,
                                 StatisticsBreakdownBadgeComponent,
                                 expectedBadgeCount,
                                 expectedBadgeCount
@@ -745,18 +753,20 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
-                            const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
+                            const thirdTdDe = getItemAt(tdDes, 2);
+                            const tdEl: HTMLTableCellElement = thirdTdDe.nativeElement;
                             const expectedBadgeCount = sectionData.totalComplexes > 0 ? 1 : 0;
 
                             expectToContain(tdEl.classList, 'text-center');
                             const badgeDes = getAndExpectDebugElementByDirective(
-                                tdDes[2],
+                                thirdTdDe,
                                 StatisticsBreakdownBadgeComponent,
                                 expectedBadgeCount,
                                 expectedBadgeCount
                             );
                             if (expectedBadgeCount > 0) {
-                                const badgeCmp = badgeDes[0].injector.get(StatisticsBreakdownBadgeComponent);
+                                const badgeCmp = getItemAt(badgeDes, 0).injector.get(StatisticsBreakdownBadgeComponent);
+
                                 expectToEqual(badgeCmp.breakdown(), sectionData.activeComplexBreakdown);
                             }
                         });
@@ -768,7 +778,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
-                            const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
+                            const tdEl: HTMLTableCellElement = getItemAt(tdDes, 3).nativeElement;
 
                             expectToContain(tdEl.classList, 'text-center');
                             expectToBe(tdEl.textContent?.trim(), sectionData.activeComplexes.toString());
@@ -779,7 +789,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
-                            const tdEl: HTMLTableCellElement = tdDes[3].nativeElement;
+                            const tdEl: HTMLTableCellElement = getItemAt(tdDes, 3).nativeElement;
 
                             if (sectionData.disabled) {
                                 expectToContain(tdEl.classList, 'text-muted');
@@ -795,7 +805,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes }) => {
-                            getAndExpectDebugElementByDirective(tdDes[4], StatisticsProgressBarComponent, 1, 1);
+                            getAndExpectDebugElementByDirective(
+                                getItemAt(tdDes, 4),
+                                StatisticsProgressBarComponent,
+                                1,
+                                1
+                            );
                         });
                     });
 
@@ -804,7 +819,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             const progressBarDes = getAndExpectDebugElementByDirective(
-                                tdDes[4],
+                                getItemAt(tdDes, 4),
                                 StatisticsProgressBarComponent,
                                 1,
                                 1

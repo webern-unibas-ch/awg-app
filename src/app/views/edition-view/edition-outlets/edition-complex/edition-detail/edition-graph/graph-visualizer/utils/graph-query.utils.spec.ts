@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { GraphQuery, GraphQueryType } from '@awg-views/edition-view/models/graph.model';
@@ -60,7 +60,10 @@ describe('GraphQueryUtils (DONE)', () => {
             });
 
             it('... should return the first query of the given query list with its derived query type', () => {
-                const queryList: GraphQuery[] = [{ ...expectedQueryList[2], queryType: null }, expectedQueryList[0]];
+                const queryList: GraphQuery[] = [
+                    { ...getItemAt(expectedQueryList, 2), queryType: null },
+                    getItemAt(expectedQueryList, 0),
+                ];
 
                 const query = initialQuery(queryList);
 
@@ -68,13 +71,14 @@ describe('GraphQueryUtils (DONE)', () => {
             });
 
             it('... should return a copy of the first query without changing the original query', () => {
-                const queryList: GraphQuery[] = [{ ...expectedQueryList[2], queryType: 'construct' }];
+                const queryList: GraphQuery[] = [{ ...getItemAt(expectedQueryList, 2), queryType: 'construct' }];
 
                 const query = initialQuery(queryList);
+                const firstQuery = getItemAt(queryList, 0);
 
                 expect(query).not.toBe(queryList[0]);
                 expectToBe(query.queryType, 'select');
-                expectToBe(queryList[0].queryType, 'construct');
+                expectToBe(firstQuery.queryType, 'construct');
             });
 
             it('... should return an empty query for an empty query list', () => {
@@ -113,7 +117,7 @@ describe('GraphQueryUtils (DONE)', () => {
                     const changedQuery: GraphQuery = {
                         ...expectedQueryList[1],
                         queryType: 'select',
-                        queryString: expectedQueryList[2].queryString,
+                        queryString: getItemAt(expectedQueryList, 2).queryString,
                     };
 
                     const foundQuery = findQuery(expectedQueryList, changedQuery);

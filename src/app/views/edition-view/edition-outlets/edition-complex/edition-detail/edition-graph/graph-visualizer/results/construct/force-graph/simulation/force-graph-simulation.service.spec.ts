@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
 import { EMPTY, Subject } from 'rxjs';
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { ResultGraph } from '@awg-graph/graph-visualizer/models/result-graph.model';
 
@@ -112,7 +112,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
 
             expect(worker).toBeDefined();
             expectSpyCall(workerMock, 1);
-            const [url, options] = workerMock.mock.calls[0];
+            const [url, options] = getItemAt(workerMock.mock.calls, 0);
             // The url of the bundled worker script (its name is set by the builder)
             expect(url).toBeInstanceOf(URL);
             expectToEqual(options, { type: 'module' });
@@ -166,7 +166,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     complete: () => (isCompleted = true),
                 });
                 vi.runAllTimers();
-                const lastResult = results[results.length - 1];
+                const lastResult = getItemAt(results, results.length - 1);
 
                 // The settled simulation rests (no timer left)
                 expectToBe(vi.getTimerCount(), 0);
@@ -182,9 +182,13 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     .simulate(forceGraphData, commands$)
                     .subscribe(result => results.push(result));
                 vi.runAllTimers();
-                commands$.next({ type: 'pin', node: forceGraphData.visibleNodes[1], point: { x: 50, y: 60 } });
+                commands$.next({
+                    type: 'pin',
+                    node: getItemAt(forceGraphData.visibleNodes, 1),
+                    point: { x: 50, y: 60 },
+                });
                 vi.advanceTimersToNextTimer();
-                const { positions } = results[results.length - 1];
+                const { positions } = getItemAt(results, results.length - 1);
 
                 expectToEqual([positions[2], positions[3]], [50, 60]);
                 // The pinned node keeps the simulation running
@@ -194,7 +198,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
             it('... should stop the main thread simulation on unsubscribe', () => {
                 const startSimulationSpy = vi.spyOn(FORCE_GRAPH_SIMULATION_UTILS, 'startSimulation');
                 const subscription = forceGraphSimulationService.simulate(forceGraphData, EMPTY).subscribe();
-                const simulation = startSimulationSpy.mock.results[0].value as ForceGraphSimulation;
+                const simulation = getItemAt(startSimulationSpy.mock.results, 0).value as ForceGraphSimulation;
                 const disposeSpy = vi.spyOn(simulation, 'dispose');
 
                 subscription.unsubscribe();
@@ -252,13 +256,15 @@ describe('ForceGraphSimulationService (DONE)', () => {
 
             it('... should post a start message with the simulation input to the worker and transfer its buffers', () => {
                 // A restored position of a previous layout (one of two nodes: a relayout)
-                forceGraphData.nodes[0].x = 5;
-                forceGraphData.nodes[0].y = 6;
+                const firstNode = getItemAt(forceGraphData.nodes, 0);
+                firstNode.x = 5;
+                firstNode.y = 6;
 
                 forceGraphSimulationService.simulate(forceGraphData, EMPTY).subscribe();
+                const firstWorker = getItemAt(workers, 0);
 
-                expectSpyCall(workers[0].postMessage, 1);
-                const [message, transfer] = workers[0].postMessage.mock.calls[0];
+                expectSpyCall(firstWorker.postMessage, 1);
+                const [message, transfer] = getItemAt(firstWorker.postMessage.mock.calls, 0);
                 const input = (message as Extract<ForceGraphSimulationMessage, { type: 'start' }>).input;
 
                 expectToBe(message.type, 'start');
@@ -276,9 +282,10 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     next: result => results.push(result),
                     complete: () => (isCompleted = true),
                 });
+                const firstWorker = getItemAt(workers, 0);
 
-                workers[0].emit(progress(false));
-                workers[0].emit(progress(true));
+                firstWorker.emit(progress(false));
+                firstWorker.emit(progress(true));
 
                 expectToEqual(results, [progress(false), progress(true)]);
                 expectToBe(isCompleted, false);
@@ -287,12 +294,19 @@ describe('ForceGraphSimulationService (DONE)', () => {
             it('... should post pin and release commands to the worker (by node index)', () => {
                 const commands$ = new Subject<ForceGraphSimulationCommand>();
                 forceGraphSimulationService.simulate(forceGraphData, commands$).subscribe();
+                const secondVisibleNode = getItemAt(forceGraphData.visibleNodes, 1);
 
-                commands$.next({ type: 'pin', node: forceGraphData.visibleNodes[1], point: { x: 50, y: 60 } });
-                expectSpyCall(workers[0].postMessage, 2, [{ type: 'pin', index: 1, point: { x: 50, y: 60 } }, []]);
+                commands$.next({
+                    type: 'pin',
+                    node: secondVisibleNode,
+                    point: { x: 50, y: 60 },
+                });
+                const firstWorker = getItemAt(workers, 0);
 
-                commands$.next({ type: 'release', node: forceGraphData.visibleNodes[1] });
-                expectSpyCall(workers[0].postMessage, 3, [{ type: 'release', index: 1 }, []]);
+                expectSpyCall(firstWorker.postMessage, 2, [{ type: 'pin', index: 1, point: { x: 50, y: 60 } }, []]);
+
+                commands$.next({ type: 'release', node: secondVisibleNode });
+                expectSpyCall(firstWorker.postMessage, 3, [{ type: 'release', index: 1 }, []]);
             });
 
             it('... should ignore commands for nodes of other force graph data', () => {
@@ -307,20 +321,22 @@ describe('ForceGraphSimulationService (DONE)', () => {
                 forceGraphSimulationService.simulate(forceGraphData, commands$).subscribe();
 
                 commands$.next({ type: 'release', node: otherNode });
+                const firstWorker = getItemAt(workers, 0);
 
-                expectSpyCall(workers[0].postMessage, 1);
+                expectSpyCall(firstWorker.postMessage, 1);
             });
 
             it('... should terminate the worker and stop listening for commands on unsubscribe', () => {
                 const commands$ = new Subject<ForceGraphSimulationCommand>();
                 const subscription = forceGraphSimulationService.simulate(forceGraphData, commands$).subscribe();
-                workers[0].emit(progress(true));
+                const firstWorker = getItemAt(workers, 0);
+                firstWorker.emit(progress(true));
 
-                expectSpyCall(workers[0].terminate, 0);
+                expectSpyCall(firstWorker.terminate, 0);
 
                 subscription.unsubscribe();
 
-                expectSpyCall(workers[0].terminate, 1);
+                expectSpyCall(firstWorker.terminate, 1);
                 expectToBe(commands$.observed, false);
             });
 
@@ -352,10 +368,11 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     forceGraphSimulationService
                         .simulate(forceGraphData, EMPTY)
                         .subscribe({ error: err => (error = err) });
+                    const firstWorker = getItemAt(workers, 0);
 
-                    workers[0].fail('Boom');
+                    firstWorker.fail('Boom');
 
-                    expectSpyCall(workers[0].terminate, 1);
+                    expectSpyCall(firstWorker.terminate, 1);
                     expectSpyCall(startSimulationSpy, 1);
                     expectSpyCall(consoleWarnSpy, 1, [
                         '[ForceGraphSimulationService] Simulation worker failed, continuing on the main thread:',
@@ -374,7 +391,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
                         .simulate(forceGraphData, EMPTY)
                         .subscribe({ error: err => (error = err) });
 
-                    workers[0].fail('Boom');
+                    getItemAt(workers, 0).fail('Boom');
 
                     expectToBe(error, startError);
                 });
@@ -386,9 +403,9 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     forceGraphSimulationService
                         .simulate(forceGraphData, EMPTY)
                         .subscribe({ error: err => (error = err) });
-                    workers[0].fail('Boom');
+                    getItemAt(workers, 0).fail('Boom');
 
-                    const [, , onError] = startSimulationSpy.mock.calls[0];
+                    const [, , onError] = getItemAt(startSimulationSpy.mock.calls, 0);
                     onError(stepError);
 
                     expectToBe(error, stepError);
@@ -398,7 +415,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     mockMainThreadSimulation();
                     forceGraphSimulationService.simulate(forceGraphData, EMPTY).subscribe();
 
-                    workers[0].fail();
+                    getItemAt(workers, 0).fail();
 
                     expectSpyCall(consoleWarnSpy, 1, [
                         '[ForceGraphSimulationService] Simulation worker failed, continuing on the main thread:',
@@ -410,12 +427,13 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     const { startSimulationSpy } = mockMainThreadSimulation();
                     forceGraphSimulationService.simulate(forceGraphData, EMPTY).subscribe();
                     // A position of the worker simulation, unpacked into the force graph data
-                    forceGraphData.nodes[0].x = 5;
-                    forceGraphData.nodes[0].y = 6;
+                    const firstNode = getItemAt(forceGraphData.nodes, 0);
+                    firstNode.x = 5;
+                    firstNode.y = 6;
 
-                    workers[0].fail('Boom');
+                    getItemAt(workers, 0).fail('Boom');
 
-                    const [input] = startSimulationSpy.mock.calls[0];
+                    const [input] = getItemAt(startSimulationSpy.mock.calls, 0);
 
                     expectToEqual([input.positions[0], input.positions[1]], [5, 6]);
                     expectToBe(input.isRelayout, true);
@@ -428,9 +446,9 @@ describe('ForceGraphSimulationService (DONE)', () => {
                         .simulate(forceGraphData, EMPTY)
                         .subscribe(result => results.push(result));
 
-                    workers[0].fail('Boom');
+                    getItemAt(workers, 0).fail('Boom');
                     vi.runAllTimers();
-                    const lastResult = results[results.length - 1];
+                    const lastResult = getItemAt(results, results.length - 1);
 
                     expectToBe(lastResult.positions.length, forceGraphData.nodes.length * 2);
                 });
@@ -439,21 +457,27 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     const { fakeSimulation } = mockMainThreadSimulation();
                     const commands$ = new Subject<ForceGraphSimulationCommand>();
                     forceGraphSimulationService.simulate(forceGraphData, commands$).subscribe();
+                    const firstWorker = getItemAt(workers, 0);
 
-                    workers[0].fail('Boom');
-                    commands$.next({ type: 'pin', node: forceGraphData.visibleNodes[1], point: { x: 50, y: 60 } });
-                    commands$.next({ type: 'release', node: forceGraphData.visibleNodes[1] });
+                    firstWorker.fail('Boom');
+                    const secondVisibleNode = getItemAt(forceGraphData.visibleNodes, 1);
+                    commands$.next({
+                        type: 'pin',
+                        node: secondVisibleNode,
+                        point: { x: 50, y: 60 },
+                    });
+                    commands$.next({ type: 'release', node: secondVisibleNode });
 
                     expectSpyCall(fakeSimulation.pin, 1, [1, { x: 50, y: 60 }]);
                     expectSpyCall(fakeSimulation.release, 1, 1);
                     // Only the start message has been posted to the worker
-                    expectSpyCall(workers[0].postMessage, 1);
+                    expectSpyCall(firstWorker.postMessage, 1);
                 });
 
                 it('... should stop the main thread simulation on unsubscribe', () => {
                     const { fakeSimulation } = mockMainThreadSimulation();
                     const subscription = forceGraphSimulationService.simulate(forceGraphData, EMPTY).subscribe();
-                    workers[0].fail('Boom');
+                    getItemAt(workers, 0).fail('Boom');
 
                     subscription.unsubscribe();
 

@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -99,9 +100,9 @@ describe('SourceDescItemComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         const sources = structuredClone(mockEditionData.mockSourceDescListData).sources;
-        expectedSourceDescWithoutPhysDesc = sources[0]; // No physDesc entries
-        expectedSourceDescWithAllEntries = sources[1]; // All possible physDesc entries, with only writing material strings
-        expectedSourceDescWithWritingMaterials = sources[2]; // Only conditions and writing materials in physDesc
+        expectedSourceDescWithoutPhysDesc = getItemAt(sources, 0); // No physDesc entries
+        expectedSourceDescWithAllEntries = getItemAt(sources, 1); // All possible physDesc entries, with only writing material strings
+        expectedSourceDescWithWritingMaterials = getItemAt(sources, 2); // Only conditions and writing materials in physDesc
 
         // Create component fixture
         fixture = TestBed.createComponent(SourceDescItemComponent);
@@ -250,25 +251,25 @@ describe('SourceDescItemComponent (DONE)', () => {
 
                 describe('... the first paragraph', () => {
                     it('... should contain a SourceSiglumComponent (hollow) in bold for a siglum without an addendum', () => {
-                        expectSiglumParagraph(paragraphDes[0], expectedSourceDescWithoutPhysDesc);
+                        expectSiglumParagraph(getItemAt(paragraphDes, 0), expectedSourceDescWithoutPhysDesc);
                     });
                 });
 
                 describe('... the second paragraph', () => {
                     it('... should have one CompileHtmlDirective', () => {
-                        const directiveIns = paragraphDes[1].injector.get(CompileHtmlDirective);
+                        const directiveIns = getItemAt(paragraphDes, 1).injector.get(CompileHtmlDirective);
 
                         expect(directiveIns).toBeTruthy();
                     });
 
                     it('... should pass down the source type to the CompileHtmlDirective', () => {
-                        const directiveIns = paragraphDes[1].injector.get(CompileHtmlDirective);
+                        const directiveIns = getItemAt(paragraphDes, 1).injector.get(CompileHtmlDirective);
 
                         expectToBe(directiveIns.htmlContent(), expectedSourceDescWithoutPhysDesc.type);
                     });
 
                     it('... should display the source type', () => {
-                        const pEl: HTMLParagraphElement = paragraphDes[1].nativeElement;
+                        const pEl: HTMLParagraphElement = getItemAt(paragraphDes, 1).nativeElement;
 
                         expectToContain(pEl.classList, 'awg-source-desc-type');
                         expectToBe(pEl.textContent.trim(), expectedSourceDescWithoutPhysDesc.type.trim());
@@ -277,19 +278,19 @@ describe('SourceDescItemComponent (DONE)', () => {
 
                 describe('... the third paragraph', () => {
                     it('... should have one AbbrDirective', () => {
-                        const directiveIns = paragraphDes[2].injector.get(AbbrDirective);
+                        const directiveIns = getItemAt(paragraphDes, 2).injector.get(AbbrDirective);
 
                         expect(directiveIns).toBeTruthy();
                     });
 
                     it('... should pass down the source location to the AbbrDirective', () => {
-                        const directiveIns = paragraphDes[2].injector.get(AbbrDirective);
+                        const directiveIns = getItemAt(paragraphDes, 2).injector.get(AbbrDirective);
 
                         expectToBe(directiveIns.text(), expectedSourceDescWithoutPhysDesc.location);
                     });
 
                     it('... should display the source location', () => {
-                        const pEl: HTMLParagraphElement = paragraphDes[2].nativeElement;
+                        const pEl: HTMLParagraphElement = getItemAt(paragraphDes, 2).nativeElement;
 
                         expectToContain(pEl.classList, 'awg-source-desc-location');
                         expectToBe(pEl.textContent.trim(), expectedSourceDescWithoutPhysDesc.location.trim());
@@ -314,25 +315,25 @@ describe('SourceDescItemComponent (DONE)', () => {
 
                     describe('... the first paragraph', () => {
                         it('... should contain a SourceSiglumComponent (hollow) in bold for a siglum with addendum', () => {
-                            expectSiglumParagraph(paragraphDes[0], expectedSourceDescWithAllEntries);
+                            expectSiglumParagraph(getItemAt(paragraphDes, 0), expectedSourceDescWithAllEntries);
                         });
                     });
 
                     describe('... the second paragraph', () => {
                         it('... should have one AbbrDirective', () => {
-                            const directiveIns = paragraphDes[1].injector.get(AbbrDirective);
+                            const directiveIns = getItemAt(paragraphDes, 1).injector.get(AbbrDirective);
 
                             expect(directiveIns).toBeTruthy();
                         });
 
                         it('... should pass down the source location to the AbbrDirective', () => {
-                            const directiveIns = paragraphDes[1].injector.get(AbbrDirective);
+                            const directiveIns = getItemAt(paragraphDes, 1).injector.get(AbbrDirective);
 
                             expectToBe(directiveIns.text(), expectedSourceDescWithAllEntries.location);
                         });
 
                         it('... should display the source location', () => {
-                            const pEl: HTMLParagraphElement = paragraphDes[1].nativeElement;
+                            const pEl: HTMLParagraphElement = getItemAt(paragraphDes, 1).nativeElement;
 
                             expectToContain(pEl.classList, 'awg-source-desc-location');
                             expectToBe(pEl.textContent.trim(), expectedSourceDescWithAllEntries.location.trim());
@@ -505,11 +506,11 @@ describe('SourceDescItemComponent (DONE)', () => {
                 });
 
                 it('... the first paragraph containing a SourceSiglumComponent (hollow) in bold for a missing siglum with addendum', () => {
-                    expectSiglumParagraph(paragraphDes[0], expectedSourceDescWithWritingMaterials);
+                    expectSiglumParagraph(getItemAt(paragraphDes, 0), expectedSourceDescWithWritingMaterials);
                 });
 
                 it('... the second paragraph displaying the source type', () => {
-                    const pEl: HTMLParagraphElement = paragraphDes[1].nativeElement;
+                    const pEl: HTMLParagraphElement = getItemAt(paragraphDes, 1).nativeElement;
 
                     const expectedType = toTextContent(expectedSourceDescWithWritingMaterials.type);
 
@@ -518,7 +519,7 @@ describe('SourceDescItemComponent (DONE)', () => {
                 });
 
                 it('... the third paragraph displaying the source location', () => {
-                    const pEl: HTMLParagraphElement = paragraphDes[2].nativeElement;
+                    const pEl: HTMLParagraphElement = getItemAt(paragraphDes, 2).nativeElement;
 
                     expectToContain(pEl.classList, 'awg-source-desc-location');
                     expectToBe(pEl.textContent.trim(), expectedSourceDescWithWritingMaterials.location.trim());
