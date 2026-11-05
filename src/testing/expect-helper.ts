@@ -139,6 +139,27 @@ export function getAndExpectDebugElementByDirective<N extends number>(
 }
 
 /**
+ * Test helper function: getItemAt.
+ *
+ * It gets the item at a given index of a given list, typed without `undefined`,
+ * and throws an error that names the index and the number of items if there is no item
+ * (an item `undefined` counts as missing, other falsy items are returned).
+ *
+ * Exposed to be called from tests.
+ *
+ * @param {readonly T[]} items The given list of items.
+ * @param {number} index The given index.
+ * @returns {T} The item at the index.
+ */
+export function getItemAt<T>(items: readonly T[], index: number): T {
+    const item = items[index];
+    if (item === undefined) {
+        throw new Error(`Expected item at index ${index} to exist, but there are ${items.length} items.`);
+    }
+    return item;
+}
+
+/**
  * Test helper function: expectToBe.
  *
  * It checks if a given actual value is defined and if it is the same as the expected value ('toBe').

@@ -2,7 +2,12 @@ import { DebugElement, Directive } from '@angular/core';
 
 import { describe, expect, expectTypeOf, it, vi } from 'vitest';
 
-import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from './expect-helper';
+import {
+    expectToBe,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+    getItemAt,
+} from './expect-helper';
 
 /**
  * Test directive: ExpectHelperTestDirective.
@@ -92,6 +97,41 @@ describe('expect-helper', () => {
             expectTypeOf(getAndExpectDebugElementByDirective(inDe, ExpectHelperTestDirective, 2, 2)).toEqualTypeOf<
                 [DebugElement, DebugElement]
             >();
+        });
+    });
+
+    describe('#getItemAt()', () => {
+        it('... should have a method `getItemAt`', () => {
+            expect(getItemAt).toBeDefined();
+        });
+
+        it('... should return the item at the given index', () => {
+            const items = ['a', 'b', 'c'];
+
+            expectToBe(getItemAt(items, 0), 'a');
+            expectToBe(getItemAt(items, 2), 'c');
+        });
+
+        it('... should return falsy items other than undefined', () => {
+            const items = [0, null, ''];
+
+            expectToBe(getItemAt(items, 0), 0);
+            expectToBe(getItemAt(items, 1), null);
+            expectToBe(getItemAt(items, 2), '');
+        });
+
+        it('... should throw an error with the index and the number of items if there is no item at the index', () => {
+            const items = ['a'];
+
+            expect(() => getItemAt(items, 1)).toThrow('Expected item at index 1 to exist, but there are 1 items.');
+            expect(() => getItemAt(items, -1)).toThrow('Expected item at index -1 to exist, but there are 1 items.');
+            expect(() => getItemAt([], 0)).toThrow('Expected item at index 0 to exist, but there are 0 items.');
+        });
+
+        it('... should type the item without undefined', () => {
+            const items: string[] = ['a'];
+
+            expectTypeOf(getItemAt(items, 0)).toEqualTypeOf<string>();
         });
     });
 });
