@@ -22,7 +22,10 @@ describe(
         let turtle: string;
 
         beforeAll(() => {
-            turtle = getItemAt((graphDataOp25 as GraphList).graph, 0).rdfData.triples;
+            const graphList = graphDataOp25 as GraphList;
+            const firstGraph = getItemAt(graphList.graph, 0);
+
+            turtle = firstGraph.rdfData.triples;
         });
 
         beforeEach(() => {

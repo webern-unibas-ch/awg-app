@@ -22,9 +22,11 @@ describe(
         let queryList: GraphQuery[];
 
         beforeAll(() => {
-            const graph = getItemAt((graphDataOp25 as GraphList).graph, 0);
-            turtle = graph.rdfData.triples;
-            queryList = graph.rdfData.queryList;
+            const graphList = graphDataOp25 as GraphList;
+            const firstGraph = getItemAt(graphList.graph, 0);
+
+            turtle = firstGraph.rdfData.triples;
+            queryList = firstGraph.rdfData.queryList;
         });
 
         beforeEach(() => {
@@ -66,7 +68,9 @@ describe(
             });
 
             it('... should measure the duration of the run', async () => {
-                const run = await service.run(getItemAt(queryList, 0).queryString, turtle);
+                const firstQuery = getItemAt(queryList, 0);
+
+                const run = await service.run(firstQuery.queryString, turtle);
 
                 expect(run.durationMs).toBeGreaterThan(0);
             });
