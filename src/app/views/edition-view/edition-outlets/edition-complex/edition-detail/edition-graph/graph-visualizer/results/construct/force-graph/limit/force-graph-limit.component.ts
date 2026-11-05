@@ -20,22 +20,20 @@ const FORCE_GRAPH_LIMIT_MIN = 5;
 const FORCE_GRAPH_LIMIT_STEPS: readonly number[] = [1, 2.5, 5];
 
 /**
- * Private function: _toLimitValue.
+ * Private function: _generateLimitValues.
  *
- * It gets the limit value (number of triples) at the given index of the sequence
+ * It generates the endless sequence of limit values (number of triples)
  * 5, 10, 25, 50, 100, 250, 500, 1000, 2500, ...
  *
- * @param {number} index The given index.
- * @returns {number} The limit value.
+ * @returns {Generator<number>} The limit values in ascending order.
  */
-function _toLimitValue(index: number): number {
-    if (index === 0) {
-        return FORCE_GRAPH_LIMIT_MIN;
+function* _generateLimitValues(): Generator<number> {
+    yield FORCE_GRAPH_LIMIT_MIN;
+    for (let magnitude = 10; ; magnitude *= 10) {
+        for (const step of FORCE_GRAPH_LIMIT_STEPS) {
+            yield step * magnitude;
+        }
     }
-    const stepIndex = index - 1;
-    const magnitude = 10 ** (1 + Math.floor(stepIndex / FORCE_GRAPH_LIMIT_STEPS.length));
-    const step = FORCE_GRAPH_LIMIT_STEPS[stepIndex % FORCE_GRAPH_LIMIT_STEPS.length] ?? 1;
-    return step * magnitude;
 }
 
 /**
@@ -50,8 +48,11 @@ function _toLimitValue(index: number): number {
 function _toLimitValues(tripleCount: number): number[] {
     const limitValues: number[] = [];
 
-    for (let index = 0; _toLimitValue(index) < tripleCount; index++) {
-        limitValues.push(_toLimitValue(index));
+    for (const limitValue of _generateLimitValues()) {
+        if (limitValue >= tripleCount) {
+            break;
+        }
+        limitValues.push(limitValue);
     }
 
     return limitValues;

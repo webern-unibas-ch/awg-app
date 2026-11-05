@@ -270,6 +270,21 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 );
             });
 
+            it('... should draw the system lines but no labels for systems without label positions', () => {
+                const systemCount = expectedFolioSvgData.systems.lines.length;
+                const svgData: FolioSvgData = {
+                    ...expectedFolioSvgData,
+                    systems: { ...expectedFolioSvgData.systems, labelPositions: [] },
+                };
+
+                const rootGroupSelection = render(svgData);
+                const systemLineGroups = rootGroupSelection.selectAll('g.systems-group > g.system-line-group');
+                const labelsSelection = rootGroupSelection.selectAll('text.system-label');
+
+                expectToBe(systemLineGroups.size(), systemCount);
+                expectToBe(labelsSelection.size(), 0);
+            });
+
             it('... should draw the lines of each system', () => {
                 const firstSystemLines = expectedFolioSvgData.systems.lines[0];
 

@@ -329,14 +329,13 @@ function calculateSystems(
     const isLineSpaceLimited = SYSTEM_LINE_SPACE_FACTOR * factor > maxLineSpace;
     const staffHeight =
         (isLineSpaceLimited ? maxLineSpace : SYSTEM_LINE_SPACE_FACTOR * factor) * (SYSTEM_NUMBER_OF_LINES - 1);
-    const yArray = Array.from({ length: numberOfSystems }, (_, systemIndex) => {
-        const yStart = NUMBER_UTILS.roundToDecimals(startY + systemIndex * spacePerSystem, 2);
-        return Array.from({ length: SYSTEM_NUMBER_OF_LINES }, (__, lineIndex) =>
-            isLineSpaceLimited
-                ? NUMBER_UTILS.roundToDecimals(yStart + lineIndex * maxLineSpace, 2)
-                : yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor
-        );
-    });
+    const toLineY = (yStart: number, lineIndex: number): number =>
+        isLineSpaceLimited
+            ? NUMBER_UTILS.roundToDecimals(yStart + lineIndex * maxLineSpace, 2)
+            : yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor;
+    const yStarts = Array.from({ length: numberOfSystems }, (_, systemIndex) =>
+        NUMBER_UTILS.roundToDecimals(startY + systemIndex * spacePerSystem, 2)
+    );
 
     // System labels: font size limited by the space per system, right-aligned before the systems,
     // With their digits vertically centered at the middle line
@@ -351,12 +350,15 @@ function calculateSystems(
     return {
         systems: {
             labelFontSize,
-            labelPositions: yArray.map(lineArray => ({
+            labelPositions: yStarts.map(yStart => ({
                 x: labelX,
-                y: NUMBER_UTILS.roundToDecimals((lineArray[middleLineIndex] ?? 0) + labelBaselineOffset, 2),
+                y: NUMBER_UTILS.roundToDecimals(toLineY(yStart, middleLineIndex) + labelBaselineOffset, 2),
             })),
-            lines: yArray.map(lineArray =>
-                lineArray.map((y): FolioSvgLine => ({ start: { x: startX, y }, end: { x: endX, y } }))
+            lines: yStarts.map(yStart =>
+                Array.from({ length: SYSTEM_NUMBER_OF_LINES }, (_, lineIndex): FolioSvgLine => {
+                    const y = toLineY(yStart, lineIndex);
+                    return { start: { x: startX, y }, end: { x: endX, y } };
+                })
             ),
             reversed: folio.reversed ?? false,
         },
