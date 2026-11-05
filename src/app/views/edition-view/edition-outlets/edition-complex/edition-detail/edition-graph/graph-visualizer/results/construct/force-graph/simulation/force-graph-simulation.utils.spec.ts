@@ -208,6 +208,17 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                 expectSpyCall(scheduler.schedule, 1, [expect.any(Function), 0]);
             });
 
+            it('... should throw for links with an incomplete pair of node indices', () => {
+                const input: ForceGraphSimulationInput = {
+                    ...createSimulationInput(3),
+                    links: Int32Array.from([0, 1, 2]),
+                };
+
+                expect(() => startSimulationWith(input, new FakeScheduler())).toThrow(
+                    '[FORCE_GRAPH_SIMULATION_UTILS] Incomplete link pair at index 2.'
+                );
+            });
+
             it('... should report the result of every step until the simulation has settled', () => {
                 const scheduler = new FakeScheduler();
                 const { results } = startSimulationWith(toSimulationInput(forceGraphData), scheduler);

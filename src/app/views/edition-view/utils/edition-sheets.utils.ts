@@ -35,15 +35,16 @@ export function toFullSheetId(id: string | undefined, partial?: string): string 
 /**
  * Function: getFullSheetIds.
  *
- * It gets all full sheet ids of a given svg sheet (one per partial).
+ * It gets all full sheet ids of a given svg sheet (one per partial),
+ * or the sheet id for a sheet without content, so the result is never empty.
  *
  * @param {EditionSvgSheet} sheet The given svg sheet.
- * @returns {string[]} The full sheet ids of the svg sheet.
+ * @returns {[string, ...string[]]} The full sheet ids of the svg sheet.
  */
-export function getFullSheetIds(sheet: EditionSvgSheet): string[] {
-    const fullIds = sheet.content.map(content => toFullSheetId(sheet.id, content.partial));
+export function getFullSheetIds(sheet: EditionSvgSheet): [string, ...string[]] {
+    const [firstId, ...otherIds] = new Set(sheet.content.map(content => toFullSheetId(sheet.id, content.partial)));
 
-    return fullIds.length > 0 ? [...new Set(fullIds)] : [sheet.id];
+    return firstId === undefined ? [sheet.id] : [firstId, ...otherIds];
 }
 
 /**
@@ -118,7 +119,7 @@ export function findSvgSheet(
 export function getDefaultSheetId(sheets: EditionSvgSheetsList['sheets']): string {
     const defaultSheet = sheets.textEditions?.[0] ?? sheets.sketchEditions?.[0];
 
-    return defaultSheet ? (getFullSheetIds(defaultSheet)[0] ?? '') : '';
+    return defaultSheet ? getFullSheetIds(defaultSheet)[0] : '';
 }
 
 /**

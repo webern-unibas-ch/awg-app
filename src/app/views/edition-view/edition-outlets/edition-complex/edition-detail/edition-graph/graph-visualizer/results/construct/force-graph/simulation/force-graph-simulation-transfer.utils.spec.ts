@@ -65,6 +65,14 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
                 expectToEqual(firstPosition, { x: 1, y: 2 });
                 expectToEqual(secondPosition, { x: 3, y: 4 });
             });
+
+            it('... should return the origin for an index beyond the given positions', () => {
+                const positions = Float32Array.from([1, 2, 3, 4]);
+
+                const position = getPosition(positions, 2);
+
+                expectToEqual(position, { x: 0, y: 0 });
+            });
         });
 
         describe('#packPositions()', () => {
