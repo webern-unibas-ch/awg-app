@@ -12,7 +12,7 @@ interface IMockConsole {
     /**
      * The get function of the mocked console.
      */
-    get: (index: number) => string;
+    get: (index: number) => string | undefined;
 
     /**
      * The clear function of the mocked console.
@@ -37,7 +37,7 @@ export const mockConsole: IMockConsole = {
         consoleMessages.push(message);
     },
 
-    get(index: number): string {
+    get(index: number): string | undefined {
         return consoleMessages[index];
     },
 
