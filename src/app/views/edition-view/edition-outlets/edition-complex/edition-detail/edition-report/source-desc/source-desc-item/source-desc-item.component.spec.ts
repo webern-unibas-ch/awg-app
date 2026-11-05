@@ -251,7 +251,9 @@ describe('SourceDescItemComponent (DONE)', () => {
 
                 describe('... the first paragraph', () => {
                     it('... should contain a SourceSiglumComponent (hollow) in bold for a siglum without an addendum', () => {
-                        expectSiglumParagraph(getItemAt(paragraphDes, 0), expectedSourceDescWithoutPhysDesc);
+                        const firstParagraphDe = getItemAt(paragraphDes, 0);
+
+                        expectSiglumParagraph(firstParagraphDe, expectedSourceDescWithoutPhysDesc);
                     });
                 });
 
@@ -315,7 +317,9 @@ describe('SourceDescItemComponent (DONE)', () => {
 
                     describe('... the first paragraph', () => {
                         it('... should contain a SourceSiglumComponent (hollow) in bold for a siglum with addendum', () => {
-                            expectSiglumParagraph(getItemAt(paragraphDes, 0), expectedSourceDescWithAllEntries);
+                            const firstParagraphDe = getItemAt(paragraphDes, 0);
+
+                            expectSiglumParagraph(firstParagraphDe, expectedSourceDescWithAllEntries);
                         });
                     });
 
@@ -506,7 +510,9 @@ describe('SourceDescItemComponent (DONE)', () => {
                 });
 
                 it('... the first paragraph containing a SourceSiglumComponent (hollow) in bold for a missing siglum with addendum', () => {
-                    expectSiglumParagraph(getItemAt(paragraphDes, 0), expectedSourceDescWithWritingMaterials);
+                    const firstParagraphDe = getItemAt(paragraphDes, 0);
+
+                    expectSiglumParagraph(firstParagraphDe, expectedSourceDescWithWritingMaterials);
                 });
 
                 it('... the second paragraph displaying the source type', () => {

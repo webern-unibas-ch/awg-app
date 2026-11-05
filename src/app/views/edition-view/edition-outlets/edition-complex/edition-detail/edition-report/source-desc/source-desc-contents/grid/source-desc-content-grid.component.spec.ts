@@ -178,7 +178,9 @@ describe('SourceDescContentGridComponent (DONE)', () => {
 
                 const expectedFolioRoute = toSheetRoute({ complexId: '', sheetId: expectedFolioId });
 
-                expectToEqual(getItemAt(component.folioItems(), 0).sheetRoute, expectedFolioRoute);
+                const firstFolioItem = getItemAt(component.folioItems(), 0);
+
+                expectToEqual(firstFolioItem.sheetRoute, expectedFolioRoute);
             });
 
             it('... should hold null as sheet route for folios without folioLinkTo', async () => {
@@ -374,9 +376,10 @@ describe('SourceDescContentGridComponent (DONE)', () => {
                         const linkDes = getAndExpectDebugElementByCss(folioDe, 'awg-conditional-link', 1, 1);
                         const linkCmp = linkDes[0].injector.get(ConditionalLinkComponent);
                         const expectedFolio = getItemAt(expectedFolios, index);
+                        const folioItem = getItemAt(component.folioItems(), index);
 
                         expectToBe(linkCmp.isClickable(), !!expectedFolio.folioLinkTo);
-                        expectToBe(linkCmp.targetRoute(), getItemAt(component.folioItems(), index).sheetRoute);
+                        expectToBe(linkCmp.targetRoute(), folioItem.sheetRoute);
                     });
                 });
 
@@ -392,7 +395,9 @@ describe('SourceDescContentGridComponent (DONE)', () => {
                         expectedFolios.length
                     );
 
-                    getAndExpectDebugElementByDirective(getItemAt(folioDes, 0), SourceDescContentFolioComponent, 0, 0);
+                    const firstFolioDe = getItemAt(folioDes, 0);
+
+                    getAndExpectDebugElementByDirective(firstFolioDe, SourceDescContentFolioComponent, 0, 0);
                 });
             });
 

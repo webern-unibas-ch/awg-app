@@ -223,7 +223,9 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
                             if (index < expectedLength) {
                                 const pEl: HTMLParagraphElement = getItemAt(pDes, 0).nativeElement;
-                                expectToBe(pEl.textContent, getItemAt(expectedIntroBlockContent, index).blockHeader);
+                                const expectedBlock = getItemAt(expectedIntroBlockContent, index);
+
+                                expectToBe(pEl.textContent, expectedBlock.blockHeader);
                             }
                         });
                     });
@@ -312,17 +314,20 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
                     it('... should have one anchor in first paragraph, and 3 in the second one in the first section', () => {
                         const expectedBlockLength = getItemAt(expectedIntroBlockContent, 0).blockContent.length + 1;
+                        const firstSectionDe = getItemAt(sectionDes, 0);
 
                         const divDes = getAndExpectDebugElementByCss(
-                            getItemAt(sectionDes, 0),
+                            firstSectionDe,
                             'div.awg-edition-intro-block',
                             expectedBlockLength,
                             expectedBlockLength
                         );
-
                         // First div has header
-                        getAndExpectDebugElementByCss(getItemAt(divDes, 1), 'a', 1, 1);
-                        getAndExpectDebugElementByCss(getItemAt(divDes, 2), 'a', 3, 3);
+                        const secondDivDe = getItemAt(divDes, 1);
+                        const thirdDivDe = getItemAt(divDes, 2);
+
+                        getAndExpectDebugElementByCss(secondDivDe, 'a', 1, 1);
+                        getAndExpectDebugElementByCss(thirdDivDe, 'a', 3, 3);
                     });
                 });
             });

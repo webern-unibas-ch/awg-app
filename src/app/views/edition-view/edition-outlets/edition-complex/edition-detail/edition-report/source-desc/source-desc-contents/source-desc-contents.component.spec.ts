@@ -261,7 +261,9 @@ describe('SourceDescContentsComponent (DONE)', () => {
                     });
 
                     it('... should switch the button to closed when one details element is closed individually', async () => {
-                        await toggleDetails(getItemAt(getDetailsDes(), 0), false);
+                        const firstDetailsDe = getItemAt(getDetailsDes(), 0);
+
+                        await toggleDetails(firstDetailsDe, false);
 
                         const isOpen = component.contentsState.isOpen(0);
 
@@ -271,8 +273,10 @@ describe('SourceDescContentsComponent (DONE)', () => {
                     });
 
                     it('... should switch the button back to open when the closed details element is opened again', async () => {
-                        await toggleDetails(getItemAt(getDetailsDes(), 0), false);
-                        await toggleDetails(getItemAt(getDetailsDes(), 0), true);
+                        const firstDetailsDe = getItemAt(getDetailsDes(), 0);
+
+                        await toggleDetails(firstDetailsDe, false);
+                        await toggleDetails(firstDetailsDe, true);
 
                         expectToBe(component.contentsState.allOpen(), true);
                         expectToBe(getButtonCmp().isOpen(), true);

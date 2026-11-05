@@ -390,8 +390,9 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     forceGraphSimulationService
                         .simulate(forceGraphData, EMPTY)
                         .subscribe({ error: err => (error = err) });
+                    const firstWorker = getItemAt(workers, 0);
 
-                    getItemAt(workers, 0).fail('Boom');
+                    firstWorker.fail('Boom');
 
                     expectToBe(error, startError);
                 });
@@ -403,7 +404,9 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     forceGraphSimulationService
                         .simulate(forceGraphData, EMPTY)
                         .subscribe({ error: err => (error = err) });
-                    getItemAt(workers, 0).fail('Boom');
+                    const firstWorker = getItemAt(workers, 0);
+
+                    firstWorker.fail('Boom');
 
                     const [, , onError] = getItemAt(startSimulationSpy.mock.calls, 0);
                     onError(stepError);
@@ -414,8 +417,9 @@ describe('ForceGraphSimulationService (DONE)', () => {
                 it('... should warn about a worker script that could not be loaded', () => {
                     mockMainThreadSimulation();
                     forceGraphSimulationService.simulate(forceGraphData, EMPTY).subscribe();
+                    const firstWorker = getItemAt(workers, 0);
 
-                    getItemAt(workers, 0).fail();
+                    firstWorker.fail();
 
                     expectSpyCall(consoleWarnSpy, 1, [
                         '[ForceGraphSimulationService] Simulation worker failed, continuing on the main thread:',
@@ -426,12 +430,13 @@ describe('ForceGraphSimulationService (DONE)', () => {
                 it('... should continue from the last known positions on the main thread', () => {
                     const { startSimulationSpy } = mockMainThreadSimulation();
                     forceGraphSimulationService.simulate(forceGraphData, EMPTY).subscribe();
+                    const firstWorker = getItemAt(workers, 0);
                     // A position of the worker simulation, unpacked into the force graph data
                     const firstNode = getItemAt(forceGraphData.nodes, 0);
                     firstNode.x = 5;
                     firstNode.y = 6;
 
-                    getItemAt(workers, 0).fail('Boom');
+                    firstWorker.fail('Boom');
 
                     const [input] = getItemAt(startSimulationSpy.mock.calls, 0);
 
@@ -445,8 +450,10 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     forceGraphSimulationService
                         .simulate(forceGraphData, EMPTY)
                         .subscribe(result => results.push(result));
+                    const firstWorker = getItemAt(workers, 0);
 
-                    getItemAt(workers, 0).fail('Boom');
+                    firstWorker.fail('Boom');
+
                     vi.runAllTimers();
                     const lastResult = getItemAt(results, results.length - 1);
 
@@ -460,6 +467,7 @@ describe('ForceGraphSimulationService (DONE)', () => {
                     const firstWorker = getItemAt(workers, 0);
 
                     firstWorker.fail('Boom');
+
                     const secondVisibleNode = getItemAt(forceGraphData.visibleNodes, 1);
                     commands$.next({
                         type: 'pin',
@@ -477,7 +485,9 @@ describe('ForceGraphSimulationService (DONE)', () => {
                 it('... should stop the main thread simulation on unsubscribe', () => {
                     const { fakeSimulation } = mockMainThreadSimulation();
                     const subscription = forceGraphSimulationService.simulate(forceGraphData, EMPTY).subscribe();
-                    getItemAt(workers, 0).fail('Boom');
+                    const firstWorker = getItemAt(workers, 0);
+
+                    firstWorker.fail('Boom');
 
                     subscription.unsubscribe();
 

@@ -241,9 +241,12 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     });
 
                     it('... should update the open state of a single correction when its details are toggled', async () => {
-                        await toggleDetails(getItemAt(getDetailsDes(), 0), true);
+                        const firstDetailsDe = getItemAt(getDetailsDes(), 0);
 
-                        const isOpen = component.correctionsState.isOpen(getItemAt(expectedCorrections, 0).id);
+                        await toggleDetails(firstDetailsDe, true);
+
+                        const firstCorrection = getItemAt(expectedCorrections, 0);
+                        const isOpen = component.correctionsState.isOpen(firstCorrection.id);
 
                         expectToBe(isOpen, true);
                     });
@@ -261,7 +264,9 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         component.correctionsState.setAll(true);
                         await detectChangesOnPush(fixture);
 
-                        await toggleDetails(getItemAt(getDetailsDes(), 0), false);
+                        const firstDetailsDe = getItemAt(getDetailsDes(), 0);
+
+                        await toggleDetails(firstDetailsDe, false);
 
                         expectToBe(component.correctionsState.allOpen(), false);
                         expectToBe(getButtonCmp().isOpen(), false);
@@ -437,14 +442,12 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                                 1
                             );
                             const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent);
+                            const expectedCorrection = getItemAt(expectedCorrections, index);
 
-                            expectToEqual(
-                                tableCmp.displayedCommentary(),
-                                getItemAt(expectedCorrections, index).commentary
-                            );
+                            expectToEqual(tableCmp.displayedCommentary(), expectedCorrection.commentary);
 
-                            if (getItemAt(expectedCorrections, index).rowtable) {
-                                expectToBe(tableCmp.isRowtable(), getItemAt(expectedCorrections, index).rowtable);
+                            if (expectedCorrection.rowtable) {
+                                expectToBe(tableCmp.isRowtable(), expectedCorrection.rowtable);
                             } else {
                                 expectToBe(tableCmp.isRowtable(), false);
                             }

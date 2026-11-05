@@ -398,7 +398,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         const rowDes = getRowDes();
 
                         if (block.blockHeader) {
-                            const tdDes = getAndExpectDebugElementByCss(getItemAt(rowDes, rowIndex), 'td', 1, 1);
+                            const rowDe = getItemAt(rowDes, rowIndex);
+                            const tdDes = getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
                             const tdEl: HTMLTableCellElement = tdDes[0].nativeElement;
 
                             expectToBe(tdEl.getAttribute('colspan'), '4');
@@ -438,7 +439,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         }
 
                         block.blockComments.forEach((comment, index) => {
-                            const rowCellDes = getAndExpectDebugElementByCss(getItemAt(rowDes, rowIndex), 'td', 4, 4);
+                            const rowDe = getItemAt(rowDes, rowIndex);
+                            const rowCellDes = getAndExpectDebugElementByCss(rowDe, 'td', 4, 4);
 
                             const measureCell: HTMLTableCellElement = rowCellDes[0].nativeElement;
                             const systemCell: HTMLTableCellElement = rowCellDes[1].nativeElement;
