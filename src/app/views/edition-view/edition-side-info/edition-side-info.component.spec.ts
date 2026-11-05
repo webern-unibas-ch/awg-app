@@ -273,19 +273,11 @@ describe('EditionSideInfoComponent (DONE)', () => {
                         expectedSections.length + 1,
                         expectedSections.length + 1
                     );
+                    const secondItemDe = getItemAt(itemDes, 1);
+                    const thirdItemDe = getItemAt(itemDes, 2);
 
-                    const itemHeaderDes1 = getAndExpectDebugElementByCss(
-                        getItemAt(itemDes, 1),
-                        'div.accordion-header',
-                        1,
-                        1
-                    );
-                    const itemHeaderDes2 = getAndExpectDebugElementByCss(
-                        getItemAt(itemDes, 2),
-                        'div.accordion-header',
-                        1,
-                        1
-                    );
+                    const itemHeaderDes1 = getAndExpectDebugElementByCss(secondItemDe, 'div.accordion-header', 1, 1);
+                    const itemHeaderDes2 = getAndExpectDebugElementByCss(thirdItemDe, 'div.accordion-header', 1, 1);
 
                     const btnDes1 = getAndExpectDebugElementByCss(itemHeaderDes1[0], 'button.accordion-button', 1, 1);
                     const btnDes2 = getAndExpectDebugElementByCss(itemHeaderDes2[0], 'button.accordion-button', 1, 1);
@@ -366,12 +358,8 @@ describe('EditionSideInfoComponent (DONE)', () => {
                         expectedSections.length + 1,
                         expectedSections.length + 1
                     );
-                    const itemBodyDes = getAndExpectDebugElementByCss(
-                        getItemAt(itemDes, 0),
-                        'div.accordion-body',
-                        1,
-                        1
-                    );
+                    const firstItemDe = getItemAt(itemDes, 0);
+                    const itemBodyDes = getAndExpectDebugElementByCss(firstItemDe, 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 3, 3);
                 });
@@ -404,7 +392,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
                 it('... should not render intro link when section intro is disabled', async () => {
                     const expectedFirstSection = getItemAt(expectedSections, 0);
                     const sectionWithDisabledIntro: EditionOutlineSection = {
-                        ...expectedSections[0],
+                        ...expectedFirstSection,
                         content: {
                             ...expectedFirstSection.content,
                             intro: {
