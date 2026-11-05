@@ -25,8 +25,8 @@ export function roundToDecimals(value: number, decimals: number): number {
  * @returns {number} The rounded value.
  */
 export function roundToStepPrecision(value: number, stepSize: number): number {
-    // Count decimals of the step size
-    const decimalPlaces = Math.floor(stepSize) === stepSize ? 0 : stepSize.toString().split('.')[1].length;
+    // Count decimals of the step size (none for integers)
+    const decimalPlaces = stepSize.toString().split('.')[1]?.length ?? 0;
 
     return roundToDecimals(value, decimalPlaces);
 }

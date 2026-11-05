@@ -6,7 +6,7 @@ import { MetaPerson } from './meta.model';
  *
  * It provides metadata for the persons (authors, editors) used in the app.
  */
-export const PERSONS_DATA: Record<string, MetaPerson> = {
+export const PERSONS_DATA = {
     thomas_ahrend: {
         name: 'Thomas Ahrend',
         homepage: APP_CONSTANTS.AWG_PROJECT_URL + 'de/projekt/mitarbeitende.html',
@@ -32,4 +32,4 @@ export const PERSONS_DATA: Record<string, MetaPerson> = {
             viaf: '314885087',
         },
     },
-} as const;
+} as const satisfies Record<string, MetaPerson>;

@@ -325,9 +325,11 @@ export class EditionComplex {
         editors: EditionComplexJsonPersonRef[];
         lastModified: string;
     }): EditionComplexRespStatement {
+        // Lookup by any reference from the data, so read the persons as a record
+        const persons: Record<string, MetaPerson> = PERSONS_DATA;
         const editors: MetaPerson[] =
             respStatement?.editors?.map(
-                editor => PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: '', identifiers: {} }
+                editor => persons[editor.$ref] ?? { name: editor.$ref, homepage: '', identifiers: {} }
             ) ?? [];
         return { editors, lastModified: respStatement?.lastModified ?? '' };
     }
