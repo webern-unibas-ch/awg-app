@@ -5,7 +5,7 @@ import { beforeEach, describe, it } from 'vitest';
 import type { Literal, Quad, Term } from '@rdfjs/types';
 import { DataFactory, Parser } from 'n3';
 
-import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getEntryAt, getItemAt } from '@testing/expect-helper';
 import { RDFSTORE_INTEGRATION_TIMEOUT_MS, spyOnRdfstoreImport } from '@testing/rdfstore-helper';
 
 import { RdfStoreService } from './rdf-store.service';
@@ -114,11 +114,16 @@ describe(
                 expectToEqual(variables, ['s', 'label']);
                 expectToBe(bindings.length, 2);
 
-                const namedBinding = bindings.find(binding => binding['s'].termType === 'NamedNode');
-                const blankBinding = bindings.find(binding => binding['s'].termType === 'BlankNode');
-                expectToBe(namedBinding?.['s'].equals(namedNode(`${EX}a`)), true);
-                expectToBe(namedBinding?.['label'].equals(literal('A', 'de')), true);
-                expectToEqual(Object.keys(blankBinding ?? {}), ['s']);
+                const namedBindings = bindings.filter(binding => getEntryAt(binding, 's').termType === 'NamedNode');
+                const blankBindings = bindings.filter(binding => getEntryAt(binding, 's').termType === 'BlankNode');
+                const firstNamedBinding = getItemAt(namedBindings, 0);
+                const firstBlankBinding = getItemAt(blankBindings, 0);
+                const namedSubject = getEntryAt(firstNamedBinding, 's');
+                const namedLabel = getEntryAt(firstNamedBinding, 'label');
+
+                expectToBe(namedSubject.equals(namedNode(`${EX}a`)), true);
+                expectToBe(namedLabel.equals(literal('A', 'de')), true);
+                expectToEqual(Object.keys(firstBlankBinding), ['s']);
             });
 
             it('... should convert typed and plain literals', async () => {
@@ -126,9 +131,11 @@ describe(
 
                 const { bindings } = await service.select(TURTLE, query);
                 const firstBinding = getItemAt(bindings, 0);
+                const countTerm = getEntryAt(firstBinding, 'count');
+                const nameTerm = getEntryAt(firstBinding, 'name');
 
-                expectToBe(firstBinding['count'].equals(literal('5', namedNode(XSD_INTEGER))), true);
-                expectToBe(firstBinding['name'].equals(literal('B')), true);
+                expectToBe(countTerm.equals(literal('5', namedNode(XSD_INTEGER))), true);
+                expectToBe(nameTerm.equals(literal('B')), true);
             });
 
             it('... should count grouped results as integer literals (COUNT with GROUP BY)', async () => {
@@ -137,12 +144,20 @@ describe(
                 const { variables, bindings } = await service.select(TURTLE, query);
 
                 expectToEqual(variables, ['class', 'count']);
-                const counts = Object.fromEntries(
-                    bindings.map(binding => [binding['class'].value, binding['count'] as Literal])
-                );
-                expectToBe(counts[`${EX}Class`].value, '2');
-                expectToBe(counts[`${EX}Other`].value, '1');
-                expectToBe(counts[`${EX}Class`].datatype.value, XSD_INTEGER);
+
+                const countEntries = bindings.map(binding => {
+                    const classTerm = getEntryAt(binding, 'class');
+                    const countTerm = getEntryAt(binding, 'count') as Literal;
+
+                    return [classTerm.value, countTerm] as const;
+                });
+                const counts = Object.fromEntries(countEntries);
+                const classCount = getEntryAt(counts, `${EX}Class`);
+                const otherCount = getEntryAt(counts, `${EX}Other`);
+
+                expectToBe(classCount.value, '2');
+                expectToBe(otherCount.value, '1');
+                expectToBe(classCount.datatype.value, XSD_INTEGER);
             });
 
             it('... should count all results as an integer literal (COUNT without GROUP BY)', async () => {
@@ -153,7 +168,9 @@ describe(
 
                 expectToEqual(variables, ['n']);
                 expectToBe(bindings.length, 1);
-                const count = getItemAt(bindings, 0)['n'] as Literal;
+
+                const firstBinding = getItemAt(bindings, 0);
+                const count = firstBinding['n'] as Literal;
 
                 expectToBe(count.value, String(TURTLE_QUADS.length));
                 expectToBe(count.datatype.value, XSD_INTEGER);
@@ -191,7 +208,8 @@ describe(
             it('... should count all results as an integer literal (COUNT without GROUP BY)', async () => {
                 const { bindings } = await service.select(TURTLE, 'SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }');
 
-                const count = getItemAt(bindings, 0)['n'] as Literal;
+                const firstBinding = getItemAt(bindings, 0);
+                const count = firstBinding['n'] as Literal;
 
                 expectToBe(count.value, String(TURTLE_QUADS.length));
                 expectToBe(count.datatype.value, XSD_INTEGER);

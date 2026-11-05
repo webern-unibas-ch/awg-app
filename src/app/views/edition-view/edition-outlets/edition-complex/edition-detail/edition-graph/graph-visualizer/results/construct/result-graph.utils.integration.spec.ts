@@ -2,7 +2,7 @@ import type { Quad } from '@rdfjs/types';
 import { Parser } from 'n3';
 import { beforeAll, describe, expect, it } from 'vitest';
 
-import { expectToBe, getItemAt } from '@testing/expect-helper';
+import { expectToBe, getEntryAt, getItemAt } from '@testing/expect-helper';
 
 import { GraphList } from '@awg-views/edition-view/models/graph.model';
 
@@ -72,8 +72,10 @@ describe('ResultGraphUtils (integration with the op. 25 graph data) (DONE)', () 
     });
 
     it('... should compact the IRIs of the awg namespace', () => {
+        const awgNamespace = getEntryAt(DEFAULT_PREFIXES, 'awg');
+
         graph.nodes
-            .filter(node => node.id.startsWith(DEFAULT_PREFIXES['awg']))
+            .filter(node => node.id.startsWith(awgNamespace))
             .forEach(node => {
                 expect(node.shortName).toMatch(/^awg:/);
             });

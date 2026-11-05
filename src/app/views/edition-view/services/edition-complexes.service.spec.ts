@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getEntryAt, getItemAt } from '@testing/expect-helper';
 
 import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
 import { EditionComplex, EditionComplexJsonPersonRef } from '../models/edition-complex.model';
@@ -105,9 +105,11 @@ describe('EditionComplexesService (DONE)', () => {
             expect(editionComplexesList['m22']).toBeDefined();
 
             // Test for sample properties
-            expect(editionComplexesList['op3'].titleStatement).toBeDefined();
-            expect(editionComplexesList['op3'].respStatement).toBeDefined();
-            expect(editionComplexesList['op3'].pubStatement).toBeDefined();
+            const op3Complex = getEntryAt(editionComplexesList, 'op3');
+
+            expect(op3Complex.titleStatement).toBeDefined();
+            expect(op3Complex.respStatement).toBeDefined();
+            expect(op3Complex.pubStatement).toBeDefined();
         });
     });
 
@@ -149,9 +151,11 @@ describe('EditionComplexesService (DONE)', () => {
             expect(editionComplexesList['m22']).toBeDefined();
 
             // Test for sample properties
-            expect(editionComplexesList['op3'].titleStatement).toBeDefined();
-            expect(editionComplexesList['op3'].respStatement).toBeDefined();
-            expect(editionComplexesList['op3'].pubStatement).toBeDefined();
+            const op3Complex = getEntryAt(editionComplexesList, 'op3');
+
+            expect(op3Complex.titleStatement).toBeDefined();
+            expect(op3Complex.respStatement).toBeDefined();
+            expect(op3Complex.pubStatement).toBeDefined();
         });
 
         it('... should resolve $ref entries in respStatement.editors', () => {
@@ -159,8 +163,11 @@ describe('EditionComplexesService (DONE)', () => {
 
             const editionComplexesList = service.editionComplexesList();
 
-            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA.thomas_ahrend);
-            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA.michael_matter);
+            const op3Complex = getEntryAt(editionComplexesList, 'op3');
+            const m22Complex = getEntryAt(editionComplexesList, 'm22');
+
+            expectToEqual(op3Complex.respStatement.editors[0], PERSONS_DATA.thomas_ahrend);
+            expectToEqual(m22Complex.respStatement.editors[0], PERSONS_DATA.michael_matter);
         });
     });
 
@@ -185,6 +192,7 @@ describe('EditionComplexesService (DONE)', () => {
             const expectedList = { [testComplexId]: testComplex };
             service.setEditionComplexesList(expectedList);
         });
+
         it('... should have a method `getEditionComplexById`', () => {
             expect(service.getEditionComplexById).toBeDefined();
         });
@@ -302,10 +310,12 @@ describe('EditionComplexesService (DONE)', () => {
             const expectedList = { [complexId]: testComplex };
 
             service.setEditionComplexesList(expectedList);
+            const actualList = service.editionComplexesList();
+
             return {
                 expectedList,
-                actualList: service.editionComplexesList(),
-                complex: service.editionComplexesList()[complexId],
+                actualList,
+                complex: getEntryAt(actualList, complexId),
             };
         };
 
@@ -336,8 +346,11 @@ describe('EditionComplexesService (DONE)', () => {
 
             const editionComplexesList = service.editionComplexesList();
 
-            expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA.thomas_ahrend);
-            expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA.michael_matter);
+            const op3Complex = getEntryAt(editionComplexesList, 'op3');
+            const m22Complex = getEntryAt(editionComplexesList, 'm22');
+
+            expectToEqual(op3Complex.respStatement.editors[0], PERSONS_DATA.thomas_ahrend);
+            expectToEqual(m22Complex.respStatement.editors[0], PERSONS_DATA.michael_matter);
         });
 
         it('... should set the given part ids', () => {
@@ -407,9 +420,11 @@ describe('EditionComplexesService (DONE)', () => {
             expect(complexesList['m22']).toBeDefined();
 
             // Test for sample properties
-            expect(complexesList['op3'].titleStatement).toBeDefined();
-            expect(complexesList['op3'].respStatement).toBeDefined();
-            expect(complexesList['op3'].pubStatement).toBeDefined();
+            const op3Complex = getEntryAt(complexesList, 'op3');
+
+            expect(op3Complex.titleStatement).toBeDefined();
+            expect(op3Complex.respStatement).toBeDefined();
+            expect(op3Complex.pubStatement).toBeDefined();
         });
 
         it('... should return the part ids of the composite complexes in their order', () => {
@@ -428,7 +443,9 @@ describe('EditionComplexesService (DONE)', () => {
         it('... should return the Werkedition of the composite complexes', () => {
             const { complexesList } = service['_fetchEditionComplexesData']();
 
-            expectToEqual(complexesList['op12'].workEdition, {
+            const op12Complex = getEntryAt(complexesList, 'op12');
+
+            expectToEqual(op12Complex.workEdition, {
                 textVersions: { m212: '3', m217: 'einzige', m213: 'einzige', m216: '2' },
             });
         });
@@ -436,16 +453,19 @@ describe('EditionComplexesService (DONE)', () => {
         it('... should return the protection period of the Werkedition in the pub statement', () => {
             const { complexesList } = service['_fetchEditionComplexesData']();
 
-            expectToEqual(complexesList['op12'].pubStatement.availability, {
-                workEdition: { protectedUntil: '2049' },
-            });
+            const op12Complex = getEntryAt(complexesList, 'op12');
+            const expectedAvailability = { workEdition: { protectedUntil: '2049' } };
+
+            expectToEqual(op12Complex.pubStatement.availability, expectedAvailability);
         });
 
         it('... should return no Werkedition and no availability for complexes without them', () => {
             const { complexesList } = service['_fetchEditionComplexesData']();
 
-            expect(complexesList['m22'].workEdition).toBeUndefined();
-            expect(complexesList['m22'].pubStatement.availability).toBeUndefined();
+            const m22Complex = getEntryAt(complexesList, 'm22');
+
+            expect(m22Complex.workEdition).toBeUndefined();
+            expect(m22Complex.pubStatement.availability).toBeUndefined();
         });
     });
 
