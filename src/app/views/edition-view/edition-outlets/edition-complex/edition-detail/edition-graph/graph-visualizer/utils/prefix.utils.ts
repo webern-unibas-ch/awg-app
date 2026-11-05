@@ -107,10 +107,7 @@ export function extractSparqlPrefixes(query: string): PrefixMap {
  */
 export function findUsedPrefixes(query: string): string[] {
     const code = SPARQL_UTILS.maskNonCode(query).replaceAll(/PREFIX\s+[a-z][\w.-]*:/gi, ' ');
-    const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX)).flatMap(([, prefix]) =>
-        // The prefix group of the regex is required, so every match has a prefix
-        prefix ? [prefix] : /* v8 ignore next -- @preserve */ []
-    );
+    const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX), ([, prefix = '']) => prefix);
 
     return Array.from(new Set(prefixes));
 }

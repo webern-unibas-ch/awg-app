@@ -174,6 +174,17 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
                 expectSpyCall(fetchSvgFileSpy, 1, svgFilePath);
             });
+
+            it('... the viewBox of the fetched file separates its values by commas and several spaces', async () => {
+                const svgContent =
+                    '<svg xmlns="http://www.w3.org/2000/svg" viewBox=" 0,0  200, 100 "><circle cx="5" cy="5" r="1"/></svg>';
+                const svgDocument = new DOMParser().parseFromString(svgContent, 'image/svg+xml');
+                fetchSvgFileSpy.mockReturnValueOnce(Promise.resolve(svgDocument));
+
+                await service.createSvg('test-path', expectedSvg.node(), expectedSvgRootGroup.node());
+
+                expectToBe(expectedSvg.attr('viewBox'), '0 0 200 100');
+            });
         });
     });
 

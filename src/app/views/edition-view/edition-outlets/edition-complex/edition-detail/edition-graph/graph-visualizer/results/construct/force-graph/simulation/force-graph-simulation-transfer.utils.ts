@@ -47,14 +47,15 @@ function _toLinkIndices(edges: readonly ForceGraphEdge[], nodes: readonly ForceG
 /**
  * Utils method: getPosition.
  *
- * It gets the position of the node with the given index from the given positions (pairs: x, y, x, y, ...).
+ * It gets the position of the node with the given index from the given positions (pairs: x, y, x, y, ...),
+ * with NaN for an unknown position (as for an index beyond the positions).
  *
  * @param {Float32Array} positions The given positions.
  * @param {number} index The given index of the node.
  * @returns {ForceGraphPoint} The position of the node.
  */
 export function getPosition(positions: Float32Array, index: number): ForceGraphPoint {
-    return { x: positions[2 * index] ?? 0, y: positions[2 * index + 1] ?? 0 };
+    return { x: positions[2 * index] ?? Number.NaN, y: positions[2 * index + 1] ?? Number.NaN };
 }
 
 /**

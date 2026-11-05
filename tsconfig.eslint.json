@@ -2,17 +2,8 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "types": ["node"],
-        // Used for the specs and testing helpers (not part of app and doc), so unchecked as in tsconfig.spec.json
+        // Unchecked as in tsconfig.spec.json (the app code is linted via tsconfig.app.json)
         "noUncheckedIndexedAccess": false
     },
-    "include": [
-        "src/app/**/*.ts",
-        "src/environments/**/*.ts",
-        "src/main.ts",
-        "src/polyfills.ts",
-        "src/test.ts",
-        "src/testing/**/*.ts",
-        "src/**/*.d.ts",
-        "vitest-base.config.ts"
-    ]
+    "include": ["src/**/*.spec.ts", "src/test.ts", "src/testing/**/*.ts", "src/**/*.d.ts", "vitest-base.config.ts"]
 }

@@ -264,8 +264,7 @@ export default defineConfig(
                 'error',
                 'always',
                 {
-                    // Directives for tools (e.g. `v8 ignore` for the coverage) are lowercase
-                    ignorePattern: 'console|v8',
+                    ignorePattern: 'console',
                 },
             ],
             'constructor-super': 'error',

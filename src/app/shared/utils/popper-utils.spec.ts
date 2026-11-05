@@ -89,12 +89,13 @@ describe('PopperUtils (DONE)', () => {
                 expectToEqual(state.styles['popper'], { maxHeight: '0px', overflowY: 'auto' });
             });
 
-            it('... should not set any styles if the state has no popper styles', () => {
+            it('... should neither detect the overflow nor set any styles if the state has no popper styles', () => {
                 const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 185, left: 0 });
                 const state = { ...createState(580), styles: {} };
 
                 runModifier(createMaxHeightModifier(detect), state);
 
+                expectSpyCall(detect, 0);
                 expectToEqual(state.styles, {});
             });
 
