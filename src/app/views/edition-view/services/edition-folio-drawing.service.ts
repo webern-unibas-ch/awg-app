@@ -6,8 +6,8 @@ import {
     FolioSettings,
     FolioSvgContentSegment,
     FolioSvgData,
-    FolioSvgLine,
     FolioSvgRectangle,
+    FolioSvgSystem,
 } from '../models/folio-svg-data.model';
 import { Folio } from '../models/folio.model';
 
@@ -174,7 +174,7 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the content segments.
      */
     private _drawContentSegments(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
-        const numberOfSystems = folioSvgData.systems.lines.length || FOLIO_DEFAULT_NUMBER_OF_SYSTEMS;
+        const numberOfSystems = folioSvgData.systems.items.length || FOLIO_DEFAULT_NUMBER_OF_SYSTEMS;
         // Dynamically adjust the stroke width based on the number of systems (reference: 18 systems)
         const strokeWidth = this._contentSegmentStrokeWidth * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / numberOfSystems);
         const { folioId } = folioSvgData.sheet;
@@ -276,11 +276,10 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the systems.
      */
     private _drawSystems(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
-        const { lines, labelFontSize, labelPositions, reversed } = folioSvgData.systems;
+        const { items, labelFontSize, reversed } = folioSvgData.systems;
 
-        lines.forEach((systemLines: FolioSvgLine[], systemIndex: number) => {
-            const labelIndex = reversed ? lines.length - systemIndex : systemIndex + 1;
-            const labelPosition = labelPositions[systemIndex];
+        items.forEach(({ labelPosition, lines }: FolioSvgSystem, systemIndex: number) => {
+            const labelIndex = reversed ? items.length - systemIndex : systemIndex + 1;
 
             const systemsGroupSelection = this._appendSvgElementWithAttrs(sheetGroupSelection, 'g', {
                 class: 'systems-group',
@@ -289,17 +288,15 @@ export class EditionFolioDrawingService {
                 class: 'system-line-group',
             });
 
-            if (labelPosition) {
-                this._appendSvgElementWithAttrs(systemsGroupSelection, 'text', {
-                    class: 'system-label',
-                    x: labelPosition.x,
-                    y: labelPosition.y,
-                    'font-size': labelFontSize,
-                    'text-anchor': 'end',
-                }).text(labelIndex);
-            }
+            this._appendSvgElementWithAttrs(systemsGroupSelection, 'text', {
+                class: 'system-label',
+                x: labelPosition.x,
+                y: labelPosition.y,
+                'font-size': labelFontSize,
+                'text-anchor': 'end',
+            }).text(labelIndex);
 
-            systemLines.forEach(line => {
+            lines.forEach(line => {
                 this._appendSvgElementWithAttrs(systemLineGroupSelection, 'line', {
                     class: 'system-line',
                     x1: line.start.x,
