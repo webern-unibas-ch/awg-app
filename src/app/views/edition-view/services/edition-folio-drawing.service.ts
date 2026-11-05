@@ -289,13 +289,15 @@ export class EditionFolioDrawingService {
                 class: 'system-line-group',
             });
 
-            this._appendSvgElementWithAttrs(systemsGroupSelection, 'text', {
-                class: 'system-label',
-                x: labelPosition.x,
-                y: labelPosition.y,
-                'font-size': labelFontSize,
-                'text-anchor': 'end',
-            }).text(labelIndex);
+            if (labelPosition) {
+                this._appendSvgElementWithAttrs(systemsGroupSelection, 'text', {
+                    class: 'system-label',
+                    x: labelPosition.x,
+                    y: labelPosition.y,
+                    'font-size': labelFontSize,
+                    'text-anchor': 'end',
+                }).text(labelIndex);
+            }
 
             systemLines.forEach(line => {
                 this._appendSvgElementWithAttrs(systemLineGroupSelection, 'line', {

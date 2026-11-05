@@ -54,10 +54,12 @@ export function getItemLocus(locus: SourceDescWritingMaterialItemLocus): string 
                     : folio
             );
 
+        const lastFolio = folios.at(-1) ?? '';
+
         if (folios.length === 1) {
-            foliosStr = folios[0].includes('all') ? 'auf allen Blättern' : `auf Bl. ${folios[0]}`;
+            foliosStr = lastFolio.includes('all') ? 'auf allen Blättern' : `auf Bl. ${lastFolio}`;
         } else if (folios.length > 1) {
-            foliosStr = `auf Bl. ${folios.slice(0, -1).join(', ')} und ${folios.at(-1) ?? ''}`;
+            foliosStr = `auf Bl. ${folios.slice(0, -1).join(', ')} und ${lastFolio}`;
         }
     }
 

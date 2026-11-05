@@ -118,7 +118,7 @@ export function findSvgSheet(
 export function getDefaultSheetId(sheets: EditionSvgSheetsList['sheets']): string {
     const defaultSheet = sheets.textEditions?.[0] ?? sheets.sketchEditions?.[0];
 
-    return defaultSheet ? getFullSheetIds(defaultSheet)[0] : '';
+    return defaultSheet ? (getFullSheetIds(defaultSheet)[0] ?? '') : '';
 }
 
 /**
