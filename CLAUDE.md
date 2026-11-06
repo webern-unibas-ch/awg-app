@@ -20,7 +20,7 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn check:complexes`: checks the edition complexes against the outline and row tables, and the `parts` of composite complexes against the numbered parts in the source list types; runs in CI and pre-commit
 - `yarn check:glyphs`: checks the glyph chain edition data → `EDITION_GLYPHS_DATA` → glyph font subset (manifest, sha256); runs in CI and pre-commit
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
-- `yarn check:source-data`: checks the writing instruments, locations and types of the source descriptions and lists (errors), and the writing instruments named in the texts against the declared ones (hints, see `SOFT_RULES`); `--all` lists all hints; runs in CI and pre-commit
+- `yarn check:source-data`: checks the writing instruments, locations and types of the source descriptions and lists (errors), and the writing instruments named in the texts against the declared ones (hints, see `HINT_RULES`); `--all` lists all hints, `--open` writes an HTML report to `reports/` and opens it; runs in CI and pre-commit
 - `yarn check:sources`: reports sources described in several complexes and their differences (HTML in `reports/`, ignored); `--since <ref>` adds the changed fields since a git ref, `--open` opens the report in the browser
 
 Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; afterwards the pre-commit hook runs `check:glyphs`, `check:complexes` and `check:source-data` if files they check are staged.
