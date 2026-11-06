@@ -81,57 +81,39 @@ const OPEN = process.argv.includes('--open');
 const CONTEXT_LENGTH = 40;
 
 // The rules with their title, topic (grouping in the report) and the subject of their hits
+const INSTRUMENTS = 'Writing instruments';
+const LOCATIONS_AND_TYPES = 'Locations and types';
+const defineRule = (title, topic, subject = 'Source') => ({ title, topic, subject });
 const RULES = {
-    1: { title: 'Writing instrument names a single instrument', topic: 'Writing instruments', subject: 'Source' },
-    2: { title: 'Writing instrument has balanced brackets', topic: 'Writing instruments', subject: 'Source' },
-    3: {
-        title: 'Writing instrument has more than one word (except Bleistift, Kopierstift)',
-        topic: 'Writing instruments',
-        subject: 'Source',
-    },
-    4: {
-        title: 'Writing instrument is not empty (except the main one of a print)',
-        topic: 'Writing instruments',
-        subject: 'Source',
-    },
-    5: {
-        title: 'physDesc names only writing instruments that writingInstruments declares',
-        topic: 'Writing instruments',
-        subject: 'Source',
-    },
-    6: {
-        title: 'Textcritics name only writing instruments that a description of the complex declares',
-        topic: 'Writing instruments',
-        subject: 'Complex',
-    },
-    7: {
-        title: 'Description has writingInstruments (except placeholders)',
-        topic: 'Writing instruments',
-        subject: 'Source',
-    },
-    8: {
-        title: 'Secondary writing instruments are named in physDesc',
-        topic: 'Writing instruments',
-        subject: 'Source',
-    },
-    9: { title: 'Location writes Box-Folder without a colon', topic: 'Locations and types', subject: 'Source' },
-    10: {
-        title: 'Type and location are the same in the source list and the source description',
-        topic: 'Locations and types',
-        subject: 'Source',
-    },
+    1: defineRule('Writing instrument names a single instrument', INSTRUMENTS),
+    2: defineRule('Writing instrument has balanced brackets', INSTRUMENTS),
+    3: defineRule('Writing instrument has more than one word (except Bleistift, Kopierstift)', INSTRUMENTS),
+    4: defineRule('Writing instrument is not empty (except the main one of a print)', INSTRUMENTS),
+    5: defineRule('physDesc names only writing instruments that writingInstruments declares', INSTRUMENTS),
+    6: defineRule(
+        'Textcritics name only writing instruments that a description of the complex declares',
+        INSTRUMENTS,
+        'Complex'
+    ),
+    7: defineRule('Description has writingInstruments (except placeholders)', INSTRUMENTS),
+    8: defineRule('Secondary writing instruments are named in physDesc', INSTRUMENTS),
+    9: defineRule('Location writes Box-Folder without a colon', LOCATIONS_AND_TYPES),
+    10: defineRule('Type and location are the same in the source list and the source description', LOCATIONS_AND_TYPES),
 };
+const SECONDARY_INSTRUMENTS_RULE = 8;
 // Rules that only report warnings (exit code 0). The rules on named and declared writing instruments are
 // temporary warnings while their open cases are decided: remove them here to make them errors.
 // The secondary writing instruments stay a warning (an instrument is often only in the list).
-const WARNING_RULES = new Set([5, 6, 7, 8]);
-// Volumes whose warnings of rule 8 are listed one by one (the others are counted)
+const WARNING_RULES = new Set([5, 6, 7, SECONDARY_INSTRUMENTS_RULE]);
+// Volumes whose warnings of the secondary writing instruments rule are listed one by one (the others are counted)
 const LISTED_VOLUMES = new Set(['I/5']);
 const SERIES_NUMERALS = ['I', 'II', 'III', 'IV', 'V', 'VI'];
 const SINGLE_WORD_INSTRUMENTS = new Set(['Bleistift', 'Kopierstift']);
 const COLOURS = ['schwarz', 'rot', 'blau', 'grün', 'braun', 'türkis', 'violett', 'orange', 'gelb', 'grau'];
+const COLOUR_STEM = new RegExp(`(?<![\\p{L}])(${COLOURS.join('|')})`, 'giu');
+// One or more colours ("blauem und braunem") with the kind of the instrument
 const COLOURED_INSTRUMENT = new RegExp(
-    `(?<![\\p{L}])(${COLOURS.join('|')})\\p{L}*\\s+(Buntstift(?:es|s|e)?|Tinten?|Kugelschreibers?|Stempelabdrucks?)(?![\\p{L}])`,
+    `(?<![\\p{L}])((?:(?:${COLOURS.join('|')})\\p{L}*\\s*(?:,|und|sowie|oder)\\s*)*(?:${COLOURS.join('|')})\\p{L}*)\\s+(Buntstift(?:es|s|e)?|Tinten?|Kugelschreibers?|Stempelabdrucks?)(?![\\p{L}])`,
     'giu'
 );
 const UNCOLOURED_INSTRUMENT = /(?<![\p{L}])(Bleistift|Kopierstift)(?:es|s)?(?![\p{L}])/giu;
@@ -212,8 +194,10 @@ function excerptOfDifference(listText, descriptionText) {
 function findInstruments(text) {
     const instruments = new Map();
     for (const match of text.matchAll(COLOURED_INSTRUMENT)) {
-        const [name, colour, kind] = match;
-        instruments.set(`${colour.toLowerCase()} ${kind.slice(0, 3).toLowerCase()}`, { name, index: match.index });
+        const [name, colours, kind] = match;
+        for (const [, colour] of colours.matchAll(COLOUR_STEM)) {
+            instruments.set(`${colour.toLowerCase()} ${kind.slice(0, 3).toLowerCase()}`, { name, index: match.index });
+        }
     }
     for (const match of text.matchAll(UNCOLOURED_INSTRUMENT)) {
         const [name, kind] = match;
@@ -260,19 +244,24 @@ function declaredKeys(instruments) {
 
 // The complexes with source descriptions, with their source list and textcritics
 function readComplexes() {
-    const readItems = (file, key) => (fs.existsSync(file) ? (readJson(file)[key] ?? []) : []);
+    const readIfExists = file => (fs.existsSync(file) ? readJson(file) : {});
     return editionJsonFiles()
         .filter(file => path.basename(file) === SOURCE_DESCRIPTION_FILE)
         .map(file => {
             const dir = path.dirname(file);
-            const [, series, , section, id] = relPath(dir, EDITION_DATA_DIR).split('/');
+            const dirNames = relPath(dir, EDITION_DATA_DIR).split('/');
+            if (dirNames.length !== 5) {
+                throw new Error(`Unexpected folder of ${SOURCE_DESCRIPTION_FILE}: ${relPath(dir)}`);
+            }
+            const [, series, , section, id] = dirNames;
+            const sourceList = readIfExists(path.join(dir, SOURCE_LIST_FILE));
             return {
                 id,
                 volume: `${SERIES_NUMERALS[Number(series) - 1] ?? series}/${section}`,
-                descriptions: readItems(file, 'sources'),
-                listSources: readItems(path.join(dir, SOURCE_LIST_FILE), 'sources'),
-                textSources: readItems(path.join(dir, SOURCE_LIST_FILE), 'textSources'),
-                textcritics: readItems(path.join(dir, TEXTCRITICS_FILE), 'textcritics'),
+                descriptions: readJson(file).sources ?? [],
+                listSources: sourceList.sources ?? [],
+                textSources: sourceList.textSources ?? [],
+                textcritics: readIfExists(path.join(dir, TEXTCRITICS_FILE)).textcritics ?? [],
             };
         });
 }
@@ -370,7 +359,7 @@ function checkDescription(complex, description, add) {
     );
     if (unnamed.length) {
         add(
-            8,
+            SECONDARY_INSTRUMENTS_RULE,
             ref,
             `writingInstruments.secondary: ${unnamed.map(instrument => `"${instrument}"`).join(', ')} never named in physDesc`
         );
@@ -392,41 +381,37 @@ function checkTextcritics(complex, declared, add) {
     }
     for (const [key, { name, context, ids }] of named) {
         if (!declared.has(key)) {
-            add(
-                6,
-                complex.id,
-                `textcritics (${ids.join(', ')}) name "${name}", but no description of the complex declares it`,
-                {
-                    context,
-                }
-            );
+            const message = `textcritics (${ids.join(', ')}) name "${name}", but no description of the complex declares it`;
+            add(6, complex.id, message, { context });
         }
     }
 }
 
+// The number of items under the key (e.g. descriptions) in all complexes
+function countAll(complexes, key) {
+    return complexes.reduce((sum, complex) => sum + complex[key].length, 0);
+}
+
 function check() {
     const complexes = readComplexes();
+    if (!complexes.length) {
+        throw new Error(`No ${SOURCE_DESCRIPTION_FILE} found in ${relPath(EDITION_DATA_DIR)}`);
+    }
     const hits = [];
-    let descriptionCount = 0;
-    let listSourceCount = 0;
-    let textSourceCount = 0;
     for (const complex of complexes) {
-        const add = (rule, ref, message, extra = {}) =>
-            hits.push({ rule, volume: complex.volume, ref, message, ...extra });
+        const add = (ruleNumber, ref, message, extra = {}) =>
+            hits.push({ rule: ruleNumber, volume: complex.volume, ref, message, ...extra });
         const declared = new Set();
         for (const description of complex.descriptions) {
-            descriptionCount++;
             for (const key of checkDescription(complex, description, add)) {
                 declared.add(key);
             }
         }
         for (const listSource of complex.listSources) {
-            listSourceCount++;
             checkLocation(sourceRef(complex, listSource), listSource.location, 'source list', add);
         }
         // Text sources have an id instead of a description; no description or writing instruments to check
         for (const textSource of complex.textSources) {
-            textSourceCount++;
             checkLocation(`${complex.id}:${textSource.id}`, textSource.location, 'source list, text source', add);
         }
         checkSourceList(complex, add);
@@ -437,9 +422,9 @@ function check() {
         hits,
         errors: hits.filter(hit => !WARNING_RULES.has(hit.rule)),
         warnings: hits.filter(hit => WARNING_RULES.has(hit.rule)),
-        descriptionCount,
-        listSourceCount,
-        textSourceCount,
+        descriptionCount: countAll(complexes, 'descriptions'),
+        listSourceCount: countAll(complexes, 'listSources'),
+        textSourceCount: countAll(complexes, 'textSources'),
         complexCount: complexes.length,
     };
 }
@@ -450,9 +435,9 @@ function formatHit({ message, detail }) {
     return detail ? `${message}: ${detail}` : message;
 }
 
-// The warnings of rule 8 outside of the listed volumes are only counted per volume
+// The secondary writing instrument warnings outside of the listed volumes are only counted per volume
 function isListed(hit) {
-    return hit.rule !== 8 || LIST_ALL || LISTED_VOLUMES.has(hit.volume);
+    return hit.rule !== SECONDARY_INSTRUMENTS_RULE || LIST_ALL || LISTED_VOLUMES.has(hit.volume);
 }
 
 function printWarningCounts(warnings) {
@@ -462,7 +447,7 @@ function printWarningCounts(warnings) {
     }
     for (const [volume, count] of counts) {
         console.log(
-            `[WARN] rule 8  ${volume}: ${count} source(s) with secondary writing instruments never named in physDesc (--all lists them)`
+            `[WARN] rule ${SECONDARY_INSTRUMENTS_RULE}  ${volume}: ${count} source(s) with secondary writing instruments never named in physDesc (--all lists them)`
         );
     }
 }
