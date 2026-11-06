@@ -4853,10 +4853,12 @@
                     "main": "schwarze Tinte",
                     "secondary": [
                         "Bleistift",
-                        "blauer",
-                        "grüner und roter Buntstift",
-                        "roter",
-                        "schwarzer und violetter Stempelabdruck",
+                        "blauer Buntstift",
+                        "grüner Buntstift",
+                        "roter Buntstift",
+                        "roter Stempelabdruck",
+                        "schwarzer Stempelabdruck",
+                        "violetter Stempelabdruck",
                         "blaue Tinte"
                     ]
                 },
