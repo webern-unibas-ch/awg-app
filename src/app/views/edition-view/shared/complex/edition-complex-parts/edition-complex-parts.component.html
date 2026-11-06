@@ -3,7 +3,10 @@
 @if (item.parts || item.compositeComplexes) {
     <div class="awg-edition-complex-parts">
         @if (item.compositeComplexes; as compositeComplexes) {
-            <awg-edition-complex-part-of [compositeComplexes]="compositeComplexes" [isCompact]="isCompact()" />
+            <awg-edition-complex-part-of
+                [compositeComplexes]="compositeComplexes"
+                [isCompact]="isCompact()"
+                [isDisabled]="item.disabled" />
         }
         @if (item.parts; as parts) {
             <p class="mb-1">Enthält:</p>

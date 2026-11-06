@@ -8,6 +8,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
     getItemAt,
@@ -62,6 +63,12 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
             expectToBe(component.isCompact(), false);
         });
 
+        it('... should have input signal `isDisabled` to hold false', () => {
+            expectToBe(isSignal(component.isDisabled), true);
+
+            expectToBe(component.isDisabled(), false);
+        });
+
         describe('VIEW', () => {
             it('... should contain no p.awg-edition-complex-part-of yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'p.awg-edition-complex-part-of', 0, 0);
@@ -88,6 +95,13 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
             fixture.detectChanges();
 
             expectToBe(component.isCompact(), true);
+        });
+
+        it('... should have input signal `isDisabled` to hold the provided flag', () => {
+            fixture.componentRef.setInput('isDisabled', true);
+            fixture.detectChanges();
+
+            expectToBe(component.isDisabled(), true);
         });
 
         describe('VIEW', () => {
@@ -136,12 +150,33 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
                 expectToBe(labelEl.innerHTML, expectedId);
             });
 
+            it('... should introduce the composite complex with "Enthalten in:"', () => {
+                const pEl: HTMLParagraphElement = getItemAt(getPDes(), 0).nativeElement;
+
+                expectToContain(pEl.textContent, 'Enthalten in:');
+            });
+
             it('... should display the part number', () => {
                 const expectedPartNumber = `(Nr. ${getItemAt(expectedCompositeComplexes, 0).partNumber})`;
 
                 const pEl: HTMLParagraphElement = getItemAt(getPDes(), 0).nativeElement;
 
                 expectToContain(pEl.textContent, expectedPartNumber);
+            });
+
+            it('... should not mute the paragraph if `isDisabled` is false', () => {
+                const pEl: HTMLParagraphElement = getItemAt(getPDes(), 0).nativeElement;
+
+                expectToNotContain(pEl.classList, 'text-muted');
+            });
+
+            it('... should mute the whole paragraph if `isDisabled` is true', () => {
+                fixture.componentRef.setInput('isDisabled', true);
+                fixture.detectChanges();
+
+                const pEl: HTMLParagraphElement = getItemAt(getPDes(), 0).nativeElement;
+
+                expectToContain(pEl.classList, 'text-muted');
             });
 
             it('... should pass down `isClickable` = false for a disabled composite complex', () => {
