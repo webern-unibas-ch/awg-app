@@ -3,5 +3,14 @@
     "compilerOptions": {
         "types": ["node"]
     },
-    "include": ["src/**/*.spec.ts", "src/test.ts", "src/testing/**/*.ts", "src/**/*.d.ts", "vitest-base.config.ts"]
+    "include": [
+        "src/app/**/*.ts",
+        "src/environments/**/*.ts",
+        "src/main.ts",
+        "src/polyfills.ts",
+        "src/test.ts",
+        "src/testing/**/*.ts",
+        "src/**/*.d.ts",
+        "vitest-base.config.ts"
+    ]
 }
