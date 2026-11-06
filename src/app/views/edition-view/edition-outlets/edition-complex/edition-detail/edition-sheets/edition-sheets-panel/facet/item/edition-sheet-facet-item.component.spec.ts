@@ -360,10 +360,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `sheetPartials` with no active link if an unknown partial of the svg sheet is selected', async () => {
+                const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
+
                 fixture.componentRef.setInput('selectedSvgSheet', {
                     id: expectedSvgSheetWithPartials.id,
                     fullId: `${expectedSvgSheetWithPartials.id}z`,
-                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                    content: firstContent,
                 });
                 await detectChangesOnPush(fixture);
 
@@ -375,10 +377,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `sheetPartials` with only the link of the selected partial active', async () => {
+                const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
+
                 fixture.componentRef.setInput('selectedSvgSheet', {
                     id: expectedSvgSheetWithPartials.id,
                     fullId: `${expectedSvgSheetWithPartials.id}b`,
-                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                    content: firstContent,
                 });
                 await detectChangesOnPush(fixture);
 
@@ -392,10 +396,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             it('... should have recomputed signal `sheetPartials` with the same routes if another partial is selected', async () => {
                 const sheetRoutes = component.sheetPartials().map(link => link.sheetRoute);
 
+                const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
+
                 fixture.componentRef.setInput('selectedSvgSheet', {
                     id: expectedSvgSheetWithPartials.id,
                     fullId: `${expectedSvgSheetWithPartials.id}b`,
-                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                    content: firstContent,
                 });
                 await detectChangesOnPush(fixture);
 

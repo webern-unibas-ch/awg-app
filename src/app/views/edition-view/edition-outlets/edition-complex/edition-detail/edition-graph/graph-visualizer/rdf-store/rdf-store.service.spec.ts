@@ -96,7 +96,9 @@ describe('RdfStoreService (DONE)', () => {
             ];
             expectToBe(quads.length, expectedQuads.length);
             quads.forEach((actualQuad, i) => {
-                expectToBe(actualQuad.equals(expectedQuads[i]), true);
+                const expectedQuad = getItemAt(expectedQuads, i);
+
+                expectToBe(actualQuad.equals(expectedQuad), true);
             });
         });
 
@@ -243,7 +245,7 @@ describe('RdfStoreService (DONE)', () => {
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
 
-            expectToBe(Object.isFrozen(bindings[0]), true);
+            expectToBe(Object.isFrozen(getItemAt(bindings, 0)), true);
         });
 
         it('... should resolve empty variables and bindings for an empty or missing response', async () => {

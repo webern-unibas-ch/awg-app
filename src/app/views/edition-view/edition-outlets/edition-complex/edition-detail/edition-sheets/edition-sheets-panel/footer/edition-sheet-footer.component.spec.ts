@@ -201,10 +201,9 @@ describe('EditionSheetFooterComponent (DONE)', () => {
 
                 describe('... without evaluations', () => {
                     beforeEach(async () => {
-                        fixture.componentRef.setInput(
-                            'selectedTextcritics',
-                            structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1])
-                        );
+                        const secondTextcritic = getItemAt(mockEditionData.mockTextcriticsListData.textcritics, 1);
+
+                        fixture.componentRef.setInput('selectedTextcritics', structuredClone(secondTextcritic));
                         await detectChangesOnPush(fixture);
                     });
 

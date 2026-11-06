@@ -552,7 +552,9 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                     expectToBe(isCalm, true);
                     expect(scheduler.pendingStep).toBeUndefined();
                     // The center force pulls the freed node away from the pin point
-                    expect(positions[0]).not.toBe(500);
+                    const firstPosition = getItemAt(positions, 0);
+
+                    expect(firstPosition).not.toBe(500);
                 });
 
                 it('... should cool down within the release ticks after a release', () => {

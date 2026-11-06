@@ -155,7 +155,9 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return frozen rows', () => {
-                expectToBe(Object.isFrozen(toTableRows(result)[0]), true);
+                const firstRow = getItemAt(toTableRows(result), 0);
+
+                expectToBe(Object.isFrozen(firstRow), true);
             });
 
             it('... should return no rows for no bindings', () => {

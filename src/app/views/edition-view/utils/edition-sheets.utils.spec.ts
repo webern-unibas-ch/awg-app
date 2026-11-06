@@ -117,25 +117,27 @@ describe('EditionSheetsUtils (DONE)', () => {
 
             it('... should create the selection of a sheet without partials', () => {
                 const sheet = mockEditionData.mockSvgSheet_Sk1;
+                const content = getItemAt(sheet.content, 0);
 
-                const svgSheetSelection = toSvgSheetSelection(sheet, getItemAt(sheet.content, 0));
+                const svgSheetSelection = toSvgSheetSelection(sheet, content);
 
                 expectToEqual(svgSheetSelection, {
                     id: 'test-1',
                     fullId: 'test-1',
-                    content: sheet.content[0],
+                    content,
                 });
             });
 
             it('... should create the selection of a given partial of a sheet with partials', () => {
                 const sheet = mockEditionData.mockSvgSheet_Sk2;
+                const content = getItemAt(sheet.content, 1);
 
-                const svgSheetSelection = toSvgSheetSelection(sheet, getItemAt(sheet.content, 1));
+                const svgSheetSelection = toSvgSheetSelection(sheet, content);
 
                 expectToEqual(svgSheetSelection, {
                     id: 'test-2',
                     fullId: 'test-2b',
-                    content: sheet.content[1],
+                    content,
                 });
             });
 
@@ -519,10 +521,14 @@ describe('EditionSheetsUtils (DONE)', () => {
             });
 
             it('... should ignore comments without svgGroupId', () => {
+                const firstBlock = getItemAt(expectedCommentary.comments, 0);
                 const commentary: TextcriticalCommentary = {
                     preamble: 'preamble',
                     comments: [
-                        { ...expectedCommentary.comments[0], blockComments: [{ svgGroupId: undefined } as any] },
+                        {
+                            ...firstBlock,
+                            blockComments: [{ svgGroupId: undefined } as any],
+                        },
                     ],
                 };
 

@@ -9,12 +9,12 @@ import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
 import { EditionComplex } from '../models/edition-complex.model';
+import { EditionViewContext } from '../models/edition-data.model';
 import {
     EditionOutlineComplexItem,
     EditionOutlineSection,
     EditionOutlineSeries,
 } from '../models/edition-outline.model';
-import { EditionViewContext } from '../models/edition-data.model';
 
 import { EditionBreadcrumbService } from './edition-breadcrumb.service';
 

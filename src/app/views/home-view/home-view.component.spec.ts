@@ -155,9 +155,9 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         it('... should filter out undefined sections in signal `sectionLinksData`', () => {
-            outlineServiceGetEditionSectionByIdSpy
-                .mockReturnValueOnce(undefined)
-                .mockReturnValueOnce(expectedSections[1]);
+            const secondSection = getItemAt(expectedSections, 1);
+
+            outlineServiceGetEditionSectionByIdSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(secondSection);
 
             const freshFixture = TestBed.createComponent(HomeViewComponent);
             const freshComponent = freshFixture.componentInstance;

@@ -274,10 +274,12 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             });
 
             it('... should not mark any content segment as active if the selected svg sheet is not on the folio', async () => {
+                const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
+
                 fixture.componentRef.setInput('selectedSvgSheet', {
                     id: 'M212_Sk4',
                     fullId: 'M212_Sk4',
-                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                    content: firstContent,
                 });
                 await detectChangesOnPush(fixture);
 

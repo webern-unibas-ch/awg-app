@@ -170,7 +170,7 @@ describe(
                 expectToBe(bindings.length, 1);
 
                 const firstBinding = getItemAt(bindings, 0);
-                const count = firstBinding['n'] as Literal;
+                const count = getEntryAt(firstBinding, 'n') as Literal;
 
                 expectToBe(count.value, String(TURTLE_QUADS.length));
                 expectToBe(count.datatype.value, XSD_INTEGER);
@@ -209,7 +209,7 @@ describe(
                 const { bindings } = await service.select(TURTLE, 'SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }');
 
                 const firstBinding = getItemAt(bindings, 0);
-                const count = firstBinding['n'] as Literal;
+                const count = getEntryAt(firstBinding, 'n') as Literal;
 
                 expectToBe(count.value, String(TURTLE_QUADS.length));
                 expectToBe(count.datatype.value, XSD_INTEGER);

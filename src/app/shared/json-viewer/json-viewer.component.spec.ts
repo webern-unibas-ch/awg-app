@@ -42,7 +42,7 @@ function expectNavLinks(fixture: ComponentFixture<any>, expected: boolean[], sho
 
         expectToContain(linkEl.classList, 'nav-link');
 
-        if (expected[i]) {
+        if (getItemAt(expected, i)) {
             expectToContain(linkEl.classList, 'active');
         } else {
             expectToNotContain(linkEl.classList, 'active');

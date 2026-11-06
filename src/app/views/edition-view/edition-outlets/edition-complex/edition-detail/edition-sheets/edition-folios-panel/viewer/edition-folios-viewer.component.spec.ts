@@ -174,7 +174,9 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
             });
 
             it('... should adjust the bootstrap grid class to the number of folios', async () => {
-                fixture.componentRef.setInput('folios', [expectedFolios[0]]);
+                const firstFolio = getItemAt(expectedFolios, 0);
+
+                fixture.componentRef.setInput('folios', [firstFolio]);
                 await detectChangesOnPush(fixture);
 
                 const folioSvgDes = getFolioSvgDes(1);
