@@ -178,6 +178,18 @@
                                 <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
+                                <a href="#_complexPartIdsSignal" >_complexPartIdsSignal</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_compositeComplexRefs" >_compositeComplexRefs</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_editionComplexesListSignal" >_editionComplexesListSignal</a>
                             </li>
                             <li>
@@ -203,6 +215,19 @@
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_fetchEditionComplexesData" >_fetchEditionComplexesData</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_mapWorkEdition" >_mapWorkEdition</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#getComplexParts" >getComplexParts</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#getCompositeComplexes" >getCompositeComplexes</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
@@ -256,8 +281,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:143</a></div>
                         </td>
                     </tr>
 
@@ -266,15 +291,249 @@
                 <td class="col-md-4">
                         <div class="io-description"><p>Private method: _fetchEditionComplexesData.</p>
 <p>It fetches the data from a JSON file
-for the complexes of the edition view.</p>
+for the complexes of the edition view,
+together with the part ids of the composite complexes.</p>
+<p>The edition complexes list and the part ids by the ids of the composite complexes.</p>
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/EditionComplexesList.html" target="_self" >EditionComplexesList</a></code>
+                            <b>Returns : </b>    <code>{ complexesList: EditionComplexesList; partIds: Record&lt;string, string[]&gt; }</code>
 
                         </div>
                             <div class="io-description">
-                                <p>The EditionComplexesList data.</p>
+                                <p>The edition complexes list and the part ids by the ids of the composite complexes.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_mapWorkEdition"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_mapWorkEdition</b></span>
+                        <a href="#_mapWorkEdition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_mapWorkEdition(parts?: <a href="../interfaces/EditionComplexJsonPart.html" target="_self">EditionComplexJsonPart[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:181</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _mapWorkEdition.</p>
+<p>It maps the Werkedition of an edition complex with the text versions of its parts
+from the JSON data, if any.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parts</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionComplexJsonPart.html" target="_self" >EditionComplexJsonPart[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given parts JSON data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionComplexWorkEdition.html" target="_self" >EditionComplexWorkEdition | undefined</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The mapped Werkedition, or undefined.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getComplexParts"></a>
+                    <span class="name">
+                        <span ><b>getComplexParts</b></span>
+                        <a href="#getComplexParts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getComplexParts(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getComplexParts.</p>
+<p>It returns the parts of a composite edition complex in their order.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given id of the composite edition complex (will be normalized to lowercase).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The parts of the edition complex, empty if it has none.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCompositeComplexes"></a>
+                    <span class="name">
+                        <span ><b>getCompositeComplexes</b></span>
+                        <a href="#getCompositeComplexes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCompositeComplexes(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:109</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getCompositeComplexes.</p>
+<p>It returns the composite edition complexes that contain a given edition complex,
+each with the part number of the edition complex.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given id of the edition complex (will be normalized to lowercase).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionComplexPartOf.html" target="_self" >EditionComplexPartOf[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The composite edition complexes, empty if there are none.</p>
 
                             </div>
                 </td>
@@ -301,8 +560,8 @@ for the complexes of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -379,8 +638,8 @@ in the edition complexes list.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -416,15 +675,15 @@ in the edition complexes list.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setEditionComplexesList(complexesList: <a href="../classes/EditionComplexesList.html" target="_self">EditionComplexesList</a>)</code>
+<code>setEditionComplexesList(complexesList: <a href="../classes/EditionComplexesList.html" target="_self">EditionComplexesList</a>, partIds: Record<string, {}>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -432,7 +691,7 @@ in the edition complexes list.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: setEditionComplexesList.</p>
-<p>It sets the edition complexes list.</p>
+<p>It sets the edition complexes list and the part ids of its composite complexes.</p>
 </div>
 
                             <div class="io-description">
@@ -444,6 +703,7 @@ in the edition complexes list.</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Default value</td>
                                                 <td>Description</td>
                                         </tr>
                                     </thead>
@@ -458,9 +718,30 @@ in the edition complexes list.</p>
                                                     No
                                             </td>
 
+                                            <td>
+                                            </td>
 
                                             <td>
                                                     <p>The given edition complexes list.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>partIds</td>
+                                            <td>
+                                                        <code>Record&lt;string, {}&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>The given part ids by the ids of the composite complexes.</p>
 
                                             </td>
                                         </tr>
@@ -490,6 +771,99 @@ in the edition complexes list.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_complexPartIdsSignal"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_complexPartIdsSignal</b></span>
+                        <a href="#_complexPartIdsSignal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Record&lt;string, string[]&gt;&gt;({})</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly signal holding the part ids of the composite edition complexes (in their order).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_compositeComplexRefs"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_compositeComplexRefs</b></span>
+                        <a href="#_compositeComplexRefs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;Map&lt;string, { compositeId: string; partNumber: number }[]&gt;&gt;(
+        () &#x3D;&gt; {
+            const compositeRefs &#x3D; new Map&lt;string, { compositeId: string; partNumber: number }[]&gt;();
+
+            Object.entries(this._complexPartIdsSignal()).forEach(([compositeId, partIds]) &#x3D;&gt; {
+                partIds.forEach((partId, index) &#x3D;&gt; {
+                    const refs &#x3D; compositeRefs.get(partId) ?? [];
+                    compositeRefs.set(partId, [...refs, { compositeId, partNumber: index + 1 }]);
+                });
+            });
+
+            return compositeRefs;
+        }
+    )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly computed signal: _compositeComplexRefs.</p>
+<p>It computes for each part id the ids of the composite edition complexes that contain the part,
+each with the part number.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_editionComplexesListSignal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -512,7 +886,7 @@ in the edition complexes list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -550,7 +924,7 @@ in the edition complexes list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -570,9 +944,16 @@ in the edition complexes list.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Service, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { computed, Service, signal } from &#x27;@angular/core&#x27;;
 
-import { EditionComplex, EditionComplexesJsonData, EditionComplexesList } from &#x27;../models/edition-complex.model&#x27;;
+import {
+    EditionComplex,
+    EditionComplexesJsonData,
+    EditionComplexesList,
+    EditionComplexJsonPart,
+    EditionComplexPartOf,
+    EditionComplexWorkEdition,
+} from &#x27;../models/edition-complex.model&#x27;;
 
 import jsonEditionComplexes from &#x27;assets/data/edition/edition-complexes.json&#x27;;
 
@@ -589,6 +970,32 @@ export class EditionComplexesService {
     private readonly _editionComplexesListSignal &#x3D; signal&lt;EditionComplexesList&gt;({});
 
     /**
+     * Private readonly signal holding the part ids of the composite edition complexes (in their order).
+     */
+    private readonly _complexPartIdsSignal &#x3D; signal&lt;Record&lt;string, string[]&gt;&gt;({});
+
+    /**
+     * Private readonly computed signal: _compositeComplexRefs.
+     *
+     * It computes for each part id the ids of the composite edition complexes that contain the part,
+     * each with the part number.
+     */
+    private readonly _compositeComplexRefs &#x3D; computed&lt;Map&lt;string, { compositeId: string; partNumber: number }[]&gt;&gt;(
+        () &#x3D;&gt; {
+            const compositeRefs &#x3D; new Map&lt;string, { compositeId: string; partNumber: number }[]&gt;();
+
+            Object.entries(this._complexPartIdsSignal()).forEach(([compositeId, partIds]) &#x3D;&gt; {
+                partIds.forEach((partId, index) &#x3D;&gt; {
+                    const refs &#x3D; compositeRefs.get(partId) ?? [];
+                    compositeRefs.set(partId, [...refs, { compositeId, partNumber: index + 1 }]);
+                });
+            });
+
+            return compositeRefs;
+        }
+    );
+
+    /**
      * Readonly signal: editionComplexesList.
      *
      * It holds the state of the edition complexes list.
@@ -603,8 +1010,8 @@ export class EditionComplexesService {
      * @returns {void} Initializes the edition complexes list.
      */
     initializeEditionComplexesList(): void {
-        const complexes &#x3D; this._fetchEditionComplexesData();
-        this.setEditionComplexesList(complexes);
+        const { complexesList, partIds } &#x3D; this._fetchEditionComplexesData();
+        this.setEditionComplexesList(complexesList, partIds);
     }
 
     /**
@@ -622,44 +1029,107 @@ export class EditionComplexesService {
     }
 
     /**
+     * Public method: getComplexParts.
+     *
+     * It returns the parts of a composite edition complex in their order.
+     *
+     * @param {string} id The given id of the composite edition complex (will be normalized to lowercase).
+     * @returns {EditionComplex[]} The parts of the edition complex, empty if it has none.
+     */
+    getComplexParts(id: string): EditionComplex[] {
+        const complexesList &#x3D; this._editionComplexesListSignal();
+        const partIds &#x3D; this._complexPartIdsSignal()[id.toLowerCase()] ?? [];
+
+        return partIds.flatMap(partId &#x3D;&gt; complexesList[partId] ?? []);
+    }
+
+    /**
+     * Public method: getCompositeComplexes.
+     *
+     * It returns the composite edition complexes that contain a given edition complex,
+     * each with the part number of the edition complex.
+     *
+     * @param {string} id The given id of the edition complex (will be normalized to lowercase).
+     * @returns {EditionComplexPartOf[]} The composite edition complexes, empty if there are none.
+     */
+    getCompositeComplexes(id: string): EditionComplexPartOf[] {
+        const complexesList &#x3D; this._editionComplexesListSignal();
+        const compositeRefs &#x3D; this._compositeComplexRefs().get(id.toLowerCase()) ?? [];
+
+        return compositeRefs.flatMap(({ compositeId, partNumber }) &#x3D;&gt; {
+            const compositeComplex &#x3D; complexesList[compositeId];
+            return compositeComplex ? [{ compositeComplex, partNumber }] : [];
+        });
+    }
+
+    /**
      * Public method: setEditionComplexesList.
      *
-     * It sets the edition complexes list.
+     * It sets the edition complexes list and the part ids of its composite complexes.
      *
      * @param {EditionComplexesList} complexesList The given edition complexes list.
+     * @param {Record&lt;string, string[]&gt;} [partIds&#x3D;{}] The given part ids by the ids of the composite complexes.
      * @returns {void} Sets the edition complexes list.
      */
-    setEditionComplexesList(complexesList: EditionComplexesList): void {
+    setEditionComplexesList(complexesList: EditionComplexesList, partIds: Record&lt;string, string[]&gt; &#x3D; {}): void {
         this._editionComplexesListSignal.set(complexesList);
+        this._complexPartIdsSignal.set(partIds);
     }
 
     /**
      * Private method: _fetchEditionComplexesData.
      *
      * It fetches the data from a JSON file
-     * for the complexes of the edition view.
+     * for the complexes of the edition view,
+     * together with the part ids of the composite complexes.
      *
-     * @returns {EditionComplexesList} The EditionComplexesList data.
+     * @returns {{ complexesList: EditionComplexesList; partIds: Record&lt;string, string[]&gt; }}
+     * The edition complexes list and the part ids by the ids of the composite complexes.
      */
-    private _fetchEditionComplexesData(): EditionComplexesList {
+    private _fetchEditionComplexesData(): {
+        complexesList: EditionComplexesList;
+        partIds: Record&lt;string, string[]&gt;;
+    } {
         // Load the JSON data directly from the file
         const complexesData: EditionComplexesJsonData &#x3D; jsonEditionComplexes;
-        const editionComplexesList: EditionComplexesList &#x3D; {};
+        const complexesList: EditionComplexesList &#x3D; {};
+        const partIds: Record&lt;string, string[]&gt; &#x3D; {};
 
         complexesData.editionComplexes.forEach(complex &#x3D;&gt; {
             Object.entries(complex).forEach(([complexKey, complexValue]) &#x3D;&gt; {
                 if (!complexValue) {
                     return;
                 }
-                editionComplexesList[complexKey] &#x3D; new EditionComplex(
+                complexesList[complexKey] &#x3D; new EditionComplex(
                     complexValue.titleStatement,
                     complexValue.respStatement,
-                    complexValue.pubStatement
+                    complexValue.pubStatement,
+                    this._mapWorkEdition(complexValue.parts)
                 );
+                if (complexValue.parts?.length) {
+                    partIds[complexKey] &#x3D; complexValue.parts.map(part &#x3D;&gt; part.complex);
+                }
             });
         });
 
-        return editionComplexesList;
+        return { complexesList, partIds };
+    }
+
+    /**
+     * Private method: _mapWorkEdition.
+     *
+     * It maps the Werkedition of an edition complex with the text versions of its parts
+     * from the JSON data, if any.
+     *
+     * @param {EditionComplexJsonPart[]} [parts] The given parts JSON data.
+     * @returns {EditionComplexWorkEdition | undefined} The mapped Werkedition, or undefined.
+     */
+    private _mapWorkEdition(parts?: EditionComplexJsonPart[]): EditionComplexWorkEdition | undefined {
+        const textVersions &#x3D; Object.fromEntries(
+            (parts ?? []).flatMap(({ complex, textVersion }) &#x3D;&gt; (textVersion ? [[complex, textVersion]] : []))
+        );
+
+        return Object.keys(textVersions).length ? { textVersions } : undefined;
     }
 }
 </code></pre>

@@ -2203,9 +2203,9 @@ export class EditionDataService {
 
             return observableForkJoin([sectionIntroStream$, complexIntroStream$]).pipe(
                 map(([sectionIntroData, complexIntroData]) &#x3D;&gt; {
-                    if (complexIntroData?.intro?.length) {
-                        const blockId &#x3D; complexIntroData.intro[0].id;
-                        return this._filterSectionIntroDataByBlockId(sectionIntroData, blockId);
+                    const firstBlock &#x3D; complexIntroData?.intro?.[0];
+                    if (firstBlock) {
+                        return this._filterSectionIntroDataByBlockId(sectionIntroData, firstBlock.id);
                     }
                     return sectionIntroData;
                 })

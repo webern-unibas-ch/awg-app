@@ -228,7 +228,7 @@ to describe a <code>$ref</code> pointer to a person in the edition complexes JSO
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:31</a></div>
                                 </td>
                             </tr>
 
@@ -258,6 +258,14 @@ import {
 } from &#x27;../edition-routes.constants&#x27;;
 
 /**
+ * Constant: PERSONS_BY_REF.
+ *
+ * It keeps the persons of PERSONS_DATA by their reference key
+ * (as a map, so a reference from the data never matches an inherited key like &#x60;constructor&#x60;).
+ */
+const PERSONS_BY_REF &#x3D; new Map&lt;string, MetaPerson&gt;(Object.entries(PERSONS_DATA));
+
+/**
  * The EditionComplexJsonPersonRef interface.
  *
  * It is used in the context of the edition view
@@ -268,6 +276,46 @@ export interface EditionComplexJsonPersonRef {
      * The reference key of a person.
      */
     $ref: string;
+}
+
+/**
+ * The EditionComplexJsonPart interface.
+ *
+ * It is used in the context of the edition view
+ * to describe a part of a composite edition complex
+ * (e.g. a song/movement of an opus) in the edition complexes JSON data.
+ */
+export interface EditionComplexJsonPart {
+    /**
+     * The id of the edition complex of the part.
+     */
+    complex: string;
+
+    /**
+     * The text version of the part in the Werkedition of the composite complex
+     * (a number or &#x60;einzige&#x60;), if any.
+     */
+    textVersion?: string;
+}
+
+/**
+ * The EditionComplexAvailability interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the restrictions on publishing an edition complex online,
+ * e.g. the protection period of its Werkedition.
+ */
+export interface EditionComplexAvailability {
+    /**
+     * The availability of the Werkedition (optional).
+     */
+    workEdition?: {
+        /**
+         * The last year of the protection period of the Werkedition (editio princeps),
+         * during which its music text is not shown online.
+         */
+        protectedUntil: string;
+    };
 }
 
 /**
@@ -283,7 +331,11 @@ export type EditionComplexJsonData &#x3D; Partial&lt;
         {
             titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
             respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string };
-            pubStatement: { series: string; section: string };
+            pubStatement: { series: string; section: string; availability?: EditionComplexAvailability };
+            /**
+             * The parts of a composite edition complex in their order (optional).
+             */
+            parts?: EditionComplexJsonPart[];
         }
     &gt;
 &gt;;
@@ -363,6 +415,27 @@ export class EditionComplexPubStatement {
      * The route for the current section.
      */
     section: EditionRouteConstant &#x3D; new EditionRouteConstant();
+
+    /**
+     * The restrictions on publishing the current edition complex online, if any.
+     */
+    availability?: EditionComplexAvailability;
+}
+
+/**
+ * The EditionComplexWorkEdition interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the Werkedition of an edition complex
+ * with the text versions of its parts.
+ */
+export interface EditionComplexWorkEdition {
+    /**
+     * The text versions of the parts in the Werkedition (number or &#x60;einzige&#x60;) by part id.
+     *
+     * @example { m212: &#x27;3&#x27;, m217: &#x27;einzige&#x27; }
+     */
+    textVersions: Record&lt;string, string&gt;;
 }
 
 /**
@@ -400,18 +473,25 @@ export class EditionComplex {
     baseRoute: string;
 
     /**
+     * The Werkedition of an edition complex, if any.
+     */
+    workEdition?: EditionComplexWorkEdition;
+
+    /**
      * Constructor of the EditionComplex class.
      *
      * It initializes the class with an edition complex Object from the EditionConstants.
      *
      * @param {{ title: string; catalogueType: string; catalogueNumber: string }} titleStatement The given TitleStatement for the edition complex.
      * @param {{ editors: EditionComplexJsonPersonRef[]; lastModified: string }} respStatement The given ResponsibilityStatement for the edition complex.
-     * @param {{ series: string; section: string }} pubStatement The given PublicationStatement for the edition complex.
+     * @param {{ series: string; section: string; availability?: EditionComplexAvailability }} pubStatement The given PublicationStatement for the edition complex.
+     * @param {EditionComplexWorkEdition} [workEdition] The optional Werkedition of the edition complex.
      */
     constructor(
         titleStatement: { title: string; catalogueType: string; catalogueNumber: string },
         respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string },
-        pubStatement: { series: string; section: string }
+        pubStatement: { series: string; section: string; availability?: EditionComplexAvailability },
+        workEdition?: EditionComplexWorkEdition
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
             throw new Error(
@@ -421,7 +501,8 @@ export class EditionComplex {
 
         // Helper constants
         const delimiter &#x3D; &#x27;/&#x27;;
-        const spacer &#x3D; &#x27;&amp;nbsp;&#x27;;
+        // No-break space keeps catalogue type and number together on one line
+        const spacer &#x3D; &#x27;\u00A0&#x27;;
         const routes &#x3D; EDITION_ROUTE_CONSTANTS;
 
         // Set dynamic routes
@@ -456,6 +537,8 @@ export class EditionComplex {
                   }
                 : new EditionComplexPubStatement();
 
+        this.pubStatement.availability &#x3D; pubStatement?.availability;
+
         this.complexId &#x3D; new EditionRouteConstant();
         this.complexId.route &#x3D; this.titleStatement.catalogueType.route;
         // For routes, replace slashes in catalogue number with underscores
@@ -466,6 +549,8 @@ export class EditionComplex {
         // Set base route
         const rootPath &#x3D; &#x60;${routes.EDITION.route}${routes.COMPLEX.route}&#x60;;
         this.baseRoute &#x3D; &#x60;${rootPath}${this.complexId.route}&#x60;;
+
+        this.workEdition &#x3D; workEdition;
     }
 
     /**
@@ -497,10 +582,28 @@ export class EditionComplex {
     }): EditionComplexRespStatement {
         const editors: MetaPerson[] &#x3D;
             respStatement?.editors?.map(
-                editor &#x3D;&gt; PERSONS_DATA[editor.$ref] ?? { name: editor.$ref, homepage: &#x27;&#x27;, identifiers: {} }
+                editor &#x3D;&gt; PERSONS_BY_REF.get(editor.$ref) ?? { name: editor.$ref, homepage: &#x27;&#x27;, identifiers: {} }
             ) ?? [];
         return { editors, lastModified: respStatement?.lastModified ?? &#x27;&#x27; };
     }
+}
+
+/**
+ * The EditionComplexPartOf interface.
+ *
+ * It is used in the context of the edition view
+ * to describe that an edition complex is a part of a composite edition complex.
+ */
+export interface EditionComplexPartOf {
+    /**
+     * The composite edition complex that contains the edition complex.
+     */
+    compositeComplex: EditionComplex;
+
+    /**
+     * The part number of the edition complex in the composite edition complex (starting at 1).
+     */
+    partNumber: number;
 }
 
 /**

@@ -682,7 +682,7 @@ to describe the structure of a JSON data for an edition complex
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <code>        <code><a href="../interfaces/EditionComplexJsonPersonRef.html" target="_self" >Partial&lt;Record&lt;string, { titleStatement: { title: string; catalogueType: string; catalogueNumber: string }; respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string }; pubStatement: { series: string; section: string } }&gt;&gt;</a></code>
+                    <code>        <code><a href="../classes/EditionComplex.html" target="_self" >Partial&lt;Record&lt;string, { titleStatement: { title: string; catalogueType: string; catalogueNumber: string }; respStatement: { editors: EditionComplexJsonPersonRef[]; lastModified: string }; pubStatement: { series: string; section: string; availability?: EditionComplexAvailability }; parts?: EditionComplexJsonPart[] }&gt;&gt;</a></code>
 </code>
                 </td>
             </tr>
@@ -1473,7 +1473,7 @@ a row can have no cell for a column.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Type: ValidFolioContent.</p>
-<p>A folio content with its segments (checked by <a href="../miscellaneous/functions.html#isValidFolioContent">isValidFolioContent</a>).</p>
+<p>It describes a folio content that can be calculated (see <a href="../miscellaneous/functions.html#isValidFolioContent">isValidFolioContent</a>).</p>
 </div>
                 </td>
             </tr>

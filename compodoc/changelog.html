@@ -108,8 +108,72 @@
 
 <h1>Changelog</h1>
 <p>All notable changes to this project will be documented in this file. See <a href="https://github.com/absolute-version/commit-and-tag-version">commit-and-tag-version</a> for commit guidelines.</p>
+<h2><a href="https://github.com/webern-unibas-ch/awg-app/compare/v2.1.0...v2.2.0">2.2.0</a> (2026-11-06)</h2>
+<p>Release developed with the support of <a href="https://claude.com/claude-code">Claude Code</a> (Opus 5.5 / Sonnet 5.5).</p>
+<h3>Features</h3>
+<ul>
+<li><strong>edition:</strong> add work edition data to composite complexes (<a href="https://github.com/webern-unibas-ch/awg-app/commit/bbab9db72f0d400f851ef517be2c14abf2469de9">bbab9db</a>)</li>
+<li><strong>edition:</strong> link edition targets via real router link (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5f33f80649b5b33cbcd922a61b06aeebcd15d78a">5f33f80</a>)</li>
+<li><strong>edition:</strong> resolve the parts of composite complexes (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f125cda6d6163277556f5749188eb981f54aef6b">f125cda</a>)</li>
+<li><strong>scripts:</strong> add check for edition complexes and their parts (<a href="https://github.com/webern-unibas-ch/awg-app/commit/18e265a58d20429fff19bdf2977ae0853557ff5c">18e265a</a>)</li>
+<li><strong>scripts:</strong> add check for shared source descriptions (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5a8c21660bd69828ea8146edc11f5b6a8bf70cc7">5a8c216</a>)</li>
+<li><strong>scripts:</strong> add check for source data (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ac61f7e7449ee98a354c32c8e4cc2283e9b1816b">ac61f7e</a>)</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>assets:</strong> add missing complex m313 to edition outline (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c48a8c4ba141462c40df4beb9645af5f4dc3148a">c48a8c4</a>)</li>
+<li><strong>assets:</strong> correct ontology terms in op25 graph data (<a href="https://github.com/webern-unibas-ch/awg-app/commit/574d16aeacd48d002884e130d16ea3f56a8292f2">574d16a</a>)</li>
+<li><strong>assets:</strong> fix data drifts in shared documents (AWG II/2a) (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6753bdf3d028f13260cb5a25cd6abe2cf4564502">6753bdf</a>)</li>
+<li><strong>assets:</strong> fix deprecated keys and missing folio positions (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6c59a250f71c84ed036a272c06c521c1af5da41d">6c59a25</a>)</li>
+<li><strong>assets:</strong> fix source typos in AWG I/5 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6b7c07b0e02f8c17efca22608bab3e6f7d0706f1">6b7c07b</a>)</li>
+<li><strong>assets:</strong> fix source typos in AWG II/2a (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2359f8a18e7bee49399716184232b672f8d3fa56">2359f8a</a>)</li>
+<li><strong>assets:</strong> fix writing instruments of mx465-467 and m112 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/09a9b7e84a7c03c2b8440bb47e0fc429971ec3a9">09a9b7e</a>)</li>
+<li><strong>assets:</strong> replace Angular brace escapes and figure dashes (<a href="https://github.com/webern-unibas-ch/awg-app/commit/01e51d75f316f6af9e9791b5f38cdfe4d0797caa">01e51d7</a>)</li>
+</ul>
+<h3>Code Refactoring</h3>
+<ul>
+<li><strong>edition:</strong> import rdfstore as ES module (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d846fd0aebec1b136b5aea7b649c28f5c0e29938">d846fd0</a>)</li>
+<li><strong>edition:</strong> use no-break space character in complex ids (<a href="https://github.com/webern-unibas-ch/awg-app/commit/65742d9ac721959fd1bbde7893662b27944c64b1">65742d9</a>)</li>
+<li><strong>scripts:</strong> share helpers of the check scripts (<a href="https://github.com/webern-unibas-ch/awg-app/commit/489c1fb4819fc4052c2ccd08c9ef4a646caecbc2">489c1fb</a>)</li>
+</ul>
+<h3>Tests</h3>
+<ul>
+<li><strong>app:</strong> enable noUncheckedIndexedAccess for specs (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1e398eca0229e6b4e2ea70f124e749b04e94119c">1e398ec</a>)</li>
+</ul>
+<h3>Continuous Integration</h3>
+<ul>
+<li><strong>gh-actions:</strong> avoid duplicate workflow runs on pull requests (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7220d89d11223ac4e0d6015030cc7b38dde4fb68">7220d89</a>)</li>
+<li><strong>gh-actions:</strong> check yarn.lock for duplicates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5a0ffced4478e6f9950c0fae468d8dcd951f0645">5a0ffce</a>)</li>
+<li><strong>gh-actions:</strong> group all minor and patch action updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ca21d3f88c8993a9e3287b56085ab8c1d570d849">ca21d3f</a>)</li>
+<li><strong>gh-actions:</strong> group d3 modules in dependabot (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a40be303b279739557f307b398c0d90fa027091a">a40be30</a>)</li>
+</ul>
+<h3>Build System</h3>
+<ul>
+<li><strong>app:</strong> enable noUncheckedIndexedAccess for app code (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4053631cab697c2299661dfcc91d3cda1c0e0850">4053631</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint from 10.13.0 to 10.14.0 in the eslint group across 1 directory (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a45d359eab9dd755df25ea3bda1d691897108bb5">a45d359</a>)</li>
+<li><strong>deps-dev:</strong> bump eslint-plugin-jsdoc from 65.4.0 to 65.4.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/205684254f0171722586de16dfa7ef5ced394803">2056842</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/737b79fea14ed02fa2bb0391ca3abb1be700a9ee">737b79f</a>)</li>
+<li><strong>deps-dev:</strong> bump the angular-cli-devkit group with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ac2852be4a75affe768ca9c70ffeb9b536e82cdb">ac2852b</a>)</li>
+<li><strong>deps-dev:</strong> bump the npm-dev-minor-patch group across 1 directory with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/708077251e04f37a293b2c575c18f5df288c2a3e">7080772</a>)</li>
+<li><strong>deps-dev:</strong> bump the npm-dev-minor-patch group across 1 directory with 4 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a77c34ffd91ec83b7de1eff7b648428caeb0e878">a77c34f</a>)</li>
+<li><strong>deps-dev:</strong> bump the vitest group with 3 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cc20c57ab2ec25291c9a196ea01fcb1f3c28b957">cc20c57</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.71.2 to 8.72.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cad6abd3ee348dddd3fea372c3e8223910ffb946">cad6abd</a>)</li>
+<li><strong>deps-dev:</strong> bump typescript-eslint from 8.72.0 to 8.72.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/95702bc5a3ea269b97c2e5cb74eb79254e382af0">95702bc</a>)</li>
+<li><strong>deps:</strong> bump @codemirror/view from 6.43.14 to 6.43.15 in the codemirror group across 1 directory (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b4dcd15d4651fe006f84bfbff7558b77d0a5236d">b4dcd15</a>)</li>
+<li><strong>deps:</strong> bump body-parser from 2.3.0 to 2.4.0 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ab448b9ca46415278ca52bcb47efe86bde6adc88">ab448b9</a>)</li>
+<li><strong>deps:</strong> bump fast-uri from 3.1.8 to 3.1.9 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5558803a74a0b90944fb232c3c289f97235dfd17">5558803</a>)</li>
+<li><strong>deps:</strong> bump qs from 6.16.0 to 6.16.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/e8cb7276c82d53729ead5344504e1f989b7a6978">e8cb727</a>)</li>
+<li><strong>deps:</strong> bump SonarSource/sonarqube-scan-action from 8.4.0 to 8.4.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/980c677748323ec596086896494988a199e4b3e7">980c677</a>)</li>
+<li><strong>deps:</strong> bump step-security/harden-runner from 2.22.1 to 2.22.2 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/bfea99bf9d9ba86a9258ab5f005555877db2f229">bfea99b</a>)</li>
+<li><strong>deps:</strong> bump the angular group across 1 directory with 8 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f382a4c736dccca50333ca1ab3e5eea5187c156e">f382a4c</a>)</li>
+<li><strong>deps:</strong> bump the d3 group across 1 directory with 5 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/60d04b53571814948ebdbb2879f06bae6fd1a552">60d04b5</a>)</li>
+<li><strong>deps:</strong> bump the github-actions group across 1 directory with 2 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/dff44401a1c4b8a7f87f872b4da237a142ca7e8e">dff4440</a>)</li>
+<li><strong>deps:</strong> bump the github-codeql-action group across 1 directory with 4 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/10a787113e0ac7a524d8d41db16875c2e0cc7c4b">10a7871</a>)</li>
+<li><strong>deps:</strong> bump the github-codeql-action group across 1 directory with 4 updates (<a href="https://github.com/webern-unibas-ch/awg-app/commit/88d8ecf63922fccec9c3804264998bb1fbeaac6d">88d8ecf</a>)</li>
+<li><strong>deps:</strong> bump tslib from 2.8.1 to 2.9.1 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/25ab0aaf516c307a6304a598123922b2fb4a916f">25ab0aa</a>)</li>
+</ul>
 <h2><a href="https://github.com/webern-unibas-ch/awg-app/compare/v2.0.0...v2.1.0">2.1.0</a> (2026-10-23)</h2>
-<p>This is the first release developed with the support of <a href="https://claude.com/claude-code">Claude Code</a>.</p>
+<p>This is the first release developed with the support of <a href="https://claude.com/claude-code">Claude Code</a> (Opus 5.5 / Sonnet 5.5).</p>
 <h3>⚠ BREAKING CHANGES</h3>
 <ul>
 <li><strong>app:</strong> The app has been migrated to modern Angular (v22): standalone components without NgModules, zoneless change detection, and OnPush change detection by default. The breaking changes concern the framework only and do not affect the edition content, hence the minor version bump.</li>

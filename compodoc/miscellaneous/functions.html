@@ -159,6 +159,9 @@
                             <a href="#_fixNode" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/simulation/force-graph-simulation.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_fixNode</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-simulation.utils.ts)</span></a>
                         </li>
                         <li>
+                            <a href="#_generateLimitValues" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_generateLimitValues</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-limit.component.ts)</span></a>
+                        </li>
+                        <li>
                             <a href="#_isSettled" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/simulation/force-graph-simulation.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_isSettled</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-simulation.utils.ts)</span></a>
                         </li>
                         <li>
@@ -177,6 +180,12 @@
                             <a href="#_runTicks" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/simulation/force-graph-simulation.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_runTicks</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-simulation.utils.ts)</span></a>
                         </li>
                         <li>
+                            <a href="#_shiftDecimalPoint" title="src/app/shared/utils/number-utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_shiftDecimalPoint</b>&nbsp;&nbsp;&nbsp;(src/.../number-utils.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#_splitExponential" title="src/app/shared/utils/number-utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_splitExponential</b>&nbsp;&nbsp;&nbsp;(src/.../number-utils.ts)</span></a>
+                        </li>
+                        <li>
                             <a href="#_startWorkerSimulation" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/simulation/force-graph-simulation.service.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_startWorkerSimulation</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-simulation.service.ts)</span></a>
                         </li>
                         <li>
@@ -187,9 +196,6 @@
                         </li>
                         <li>
                             <a href="#_toD3SimulationNodes" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/simulation/force-graph-simulation.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_toD3SimulationNodes</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-simulation.utils.ts)</span></a>
-                        </li>
-                        <li>
-                            <a href="#_toLimitValue" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_toLimitValue</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-limit.component.ts)</span></a>
                         </li>
                         <li>
                             <a href="#_toLimitValues" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>_toLimitValues</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph-limit.component.ts)</span></a>
@@ -2194,6 +2200,119 @@ or its template is not closed.</p>
         </tbody>
     </table>
 </section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_generateLimitValues"></a>
+                    <span class="name">
+                        <span ><b>_generateLimitValues</b></span>
+                        <a href="#_generateLimitValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_generateLimitValues()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private generator function: _generateLimitValues.</p>
+<p>It generates the endless sequence of limit values (number of triples)
+5, 10, 25, 50, 100, 250, 500, 1000, 2500, ...</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Generator&lt;number&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The limit values in ascending order.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_toLimitValues"></a>
+                    <span class="name">
+                        <span ><b>_toLimitValues</b></span>
+                        <a href="#_toLimitValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_toLimitValues(tripleCount: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private function: _toLimitValues.</p>
+<p>It derives the possible limit values (number of triples) of the force graph
+that are below the given triple count.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tripleCount</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given total number of triples.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>number[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The limit values below the triple count.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
     <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/term.utils.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -3377,22 +3496,22 @@ and forwards <code>pin</code> and <code>release</code> to it.</p>
         </tbody>
     </table>
 </section>
-    <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/limit/force-graph-limit.component.ts</h3>
+    <h3>src/app/shared/utils/number-utils.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_toLimitValue"></a>
+                    <a name="_shiftDecimalPoint"></a>
                     <span class="name">
-                        <span ><b>_toLimitValue</b></span>
-                        <a href="#_toLimitValue"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_shiftDecimalPoint</b></span>
+                        <a href="#_shiftDecimalPoint"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>_toLimitValue(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>_shiftDecimalPoint(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, places: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -3401,9 +3520,9 @@ and forwards <code>pin</code> and <code>release</code> to it.</p>
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private function: _toLimitValue.</p>
-<p>It gets the limit value (number of triples) at the given index of the sequence
-5, 10, 25, 50, 100, 250, 500, 1000, 2500, ...</p>
+                        <div class="io-description"><p>Private utils method: _shiftDecimalPoint.</p>
+<p>It shifts the decimal point of a given value by a given number of places (to the right if positive)
+via its exponential notation, so it also works for values printed in exponential notation (e.g., 1e-7).</p>
 </div>
 
                             <div class="io-description">
@@ -3420,7 +3539,7 @@ and forwards <code>pin</code> and <code>release</code> to it.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>index</td>
+                                                <td>value</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
@@ -3431,7 +3550,23 @@ and forwards <code>pin</code> and <code>release</code> to it.</p>
 
 
                                             <td>
-                                                    <p>The given index.</p>
+                                                    <p>The given value.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>places</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given number of places.</p>
 
                                             </td>
                                         </tr>
@@ -3443,7 +3578,7 @@ and forwards <code>pin</code> and <code>release</code> to it.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>The limit value.</p>
+                                <p>The shifted value.</p>
 
                             </div>
                 </td>
@@ -3454,16 +3589,16 @@ and forwards <code>pin</code> and <code>release</code> to it.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_toLimitValues"></a>
+                    <a name="_splitExponential"></a>
                     <span class="name">
-                        <span ><b>_toLimitValues</b></span>
-                        <a href="#_toLimitValues"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_splitExponential</b></span>
+                        <a href="#_splitExponential"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>_toLimitValues(tripleCount: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>_splitExponential(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -3472,9 +3607,9 @@ and forwards <code>pin</code> and <code>release</code> to it.</p>
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private function: _toLimitValues.</p>
-<p>It derives the possible limit values (number of triples) of the force graph
-that are below the given triple count.</p>
+                        <div class="io-description"><p>Private utils method: _splitExponential.</p>
+<p>It splits the string of a given value into its mantissa and exponent
+(exponent 0 for values not printed in exponential notation, e.g., 1.5 vs. 1.5e-7).</p>
 </div>
 
                             <div class="io-description">
@@ -3491,7 +3626,7 @@ that are below the given triple count.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>tripleCount</td>
+                                                <td>value</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
@@ -3502,7 +3637,7 @@ that are below the given triple count.</p>
 
 
                                             <td>
-                                                    <p>The given total number of triples.</p>
+                                                    <p>The given value.</p>
 
                                             </td>
                                         </tr>
@@ -3510,11 +3645,186 @@ that are below the given triple count.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>number[]</code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The limit values below the triple count.</p>
+                                <p>The mantissa and the exponent of the value.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roundToDecimals"></a>
+                    <span class="name">
+                        <span ><b>roundToDecimals</b></span>
+                        <a href="#roundToDecimals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>roundToDecimals(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, decimals: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utils method: roundToDecimals.</p>
+<p>It rounds a given value to a given number of decimal places.
+The exponential notation avoids the floating point errors of Math.round (e.g., 1.005 =&gt; 1.01),
+cf. <a href="https://www.jacklmoore.com/notes/rounding-in-javascript/">https://www.jacklmoore.com/notes/rounding-in-javascript/</a></p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given value to round.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>decimals</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given number of decimal places.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The rounded value.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roundToStepPrecision"></a>
+                    <span class="name">
+                        <span ><b>roundToStepPrecision</b></span>
+                        <a href="#roundToStepPrecision"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>roundToStepPrecision(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, stepSize: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utils method: roundToStepPrecision.</p>
+<p>It rounds a given value to the same number of decimal places as the given step size
+(also for step sizes printed in exponential notation, e.g., 1.5e-7 has 8 decimal places).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given value to round.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>stepSize</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given step size (e.g., of an input range).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The rounded value.</p>
 
                             </div>
                 </td>
@@ -3627,7 +3937,8 @@ that are below the given triple count.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Utils method: getPosition.</p>
-<p>It gets the position of the node with the given index from the given positions (pairs: x, y, x, y, ...).</p>
+<p>It gets the position of the node with the given index from the given positions (pairs: x, y, x, y, ...),
+with NaN for an unknown position (as for an index beyond the positions).</p>
 </div>
 
                             <div class="io-description">
@@ -5057,7 +5368,7 @@ ignoring prefix declarations, IRIs, string literals and comments.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>calculateContentSegmentY(segment: <a href="../interfaces/FolioSegment.html" target="_self">FolioSegment</a>, __namedParameters: {lines: <a href="../interfaces/FolioSvgSystems.html" target="_self">FolioSvgSystems</a>, reversed: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>}, verticalPadding: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, isStart: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+<code>calculateContentSegmentY(segment: <a href="../interfaces/FolioSegment.html" target="_self">FolioSegment</a>, __namedParameters: {items: <a href="../interfaces/FolioSvgSystems.html" target="_self">FolioSvgSystems</a>, reversed: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>}, verticalPadding: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, isStart: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
@@ -5100,7 +5411,7 @@ ignoring prefix declarations, IRIs, string literals and comments.</p>
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>lines</td>
+                                                <td>items</td>
                                             <td>
                                                             <code><a href="../interfaces/FolioSvgSystems.html" target="_self" >FolioSvgSystems</a></code>
                                             </td>
@@ -8360,9 +8671,8 @@ also if the node itself lies outside.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Utils method: findQuery.</p>
-<p>It finds the query of a given query list with the same label and type as a given query.
-If the given query is not in the list, it is returned as is;
-if no query is given, the first query of the list is returned.</p>
+<p>It finds the query of a given query list with the same label and type as a given query
+(the given query itself if it is not in the list, the first query of the list if none is given).</p>
 </div>
 
                             <div class="io-description">
@@ -8413,11 +8723,11 @@ if no query is given, the first query of the list is returned.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/GraphQuery.html" target="_self" >GraphQuery</a></code>
+                            <b>Returns : </b>    <code>GraphQuery | undefined</code>
 
                         </div>
                             <div class="io-description">
-                                <p>The found query.</p>
+                                <p>The found query, or undefined for an empty query list.</p>
 
                             </div>
                 </td>
@@ -9104,7 +9414,8 @@ i.e. the first text edition or, as fallback, the first sketch edition.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Function: getFullSheetIds.</p>
-<p>It gets all full sheet ids of a given svg sheet (one per partial).</p>
+<p>It gets all full sheet ids of a given svg sheet (one per partial),
+or the sheet id for a sheet without content, so the result is never empty.</p>
 </div>
 
                             <div class="io-description">
@@ -9140,7 +9451,7 @@ i.e. the first text edition or, as fallback, the first sketch edition.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>string[]</code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                         </div>
                             <div class="io-description">
@@ -10144,184 +10455,6 @@ and narrows the key to the keys of the object.</p>
                         </div>
                             <div class="io-description">
                                 <p>The result of the check.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
-    <h3>src/app/shared/utils/number-utils.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="roundToDecimals"></a>
-                    <span class="name">
-                        <span ><b>roundToDecimals</b></span>
-                        <a href="#roundToDecimals"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>roundToDecimals(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, decimals: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Utils method: roundToDecimals.</p>
-<p>It rounds a given value to a given number of decimal places.
-The exponential notation avoids the floating point errors of Math.round (e.g., 1.005 =&gt; 1.01),
-cf. <a href="https://www.jacklmoore.com/notes/rounding-in-javascript/">https://www.jacklmoore.com/notes/rounding-in-javascript/</a></p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>value</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given value to round.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>decimals</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given number of decimal places.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The rounded value.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="roundToStepPrecision"></a>
-                    <span class="name">
-                        <span ><b>roundToStepPrecision</b></span>
-                        <a href="#roundToStepPrecision"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>roundToStepPrecision(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, stepSize: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Utils method: roundToStepPrecision.</p>
-<p>It rounds a given value to the same number of decimal places as the given step size.
-Cf. <a href="https://stackoverflow.com/a/13635455">https://stackoverflow.com/a/13635455</a></p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>value</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given value to round.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>stepSize</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given step size (e.g., of an input range).</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The rounded value.</p>
 
                             </div>
                 </td>

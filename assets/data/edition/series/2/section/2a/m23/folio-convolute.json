@@ -455,6 +455,7 @@
                             "segmentSplit": 1.5,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 11,
                                     "endSystem": 12
                                 }

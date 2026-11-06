@@ -129,6 +129,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionComplexComponent.html" data-type="entity-link" >EditionComplexComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionComplexPartOfComponent.html" data-type="entity-link" >EditionComplexPartOfComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionComplexPartsComponent.html" data-type="entity-link" >EditionComplexPartsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionComplexPartsListComponent.html" data-type="entity-link" >EditionComplexPartsListComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionComplexPlaceholderComponent.html" data-type="entity-link" >EditionComplexPlaceholderComponent</a>
                             </li>
                             <li class="link">
@@ -511,9 +520,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/EditionIntroScrollDirective.html" data-type="entity-link" >EditionIntroScrollDirective</a>
                                 </li>
                                 <li class="link">
-                                    <a href="directives/EditionSheetFacetItemLinkDirective.html" data-type="entity-link" >EditionSheetFacetItemLinkDirective</a>
-                                </li>
-                                <li class="link">
                                     <a href="directives/EditionSheetFacetScrollDirective.html" data-type="entity-link" >EditionSheetFacetScrollDirective</a>
                                 </li>
                                 <li class="link">
@@ -791,16 +797,28 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/DynamicViewContexts.html" data-type="entity-link" >DynamicViewContexts</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionComplexAvailability.html" data-type="entity-link" >EditionComplexAvailability</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionComplexesJsonData.html" data-type="entity-link" >EditionComplexesJsonData</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionComplexJsonPart.html" data-type="entity-link" >EditionComplexJsonPart</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionComplexJsonPersonRef.html" data-type="entity-link" >EditionComplexJsonPersonRef</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionComplexPartOf.html" data-type="entity-link" >EditionComplexPartOf</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionComplexRespStatement.html" data-type="entity-link" >EditionComplexRespStatement</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionComplexTitleStatement.html" data-type="entity-link" >EditionComplexTitleStatement</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionComplexWorkEdition.html" data-type="entity-link" >EditionComplexWorkEdition</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionDataAssetsError.html" data-type="entity-link" >EditionDataAssetsError</a>
@@ -815,7 +833,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionOutlineComplexItem.html" data-type="entity-link" >EditionOutlineComplexItem</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionOutlineComplexLookup.html" data-type="entity-link" >EditionOutlineComplexLookup</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionOutlineComplexTypes.html" data-type="entity-link" >EditionOutlineComplexTypes</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionOutlineCompositeComplexItem.html" data-type="entity-link" >EditionOutlineCompositeComplexItem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionOutlineIntroItem.html" data-type="entity-link" >EditionOutlineIntroItem</a>
@@ -915,6 +939,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/FolioSvgSheet.html" data-type="entity-link" >FolioSvgSheet</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgSystem.html" data-type="entity-link" >FolioSvgSystem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/FolioSvgSystems.html" data-type="entity-link" >FolioSvgSystems</a>
@@ -1043,7 +1070,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/RdfStoreConstructResponse.html" data-type="entity-link" >RdfStoreConstructResponse</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RdfStoreGlobal.html" data-type="entity-link" >RdfStoreGlobal</a>
+                                <a href="interfaces/RdfStoreModule.html" data-type="entity-link" >RdfStoreModule</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/RdfStoreNode.html" data-type="entity-link" >RdfStoreNode</a>

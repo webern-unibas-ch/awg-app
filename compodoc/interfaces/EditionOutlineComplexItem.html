@@ -167,7 +167,26 @@ to structure outline information of an edition complex.</p>
             </p>
 
 
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../interfaces/EditionOutlineCompositeComplexItem.html" target="_self" >EditionOutlineCompositeComplexItem</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
             </div>
+        </section>
+    </div>
 
     <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
     <h3 id="index">Index</h3>
@@ -185,6 +204,12 @@ to structure outline information of an edition complex.</p>
                                 </a>
                         </li>
                         <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#compositeComplexes" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">compositeComplexes</span>
+                                </a>
+                        </li>
+                        <li>
                                 <a href="#disabled" class="reference-link ">
                                     <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">disabled</span>
                                 </a>
@@ -196,8 +221,8 @@ to structure outline information of an edition complex.</p>
                         </li>
                         <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#subComplexes" class="reference-link ">
-                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">subComplexes</span>
+                                <a href="#parts" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">parts</span>
                                 </a>
                         </li>
                     </ul>
@@ -251,6 +276,56 @@ to structure outline information of an edition complex.</p>
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>The edition complex.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="compositeComplexes"></a>
+                                <span class="name "><b>compositeComplexes</b>
+                                    <a href="#compositeComplexes">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>compositeComplexes:         <code><a href="../interfaces/EditionOutlineCompositeComplexItem.html" target="_self" >EditionOutlineCompositeComplexItem[]</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="../interfaces/EditionOutlineCompositeComplexItem.html" target="_self" >EditionOutlineCompositeComplexItem[]</a></code>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:183</a></div>
+                                </td>
+                            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The composite edition complexes that contain an edition complex (only if there are any).</p>
 </div>
                         </td>
                     </tr>
@@ -350,9 +425,9 @@ to structure outline information of an edition complex.</p>
                 <tbody>
                         <tr>
                             <td class="col-md-4">
-                                <a name="subComplexes"></a>
-                                <span class="name "><b>subComplexes</b>
-                                    <a href="#subComplexes">
+                                <a name="parts"></a>
+                                <span class="name "><b>parts</b>
+                                    <a href="#parts">
                                         <span class="icon ion-ios-link"></span>
                                     </a>
                                 </span>
@@ -360,7 +435,7 @@ to structure outline information of an edition complex.</p>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <code>subComplexes:         <code><a href="../interfaces/EditionOutlineComplexItem.html" target="_self" >EditionOutlineComplexItem[]</a></code>
+                                <code>parts:         <code><a href="../interfaces/EditionOutlineComplexItem.html" target="_self" >EditionOutlineComplexItem[]</a></code>
 </code>
                             </td>
                         </tr>
@@ -390,7 +465,7 @@ to structure outline information of an edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-description"><p>The sub-complexes of an edition complex.</p>
+                            <div class="io-description"><p>The parts of a composite edition complex in their order (only if there are parts).</p>
 </div>
                         </td>
                     </tr>
@@ -408,7 +483,7 @@ import {
     EditionRouteConstantsKey,
 } from &#x27;@awg-views/edition-view/edition-routes.constants&#x27;;
 
-import { EditionComplex } from &#x27;./edition-complex.model&#x27;;
+import { EditionComplex, EditionComplexPartOf } from &#x27;./edition-complex.model&#x27;;
 
 /**
  * The EditionSectionLink class.
@@ -576,9 +651,56 @@ export interface EditionOutlineComplexItem {
     readonly labeledRoute: LabeledRoute;
 
     /**
-     * The sub-complexes of an edition complex.
+     * The parts of a composite edition complex in their order (only if there are parts).
      */
-    readonly subComplexes?: EditionOutlineComplexItem[];
+    readonly parts?: EditionOutlineComplexItem[];
+
+    /**
+     * The composite edition complexes that contain an edition complex (only if there are any).
+     */
+    readonly compositeComplexes?: EditionOutlineCompositeComplexItem[];
+}
+
+/**
+ * The EditionOutlineCompositeComplexItem interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of a composite edition complex
+ * together with the part number of the edition complex it contains.
+ */
+export interface EditionOutlineCompositeComplexItem extends EditionOutlineComplexItem {
+    /**
+     * The part number of the contained edition complex (starting at 1).
+     */
+    readonly partNumber: number;
+}
+
+/**
+ * The EditionOutlineComplexLookup interface.
+ *
+ * It is used in the context of the edition view
+ * to bundle the complex items and functions that resolve the edition complexes of an edition outline.
+ */
+interface EditionOutlineComplexLookup {
+    /**
+     * The complex items of the outline by the ids used in the outline.
+     */
+    readonly itemsById: Map&lt;string, EditionOutlineComplexItem&gt;;
+
+    /**
+     * The complex items of the outline by the routes of their edition complexes.
+     */
+    readonly itemsByRoute: Map&lt;string, EditionOutlineComplexItem&gt;;
+
+    /**
+     * Function to get the parts of a composite edition complex by id.
+     */
+    readonly getComplexParts: (id: string) &#x3D;&gt; EditionComplex[];
+
+    /**
+     * Function to get the composite edition complexes that contain an edition complex, by id.
+     */
+    readonly getCompositeComplexes: (id: string) &#x3D;&gt; EditionComplexPartOf[];
 }
 
 /**
@@ -714,18 +836,61 @@ export class EditionOutline {
      * It initializes the class with an edition outline Object.
      *
      * @param {EditionOutlineSeriesJsonData[] | null | undefined} outlineData The given edition outline.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {Function} getComplexById Function to get an edition complex by id.
+     * @param {Function} [getComplexParts] Optional function to get the parts of a composite edition complex by id.
+     * @param {Function} [getCompositeComplexes] Optional function to get the composite edition complexes that contain an edition complex, by id.
      */
     constructor(
         outlineData: EditionOutlineSeriesJsonData[] | null | undefined,
-        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
+        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined,
+        getComplexParts: (id: string) &#x3D;&gt; EditionComplex[] &#x3D; () &#x3D;&gt; [],
+        getCompositeComplexes: (id: string) &#x3D;&gt; EditionComplexPartOf[] &#x3D; () &#x3D;&gt; []
     ) {
         if (!outlineData) {
             this.outline &#x3D; [];
             return;
         }
 
-        this.outline &#x3D; outlineData.map(data &#x3D;&gt; this._mapSeries(data, getComplexById));
+        const itemsById &#x3D; this._mapOutlineComplexItems(outlineData, getComplexById);
+        const itemsByRoute &#x3D; new Map([...itemsById.values()].map(item &#x3D;&gt; [item.complex.complexId.route, item]));
+        const lookup: EditionOutlineComplexLookup &#x3D; {
+            itemsById,
+            itemsByRoute,
+            getComplexParts,
+            getCompositeComplexes,
+        };
+
+        this.outline &#x3D; outlineData.map(data &#x3D;&gt; this._mapSeries(data, lookup));
+    }
+
+    /**
+     * Private method: _mapOutlineComplexItems.
+     *
+     * It maps the edition complexes of the given outline to complex items
+     * (without parts and composite complexes), by the ids used in the outline.
+     *
+     * @param {EditionOutlineSeriesJsonData[]} outlineData The given edition outline.
+     * @param {Function} getComplexById Function to get an edition complex by id.
+     * @returns {Map&lt;string, EditionOutlineComplexItem&gt;} The complex items by the ids used in the outline.
+     */
+    private _mapOutlineComplexItems(
+        outlineData: EditionOutlineSeriesJsonData[],
+        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
+    ): Map&lt;string, EditionOutlineComplexItem&gt; {
+        const itemsById &#x3D; new Map&lt;string, EditionOutlineComplexItem&gt;();
+
+        outlineData.forEach(({ sections }) &#x3D;&gt;
+            sections.forEach(({ content }) &#x3D;&gt;
+                [...content.complexTypes.opus, ...content.complexTypes.mnr].forEach(({ complex, disabled }) &#x3D;&gt; {
+                    const fullComplex &#x3D; getComplexById(complex);
+                    if (fullComplex) {
+                        itemsById.set(complex, this._mapComplexItem(fullComplex, disabled));
+                    }
+                })
+            )
+        );
+
+        return itemsById;
     }
 
     /**
@@ -736,18 +901,18 @@ export class EditionOutline {
      * @param {EditionOutlineSeriesJsonData} data The series data to map.
      * @param {string} data.series The given series string.
      * @param {EditionOutlineSectionsJsonData[]} data.sections The given sections data.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
      * @returns {EditionOutlineSeries} The mapped series.
      */
     private readonly _mapSeries &#x3D; (
         { series, sections }: EditionOutlineSeriesJsonData,
-        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
+        lookup: EditionOutlineComplexLookup
     ): EditionOutlineSeries &#x3D;&gt; {
         const seriesConstant: EditionRouteConstant &#x3D;
             EDITION_ROUTE_CONSTANTS[(&#x27;SERIES_&#x27; + series) as EditionRouteConstantsKey];
         return {
             series: seriesConstant,
-            sections: sections.map(section &#x3D;&gt; this._mapSection(section, seriesConstant, getComplexById)),
+            sections: sections.map(section &#x3D;&gt; this._mapSection(section, seriesConstant, lookup)),
         };
     };
 
@@ -760,13 +925,13 @@ export class EditionOutline {
      * @param {string} data.section The given section string.
      * @param {Object} data.complexTypes The given complex types data.
      * @param {boolean} data.disabled The given disabled flag.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
      * @returns {EditionOutlineSection} The mapped section.
      */
     private readonly _mapSection &#x3D; (
         { section, disabled, content }: EditionOutlineSectionsJsonData,
         seriesConstant: EditionRouteConstant,
-        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
+        lookup: EditionOutlineComplexLookup
     ): EditionOutlineSection &#x3D;&gt; {
         const routes &#x3D; EDITION_ROUTE_CONSTANTS;
         const sectionConstant: EditionRouteConstant &#x3D;
@@ -793,7 +958,7 @@ export class EditionOutline {
             seriesParent: seriesConstant,
             section: sectionConstant,
             labeledRoute: labeledSectionRoute,
-            content: this._mapSectionContent(content, labeledIntroRoute, getComplexById),
+            content: this._mapSectionContent(content, labeledIntroRoute, lookup),
             disabled,
         };
     };
@@ -805,16 +970,16 @@ export class EditionOutline {
      *
      * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
      * @param {LabeledRoute} labeledIntroRoute The labeled intro route for the edition section.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
     private readonly _mapSectionContent &#x3D; (
         content: EditionOutlineSectionsContentJsonData,
         labeledIntroRoute: LabeledRoute,
-        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
+        lookup: EditionOutlineComplexLookup
     ): EditionOutlineSectionContent &#x3D;&gt; {
-        const opus &#x3D; this._mapComplexItems(content.complexTypes.opus, getComplexById);
-        const mnr &#x3D; this._mapComplexItems(content.complexTypes.mnr, getComplexById);
+        const opus &#x3D; this._mapComplexItems(content.complexTypes.opus, lookup);
+        const mnr &#x3D; this._mapComplexItems(content.complexTypes.mnr, lookup);
         const sectionComplexes &#x3D; [...opus, ...mnr];
 
         return {
@@ -834,36 +999,73 @@ export class EditionOutline {
     /**
      * Private readonly method: _mapComplexItems.
      *
-     * It maps the complex items.
+     * It maps the complex items, together with their parts and composite complexes.
      *
-     * @param {EditionOutlineComplexItem[]} complexItems The complex items to map.
-     * @param {Function} getComplexById Optional function to get an edition complex by id.
+     * @param {{ complex: string; disabled: boolean }[]} complexItems The complex items to map.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
      * @returns {EditionOutlineComplexItem[]} The mapped complex items.
      */
     private readonly _mapComplexItems &#x3D; (
         complexItems: { complex: string; disabled: boolean }[],
-        getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
+        lookup: EditionOutlineComplexLookup
     ): EditionOutlineComplexItem[] &#x3D;&gt;
-        complexItems
-            .map(({ complex, disabled }) &#x3D;&gt; {
-                const fullComplex &#x3D; getComplexById(complex);
+        complexItems.flatMap(({ complex }) &#x3D;&gt; {
+            const item &#x3D; lookup.itemsById.get(complex);
 
-                if (!fullComplex) {
-                    return null;
-                }
+            if (!item) {
+                return [];
+            }
 
-                const labeledRoute: LabeledRoute &#x3D; {
-                    label: fullComplex.complexId?.full,
-                    route: [fullComplex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
-                };
+            const parts &#x3D; lookup.getComplexParts(complex).map(part &#x3D;&gt; this._getComplexItem(part, lookup));
+            const compositeComplexes &#x3D; lookup
+                .getCompositeComplexes(complex)
+                .map(({ compositeComplex, partNumber }) &#x3D;&gt; ({
+                    ...this._getComplexItem(compositeComplex, lookup),
+                    partNumber,
+                }));
 
-                return {
-                    complex: fullComplex,
-                    labeledRoute,
-                    disabled,
-                };
-            })
-            .filter((item): item is EditionOutlineComplexItem &#x3D;&gt; item !&#x3D;&#x3D; null);
+            return [
+                {
+                    ...item,
+                    ...(parts.length ? { parts } : {}),
+                    ...(compositeComplexes.length ? { compositeComplexes } : {}),
+                },
+            ];
+        });
+
+    /**
+     * Private readonly method: _getComplexItem.
+     *
+     * It returns the complex item of an edition complex from the outline.
+     * Complexes missing from the outline are mapped as disabled.
+     *
+     * @param {EditionComplex} complex The edition complex.
+     * @param {EditionOutlineComplexLookup} lookup The complex items and functions to resolve the edition complexes.
+     * @returns {EditionOutlineComplexItem} The complex item.
+     */
+    private readonly _getComplexItem &#x3D; (
+        complex: EditionComplex,
+        lookup: EditionOutlineComplexLookup
+    ): EditionOutlineComplexItem &#x3D;&gt;
+        lookup.itemsByRoute.get(complex.complexId.route) ?? this._mapComplexItem(complex, true);
+
+    /**
+     * Private readonly method: _mapComplexItem.
+     *
+     * It maps an edition complex to a complex item.
+     *
+     * @param {EditionComplex} complex The edition complex to map.
+     * @param {boolean} disabled The disabled flag of the edition complex.
+     * @returns {EditionOutlineComplexItem} The mapped complex item.
+     */
+    private readonly _mapComplexItem &#x3D; (complex: EditionComplex, disabled: boolean): EditionOutlineComplexItem &#x3D;&gt; ({
+        complex,
+        labeledRoute: {
+            label: complex.complexId?.full,
+            route: [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
+        },
+        disabled,
+    });
 }
 </code></pre>
     </div>

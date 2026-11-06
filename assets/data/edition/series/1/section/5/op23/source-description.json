@@ -11,7 +11,7 @@
                     "17 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 26<sup>v</sup>–31<sup>r</sup> (S. <em>51</em>–<em>60</em>), Bl. 32<sup>r</sup> (S. <em>62</em>) und Bl. 33<sup>v</sup>–36<sup>r</sup> (S. <em>65</em>–<em>70</em>)."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, quer 270 × 335 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>No. 15 | 16 linig.</em> recto auf Bl. 26–36 unten links (Bl. 26–36)"
+                    "Notenpapier, 16 Systeme, Format: quer 270 × 335 mm, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>No. 15 | 16 linig.</em> recto auf Bl. 26–36 unten links (Bl. 26–36)"
                 ],
                 "writingMaterials": [
                     {
@@ -22,7 +22,7 @@
                             "additionalInfo": ""
                         },
                         "dimensions": {
-                            "orientation": "hoch",
+                            "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
                                 "value": "270"
@@ -132,14 +132,14 @@
                                     [
                                         {
                                             "system": "1–5a",
-                                            "measure": "8C, {9A, 9B, 10A‒12A}",
+                                            "measure": "8C, {9A, 9B, 10A–12A}",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5b–10b",
-                                            "measure": "{13A‒17A}",
+                                            "measure": "{13A–17A}",
                                             "linkTo": ""
                                         }
                                     ]
@@ -153,28 +153,28 @@
                                     [
                                         {
                                             "system": "1–5",
-                                            "measure": "9C‒12B",
+                                            "measure": "9C–12B",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6–9",
-                                            "measure": "13B‒15B",
+                                            "measure": "13B–15B",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–16d",
-                                            "measure": "16B‒17B, {18A‒19A}",
+                                            "measure": "16B–17B, {18A–19A}",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14a–16b",
-                                            "measure": "{20A‒21A}",
+                                            "measure": "{20A–21A}",
                                             "linkTo": ""
                                         }
                                     ]
@@ -188,14 +188,14 @@
                                     [
                                         {
                                             "system": "1–8b",
-                                            "measure": "18B‒21B",
+                                            "measure": "18B–21B",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6a–8a",
-                                            "measure": "21C‒22A",
+                                            "measure": "21C–22A",
                                             "linkTo": ""
                                         }
                                     ],
@@ -209,7 +209,7 @@
                                     [
                                         {
                                             "system": "13–16",
-                                            "measure": "23B‒27A",
+                                            "measure": "23B–27A",
                                             "linkTo": ""
                                         }
                                     ]
@@ -223,7 +223,7 @@
                                     [
                                         {
                                             "system": "6–14b",
-                                            "measure": "24B‒25B, {26B‒27B}",
+                                            "measure": "24B–25B, {26B–27B}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -237,14 +237,14 @@
                                     [
                                         {
                                             "system": "12a–16a",
-                                            "measure": "27C‒28A",
+                                            "measure": "27C–28A",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "1–5a",
-                                            "measure": "28B‒30",
+                                            "measure": "28B–30",
                                             "linkTo": ""
                                         }
                                     ]
@@ -911,7 +911,7 @@
                                     [
                                         {
                                             "system": "11a–16",
-                                            "measure": "1‒3, {4A‒7A}",
+                                            "measure": "1–3, {4A–7A}",
                                             "linkTo": ""
                                         }
                                     ]
@@ -939,21 +939,21 @@
                                     [
                                         {
                                             "system": "1–4",
-                                            "measure": "8B‒11",
+                                            "measure": "8B–11",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5–8",
-                                            "measure": "12‒{17A}",
+                                            "measure": "12–{17A}",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "9–12",
-                                            "measure": "{18A‒23A}",
+                                            "measure": "{18A–23A}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -967,14 +967,14 @@
                                     [
                                         {
                                             "system": "13a",
-                                            "measure": "25A‒31A",
+                                            "measure": "25A–31A",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13b–16b",
-                                            "measure": "23B‒24B",
+                                            "measure": "23B–24B",
                                             "linkTo": ""
                                         }
                                     ]
@@ -988,7 +988,7 @@
                                     [
                                         {
                                             "system": "1–5",
-                                            "measure": "25B‒31B",
+                                            "measure": "25B–31B",
                                             "linkTo": ""
                                         }
                                     ],
@@ -1148,7 +1148,7 @@
                                     [
                                         {
                                             "system": "6–9",
-                                            "measure": "{1A, 1B, 1C‒2A, 1D}, 1, {2B}",
+                                            "measure": "{1A, 1B, 1C–2A, 1D}, 1, {2B}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -1169,7 +1169,7 @@
                                     [
                                         {
                                             "system": "1–6b",
-                                            "measure": "{7A‒11A}",
+                                            "measure": "{7A–11A}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -1183,7 +1183,7 @@
                                     [
                                         {
                                             "system": "12–15",
-                                            "measure": "{12A, 12B, 13A‒15A, 12C}",
+                                            "measure": "{12A, 12B, 13A–15A, 12C}",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1197,7 +1197,7 @@
                                     [
                                         {
                                             "system": "1–5",
-                                            "measure": "{12D, 13B‒15B, 16A‒17A}",
+                                            "measure": "{12D, 13B–15B, 16A–17A}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -1211,21 +1211,21 @@
                                     [
                                         {
                                             "system": "9–12",
-                                            "measure": "{23A‒24A}, {13C‒15C}",
+                                            "measure": "{23A–24A}, {13C–15C}",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13–16b",
-                                            "measure": "{13D‒15D}",
+                                            "measure": "{13D–15D}",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14a–16a",
-                                            "measure": "{16B‒17B}",
+                                            "measure": "{16B–17B}",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1239,7 +1239,7 @@
                                     [
                                         {
                                             "system": "1–6b",
-                                            "measure": "12E‒15E, 16C",
+                                            "measure": "12E–15E, 16C",
                                             "linkTo": ""
                                         }
                                     ],
@@ -1253,7 +1253,7 @@
                                     [
                                         {
                                             "system": "11a–14a",
-                                            "measure": "22B‒24B, {25B‒27B}",
+                                            "measure": "22B–24B, {25B–27B}",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1267,14 +1267,14 @@
                                     [
                                         {
                                             "system": "1–8b",
-                                            "measure": "25‒29, {30A‒31A}",
+                                            "measure": "25–29, {30A–31A}",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5a–8a",
-                                            "measure": "{32A‒36A}",
+                                            "measure": "{32A–36A}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -1288,7 +1288,7 @@
                                     [
                                         {
                                             "system": "9–14b",
-                                            "measure": "31B‒37B",
+                                            "measure": "31B–37B",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1302,21 +1302,21 @@
                                     [
                                         {
                                             "system": "1–5a",
-                                            "measure": "{38A‒39A}, 40A‒41A, 42‒44",
+                                            "measure": "{38A–39A}, 40A–41A, 42–44",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5b–8",
-                                            "measure": "41B, {38B‒39B}, 38C‒39C, {40B‒41C}",
+                                            "measure": "41B, {38B–39B}, 38C–39C, {40B–41C}",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–15",
-                                            "measure": "45‒50",
+                                            "measure": "45–50",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1421,14 +1421,14 @@
                                     [
                                         {
                                             "system": "13b–15",
-                                            "measure": "38‒45",
+                                            "measure": "38–45",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16",
-                                            "measure": "46‒49",
+                                            "measure": "46–49",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1602,7 +1602,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23.",
+            "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23:<br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span><br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span><br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>.<br />Stichvorlage für <a data-complex-id='op23' data-report-fragment-id='source_D'><strong>D</strong></a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.G389 / 115908.",
             "physDesc": {
                 "conditions": [
@@ -1648,7 +1648,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "blauer und roter Buntstift", "violetter Stempelabdruck"]
+                    "secondary": ["Bleistift", "blauer Buntstift", "roter Buntstift", "violetter Stempelabdruck"]
                 },
                 "titles": [
                     "<em>Anton Webern |</em> <sup>?</sup><em><s>Drei</s></em><sup>?</sup> <em>Drei Gesänge | op. 23 | aus | Viae inviae | von | Hildegard Jone</em> auf Bl. 1<sup>r</sup> System 3–10 Mitte, <sup>?</sup><em><s>Drei</s></em><sup>?</sup> rasiert",
@@ -2162,7 +2162,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23.",
+            "type": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23:<br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span><br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span><br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>.",
             "location": "Wien: Universal Edition, 1936.",
             "physDesc": {
                 "conditions": [

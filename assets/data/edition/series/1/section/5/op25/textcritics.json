@@ -1135,7 +1135,7 @@
             "id": "M317_Sk3_1",
             "label": "M 317 Sk3.1",
             "evaluations": [
-                "<strong>Sk3.1</strong> führt den Anfang von <a data-complex-id='op25' data-sheet-id='M317_Sk3'><strong>Sk3</strong></a> ab dem Auftakt zu T. 3 in Varianten weiter bis T. {{ '{' }}6{{ '}' }}."
+                "<strong>Sk3.1</strong> führt den Anfang von <a data-complex-id='op25' data-sheet-id='M317_Sk3'><strong>Sk3</strong></a> ab dem Auftakt zu T. 3 in Varianten weiter bis T. {6}."
             ],
             "commentary": {
                 "preamble": "",
@@ -1596,7 +1596,7 @@
             "id": "M317_Sk4",
             "label": "M 317 Sk4",
             "evaluations": [
-                "<strong>Sk4</strong> ist eine vollständige Verlaufsskizze des Liedes „Wie bin ich froh!“ M 317. Die Verlaufsskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <a data-complex-id='op25' data-sheet-id='M317_TF1'>Textfassung 1</a> und <span class='link-todo'>Textfassung 2</span> nicht zwölf, sondern 15 gültige Takte.",
+                "<strong>Sk4</strong> ist eine vollständige Verlaufsskizze des Liedes „Wie bin ich froh!“ M 317. Die Verlaufsskizze erstreckt sich über vier Akkoladen (T. {1A}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <a data-complex-id='op25' data-sheet-id='M317_TF1'>Textfassung 1</a> und <span class='link-todo'>Textfassung 2</span> nicht zwölf, sondern 15 gültige Takte.",
                 "Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<a data-complex-id='op25' data-sheet-id='M317_Sk4b'><strong>Sk4</strong> T. 3B–6</a>): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufsskizze zu M 316 (op. 24/I) auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im selben <strong>Skizzenbuch</strong>.",
                 "(Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufsskizze zu M 316 fungieren [<a data-complex-id='op25' data-sheet-id='M317_Sk1'><strong>Sk1</strong></a> bis <a data-complex-id='op25' data-sheet-id='M317_Sk3_1_2'><strong>Sk3.1.2</strong></a>].)",
                 "<strong>Sk4</strong> ist laut der nach <a data-complex-id='op25' data-sheet-id='M317_Sk4d'>T. 15</a> folgenden Datierung am 16. Juli 1934 beendet worden.",
@@ -2123,8 +2123,8 @@
             "id": "M317_Sk4_1",
             "label": "M 317 Sk4.1",
             "evaluations": [
-                "<strong>Sk4.1</strong> formuliert eine rhythmisch-metrische Variante von <a data-complex-id='op25' data-sheet-id='M317_Sk4a'><strong>Sk4</strong></a> T. 2–3A. Der dort im Klavier offen gelassene Takt 3A wird in <strong>Sk4.1</strong> ansatzweise gefüllt, aber dann insgesamt gestrichen (T. {{ '{' }}3{{ '}' }}): möglicherweise auch auf Grund des in skripturaler Hinsicht engen Raumes. Der Takt wird in <a data-complex-id='op25' data-sheet-id='M317_Sk4b'><strong>Sk4</strong></a> T. 3B weiter ausgearbeitet.",
-                "Vor der Niederschrift von <strong>Sk4.1</strong> war die Seite am linken Rand von System 14–16 mit einer Akkoladenklammer beschriftet, die offensichtlich einer Präparierung der Fortsetzung von <a data-complex-id='op25' data-sheet-id='M317_Sk4a'><strong>Sk4</strong></a> nach T. {{ '{' }}1A{{ '}' }}–3A dient. Nach der Niederschrift von <strong>Sk4.1</strong> erfolgt die Fortsetzung von <a data-complex-id='op25' data-sheet-id='M317_Sk4a'><strong>Sk4</strong></a> jedoch auf Bl. 39<sup>r</sup> (<a data-complex-id='op25' data-sheet-id='M317_Sk4b'><strong>Sk4</strong> T. 3B–6</a>)."
+                "<strong>Sk4.1</strong> formuliert eine rhythmisch-metrische Variante von <a data-complex-id='op25' data-sheet-id='M317_Sk4a'><strong>Sk4</strong></a> T. 2–3A. Der dort im Klavier offen gelassene Takt 3A wird in <strong>Sk4.1</strong> ansatzweise gefüllt, aber dann insgesamt gestrichen (T. {3}): möglicherweise auch auf Grund des in skripturaler Hinsicht engen Raumes. Der Takt wird in <a data-complex-id='op25' data-sheet-id='M317_Sk4b'><strong>Sk4</strong></a> T. 3B weiter ausgearbeitet.",
+                "Vor der Niederschrift von <strong>Sk4.1</strong> war die Seite am linken Rand von System 14–16 mit einer Akkoladenklammer beschriftet, die offensichtlich einer Präparierung der Fortsetzung von <a data-complex-id='op25' data-sheet-id='M317_Sk4a'><strong>Sk4</strong></a> nach T. {1A}–3A dient. Nach der Niederschrift von <strong>Sk4.1</strong> erfolgt die Fortsetzung von <a data-complex-id='op25' data-sheet-id='M317_Sk4a'><strong>Sk4</strong></a> jedoch auf Bl. 39<sup>r</sup> (<a data-complex-id='op25' data-sheet-id='M317_Sk4b'><strong>Sk4</strong> T. 3B–6</a>)."
             ],
             "commentary": {
                 "preamble": "",

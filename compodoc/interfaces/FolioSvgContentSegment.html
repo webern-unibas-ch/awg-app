@@ -263,7 +263,7 @@ to store the svg data for a content segment of a folio.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:198</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:211</a></div>
                                 </td>
                             </tr>
 
@@ -308,7 +308,7 @@ to store the svg data for a content segment of a folio.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:191</a></div>
                                 </td>
                             </tr>
 
@@ -353,7 +353,7 @@ to store the svg data for a content segment of a folio.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:183</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:196</a></div>
                                 </td>
                             </tr>
 
@@ -398,7 +398,7 @@ to store the svg data for a content segment of a folio.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:168</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:181</a></div>
                                 </td>
                             </tr>
 
@@ -444,7 +444,7 @@ if the content segment cannot be selected.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:188</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:201</a></div>
                                 </td>
                             </tr>
 
@@ -489,7 +489,7 @@ if the content segment cannot be selected.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:173</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:186</a></div>
                                 </td>
                             </tr>
 
@@ -534,7 +534,7 @@ if the content segment cannot be selected.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:175</a></div>
                                 </td>
                             </tr>
 
@@ -579,7 +579,7 @@ if the content segment cannot be selected.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:193</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:206</a></div>
                                 </td>
                             </tr>
 
@@ -719,6 +719,25 @@ export interface FolioSvgSheet {
 }
 
 /**
+ * The FolioSvgSystem interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the svg data for a single system of a folio.
+ */
+export interface FolioSvgSystem {
+    /**
+     * The position of the system label (right end of its baseline,
+     * so that the digits are vertically centered at the middle line of the system).
+     */
+    readonly labelPosition: FolioSvgPoint;
+
+    /**
+     * The staff lines of the system.
+     */
+    readonly lines: FolioSvgLine[];
+}
+
+/**
  * The FolioSvgSystems interface.
  *
  * It is used in the context of the edition folio convolutes
@@ -731,15 +750,9 @@ export interface FolioSvgSystems {
     readonly labelFontSize: number;
 
     /**
-     * The positions of the system labels (right end of their baseline,
-     * so that the digits are vertically centered at the middle line of each system).
+     * The systems of the folio (from top to bottom).
      */
-    readonly labelPositions: FolioSvgPoint[];
-
-    /**
-     * The lines of the systems (per system an array of its staff lines).
-     */
-    readonly lines: FolioSvgLine[][];
+    readonly items: FolioSvgSystem[];
 
     /**
      * The boolean flag if the systems are reversed.

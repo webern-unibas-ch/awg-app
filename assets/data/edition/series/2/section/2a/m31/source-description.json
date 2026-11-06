@@ -4,14 +4,14 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 31.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 30 und M* 403.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
                     "2 Blätter (Bl. 1–2). Schnittspuren am rechten Rand von Bl. 1: von Bogen abgeschnitten. Riss unten Mitte sowie Ecke oben links abgetrennt auf Bl. 1. Rissspuren am rechten Rand von Bl. 2: von Bogen abgetrennt. Kleiner Risse am linken Rand von Bl. 2."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
+                    "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: ##[JE]## | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
                 ],
                 "writingMaterials": [
                     {
@@ -233,7 +233,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "7–9",
+                                            "system": "7–8",
                                             "measure": "{11A–16A}",
                                             "linkTo": "M30_Sk1c"
                                         }
@@ -488,7 +488,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 31.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 30 sowie Skizzen zu Studienkomposition für Klavier M* 402.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": ["1 Blatt (Bl. 1). Schnittspuren am rechten Rand: von Bogen abgeschnitten."],

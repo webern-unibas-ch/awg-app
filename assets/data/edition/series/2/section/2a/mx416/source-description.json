@@ -8,7 +8,7 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
-                    "1 Blatt (Bl. 1) Linke obere Ecke mit Bleistift eingefärbt. Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte."
+                    "1 Blatt (Bl. 1). Linke obere Ecke mit Bleistift eingefärbt. Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> unten links auf Bl. 1<sup>v</sup>"
@@ -30,7 +30,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk29"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XX)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. XX)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -216,7 +216,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_Sk28"
                         },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XIX)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier/Streichquartett M 22: Var. XIX)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -363,7 +363,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 416.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22, Studienkomposition für Klavier M 23 Textfassung 1, M* 409 Textfassung 1→2 und 2, M* 410, M* 412–415, Studienkompositionen M* 420–422 sowie Skizzen zu Studienkompositionen für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 416.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22, Studienkomposition für Klavier M 23 Textfassung 1, M* 409 Textfassung 1→2 und 2, M* 410, M* 412–415, Studienkompositionen M* 420–422 sowie Skizzen zu Studienkomposition für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -489,7 +489,7 @@
                             "complexId": "m22",
                             "sheetId": "M22_TF1"
                         },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 22)",
                         "folios": [
                             {
                                 "folio": "1r",

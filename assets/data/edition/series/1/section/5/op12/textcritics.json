@@ -1021,7 +1021,7 @@
                                 "measure": "{18A–20A}",
                                 "system": "",
                                 "position": "",
-                                "comment": "Durch Verweiszeichen vor T. {{ '{' }}18A{{ '}' }} (zu T. 18B) und pauschale Streichung in T. {{ '{' }}18A{{ '}' }} getilgt."
+                                "comment": "Durch Verweiszeichen vor T. {18A} (zu T. 18B) und pauschale Streichung in T. {18A} getilgt."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_sk1-008",
@@ -1719,7 +1719,7 @@
                                 "measure": "{13A–14A}",
                                 "system": "",
                                 "position": "",
-                                "comment": "Zunächst T. {{'{'}}14A{{'}'}} 2–3/4 zwei Viertelnoten fis<sup>1</sup> durch Einkreisung getilgt. Dann T. {{'{'}}13A–14A{{'}'}} pauschal durch Einkreisung getilgt."
+                                "comment": "Zunächst T. {14A} 2–3/4 zwei Viertelnoten fis<sup>1</sup> durch Einkreisung getilgt. Dann T. {13A–14A} pauschal durch Einkreisung getilgt."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m216_sk1-013",
@@ -1912,7 +1912,7 @@
                                 "measure": "{20A–23A}",
                                 "system": "",
                                 "position": "",
-                                "comment": "Durch <em>vi-de</em>-Vermerk und Klammer rechts nach T. {{'{'}}23A{{'}'}} getilgt."
+                                "comment": "Durch <em>vi-de</em>-Vermerk und Klammer rechts nach T. {23A} getilgt."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m217_sk1-015",

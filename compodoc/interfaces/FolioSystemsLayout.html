@@ -244,7 +244,7 @@ the horizontal dimensions of the systems area and the gap between two systems
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:199</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:192</a></div>
                                 </td>
                             </tr>
 
@@ -289,7 +289,7 @@ the horizontal dimensions of the systems area and the gap between two systems
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:189</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:182</a></div>
                                 </td>
                             </tr>
 
@@ -334,7 +334,7 @@ the horizontal dimensions of the systems area and the gap between two systems
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:177</a></div>
                                 </td>
                             </tr>
 
@@ -379,7 +379,7 @@ the horizontal dimensions of the systems area and the gap between two systems
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:187</a></div>
                                 </td>
                             </tr>
 
@@ -556,13 +556,6 @@ const CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET &#x3D; 5;
 const CONTENT_SEGMENT_MAX_GAP_SHARE &#x3D; 0.3;
 
 /**
- * Type: ValidFolioContent.
- *
- * A folio content with its segments (checked by {@link isValidFolioContent}).
- */
-type ValidFolioContent &#x3D; FolioContent &amp; { segments: FolioSegment[] };
-
-/**
  * Interface: FolioSystemsLayout.
  *
  * The calculated systems of a folio together with
@@ -592,6 +585,13 @@ interface FolioSystemsLayout {
 }
 
 /**
+ * Type: ValidFolioContent.
+ *
+ * It describes a folio content that can be calculated (see {@link isValidFolioContent}).
+ */
+type ValidFolioContent &#x3D; FolioContent &amp; { segments: [FolioSegment] };
+
+/**
  * Method: isValidFolioContent.
  *
  * It checks if a given folio content can be calculated:
@@ -607,7 +607,7 @@ function isValidFolioContent(content: FolioContent, numberOfSystems: number): co
         console.error(&#x27;[FolioCalculation] Content needs exactly one segment&#x27;, content);
         return false;
     }
-    if (content.segments.length &gt; (content.segmentSplit ?? 1)) {
+    if (content.segments.length &gt; content.segmentSplit) {
         console.error(&#x27;[FolioCalculation] Segments array is bigger than segmentSplit&#x27;, content);
         return false;
     }
@@ -721,14 +721,13 @@ function calculateSystems(
     const isLineSpaceLimited &#x3D; SYSTEM_LINE_SPACE_FACTOR * factor &gt; maxLineSpace;
     const staffHeight &#x3D;
         (isLineSpaceLimited ? maxLineSpace : SYSTEM_LINE_SPACE_FACTOR * factor) * (SYSTEM_NUMBER_OF_LINES - 1);
-    const yArray &#x3D; Array.from({ length: numberOfSystems }, (_, systemIndex) &#x3D;&gt; {
-        const yStart &#x3D; NUMBER_UTILS.roundToDecimals(startY + systemIndex * spacePerSystem, 2);
-        return Array.from({ length: SYSTEM_NUMBER_OF_LINES }, (__, lineIndex) &#x3D;&gt;
-            isLineSpaceLimited
-                ? NUMBER_UTILS.roundToDecimals(yStart + lineIndex * maxLineSpace, 2)
-                : yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor
-        );
-    });
+    const toLineY &#x3D; (yStart: number, lineIndex: number): number &#x3D;&gt;
+        isLineSpaceLimited
+            ? NUMBER_UTILS.roundToDecimals(yStart + lineIndex * maxLineSpace, 2)
+            : yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor;
+    const yStarts &#x3D; Array.from({ length: numberOfSystems }, (_, systemIndex) &#x3D;&gt;
+        NUMBER_UTILS.roundToDecimals(startY + systemIndex * spacePerSystem, 2)
+    );
 
     // System labels: font size limited by the space per system, right-aligned before the systems,
     // With their digits vertically centered at the middle line
@@ -743,13 +742,16 @@ function calculateSystems(
     return {
         systems: {
             labelFontSize,
-            labelPositions: yArray.map(lineArray &#x3D;&gt; ({
-                x: labelX,
-                y: NUMBER_UTILS.roundToDecimals(lineArray[middleLineIndex] + labelBaselineOffset, 2),
+            items: yStarts.map(yStart &#x3D;&gt; ({
+                labelPosition: {
+                    x: labelX,
+                    y: NUMBER_UTILS.roundToDecimals(toLineY(yStart, middleLineIndex) + labelBaselineOffset, 2),
+                },
+                lines: Array.from({ length: SYSTEM_NUMBER_OF_LINES }, (_, lineIndex): FolioSvgLine &#x3D;&gt; {
+                    const y &#x3D; toLineY(yStart, lineIndex);
+                    return { start: { x: startX, y }, end: { x: endX, y } };
+                }),
             })),
-            lines: yArray.map(lineArray &#x3D;&gt;
-                lineArray.map((y): FolioSvgLine &#x3D;&gt; ({ start: { x: startX, y }, end: { x: endX, y } }))
-            ),
             reversed: folio.reversed ?? false,
         },
         startX,
@@ -778,7 +780,7 @@ function calculateContentSegmentX(
     isStart: boolean
 ): number {
     const width &#x3D; NUMBER_UTILS.roundToDecimals(systemsWidth / segmentSplit, 2);
-    const splitIndex &#x3D; segment.position &amp;&amp; segment.position &lt;&#x3D; segmentSplit ? segment.position - 1 : 0;
+    const splitIndex &#x3D; segment.position &lt;&#x3D; segmentSplit ? segment.position - 1 : 0;
 
     const xValue &#x3D; startX + splitIndex * width + offsetCorrection / 2;
     const correction &#x3D; isStart ? 0 : width - offsetCorrection;
@@ -799,7 +801,7 @@ function calculateContentSegmentX(
  */
 function calculateContentSegmentY(
     segment: FolioSegment,
-    { lines, reversed }: FolioSvgSystems,
+    { items, reversed }: FolioSvgSystems,
     verticalPadding: number,
     isStart: boolean
 ): number {
@@ -807,9 +809,9 @@ function calculateContentSegmentY(
     let systemIndex &#x3D; systemNumber - 1;
     // Reverse order of the system index if the systems are reversed
     if (reversed) {
-        systemIndex &#x3D; lines.length - 1 - systemIndex;
+        systemIndex &#x3D; items.length - 1 - systemIndex;
     }
-    const systemLines &#x3D; lines[systemIndex];
+    const systemLines &#x3D; items[systemIndex]?.lines;
     const systemLine &#x3D; isStart ? systemLines?.at(0) : systemLines?.at(-1);
 
     if (!systemLine) {
@@ -846,13 +848,21 @@ function calculateContentSegment(
     folioSystemsLayout: FolioSystemsLayout,
     segmentOffsetCorrection: number
 ): FolioSvgContentSegment {
-    const { complexId, sheetId, selectable &#x3D; true, reversed &#x3D; false, linkTo &#x3D; &#x27;&#x27;, sigle, sigleAddendum } &#x3D; content;
+    const {
+        complexId,
+        sheetId,
+        selectable &#x3D; true,
+        reversed &#x3D; false,
+        linkTo &#x3D; &#x27;&#x27;,
+        sigle,
+        sigleAddendum,
+        segmentSplit,
+        segments: [segment],
+    } &#x3D; content;
     const { systems } &#x3D; folioSystemsLayout;
 
     // Dynamically adjust the offset correction based on the number of systems (reference: 18 systems)
-    const offsetCorrection &#x3D; segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.lines.length);
-    const segmentSplit &#x3D; content.segmentSplit ?? 1;
-    const segment &#x3D; content.segments[0];
+    const offsetCorrection &#x3D; segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.items.length);
 
     const startX &#x3D; calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, true);
     const endX &#x3D; calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, false);
@@ -907,7 +917,7 @@ export function calculateFolioSvgData(
 
     const sheet &#x3D; calculateSheet(folioSettings, folio);
     const folioSystemsLayout &#x3D; calculateSystems(folioSettings, sheet, folio);
-    const numberOfSystems &#x3D; folioSystemsLayout.systems.lines.length;
+    const numberOfSystems &#x3D; folioSystemsLayout.systems.items.length;
 
     return {
         viewBox: new ViewBox((formatX + 2 * initialOffsetX) * factor, (formatY + 2 * initialOffsetY) * factor),

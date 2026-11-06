@@ -1442,7 +1442,7 @@
                     "1 Bogen (Bl. 1/2). Zweifache horizontale Knickfalte (auf halber und viertel Höhe). Stockflecken und rötliche Verfärbung in der Ecke oben rechts."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier (auf dem Kopf stehend), 22 Systeme, Format: hoch 345 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
+                    "Notenpapier (auf dem Kopf stehend), 22 Systeme, Format: hoch 345 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 7 | 22 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -1714,7 +1714,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "3b–2a",
+                                            "system": "3b–2a (Bleistift)",
                                             "measure": "39–41A",
                                             "linkTo": "M113_Sk5a"
                                         }
@@ -1966,7 +1966,7 @@
                                             "measure": "{16–17}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte {{'{'}}16–17{{'}'}} unvollständig und ersetzt durch T. 16–17: <br />##Abbildung##"
+                                            "comment": "Takte {16–17} unvollständig und ersetzt durch T. 16–17: <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m113_tf1_C_corr_1-012",
@@ -2120,7 +2120,7 @@
                                             "measure": "53",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {{'{'}}51–52{{'}'}} und <a data-complex-id='m113' data-report-fragment-id='source_C_corr_2'>Korrekturen 2</a>)."
+                                            "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {51–52} und <a data-complex-id='m113' data-report-fragment-id='source_C_corr_2'>Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m113_tf1_C_corr_1-034",

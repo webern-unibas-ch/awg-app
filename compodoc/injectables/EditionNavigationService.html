@@ -208,7 +208,15 @@
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
-                                <a href="#_navigateWithComplexId" >_navigateWithComplexId</a>
+                                <a href="#_getComplexRoute" >_getComplexRoute</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#getReportFragmentRoute" >getReportFragmentRoute</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#getSvgSheetRoute" >getSvgSheetRoute</a>
                             </li>
                             <li>
                                 <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
@@ -244,34 +252,36 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_navigateWithComplexId"></a>
+                    <a name="_getComplexRoute"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_navigateWithComplexId</b></span>
-                        <a href="#_navigateWithComplexId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_getComplexRoute</b></span>
+                        <a href="#_getComplexRoute"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_navigateWithComplexId(complexId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, targetRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, navigationExtras: <a href="https://angular.dev/api/router/NavigationExtras" target="_blank">NavigationExtras</a>)</code>
+                    <code>_getComplexRoute(complexId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, targetRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, urlCreationOptions: <a href="https://angular.dev/api/router/UrlCreationOptions" target="_blank">UrlCreationOptions</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="98"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:98</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="121"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:121</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _navigateWithComplexId.</p>
-<p>It navigates to a target route using the provided complexId.</p>
+                        <div class="io-description"><p>Private method: _getComplexRoute.</p>
+<p>It returns a target route within the edition complex of the provided complexId,
+or of the selected edition complex if no complexId is given
+(the series overview if no complex is selected).</p>
 </div>
 
                             <div class="io-description">
@@ -320,9 +330,9 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>navigationExtras</td>
+                                                <td>urlCreationOptions</td>
                                             <td>
-                                                            <code><a href="https://angular.dev/api/router/NavigationExtras" target="_blank" >NavigationExtras</a></code>
+                                                            <code><a href="https://angular.dev/api/router/UrlCreationOptions" target="_blank" >UrlCreationOptions</a></code>
                                             </td>
 
                                             <td>
@@ -331,7 +341,7 @@
 
 
                                             <td>
-                                                    <p>The given navigation extras.</p>
+                                                    <p>The given url creation options.</p>
 
                                             </td>
                                         </tr>
@@ -339,11 +349,164 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="https://angular.dev/api/router/UrlTree" target="_blank" >UrlTree</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>Navigates to the target route.</p>
+                                <p>The target route.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReportFragmentRoute"></a>
+                    <span class="name">
+                        <span ><b>getReportFragmentRoute</b></span>
+                        <a href="#getReportFragmentRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getReportFragmentRoute(reportTarget: <a href="../interfaces/EditionNavigationFragmentTarget.html" target="_self">EditionNavigationFragmentTarget</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getReportFragmentRoute.</p>
+<p>It returns the &#39;/report/&#39; route with the given complexId and fragmentId.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>reportTarget</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionNavigationFragmentTarget.html" target="_self" >EditionNavigationFragmentTarget</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given report fragment navigation target.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://angular.dev/api/router/UrlTree" target="_blank" >UrlTree</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The route to the edition report fragment.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSvgSheetRoute"></a>
+                    <span class="name">
+                        <span ><b>getSvgSheetRoute</b></span>
+                        <a href="#getSvgSheetRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSvgSheetRoute(sheetTarget: <a href="../interfaces/EditionNavigationSheetTarget.html" target="_self">EditionNavigationSheetTarget</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getSvgSheetRoute.</p>
+<p>It returns the &#39;/sheets/&#39; route with the provided sheetId
+within the context of an edition complex identified by the provided complexId.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheetTarget</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionNavigationSheetTarget.html" target="_self" >EditionNavigationSheetTarget</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given sheet navigation target.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://angular.dev/api/router/UrlTree" target="_blank" >UrlTree</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The route to the edition sheet.</p>
 
                             </div>
                 </td>
@@ -370,8 +533,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -379,7 +542,7 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: navigateToIntroFragment.</p>
-<p>It navigates to the &#39;/intro/&#39; route with the given complexId and fragmentId.</p>
+<p>It navigates to the given fragmentId on the current page.</p>
 </div>
 
                             <div class="io-description">
@@ -446,8 +609,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -455,7 +618,7 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: navigateToReportFragment.</p>
-<p>It navigates to the &#39;/report/&#39; route with the given complexId and fragmentId.</p>
+<p>It navigates to the route of the given report fragment navigation target.</p>
 </div>
 
                             <div class="io-description">
@@ -522,8 +685,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="78"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:78</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-navigation.service.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -531,8 +694,7 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: navigateToSvgSheet.</p>
-<p>It navigates to the &#39;/sheet/&#39; route using the provided sheetId
-within the context of an edition complex identified by the provided complexId.</p>
+<p>It navigates to the route of the given sheet navigation target.</p>
 </div>
 
                             <div class="io-description">
@@ -712,7 +874,7 @@ within the context of an edition complex identified by the provided complexId.</
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Service } from &#x27;@angular/core&#x27;;
-import { NavigationExtras, Router } from &#x27;@angular/router&#x27;;
+import { NavigationExtras, Router, UrlCreationOptions, UrlTree } from &#x27;@angular/router&#x27;;
 
 import { EDITION_ROUTE_CONSTANTS } from &#x27;../edition-routes.constants&#x27;;
 import { EditionNavigationFragmentTarget, EditionNavigationSheetTarget } from &#x27;../models/edition-navigation.model&#x27;;
@@ -748,77 +910,97 @@ export class EditionNavigationService {
     readonly selectedEditionComplex &#x3D; this._editionStateService.selectedEditionComplex;
 
     /**
+     * Public method: getReportFragmentRoute.
+     *
+     * It returns the &#x27;/report/&#x27; route with the given complexId and fragmentId.
+     *
+     * @param {EditionNavigationFragmentTarget} reportTarget The given report fragment navigation target.
+     * @returns {UrlTree} The route to the edition report fragment.
+     */
+    getReportFragmentRoute(reportTarget: EditionNavigationFragmentTarget): UrlTree {
+        const reportRoute &#x3D; EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+        const urlCreationOptions: UrlCreationOptions &#x3D; {
+            fragment: reportTarget?.fragmentId ?? &#x27;&#x27;,
+        };
+        return this._getComplexRoute(reportTarget?.complexId, reportRoute, urlCreationOptions);
+    }
+
+    /**
+     * Public method: getSvgSheetRoute.
+     *
+     * It returns the &#x27;/sheets/&#x27; route with the provided sheetId
+     * within the context of an edition complex identified by the provided complexId.
+     *
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
+     * @returns {UrlTree} The route to the edition sheet.
+     */
+    getSvgSheetRoute(sheetTarget: EditionNavigationSheetTarget): UrlTree {
+        const sheetRoute &#x3D; EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+        const urlCreationOptions: UrlCreationOptions &#x3D; {
+            queryParams: { id: sheetTarget?.sheetId ?? &#x27;&#x27; },
+        };
+        return this._getComplexRoute(sheetTarget?.complexId, sheetRoute, urlCreationOptions);
+    }
+
+    /**
      * Public method: navigateToIntroFragment.
      *
-     * It navigates to the &#x27;/intro/&#x27; route with the given complexId and fragmentId.
+     * It navigates to the given fragmentId on the current page.
      *
      * @param {EditionNavigationFragmentTarget} introTarget The given intro fragment navigation target.
      * @returns {void} Navigates to the edition intro fragment.
      */
     navigateToIntroFragment(introTarget: EditionNavigationFragmentTarget): void {
-        const introRoute &#x3D; EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route;
         const navigationExtras: NavigationExtras &#x3D; {
             fragment: introTarget?.fragmentId ?? &#x27;&#x27;,
         };
-        this._navigateWithComplexId(introTarget?.complexId, introRoute, navigationExtras);
+        void this._router.navigate([], navigationExtras);
     }
 
     /**
      * Public method: navigateToReportFragment.
      *
-     * It navigates to the &#x27;/report/&#x27; route with the given complexId and fragmentId.
+     * It navigates to the route of the given report fragment navigation target.
      *
      * @param {EditionNavigationFragmentTarget} reportTarget The given report fragment navigation target.
      * @returns {void} Navigates to the edition report fragment.
      */
     navigateToReportFragment(reportTarget: EditionNavigationFragmentTarget): void {
-        const reportRoute &#x3D; EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
-        const navigationExtras: NavigationExtras &#x3D; {
-            fragment: reportTarget?.fragmentId ?? &#x27;&#x27;,
-        };
-        this._navigateWithComplexId(reportTarget?.complexId, reportRoute, navigationExtras);
+        void this._router.navigateByUrl(this.getReportFragmentRoute(reportTarget));
     }
 
     /**
      * Public method: navigateToSvgSheet.
      *
-     * It navigates to the &#x27;/sheet/&#x27; route using the provided sheetId
-     * within the context of an edition complex identified by the provided complexId.
+     * It navigates to the route of the given sheet navigation target.
      *
      * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the edition sheets.
      */
     navigateToSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
-        const sheetRoute &#x3D; EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
-        const navigationExtras: NavigationExtras &#x3D; {
-            queryParams: { id: sheetTarget?.sheetId ?? &#x27;&#x27; },
-            // .queryParamsHandling: &#x27;&#x27;,
-        };
-
-        this._navigateWithComplexId(sheetTarget?.complexId, sheetRoute, navigationExtras);
+        void this._router.navigateByUrl(this.getSvgSheetRoute(sheetTarget));
     }
 
     /**
-     * Private method: _navigateWithComplexId.
+     * Private method: _getComplexRoute.
      *
-     * It navigates to a target route using the provided complexId.
+     * It returns a target route within the edition complex of the provided complexId,
+     * or of the selected edition complex if no complexId is given
+     * (the series overview if no complex is selected).
      *
      * @param {string} complexId The given complex id.
      * @param {string} targetRoute The given target route.
-     * @param {NavigationExtras} navigationExtras The given navigation extras.
-     * @returns {void} Navigates to the target route.
+     * @param {UrlCreationOptions} urlCreationOptions The given url creation options.
+     * @returns {UrlTree} The target route.
      */
-    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
+    private _getComplexRoute(complexId: string, targetRoute: string, urlCreationOptions: UrlCreationOptions): UrlTree {
         const selectedComplex &#x3D; this.selectedEditionComplex();
 
         const complexRoute &#x3D; complexId
             ? &#x60;/edition/complex/${complexId}&#x60;
             : (selectedComplex?.baseRoute ?? &#x27;/edition/series&#x27;);
 
-        const routeCommands &#x3D;
-            targetRoute &#x3D;&#x3D;&#x3D; EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route ? [] : [complexRoute, targetRoute];
-
-        void this._router.navigate(routeCommands, navigationExtras);
+        return this._router.createUrlTree([complexRoute, targetRoute], urlCreationOptions);
     }
 }
 </code></pre>

@@ -234,7 +234,7 @@ in a scrollable facet group list.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/edition-sheet-facet.model.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/edition-sheet-facet.model.ts:45</a></div>
                                 </td>
                             </tr>
 
@@ -279,7 +279,7 @@ in a scrollable facet group list.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/edition-sheet-facet.model.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/edition-sheet-facet.model.ts:50</a></div>
                                 </td>
                             </tr>
 
@@ -296,7 +296,7 @@ in a scrollable facet group list.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionNavigationSheetTarget } from &#x27;@awg-views/edition-view/models/edition-navigation.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UrlTree } from &#x27;@angular/router&#x27;;
 
 /**
  * The EditionSheetFacetPartialLink interface.
@@ -307,9 +307,14 @@ in a scrollable facet group list.</p>
  */
 export interface EditionSheetFacetPartialLink {
     /**
-     * The sheet navigation target (incl. partial).
+     * The full sheet id (incl. partial).
      */
-    sheetTarget: EditionNavigationSheetTarget;
+    sheetId: string;
+
+    /**
+     * The route to the sheet (incl. partial).
+     */
+    sheetRoute: UrlTree;
 
     /**
      * The position label of the partial, i.e. the partial id
