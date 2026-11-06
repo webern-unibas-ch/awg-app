@@ -20,9 +20,9 @@
  *   1) Error: A writing instrument names a single instrument: no "und" or "sowie" outside of brackets.
  *   2) Error: The brackets () and [] of a writing instrument are balanced (a split at a comma inside
  *      brackets is a typical break).
- *   3) Error: A writing instrument has more than one word, except Bleistift and Kopierstift
- *      (e.g. "schwarze Tinte", not "Tinte").
- *   4) Error: A writing instrument is not empty (only the main one of a print is).
+ *   3) Error: A writing instrument has more than one word outside of brackets, except Bleistift and
+ *      Kopierstift (e.g. "schwarze Tinte", not "Tinte").
+ *   4) Error: A writing instrument is not empty (only the main one of a print, a type "Druck von ...", is).
  *   5) Warning: A writing instrument named in the physDesc of a description (corrections, titles,
  *      annotations, contents, ...) is declared in the writingInstruments of that description.
  *   6) Warning: A writing instrument named in the textcritics of a complex is declared by a description
@@ -229,10 +229,16 @@ function findNamedInstruments(texts) {
     return named;
 }
 
+// A print has the type "Druck von ..."
+function isPrint(description) {
+    return /^Druck(?![\p{L}])/u.test(stripTags(description.type));
+}
+
 // The writing instruments of a description: the main one (empty for prints) and the secondary ones
-function instrumentsOf(writingInstruments) {
-    const { main, secondary } = writingInstruments ?? {};
-    return [main === '' ? undefined : main, ...(secondary ?? [])].filter(instrument => typeof instrument === 'string');
+function instrumentsOf(description) {
+    const { main, secondary } = description.physDesc?.writingInstruments ?? {};
+    const mainInstrument = main === '' && isPrint(description) ? undefined : main;
+    return [mainInstrument, ...(secondary ?? [])].filter(instrument => typeof instrument === 'string');
 }
 
 // The keys of the writing instruments that the given writing instruments declare
@@ -242,28 +248,31 @@ function declaredKeys(instruments) {
 
 // ── Read the complexes ───────────────────────────────────────────────────────
 
-// The complexes with source descriptions, with their source list and textcritics
+// The complexes with a source list or source descriptions, with their textcritics
 function readComplexes() {
     const readIfExists = file => (fs.existsSync(file) ? readJson(file) : {});
-    return editionJsonFiles()
-        .filter(file => path.basename(file) === SOURCE_DESCRIPTION_FILE)
-        .map(file => {
-            const dir = path.dirname(file);
-            const dirNames = relPath(dir, EDITION_DATA_DIR).split('/');
-            if (dirNames.length !== 5) {
-                throw new Error(`Unexpected folder of ${SOURCE_DESCRIPTION_FILE}: ${relPath(dir)}`);
-            }
-            const [, series, , section, id] = dirNames;
-            const sourceList = readIfExists(path.join(dir, SOURCE_LIST_FILE));
-            return {
-                id,
-                volume: `${SERIES_NUMERALS[Number(series) - 1] ?? series}/${section}`,
-                descriptions: readJson(file).sources ?? [],
-                listSources: sourceList.sources ?? [],
-                textSources: sourceList.textSources ?? [],
-                textcritics: readIfExists(path.join(dir, TEXTCRITICS_FILE)).textcritics ?? [],
-            };
-        });
+    // A missing file counts as empty, so that its absence shows in the checks (e.g. rule 10)
+    const complexDirs = new Set(
+        editionJsonFiles()
+            .filter(file => [SOURCE_DESCRIPTION_FILE, SOURCE_LIST_FILE].includes(path.basename(file)))
+            .map(file => path.dirname(file))
+    );
+    return [...complexDirs].map(dir => {
+        const dirNames = relPath(dir, EDITION_DATA_DIR).split('/');
+        if (dirNames.length !== 5) {
+            throw new Error(`Unexpected complex folder: ${relPath(dir)}`);
+        }
+        const [, series, , section, id] = dirNames;
+        const sourceList = readIfExists(path.join(dir, SOURCE_LIST_FILE));
+        return {
+            id,
+            volume: `${SERIES_NUMERALS[Number(series) - 1] ?? series}/${section}`,
+            descriptions: readIfExists(path.join(dir, SOURCE_DESCRIPTION_FILE)).sources ?? [],
+            listSources: sourceList.sources ?? [],
+            textSources: sourceList.textSources ?? [],
+            textcritics: readIfExists(path.join(dir, TEXTCRITICS_FILE)).textcritics ?? [],
+        };
+    });
 }
 
 // The ref of a source (list source or description): complex and siglum with addendum
@@ -284,13 +293,15 @@ function checkWritingInstruments(ref, instruments, add) {
             add(4, ref, 'writingInstruments: empty instrument');
             continue;
         }
-        if (CONJUNCTION.test(stripBrackets(text))) {
+        // Brackets only explain the instrument: they neither name another one nor make a word
+        const name = stripBrackets(text).trim();
+        if (CONJUNCTION.test(name)) {
             add(1, ref, `writingInstruments: "${text}" names more than one instrument`);
         }
         if (!hasBalancedBrackets(text)) {
             add(2, ref, `writingInstruments: unbalanced brackets in "${text}"`);
         }
-        if (!/\s/.test(text) && !SINGLE_WORD_INSTRUMENTS.has(text)) {
+        if (!/\s/.test(name) && !SINGLE_WORD_INSTRUMENTS.has(name)) {
             add(3, ref, `writingInstruments: "${text}" is a single word`);
         }
     }
@@ -339,13 +350,13 @@ function isPlaceholder(description) {
 function checkDescription(complex, description, add) {
     const ref = sourceRef(complex, description);
     const { writingInstruments } = description.physDesc ?? {};
-    checkWritingInstruments(ref, instrumentsOf(writingInstruments), add);
+    checkWritingInstruments(ref, instrumentsOf(description), add);
     checkLocation(ref, description.location, 'source description', add);
 
     if (!writingInstruments && !isPlaceholder(description)) {
         add(7, ref, 'physDesc: no writingInstruments (a print has "main": "")');
     }
-    const declared = declaredKeys(instrumentsOf(writingInstruments));
+    const declared = declaredKeys(instrumentsOf(description));
     const named = findNamedInstruments(textsWithPaths(description.physDesc, '', new Set([WRITING_INSTRUMENTS_KEY])));
     for (const [key, { name, path: textPath, context }] of named) {
         if (!declared.has(key)) {
@@ -395,7 +406,7 @@ function countAll(complexes, key) {
 function check() {
     const complexes = readComplexes();
     if (!complexes.length) {
-        throw new Error(`No ${SOURCE_DESCRIPTION_FILE} found in ${relPath(EDITION_DATA_DIR)}`);
+        throw new Error(`No ${SOURCE_LIST_FILE} or ${SOURCE_DESCRIPTION_FILE} found in ${relPath(EDITION_DATA_DIR)}`);
     }
     const hits = [];
     for (const complex of complexes) {
