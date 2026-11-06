@@ -7,7 +7,7 @@
  * check-shared-sources.js, which compares the copies of one document across complexes.
  *
  * Terms (as in the models of src/app/views/edition-view/models/):
- *   source list         source-list.json, its sources are the list sources (Source)
+ *   source list         source-list.json, its sources are the list sources (Source) and the text sources (TextSource)
  *   source description  source-description.json, its sources are the descriptions (SourceDesc) with a physDesc
  *   textcritics         textcritics.json, its elements are items (e.g. SkRT, M145_TF1)
  *   writing instrument  a string of writingInstruments.main or writingInstruments.secondary
@@ -24,7 +24,8 @@
  *      (e.g. "schwarze Tinte", not "Tinte").
  *   4) A writing instrument is not empty (only the main one of a print is).
  *   Locations and types
- *   5) A location names the Moldenhauer folders as "Box-Folder 59/10", not "Box-Folder: 59/10".
+ *   5) A location (of a description, list source or text source) names the Moldenhauer folders as
+ *      "Box-Folder 59/10", not "Box-Folder: 59/10".
  *   8) The source list and the source description have the same type and location (compared as text,
  *      without markup such as links). A description without a type is fine if the source is
  *      described by sources with a siglum addendum (A with Aa, Ab, ...).
@@ -271,6 +272,7 @@ function readComplexes() {
                 volume: `${SERIES_NUMERALS[Number(series) - 1] ?? series}/${section}`,
                 descriptions: readItems(file, 'sources'),
                 listSources: readItems(path.join(dir, SOURCE_LIST_FILE), 'sources'),
+                textSources: readItems(path.join(dir, SOURCE_LIST_FILE), 'textSources'),
                 textcritics: readItems(path.join(dir, TEXTCRITICS_FILE), 'textcritics'),
             };
         });
@@ -408,6 +410,7 @@ function check() {
     const hits = [];
     let descriptionCount = 0;
     let listSourceCount = 0;
+    let textSourceCount = 0;
     for (const complex of complexes) {
         const add = (rule, ref, message, extra = {}) =>
             hits.push({ rule, volume: complex.volume, ref, message, ...extra });
@@ -422,6 +425,11 @@ function check() {
             listSourceCount++;
             checkLocation(sourceRef(complex, listSource), listSource.location, 'source list', add);
         }
+        // Text sources have an id instead of a description; no description or writing instruments to check
+        for (const textSource of complex.textSources) {
+            textSourceCount++;
+            checkLocation(`${complex.id}:${textSource.id}`, textSource.location, 'source list, text source', add);
+        }
         checkSourceList(complex, add);
         checkTextcritics(complex, declared, add);
     }
@@ -432,6 +440,7 @@ function check() {
         hints: hits.filter(hit => HINT_RULES.has(hit.rule)),
         descriptionCount,
         listSourceCount,
+        textSourceCount,
         complexCount: complexes.length,
     };
 }
@@ -498,7 +507,7 @@ ${table}
 </section>`;
 }
 
-function renderReport({ hits, descriptionCount, listSourceCount, complexCount }) {
+function renderReport({ hits, descriptionCount, listSourceCount, textSourceCount, complexCount }) {
     const rules = Object.keys(RULES).map(Number);
     const topics = [...new Set(rules.map(rule => RULES[rule].topic))];
     const overviewRows = rules
@@ -524,7 +533,7 @@ function renderReport({ hits, descriptionCount, listSourceCount, complexCount })
     return renderReportPage({
         title: 'Source data report',
         style: REPORT_STYLE,
-        intro: `<p>${descriptionCount} descriptions and ${listSourceCount} list sources in ${complexCount} edition complexes. Errors fail the check; hints are open cases of rules that are not errors yet.</p>
+        intro: `<p>${descriptionCount} descriptions, ${listSourceCount} list sources and ${textSourceCount} text sources in ${complexCount} edition complexes. Errors fail the check; hints are open cases of rules that are not errors yet.</p>
 <div class="overflow"><table class="list"><tr><th>Rule</th><th>Check</th><th>Kind</th><th>Hits</th></tr>${overviewRows}</table></div>`,
         body: sections,
     });
@@ -542,10 +551,10 @@ function main() {
         process.exitCode = 1;
         return;
     }
-    const { errors, hints, descriptionCount, listSourceCount, complexCount } = result;
+    const { errors, hints, descriptionCount, listSourceCount, textSourceCount, complexCount } = result;
 
     console.log(
-        `Source data: ${descriptionCount} descriptions, ${listSourceCount} list sources in ${complexCount} complexes`
+        `Source data: ${descriptionCount} descriptions, ${listSourceCount} list sources, ${textSourceCount} text sources in ${complexCount} complexes`
     );
     for (const hit of hints.filter(isListed)) {
         console.log(`[HINT] rule ${hit.rule}  ${hit.ref}: ${formatHit(hit)}`);
