@@ -50,11 +50,10 @@ const fs = require('fs');
 const path = require('path');
 const { pathToFileURL } = require('url');
 
-const { ROOT, EDITION_DATA_DIR, relPath, editionJsonFiles, readJson } = require('./check-utils');
+const { ROOT, EDITION_DATA_DIR, relPath, editionJsonFiles, readComplexOrder, readJson } = require('./check-utils');
 
 const PACKAGE = require(path.join(ROOT, 'package.json'));
 const PROJECT_LABEL = 'Anton Webern Gesamtausgabe · Online Edition';
-const OUTLINE_FILE = path.join(EDITION_DATA_DIR, 'edition-outline.json');
 const REPORT_FILE = path.join(ROOT, 'reports', 'shared-sources.html');
 const SOURCE_DESC_FILE = 'source-description.json';
 const SOURCE_LIST_FILE = 'source-list.json';
@@ -159,23 +158,6 @@ function normalizeSpace(value) {
         return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, normalizeSpace(child)]));
     }
     return value;
-}
-
-// ── Read the complexes in edition order ──────────────────────────────────────
-
-function readComplexOrder() {
-    const order = [];
-    for (const series of readJson(OUTLINE_FILE).editionOutline ?? []) {
-        for (const section of series.sections ?? []) {
-            const complexTypes = section.content?.complexTypes ?? {};
-            for (const complexType of ['opus', 'mnr']) {
-                for (const entry of complexTypes[complexType] ?? []) {
-                    order.push(entry.complex);
-                }
-            }
-        }
-    }
-    return order;
 }
 
 // The source lists and descriptions of the complexes (folders under series/ named by complex id)
