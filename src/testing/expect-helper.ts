@@ -9,7 +9,38 @@ interface Spy {
     };
 }
 
-// Test helper functions for expectation statements
+/**
+ * Type: IsUnion.
+ *
+ * It is true for a union type (e.g. `0 | 1`), otherwise false.
+ */
+type IsUnion<T, U = T> = T extends unknown ? ([U] extends [T] ? false : true) : never;
+
+/**
+ * Type: IsLiteralCount.
+ *
+ * It is true for a single literal count (e.g. `1`), false for `number` or a union like `0 | 1`.
+ */
+type IsLiteralCount<N extends number> = [number extends N ? true : false, IsUnion<N>] extends [false, false]
+    ? true
+    : false;
+
+/**
+ * Type: TupleOf.
+ *
+ * It is a tuple of DebugElements with the given length (e.g. `[DebugElement, DebugElement]` for 2).
+ */
+type TupleOf<N extends number, R extends DebugElement[] = []> = R['length'] extends N
+    ? R
+    : TupleOf<N, [...R, DebugElement]>;
+
+/**
+ * Type: DebugElementTuple.
+ *
+ * It is a tuple of DebugElements for a literal count, so that the elements can be accessed
+ * by index without a check, otherwise an array of DebugElements.
+ */
+type DebugElementTuple<N extends number> = IsLiteralCount<N> extends true ? TupleOf<N> : DebugElement[];
 
 /**
  * Test helper function: expectDebugElement (internal).
@@ -60,20 +91,21 @@ function expectDebugElement(
  * @param {number} expected The expected number of elements in the result array.
  * @param {number} expectedFailMsg The expected number of elements in the result array in the fail message.
  * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
- * @returns {DebugElement[]} An array of the found DebugElements.
+ * @returns {DebugElementTuple<N>} The found DebugElements (a tuple for a literal expected number).
  */
-export function getAndExpectDebugElementByCss(
+export function getAndExpectDebugElementByCss<N extends number>(
     inDe: DebugElement,
     selector: string,
-    expected: number,
+    expected: N,
     expectedFailMsg: number,
     suffixMsg = ''
-): DebugElement[] {
+): DebugElementTuple<N> {
     const outDes = inDe.queryAll(By.css(selector));
 
     expectDebugElement(outDes, selector, expected, expectedFailMsg, suffixMsg);
 
-    return outDes;
+    // The expectation has checked the number of elements
+    return outDes as DebugElementTuple<N>;
 }
 
 /**
@@ -89,20 +121,65 @@ export function getAndExpectDebugElementByCss(
  * @param {number } expected The expected number of elements in the result array.
  * @param {number | undefined} expectedFailMsg The expected number of elements in the result array in the fail message.
  * @param {string} [suffixMsg=''] An optional message to add at the end of the expectation statement.
- * @returns {DebugElement[]} An array of the found DebugElements.
+ * @returns {DebugElementTuple<N>} The found DebugElements (a tuple for a literal expected number).
  */
-export function getAndExpectDebugElementByDirective(
+export function getAndExpectDebugElementByDirective<N extends number>(
     inDe: DebugElement,
     selectorType: Type<any>,
-    expected: number,
+    expected: N,
     expectedFailMsg: number | undefined,
     suffixMsg = ''
-): DebugElement[] {
+): DebugElementTuple<N> {
     const outDes = inDe.queryAll(By.directive(selectorType));
 
     expectDebugElement(outDes, selectorType, expected, expectedFailMsg, suffixMsg);
 
-    return outDes;
+    // The expectation has checked the number of elements
+    return outDes as DebugElementTuple<N>;
+}
+
+/**
+ * Test helper function: getItemAt.
+ *
+ * It gets the item at a given index of a given list (an array, a node list or a typed array),
+ * typed without `undefined`, and throws an error that names the index and the number of items
+ * if there is no item (an item `undefined` counts as missing, other falsy items are returned).
+ *
+ * Exposed to be called from tests.
+ *
+ * @param {ArrayLike<T>} items The given list of items.
+ * @param {number} index The given index.
+ * @returns {T} The item at the index.
+ */
+export function getItemAt<T>(items: ArrayLike<T>, index: number): T {
+    const item = items[index];
+    if (item === undefined) {
+        throw new Error(`Expected item at index ${index} to exist, but there are ${items.length} items.`);
+    }
+    return item;
+}
+
+/**
+ * Test helper function: getEntryAt.
+ *
+ * It gets the entry for a given key of a given record, typed without `undefined`,
+ * and throws an error that names the key and the existing keys if there is no entry
+ * (an entry `undefined` counts as missing, other falsy entries are returned).
+ *
+ * Exposed to be called from tests.
+ *
+ * @param {Readonly<Record<string, T>>} record The given record.
+ * @param {string} key The given key.
+ * @returns {T} The entry for the key.
+ */
+export function getEntryAt<T>(record: Readonly<Record<string, T>>, key: string): T {
+    const entry = record[key];
+    if (entry === undefined) {
+        const keys = Object.keys(record);
+        const existingKeys = keys.length ? `the keys: ${keys.join(', ')}` : 'no keys';
+        throw new Error(`Expected entry '${key}' to exist, but there are ${existingKeys}.`);
+    }
+    return entry;
 }
 
 /**

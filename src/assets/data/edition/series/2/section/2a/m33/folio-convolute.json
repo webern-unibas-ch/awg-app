@@ -6,6 +6,7 @@
             "folios": [
                 {
                     "folioId": "1r",
+                    "trademarkPosition": "oben rechts",
                     "systems": "18",
                     "reversed": true,
                     "dimensions": {
@@ -22,6 +23,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 18,
                                     "endSystem": 17
                                 }
@@ -79,6 +81,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 12,
                                     "endSystem": 11
                                 }
@@ -92,6 +95,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 10,
                                     "endSystem": 9
                                 }
@@ -264,6 +268,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 18,
                                     "endSystem": 17
                                 }
@@ -381,6 +386,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 3,
                                     "endSystem": 1
                                 }
@@ -396,6 +402,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 6,
                                     "endSystem": 4
                                 }
@@ -411,6 +418,7 @@
                             "segmentSplit": 1,
                             "segments": [
                                 {
+                                    "position": 1,
                                     "startSystem": 9,
                                     "endSystem": 7
                                 }

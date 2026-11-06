@@ -89,7 +89,7 @@ export function extractSparqlPrefixes(query: string): PrefixMap {
 
     const code = SPARQL_UTILS.maskNonCode(query, { keepIris: true });
 
-    for (const [, prefix = '', namespace] of code.matchAll(PREFIX_DECLARATION_REGEX)) {
+    for (const [, prefix = '', namespace = ''] of code.matchAll(PREFIX_DECLARATION_REGEX)) {
         prefixes[prefix] = namespace;
     }
 
@@ -107,7 +107,7 @@ export function extractSparqlPrefixes(query: string): PrefixMap {
  */
 export function findUsedPrefixes(query: string): string[] {
     const code = SPARQL_UTILS.maskNonCode(query).replaceAll(/PREFIX\s+[a-z][\w.-]*:/gi, ' ');
-    const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX), match => match[1]);
+    const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX), ([, prefix = '']) => prefix);
 
     return Array.from(new Set(prefixes));
 }
@@ -126,12 +126,18 @@ export function addMissingPrefixes(query: string, prefixes: PrefixMap): { query:
     const declaredPrefixes = extractSparqlPrefixes(query);
     const missingPrefixes = findUsedPrefixes(query).filter(prefix => !Object.hasOwn(declaredPrefixes, prefix));
 
-    const knownPrefixes = missingPrefixes.filter(prefix => Object.hasOwn(prefixes, prefix));
-    const unknownPrefixes = missingPrefixes.filter(prefix => !Object.hasOwn(prefixes, prefix));
+    const declarations: string[] = [];
+    const unknownPrefixes: string[] = [];
+    for (const prefix of missingPrefixes) {
+        const namespace = Object.hasOwn(prefixes, prefix) ? prefixes[prefix] : undefined;
+        if (namespace === undefined) {
+            unknownPrefixes.push(prefix);
+        } else {
+            declarations.push(`PREFIX ${prefix}: <${namespace}>\n`);
+        }
+    }
 
-    const declarations = knownPrefixes.map(prefix => `PREFIX ${prefix}: <${prefixes[prefix]}>\n`).join('');
-
-    return { query: declarations + query, unknownPrefixes };
+    return { query: declarations.join('') + query, unknownPrefixes };
 }
 
 /**

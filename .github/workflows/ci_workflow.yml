@@ -1,8 +1,8 @@
 name: CI Workflow
 on:
     push:
-        # trigger on all branches except for dependabot-triggered push events
-        branches-ignore: [dependabot/**]
+        # trigger only on the long-lived branches and tags; other branches are covered by their pull requests
+        branches: [develop, main]
         tags:
             - 'v*' # trigger on all tags
         paths-ignore:
@@ -33,7 +33,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+              uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
               with:
                   egress-policy: audit
 
@@ -71,7 +71,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+              uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
               with:
                   egress-policy: audit
 
@@ -97,6 +97,18 @@ jobs:
               run: |
                   yarn run check:glyphs
 
+            - name: Check edition complexes
+              run: |
+                  yarn run check:complexes
+
+            - name: Check source data
+              run: |
+                  yarn run check:source-data
+
+            - name: Check yarn.lock for duplicates
+              run: |
+                  yarn dedupe --check
+
     sonar:
         # perform SonarQube scan only for current node version, and only on non-PR runs in the main repository (token issue)
         if: github.event_name != 'pull_request' && github.repository_owner == vars.MAIN_REPO_OWNER
@@ -110,7 +122,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+              uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
               with:
                   egress-policy: audit
 
@@ -125,7 +137,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: Perform SonarQube scan
-              uses: SonarSource/sonarqube-scan-action@d209202bc7d53ff1cc128f7f907dac145c9d6ae9 # v8.3.0
+              uses: SonarSource/sonarqube-scan-action@e805d875275f728fac1885b413934be6d7c63f65 # v8.4.1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -144,7 +156,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+              uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
               with:
                   egress-policy: audit
 
@@ -209,7 +221,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+              uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
               with:
                   egress-policy: audit
 
@@ -281,7 +293,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+              uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
               with:
                   egress-policy: audit
 
@@ -320,7 +332,7 @@ jobs:
                 node-version: ['24.x']
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+              uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
               with:
                   egress-policy: audit
 

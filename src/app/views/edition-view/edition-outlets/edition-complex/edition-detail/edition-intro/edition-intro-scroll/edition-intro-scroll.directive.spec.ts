@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { expectSpyCall, expectToContain, expectToNotContain } from '@testing/expect-helper';
+import { expectSpyCall, expectToContain, expectToNotContain, getItemAt } from '@testing/expect-helper';
 
 import { EditionIntroScrollDirective } from './edition-intro-scroll.directive';
 
@@ -47,15 +47,16 @@ describe('EditionIntroScrollDirective (DONE)', () => {
         fixture.detectChanges();
 
         directiveDes = fixture.debugElement.queryAll(By.directive(EditionIntroScrollDirective));
-        directiveInstance = directiveDes[0].injector.get(EditionIntroScrollDirective);
-        const directiveEl: HTMLElement = directiveDes[0].nativeElement;
+        const firstDirectiveDe = getItemAt(directiveDes, 0);
+        directiveInstance = firstDirectiveDe.injector.get(EditionIntroScrollDirective);
+        const directiveEl: HTMLElement = firstDirectiveDe.nativeElement;
 
         section1 = directiveEl.querySelector('#section1') as HTMLElement;
         section2 = directiveEl.querySelector('#section2') as HTMLElement;
 
         const navLinks = directiveEl.querySelectorAll<HTMLAnchorElement>('a.awg-edition-intro-nav-link');
-        navLink1 = navLinks[0];
-        navLink2 = navLinks[1];
+        navLink1 = getItemAt(navLinks, 0);
+        navLink2 = getItemAt(navLinks, 1);
 
         Object.defineProperty(section1, 'offsetTop', { value: 100, configurable: true });
         Object.defineProperty(section1, 'offsetHeight', { value: 100, configurable: true });

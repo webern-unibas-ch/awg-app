@@ -44,7 +44,17 @@ describe('EditionComplex (DONE)', () => {
         );
 
         expectToBe(complex.complexId.route, `${EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.route}100_2`);
-        expectToBe(complex.complexId.short, `${EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.short}&nbsp;100/2`);
+    });
+
+    it('... should hold the catalogue type and number joined by a no-break space in the complex ids', () => {
+        const complex = new EditionComplex(
+            { title: 'Test Complex', catalogueType: 'MNR', catalogueNumber: '100/2' },
+            defaultResp,
+            defaultPub
+        );
+
+        expectToBe(complex.complexId.short, `${EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.short}\u00A0100/2`);
+        expectToBe(complex.complexId.full, `Test Complex ${EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.short}\u00A0100/2`);
     });
 
     it('... should have an empty resp statement if it is missing', () => {
@@ -67,6 +77,27 @@ describe('EditionComplex (DONE)', () => {
         expectToEqual(complex.pubStatement, new EditionComplexPubStatement());
     });
 
+    it('... should have the given availability in the pub statement', () => {
+        const availability = { workEdition: { protectedUntil: '2049' } };
+        const complex = new EditionComplex(
+            { title: 'Test Complex', catalogueType: 'OPUS', catalogueNumber: '12' },
+            defaultResp,
+            { ...defaultPub, availability }
+        );
+
+        expectToEqual(complex.pubStatement.availability, availability);
+    });
+
+    it('... should have no availability in the pub statement if it is missing', () => {
+        const complex = new EditionComplex(
+            { title: 'Test Complex', catalogueType: 'OPUS', catalogueNumber: '12' },
+            defaultResp,
+            defaultPub
+        );
+
+        expect(complex.pubStatement.availability).toBeUndefined();
+    });
+
     it('... should have a ref-based editor if editor $ref is not found in PERSONS_DATA', () => {
         const complex = new EditionComplex(
             { title: 'Test Complex', catalogueType: 'OPUS', catalogueNumber: '12' },
@@ -75,6 +106,38 @@ describe('EditionComplex (DONE)', () => {
         );
 
         expectToEqual(complex.respStatement.editors, [{ name: 'PERSON_UNKNOWN', homepage: '', identifiers: {} }]);
+    });
+
+    it('... should have a ref-based editor if editor $ref is an inherited object key', () => {
+        const complex = new EditionComplex(
+            { title: 'Test Complex', catalogueType: 'OPUS', catalogueNumber: '12' },
+            { editors: [{ $ref: 'constructor' }], lastModified: '2026-08-12' },
+            defaultPub
+        );
+
+        expectToEqual(complex.respStatement.editors, [{ name: 'constructor', homepage: '', identifiers: {} }]);
+    });
+
+    it('... should have the given Werkedition', () => {
+        const workEdition = { textVersions: { m212: '3' } };
+        const complex = new EditionComplex(
+            { title: 'Test Complex', catalogueType: 'OPUS', catalogueNumber: '12' },
+            defaultResp,
+            defaultPub,
+            workEdition
+        );
+
+        expectToEqual(complex.workEdition, workEdition);
+    });
+
+    it('... should have no Werkedition if it is missing', () => {
+        const complex = new EditionComplex(
+            { title: 'Test Complex', catalogueType: 'MNR', catalogueNumber: '100' },
+            defaultResp,
+            defaultPub
+        );
+
+        expect(complex.workEdition).toBeUndefined();
     });
 
     it('... should throw when instantiating an edition complex with missing title statement', () => {

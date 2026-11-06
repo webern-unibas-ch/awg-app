@@ -1,15 +1,12 @@
-// The relative path lets esbuild bundle the file with the text loader
-// (a bare `rdfstore` import would be externalized and loaded as module).
-import rdfstoreBundle from '../../node_modules/rdfstore/dist/rdfstore_min.js' with { loader: 'text' };
-
-import { vi } from 'vitest';
+import { MockInstance, vi } from 'vitest';
 
 import {
     RdfStore,
-    RdfStoreGlobal,
+    RdfStoreModule,
     RdfStoreNode,
     RdfStoreToken,
 } from '@awg-graph/graph-visualizer/rdf-store/rdf-store.model';
+import { RdfStoreService } from '@awg-graph/graph-visualizer/rdf-store/rdf-store.service';
 
 /**
  * Number constant: RDFSTORE_INTEGRATION_TIMEOUT_MS.
@@ -48,30 +45,22 @@ export interface MockRdfstoreOptions {
 }
 
 /**
- * Helper function: setGlobalRdfstore.
+ * Helper function: spyOnRdfstoreImport.
  *
- * It sets (or removes) the global rdfstore that the RdfStoreService uses.
+ * It spies on the import of the rdfstore module in the given RdfStoreService
+ * and resolves it with the given rdfstore (e.g. a mocked one), if any.
  *
- * @param {RdfStoreGlobal | undefined} rdfstore The given rdfstore, or undefined to remove it.
- * @returns {void} Sets the global rdfstore.
+ * @param {RdfStoreService} service The given service.
+ * @param {RdfStoreModule} [rdfstore] The optional rdfstore that the import resolves with.
+ * @returns {MockInstance<() => Promise<RdfStoreModule>>} The spy on the import.
  */
-export function setGlobalRdfstore(rdfstore: RdfStoreGlobal | undefined): void {
-    (globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore = rdfstore;
-}
-
-/**
- * Helper function: createRealRdfstore.
- *
- * It creates a new real (not mocked) rdfstore by evaluating its browser bundle
- * (loaded as script on first use in the app)
- * and returns the `rdfstore` object, without setting a global.
- * It works in the jsdom and in the browser test runner.
- *
- * @returns {RdfStoreGlobal} The real rdfstore object.
- */
-export function createRealRdfstore(): RdfStoreGlobal {
-    // eslint-disable-next-line @typescript-eslint/no-implied-eval -- evaluates the bundle without setting a global
-    return new Function(`${rdfstoreBundle}\nreturn rdfstore;`)() as RdfStoreGlobal;
+export function spyOnRdfstoreImport(
+    service: RdfStoreService,
+    rdfstore?: RdfStoreModule
+): MockInstance<() => Promise<RdfStoreModule>> {
+    const serviceWithImport = service as unknown as { _importRdfstore: () => Promise<RdfStoreModule> };
+    const importSpy = vi.spyOn(serviceWithImport, '_importRdfstore');
+    return rdfstore ? importSpy.mockResolvedValue(rdfstore) : importSpy;
 }
 
 /**
@@ -81,14 +70,14 @@ export function createRealRdfstore(): RdfStoreGlobal {
  * All methods are spies.
  *
  * @param {MockRdfstoreOptions} [options] The optional options.
- * @returns {{ rdfstore: RdfStoreGlobal; store: RdfStore }} The mocked rdfstore and its store.
+ * @returns {{ rdfstore: RdfStoreModule; store: RdfStore }} The mocked rdfstore and its store.
  */
-export function createMockRdfstore(options: MockRdfstoreOptions = {}): { rdfstore: RdfStoreGlobal; store: RdfStore } {
+export function createMockRdfstore(options: MockRdfstoreOptions = {}): { rdfstore: RdfStoreModule; store: RdfStore } {
     const store: RdfStore = {
         load: vi.fn((_mimeType, _data, callback) => callback(options.loadError ?? null, 1)),
         execute: vi.fn((_query, callback) => callback(options.executeError ?? null, options.response)),
     };
-    const rdfstore: RdfStoreGlobal = {
+    const rdfstore: RdfStoreModule = {
         create: vi.fn(callback => callback(options.createError ?? null, store)),
     };
     return { rdfstore, store };

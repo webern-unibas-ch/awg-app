@@ -31,11 +31,16 @@ export function createMaxHeightModifier(
         phase: 'beforeWrite',
         requires: ['computeStyles'],
         fn: ({ state }) => {
+            const popperStyles = state.styles['popper'];
+            if (!popperStyles) {
+                return;
+            }
+
             const overflow = detect(state, { padding });
             const availableHeight = state.rects.popper.height - overflow.bottom;
 
-            state.styles['popper'].maxHeight = `${Math.max(0, availableHeight)}px`;
-            state.styles['popper'].overflowY = 'auto';
+            popperStyles.maxHeight = `${Math.max(0, availableHeight)}px`;
+            popperStyles.overflowY = 'auto';
         },
     };
 }

@@ -68,12 +68,12 @@ export class EditionTkaTableComponent {
         const isCorrections = this.isCorrections();
         const isRowtable = this.isRowtable();
 
-        let tableHeader = TKA_TABLE_HEADERS['default'];
+        let tableHeader = TKA_TABLE_HEADERS.default;
 
         if (isRowtable) {
-            tableHeader = TKA_TABLE_HEADERS['rowtable'];
+            tableHeader = TKA_TABLE_HEADERS.rowtable;
         } else if (isCorrections) {
-            tableHeader = TKA_TABLE_HEADERS['corrections'];
+            tableHeader = TKA_TABLE_HEADERS.corrections;
         }
 
         if (EDITION_UTILS.isSketchId(id) && !isCorrections) {

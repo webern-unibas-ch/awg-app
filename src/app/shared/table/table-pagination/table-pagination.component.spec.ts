@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -26,8 +26,6 @@ describe('TablePaginationComponent (DONE)', () => {
     let fixture: ComponentFixture<TablePaginationComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
-
     let onPageChangeSpy: Spy;
     let replaceNonNumberInputSpy: Spy;
     let selectPageSpy: Spy;
@@ -45,9 +43,6 @@ describe('TablePaginationComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
         expectedCollectionSize = 100;
         expectedPage = 1;
@@ -284,7 +279,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 });
 
                 it('... should keep numbers', () => {
-                    const input = mockDocument.createElement('input');
+                    const input = document.createElement('input');
                     input.value = '3';
 
                     component.replaceNonNumberInput(input);
@@ -293,7 +288,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 });
 
                 it('... should replace non-numbers with empty string', () => {
-                    const input = mockDocument.createElement('input');
+                    const input = document.createElement('input');
                     input.value = 'T3st';
 
                     component.replaceNonNumberInput(input);

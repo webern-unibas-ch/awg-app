@@ -24,6 +24,11 @@
             <awg-edition-breadcrumb [items]="breadcrumbItems()" />
             <awg-edition-jumbotron [id]="editionViewId" [title]="jumbotronTitle()" />
 
+            <!-- parts and composite complexes -->
+            @if (selectedOutlineComplexItem(); as outlineComplexItem) {
+                <awg-edition-complex-parts class="mt-3" [outlineComplexItem]="outlineComplexItem" />
+            }
+
             <!-- declamation -->
             <div class="awg-edition-responsibility mt-3 mb-5">
                 <p>

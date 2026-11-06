@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import type { Modifier, ModifierArguments, Options, State } from '@popperjs/core';
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import {
     createMaxHeightModifier,
@@ -89,6 +89,16 @@ describe('PopperUtils (DONE)', () => {
                 expectToEqual(state.styles['popper'], { maxHeight: '0px', overflowY: 'auto' });
             });
 
+            it('... should neither detect the overflow nor set any styles if the state has no popper styles', () => {
+                const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 185, left: 0 });
+                const state = { ...createState(580), styles: {} };
+
+                runModifier(createMaxHeightModifier(detect), state);
+
+                expectSpyCall(detect, 0);
+                expectToEqual(state.styles, {});
+            });
+
             it('... should use a given padding', () => {
                 const detect = vi.fn().mockReturnValue({ top: 0, right: 0, bottom: 0, left: 0 });
                 const state = createState(100);
@@ -118,9 +128,13 @@ describe('PopperUtils (DONE)', () => {
 
                 const result = fixedDropdownPopperOptions({ modifiers: [offsetModifier] });
 
-                expectToBe(result.modifiers?.length, 2);
-                expectToBe(result.modifiers?.[0], offsetModifier);
-                expectToBe(result.modifiers?.[1].name, 'maxHeight');
+                const modifiers = result.modifiers ?? [];
+                const firstModifier = getItemAt(modifiers, 0);
+                const secondModifier = getItemAt(modifiers, 1);
+
+                expectToBe(modifiers.length, 2);
+                expectToBe(firstModifier, offsetModifier);
+                expectToBe(secondModifier.name, 'maxHeight');
             });
 
             it('... should add the max height modifier if no modifiers are given', () => {

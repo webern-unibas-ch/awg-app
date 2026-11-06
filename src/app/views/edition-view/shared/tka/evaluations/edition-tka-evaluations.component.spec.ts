@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -8,7 +8,9 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
@@ -20,8 +22,6 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
     let component: EditionTkaEvaluationsComponent;
     let fixture: ComponentFixture<EditionTkaEvaluationsComponent>;
     let compDe: DebugElement;
-
-    let mockDocument: Document;
 
     let mockEditionGlyphService: EditionGlyphService;
 
@@ -48,11 +48,10 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
-        expectedEvaluations = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0].evaluations);
+        expectedEvaluations = structuredClone(
+            getItemAt(mockEditionData.mockTextcriticsListData.textcritics, 0).evaluations
+        );
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionTkaEvaluationsComponent);
@@ -142,16 +141,13 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                     const spanDes = getAndExpectDebugElementByCss(pDe, 'p > span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                    const htmlEvaluationEntry = mockDocument.createElement('span');
-                    htmlEvaluationEntry.innerHTML = expectedEvaluations[index];
-
                     const glyphSpan = "{{ref.getGlyph('[b]')}}";
                     const glyphString = mockEditionGlyphService.getGlyph('[b]');
-                    if (htmlEvaluationEntry.innerHTML.includes(glyphSpan)) {
-                        htmlEvaluationEntry.innerHTML = htmlEvaluationEntry.innerHTML.replace(glyphSpan, glyphString);
-                    }
+                    const expectedEvaluation = toTextContent(
+                        getItemAt(expectedEvaluations, index).replaceAll(glyphSpan, glyphString)
+                    );
 
-                    expectToBe(spanEl.textContent.trim(), htmlEvaluationEntry.textContent.trim());
+                    expectToBe(spanEl.textContent.trim(), expectedEvaluation.trim());
                 });
             });
         });

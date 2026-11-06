@@ -6,15 +6,19 @@
                     aria-label="Table for list of sources"
                     class="table table-hover borderless awg-source-list-sources">
                     <tbody>
-                        @for (source of sourceList.sources; track source.siglum + (source.siglumAddendum ?? '')) {
+                        @for (
+                            sourceItem of sourceItems();
+                            track sourceItem.source.siglum + (sourceItem.source.siglumAddendum ?? '')
+                        ) {
+                            @let source = sourceItem.source;
                             @let sourceId = source.siglum + (source.siglumAddendum ?? '');
                             <tr>
                                 <th scope="row" [id]="sourceId" class="text-nowrap">
                                     <awg-source-siglum
-                                        [siglumData]="source"
                                         classPrefix="awg-source-list"
-                                        [isClickable]="!!(source.hasDescription || source.linkTo)"
-                                        (clicked)="onSourceClick(source)" />
+                                        [siglumData]="source"
+                                        [isClickable]="!!sourceItem.reportRoute"
+                                        [targetRoute]="sourceItem.reportRoute" />
                                 </th>
                                 <td>
                                     <span [awgCompileHtml]="source.type"></span> <br />

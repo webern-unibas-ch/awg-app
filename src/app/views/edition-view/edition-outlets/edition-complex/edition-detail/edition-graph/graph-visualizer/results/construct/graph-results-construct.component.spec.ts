@@ -18,6 +18,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getEntryAt,
 } from '@testing/expect-helper';
 
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
@@ -33,13 +34,15 @@ import { RESULT_GRAPH_UTILS } from './result-graph.utils';
 
 const { namedNode, quad } = DataFactory;
 
+const AWG = getEntryAt(DEFAULT_PREFIXES, 'awg');
+
 /**
  * Helper function: createConstructResult.
  *
  * It creates a construct result with one quad per given subject (`awg:<subject> awg:has awg:Success`).
  */
 const createConstructResult = (subjects: string[]): SparqlConstructResult => {
-    const awg = (localName: string) => namedNode(`${DEFAULT_PREFIXES['awg']}${localName}`);
+    const awg = (localName: string) => namedNode(`${AWG}${localName}`);
     return {
         kind: 'construct',
         quads: subjects.map(subject => quad(awg(subject), awg('has'), awg('Success')) as Quad),

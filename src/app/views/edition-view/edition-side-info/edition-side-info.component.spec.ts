@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
@@ -18,7 +18,11 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
+
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -39,32 +43,20 @@ function getExpectedRouterlinks(sections: EditionOutlineSection[]): string[] {
             links.push(section.content.intro.labeledRoute.route.join('/'));
         }
 
-        const activeComplexes = (section.content?.sectionComplexes || []).filter(complex => !complex.disabled);
-
-        activeComplexes.forEach(complex => {
-            if (complex.labeledRoute?.route) {
-                links.push(complex.labeledRoute.route.join('/'));
-            }
-        });
-
         return links;
     });
 
     return baseLinks.concat(itemLinks);
 }
 
-function getExpectedItemTitles(sections: EditionOutlineSection[], includeDisabled: boolean): string[] {
+function getExpectedItemTitles(sections: EditionOutlineSection[]): string[] {
     let itemTitles = EDITION_GENERAL_LINKS.map(link => link.label);
 
     (sections || []).forEach(section => {
         if (!section.content?.intro?.disabled && section.content?.intro?.labeledRoute?.label) {
             itemTitles.push(section.content.intro.labeledRoute.label);
         }
-        const activeComplexes = (section.content?.sectionComplexes || []).filter(
-            complex => includeDisabled || !complex.disabled
-        );
-
-        const complexTitles = activeComplexes
+        const complexTitles = (section.content?.sectionComplexes || [])
             .map(c => c.labeledRoute?.label)
             .filter((label): label is string => !!label);
 
@@ -81,7 +73,6 @@ describe('EditionSideInfoComponent (DONE)', () => {
 
     let router: Router;
 
-    let mockDocument: Document;
     let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
@@ -93,13 +84,14 @@ describe('EditionSideInfoComponent (DONE)', () => {
 
     let expectedRouterLinks: string[];
     let expectedItemTitles: string[];
-    let expectedItemTitlesWithLinks: string[];
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [EditionSideInfoComponent],
             providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
+            .compileComponents();
 
         // Disable ng-bootstrap animations
         TestBed.inject(NgbConfig).animation = false;
@@ -109,7 +101,6 @@ describe('EditionSideInfoComponent (DONE)', () => {
         // Inject services
         editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
-        mockDocument = TestBed.inject(DOCUMENT);
         router = TestBed.inject(Router);
 
         // Service spies
@@ -126,8 +117,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
         // Test data
         expectedSections = [EditionStateHelper.getSection('1', '5'), EditionStateHelper.getSection('2', '2a')];
         expectedRouterLinks = getExpectedRouterlinks(expectedSections);
-        expectedItemTitles = getExpectedItemTitles(expectedSections, true);
-        expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);
+        expectedItemTitles = getExpectedItemTitles(expectedSections);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSideInfoComponent);
@@ -152,9 +142,9 @@ describe('EditionSideInfoComponent (DONE)', () => {
         });
 
         it('... should filter out undefined sections from signal `sectionsData`', () => {
-            outlineServiceGetEditionSectionByIdSpy
-                .mockReturnValueOnce(undefined)
-                .mockReturnValueOnce(expectedSections[1]);
+            const secondSection = getItemAt(expectedSections, 1);
+
+            outlineServiceGetEditionSectionByIdSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(secondSection);
 
             const freshFixture = TestBed.createComponent(EditionSideInfoComponent);
             const freshComponent = freshFixture.componentInstance;
@@ -283,9 +273,11 @@ describe('EditionSideInfoComponent (DONE)', () => {
                         expectedSections.length + 1,
                         expectedSections.length + 1
                     );
+                    const secondItemDe = getItemAt(itemDes, 1);
+                    const thirdItemDe = getItemAt(itemDes, 2);
 
-                    const itemHeaderDes1 = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
-                    const itemHeaderDes2 = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-header', 1, 1);
+                    const itemHeaderDes1 = getAndExpectDebugElementByCss(secondItemDe, 'div.accordion-header', 1, 1);
+                    const itemHeaderDes2 = getAndExpectDebugElementByCss(thirdItemDe, 'div.accordion-header', 1, 1);
 
                     const btnDes1 = getAndExpectDebugElementByCss(itemHeaderDes1[0], 'button.accordion-button', 1, 1);
                     const btnDes2 = getAndExpectDebugElementByCss(itemHeaderDes2[0], 'button.accordion-button', 1, 1);
@@ -366,7 +358,8 @@ describe('EditionSideInfoComponent (DONE)', () => {
                         expectedSections.length + 1,
                         expectedSections.length + 1
                     );
-                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                    const firstItemDe = getItemAt(itemDes, 0);
+                    const itemBodyDes = getAndExpectDebugElementByCss(firstItemDe, 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 3, 3);
                 });
@@ -385,7 +378,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
                         }
                         const itemBodyDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-body', 1, 1);
 
-                        const currentSection = expectedSections[index - 1];
+                        const currentSection = getItemAt(expectedSections, index - 1);
                         const allComplexesCount = currentSection.content?.sectionComplexes?.length ?? 0;
 
                         const expectedLength = !currentSection.content?.intro?.disabled
@@ -397,20 +390,23 @@ describe('EditionSideInfoComponent (DONE)', () => {
                 });
 
                 it('... should not render intro link when section intro is disabled', async () => {
+                    const expectedFirstSection = getItemAt(expectedSections, 0);
                     const sectionWithDisabledIntro: EditionOutlineSection = {
-                        ...expectedSections[0],
+                        ...expectedFirstSection,
                         content: {
-                            ...expectedSections[0].content,
+                            ...expectedFirstSection.content,
                             intro: {
-                                ...expectedSections[0].content?.intro,
+                                ...expectedFirstSection.content?.intro,
                                 disabled: true,
                             },
                         },
                     };
 
+                    const secondSection = getItemAt(expectedSections, 1);
+
                     outlineServiceGetEditionSectionByIdSpy
                         .mockReturnValueOnce(sectionWithDisabledIntro)
-                        .mockReturnValueOnce(expectedSections[1]);
+                        .mockReturnValueOnce(secondSection);
 
                     const freshFixture = TestBed.createComponent(EditionSideInfoComponent);
                     const freshDe = freshFixture.debugElement;
@@ -424,11 +420,12 @@ describe('EditionSideInfoComponent (DONE)', () => {
                     );
 
                     // Open the item body for the section with disabled intro
-                    const itemHeaderDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
+                    const secondItemDe = getItemAt(itemDes, 1);
+                    const itemHeaderDes = getAndExpectDebugElementByCss(secondItemDe, 'div.accordion-header', 1, 1);
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     await clickAndAwaitChanges(btnDes[0], freshFixture);
 
-                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(secondItemDe, 'div.accordion-body', 1, 1);
 
                     const allComplexesCount = sectionWithDisabledIntro.content?.sectionComplexes?.length ?? 0;
 
@@ -448,31 +445,53 @@ describe('EditionSideInfoComponent (DONE)', () => {
                     spanDes.forEach((spanDe, index) => {
                         const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
-                        const mockSpan = mockDocument.createElement('span');
-                        mockSpan.innerHTML = itemTitles[index];
+                        const expectedTitle = toTextContent(getItemAt(itemTitles, index));
 
-                        expectToBe(spanEl.textContent.trim(), mockSpan.textContent.trim());
+                        expectToBe(spanEl.textContent.trim(), expectedTitle.trim());
                     });
                 });
 
-                it('... should render links only for non-disabled edition info items', () => {
-                    const itemTitles = expectedItemTitlesWithLinks;
+                describe('... ConditionalLinkComponent (hollow) for the complexes', () => {
+                    const getExpectedComplexes = () =>
+                        expectedSections.flatMap(section => section.content?.sectionComplexes || []);
 
-                    const aDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'a.awg-edition-info-item-link',
-                        itemTitles.length,
-                        itemTitles.length
-                    );
+                    const getLinkDes = () => {
+                        const expectedCount = getExpectedComplexes().length;
+                        return getAndExpectDebugElementByDirective(
+                            compDe,
+                            ConditionalLinkComponent,
+                            expectedCount,
+                            expectedCount
+                        );
+                    };
 
-                    aDes.forEach((aDe, index) => {
-                        const spanDes = getAndExpectDebugElementByCss(aDe, 'span.awg-edition-info-item-title', 1, 1);
-                        const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+                    it('... should contain one ConditionalLinkComponent (hollow) per complex', () => {
+                        getLinkDes();
+                    });
 
-                        const mockSpan = mockDocument.createElement('span');
-                        mockSpan.innerHTML = itemTitles[index];
+                    it('... should pass down `isClickable` and `targetRoute` to ConditionalLinkComponent (hollow)', () => {
+                        const expectedComplexes = getExpectedComplexes();
 
-                        expectToBe(spanEl.textContent.trim(), mockSpan.textContent.trim());
+                        getLinkDes().forEach((linkDe, index) => {
+                            const linkCmp = linkDe.injector.get(ConditionalLinkComponent);
+                            const expectedComplex = getItemAt(expectedComplexes, index);
+
+                            expectToBe(linkCmp.isClickable(), !expectedComplex.disabled);
+                            expectToEqual(linkCmp.targetRoute(), expectedComplex.labeledRoute.route);
+                        });
+                    });
+
+                    it('... should text-mute only the links of disabled complexes', () => {
+                        const expectedComplexes = getExpectedComplexes();
+
+                        getLinkDes().forEach((linkDe, index) => {
+                            const isComplexDisabled = getItemAt(expectedComplexes, index).disabled;
+
+                            const linkEl: HTMLElement = linkDe.nativeElement;
+                            const isLinkTextMuted = linkEl.classList.contains('text-muted');
+
+                            expectToBe(isLinkTextMuted, isComplexDisabled);
+                        });
                     });
                 });
             });
@@ -524,13 +543,14 @@ describe('EditionSideInfoComponent (DONE)', () => {
                 for (const [index] of routerLinks.entries()) {
                     navigateSpy.mockClear();
 
-                    const linkDe = linkDes[index];
+                    const linkDe = getItemAt(linkDes, index);
                     const expectedRouterLink = expectedRouterLinks[index];
 
                     await clickAndAwaitChanges(linkDe, fixture);
 
                     expectSpyCall(navigateSpy, 1);
-                    const actualUrl = navigateSpy.mock.calls[0][0].toString();
+                    const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                    const actualUrl = actualUrlTree.toString();
 
                     expectToBe(actualUrl, expectedRouterLink);
                 }

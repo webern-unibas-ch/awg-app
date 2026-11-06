@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import * as D3_SELECTION from 'd3-selection';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
@@ -59,7 +59,8 @@ describe('EditionFolioDrawingService (DONE)', () => {
         vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
 
         // Test data
-        expectedDefaultFolio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
+        const firstConvolute = getItemAt(mockEditionData.mockFolioConvoluteData.convolutes, 0);
+        expectedDefaultFolio = structuredClone(getItemAt(firstConvolute.folios, 0));
         expectedReversedFolio = structuredClone(mockEditionData.mockReversedFolio);
         expectedFolioSettings = {
             factor: 1.5,
@@ -228,7 +229,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
         describe('... systems', () => {
             it('... should draw one systems group with one system line group per system', () => {
-                const systemCount = expectedFolioSvgData.systems.lines.length;
+                const systemCount = expectedFolioSvgData.systems.items.length;
 
                 const rootGroupSelection = render(expectedFolioSvgData);
 
@@ -240,48 +241,50 @@ describe('EditionFolioDrawingService (DONE)', () => {
             });
 
             it('... should draw the system labels numbered from top to bottom with the calculated font size', () => {
-                const { lines, labelFontSize, labelPositions } = expectedFolioSvgData.systems;
+                const { items, labelFontSize } = expectedFolioSvgData.systems;
 
                 const rootGroupSelection = render(expectedFolioSvgData);
                 const labelsSelection = rootGroupSelection.selectAll<SVGTextElement, unknown>(
                     'g.systems-group > text.system-label'
                 );
+                const firstItem = getItemAt(items, 0);
 
                 expectToEqual(
                     labelsSelection.nodes().map(node => node.textContent),
-                    lines.map((_line, index) => String(index + 1))
+                    items.map((_system, index) => String(index + 1))
                 );
-                expectToBe(labelsSelection.attr('x'), String(labelPositions[0].x));
-                expectToBe(labelsSelection.attr('y'), String(labelPositions[0].y));
+                expectToBe(labelsSelection.attr('x'), String(firstItem.labelPosition.x));
+                expectToBe(labelsSelection.attr('y'), String(firstItem.labelPosition.y));
                 expectToBe(labelsSelection.attr('text-anchor'), 'end');
                 expectToBe(labelsSelection.attr('font-size'), String(labelFontSize));
             });
 
             it('... should draw the system labels numbered from bottom to top if the systems are reversed', () => {
                 const svgData = createSvgData(expectedReversedFolio);
-                const systemCount = svgData.systems.lines.length;
+                const systemCount = svgData.systems.items.length;
 
                 const rootGroupSelection = render(svgData);
                 const labelsSelection = rootGroupSelection.selectAll<SVGTextElement, unknown>('text.system-label');
 
                 expectToEqual(
                     labelsSelection.nodes().map(node => node.textContent),
-                    svgData.systems.lines.map((_line, index) => String(systemCount - index))
+                    svgData.systems.items.map((_system, index) => String(systemCount - index))
                 );
             });
 
             it('... should draw the lines of each system', () => {
-                const firstSystemLines = expectedFolioSvgData.systems.lines[0];
+                const firstSystemLines = getItemAt(expectedFolioSvgData.systems.items, 0).lines;
+                const firstLine = getItemAt(firstSystemLines, 0);
 
                 const rootGroupSelection = render(expectedFolioSvgData);
                 const linesSelection = rootGroupSelection.select('g.system-line-group').selectAll('line.system-line');
                 const firstLineSelection = rootGroupSelection.select('g.system-line-group > line.system-line');
 
                 expectToBe(linesSelection.size(), firstSystemLines.length);
-                expectToBe(firstLineSelection.attr('x1'), String(firstSystemLines[0].start.x));
-                expectToBe(firstLineSelection.attr('y1'), String(firstSystemLines[0].start.y));
-                expectToBe(firstLineSelection.attr('x2'), String(firstSystemLines[0].end.x));
-                expectToBe(firstLineSelection.attr('y2'), String(firstSystemLines[0].end.y));
+                expectToBe(firstLineSelection.attr('x1'), String(firstLine.start.x));
+                expectToBe(firstLineSelection.attr('y1'), String(firstLine.start.y));
+                expectToBe(firstLineSelection.attr('x2'), String(firstLine.end.x));
+                expectToBe(firstLineSelection.attr('y2'), String(firstLine.end.y));
             });
 
             it('... should not draw any system for a folio without systems', () => {
@@ -314,7 +317,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
             it('... should set the class `selectable` only on the groups of selectable content segments', () => {
                 const folio = structuredClone(expectedDefaultFolio);
-                folio.content[1].selectable = false;
+                getItemAt(folio.content, 1).selectable = false;
 
                 const altSegmentGroupsSelection = render(createSvgData(folio)).selectAll<
                     SVGGElement,
@@ -322,7 +325,9 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 >('g.content-segment-group');
 
                 altSegmentGroupsSelection.each((contentSegment, index, nodes) => {
-                    expectToBe(nodes[index].classList.contains('selectable'), contentSegment.selectable);
+                    const node = getItemAt(nodes, index);
+
+                    expectToBe(node.classList.contains('selectable'), contentSegment.selectable);
                 });
                 expectToEqual(
                     altSegmentGroupsSelection.data().map(contentSegment => contentSegment.selectable),
@@ -332,13 +337,15 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
             it('... should make each content segment group focusable in the tab order', () => {
                 segmentGroupsSelection.each((_contentSegment, index, nodes) => {
-                    expectToBe(nodes[index].getAttribute('tabindex'), '0');
+                    const node = getItemAt(nodes, index);
+
+                    expectToBe(node.getAttribute('tabindex'), '0');
                 });
             });
 
             it('... should give the content segment groups link or button semantics with an aria label', () => {
                 const folio = structuredClone(expectedDefaultFolio);
-                folio.content[1].selectable = false;
+                getItemAt(folio.content, 1).selectable = false;
 
                 const altSegmentGroupsSelection = render(createSvgData(folio)).selectAll<
                     SVGGElement,
@@ -361,14 +368,16 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
             it('... should draw the segment label as title of each content segment group', () => {
                 segmentGroupsSelection.each((contentSegment, index, nodes) => {
-                    expectToBe(nodes[index].querySelector(':scope > title')?.textContent, contentSegment.label);
+                    const node = getItemAt(nodes, index);
+
+                    expectToBe(node.querySelector(':scope > title')?.textContent, contentSegment.label);
                 });
             });
 
             it('... should draw the segment polygon in the content segment of each content segment group', () => {
                 // 18 systems (reference) => stroke width 2
                 segmentGroupsSelection.each((contentSegment, index, nodes) => {
-                    const polygon = nodes[index].querySelector(':scope > g.content-segment > polygon');
+                    const polygon = getItemAt(nodes, index).querySelector(':scope > g.content-segment > polygon');
 
                     expectToBe(polygon?.getAttribute('class'), 'content-segment-shape');
                     expectToBe(polygon?.getAttribute('points'), contentSegment.vertices);
@@ -386,7 +395,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
             it('... should draw the segment label lines as tspans of a centered text', () => {
                 segmentGroupsSelection.each((contentSegment, index, nodes) => {
-                    const text = nodes[index].querySelector(':scope > g.content-segment > text');
+                    const text = getItemAt(nodes, index).querySelector(':scope > g.content-segment > text');
                     const tspans = Array.from(text?.querySelectorAll('tspan') ?? []);
                     const expectedLines = contentSegment.labelLines.filter(line => line !== '');
 
@@ -399,7 +408,9 @@ describe('EditionFolioDrawingService (DONE)', () => {
                         expectedLines
                     );
                     if (tspans.length > 1) {
-                        expectToBe(tspans[1].getAttribute('dy'), '1.2em');
+                        const secondTspan = getItemAt(tspans, 1);
+
+                        expectToBe(secondTspan.getAttribute('dy'), '1.2em');
                     }
                 });
             });

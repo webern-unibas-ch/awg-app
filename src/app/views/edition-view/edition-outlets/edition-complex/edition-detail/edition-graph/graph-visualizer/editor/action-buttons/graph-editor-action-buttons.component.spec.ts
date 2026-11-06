@@ -5,7 +5,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    getAndExpectDebugElementByCss,
+    getItemAt,
+} from '@testing/expect-helper';
 
 import { GraphEditorActionButtonsComponent } from './graph-editor-action-buttons.component';
 
@@ -74,7 +80,8 @@ describe('GraphEditorActionButtonsComponent (DONE)', () => {
                     3,
                     3
                 );
-                const btnEl: HTMLButtonElement = btnDes[index].nativeElement;
+                const btnDe = getItemAt(btnDes, index);
+                const btnEl: HTMLButtonElement = btnDe.nativeElement;
 
                 expectToBe(btnEl.textContent, label);
                 expectToContain(btnEl.classList, cssClass);
@@ -98,10 +105,11 @@ describe('GraphEditorActionButtonsComponent (DONE)', () => {
                     { desc: '`queryRequest` on click of the Query button', index: 0, calls: [1, 0, 0] },
                     { desc: '`resetRequest` on click of the Reset button', index: 1, calls: [0, 1, 0] },
                     { desc: '`clearRequest` on click of the Clear button', index: 2, calls: [0, 0, 1] },
-                ])('... $desc', async ({ index, calls }) => {
+                ] as const)('... $desc', async ({ index, calls }) => {
+                    const btnDe = getItemAt(btnDes, index);
                     const [queryCalls, resetCalls, clearCalls] = calls;
 
-                    await clickAndAwaitChanges(btnDes[index], fixture);
+                    await clickAndAwaitChanges(btnDe, fixture);
 
                     expectSpyCall(emitQueryRequestSpy, queryCalls);
                     expectSpyCall(emitResetRequestSpy, resetCalls);

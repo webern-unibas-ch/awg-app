@@ -7,7 +7,13 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import * as D3_SELECTION from 'd3-selection';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getItemAt,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
@@ -97,16 +103,18 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         openTextModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
         // Test data
-        expectedFolio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
+        const firstConvolute = getItemAt(mockEditionData.mockFolioConvoluteData.convolutes, 0);
+        expectedFolio = structuredClone(getItemAt(firstConvolute.folios, 0));
+        const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
         expectedSelection = {
             id: 'M212_Sk1',
             fullId: 'M212_Sk1',
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
         expectedSelectionWithPartial = {
             id: 'M212_Sk',
             fullId: 'M212_Sk3',
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
 
         const expectedFolioSettings: FolioSettings = {
@@ -266,10 +274,12 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             });
 
             it('... should not mark any content segment as active if the selected svg sheet is not on the folio', async () => {
+                const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
+
                 fixture.componentRef.setInput('selectedSvgSheet', {
                     id: 'M212_Sk4',
                     fullId: 'M212_Sk4',
-                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                    content: firstContent,
                 });
                 await detectChangesOnPush(fixture);
 
@@ -358,7 +368,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
 
                 it('... should open the text modal on keydown of "Enter" on a focused content segment that is not selectable', async () => {
                     const folio = structuredClone(expectedFolio);
-                    folio.content[0].selectable = false;
+                    getItemAt(folio.content, 0).selectable = false;
                     setInputs(folio, expectedSelection);
                     await detectChangesOnPush(fixture);
 
@@ -389,7 +399,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
                 let expectedEvent: Event;
 
                 beforeEach(() => {
-                    expectedContentSegment = structuredClone(expectedFolioSvgData.contentSegments[0]);
+                    expectedContentSegment = structuredClone(getItemAt(expectedFolioSvgData.contentSegments, 0));
                     expectedEvent = new MouseEvent('click', { cancelable: true });
                 });
 

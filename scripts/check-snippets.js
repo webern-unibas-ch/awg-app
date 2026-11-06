@@ -35,10 +35,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.resolve(__dirname, '..');
-const DATA_DIR = path.join(ROOT, 'src', 'assets', 'data', 'edition');
+const { ROOT, EDITION_DATA_DIR, relPath, editionJsonFiles, readJson } = require('./check-utils');
+
 const SNIPPETS_DIR = path.join(ROOT, 'src', 'assets', 'img', 'edition', 'snippets');
-const DATA_PREFIX_REL = path.relative(ROOT, DATA_DIR).replace(/\\/g, '/');
 const STRICT_DATA = process.argv.includes('--strict-data');
 const VERBOSE = process.argv.includes('--verbose');
 const SAFE_SNIPPET_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
@@ -54,18 +53,10 @@ const dataIssuesBySection = new Map();
 const ROMAN = { 1: 'I', 2: 'II', 3: 'III' };
 
 function sectionOf(filePath) {
-    const m = filePath.replace(/\\/g, '/').match(/series\/([^/]+)\/section\/([^/]+)/);
+    const m = relPath(filePath).match(/series\/([^/]+)\/section\/([^/]+)/);
     if (!m) return 'other';
     const series = ROMAN[Number(m[1])] ?? m[1];
     return `AWG ${series}/${m[2]}`;
-}
-
-function displayDataPath(relFile) {
-    const normalized = relFile.replace(/\\/g, '/');
-    if (normalized.startsWith(`${DATA_PREFIX_REL}/`)) {
-        return normalized.slice(DATA_PREFIX_REL.length + 1);
-    }
-    return normalized;
 }
 
 function recordResult(section, entry) {
@@ -78,28 +69,15 @@ function recordDataIssue(section, entry) {
     dataIssuesBySection.get(section).push(entry);
 }
 
-// ── Recursive directory walk ─────────────────────────────────────────────────
-
-function walkDir(dir) {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-        const full = path.join(dir, entry.name);
-        if (entry.isDirectory()) {
-            walkDir(full);
-        } else if (entry.isFile() && entry.name.endsWith('.json')) {
-            checkFile(full);
-        }
-    }
-}
-
 // ── Check a single JSON file ─────────────────────────────────────────────────
 
 function checkFile(filePath) {
     let data;
     try {
-        data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        data = readJson(filePath);
     } catch (e) {
         const section = sectionOf(filePath);
-        recordResult(section, { ok: false, id: '?', file: path.relative(ROOT, filePath), error: e.message });
+        recordResult(section, { ok: false, id: '?', file: relPath(filePath, EDITION_DATA_DIR), error: e.message });
         return;
     }
     checkValue(data, filePath);
@@ -140,7 +118,8 @@ function checkBlockComment(svgGroupId, comment, filePath, context) {
     const matches = comment.match(PLACEHOLDER_PATTERN);
 
     const section = sectionOf(filePath);
-    const relFile = path.relative(ROOT, filePath);
+    // Relative to the edition data folder, as printed in the results
+    const relFile = relPath(filePath, EDITION_DATA_DIR);
 
     if (filteredMalformedMatches.length > 0) {
         recordDataIssue(section, {
@@ -207,7 +186,7 @@ function checkBlockComment(svgGroupId, comment, filePath, context) {
 
 // ── Run ──────────────────────────────────────────────────────────────────────
 
-walkDir(DATA_DIR);
+editionJsonFiles().forEach(checkFile);
 
 let totalFound = 0;
 let totalMissing = 0;
@@ -228,11 +207,11 @@ for (const [section, entries] of [...sections.entries()].sort()) {
 
     for (const e of entries) {
         if (e.error) {
-            console.error(`       ERROR  ${displayDataPath(e.file)}: ${e.error}`);
+            console.error(`       ERROR  ${e.file}: ${e.error}`);
         } else if (e.ok) {
-            console.log(`         OK   ${e.id}.png   (${displayDataPath(e.file)})`);
+            console.log(`         OK   ${e.id}.png   (${e.file})`);
         } else {
-            console.error(`       MISS   ${e.id}.png   (${displayDataPath(e.file)})`);
+            console.error(`       MISS   ${e.id}.png   (${e.file})`);
             if (VERBOSE) {
                 const contextParts = [];
                 if (e.measure) contextParts.push(`measure=${e.measure}`);
@@ -254,15 +233,15 @@ for (const [section, issues] of [...dataIssuesBySection.entries()].sort()) {
     for (const issue of issues) {
         if (issue.type === 'MISSING_ID') {
             console.warn(
-                `      WARN   missing svgGroupId for ${issue.placeholders} placeholder(s)   (${displayDataPath(issue.file)} @ ${issue.jsonPath})`
+                `      WARN   missing svgGroupId for ${issue.placeholders} placeholder(s)   (${issue.file} @ ${issue.jsonPath})`
             );
         } else if (issue.type === 'MALFORMED_PLACEHOLDER') {
             console.warn(
-                `      WARN   malformed placeholder ${issue.placeholders === 1 ? 'variant' : 'variants'} ${issue.malformedMatches.join(', ')}   (${displayDataPath(issue.file)} @ ${issue.jsonPath})`
+                `      WARN   malformed placeholder ${issue.placeholders === 1 ? 'variant' : 'variants'} ${issue.malformedMatches.join(', ')}   (${issue.file} @ ${issue.jsonPath})`
             );
         } else {
             console.warn(
-                `      WARN   unsafe svgGroupId "${issue.svgGroupId}" for ${issue.placeholders} placeholder(s)   (${displayDataPath(issue.file)} @ ${issue.jsonPath})`
+                `      WARN   unsafe svgGroupId "${issue.svgGroupId}" for ${issue.placeholders} placeholder(s)   (${issue.file} @ ${issue.jsonPath})`
             );
         }
 

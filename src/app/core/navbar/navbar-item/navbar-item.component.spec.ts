@@ -15,6 +15,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { NAVBAR_ITEMS } from '../navbar.data';
@@ -227,9 +228,10 @@ describe('NavbarItemComponent (DONE)', () => {
                                 });
 
                                 it('... can get correct linkParams from template', () => {
-                                    const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                                    const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
+                                    const expectedFirstRouterlink = getItemAt(expectedRouterlinks, 0);
 
-                                    expectToBe(urlTreeString, expectedRouterlinks[0].join('/'));
+                                    expectToBe(urlTreeString, expectedFirstRouterlink.join('/'));
                                 });
 
                                 it('... can click all links in template', async () => {
@@ -237,14 +239,14 @@ describe('NavbarItemComponent (DONE)', () => {
 
                                     navigateSpy.mockClear();
 
-                                    const linkDe = linkDes[0];
-                                    const expectedRouterLink = expectedRouterlinks[0];
+                                    const linkDe = getItemAt(linkDes, 0);
+                                    const expectedRouterLink = getItemAt(expectedRouterlinks, 0);
 
                                     await clickAndAwaitChanges(linkDe, hostFixture);
 
                                     expectSpyCall(navigateSpy, 1);
-                                    const firstCallArg = navigateSpy.mock.calls[0][0];
-                                    const actualUrl = firstCallArg.toString();
+                                    const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                                    const actualUrl = actualUrlTree.toString();
 
                                     expectToBe(actualUrl, expectedRouterLink.join('/'));
 

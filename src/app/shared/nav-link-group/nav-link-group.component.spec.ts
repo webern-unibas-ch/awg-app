@@ -14,6 +14,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
@@ -50,15 +51,14 @@ describe('NavLinkGroupComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedOrderOfRouterlinks = [
-            ['/data/search', 'fulltext'],
-            ['/data/search', 'timeline'],
-            ['/data/search', 'bibliography'],
-        ];
+        const fulltextRouterlink: [string, string] = ['/data/search', 'fulltext'];
+        const timelineRouterlink: [string, string] = ['/data/search', 'timeline'];
+        const bibliographyRouterlink: [string, string] = ['/data/search', 'bibliography'];
+        expectedOrderOfRouterlinks = [fulltextRouterlink, timelineRouterlink, bibliographyRouterlink];
         expectedNavLinks = [
-            new NavLink(expectedOrderOfRouterlinks[0][0], expectedOrderOfRouterlinks[0][1], 'Volltext-Suche', false),
-            new NavLink(expectedOrderOfRouterlinks[1][0], expectedOrderOfRouterlinks[1][1], 'Timeline', true),
-            new NavLink(expectedOrderOfRouterlinks[2][0], expectedOrderOfRouterlinks[2][1], 'Bibliographie', true),
+            new NavLink(...fulltextRouterlink, 'Volltext-Suche', false),
+            new NavLink(...timelineRouterlink, 'Timeline', true),
+            new NavLink(...bibliographyRouterlink, 'Bibliographie', true),
         ];
         expectedQueryParamsHandling = 'preserve';
 
@@ -163,8 +163,9 @@ describe('NavLinkGroupComponent (DONE)', () => {
 
                 aDes.forEach((aDe, index) => {
                     const aEl: HTMLAnchorElement = aDe.nativeElement;
+                    const isNavLinkDisabled = getItemAt(expectedNavLinks, index).disabled;
 
-                    if (expectedNavLinks[index].disabled) {
+                    if (isNavLinkDisabled) {
                         expectToContain(aEl.classList, 'disabled');
                         expectToBe(aEl.getAttribute('aria-disabled'), 'true');
                         expectToBe(aEl.hasAttribute('href'), false);
@@ -187,8 +188,9 @@ describe('NavLinkGroupComponent (DONE)', () => {
                 aDes.forEach((aDe, index) => {
                     const aEl: HTMLAnchorElement = aDe.nativeElement;
                     const isFocusable = aEl.hasAttribute('href') || aEl.hasAttribute('tabindex');
+                    const expectedNavLink = getItemAt(expectedNavLinks, index);
 
-                    expectToBe(isFocusable, !expectedNavLinks[index].disabled);
+                    expectToBe(isFocusable, !expectedNavLink.disabled);
                 });
             });
 
@@ -202,8 +204,9 @@ describe('NavLinkGroupComponent (DONE)', () => {
 
                 aDes.forEach((aDe, index) => {
                     const aEl: HTMLAnchorElement = aDe.nativeElement;
+                    const expectedNavLink = getItemAt(expectedNavLinks, index);
 
-                    expectToBe(aEl.textContent.trim(), expectedNavLinks[index].label.toUpperCase());
+                    expectToBe(aEl.textContent.trim(), expectedNavLink.label.toUpperCase());
                 });
             });
 
@@ -242,9 +245,10 @@ describe('NavLinkGroupComponent (DONE)', () => {
 
                 it('... can get correct linkParams from routerLinks of enabled links', () => {
                     routerLinks.forEach((routerLink, index) => {
-                        const expectedUrl = expectedNavLinks[index].disabled
+                        const expectedNavLink = getItemAt(expectedNavLinks, index);
+                        const expectedUrl = expectedNavLink.disabled
                             ? null
-                            : expectedOrderOfRouterlinks[index].join('/');
+                            : [expectedNavLink.root, expectedNavLink.link].join('/');
 
                         expectToBe(routerLink.urlTree?.toString() ?? null, expectedUrl);
                     });
@@ -262,9 +266,12 @@ describe('NavLinkGroupComponent (DONE)', () => {
                     for (const linkDe of linkDes) {
                         await clickAndAwaitChanges(linkDe, fixture);
                     }
+                    const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                    // Only the first link (fulltext) is enabled
+                    const enabledRouterlink = getItemAt(expectedOrderOfRouterlinks, 0);
 
                     expectToBe(navigateSpy.mock.calls.length, 1);
-                    expectToBe(navigateSpy.mock.calls[0][0].toString(), expectedOrderOfRouterlinks[0].join('/'));
+                    expectToBe(actualUrlTree.toString(), enabledRouterlink.join('/'));
                 });
             });
 

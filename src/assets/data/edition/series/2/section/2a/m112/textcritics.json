@@ -101,7 +101,7 @@
                                 "measure": "65",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk4a'><strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}}</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk4a'><strong>Sk4</strong> T. 65–{66A}</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-007",
@@ -143,7 +143,7 @@
                                 "measure": "79",
                                 "system": "Klav. o.",
                                 "position": "2/8",
-                                "comment": "sic: gis<sup>2</sup> und as<sup>2</sup> durch Ligatur verbunden. Vgl. <a data-complex-id='m112' data-sheet-id='M112_Sk5c'><strong>Sk5</strong> T. {{'{'}}79B{{'}'}}</a> und <a data-complex-id='m112' data-sheet-id='M112_Sk5d'>79C</a> sowie <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a>, wo die enharmonische Verwechslung aufgehoben und 2–3/8 zu einer Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup> zusammengefasst ist."
+                                "comment": "sic: gis<sup>2</sup> und as<sup>2</sup> durch Ligatur verbunden. Vgl. <a data-complex-id='m112' data-sheet-id='M112_Sk5c'><strong>Sk5</strong> T. {79B}</a> und <a data-complex-id='m112' data-sheet-id='M112_Sk5d'>79C</a> sowie <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a>, wo die enharmonische Verwechslung aufgehoben und 2–3/8 zu einer Viertelnote <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup> zusammengefasst ist."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf2-013",
@@ -316,7 +316,7 @@
                                 "measure": "65",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk4a'><strong>Sk4</strong> T. 65–{{'{'}}66A{{'}'}}</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt mit Blick auf <a data-complex-id='m112' data-sheet-id='M112_Sk4a'><strong>Sk4</strong> T. 65–{66A}</a> in <a data-complex-id='m112' data-report-fragment-id='source_B'><strong>B<sup>b</sup></strong></a> und analog Parallelstelle T. 56–57, wo D-Dur ebenfalls über die Moll-Dominante erreicht wird."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m112_tf3-021",

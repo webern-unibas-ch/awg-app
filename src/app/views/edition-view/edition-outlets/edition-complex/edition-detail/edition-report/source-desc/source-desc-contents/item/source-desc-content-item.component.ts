@@ -1,4 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
+import { UrlTree } from '@angular/router';
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
@@ -58,18 +59,11 @@ export class SourceDescContentItemComponent {
     });
 
     /**
-     * Public method: selectSvgSheet.
+     * Readonly computed signal: targetRoute.
      *
-     * It delegates the navigation to the given sheet navigation target
-     * directly to the {@link EditionNavigationService}.
-     *
-     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
-     * @returns {void} Navigates to the selected SVG sheet.
+     * It holds the route to the sheet of the content item, or null if it is not clickable.
      */
-    selectSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
-        if (!sheetTarget?.sheetId) {
-            return;
-        }
-        this._navigationService.navigateToSvgSheet(sheetTarget);
-    }
+    readonly targetRoute = computed<UrlTree | null>(() =>
+        this.isClickable() ? this._navigationService.getSvgSheetRoute(this.sheetTarget()) : null
+    );
 }

@@ -1,16 +1,17 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UrlTree } from '@angular/router';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -26,6 +27,7 @@ describe('SourceSiglumComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedSourceData: Source;
+    let expectedTargetRoute: UrlTree;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -37,7 +39,8 @@ describe('SourceSiglumComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedSourceData = structuredClone(mockEditionData.mockSourceListData.sources[0]);
+        expectedSourceData = structuredClone(getItemAt(mockEditionData.mockSourceListData.sources, 0));
+        expectedTargetRoute = new UrlTree();
 
         // Create component fixture
         fixture = TestBed.createComponent(SourceSiglumComponent);
@@ -62,14 +65,16 @@ describe('SourceSiglumComponent (DONE)', () => {
             expectToBe(component.isClickable(), false);
         });
 
+        it('... should have input signal `targetRoute` to hold the default value', () => {
+            expectToBe(isSignal(component.targetRoute), true);
+
+            expectToBe(component.targetRoute(), null);
+        });
+
         it('... should have input signal `classPrefix` to hold the default value', () => {
             expectToBe(isSignal(component.classPrefix), true);
 
             expectToBe(component.classPrefix(), 'awg-source-list');
-        });
-
-        it('... should have output `clicked`', () => {
-            expect(component.clicked).toBeDefined();
         });
 
         it('... should throw when accessing computed signal `hasMissingFlag` due to missing input', () => {
@@ -108,6 +113,7 @@ describe('SourceSiglumComponent (DONE)', () => {
             // Set the initial values for the signal inputs
             fixture.componentRef.setInput('siglumData', structuredClone(expectedSourceData));
             fixture.componentRef.setInput('isClickable', true);
+            fixture.componentRef.setInput('targetRoute', expectedTargetRoute);
             fixture.componentRef.setInput('classPrefix', 'awg-source-list');
 
             // Trigger initial data binding
@@ -120,6 +126,10 @@ describe('SourceSiglumComponent (DONE)', () => {
 
         it('... should have input signal `isClickable` to hold the expected value', () => {
             expectToEqual(component.isClickable(), true);
+        });
+
+        it('... should have input signal `targetRoute` to hold the expected value', () => {
+            expectToBe(component.targetRoute(), expectedTargetRoute);
         });
 
         it('... should have input signal `classPrefix` to hold the expected value', () => {
@@ -182,8 +192,11 @@ describe('SourceSiglumComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
             });
 
-            it('... should pass down `isClickable` to ConditionalLinkComponent (hollow)', () => {
-                expectToBe(getConditionalLinkCmp().isClickable(), true);
+            it('... should pass down `isClickable` and `targetRoute` to ConditionalLinkComponent (hollow)', () => {
+                const linkCmp = getConditionalLinkCmp();
+
+                expectToBe(linkCmp.isClickable(), true);
+                expectToBe(linkCmp.targetRoute(), expectedTargetRoute);
             });
 
             it('... should contain siglum as content of ConditionalLinkComponent (hollow)', () => {
@@ -208,8 +221,9 @@ describe('SourceSiglumComponent (DONE)', () => {
                     { siglum: 'B', addendum: 'H' },
                     { siglum: 'C', addendum: 'F1-F2' },
                 ])('... with addendum $addendum', async ({ siglum, addendum }) => {
+                    const firstSource = getItemAt(mockEditionData.mockSourceListDataWithTexts.sources, 0);
                     expectedSourceData = {
-                        ...mockEditionData.mockSourceListDataWithTexts.sources[0],
+                        ...firstSource,
                         siglum,
                         siglumAddendum: addendum,
                     };
@@ -246,18 +260,9 @@ describe('SourceSiglumComponent (DONE)', () => {
                 });
             });
 
-            it('... should emit `clicked` when ConditionalLinkComponent (hollow) is clicked', () => {
-                const emitSpy = vi.fn();
-                fixture.componentInstance.clicked.subscribe(emitSpy);
-
-                getConditionalLinkCmp().clicked.emit();
-
-                expectSpyCall(emitSpy, 1);
-            });
-
             describe('... missing sources', () => {
                 beforeEach(async () => {
-                    expectedSourceData = structuredClone(mockEditionData.mockSourceListData.sources[2]);
+                    expectedSourceData = structuredClone(getItemAt(mockEditionData.mockSourceListData.sources, 2));
                     fixture.componentRef.setInput('isClickable', true);
                     fixture.componentRef.setInput('classPrefix', 'awg-source-list');
 

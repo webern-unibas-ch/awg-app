@@ -3,6 +3,8 @@ import { RouterLink } from '@angular/router';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
+
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
 import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
@@ -18,7 +20,7 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
     selector: 'awg-edition-side-info',
     templateUrl: './edition-side-info.component.html',
     styleUrl: './edition-side-info.component.scss',
-    imports: [NgbAccordionModule, RouterLink],
+    imports: [ConditionalLinkComponent, NgbAccordionModule, RouterLink],
 })
 export class EditionSideInfoComponent {
     /**

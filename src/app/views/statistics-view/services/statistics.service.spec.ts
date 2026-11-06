@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { expectSpyCall, expectToBe } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, getItemAt } from '@testing/expect-helper';
 
 import {
     EditionOutlineComplexItem,
@@ -130,7 +130,7 @@ describe('StatisticsService', () => {
         it('... should calculate correct statistics for sample data', () => {
             const stats = service.getStatisticsFromOutline(singleSeriesSampleOutline);
             const seriesBreakdown = stats.seriesBreakdown;
-            const sectionBreakdown = stats.seriesBreakdown[0].sectionBreakdown;
+            const sectionBreakdown = getItemAt(stats.seriesBreakdown, 0).sectionBreakdown;
 
             expectSummary(stats, {
                 totalSeries: 1,
@@ -143,19 +143,22 @@ describe('StatisticsService', () => {
             });
 
             // Test section breakdown
+            const firstSectionBreakdown = getItemAt(sectionBreakdown, 0);
+
             expect(seriesBreakdown).toBeDefined();
             expectToBe(seriesBreakdown.length, 1);
 
             expect(sectionBreakdown).toBeDefined();
             expectToBe(sectionBreakdown.length, 1);
-
-            expectToBe(sectionBreakdown[0].section, '5');
-            expectToBe(sectionBreakdown[0].totalComplexes, 3);
-            expectToBe(sectionBreakdown[0].activeComplexes, 2);
-            expectToBe(sectionBreakdown[0].progressRate, 67);
+            expectToBe(firstSectionBreakdown.section, '5');
+            expectToBe(firstSectionBreakdown.totalComplexes, 3);
+            expectToBe(firstSectionBreakdown.activeComplexes, 2);
+            expectToBe(firstSectionBreakdown.progressRate, 67);
 
             // Test series activity rate (should match single section rate)
-            expectToBe(seriesBreakdown[0].progressRate, 67);
+            const firstSeriesBreakdown = getItemAt(seriesBreakdown, 0);
+
+            expectToBe(firstSeriesBreakdown.progressRate, 67);
         });
 
         it('... should calculate series progress as average of all sections', () => {
@@ -165,11 +168,15 @@ describe('StatisticsService', () => {
             // Section 2A: 100% (2 complexes, all active)
             // Section 3: 0% (disabled, no complexes)
             // Series average: (0 + 100 + 0) / 3 = 33%
+            const firstSeriesBreakdown = getItemAt(stats.seriesBreakdown, 0);
+            const firstSectionBreakdown = getItemAt(firstSeriesBreakdown.sectionBreakdown, 0);
+            const secondSectionBreakdown = getItemAt(firstSeriesBreakdown.sectionBreakdown, 1);
+            const thirdSectionBreakdown = getItemAt(firstSeriesBreakdown.sectionBreakdown, 2);
 
-            expectToBe(stats.seriesBreakdown[0].progressRate, 33);
-            expectToBe(stats.seriesBreakdown[0].sectionBreakdown[0].progressRate, 0);
-            expectToBe(stats.seriesBreakdown[0].sectionBreakdown[1].progressRate, 100);
-            expectToBe(stats.seriesBreakdown[0].sectionBreakdown[2].progressRate, 0);
+            expectToBe(firstSeriesBreakdown.progressRate, 33);
+            expectToBe(firstSectionBreakdown.progressRate, 0);
+            expectToBe(secondSectionBreakdown.progressRate, 100);
+            expectToBe(thirdSectionBreakdown.progressRate, 0);
         });
 
         it('... should not increment activeSeries if a series has no active content', () => {

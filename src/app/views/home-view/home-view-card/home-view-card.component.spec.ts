@@ -14,6 +14,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { HomeViewCardComponent } from './home-view-card.component';
@@ -288,7 +289,7 @@ describe('HomeViewCardComponent (DONE)', () => {
             it('... can get correct linkParams from template', () => {
                 const internalLink = expectedInternalCardData.link as HomeViewCardInternalLink;
                 const expectedRouterLink = internalLink.route.join('/');
-                const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                 expectToEqual(urlTreeString, expectedRouterLink);
             });
@@ -299,13 +300,13 @@ describe('HomeViewCardComponent (DONE)', () => {
 
                 const internalLink = expectedInternalCardData.link as HomeViewCardInternalLink;
                 const expectedRouterLink = internalLink.route.join('/');
-                const linkDe = linkDes[0];
+                const linkDe = getItemAt(linkDes, 0);
 
                 await clickAndAwaitChanges(linkDe, fixture);
 
                 expectSpyCall(navigateSpy, 1);
-                const firstCallArgs = navigateSpy.mock.calls[0][0];
-                const actualUrl = firstCallArgs.toString();
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                const actualUrl = actualUrlTree.toString();
 
                 expectToBe(actualUrl, expectedRouterLink);
 

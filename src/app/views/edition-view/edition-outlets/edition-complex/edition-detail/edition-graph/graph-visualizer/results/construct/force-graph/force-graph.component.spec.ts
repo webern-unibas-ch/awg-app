@@ -14,6 +14,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { stubResizeObserver } from '@testing/svg-drawing-helper';
 
@@ -268,9 +269,12 @@ describe('ForceGraphComponent (DONE)', () => {
                 });
 
                 it('... should emit `clickedNodeRequest` for a clicked graph node of the ForceGraphCanvasComponent', () => {
-                    getGraphCanvasCmp().clickedNodeRequest.emit(expectedNodes[0]);
+                    const expectedFirstNode = getItemAt(expectedNodes, 0);
+                    const graphCanvasCmp = getGraphCanvasCmp();
 
-                    expectSpyCall(clickedNodeRequestSpy, 1, expectedNodes[0]);
+                    graphCanvasCmp.clickedNodeRequest.emit(expectedFirstNode);
+
+                    expectSpyCall(clickedNodeRequestSpy, 1, expectedFirstNode);
                 });
             });
         });

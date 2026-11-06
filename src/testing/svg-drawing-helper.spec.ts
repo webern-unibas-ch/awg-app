@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as D3_SELECTION from 'd3-selection';
 import * as D3_ZOOM from 'd3-zoom';
 
-import { expectSpyCall, expectToBe, expectToEqual } from './expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from './expect-helper';
 import { MockResizeObserver, patchSvgSizeForD3Zoom, stubResizeObserver } from './svg-drawing-helper';
 
 describe('svg-drawing-helper', () => {
@@ -144,7 +144,8 @@ describe('svg-drawing-helper', () => {
             const observer2 = new ResizeObserver(vi.fn());
 
             expectToEqual<object[]>(mockResizeObservers, [observer1, observer2]);
-            expectToBe<object>(mockResizeObservers[0], observer1);
+            const mockFirstResizeObserver = getItemAt(mockResizeObservers, 0);
+            expectToBe<object>(mockFirstResizeObserver, observer1);
         });
 
         it('... should keep the observed elements', () => {
@@ -152,9 +153,10 @@ describe('svg-drawing-helper', () => {
             const element = document.createElement('div');
 
             new ResizeObserver(vi.fn()).observe(element);
+            const mockFirstResizeObserver = getItemAt(mockResizeObservers, 0);
 
-            expectToEqual(mockResizeObservers[0].observedElements, [element]);
-            expectSpyCall(mockResizeObservers[0].observe, 1, element);
+            expectToEqual(mockFirstResizeObserver.observedElements, [element]);
+            expectSpyCall(mockFirstResizeObserver.observe, 1, element);
         });
 
         it('... should call the callback on trigger', () => {
@@ -162,9 +164,11 @@ describe('svg-drawing-helper', () => {
             const callback = vi.fn();
 
             new ResizeObserver(callback);
-            mockResizeObservers[0].trigger();
+            const mockFirstResizeObserver = getItemAt(mockResizeObservers, 0);
 
-            expectSpyCall(callback, 1, [[], mockResizeObservers[0]]);
+            mockFirstResizeObserver.trigger();
+
+            expectSpyCall(callback, 1, [[], mockFirstResizeObserver]);
         });
     });
 });

@@ -1,7 +1,8 @@
 import { Component, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
+
 import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 
 /**
@@ -15,7 +16,7 @@ import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-out
     selector: 'awg-edition-series-card',
     templateUrl: './edition-series-card.component.html',
     styleUrl: './edition-series-card.component.scss',
-    imports: [ButtonMoreComponent, RouterLink],
+    imports: [ButtonMoreComponent, ConditionalLinkComponent],
 })
 export class EditionSeriesCardComponent {
     /**

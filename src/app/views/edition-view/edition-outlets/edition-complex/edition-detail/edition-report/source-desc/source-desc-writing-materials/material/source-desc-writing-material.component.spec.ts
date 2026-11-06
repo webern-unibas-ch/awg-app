@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -9,7 +9,9 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { SourceDescWritingMaterial } from '@awg-views/edition-view/models/source-desc.model';
@@ -23,8 +25,6 @@ describe('SourceDescWritingMaterialComponent (DONE)', () => {
     let component: SourceDescWritingMaterialComponent;
     let fixture: ComponentFixture<SourceDescWritingMaterialComponent>;
     let compDe: DebugElement;
-
-    let mockDocument: Document;
 
     let expectedMaterial: SourceDescWritingMaterial;
 
@@ -42,12 +42,9 @@ describe('SourceDescWritingMaterialComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
         const writingMaterials = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescListData.sources[2].physDesc.writingMaterials)
+            JSON.stringify(getItemAt(mockEditionData.mockSourceDescListData.sources, 2).physDesc.writingMaterials)
         );
         expectedMaterial = {
             ...writingMaterials[0],
@@ -188,11 +185,9 @@ describe('SourceDescWritingMaterialComponent (DONE)', () => {
                 );
                 const folioAddendumSpanEl: HTMLSpanElement = folioAddendumSpanDes[0].nativeElement;
 
-                // Process HTML expression of expected text content
-                const expectedHtmlTextContent = mockDocument.createElement('span');
-                expectedHtmlTextContent.innerHTML = `&nbsp;(Bl. ${expectedMaterial.folioAddendum ?? ''})`;
+                const expectedFolioAddendum = toTextContent(`&nbsp;(Bl. ${expectedMaterial.folioAddendum ?? ''})`);
 
-                expectToBe(folioAddendumSpanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                expectToBe(folioAddendumSpanEl.textContent.trim(), expectedFolioAddendum.trim());
             });
 
             describe('... should not render a span if empty:', () => {

@@ -14,10 +14,13 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
+import { toInnerHtml } from '@testing/html-helper';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionComplexPartsComponent } from '@awg-views/edition-view/shared/complex/edition-complex-parts/edition-complex-parts.component';
 
 import { EditionSectionDetailComplexCardComponent } from './edition-section-detail-complex-card.component';
 
@@ -39,6 +42,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             providers: [provideRouter([]), { provide: LOCALE_ID, useValue: 'de-DE' }],
         })
             .overrideComponent(ButtonMoreComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPartsComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -130,9 +134,10 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should text-mute card titles of disabled editionComplexes', () => {
                 const cardTitleDes = getCardTitleDes();
                 cardTitleDes.forEach((cardTitleDe, index) => {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
                     const cardTitleEl: HTMLHeadingElement = cardTitleDe.nativeElement;
 
-                    if (expectedComplexes[index].disabled) {
+                    if (expectedComplex.disabled) {
                         expectToContain(cardTitleEl.classList, 'text-muted');
                     } else {
                         expectToNotContain(cardTitleEl.classList, 'text-muted');
@@ -143,6 +148,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should display complex as card title in span.awg-edition-info-header-title', () => {
                 const cardTitleDes = getCardTitleDes();
                 cardTitleDes.forEach((cardTitleDe, index) => {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
                     const titleSpanDes = getAndExpectDebugElementByCss(
                         cardTitleDe,
                         'span.awg-edition-info-header-title',
@@ -151,7 +157,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     );
                     const titleSpanEl: HTMLSpanElement = titleSpanDes[0].nativeElement;
 
-                    expectToBe(titleSpanEl.innerHTML, expectedComplexes[index].complex.complexId.full);
+                    const expectedTitle = toInnerHtml(expectedComplex.complex.complexId.full);
+
+                    expectToBe(titleSpanEl.innerHTML, expectedTitle);
                 });
             });
 
@@ -162,7 +170,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should have edition responsibility statement in div.card-footer if complex is not disabled', () => {
                 const cardFooterDes = getCardFooterDes();
                 cardFooterDes.forEach((cardFooterDe, index) => {
-                    if (!expectedComplexes[index].disabled) {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
+
+                    if (!expectedComplex.disabled) {
                         getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
                     } else {
                         getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 0, 0);
@@ -173,9 +183,11 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should display as many editors in span.editor as there are editors', () => {
                 const cardFooterDes = getCardFooterDes();
                 cardFooterDes.forEach((cardFooterDe, index) => {
-                    if (!expectedComplexes[index].disabled) {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
+
+                    if (!expectedComplex.disabled) {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = expectedComplexes[index].complex.respStatement.editors;
+                        const editors = expectedComplex.complex.respStatement.editors;
                         const editorSpanDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.editor',
@@ -185,8 +197,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
 
                         editorSpanDes.forEach((editorSpanDe, editorIndex) => {
                             const editorSpanEl: HTMLSpanElement = editorSpanDe.nativeElement;
+                            const editor = getItemAt(editors, editorIndex);
 
-                            expectToBe(editorSpanEl.textContent.trim(), editors[editorIndex].name);
+                            expectToBe(editorSpanEl.textContent.trim(), editor.name);
                         });
                     }
                 });
@@ -195,9 +208,11 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             it('... should link to homepage of editors in span.editor', () => {
                 const cardFooterDes = getCardFooterDes();
                 cardFooterDes.forEach((cardFooterDe, index) => {
-                    if (!expectedComplexes[index].disabled) {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
+
+                    if (!expectedComplex.disabled) {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = expectedComplexes[index].complex.respStatement.editors;
+                        const editors = expectedComplex.complex.respStatement.editors;
                         const editorSpanDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.editor',
@@ -208,8 +223,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                         editorSpanDes.forEach((editorSpanDe, editorIndex) => {
                             const aDes = getAndExpectDebugElementByCss(editorSpanDe, 'a', 1, 1);
                             const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                            const editor = getItemAt(editors, editorIndex);
 
-                            expectToBe(aEl.href, editors[editorIndex].homepage);
+                            expectToBe(aEl.href, editor.homepage);
                         });
                     }
                 });
@@ -251,8 +267,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 const cardFooterDes = getCardFooterDes();
                 const datePipe = new DatePipe('de-DE');
                 cardFooterDes.forEach((cardFooterDe, index) => {
-                    const lastModified = expectedComplexes[index].complex.respStatement.lastModified;
-                    if (!expectedComplexes[index].disabled && lastModified !== '---') {
+                    const expectedComplex = getItemAt(expectedComplexes, index);
+                    const lastModified = expectedComplex.complex.respStatement.lastModified;
+                    if (!expectedComplex.disabled && lastModified !== '---') {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
                         const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
                         const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
@@ -307,8 +324,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 pDes.forEach((pDe, index) => {
                     const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
                     const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
+                    const expectedComplex = getItemAt(expectedComplexes, index);
 
-                    expectToEqual(buttonMoreCmp.targetRoute(), [expectedComplexes[index].complex.baseRoute]);
+                    expectToEqual(buttonMoreCmp.targetRoute(), [expectedComplex.complex.baseRoute]);
                 });
             });
 
@@ -317,8 +335,31 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 pDes.forEach((pDe, index) => {
                     const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
                     const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent);
+                    const expectedComplex = getItemAt(expectedComplexes, index);
 
-                    expectToBe(buttonMoreCmp.disabled(), expectedComplexes[index].disabled);
+                    expectToBe(buttonMoreCmp.disabled(), expectedComplex.disabled);
+                });
+            });
+
+            it('... should have an EditionComplexPartsComponent (hollow) in the card body for each complex', () => {
+                const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', expectedLength, expectedLength);
+                bodyDes.forEach(bodyDe => {
+                    getAndExpectDebugElementByDirective(bodyDe, EditionComplexPartsComponent, 1, 1);
+                });
+            });
+
+            it('... should pass down the outline complex item and `isCompact` to EditionComplexPartsComponent (hollow) for each complex', () => {
+                const partsDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionComplexPartsComponent,
+                    expectedLength,
+                    expectedLength
+                );
+                partsDes.forEach((partsDe, index) => {
+                    const partsCmp = partsDe.injector.get(EditionComplexPartsComponent);
+
+                    expectToEqual(partsCmp.outlineComplexItem(), expectedComplexes[index]);
+                    expectToBe(partsCmp.isCompact(), true);
                 });
             });
         });

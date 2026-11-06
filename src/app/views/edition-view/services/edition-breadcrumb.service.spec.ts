@@ -4,13 +4,17 @@ import { TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
 import { EditionComplex } from '../models/edition-complex.model';
-import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
 import { EditionViewContext } from '../models/edition-data.model';
+import {
+    EditionOutlineComplexItem,
+    EditionOutlineSection,
+    EditionOutlineSeries,
+} from '../models/edition-outline.model';
 
 import { EditionBreadcrumbService } from './edition-breadcrumb.service';
 
@@ -28,6 +32,7 @@ describe('EditionBreadcrumbService (DONE)', () => {
         isRowtables: false,
     });
     const mockComplexSignal = signal<EditionComplex | null>(null);
+    const mockOutlineComplexItemSignal = signal<EditionOutlineComplexItem | null>(null);
     const mockSeriesSignal = signal<EditionOutlineSeries | null>(null);
     const mockSectionSignal = signal<EditionOutlineSection | null>(null);
 
@@ -52,6 +57,7 @@ describe('EditionBreadcrumbService (DONE)', () => {
         expectedSection = EditionStateHelper.getSection('1', '5');
 
         mockComplexSignal.set(expectedComplex);
+        mockOutlineComplexItemSignal.set(null);
     });
 
     it('should be created', () => {
@@ -74,6 +80,7 @@ describe('EditionBreadcrumbService (DONE)', () => {
                 const breadcrumbSignal = service.getBreadcrumbItems(
                     mockViewContextSignal,
                     mockComplexSignal,
+                    mockOutlineComplexItemSignal,
                     mockSeriesSignal,
                     mockSectionSignal
                 );
@@ -94,6 +101,7 @@ describe('EditionBreadcrumbService (DONE)', () => {
                 const breadcrumbSignal = service.getBreadcrumbItems(
                     mockViewContextSignal,
                     mockComplexSignal,
+                    mockOutlineComplexItemSignal,
                     mockSeriesSignal,
                     mockSectionSignal
                 );
@@ -122,6 +130,7 @@ describe('EditionBreadcrumbService (DONE)', () => {
                 const breadcrumbSignal = service.getBreadcrumbItems(
                     mockViewContextSignal,
                     mockComplexSignal,
+                    mockOutlineComplexItemSignal,
                     mockSeriesSignal,
                     mockSectionSignal
                 );
@@ -129,6 +138,35 @@ describe('EditionBreadcrumbService (DONE)', () => {
 
                 expectToBe(actualBreadcrumbs.length, 4);
                 expectToEqual(actualBreadcrumbs, expectedBreadcrumbs);
+            });
+
+            it('... should return complex breadcrumbs with the composite complex if a part is active', () => {
+                const partItem = EditionStateHelper.getOutlineComplexItem('m217');
+                const compositeComplexes = partItem.compositeComplexes ?? [];
+                const compositeComplex = getItemAt(compositeComplexes, 0);
+                mockViewContextSignal.set({ name: 'graph', isIntro: false, isPreface: false, isRowtables: false });
+                mockComplexSignal.set(partItem.complex);
+                mockOutlineComplexItemSignal.set(partItem);
+                mockSeriesSignal.set(null);
+                mockSectionSignal.set(null);
+
+                const breadcrumbSignal = service.getBreadcrumbItems(
+                    mockViewContextSignal,
+                    mockComplexSignal,
+                    mockOutlineComplexItemSignal,
+                    mockSeriesSignal,
+                    mockSectionSignal
+                );
+                const actualBreadcrumbs = breadcrumbSignal();
+                const compositeComplexBreadcrumb = getItemAt(actualBreadcrumbs, 3);
+                const partComplexBreadcrumb = getItemAt(actualBreadcrumbs, 4);
+
+                expectToBe(actualBreadcrumbs.length, 5);
+                expectToEqual(compositeComplexBreadcrumb, {
+                    label: compositeComplex.complex.complexId.short,
+                    route: [compositeComplex.complex.baseRoute],
+                });
+                expectToEqual(partComplexBreadcrumb, { label: partItem.complex.complexId.short, route: [] });
             });
 
             it('... should return overview breadcrumbs if no special view and no complex is active', () => {
@@ -149,6 +187,7 @@ describe('EditionBreadcrumbService (DONE)', () => {
                 const breadcrumbSignal = service.getBreadcrumbItems(
                     mockViewContextSignal,
                     mockComplexSignal,
+                    mockOutlineComplexItemSignal,
                     mockSeriesSignal,
                     mockSectionSignal
                 );
@@ -177,6 +216,7 @@ describe('EditionBreadcrumbService (DONE)', () => {
                 const breadcrumbSignal = service.getBreadcrumbItems(
                     mockViewContextSignal,
                     mockComplexSignal,
+                    mockOutlineComplexItemSignal,
                     mockSeriesSignal,
                     mockSectionSignal
                 );
@@ -195,19 +235,24 @@ describe('EditionBreadcrumbService (DONE)', () => {
                 const breadcrumbSignal = service.getBreadcrumbItems(
                     mockViewContextSignal,
                     mockComplexSignal,
+                    mockOutlineComplexItemSignal,
                     mockSeriesSignal,
                     mockSectionSignal
                 );
 
                 const prefaceBreadcrumbs = breadcrumbSignal();
+                const secondPrefaceBreadcrumb = getItemAt(prefaceBreadcrumbs, 1);
+
                 expectToBe(prefaceBreadcrumbs.length, 2);
-                expectToBe(prefaceBreadcrumbs[1].label, PREFACE.short);
+                expectToBe(secondPrefaceBreadcrumb.label, PREFACE.short);
 
                 mockViewContextSignal.set({ name: 'rowtables', isIntro: false, isPreface: false, isRowtables: true });
 
                 const rowtablesBreadcrumbs = breadcrumbSignal();
+                const secondRowtablesBreadcrumb = getItemAt(rowtablesBreadcrumbs, 1);
+
                 expectToBe(rowtablesBreadcrumbs.length, 2);
-                expectToBe(rowtablesBreadcrumbs[1].label, ROWTABLES.full);
+                expectToBe(secondRowtablesBreadcrumb.label, ROWTABLES.full);
             });
         });
 
@@ -216,21 +261,78 @@ describe('EditionBreadcrumbService (DONE)', () => {
                 expect(service['_getComplexBreadcrumbs']).toBeDefined();
             });
 
-            it('... should return expected breadcrumbs for complex', () => {
-                const complex = expectedComplex;
-                const { series, section, labeledSectionRoute } = complex.pubStatement;
+            describe('... should return expected breadcrumbs for a complex without composite complex if', () => {
+                it.each([
+                    {
+                        desc: 'the outline item is missing',
+                        outlineComplexItem: (): EditionOutlineComplexItem | null => null,
+                    },
+                    {
+                        desc: 'the outline item has no composite complexes',
+                        outlineComplexItem: (): EditionOutlineComplexItem | null =>
+                            EditionStateHelper.getOutlineComplexItem('op12'),
+                    },
+                ])('... $desc', ({ outlineComplexItem }) => {
+                    const complex = expectedComplex;
+                    const { series, section, labeledSectionRoute } = complex.pubStatement;
+
+                    const expectedBreadcrumbs: LabeledRoute[] = [
+                        expectedRootItem,
+                        { label: series.full, route: [...expectedRootItem.route, series.route] },
+                        { label: section.full, route: labeledSectionRoute.route },
+                        { label: complex.complexId.short, route: [] },
+                    ];
+
+                    const actualBreadcrumbs = service['_getComplexBreadcrumbs'](
+                        expectedRootItem,
+                        complex,
+                        outlineComplexItem()
+                    );
+
+                    expectToEqual(actualBreadcrumbs, expectedBreadcrumbs);
+                });
+            });
+
+            it('... should return expected breadcrumbs for a part with its composite complex', () => {
+                const partItem = EditionStateHelper.getOutlineComplexItem('m217');
+                const part = partItem.complex;
+                const compositeComplexes = partItem.compositeComplexes ?? [];
+                const compositeComplex = getItemAt(compositeComplexes, 0);
+                const { series, section, labeledSectionRoute } = part.pubStatement;
 
                 const expectedBreadcrumbs: LabeledRoute[] = [
                     expectedRootItem,
                     { label: series.full, route: [...expectedRootItem.route, series.route] },
                     { label: section.full, route: labeledSectionRoute.route },
-                    { label: complex.complexId.short, route: [] },
+                    { label: compositeComplex.complex.complexId.short, route: [compositeComplex.complex.baseRoute] },
+                    { label: part.complexId.short, route: [] },
                 ];
 
-                const actualBreadcrumbs = service['_getComplexBreadcrumbs'](expectedRootItem, complex);
+                const actualBreadcrumbs = service['_getComplexBreadcrumbs'](expectedRootItem, part, partItem);
 
-                expectToBe(actualBreadcrumbs.length, 4);
                 expectToEqual(actualBreadcrumbs, expectedBreadcrumbs);
+            });
+
+            it('... should return the composite complex without route if it is disabled', () => {
+                const partItem = EditionStateHelper.getOutlineComplexItem('m217');
+                const compositeComplexes = partItem.compositeComplexes ?? [];
+                const compositeComplex = getItemAt(compositeComplexes, 0);
+                const disabledPartItem: EditionOutlineComplexItem = {
+                    ...partItem,
+                    compositeComplexes: [{ ...compositeComplex, disabled: true }],
+                };
+
+                const actualBreadcrumbs = service['_getComplexBreadcrumbs'](
+                    expectedRootItem,
+                    partItem.complex,
+                    disabledPartItem
+                );
+                const compositeComplexBreadcrumb = getItemAt(actualBreadcrumbs, 3);
+
+                expectToEqual(compositeComplexBreadcrumb, {
+                    label: compositeComplex.complex.complexId.short,
+                    route: [],
+                });
             });
         });
 

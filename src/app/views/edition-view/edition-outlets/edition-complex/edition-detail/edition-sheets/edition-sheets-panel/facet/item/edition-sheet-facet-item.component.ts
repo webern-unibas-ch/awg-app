@@ -1,15 +1,15 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { RouterLink, UrlTree } from '@angular/router';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
 import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
 
-import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { EDITION_SHEETS_UTILS } from '@awg-views/edition-view/utils/edition-sheets.utils';
 
 import { EditionSheetFacetPartialLink } from '../edition-sheet-facet.model';
-import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-link.directive';
 
 /**
  * The EditionSheetFacetItem component.
@@ -22,9 +22,16 @@ import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-l
     selector: 'awg-edition-sheet-facet-item',
     templateUrl: './edition-sheet-facet-item.component.html',
     styleUrl: './edition-sheet-facet-item.component.scss',
-    imports: [EditionSheetFacetItemLinkDirective, NgbDropdownModule],
+    imports: [NgbDropdownModule, RouterLink],
 })
 export class EditionSheetFacetItemComponent {
+    /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService = inject(EditionNavigationService);
+
     /**
      * Readonly input signal: svgSheet.
      *
@@ -62,38 +69,51 @@ export class EditionSheetFacetItemComponent {
     readonly isActive = computed(() => this.svgSheet().id === this.selectedSvgSheet()?.id);
 
     /**
-     * Readonly computed signal: sheetPartials.
+     * Private readonly computed signal: _partialLinks.
      *
-     * It computes the partial links (if present) of the svg sheet for the dropdown.
+     * It computes the partial links (if present) of the svg sheet without their active state,
+     * so that their routes are only rebuilt when the svg sheet changes.
      */
-    readonly sheetPartials = computed<EditionSheetFacetPartialLink[]>(() => {
+    private readonly _partialLinks = computed<Omit<EditionSheetFacetPartialLink, 'isActive'>[]>(() => {
         const svgSheet = this.svgSheet();
 
         if (svgSheet.content.length <= 1) {
             return [];
         }
 
-        const selectedFullId = this.selectedSvgSheet()?.fullId;
-
         return svgSheet.content.map((content, index) => {
-            const indexLabel = `${index + 1}/${svgSheet.content.length}`;
             const sheetId = EDITION_SHEETS_UTILS.toFullSheetId(svgSheet.id, content.partial);
+            const sheetRoute = this._navigationService.getSvgSheetRoute({ complexId: '', sheetId });
 
-            return {
-                sheetTarget: { complexId: '', sheetId },
-                positionLabel: content.partial ? `${content.partial} · ${indexLabel}` : indexLabel,
-                isActive: sheetId === selectedFullId,
-            };
+            const indexLabel = `${index + 1}/${svgSheet.content.length}`;
+            const positionLabel = content.partial ? `${content.partial} · ${indexLabel}` : indexLabel;
+
+            return { sheetId, sheetRoute, positionLabel };
         });
     });
 
     /**
-     * Readonly computed signal: sheetTarget.
+     * Readonly computed signal: sheetPartials.
      *
-     * It computes the navigation target of the svg sheet of the facet item.
+     * It computes the partial links (if present) of the svg sheet for the dropdown,
+     * with the link of the selected partial marked as active.
      */
-    readonly sheetTarget = computed<EditionNavigationSheetTarget>(() => ({
-        complexId: '',
-        sheetId: this.svgSheet().id,
-    }));
+    readonly sheetPartials = computed<EditionSheetFacetPartialLink[]>(() => {
+        const selectedFullId = this.selectedSvgSheet()?.fullId;
+
+        return this._partialLinks().map(partialLink => {
+            const isPartialActive = partialLink.sheetId === selectedFullId;
+
+            return { ...partialLink, isActive: isPartialActive };
+        });
+    });
+
+    /**
+     * Readonly computed signal: sheetRoute.
+     *
+     * It computes the route to the svg sheet of the facet item.
+     */
+    readonly sheetRoute = computed<UrlTree>(() =>
+        this._navigationService.getSvgSheetRoute({ complexId: '', sheetId: this.svgSheet().id })
+    );
 }

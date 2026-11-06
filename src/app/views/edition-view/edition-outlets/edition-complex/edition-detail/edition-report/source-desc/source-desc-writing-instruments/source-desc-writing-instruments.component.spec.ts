@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -9,7 +9,9 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { SourceDescWritingInstruments } from '@awg-views/edition-view/models/source-desc.model';
@@ -22,8 +24,6 @@ describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
     let fixture: ComponentFixture<SourceDescWritingInstrumentsComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
-
     let expectedWritingInstruments: SourceDescWritingInstruments;
 
     beforeEach(async () => {
@@ -33,12 +33,9 @@ describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Test data
-        const writingInstruments = structuredClone(mockEditionData.mockSourceDescListData).sources[1].physDesc
-            .writingInstruments;
+        const writingInstruments = getItemAt(structuredClone(mockEditionData.mockSourceDescListData).sources, 1)
+            .physDesc.writingInstruments;
 
         if (!writingInstruments) {
             expect.fail('Expected writingInstruments to be defined in mock data.');
@@ -156,11 +153,11 @@ describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
                 const secondaryInstruments = expectedWritingInstruments.secondary ?? [];
                 const secondaryString = secondaryInstruments.length > 0 ? '; ' + secondaryInstruments.join(', ') : '';
 
-                // Process HTML expression of expected text content
-                const expectedHtmlTextContent = mockDocument.createElement('p');
-                expectedHtmlTextContent.innerHTML = `<span>${expectedWritingInstruments.main ?? ''}${secondaryString}.</span>`;
+                const expectedInstruments = toTextContent(
+                    `<span>${expectedWritingInstruments.main ?? ''}${secondaryString}.</span>`
+                );
 
-                expectToBe(spanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                expectToBe(spanEl.textContent.trim(), expectedInstruments.trim());
             });
         });
 

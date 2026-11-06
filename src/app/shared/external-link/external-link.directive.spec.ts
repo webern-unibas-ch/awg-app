@@ -11,6 +11,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { ExternalLinkDirective } from './external-link.directive';
 
@@ -115,7 +116,7 @@ describe('ExternalLinkDirective (DONE)', () => {
             },
         ])('... $label', ({ index, label, href }) => {
             const anchorDes = getAnchorDes();
-            const anchorEl: HTMLAnchorElement = anchorDes[index].nativeElement;
+            const anchorEl: HTMLAnchorElement = getItemAt(anchorDes, index).nativeElement;
 
             expectToBe(anchorEl.textContent?.trim(), label);
             expectToBe(anchorEl.href, href);
@@ -189,7 +190,7 @@ describe('ExternalLinkDirective (DONE)', () => {
             { index: 6, label: 'Mailto Link', href: 'mailto:test@example.com' },
         ])('... for $label', ({ index, label, href }) => {
             const anchorDes = getAnchorDes();
-            const anchorEl: HTMLAnchorElement = anchorDes[index].nativeElement;
+            const anchorEl: HTMLAnchorElement = getItemAt(anchorDes, index).nativeElement;
 
             expectToBe(anchorEl.textContent?.trim(), label);
             expectToBe(anchorEl.href, href);

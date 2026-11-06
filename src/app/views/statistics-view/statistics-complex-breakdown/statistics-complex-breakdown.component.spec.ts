@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import {
@@ -313,7 +314,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                             const progressBarCmp = pbDe.injector.get(StatisticsProgressBarComponent);
 
                             const data = expectedComplexBreakdownData;
-                            const item = expectedComplexBreakdownItems[index];
+                            const item = getItemAt(expectedComplexBreakdownItems, index);
 
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'absolute',
@@ -367,7 +368,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                             const progressBarCmp = pbDe.injector.get(StatisticsProgressBarComponent);
 
                             const data = expectedComplexBreakdownData;
-                            const item = expectedComplexBreakdownItems[index];
+                            const item = getItemAt(expectedComplexBreakdownItems, index);
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'ratio',
                                 active: data.activeComplexBreakdown[item.key],

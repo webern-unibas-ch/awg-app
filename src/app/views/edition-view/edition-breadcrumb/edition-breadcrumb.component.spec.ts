@@ -8,20 +8,23 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
     expectToBe,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
+import { toTextContent } from '@testing/html-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
-import { EDITION_ROUTE_CONSTANTS, EditionRouteConstant } from '../edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 
-import { EditionStateHelper } from '@testing/edition-state-helper';
+import { EDITION_ROUTE_CONSTANTS, EditionRouteConstant } from '../edition-routes.constants';
+
 import { EditionBreadcrumbComponent } from './edition-breadcrumb.component';
 
 describe('EditionBreadcrumbComponent (DONE)', () => {
@@ -128,6 +131,21 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(navDes[0], 'span', 0, 0);
             });
 
+            it('... should render the label of an anchor tag as innerHTML', () => {
+                const label = 'Op.&nbsp;12';
+                fixture.componentRef.setInput('items', [{ label, route: ['/edition/complex/op12'] }]);
+
+                fixture.detectChanges();
+
+                const navDes = getAndExpectDebugElementByCss(compDe, 'nav.awg-edition-info-breadcrumb', 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(navDes[0], 'a', 1, 1);
+                const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
+
+                const expectedText = toTextContent(label);
+
+                expectToBe(anchorEl.textContent, expectedText);
+            });
+
             it('... should render a span with innerHTML for items without a route', () => {
                 fixture.componentRef.setInput('items', [{ label: 'op. 27', route: [] }]);
 
@@ -166,7 +184,9 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 const itemDes = getItemDes(3);
-                getAndExpectDebugElementByDirective(itemDes[0], FaIconComponent, 0, 0);
+                const firstItemDe = getItemAt(itemDes, 0);
+
+                getAndExpectDebugElementByDirective(firstItemDe, FaIconComponent, 0, 0);
 
                 const iconDes = itemDes
                     .slice(1)
@@ -204,7 +224,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                        const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString, expectedRootUrl);
@@ -241,7 +261,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                        const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString, expectedRootUrl);
@@ -301,7 +321,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                        const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString, expectedRootUrl);
@@ -346,8 +366,8 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
-                        const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
+                        const urlTreeString1 = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
+                        const urlTreeString2 = getItemAt(routerLinks, 1).urlTree?.toString() ?? '';
 
                         expectToEqual(urlTreeString1, expectedRootUrl);
                         expectToEqual(urlTreeString2, expectedSeriesUrl);
@@ -397,9 +417,9 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
-                        const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
-                        const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
+                        const urlTreeString1 = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
+                        const urlTreeString2 = getItemAt(routerLinks, 1).urlTree?.toString() ?? '';
+                        const urlTreeString3 = getItemAt(routerLinks, 2).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString1, expectedRootUrl);
@@ -435,8 +455,12 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                     });
 
                     it('... should display edition root, series, section and complex', () => {
-                        const complexShortWithSpace = expectedComplex.complexId.short.replace(/&nbsp;/g, '\u00A0');
-                        const expectedItemTexts = [EDITION.short, series.full, section.full, complexShortWithSpace];
+                        const expectedItemTexts = [
+                            EDITION.short,
+                            series.full,
+                            section.full,
+                            expectedComplex.complexId.short,
+                        ];
 
                         const itemTexts = getItemTexts(expectedItemTexts.length);
 
@@ -459,14 +483,50 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
-                        const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
-                        const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
+                        const urlTreeString1 = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
+                        const urlTreeString2 = getItemAt(routerLinks, 1).urlTree?.toString() ?? '';
+                        const urlTreeString3 = getItemAt(routerLinks, 2).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString1, expectedRootUrl);
                         expectToEqual(urlTreeString2, expectedSeriesUrl);
                         expectToEqual(urlTreeString3, expectedSectionUrl);
+                    });
+                });
+
+                describe('... if a part of a composite complex is given', () => {
+                    let part: EditionComplex;
+                    let opus: EditionComplex;
+
+                    beforeEach(() => {
+                        part = EditionStateHelper.getComplex('m217');
+                        opus = EditionStateHelper.getComplex('op12');
+                        const { series, section, labeledSectionRoute } = part.pubStatement;
+
+                        fixture.componentRef.setInput('items', [
+                            expectedRootItem,
+                            { label: series.full, route: [...expectedRootItem.route, series.route] },
+                            { label: section.full, route: labeledSectionRoute.route },
+                            { label: opus.complexId.short, route: [opus.baseRoute] },
+                            { label: part.complexId.short, route: [] },
+                        ]);
+                        fixture.detectChanges();
+                    });
+
+                    it('... should display the composite complex before the part', () => {
+                        const itemTexts = getItemTexts(5);
+
+                        const expectedTexts = [opus.complexId.short, part.complexId.short];
+
+                        expectToEqual(itemTexts.slice(3), expectedTexts);
+                    });
+
+                    it('... should have a router link to the composite complex as fourth link', () => {
+                        const linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 4, 4);
+                        const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+                        const urlTreeString = getItemAt(routerLinks, 3).urlTree?.toString() ?? '';
+
+                        expectToBe(urlTreeString, opus.baseRoute);
                     });
                 });
             });
@@ -512,9 +572,9 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 const expectedSeriesUrl = [...expectedRootItem.route, series.route].join('/');
                 const expectedSectionUrl = labeledSectionRoute.route.join('/');
 
-                const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
-                const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
-                const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
+                const urlTreeString1 = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
+                const urlTreeString2 = getItemAt(routerLinks, 1).urlTree?.toString() ?? '';
+                const urlTreeString3 = getItemAt(routerLinks, 2).urlTree?.toString() ?? '';
 
                 expectToBe(urlTreeString1, expectedRootUrl);
                 expectToBe(urlTreeString2, expectedSeriesUrl);
@@ -535,12 +595,13 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
                 navigateSpy.mockClear();
 
-                const targetLinkDe = linkDes[index];
+                const targetLinkDe = getItemAt(linkDes, index);
 
                 await clickAndAwaitChanges(targetLinkDe, fixture);
 
                 expectSpyCall(navigateSpy, 1);
-                const actualUrl = navigateSpy.mock.calls[0][0].toString();
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                const actualUrl = actualUrlTree.toString();
 
                 expectToBe(actualUrl, expectedRouterLink());
 

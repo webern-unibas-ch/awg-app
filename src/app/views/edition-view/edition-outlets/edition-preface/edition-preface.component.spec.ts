@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -254,7 +255,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
                             const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
 
-                            const expectedLength = expectedPrefaceData.preface[dataIndex].content.length;
+                            const expectedLength = getItemAt(expectedPrefaceData.preface, dataIndex).content.length;
                             getAndExpectDebugElementByCss(
                                 divDes[0],
                                 'div.awg-edition-preface-block',
@@ -270,7 +271,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
                             component.selectedLanguage.set(langId);
                             fixture.detectChanges();
 
-                            const expectedContent = expectedPrefaceData.preface[dataIndex].content;
+                            const expectedContent = getItemAt(expectedPrefaceData.preface, dataIndex).content;
                             const expectedLength = expectedContent.length;
 
                             const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
@@ -282,7 +283,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
                             );
 
                             expectedContent.forEach((expectedText, contentIndex) => {
-                                const currentDirectiveDe = allDirectiveDes[contentIndex];
+                                const currentDirectiveDe = getItemAt(allDirectiveDes, contentIndex);
                                 const currentDirectiveIns = currentDirectiveDe.injector.get(CompileHtmlDirective);
 
                                 expectToBe(currentDirectiveIns.htmlContent(), expectedText);
@@ -291,7 +292,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
                     );
 
                     it('... should render no preface blocks if preface for selected language is missing', () => {
-                        const prefaceWithoutEnglish = { preface: [expectedPrefaceData.preface[0]] };
+                        const germanPreface = getItemAt(expectedPrefaceData.preface, 0);
+                        const prefaceWithoutEnglish = { preface: [germanPreface] };
 
                         mockViewDataSignal.set(
                             createMockViewData(

@@ -16,14 +16,18 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn format-files:check` / `yarn format-files:fix`: Prettier for `src/**`
 - `yarn build:prod`: production build to `dist/awg-app`
 - `yarn check:cycles`: madge check for circular imports (incl. path aliases; runs in CI)
+- `yarn dedupe --check`: fails if `yarn.lock` holds duplicates that `yarn dedupe` would merge (e.g. two copies of `d3-selection` break D3 plugins); fix with `yarn dedupe`; runs in CI
+- `yarn check:complexes`: checks the edition complexes against the outline and row tables, and the `parts` of composite complexes against the numbered parts in the source list types; runs in CI and pre-commit
 - `yarn check:glyphs`: checks the glyph chain edition data → `EDITION_GLYPHS_DATA` → glyph font subset (manifest, sha256); runs in CI and pre-commit
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
+- `yarn check:source-data`: checks the writing instruments, locations and types of the source descriptions and lists (errors), and the writing instruments named in the texts against the declared ones (warnings, see `WARNING_RULES`); `--all` lists all warnings, `--summary` only counts them, one line per rule (pre-commit hook), `--open` writes an HTML report to `reports/` and opens it; runs in CI and pre-commit
+- `yarn check:sources`: reports sources described in several complexes and their differences (HTML in `reports/`, ignored); `--since <ref>` adds the changed fields since a git ref, `--open` opens the report in the browser
 
-Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; afterwards the pre-commit hook runs `check:glyphs` if glyph files are staged.
+Husky and lint-staged run ESLint, Prettier and the cycle check on staged files; afterwards the pre-commit hook runs `check:glyphs`, `check:complexes` and `check:source-data` if files they check are staged.
 
 ## Git
 
-- Conventional Commits (commitlint, `@commitlint/config-angular`), header **at most 72 characters** (also PR titles, since PRs are squash-merged). **Scope is mandatory**: `app, assets, contact, core, deps, deps-dev, edition, gh-actions, home, page-not-found, search, shared, side-info, statistics, structure, testing, views, CHANGELOG, CONTRIBUTING, LICENSE, README`. CHANGELOG and versions are generated from commits.
+- Conventional Commits (commitlint, `@commitlint/config-angular`), header **at most 72 characters** (also PR titles, since PRs are squash-merged). **Scope is mandatory**: `app, assets, contact, core, deps, deps-dev, edition, gh-actions, home, page-not-found, scripts, shared, side-info, statistics, structure, testing, views, CHANGELOG, CONTRIBUTING, LICENSE, README`. CHANGELOG and versions are generated from commits.
 - Gitflow: feature branches from `develop`, PRs to `develop`; `main` holds releases. Releases (and the back-merge into `develop`) are PRs with merge commits, not squashed: see [CONTRIBUTING.md#release-process](CONTRIBUTING.md#release-process).
 - **Never commit, push or create PRs unless explicitly asked, and don't offer to.** Leave changes in the working tree and propose a commit message. Don't stage or unstage (delete in the working tree, no `git rm`; `git mv` is fine). For multi-step work, stop at each buildable step with its files and message.
 

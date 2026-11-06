@@ -778,7 +778,7 @@
                                             "measure": "nach 32",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt {{'{'}}33A{{'}'}} pauschal gestrichen: <br />##Abbildung##"
+                                            "comment": "Takt {33A} pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m45_tf1_B_corr_1-030",
@@ -1205,7 +1205,7 @@
                                             "measure": "nach 13",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takt {{'{'}}14A{{'}'}} pauschal gestrichen: <br />##Abbildung##"
+                                            "comment": "Takt {14A} pauschal gestrichen: <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m45_tf2_C_corr_1-006",

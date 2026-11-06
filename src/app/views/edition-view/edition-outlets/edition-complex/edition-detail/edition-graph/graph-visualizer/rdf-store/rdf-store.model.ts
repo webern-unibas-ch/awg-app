@@ -1,12 +1,12 @@
 import { SparqlBinding } from '../models/rdf.model';
 
 /**
- * The RdfStoreGlobal interface.
+ * The RdfStoreModule interface.
  *
- * It represents the global `rdfstore` object (loaded as script on first use by the RdfStoreService).
+ * It represents the rdfstore module (imported on first use by the RdfStoreService).
  * Only the {@link RdfStoreService} may use it.
  */
-export interface RdfStoreGlobal {
+export interface RdfStoreModule {
     /**
      * It creates a new in-memory store.
      */

@@ -1,8 +1,7 @@
 /**
  * Module declaration for the browser bundle of rdfstore,
- * imported as text (`with { loader: 'text' }`) by the rdfstore test helper.
+ * imported explicitly by integration specs to test the bundle shipped with the app.
  */
-declare module '*/rdfstore/dist/rdfstore_min.js' {
-    const content: string;
-    export default content;
+declare module 'rdfstore/dist/rdfstore.mjs' {
+    export * from 'rdfstore';
 }

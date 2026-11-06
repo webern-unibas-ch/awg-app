@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { EditionSheetFacetScrollDirective } from './edition-sheet-facet-scroll.directive';
@@ -211,7 +212,7 @@ describe('EditionSheetFacetScrollDirective (DONE)', () => {
                     this: HTMLElement
                 ) {
                     const linkIndex = linkEls.indexOf(this);
-                    return linkIndex >= 0 ? mockRect(linkTops[linkIndex], 30) : mockRect(0, 100);
+                    return linkIndex >= 0 ? mockRect(getItemAt(linkTops, linkIndex), 30) : mockRect(0, 100);
                 });
             };
 

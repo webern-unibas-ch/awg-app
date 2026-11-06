@@ -325,31 +325,32 @@ describe('EditionReportComponent (DONE)', () => {
                 });
 
                 describe('... source list', () => {
-                    let divDes: DebugElement[];
+                    let divDe: DebugElement;
 
                     beforeEach(() => {
                         const viewDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 1, 1);
 
-                        divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-source-list', 1, 1);
+                        const divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-source-list', 1, 1);
+                        divDe = divDes[0];
                     });
 
                     it('... should contain one accordion button in div.awg-source-list', () => {
-                        getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
+                        getAndExpectDebugElementByCss(divDe, 'button.accordion-button', 1, 1);
                     });
 
                     it('... should display button label', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
+                        const buttonDes = getAndExpectDebugElementByCss(divDe, 'button.accordion-button', 1, 1);
                         const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
                         expectToBe(buttonEl.textContent?.trim(), component.reportTitles.sourceList);
                     });
 
                     it('... should contain one SourceListComponent (hollow)', () => {
-                        getAndExpectDebugElementByDirective(divDes[0], SourceListComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDe, SourceListComponent, 1, 1);
                     });
 
                     it('... should pass down sourceListData to SourceListComponent (hollow)', () => {
-                        const sourceListDes = getAndExpectDebugElementByDirective(divDes[0], SourceListComponent, 1, 1);
+                        const sourceListDes = getAndExpectDebugElementByDirective(divDe, SourceListComponent, 1, 1);
                         const sourceListCmp = sourceListDes[0].injector.get(SourceListComponent);
 
                         expectToEqual(sourceListCmp.sourceListData(), expectedSourceListData);
@@ -357,20 +358,21 @@ describe('EditionReportComponent (DONE)', () => {
                 });
 
                 describe('... source description', () => {
-                    let divDes: DebugElement[];
+                    let divDe: DebugElement;
 
                     beforeEach(() => {
                         const viewDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 1, 1);
 
-                        divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-source-desc', 1, 1);
+                        const divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-source-desc', 1, 1);
+                        divDe = divDes[0];
                     });
 
                     it('... should contain one accordion button in div.awg-source-desc', () => {
-                        getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
+                        getAndExpectDebugElementByCss(divDe, 'button.accordion-button', 1, 1);
                     });
 
                     it('... should display button label', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
+                        const buttonDes = getAndExpectDebugElementByCss(divDe, 'button.accordion-button', 1, 1);
                         const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
                         expectToBe(buttonEl.textContent?.trim(), component.reportTitles.sourceDesc);
@@ -389,20 +391,21 @@ describe('EditionReportComponent (DONE)', () => {
                 });
 
                 describe('... source evaluation', () => {
-                    let divDes: DebugElement[];
+                    let divDe: DebugElement;
 
                     beforeEach(() => {
                         const viewDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 1, 1);
 
-                        divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-source-evaluation', 1, 1);
+                        const divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-source-evaluation', 1, 1);
+                        divDe = divDes[0];
                     });
 
                     it('... should contain one accordion button in div.awg-source-evaluation', () => {
-                        getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
+                        getAndExpectDebugElementByCss(divDe, 'button.accordion-button', 1, 1);
                     });
 
                     it('... should display button label', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
+                        const buttonDes = getAndExpectDebugElementByCss(divDe, 'button.accordion-button', 1, 1);
                         const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
                         expectToBe(buttonEl.textContent?.trim(), component.reportTitles.sourceEvaluation);
@@ -427,20 +430,21 @@ describe('EditionReportComponent (DONE)', () => {
                 });
 
                 describe('... textcritics list', () => {
-                    let divDes: DebugElement[];
+                    let divDe: DebugElement;
 
                     beforeEach(() => {
                         const viewDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 1, 1);
 
-                        divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-tka-panel', 1, 1);
+                        const divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-tka-panel', 1, 1);
+                        divDe = divDes[0];
                     });
 
                     it('... should contain one accordion button in div.awg-tka-panel', () => {
-                        getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
+                        getAndExpectDebugElementByCss(divDe, 'button.accordion-button', 1, 1);
                     });
 
                     it('... should display button label', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
+                        const buttonDes = getAndExpectDebugElementByCss(divDe, 'button.accordion-button', 1, 1);
                         const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
                         expectToBe(buttonEl.textContent?.trim(), component.reportTitles.tka);

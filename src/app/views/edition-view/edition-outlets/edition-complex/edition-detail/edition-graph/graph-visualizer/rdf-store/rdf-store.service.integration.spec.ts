@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, it } from 'vitest';
 
 import type { Literal, Quad, Term } from '@rdfjs/types';
 import { DataFactory, Parser } from 'n3';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
-import { createRealRdfstore, RDFSTORE_INTEGRATION_TIMEOUT_MS, setGlobalRdfstore } from '@testing/rdfstore-helper';
+import { expectToBe, expectToEqual, getEntryAt, getItemAt } from '@testing/expect-helper';
+import { RDFSTORE_INTEGRATION_TIMEOUT_MS, spyOnRdfstoreImport } from '@testing/rdfstore-helper';
 
-import { RdfStoreGlobal } from './rdf-store.model';
 import { RdfStoreService } from './rdf-store.service';
 
 const { literal, namedNode } = DataFactory;
@@ -45,6 +44,13 @@ ex:c a ex:Other .
 `;
 
 /**
+ * Constant: TURTLE_QUADS.
+ *
+ * It keeps the quads of the TURTLE dataset as parsed by n3 (the expected result of the store).
+ */
+const TURTLE_QUADS = new Parser().parse(TURTLE);
+
+/**
  * Helper function: termKey.
  *
  * It creates a comparable key of a term; blank nodes are neutralized,
@@ -67,32 +73,24 @@ describe(
     () => {
         let service: RdfStoreService;
 
-        let realRdfstore: RdfStoreGlobal;
-
-        beforeAll(() => {
-            realRdfstore = createRealRdfstore();
-        });
-
         beforeEach(() => {
-            setGlobalRdfstore(realRdfstore);
-
             TestBed.configureTestingModule({});
             service = TestBed.inject(RdfStoreService);
         });
 
-        afterEach(() => {
-            setGlobalRdfstore(undefined);
+        describe('#_importRdfstore()', () => {
+            it('... should import the rdfstore module with a `create` function', async () => {
+                const rdfstore = await service['_importRdfstore']();
+
+                expectToBe(typeof rdfstore.create, 'function');
+            });
         });
 
         describe('#construct()', () => {
             it('... should construct the same quads as parsed by n3 from the turtle data', async () => {
-                const expectedQuads = new Parser().parse(TURTLE);
-
                 const quads = await service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }');
 
-                const keys = quadKeys(quads);
-
-                expectToEqual(keys, quadKeys(expectedQuads));
+                expectToEqual(quadKeys(quads), quadKeys(TURTLE_QUADS));
             });
 
             it('... should keep the identity of a blank node across quads', async () => {
@@ -116,20 +114,28 @@ describe(
                 expectToEqual(variables, ['s', 'label']);
                 expectToBe(bindings.length, 2);
 
-                const namedBinding = bindings.find(binding => binding['s'].termType === 'NamedNode');
-                const blankBinding = bindings.find(binding => binding['s'].termType === 'BlankNode');
-                expectToBe(namedBinding?.['s'].equals(namedNode(`${EX}a`)), true);
-                expectToBe(namedBinding?.['label'].equals(literal('A', 'de')), true);
-                expectToEqual(Object.keys(blankBinding ?? {}), ['s']);
+                const namedBindings = bindings.filter(binding => getEntryAt(binding, 's').termType === 'NamedNode');
+                const blankBindings = bindings.filter(binding => getEntryAt(binding, 's').termType === 'BlankNode');
+                const firstNamedBinding = getItemAt(namedBindings, 0);
+                const firstBlankBinding = getItemAt(blankBindings, 0);
+                const namedSubject = getEntryAt(firstNamedBinding, 's');
+                const namedLabel = getEntryAt(firstNamedBinding, 'label');
+
+                expectToBe(namedSubject.equals(namedNode(`${EX}a`)), true);
+                expectToBe(namedLabel.equals(literal('A', 'de')), true);
+                expectToEqual(Object.keys(firstBlankBinding), ['s']);
             });
 
             it('... should convert typed and plain literals', async () => {
                 const query = `${PREFIXES}\nSELECT ?count ?name WHERE { ex:a ex:count ?count ; ex:knows ?b . ?b ex:name ?name }`;
 
                 const { bindings } = await service.select(TURTLE, query);
+                const firstBinding = getItemAt(bindings, 0);
+                const countTerm = getEntryAt(firstBinding, 'count');
+                const nameTerm = getEntryAt(firstBinding, 'name');
 
-                expectToBe(bindings[0]['count'].equals(literal('5', namedNode(XSD_INTEGER))), true);
-                expectToBe(bindings[0]['name'].equals(literal('B')), true);
+                expectToBe(countTerm.equals(literal('5', namedNode(XSD_INTEGER))), true);
+                expectToBe(nameTerm.equals(literal('B')), true);
             });
 
             it('... should count grouped results as integer literals (COUNT with GROUP BY)', async () => {
@@ -138,18 +144,36 @@ describe(
                 const { variables, bindings } = await service.select(TURTLE, query);
 
                 expectToEqual(variables, ['class', 'count']);
-                const counts = Object.fromEntries(
-                    bindings.map(binding => [binding['class'].value, binding['count'] as Literal])
-                );
-                expectToBe(counts[`${EX}Class`].value, '2');
-                expectToBe(counts[`${EX}Other`].value, '1');
-                expectToBe(counts[`${EX}Class`].datatype.value, XSD_INTEGER);
+
+                const countEntries = bindings.map(binding => {
+                    const classTerm = getEntryAt(binding, 'class');
+                    const countTerm = getEntryAt(binding, 'count') as Literal;
+
+                    return [classTerm.value, countTerm] as const;
+                });
+                const counts = Object.fromEntries(countEntries);
+                const classCount = getEntryAt(counts, `${EX}Class`);
+                const otherCount = getEntryAt(counts, `${EX}Other`);
+
+                expectToBe(classCount.value, '2');
+                expectToBe(otherCount.value, '1');
+                expectToBe(classCount.datatype.value, XSD_INTEGER);
             });
 
-            it('... should reject COUNT without GROUP BY (not supported by rdfstore)', async () => {
-                await expect(service.select(TURTLE, 'SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }')).rejects.toThrow(
-                    '[RdfStoreService] Unknown filter expression type'
+            it('... should count all results as an integer literal (COUNT without GROUP BY)', async () => {
+                const { variables, bindings } = await service.select(
+                    TURTLE,
+                    'SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }'
                 );
+
+                expectToEqual(variables, ['n']);
+                expectToBe(bindings.length, 1);
+
+                const firstBinding = getItemAt(bindings, 0);
+                const count = getEntryAt(firstBinding, 'n') as Literal;
+
+                expectToBe(count.value, String(TURTLE_QUADS.length));
+                expectToBe(count.datatype.value, XSD_INTEGER);
             });
 
             it('... should select all triples of a dataset with many triples', async () => {
@@ -163,6 +187,32 @@ describe(
                 const { bindings } = await service.select(turtle, query);
 
                 expectToBe(bindings.length, LARGE_TRIPLE_COUNT / 10);
+            });
+        });
+
+        /*
+         * The test runners resolve `rdfstore` to the node build (jsdom) or the browser bundle (Chromium),
+         * so this block uses the browser bundle explicitly, as shipped with the app.
+         */
+        describe('... with the browser bundle (dist/rdfstore.mjs)', () => {
+            beforeEach(async () => {
+                spyOnRdfstoreImport(service, await import('rdfstore/dist/rdfstore.mjs'));
+            });
+
+            it('... should construct the same quads as parsed by n3 from the turtle data', async () => {
+                const quads = await service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }');
+
+                expectToEqual(quadKeys(quads), quadKeys(TURTLE_QUADS));
+            });
+
+            it('... should count all results as an integer literal (COUNT without GROUP BY)', async () => {
+                const { bindings } = await service.select(TURTLE, 'SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }');
+
+                const firstBinding = getItemAt(bindings, 0);
+                const count = getEntryAt(firstBinding, 'n') as Literal;
+
+                expectToBe(count.value, String(TURTLE_QUADS.length));
+                expectToBe(count.datatype.value, XSD_INTEGER);
             });
         });
     }

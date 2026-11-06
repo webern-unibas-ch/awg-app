@@ -12,6 +12,7 @@ import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
 import { EditionStateService } from './services/edition-state.service';
 import { EditionViewService } from './services/edition-view.service';
+import { EditionComplexPartsComponent } from './shared/complex/edition-complex-parts/edition-complex-parts.component';
 
 /**
  * The EditionView component.
@@ -30,6 +31,7 @@ import { EditionViewService } from './services/edition-view.service';
     imports: [
         ButtonScrollToTopComponent,
         EditionBreadcrumbComponent,
+        EditionComplexPartsComponent,
         EditionJumbotronComponent,
         MetaIdentifierBadgesComponent,
         DatePipe,
@@ -94,6 +96,13 @@ export class EditionViewComponent {
     readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
+     * Readonly signal: selectedOutlineComplexItem.
+     *
+     * It holds the outline item of the selected edition complex.
+     */
+    readonly selectedOutlineComplexItem = this._editionStateService.selectedOutlineComplexItem;
+
+    /**
      * Readonly signal: selectedEditionSection.
      *
      * It holds the state of the selected edition section.
@@ -115,6 +124,7 @@ export class EditionViewComponent {
     readonly breadcrumbItems = this._editionBreadcrumbService.getBreadcrumbItems(
         this.viewContext,
         this.selectedEditionComplex,
+        this.selectedOutlineComplexItem,
         this.selectedEditionSeries,
         this.selectedEditionSection
     );

@@ -7,7 +7,7 @@ import { RdfStoreService } from './graph-visualizer/rdf-store/rdf-store.service'
 /**
  * The routes of the EditionGraph.
  *
- * The rdfstore script starts loading when the route is first activated,
+ * The rdfstore module starts loading when the route is first activated,
  * in parallel with the graph data.
  */
 export const EDITION_GRAPH_ROUTES: Routes = [

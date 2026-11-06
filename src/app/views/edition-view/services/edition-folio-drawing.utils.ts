@@ -164,13 +164,6 @@ const CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET = 5;
 const CONTENT_SEGMENT_MAX_GAP_SHARE = 0.3;
 
 /**
- * Type: ValidFolioContent.
- *
- * A folio content with its segments (checked by {@link isValidFolioContent}).
- */
-type ValidFolioContent = FolioContent & { segments: FolioSegment[] };
-
-/**
  * Interface: FolioSystemsLayout.
  *
  * The calculated systems of a folio together with
@@ -200,6 +193,13 @@ interface FolioSystemsLayout {
 }
 
 /**
+ * Type: ValidFolioContent.
+ *
+ * It describes a folio content that can be calculated (see {@link isValidFolioContent}).
+ */
+type ValidFolioContent = FolioContent & { segments: [FolioSegment] };
+
+/**
  * Method: isValidFolioContent.
  *
  * It checks if a given folio content can be calculated:
@@ -215,7 +215,7 @@ function isValidFolioContent(content: FolioContent, numberOfSystems: number): co
         console.error('[FolioCalculation] Content needs exactly one segment', content);
         return false;
     }
-    if (content.segments.length > (content.segmentSplit ?? 1)) {
+    if (content.segments.length > content.segmentSplit) {
         console.error('[FolioCalculation] Segments array is bigger than segmentSplit', content);
         return false;
     }
@@ -329,14 +329,13 @@ function calculateSystems(
     const isLineSpaceLimited = SYSTEM_LINE_SPACE_FACTOR * factor > maxLineSpace;
     const staffHeight =
         (isLineSpaceLimited ? maxLineSpace : SYSTEM_LINE_SPACE_FACTOR * factor) * (SYSTEM_NUMBER_OF_LINES - 1);
-    const yArray = Array.from({ length: numberOfSystems }, (_, systemIndex) => {
-        const yStart = NUMBER_UTILS.roundToDecimals(startY + systemIndex * spacePerSystem, 2);
-        return Array.from({ length: SYSTEM_NUMBER_OF_LINES }, (__, lineIndex) =>
-            isLineSpaceLimited
-                ? NUMBER_UTILS.roundToDecimals(yStart + lineIndex * maxLineSpace, 2)
-                : yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor
-        );
-    });
+    const toLineY = (yStart: number, lineIndex: number): number =>
+        isLineSpaceLimited
+            ? NUMBER_UTILS.roundToDecimals(yStart + lineIndex * maxLineSpace, 2)
+            : yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor;
+    const yStarts = Array.from({ length: numberOfSystems }, (_, systemIndex) =>
+        NUMBER_UTILS.roundToDecimals(startY + systemIndex * spacePerSystem, 2)
+    );
 
     // System labels: font size limited by the space per system, right-aligned before the systems,
     // With their digits vertically centered at the middle line
@@ -351,13 +350,16 @@ function calculateSystems(
     return {
         systems: {
             labelFontSize,
-            labelPositions: yArray.map(lineArray => ({
-                x: labelX,
-                y: NUMBER_UTILS.roundToDecimals(lineArray[middleLineIndex] + labelBaselineOffset, 2),
+            items: yStarts.map(yStart => ({
+                labelPosition: {
+                    x: labelX,
+                    y: NUMBER_UTILS.roundToDecimals(toLineY(yStart, middleLineIndex) + labelBaselineOffset, 2),
+                },
+                lines: Array.from({ length: SYSTEM_NUMBER_OF_LINES }, (_, lineIndex): FolioSvgLine => {
+                    const y = toLineY(yStart, lineIndex);
+                    return { start: { x: startX, y }, end: { x: endX, y } };
+                }),
             })),
-            lines: yArray.map(lineArray =>
-                lineArray.map((y): FolioSvgLine => ({ start: { x: startX, y }, end: { x: endX, y } }))
-            ),
             reversed: folio.reversed ?? false,
         },
         startX,
@@ -386,7 +388,7 @@ function calculateContentSegmentX(
     isStart: boolean
 ): number {
     const width = NUMBER_UTILS.roundToDecimals(systemsWidth / segmentSplit, 2);
-    const splitIndex = segment.position && segment.position <= segmentSplit ? segment.position - 1 : 0;
+    const splitIndex = segment.position <= segmentSplit ? segment.position - 1 : 0;
 
     const xValue = startX + splitIndex * width + offsetCorrection / 2;
     const correction = isStart ? 0 : width - offsetCorrection;
@@ -407,7 +409,7 @@ function calculateContentSegmentX(
  */
 function calculateContentSegmentY(
     segment: FolioSegment,
-    { lines, reversed }: FolioSvgSystems,
+    { items, reversed }: FolioSvgSystems,
     verticalPadding: number,
     isStart: boolean
 ): number {
@@ -415,9 +417,9 @@ function calculateContentSegmentY(
     let systemIndex = systemNumber - 1;
     // Reverse order of the system index if the systems are reversed
     if (reversed) {
-        systemIndex = lines.length - 1 - systemIndex;
+        systemIndex = items.length - 1 - systemIndex;
     }
-    const systemLines = lines[systemIndex];
+    const systemLines = items[systemIndex]?.lines;
     const systemLine = isStart ? systemLines?.at(0) : systemLines?.at(-1);
 
     if (!systemLine) {
@@ -454,13 +456,21 @@ function calculateContentSegment(
     folioSystemsLayout: FolioSystemsLayout,
     segmentOffsetCorrection: number
 ): FolioSvgContentSegment {
-    const { complexId, sheetId, selectable = true, reversed = false, linkTo = '', sigle, sigleAddendum } = content;
+    const {
+        complexId,
+        sheetId,
+        selectable = true,
+        reversed = false,
+        linkTo = '',
+        sigle,
+        sigleAddendum,
+        segmentSplit,
+        segments: [segment],
+    } = content;
     const { systems } = folioSystemsLayout;
 
     // Dynamically adjust the offset correction based on the number of systems (reference: 18 systems)
-    const offsetCorrection = segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.lines.length);
-    const segmentSplit = content.segmentSplit ?? 1;
-    const segment = content.segments[0];
+    const offsetCorrection = segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.items.length);
 
     const startX = calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, true);
     const endX = calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, false);
@@ -515,7 +525,7 @@ export function calculateFolioSvgData(
 
     const sheet = calculateSheet(folioSettings, folio);
     const folioSystemsLayout = calculateSystems(folioSettings, sheet, folio);
-    const numberOfSystems = folioSystemsLayout.systems.lines.length;
+    const numberOfSystems = folioSystemsLayout.systems.items.length;
 
     return {
         viewBox: new ViewBox((formatX + 2 * initialOffsetX) * factor, (formatY + 2 * initialOffsetY) * factor),
