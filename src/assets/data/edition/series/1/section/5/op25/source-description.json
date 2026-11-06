@@ -879,7 +879,7 @@
                     "12 Seiten in Skizzenbuch 4: Bl. 2<sup>r</sup> (S. 2), Bl. 5<sup>v</sup>–10<sup>r</sup> (S. 9–18) und Bl. 11<sup>r</sup> (S. 20)."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, quer 270 × 337 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] <em>Protokoll. Schutzmarke</em> | <em>No. 15</em> auf Bl. 2, 5 und 11 recto unten links"
+                    "Notenpapier, 16 Systeme, Format: quer 270 × 337 mm, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] <em>Protokoll. Schutzmarke</em> | <em>No. 15</em> auf Bl. 2, 5 und 11 recto unten links"
                 ],
                 "writingMaterials": [
                     {
@@ -890,7 +890,7 @@
                             "additionalInfo": ""
                         },
                         "dimensions": {
-                            "orientation": "hoch",
+                            "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
                                 "value": "270"
@@ -1864,7 +1864,7 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25.",
+            "type": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25:<br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Wie bin ich froh!“ M 317: <a data-complex-id='op25' data-sheet-id='M317_TF1'>Textfassung 1</a>→<span class='link-todo'>2</span> <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Des Herzens Purpurvogel“ M 322: <span class='link-todo'>einzige Textfassung</span> <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Sterne, Ihr silbernen Bienen“ M 321: <span class='link-todo'>einzige Textfassung</span>.",
             "location": "A-Wue, UEQ 493.",
             "physDesc": {
                 "conditions": [
@@ -2012,7 +2012,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift (Taktstriche", "außer Schlussstriche)"]
+                    "secondary": ["Bleistift (Taktstriche, außer Schlussstriche)"]
                 },
                 "titles": [
                     "<em>Anton Webern || Drei Lieder | nach | Gedichten | von | Hildegard Jone |</em> [<s>xxx</s>] [rasiert] <em>| op. 25</em> auf Bl. 1<sup>r</sup> System 2–13",

@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Autographe von „Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M133_TF2'>2</a> (<strong>A<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M134_TF2'>2</a> (<strong>A<sup>b</sup></strong>).",
+            "type": "Autographe von<br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M133_TF2'>2</a> (<strong>A<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M134_TF2'>2</a> (<strong>A<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -533,7 +533,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Autograph von „Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[a].",
             "physDesc": {
                 "conditions": [
@@ -699,7 +699,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Autograph von „Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M133_TF3'>3</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M133_TF3'>3</a>.",
             "location": "A-Wn, Mus.Hs.38735.MusA/Webern/4.",
             "physDesc": {
                 "conditions": [
@@ -1176,7 +1176,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Fragment von „Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a>.",
+            "type": "Fragment von <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -1262,7 +1262,7 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Autographe von „Dies ist ein Lied“ M 133: <span class='link-todo'>Textfassung 4</span> (<strong>E<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF2'>Textfassung 2</a> (<strong>E<sup>b</sup></strong>) / „An Bachesranft“ M 135: <a data-complex-id='op3' data-sheet-id='M135_TF1'>Textfassung 1</a> (<strong>E<sup>c</sup></strong>) / „Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a> (<strong>E<sup>d</sup></strong>) / „Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M137_TF2'>2</a> (<strong>E<sup>e</sup></strong>).",
+            "type": "Autographe von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <span class='link-todo'>Textfassung 4</span> (<strong>E<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF2'>Textfassung 2</a> (<strong>E<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„An Bachesranft“ M 135: <a data-complex-id='op3' data-sheet-id='M135_TF1'>Textfassung 1</a> (<strong>E<sup>c</sup></strong>) <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a> (<strong>E<sup>d</sup></strong>) <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M137_TF2'>2</a> (<strong>E<sup>e</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -3051,7 +3051,7 @@
             "id": "source_F",
             "siglum": "F",
             "siglumAddendum": "",
-            "type": "Abschriften fremder Hand von „Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M133_TF2'>3</a>→<span class='link-todo'>4</span> (<strong>F<sup>a</sup></strong>) / „Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF2'>Textfassung 2</a> (<strong>F<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF1'>Textfassung 1</a> (<strong>F<sup>c</sup></strong>).",
+            "type": "Abschriften fremder Hand von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <a data-complex-id='op3' data-sheet-id='M133_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M133_TF3'>3</a>→<span class='link-todo'>4</span> (<strong>F<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Im Windesweben“ M 134: <a data-complex-id='op3' data-sheet-id='M134_TF2'>Textfassung 2</a> (<strong>F<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF1'>Textfassung 1</a> (<strong>F<sup>c</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": [
@@ -4740,7 +4740,7 @@
             "id": "source_G",
             "siglum": "G",
             "siglumAddendum": "",
-            "type": "Autographe von „Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span> (<strong>G<sup>a</sup></strong>) / „Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M136_TF2'>2</a> (<strong>G<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M137_TF3'>3</a> (<strong>G<sup>c</sup></strong>). Enthält auch Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
+            "type": "Autographe von <br /><span class=\"tab\"></span>„Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span> (<strong>G<sup>a</sup></strong>) <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF1'>Textfassung 1</a>→<a data-complex-id='op3' data-sheet-id='M136_TF2'>2</a> (<strong>G<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF2'>Textfassung 2</a>→<a data-complex-id='op3' data-sheet-id='M137_TF3'>3</a> (<strong>G<sup>c</sup></strong>). <br />Enthält auch Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <a data-complex-id='op4' data-report-fragment-id='source_A'><em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4</a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
             "physDesc": {
                 "conditions": [
@@ -4823,18 +4823,25 @@
                     "secondary": ["Bleistift", "roter Buntstift", "rote Tinte"]
                 },
                 "titles": [
-                    "[Bl. 1–5:] <em>II.</em> [Mitte] <em>Stefan George | VII. Ring | A. v</em>[.] <em>Webern op</em>[.]<em> 2</em> [rechts] auf Bl. 1<sup>r</sup> oben mit roter Tinte",
+                    "<em>II.</em> [Mitte] <em>Stefan George | VII. Ring | A. v</em>[.] <em>Webern op</em>[.]<em> 2</em> [rechts] auf Bl. 1<sup>r</sup> oben mit roter Tinte",
                     "<em>6</em> auf Bl. 2<sup>r</sup> oben links mit rotem Buntstift",
                     "<em>III</em> auf Bl. 2<sup>r</sup> oben Mitte mit rotem Buntstift",
                     "<em>Anton von Webern | aus den „Liedern“ des VII. Ringes | St. George</em> auf Bl. 2<sup>r</sup> oben rechts",
                     "<em>VI.</em> auf Bl. 4<sup>r</sup> oben mit Bleistift",
-                    "<em>Anton von Webern | Aus den „Liedern“ des „VII. Ringes“ | von Stefan George</em> auf Bl. 4<sup>r</sup> oben bis System 2 rechts"
+                    "<em>Anton von Webern | Aus den „Liedern“ des „VII. Ringes“ | von Stefan George</em> auf Bl. 4<sup>r</sup> oben bis System 2 rechts",
+                    "<em><s>I</s></em> auf Bl. 6<sup>r</sup> oben Mitte mit roter Tinte, gestrichen mit roter Tinte",
+                    "<em>VII</em> auf Bl. 6<sup>r</sup> oben Mitte mit roter Tinte",
+                    "<em><s>I</s></em> auf Bl. 6<sup>r</sup> oben halbrechts mit schwarzer Tinte, gestrichen mit roter Tinte",
+                    "<em><s>„Der siebente Ring“</s> | Anton von Webern | <s>Eingang aus Traumdunkel | von Stefan George</s></em> auf Bl. 6<sup>r</sup> oben bis System 1 rechts, Streichung mit schwarzer Tinte",
+                    "<em>Eingang | (Der siebente Ring)</em> auf Bl. 6<sup>r</sup> System 1 Mitte"
                 ],
                 "dates": [],
                 "paginations": [],
                 "measureNumbers": [],
                 "instrumentations": [],
-                "annotations": ["[Bl. 1–5:] <em>Webern</em> auf Bl. 4<sup>r</sup> System 1 links mit roter Tinte"],
+                "annotations": [
+                    "<em>Webern</em> auf Bl. 4<sup>r</sup> System 1 links mit roter Tinte und auf Bl. 6<sup>r</sup> oben links mit rotem Buntstift"
+                ],
                 "contents": [
                     {
                         "item": "",
@@ -5035,13 +5042,119 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4",
+                        "itemDescription": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138: <a data-complex-id='op4' data-sheet-id='M138_TF1'>Textfassung 1</a>→<a data-complex-id='op4' data-sheet-id='M138_TF2'>2</a>",
                         "folios": [
                             {
-                                "folio": "6–7:",
+                                "folio": "6r",
                                 "folioLinkTo": "",
-                                "folioDescription": "siehe die Quellenbeschreibung zu <a data-complex-id='op4' data-report-fragment-id='source_A'><strong>A</strong></a> von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
-                                "systemGroups": []
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–2(1–4/4)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "2(5–7/4)–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "4–5(1–4/4)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "5(5–7/4)–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "14–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
                             }
                         ]
                     }
@@ -5525,7 +5638,7 @@
             "id": "source_H",
             "siglum": "H",
             "siglumAddendum": "",
-            "type": "Autograph von „An Bachesranft“ M 135: <a data-complex-id='op3' data-sheet-id='M135_TF2'>Textfassung 2</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„An Bachesranft“ M 135: <a data-complex-id='op3' data-sheet-id='M135_TF2'>Textfassung 2</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[b].",
             "physDesc": {
                 "conditions": [
@@ -5571,7 +5684,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "grüner und roter Buntstift"]
+                    "secondary": ["Bleistift", "grüner Buntstift", "roter Buntstift"]
                 },
                 "titles": ["<em>Op 3 No 3</em> auf Bl. 1<sup>r</sup> oben links mit Bleistift (archivalische Hs.)"],
                 "dates": [],
@@ -5864,7 +5977,7 @@
             "id": "source_I",
             "siglum": "I",
             "siglumAddendum": "",
-            "type": "Autograph von „Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF2'>Textfassung 2</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: <a data-complex-id='op3' data-sheet-id='M136_TF2'>Textfassung 2</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[c].",
             "physDesc": {
                 "conditions": [
@@ -5900,7 +6013,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "grüner und roter Buntstift", "rote Tinte"]
+                    "secondary": ["Bleistift", "grüner Buntstift", "roter Buntstift", "rote Tinte"]
                 },
                 "titles": [
                     "<em>VI. </em>[Mitte] <em>Stefan George VII. Ring </em>[rechts]<em> | Anton von Webern op</em>[.] [<em>2</em>→] <em>3 N<sup>o</sup> 6</em> [rechts] auf Bl. 1<sup>r</sup> System 1–2 mit roter Tinte, Überschreibung [<em>2</em>→] <em>3</em> mit Bleistift, <em>N<sup>o</sup> 6</em> ergänzt mit schwarzer Tinte"
@@ -6209,7 +6322,7 @@
             "id": "source_J",
             "siglum": "J",
             "siglumAddendum": "",
-            "type": "Autograph von „Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF4'>Textfassung 4</a>.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF4'>Textfassung 4</a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[d].",
             "physDesc": {
                 "conditions": [
@@ -6234,7 +6347,7 @@
                             },
                             "width": {
                                 "uncertainty": "",
-                                "value": "270"
+                                "value": "266"
                             },
                             "unit": "mm"
                         },
@@ -6365,7 +6478,7 @@
             "id": "source_L",
             "siglum": "L",
             "siglumAddendum": "",
-            "type": "Druck von <em>Fünf Lieder aus </em>Der siebente Ring<em> von Stefan George</em> op. 3.",
+            "type": "Druck von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <span class='link-todo'>Textfassung 4</span> <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span> <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„An Bachesranft“ M 135: <span class='link-todo'>Textfassung 3</span> <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„Im Morgentaun“ M 136: <span class='link-todo'>Textfassung 3</span> <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <span class='link-todo'>Textfassung 5</span>.",
             "location": "Wien: Verein für musikalische Privataufführungen, 1919 / Universal Edition, 1921.",
             "physDesc": {
                 "conditions": [
@@ -6653,8 +6766,8 @@
             "id": "source_M",
             "siglum": "M",
             "siglumAddendum": "",
-            "type": "Druck von <em>Fünf Lieder aus </em>Der siebente Ring<em> von Stefan George</em> op. 3.",
-            "location": "Universal Edition, 1923.",
+            "type": "Druck von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Dies ist ein Lied“ M 133: <span class='link-todo'>Textfassung 4</span> <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span> <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„An Bachesranft“ M 135: <span class='link-todo'>Textfassung 3</span> <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„Im Morgentaun“ M 136: <span class='link-todo'>Textfassung 3</span> <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: <span class='link-todo'>Textfassung 5</span>.",
+            "location": "Wien: Universal Edition, 1923.",
             "physDesc": {
                 "conditions": [
                     "[Ein Exemplar dieser Ausgabe konnte bislang nicht aufgefunden werden. Hier aufgeführt gemäß Anton Webern, <em>Briefwechsel mit der Universal-Edition</em>, hg. von Julia Bungardt, Wien: Lafite, 2020 (Webern-Studien 5), S. 336 f. („Erstausgaben der Werke Anton Weberns in der Universal-Edition zu dessen Lebzeiten“).]"
