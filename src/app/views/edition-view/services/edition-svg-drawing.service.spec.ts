@@ -594,4 +594,28 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
         // Note: The method is also adequately tested through createSvg integration tests.
     });
+
+    describe('#_getViewBox', () => {
+        it('... should have a method `_getViewBox`', () => {
+            expect(service['_getViewBox']).toBeDefined();
+        });
+
+        it('... should create a ViewBox from the width and height of the viewBox attribute', () => {
+            const svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svgEl.setAttribute('viewBox', '0 0 200 100');
+
+            const viewBox = service['_getViewBox'](svgEl);
+
+            expectToBe(viewBox.viewBox, '0 0 200 100');
+        });
+
+        it('... should keep a missing width or height as NaN instead of a default value', () => {
+            const svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svgEl.setAttribute('viewBox', '0 0 100');
+
+            const viewBox = service['_getViewBox'](svgEl);
+
+            expectToBe(viewBox.viewBox, '0 0 100 NaN');
+        });
+    });
 });
