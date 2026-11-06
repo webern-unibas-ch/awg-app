@@ -59,6 +59,9 @@ updates:
               patterns:
                   - 'codemirror'
                   - '@codemirror/*'
+          d3:
+              patterns:
+                  - 'd3-*'
           fortawesome:
               patterns:
                   - '@fortawesome/*'
