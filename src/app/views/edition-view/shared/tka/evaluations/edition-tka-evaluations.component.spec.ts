@@ -8,6 +8,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -48,7 +49,9 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedEvaluations = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0].evaluations);
+        expectedEvaluations = structuredClone(
+            getItemAt(mockEditionData.mockTextcriticsListData.textcritics, 0).evaluations
+        );
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionTkaEvaluationsComponent);
@@ -141,7 +144,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                     const glyphSpan = "{{ref.getGlyph('[b]')}}";
                     const glyphString = mockEditionGlyphService.getGlyph('[b]');
                     const expectedEvaluation = toTextContent(
-                        expectedEvaluations[index].replaceAll(glyphSpan, glyphString)
+                        getItemAt(expectedEvaluations, index).replaceAll(glyphSpan, glyphString)
                     );
 
                     expectToBe(spanEl.textContent.trim(), expectedEvaluation.trim());

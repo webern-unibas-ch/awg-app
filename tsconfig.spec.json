@@ -2,8 +2,6 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "./out-tsc/spec",
-        // Specs access elements of expected lists by index (e.g. `des[0]`), so unchecked for now
-        "noUncheckedIndexedAccess": false,
         "rootDir": "./src",
         "types": ["node"],
         "paths": {

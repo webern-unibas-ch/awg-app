@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -50,7 +51,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         const expectedSourceDescListData = structuredClone(mockEditionData.mockSourceDescListData);
-        expectedCorrections = expectedSourceDescListData.sources[1].physDesc.corrections ?? [];
+        expectedCorrections = getItemAt(expectedSourceDescListData.sources, 1).physDesc.corrections ?? [];
         expectedOpenAllCorrectionDetails = false;
 
         // Create component fixture
@@ -181,9 +182,10 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
                     detailsDes.forEach((detailsDe, index) => {
                         const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+                        const expectedCorrection = getItemAt(expectedCorrections, index);
 
                         expect(detailsEl).toBeTruthy();
-                        expectToBe(detailsEl.id, expectedCorrections[index].id);
+                        expectToBe(detailsEl.id, expectedCorrection.id);
                     });
                 });
 
@@ -239,9 +241,12 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     });
 
                     it('... should update the open state of a single correction when its details are toggled', async () => {
-                        await toggleDetails(getDetailsDes()[0], true);
+                        const firstDetailsDe = getItemAt(getDetailsDes(), 0);
 
-                        const isOpen = component.correctionsState.isOpen(expectedCorrections[0].id);
+                        await toggleDetails(firstDetailsDe, true);
+
+                        const firstCorrection = getItemAt(expectedCorrections, 0);
+                        const isOpen = component.correctionsState.isOpen(firstCorrection.id);
 
                         expectToBe(isOpen, true);
                     });
@@ -259,7 +264,9 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         component.correctionsState.setAll(true);
                         await detectChangesOnPush(fixture);
 
-                        await toggleDetails(getDetailsDes()[0], false);
+                        const firstDetailsDe = getItemAt(getDetailsDes(), 0);
+
+                        await toggleDetails(firstDetailsDe, false);
 
                         expectToBe(component.correctionsState.allOpen(), false);
                         expectToBe(getButtonCmp().isOpen(), false);
@@ -303,8 +310,9 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                             const summaryDe = summaryDes[0];
 
                             const compileHtmlDirective = summaryDe.injector.get(CompileHtmlDirective);
+                            const expectedCorrection = getItemAt(expectedCorrections, index);
 
-                            expectToBe(compileHtmlDirective.htmlContent(), expectedCorrections[index].label + ':');
+                            expectToBe(compileHtmlDirective.htmlContent(), expectedCorrection.label + ':');
                         });
                     });
 
@@ -325,7 +333,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                             );
                             const summaryEl: HTMLElement = summaryDes[0].nativeElement;
 
-                            const expectedSummary = toTextContent(expectedCorrections[index].label + ':');
+                            const expectedSummary = toTextContent(getItemAt(expectedCorrections, index).label + ':');
 
                             expect(summaryEl).toBeTruthy();
                             expectToBe(summaryEl.textContent.trim(), expectedSummary.trim());
@@ -381,15 +389,16 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                                 1
                             );
                             const evaluationCmp = evaluationDes[0].injector.get(EditionTkaEvaluationsComponent);
+                            const expectedCorrection = getItemAt(expectedCorrections, index);
 
-                            expectToEqual(evaluationCmp.evaluations(), expectedCorrections[index].evaluations);
+                            expectToEqual(evaluationCmp.evaluations(), expectedCorrection.evaluations);
                         });
                     });
                 });
 
                 describe('... EditionTkaTableComponent (hollow)', () => {
                     it('... should contain no EditionTkaTableComponent (hollow) in corrections detail if no commentary.comments are given', async () => {
-                        component.corrections()[0].commentary.comments = [];
+                        getItemAt(component.corrections(), 0).commentary.comments = [];
                         await detectChangesOnPush(fixture);
 
                         const detailsDes = getAndExpectDebugElementByCss(
@@ -433,11 +442,12 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                                 1
                             );
                             const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent);
+                            const expectedCorrection = getItemAt(expectedCorrections, index);
 
-                            expectToEqual(tableCmp.displayedCommentary(), expectedCorrections[index].commentary);
+                            expectToEqual(tableCmp.displayedCommentary(), expectedCorrection.commentary);
 
-                            if (expectedCorrections[index].rowtable) {
-                                expectToBe(tableCmp.isRowtable(), expectedCorrections[index].rowtable);
+                            if (expectedCorrection.rowtable) {
+                                expectToBe(tableCmp.isRowtable(), expectedCorrection.rowtable);
                             } else {
                                 expectToBe(tableCmp.isRowtable(), false);
                             }

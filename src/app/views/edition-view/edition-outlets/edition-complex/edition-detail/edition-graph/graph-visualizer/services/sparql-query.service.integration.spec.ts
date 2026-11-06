@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe } from '@testing/expect-helper';
+import { expectToBe, getItemAt } from '@testing/expect-helper';
 import { RDFSTORE_INTEGRATION_TIMEOUT_MS } from '@testing/rdfstore-helper';
 
 import { GraphList, GraphQuery } from '@awg-views/edition-view/models/graph.model';
@@ -22,9 +22,11 @@ describe(
         let queryList: GraphQuery[];
 
         beforeAll(() => {
-            const graph = (graphDataOp25 as GraphList).graph[0];
-            turtle = graph.rdfData.triples;
-            queryList = graph.rdfData.queryList;
+            const graphList = graphDataOp25 as GraphList;
+            const firstGraph = getItemAt(graphList.graph, 0);
+
+            turtle = firstGraph.rdfData.triples;
+            queryList = firstGraph.rdfData.queryList;
         });
 
         beforeEach(() => {
@@ -66,7 +68,9 @@ describe(
             });
 
             it('... should measure the duration of the run', async () => {
-                const run = await service.run(queryList[0].queryString, turtle);
+                const firstQuery = getItemAt(queryList, 0);
+
+                const run = await service.run(firstQuery.queryString, turtle);
 
                 expect(run.durationMs).toBeGreaterThan(0);
             });

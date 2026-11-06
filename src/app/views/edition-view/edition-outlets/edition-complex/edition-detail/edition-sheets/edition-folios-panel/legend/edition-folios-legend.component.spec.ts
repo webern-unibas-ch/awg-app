@@ -11,6 +11,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { EditionFoliosLegendComponent } from './edition-folios-legend.component';
@@ -78,9 +79,10 @@ describe('EditionFoliosLegendComponent (DONE)', () => {
 
                 spanDes.forEach((spanDe, index) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
+                    const expectedFolioLegend = getItemAt(expectedFolioLegends, index);
 
-                    expectToBe(spanEl.className, expectedFolioLegends[index].stateClass);
-                    expectToBe(spanEl.textContent.trim(), expectedFolioLegends[index].label);
+                    expectToBe(spanEl.className, expectedFolioLegend.stateClass);
+                    expectToBe(spanEl.textContent.trim(), expectedFolioLegend.label);
                 });
             });
 

@@ -3,7 +3,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getItemAt,
+} from '@testing/expect-helper';
 
 import { LicenseComponent } from './license.component';
 
@@ -143,8 +149,10 @@ describe('LicenseComponent', () => {
 
                 imgDes.forEach((imgDe, index) => {
                     const imgEl: HTMLImageElement = imgDe.nativeElement;
-                    expectToBe(imgEl.src, expectedLicenseIcons[index].src);
-                    expectToBe(imgEl.alt, expectedLicenseIcons[index].alt);
+                    const expectedLicenseIcon = getItemAt(expectedLicenseIcons, index);
+
+                    expectToBe(imgEl.src, expectedLicenseIcon.src);
+                    expectToBe(imgEl.alt, expectedLicenseIcon.alt);
                 });
             });
         });

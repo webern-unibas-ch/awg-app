@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import * as D3_ZOOM from 'd3-zoom';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { CanvasViewport } from '@awg-shared/canvas/canvas.model';
 
@@ -288,8 +288,9 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
             });
 
             it('... should find the last node of overlapping nodes', () => {
-                forceGraphData.nodes[1].x = 0;
-                forceGraphData.nodes[1].y = 0;
+                const secondNode = getItemAt(forceGraphData.nodes, 1);
+                secondNode.x = 0;
+                secondNode.y = 0;
 
                 const found = findVisibleNode(forceGraphData, { x: 200, y: 100 }, view());
 

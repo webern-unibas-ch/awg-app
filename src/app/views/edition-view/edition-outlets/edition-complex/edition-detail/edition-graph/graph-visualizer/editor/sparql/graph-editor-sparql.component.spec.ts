@@ -427,7 +427,7 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
                 });
 
                 describe('with open item', () => {
-                    let bodyDes: DebugElement[];
+                    let bodyDe: DebugElement;
 
                     beforeEach(async () => {
                         // Open item by click on header button
@@ -440,25 +440,21 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
 
                         await clickAndAwaitChanges(btnDes[0], fixture);
 
-                        bodyDes = getAndExpectDebugElementByCss(
+                        const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-editor-sparql-collapse > div.accordion-body',
                             1,
                             1
                         );
+                        bodyDe = bodyDes[0];
                     });
 
                     it('... should contain CodeMirrorComponent (hollow) in item body', () => {
-                        getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(bodyDe, CodeMirrorComponent, 1, 1);
                     });
 
                     it('... should pass down `mode` and `content` to CodeMirrorComponent (hollow)', () => {
-                        const codeMirrorDes = getAndExpectDebugElementByDirective(
-                            bodyDes[0],
-                            CodeMirrorComponent,
-                            1,
-                            1
-                        );
+                        const codeMirrorDes = getAndExpectDebugElementByDirective(bodyDe, CodeMirrorComponent, 1, 1);
                         const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
 
                         expectToEqual(codeMirrorCmp.mode(), sparql);
@@ -466,12 +462,7 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
                     });
 
                     it('... should pass down the query string of a changed query to CodeMirrorComponent (hollow)', async () => {
-                        const codeMirrorDes = getAndExpectDebugElementByDirective(
-                            bodyDes[0],
-                            CodeMirrorComponent,
-                            1,
-                            1
-                        );
+                        const codeMirrorDes = getAndExpectDebugElementByDirective(bodyDe, CodeMirrorComponent, 1, 1);
                         const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
 
                         fixture.componentRef.setInput('query', expectedConstructQuery2);
@@ -481,7 +472,7 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
                     });
 
                     it('... should contain GraphEditorActionButtonsComponent (hollow) in item body', () => {
-                        getAndExpectDebugElementByDirective(bodyDes[0], GraphEditorActionButtonsComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(bodyDe, GraphEditorActionButtonsComponent, 1, 1);
                     });
                 });
             });

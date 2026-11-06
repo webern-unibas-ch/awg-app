@@ -12,6 +12,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -386,7 +387,7 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroContentCmp.introBlockContent(),
-                                expectedIntroSectionFilteredData.intro[expectedSelectedLanguage].content
+                                getItemAt(expectedIntroSectionFilteredData.intro, expectedSelectedLanguage).content
                             );
                             expectToEqual(editionIntroContentCmp.notesLabel(), expectedDefaultNotesSectionLabel);
                         });
@@ -407,7 +408,7 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroNavCmp.introBlockContent(),
-                                expectedIntroSectionFilteredData.intro[expectedSelectedLanguage].content
+                                getItemAt(expectedIntroSectionFilteredData.intro, expectedSelectedLanguage).content
                             );
                             expectToEqual(editionIntroNavCmp.notesLabel(), expectedDefaultNotesSectionLabel);
                             expectToEqual(editionIntroNavCmp.selectedLanguage(), expectedSelectedLanguage);
@@ -472,7 +473,7 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroContentCmp.introBlockContent(),
-                                expectedIntroSectionData.intro[expectedSelectedLanguage].content
+                                getItemAt(expectedIntroSectionData.intro, expectedSelectedLanguage).content
                             );
                             expectToEqual(editionIntroContentCmp.notesLabel(), expectedDefaultNotesSectionLabel);
                         });
@@ -493,7 +494,7 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroNavCmp.introBlockContent(),
-                                expectedIntroSectionData.intro[expectedSelectedLanguage].content
+                                getItemAt(expectedIntroSectionData.intro, expectedSelectedLanguage).content
                             );
                             expectToEqual(editionIntroNavCmp.notesLabel(), expectedDefaultNotesSectionLabel);
                             expectToEqual(editionIntroNavCmp.selectedLanguage(), expectedSelectedLanguage);

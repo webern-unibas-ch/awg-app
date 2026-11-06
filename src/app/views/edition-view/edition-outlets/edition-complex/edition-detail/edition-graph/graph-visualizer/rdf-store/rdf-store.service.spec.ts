@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getEntryAt, getItemAt } from '@testing/expect-helper';
 import {
     createMockRdfstore,
     createRdfStoreNode,
@@ -96,7 +96,9 @@ describe('RdfStoreService (DONE)', () => {
             ];
             expectToBe(quads.length, expectedQuads.length);
             quads.forEach((actualQuad, i) => {
-                expectToBe(actualQuad.equals(expectedQuads[i]), true);
+                const expectedQuad = getItemAt(expectedQuads, i);
+
+                expectToBe(actualQuad.equals(expectedQuad), true);
             });
         });
 
@@ -205,15 +207,21 @@ describe('RdfStoreService (DONE)', () => {
             spyOnRdfstoreImport(service, createMockRdfstore({ response }).rdfstore);
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
-            const binding = bindings[0];
+            const binding = getItemAt(bindings, 0);
+            const sTerm = getEntryAt(binding, 's');
+            const bTerm = getEntryAt(binding, 'b');
+            const lTerm = getEntryAt(binding, 'l');
+            const tTerm = getEntryAt(binding, 't');
+            const nTerm = getEntryAt(binding, 'n');
+            const pTerm = getEntryAt(binding, 'p');
 
             expectToEqual(Object.keys(binding), ['s', 'b', 'l', 't', 'n', 'p']);
-            expectToBe(binding['s'].equals(namedNode(`${EX}a`)), true);
-            expectToBe(binding['b'].equals(blankNode('8')), true);
-            expectToBe(binding['l'].equals(literal('x', 'de')), true);
-            expectToBe(binding['t'].equals(literal('5', namedNode(XSD_INTEGER))), true);
-            expectToBe(binding['n'].equals(literal('7')), true);
-            expectToBe(binding['p'].equals(literal('plain')), true);
+            expectToBe(sTerm.equals(namedNode(`${EX}a`)), true);
+            expectToBe(bTerm.equals(blankNode('8')), true);
+            expectToBe(lTerm.equals(literal('x', 'de')), true);
+            expectToBe(tTerm.equals(literal('5', namedNode(XSD_INTEGER))), true);
+            expectToBe(nTerm.equals(literal('7')), true);
+            expectToBe(pTerm.equals(literal('plain')), true);
         });
 
         it('... should keep blank node values without `_:` prefix as id', async () => {
@@ -223,8 +231,10 @@ describe('RdfStoreService (DONE)', () => {
             );
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
+            const firstBinding = getItemAt(bindings, 0);
+            const bTerm = getEntryAt(firstBinding, 'b');
 
-            expectToBe(bindings[0]['b'].equals(blankNode('8')), true);
+            expectToBe(bTerm.equals(blankNode('8')), true);
         });
 
         it('... should return frozen bindings', async () => {
@@ -235,7 +245,7 @@ describe('RdfStoreService (DONE)', () => {
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
 
-            expectToBe(Object.isFrozen(bindings[0]), true);
+            expectToBe(Object.isFrozen(getItemAt(bindings, 0)), true);
         });
 
         it('... should resolve empty variables and bindings for an empty or missing response', async () => {

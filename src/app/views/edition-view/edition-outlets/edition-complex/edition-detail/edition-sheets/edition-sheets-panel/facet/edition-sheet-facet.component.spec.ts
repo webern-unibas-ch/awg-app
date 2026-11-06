@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -53,7 +54,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
         expectedSelection = {
             id: expectedSvgSheet.id,
             fullId: expectedSvgSheet.id,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0),
         };
         expectedSvgSheetsData = {
             sheets: {

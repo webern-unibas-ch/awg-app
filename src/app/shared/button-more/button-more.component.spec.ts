@@ -12,6 +12,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { ButtonMoreComponent } from './button-more.component';
@@ -186,16 +187,21 @@ describe('ButtonMoreComponent', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                expectToBe(routerLinks[0].urlTree?.toString(), expectedRoute);
+                const firstRouterLink = getItemAt(routerLinks, 0);
+
+                expectToBe(firstRouterLink.urlTree?.toString(), expectedRoute);
             });
 
             it('... can click the router link in template', async () => {
                 const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
 
-                await clickAndAwaitChanges(linkDes[0], fixture);
+                const firstLinkDe = getItemAt(linkDes, 0);
+
+                await clickAndAwaitChanges(firstLinkDe, fixture);
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
 
                 expectSpyCall(navigateSpy, 1);
-                expectToBe(navigateSpy.mock.calls[0][0].toString(), expectedRoute);
+                expectToBe(actualUrlTree.toString(), expectedRoute);
 
                 navigateSpy.mockRestore();
             });

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { ABBR_UTILS, applyAbbreviations } from './abbr.utils';
 
@@ -23,14 +23,18 @@ describe('AbbrUtils (DONE)', () => {
 
                 ABBR_UTILS.applyAbbreviations(root);
 
-                const abbreviations = root.querySelectorAll('abbr');
-                expect(abbreviations).toHaveLength(3);
-                expectToBe(abbreviations[0].textContent, 'T.');
-                expectToBe(abbreviations[0].title, 'Takt');
-                expectToBe(abbreviations[1].textContent, 'Klav.');
-                expectToBe(abbreviations[1].title, 'Klavier');
-                expectToBe(abbreviations[2].textContent, 'Ges.');
-                expectToBe(abbreviations[2].title, 'Gesang');
+                const abbrEls = root.querySelectorAll('abbr');
+                const firstAbbrEl = getItemAt(abbrEls, 0);
+                const secondAbbrEl = getItemAt(abbrEls, 1);
+                const thirdAbbrEl = getItemAt(abbrEls, 2);
+
+                expect(abbrEls).toHaveLength(3);
+                expectToBe(firstAbbrEl.textContent, 'T.');
+                expectToBe(firstAbbrEl.title, 'Takt');
+                expectToBe(secondAbbrEl.textContent, 'Klav.');
+                expectToBe(secondAbbrEl.title, 'Klavier');
+                expectToBe(thirdAbbrEl.textContent, 'Ges.');
+                expectToBe(thirdAbbrEl.title, 'Gesang');
                 expectToBe(root.textContent, 'T. 9 enthält Klav. und Ges.');
             });
 
@@ -40,12 +44,15 @@ describe('AbbrUtils (DONE)', () => {
 
                 ABBR_UTILS.applyAbbreviations(root);
 
-                const abbreviations = root.querySelectorAll('abbr');
-                expect(abbreviations).toHaveLength(2);
-                expectToBe(abbreviations[0].textContent, 'Klav. o.');
-                expectToBe(abbreviations[0].title, 'Klavier oben');
-                expectToBe(abbreviations[1].textContent, 'Klav. u.');
-                expectToBe(abbreviations[1].title, 'Klavier unten');
+                const abbrEls = root.querySelectorAll('abbr');
+                const firstAbbrEl = getItemAt(abbrEls, 0);
+                const secondAbbrEl = getItemAt(abbrEls, 1);
+
+                expect(abbrEls).toHaveLength(2);
+                expectToBe(firstAbbrEl.textContent, 'Klav. o.');
+                expectToBe(firstAbbrEl.title, 'Klavier oben');
+                expectToBe(secondAbbrEl.textContent, 'Klav. u.');
+                expectToBe(secondAbbrEl.title, 'Klavier unten');
             });
 
             it('... should not replace abbreviations that occur inside words', () => {
@@ -77,9 +84,13 @@ describe('AbbrUtils (DONE)', () => {
 
                 ABBR_UTILS.applyAbbreviations(root);
 
-                expect(root.querySelectorAll('abbr')).toHaveLength(2);
-                expectToBe(root.querySelector('abbr')?.getAttribute('title'), 'Custom title');
-                expectToBe(root.querySelectorAll('abbr')[1].title, 'Klavier');
+                const abbrEls = root.querySelectorAll('abbr');
+                const firstAbbrEl = getItemAt(abbrEls, 0);
+                const secondAbbrEl = getItemAt(abbrEls, 1);
+
+                expect(abbrEls).toHaveLength(2);
+                expectToBe(firstAbbrEl.title, 'Custom title');
+                expectToBe(secondAbbrEl.title, 'Klavier');
             });
 
             it('... should be safe to apply more than once', () => {

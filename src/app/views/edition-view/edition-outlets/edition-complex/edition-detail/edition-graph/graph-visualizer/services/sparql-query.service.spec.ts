@@ -6,7 +6,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getEntryAt } from '@testing/expect-helper';
 
 import { RdfStoreSelectResult } from '../rdf-store/rdf-store.model';
 import { RdfStoreService } from '../rdf-store/rdf-store.service';
@@ -16,7 +16,7 @@ import { SparqlQueryService } from './sparql-query.service';
 const { literal, namedNode, quad } = DataFactory;
 
 const EX = 'http://example.org/';
-const AWG = DEFAULT_PREFIXES['awg'];
+const AWG = getEntryAt(DEFAULT_PREFIXES, 'awg');
 const TURTLE = `@prefix ex: <${EX}> .\nex:a ex:p ex:b .\nex:a ex:q "x" .`;
 
 describe('SparqlQueryService (DONE)', () => {

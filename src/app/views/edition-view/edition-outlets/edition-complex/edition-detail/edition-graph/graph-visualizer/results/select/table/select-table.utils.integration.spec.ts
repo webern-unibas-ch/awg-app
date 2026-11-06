@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe } from '@testing/expect-helper';
+import { expectToBe, getItemAt } from '@testing/expect-helper';
 import { RDFSTORE_INTEGRATION_TIMEOUT_MS } from '@testing/rdfstore-helper';
 
 import { GraphList } from '@awg-views/edition-view/models/graph.model';
@@ -22,7 +22,10 @@ describe(
         let turtle: string;
 
         beforeAll(() => {
-            turtle = (graphDataOp25 as GraphList).graph[0].rdfData.triples;
+            const graphList = graphDataOp25 as GraphList;
+            const firstGraph = getItemAt(graphList.graph, 0);
+
+            turtle = firstGraph.rdfData.triples;
         });
 
         beforeEach(() => {

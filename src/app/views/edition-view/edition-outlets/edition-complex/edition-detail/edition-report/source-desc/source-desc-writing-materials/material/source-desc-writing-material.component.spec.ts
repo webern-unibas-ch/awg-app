@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -43,7 +44,7 @@ describe('SourceDescWritingMaterialComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         const writingMaterials = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescListData.sources[2].physDesc.writingMaterials)
+            JSON.stringify(getItemAt(mockEditionData.mockSourceDescListData.sources, 2).physDesc.writingMaterials)
         );
         expectedMaterial = {
             ...writingMaterials[0],

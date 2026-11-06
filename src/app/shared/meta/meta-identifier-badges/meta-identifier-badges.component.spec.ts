@@ -3,7 +3,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getItemAt,
+} from '@testing/expect-helper';
 
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 
@@ -152,8 +158,9 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
 
                 badgeAnchorDes.forEach((badgeAnchorDe, index) => {
                     const badgeAnchorEl: HTMLAnchorElement = badgeAnchorDe.nativeElement;
+                    const expectedBadge = getItemAt(expectedBadges, index);
 
-                    expectToBe(badgeAnchorEl.href, expectedBadges[index].fullUrl);
+                    expectToBe(badgeAnchorEl.href, expectedBadge.fullUrl);
                 });
             });
 
@@ -190,11 +197,12 @@ describe('MetaIdentifierBadgesComponent (DONE)', () => {
                         1
                     );
                     const imgEl: HTMLImageElement = imgDes[0].nativeElement;
+                    const expectedBadge = getItemAt(expectedBadges, index);
 
                     expect(imgEl).toBeTruthy();
-                    expectToContain(imgEl.src, expectedBadges[index].src);
-                    expectToBe(imgEl.alt, expectedBadges[index].label);
-                    expectToBe(imgEl.title, expectedBadges[index].titleText);
+                    expectToContain(imgEl.src, expectedBadge.src);
+                    expectToBe(imgEl.alt, expectedBadge.label);
+                    expectToBe(imgEl.title, expectedBadge.titleText);
                 });
             });
         });

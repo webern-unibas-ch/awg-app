@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -55,7 +56,9 @@ describe('EditionSheetFooterComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
+        expectedSelectedTextcritics = structuredClone(
+            getItemAt(mockEditionData.mockTextcriticsListData.textcritics, 0)
+        );
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetFooterComponent);
@@ -198,10 +201,9 @@ describe('EditionSheetFooterComponent (DONE)', () => {
 
                 describe('... without evaluations', () => {
                     beforeEach(async () => {
-                        fixture.componentRef.setInput(
-                            'selectedTextcritics',
-                            structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1])
-                        );
+                        const secondTextcritic = getItemAt(mockEditionData.mockTextcriticsListData.textcritics, 1);
+
+                        fixture.componentRef.setInput('selectedTextcritics', structuredClone(secondTextcritic));
                         await detectChangesOnPush(fixture);
                     });
 
@@ -228,8 +230,9 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                             1
                         );
                         const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
+                        const secondTextcritic = getItemAt(mockEditionData.mockTextcriticsListData.textcritics, 1);
 
-                        expectToBe(labelCmp.id(), mockEditionData.mockTextcriticsListData.textcritics[1].id);
+                        expectToBe(labelCmp.id(), secondTextcritic.id);
                         expectToBe(labelCmp.labelType(), 'evaluation');
                     });
 

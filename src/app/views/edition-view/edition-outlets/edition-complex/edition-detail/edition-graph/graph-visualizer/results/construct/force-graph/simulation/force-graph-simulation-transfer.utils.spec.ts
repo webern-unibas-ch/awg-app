@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { ResultGraph } from '@awg-graph/graph-visualizer/models/result-graph.model';
 
@@ -126,8 +126,9 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
             });
 
             it('... should return the known positions and NaN for unknown positions', () => {
-                forceGraphData.nodes[1].x = 5;
-                forceGraphData.nodes[1].y = 6;
+                const secondNode = getItemAt(forceGraphData.nodes, 1);
+                secondNode.x = 5;
+                secondNode.y = 6;
 
                 const { positions } = toSimulationInput(forceGraphData);
 
@@ -136,13 +137,15 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
 
             it('... should return the relayout flag if at least half of the nodes have a position', () => {
                 // One of four force graph nodes with a position: a new layout
-                forceGraphData.nodes[0].x = 1;
-                forceGraphData.nodes[0].y = 2;
+                const firstNode = getItemAt(forceGraphData.nodes, 0);
+                firstNode.x = 1;
+                firstNode.y = 2;
                 const inputOfNewLayout = toSimulationInput(forceGraphData);
 
                 // Two of four force graph nodes with a position: a relayout
-                forceGraphData.nodes[1].x = 5;
-                forceGraphData.nodes[1].y = 6;
+                const secondNode = getItemAt(forceGraphData.nodes, 1);
+                secondNode.x = 5;
+                secondNode.y = 6;
                 const inputOfRelayout = toSimulationInput(forceGraphData);
 
                 expectToBe(inputOfNewLayout.isRelayout, false);
@@ -154,7 +157,7 @@ describe('ForceGraphSimulationTransferUtils (DONE)', () => {
                     ...forceGraphData,
                     edges: [
                         {
-                            ...forceGraphData.edges[0],
+                            ...getItemAt(forceGraphData.edges, 0),
                             target: {
                                 id: 'x',
                                 radius: 9,

@@ -14,6 +14,7 @@ import {
     expectToEqual,
     expectToNotContain,
     getAndExpectDebugElementByCss,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -81,26 +82,27 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         // Test data
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedSvgSheetWithPartials = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
 
         expectedSelection = {
             id: expectedSvgSheet.id,
             fullId: expectedSvgSheet.id,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
         expectedNextSelection = {
             id: mockEditionData.mockSvgSheet_Sk4.id,
             fullId: mockEditionData.mockSvgSheet_Sk4.id,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
         expectedSelectionWithPartialA = {
             id: expectedSvgSheetWithPartials.id,
             fullId: `${expectedSvgSheetWithPartials.id}a`,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
         expectedOtherSelectionWithPartialB = {
             id: mockEditionData.mockSvgSheet_Sk3b.id,
             fullId: `${mockEditionData.mockSvgSheet_Sk3b.id}b`,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
 
         // Create component fixture
@@ -358,10 +360,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `sheetPartials` with no active link if an unknown partial of the svg sheet is selected', async () => {
+                const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
+
                 fixture.componentRef.setInput('selectedSvgSheet', {
                     id: expectedSvgSheetWithPartials.id,
                     fullId: `${expectedSvgSheetWithPartials.id}z`,
-                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                    content: firstContent,
                 });
                 await detectChangesOnPush(fixture);
 
@@ -373,10 +377,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `sheetPartials` with only the link of the selected partial active', async () => {
+                const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
+
                 fixture.componentRef.setInput('selectedSvgSheet', {
                     id: expectedSvgSheetWithPartials.id,
                     fullId: `${expectedSvgSheetWithPartials.id}b`,
-                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                    content: firstContent,
                 });
                 await detectChangesOnPush(fixture);
 
@@ -390,10 +396,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             it('... should have recomputed signal `sheetPartials` with the same routes if another partial is selected', async () => {
                 const sheetRoutes = component.sheetPartials().map(link => link.sheetRoute);
 
+                const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
+
                 fixture.componentRef.setInput('selectedSvgSheet', {
                     id: expectedSvgSheetWithPartials.id,
                     fullId: `${expectedSvgSheetWithPartials.id}b`,
-                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                    content: firstContent,
                 });
                 await detectChangesOnPush(fixture);
 
@@ -464,7 +472,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
                     getDropdownItemDes().forEach((itemDe, index) => {
                         const itemEl: HTMLAnchorElement = itemDe.nativeElement;
-                        const partial = expectedSvgSheetWithPartials.content[index].partial;
+                        const partial = getItemAt(expectedSvgSheetWithPartials.content, index).partial;
 
                         expectToBe(
                             itemEl.textContent.trim(),
@@ -541,9 +549,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     });
 
                     it('... should navigate to the `sheetRoute` of the partial on click of an item anchor', async () => {
-                        await clickAndAwaitChanges(getDropdownItemDes()[1], fixture);
+                        const secondDropdownItemDe = getItemAt(getDropdownItemDes(), 1);
+                        const secondPartial = getItemAt(component.sheetPartials(), 1);
 
-                        expectSpyCall(navigateByUrlSpy, 1, component.sheetPartials()[1].sheetRoute);
+                        await clickAndAwaitChanges(secondDropdownItemDe, fixture);
+
+                        expectSpyCall(navigateByUrlSpy, 1, secondPartial.sheetRoute);
                     });
 
                     it('... should not navigate on click of the dropdown toggle anchor', async () => {

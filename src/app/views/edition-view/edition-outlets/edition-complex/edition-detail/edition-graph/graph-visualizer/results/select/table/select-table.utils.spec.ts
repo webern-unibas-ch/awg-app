@@ -1,7 +1,7 @@
 import { DataFactory } from 'n3';
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getEntryAt, getItemAt } from '@testing/expect-helper';
 
 import { SparqlSelectResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
 import { DEFAULT_PREFIXES } from '@awg-graph/graph-visualizer/utils/prefix.utils';
@@ -10,7 +10,7 @@ import { SELECT_TABLE_UTILS, toTableCell, toTableRows } from './select-table.uti
 
 const { blankNode, literal, namedNode } = DataFactory;
 
-const AWG = DEFAULT_PREFIXES['awg'];
+const AWG = getEntryAt(DEFAULT_PREFIXES, 'awg');
 const XSD = 'http://www.w3.org/2001/XMLSchema#';
 
 describe('SelectTableUtils (DONE)', () => {
@@ -132,13 +132,17 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return no cell for unbound variables', () => {
-                expectToBe(Object.hasOwn(toTableRows(result)[1], 'label'), false);
+                const secondRow = getItemAt(toTableRows(result), 1);
+
+                expectToBe(Object.hasOwn(secondRow, 'label'), false);
             });
 
             it('... should order the cells by the variables', () => {
                 const reordered: SparqlSelectResult = { ...result, variables: ['page', 's', 'label'] };
 
-                expectToEqual(Object.keys(toTableRows(reordered)[0]), ['page', 's', 'label']);
+                const firstRow = getItemAt(toTableRows(reordered), 0);
+
+                expectToEqual(Object.keys(firstRow), ['page', 's', 'label']);
             });
 
             it('... should ignore bound values of variables that are not projected', () => {
@@ -151,7 +155,9 @@ describe('SelectTableUtils (DONE)', () => {
             });
 
             it('... should return frozen rows', () => {
-                expectToBe(Object.isFrozen(toTableRows(result)[0]), true);
+                const firstRow = getItemAt(toTableRows(result), 0);
+
+                expectToBe(Object.isFrozen(firstRow), true);
             });
 
             it('... should return no rows for no bindings', () => {

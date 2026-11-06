@@ -13,6 +13,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 import { mockConsole } from '@testing/mock-helper';
@@ -151,13 +152,13 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
         expectedSvgSheet = structuredClone(
             EDITION_SHEETS_UTILS.toSvgSheetSelection(
                 mockEditionData.mockSvgSheet_Sk1,
-                mockEditionData.mockSvgSheet_Sk1.content[0]
+                getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0)
             )
         );
         expectedNextSvgSheet = structuredClone(
             EDITION_SHEETS_UTILS.toSvgSheetSelection(
                 mockEditionData.mockSvgSheet_Sk2,
-                mockEditionData.mockSvgSheet_Sk2.content[0]
+                getItemAt(mockEditionData.mockSvgSheet_Sk2.content, 0)
             )
         );
         expectedSuppliedClasses = ['class-1', 'class-2'];
@@ -283,7 +284,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
             it('... should create the overlays on the root group', () => {
                 expectSpyCall(mockSvgOverlayService.createSvgOverlays, 1);
 
-                const [rootGroupSelection] = mockSvgOverlayService.createSvgOverlays.mock.calls[0];
+                const [rootGroupSelection] = getItemAt(mockSvgOverlayService.createSvgOverlays.mock.calls, 0);
                 expectToBe((rootGroupSelection as D3Selection).node(), getRootGroupEl());
             });
 
@@ -665,8 +666,10 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                         component.onAdditionVisibilityChange({ key: 'class-1', isVisible });
 
                         expectSpyCall(mockSvgDrawingService.toggleSuppliedClassOpacity, 1);
-                        const [rootGroupSelection, key, visible] =
-                            mockSvgDrawingService.toggleSuppliedClassOpacity.mock.calls[0];
+                        const [rootGroupSelection, key, visible] = getItemAt(
+                            mockSvgDrawingService.toggleSuppliedClassOpacity.mock.calls,
+                            0
+                        );
                         expectToBe((rootGroupSelection as D3Selection).node(), getRootGroupEl());
                         expectToBe(key, 'class-1');
                         expectToBe(visible, isVisible);

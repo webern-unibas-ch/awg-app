@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { ResultGraph, ResultGraphEdge, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
 
@@ -287,11 +287,13 @@ describe('ForceGraphUtils (DONE)', () => {
                 ];
 
                 restorePositions(nodes, previousNodes);
+                const firstNode = getItemAt(nodes, 0);
+                const secondNode = getItemAt(nodes, 1);
 
-                expect(nodes[0].x).toBeNaN();
-                expect(nodes[0].y).toBeNaN();
-                expectToBe(nodes[1].x, 3);
-                expectToBe(nodes[1].y, 4);
+                expect(firstNode.x).toBeNaN();
+                expect(firstNode.y).toBeNaN();
+                expectToBe(secondNode.x, 3);
+                expectToBe(secondNode.y, 4);
             });
 
             it('... should keep the nodes without position without matching or positioned previous nodes', () => {
@@ -300,9 +302,10 @@ describe('ForceGraphUtils (DONE)', () => {
                 restorePositions(nodes, []);
                 restorePositions(nodes, [{ id: 'a', radius: 9, x: NaN, y: NaN }]);
                 restorePositions(nodes, [{ id: 'x', radius: 9, x: 1, y: 1 }]);
+                const firstNode = getItemAt(nodes, 0);
 
-                expect(nodes[0].x).toBeNaN();
-                expect(nodes[0].y).toBeNaN();
+                expect(firstNode.x).toBeNaN();
+                expect(firstNode.y).toBeNaN();
             });
         });
 
@@ -325,6 +328,8 @@ describe('ForceGraphUtils (DONE)', () => {
             it('... should return a force graph node per node of the result graph with its radius, followed by the middle nodes', () => {
                 const { nodes: forceGraphNodes } = toForceGraphData(graph);
                 const nodeSummaries = forceGraphNodes.map(node => [node.id, node.radius]);
+                const thirdForceGraphNode = getItemAt(forceGraphNodes, 2);
+                const fourthForceGraphNode = getItemAt(forceGraphNodes, 3);
 
                 expectToEqual(nodeSummaries, [
                     ['a', 11],
@@ -332,71 +337,86 @@ describe('ForceGraphUtils (DONE)', () => {
                     ['a\na#mid0', 9],
                     ['a\nb#mid1', 9],
                 ]);
-                expectToBe('resultNode' in forceGraphNodes[2], false);
-                expectToBe('resultNode' in forceGraphNodes[3], false);
+                expectToBe('resultNode' in thirdForceGraphNode, false);
+                expectToBe('resultNode' in fourthForceGraphNode, false);
             });
 
             it('... should return the same id for the middle node of the same edge between two nodes at another index of the result graph', () => {
                 const shiftedGraph: ResultGraph = {
                     nodes: [...nodes, { id: 'c', shortName: 'ex:c', label: 'ex:c', kind: 'resource' }],
-                    edges: [{ id: 'e0', source: 'c', target: 'c', label: 'ex:other' }, edges[0], edges[2]],
+                    edges: [
+                        { id: 'e0', source: 'c', target: 'c', label: 'ex:other' },
+                        getItemAt(edges, 0),
+                        getItemAt(edges, 2),
+                    ],
                     tripleCount: 3,
                 };
                 const { edges: forceGraphEdges } = toForceGraphData(graph);
                 const { edges: shiftedForceGraphEdges } = toForceGraphData(shiftedGraph);
+                const thirdShiftedForceGraphEdge = getItemAt(shiftedForceGraphEdges, 2);
+                const thirdForceGraphEdge = getItemAt(forceGraphEdges, 2);
 
-                expectToBe(shiftedForceGraphEdges[2].mid?.id, forceGraphEdges[2].mid?.id);
+                expectToBe(thirdShiftedForceGraphEdge.mid?.id, thirdForceGraphEdge.mid?.id);
             });
 
             it('... should return different ids for the middle nodes of edges between other nodes at the same index of the result graph', () => {
                 const otherGraph: ResultGraph = {
                     nodes,
-                    edges: [edges[0], { id: 'e1', source: 'b', target: 'b', label: 'ex:self' }],
+                    edges: [getItemAt(edges, 0), { id: 'e1', source: 'b', target: 'b', label: 'ex:self' }],
                     tripleCount: 2,
                 };
                 const { edges: forceGraphEdges } = toForceGraphData(graph);
                 const { edges: otherForceGraphEdges } = toForceGraphData(otherGraph);
+                const secondForceGraphEdge = getItemAt(forceGraphEdges, 1);
+                const secondOtherForceGraphEdge = getItemAt(otherForceGraphEdges, 1);
 
-                expect(otherForceGraphEdges[1].mid?.id).not.toBe(forceGraphEdges[1].mid?.id);
+                expect(secondOtherForceGraphEdge.mid?.id).not.toBe(secondForceGraphEdge.mid?.id);
             });
 
             it('... should return the force graph nodes of the result graph (without the middle nodes) as visible nodes', () => {
                 const { nodes: forceGraphNodes, visibleNodes } = toForceGraphData(graph);
+                const firstVisibleNode = getItemAt(visibleNodes, 0);
+                const secondVisibleNode = getItemAt(visibleNodes, 1);
 
                 expectToEqual(visibleNodes, forceGraphNodes.slice(0, 2));
                 expectToBe(visibleNodes[0], forceGraphNodes[0]);
-                expectToBe(visibleNodes[0].resultNode, nodes[0]);
-                expectToBe(visibleNodes[1].resultNode, nodes[1]);
+                expectToBe(firstVisibleNode.resultNode, nodes[0]);
+                expectToBe(secondVisibleNode.resultNode, nodes[1]);
             });
 
             it('... should return an edge without middle node for the first edge between two nodes', () => {
                 const { nodes: forceGraphNodes, edges: forceGraphEdges } = toForceGraphData(graph);
+                const firstForceGraphEdge = getItemAt(forceGraphEdges, 0);
 
-                expectToBe(forceGraphEdges[0].resultEdge, edges[0]);
-                expectToBe(forceGraphEdges[0].source, forceGraphNodes[0]);
-                expect(forceGraphEdges[0].mid).toBeUndefined();
-                expectToBe(forceGraphEdges[0].target, forceGraphNodes[1]);
+                expectToBe(firstForceGraphEdge.resultEdge, edges[0]);
+                expectToBe(firstForceGraphEdge.source, forceGraphNodes[0]);
+                expect(firstForceGraphEdge.mid).toBeUndefined();
+                expectToBe(firstForceGraphEdge.target, forceGraphNodes[1]);
             });
 
             it('... should return an edge with a middle node for a self edge', () => {
                 const { nodes: forceGraphNodes, edges: forceGraphEdges } = toForceGraphData(graph);
+                const secondForceGraphEdge = getItemAt(forceGraphEdges, 1);
 
-                expectToBe(forceGraphEdges[1].mid, forceGraphNodes[2]);
+                expectToBe(secondForceGraphEdge.mid, forceGraphNodes[2]);
             });
 
             it('... should return an edge with a middle node for a repeated edge between two nodes (also in the other direction)', () => {
                 const { nodes: forceGraphNodes, edges: forceGraphEdges } = toForceGraphData(graph);
+                const thirdForceGraphEdge = getItemAt(forceGraphEdges, 2);
 
-                expectToBe(forceGraphEdges[2].source, forceGraphNodes[1]);
-                expectToBe(forceGraphEdges[2].mid, forceGraphNodes[3]);
-                expectToBe(forceGraphEdges[2].target, forceGraphNodes[0]);
+                expectToBe(thirdForceGraphEdge.source, forceGraphNodes[1]);
+                expectToBe(thirdForceGraphEdge.mid, forceGraphNodes[3]);
+                expectToBe(thirdForceGraphEdge.target, forceGraphNodes[0]);
             });
 
             it('... should share the force graph node of a node of the result graph between its edges (also self edges)', () => {
                 const { edges: forceGraphEdges } = toForceGraphData(graph);
+                const secondForceGraphEdge = getItemAt(forceGraphEdges, 1);
+                const firstForceGraphEdge = getItemAt(forceGraphEdges, 0);
 
-                expectToBe(forceGraphEdges[1].source, forceGraphEdges[0].source);
-                expectToBe(forceGraphEdges[1].target, forceGraphEdges[1].source);
+                expectToBe(secondForceGraphEdge.source, firstForceGraphEdge.source);
+                expectToBe(secondForceGraphEdge.target, secondForceGraphEdge.source);
             });
 
             it('... should return all nodes without position (NaN) until they are laid out', () => {

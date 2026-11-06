@@ -6,7 +6,7 @@ import { RouterTestingHarness } from '@angular/router/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { LoadingService } from '@awg-shared/loading/loading.service';
 import { EDITION_ASSETS_DATA } from '../data/edition-assets.data';
@@ -549,7 +549,11 @@ describe('EditionViewService (DONE)', () => {
                 const viewKey = 'sheets';
                 const signalMap: any[] = [['folioConvoluteData', signal({ id: '1' })]];
                 const mockAssetKeys = ['folioConvolute'];
-                const mockError = { key: mockAssetKeys[0] as EditionDataAssetsKeys, error: 'Failed to load assets' };
+                const firstAssetKey = getItemAt(mockAssetKeys, 0) as EditionDataAssetsKeys;
+                const mockError = {
+                    key: firstAssetKey,
+                    error: 'Failed to load assets',
+                };
 
                 getFallbackForInactiveViewSpy.mockReturnValue(null);
                 getUniqueAssetKeysSpy.mockReturnValue(mockAssetKeys);

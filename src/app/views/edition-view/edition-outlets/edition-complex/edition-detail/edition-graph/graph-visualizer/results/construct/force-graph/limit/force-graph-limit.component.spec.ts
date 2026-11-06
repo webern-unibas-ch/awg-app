@@ -7,7 +7,13 @@ import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getItemAt,
+} from '@testing/expect-helper';
 
 import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
 
@@ -187,7 +193,7 @@ describe('ForceGraphLimitComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const itemDes = getItemDes(1);
-                const itemEl: HTMLElement = itemDes[0].nativeElement;
+                const itemEl: HTMLElement = getItemAt(itemDes, 0).nativeElement;
 
                 expectToBe(itemEl.textContent.trim(), 'Kein Limit');
             });
@@ -195,7 +201,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
             it('... should set `limit` to the limit value of a clicked item', async () => {
                 const itemDes = getItemDes(5);
 
-                await clickAndAwaitChanges(itemDes[1], fixture);
+                const secondItemDe = getItemAt(itemDes, 1);
+
+                await clickAndAwaitChanges(secondItemDe, fixture);
 
                 expectToBe(component.limit(), 10);
                 expectSpyCall(limitChangeSpy, 1, 10);
@@ -204,7 +212,9 @@ describe('ForceGraphLimitComponent (DONE)', () => {
             it('... should set `limit` to the triple count on a click on the item without limit', async () => {
                 const itemDes = getItemDes(5);
 
-                await clickAndAwaitChanges(itemDes[4], fixture);
+                const fifthItemDe = getItemAt(itemDes, 4);
+
+                await clickAndAwaitChanges(fifthItemDe, fixture);
 
                 expectToBe(component.limit(), expectedTripleCount);
                 expectSpyCall(limitChangeSpy, 1, expectedTripleCount);

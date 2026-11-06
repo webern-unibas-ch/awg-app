@@ -32,8 +32,8 @@ describe('SvgZoomDirective (DONE)', () => {
     let svgEl: SVGSVGElement;
     let targetEl: SVGGElement;
 
-    const getDirectiveDes = (): DebugElement[] =>
-        getAndExpectDebugElementByDirective(fixture.debugElement, SvgZoomDirective, 1, 1);
+    const getDirectiveDe = (): DebugElement =>
+        getAndExpectDebugElementByDirective(fixture.debugElement, SvgZoomDirective, 1, 1)[0];
     const getCurrentTransform = () => D3_ZOOM.zoomTransform(svgEl);
 
     beforeAll(() => {
@@ -51,7 +51,7 @@ describe('SvgZoomDirective (DONE)', () => {
         fixture = TestBed.createComponent(SvgZoomTestHostComponent);
         host = fixture.componentInstance;
 
-        const directiveDe = getDirectiveDes()[0];
+        const directiveDe = getDirectiveDe();
         directive = directiveDe.injector.get(SvgZoomDirective);
         svgEl = directiveDe.nativeElement;
         targetEl = svgEl.querySelector('g') as SVGGElement;

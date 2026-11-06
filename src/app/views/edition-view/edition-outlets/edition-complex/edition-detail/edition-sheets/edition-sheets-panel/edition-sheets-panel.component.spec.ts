@@ -14,6 +14,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
@@ -78,7 +79,10 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
-        expectedSelection = EDITION_SHEETS_UTILS.toSvgSheetSelection(expectedSvgSheet, expectedSvgSheet.content[0]);
+        expectedSelection = EDITION_SHEETS_UTILS.toSvgSheetSelection(
+            expectedSvgSheet,
+            getItemAt(expectedSvgSheet.content, 0)
+        );
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],
@@ -86,7 +90,9 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 sketchEditions: [expectedSvgSheet, structuredClone(mockEditionData.mockSvgSheet_Sk2)],
             },
         };
-        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
+        expectedSelectedTextcritics = structuredClone(
+            getItemAt(mockEditionData.mockTextcriticsListData.textcritics, 0)
+        );
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetsPanelComponent);
@@ -130,10 +136,10 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        const getItemBodyDes = (): DebugElement[] =>
-            getAndExpectDebugElementByCss(compDe, 'div.accordion-item div.accordion-body', 1, 1);
-        const getItemHeaderDes = (): DebugElement[] =>
-            getAndExpectDebugElementByCss(compDe, 'div#awg-edition-sheet-view > div.accordion-header', 1, 1);
+        const getItemBodyDe = (): DebugElement =>
+            getAndExpectDebugElementByCss(compDe, 'div.accordion-item div.accordion-body', 1, 1)[0];
+        const getItemHeaderDe = (): DebugElement =>
+            getAndExpectDebugElementByCss(compDe, 'div#awg-edition-sheet-view > div.accordion-header', 1, 1)[0];
 
         beforeEach(() => {
             // Set the initial values for the signal inputs
@@ -184,7 +190,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         1,
                         1
                     );
-                    getItemHeaderDes();
+                    getItemHeaderDe();
 
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
@@ -199,7 +205,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
 
                 it('... should contain the header button with the title', () => {
                     const btnDes = getAndExpectDebugElementByCss(
-                        getItemHeaderDes()[0],
+                        getItemHeaderDe(),
                         'div.accordion-button > button.btn',
                         1,
                         1
@@ -210,7 +216,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 });
 
                 it('... should contain the UsageHintsComponent (hollow) and the FullscreenToggleComponent (hollow) in div.ms-auto', () => {
-                    const msAutoDes = getAndExpectDebugElementByCss(getItemHeaderDes()[0], 'div.ms-auto', 1, 1);
+                    const msAutoDes = getAndExpectDebugElementByCss(getItemHeaderDe(), 'div.ms-auto', 1, 1);
 
                     getAndExpectDebugElementByDirective(msAutoDes[0], UsageHintsComponent, 1, 1);
                     getAndExpectDebugElementByDirective(msAutoDes[0], FullscreenToggleComponent, 1, 1);
@@ -227,8 +233,8 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     isFullscreenMockSignal.set(true);
                     await detectChangesOnPush(fixture);
 
-                    getAndExpectDebugElementByDirective(getItemHeaderDes()[0], UsageHintsComponent, 0, 0);
-                    getAndExpectDebugElementByDirective(getItemHeaderDes()[0], FullscreenToggleComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(getItemHeaderDe(), UsageHintsComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(getItemHeaderDe(), FullscreenToggleComponent, 1, 1);
                 });
 
                 it('... should pass down the accordion reference to the FullscreenToggleComponent (hollow)', () => {
@@ -255,13 +261,13 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
 
                         const facetContainerDes = getAndExpectDebugElementByCss(
-                            getItemBodyDes()[0],
+                            getItemBodyDe(),
                             `div.awg-edition-sheet-facet-container`,
                             1,
                             1
                         );
                         const viewerContainerDes = getAndExpectDebugElementByCss(
-                            getItemBodyDes()[0],
+                            getItemBodyDe(),
                             `div.awg-edition-sheet-viewer-container`,
                             1,
                             1
@@ -280,7 +286,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 describe('... EditionSheetFacetComponent (hollow)', () => {
                     it('... should contain one EditionSheetFacetComponent (hollow) in the facet container', () => {
                         const facetContainerDes = getAndExpectDebugElementByCss(
-                            getItemBodyDes()[0],
+                            getItemBodyDe(),
                             'div.awg-edition-sheet-facet-container',
                             1,
                             1
@@ -306,7 +312,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
 
                         const facetContainerDes = getAndExpectDebugElementByCss(
-                            getItemBodyDes()[0],
+                            getItemBodyDe(),
                             `div.awg-edition-sheet-viewer-container`,
                             1,
                             1
@@ -321,7 +327,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 describe('... EditionSheetViewerComponent (hollow)', () => {
                     it('... should contain one EditionSheetViewerComponent (hollow) in the viewer container', () => {
                         const viewerContainerDes = getAndExpectDebugElementByCss(
-                            getItemBodyDes()[0],
+                            getItemBodyDe(),
                             'div.awg-edition-sheet-viewer-container',
                             1,
                             1
@@ -334,7 +340,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         fixture.componentRef.setInput('selectedSvgSheet', undefined);
                         await detectChangesOnPush(fixture);
 
-                        getAndExpectDebugElementByDirective(getItemBodyDes()[0], EditionSheetViewerComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(getItemBodyDe(), EditionSheetViewerComponent, 0, 0);
                     });
 
                     it('... should pass down `selectedSvgSheet` to EditionSheetViewerComponent (hollow)', () => {
@@ -399,7 +405,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 describe('... EditionSheetFooterComponent (hollow)', () => {
                     it('... should contain one EditionSheetFooterComponent (hollow) in the viewer container', () => {
                         const viewerContainerDes = getAndExpectDebugElementByCss(
-                            getItemBodyDes()[0],
+                            getItemBodyDe(),
                             'div.awg-edition-sheet-viewer-container',
                             1,
                             1
@@ -425,7 +431,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                             );
                             await detectChangesOnPush(fixture);
 
-                            getAndExpectDebugElementByDirective(getItemBodyDes()[0], EditionSheetFooterComponent, 0, 0);
+                            getAndExpectDebugElementByDirective(getItemBodyDe(), EditionSheetFooterComponent, 0, 0);
                         }
                     );
 

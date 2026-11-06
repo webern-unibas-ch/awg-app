@@ -14,6 +14,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { ZoomConfig } from './zoom.model';
@@ -197,9 +198,11 @@ describe('ZoomSliderComponent (DONE)', () => {
                 it('... should contain a fit button after the reset button', () => {
                     const buttonDes = getAndExpectDebugElementByCss(getContainerDes()[0], 'button.btn', 2, 2);
                     const buttonEls = buttonDes.map((buttonDe): HTMLButtonElement => buttonDe.nativeElement);
+                    const firstButtonEl = getItemAt(buttonEls, 0);
+                    const secondButtonEl = getItemAt(buttonEls, 1);
 
-                    expectToBe(buttonEls[0].title, 'Zoom zurücksetzen');
-                    expectToBe(buttonEls[1].title, 'Einpassen');
+                    expectToBe(firstButtonEl.title, 'Zoom zurücksetzen');
+                    expectToBe(secondButtonEl.title, 'Einpassen');
                 });
 
                 it('... should contain a fit button with type, aria-label and the faMaximize icon', () => {

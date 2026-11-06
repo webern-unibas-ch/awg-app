@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -33,8 +34,8 @@ describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        const writingInstruments = structuredClone(mockEditionData.mockSourceDescListData).sources[1].physDesc
-            .writingInstruments;
+        const writingInstruments = getItemAt(structuredClone(mockEditionData.mockSourceDescListData).sources, 1)
+            .physDesc.writingInstruments;
 
         if (!writingInstruments) {
             expect.fail('Expected writingInstruments to be defined in mock data.');

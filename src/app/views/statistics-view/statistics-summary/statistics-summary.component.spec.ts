@@ -11,6 +11,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { StatisticsSummaryCardData, StatisticsSummaryData } from '../models/statistics.model';
@@ -113,10 +114,12 @@ describe('StatisticsSummaryComponent', () => {
 
             expectToBe(summaryCards.length, 4);
             summaryCards.forEach((card, index) => {
-                expectToBe(card.title, expectedSummaryCards[index].title);
-                expectToBe(card.value, expectedSummaryCards[index].value);
-                expectToEqual(card.icon, expectedSummaryCards[index].icon);
-                expectToBe(card.bgClass, expectedSummaryCards[index].bgClass);
+                const expectedSummaryCard = getItemAt(expectedSummaryCards, index);
+
+                expectToBe(card.title, expectedSummaryCard.title);
+                expectToBe(card.value, expectedSummaryCard.value);
+                expectToEqual(card.icon, expectedSummaryCard.icon);
+                expectToBe(card.bgClass, expectedSummaryCard.bgClass);
             });
         });
 
@@ -167,7 +170,7 @@ describe('StatisticsSummaryComponent', () => {
                 );
 
                 expectedSummaryCards.forEach((card, index) => {
-                    const cardCmp = cardDes[index].injector.get(StatisticsSummaryCardComponent);
+                    const cardCmp = getItemAt(cardDes, index).injector.get(StatisticsSummaryCardComponent);
 
                     expectToBe(cardCmp.title(), card.title);
                     expectToBe(cardCmp.value(), card.value);

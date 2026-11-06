@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toInnerHtml } from '@testing/html-helper';
 
@@ -93,7 +94,7 @@ describe('EditionComplexPartsListComponent (DONE)', () => {
                 const liEls: HTMLLIElement[] = getLiDes().map(liDe => liDe.nativeElement);
 
                 liEls.forEach((liEl, index) => {
-                    const expectedId = toInnerHtml(expectedParts[index].complex.complexId.full);
+                    const expectedId = toInnerHtml(getItemAt(expectedParts, index).complex.complexId.full);
 
                     expectToContain(liEl.innerHTML, expectedId);
                 });
@@ -115,9 +116,10 @@ describe('EditionComplexPartsListComponent (DONE)', () => {
 
                 linkDes.forEach((linkDe, index) => {
                     const linkCmp = linkDe.injector.get(ConditionalLinkComponent);
+                    const expectedPart = getItemAt(expectedParts, index);
 
-                    expectToBe(linkCmp.isClickable(), !expectedParts[index].disabled);
-                    expectToEqual(linkCmp.targetRoute(), [expectedParts[index].complex.baseRoute]);
+                    expectToBe(linkCmp.isClickable(), !expectedPart.disabled);
+                    expectToEqual(linkCmp.targetRoute(), [expectedPart.complex.baseRoute]);
                 });
             });
 
@@ -125,7 +127,7 @@ describe('EditionComplexPartsListComponent (DONE)', () => {
                 const liEls: HTMLLIElement[] = getLiDes().map(liDe => liDe.nativeElement);
 
                 liEls.forEach((liEl, index) => {
-                    const isPartDisabled = expectedParts[index].disabled;
+                    const isPartDisabled = getItemAt(expectedParts, index).disabled;
                     const isItemTextMuted = liEl.classList.contains('text-muted');
 
                     expectToBe(isItemTextMuted, isPartDisabled);

@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
@@ -130,7 +131,7 @@ describe('EditionSeriesCardComponent (DONE)', () => {
                 const liDes = getListItemDes();
 
                 liDes.forEach((liDe, index) => {
-                    const expectedSection = expectedSeries.sections[index];
+                    const expectedSection = getItemAt(expectedSeries.sections, index);
                     const liEl: HTMLLIElement = liDe.nativeElement;
 
                     expectToBe(liEl.textContent.trim(), expectedSection.section.full);
@@ -145,7 +146,7 @@ describe('EditionSeriesCardComponent (DONE)', () => {
 
             it('... should pass down `isClickable` and `targetRoute` to ConditionalLinkComponent (hollow)', () => {
                 getListItemDes().forEach((liDe, index) => {
-                    const expectedSection = expectedSeries.sections[index];
+                    const expectedSection = getItemAt(expectedSeries.sections, index);
                     const expectedTargetRoute = [expectedSeries.series.route, 'section', expectedSection.section.route];
 
                     const linkDes = getAndExpectDebugElementByDirective(liDe, ConditionalLinkComponent, 1, 1);
@@ -158,7 +159,7 @@ describe('EditionSeriesCardComponent (DONE)', () => {
 
             it('... should text-mute only the links of disabled sections', () => {
                 getListItemDes().forEach((liDe, index) => {
-                    const isSectionDisabled = expectedSeries.sections[index].disabled;
+                    const isSectionDisabled = getItemAt(expectedSeries.sections, index).disabled;
 
                     const linkDes = getAndExpectDebugElementByDirective(liDe, ConditionalLinkComponent, 1, 1);
                     const linkEl: HTMLElement = linkDes[0].nativeElement;

@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as D3_ZOOM from 'd3-zoom';
 
 import { createFakeCanvasContext, FakeCanvasContext } from '@testing/canvas-helper';
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { CanvasViewport } from '@awg-shared/canvas/canvas.model';
 
@@ -188,9 +188,10 @@ describe('ForceGraphCanvasService (DONE)', () => {
             const transform = D3_ZOOM.zoomIdentity.translate(10, 20).scale(2);
 
             draw(transform);
+            const firstCall = getItemAt(ctx.calls, 0);
 
             expectSpyCall(prepareCanvasSpy, 1, [ctx, view(transform)]);
-            expectToEqual(ctx.calls[0].method, 'setTransform');
+            expectToEqual(firstCall.method, 'setTransform');
         });
 
         it('... should draw the edges, arrowheads, nodes, edge labels and node labels in this order', () => {
@@ -200,7 +201,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
 
             draw();
 
-            const callOrders = drawSpies.map(spy => spy.mock.invocationCallOrder[0]);
+            const callOrders = drawSpies.map(spy => getItemAt(spy.mock.invocationCallOrder, 0));
 
             expectToEqual(
                 callOrders,
@@ -295,9 +296,10 @@ describe('ForceGraphCanvasService (DONE)', () => {
                 const drawNodesSpy = vi.spyOn(service, '_drawNodes' as any);
 
                 draw(D3_ZOOM.zoomIdentity.scale(0.3));
+                const firstResult = getItemAt(minCircleRadiusSpy.mock.results, 0);
 
                 expectSpyCall(minCircleRadiusSpy, 1, [forceGraphData.nodes.length, 0.3]);
-                expectToBe(drawNodesSpy.mock.lastCall?.[2], minCircleRadiusSpy.mock.results[0].value);
+                expectToBe(drawNodesSpy.mock.lastCall?.[2], firstResult.value);
             });
         });
 
@@ -321,7 +323,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
 
                 draw();
 
-                const [edge] = edgesById('e1');
+                const edge = getItemAt(edgesById('e1'), 0);
 
                 expectSpyCall(drawEdgeLabelsSpy, 1, [
                     ctx,
@@ -432,6 +434,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
             const fillCalls = ctx.callsOf('fill');
             const moveToArgs = ctx.callsOf('moveTo').map(call => call.args);
             const lineToArgs = ctx.callsOf('lineTo').map(call => call.args);
+            const firstFillCall = getItemAt(fillCalls, 0);
 
             expectToBe(ctx.callsOf('beginPath').length, 1);
             expectToEqual(moveToArgs, [
@@ -446,7 +449,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
             ]);
             expectToBe(ctx.callsOf('closePath').length, 2);
             expectToBe(fillCalls.length, 1);
-            expectToBe(fillCalls[0].fillStyle, FORCE_GRAPH_CANVAS_STYLES.ARROW_FILL);
+            expectToBe(firstFillCall.fillStyle, FORCE_GRAPH_CANVAS_STYLES.ARROW_FILL);
         });
 
         it('... should not draw arrowheads of self edges and of edges whose source lies within the target circle', () => {
@@ -474,6 +477,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
             const strokeCalls = ctx.callsOf('stroke');
             const moveToArgs = ctx.callsOf('moveTo').map(call => call.args);
             const lineToArgs = ctx.callsOf('lineTo').map(call => call.args);
+            const firstStrokeCall = getItemAt(strokeCalls, 0);
 
             expectToBe(ctx.callsOf('beginPath').length, 1);
             expectToEqual(moveToArgs, [
@@ -485,8 +489,8 @@ describe('ForceGraphCanvasService (DONE)', () => {
                 [0, 50],
             ]);
             expectToBe(strokeCalls.length, 1);
-            expectToBe(strokeCalls[0].strokeStyle, FORCE_GRAPH_CANVAS_STYLES.EDGE_STROKE);
-            expectToBe(strokeCalls[0].lineWidth, FORCE_GRAPH_CANVAS_STYLES.EDGE_STROKE_WIDTH);
+            expectToBe(firstStrokeCall.strokeStyle, FORCE_GRAPH_CANVAS_STYLES.EDGE_STROKE);
+            expectToBe(firstStrokeCall.lineWidth, FORCE_GRAPH_CANVAS_STYLES.EDGE_STROKE_WIDTH);
         });
 
         it('... should draw a self edge as a loop starting and ending at the node', () => {
@@ -496,10 +500,11 @@ describe('ForceGraphCanvasService (DONE)', () => {
 
             const ellipseCalls = ctx.callsOf('ellipse');
             const { LOOP_RADIUS_X, LOOP_RADIUS_Y, LOOP_ROTATION } = FORCE_GRAPH_CANVAS_STYLES;
+            const firstEllipseCall = getItemAt(ellipseCalls, 0);
 
             expectToBe(ctx.callsOf('lineTo').length, 0);
             expectToBe(ellipseCalls.length, 1);
-            expectToEqual(ellipseCalls[0].args, [
+            expectToEqual(firstEllipseCall.args, [
                 LOOP_RADIUS_X * Math.cos(LOOP_ROTATION),
                 LOOP_RADIUS_X * Math.sin(LOOP_ROTATION),
                 LOOP_RADIUS_X,
@@ -522,13 +527,14 @@ describe('ForceGraphCanvasService (DONE)', () => {
             service['_drawEdgeLabels'](ctx, [edgeLabel]);
 
             const fillTextCalls = ctx.callsOf('fillText');
+            const firstFillTextCall = getItemAt(fillTextCalls, 0);
 
             expectToEqual(
                 fillTextCalls.map(call => call.args),
                 [['p', 10, 20]]
             );
-            expectToBe(fillTextCalls[0].font, FORCE_GRAPH_CANVAS_STYLES.EDGE_LABEL_FONT);
-            expectToBe(fillTextCalls[0].fillStyle, FORCE_GRAPH_CANVAS_STYLES.EDGE_LABEL_FILL);
+            expectToBe(firstFillTextCall.font, FORCE_GRAPH_CANVAS_STYLES.EDGE_LABEL_FONT);
+            expectToBe(firstFillTextCall.fillStyle, FORCE_GRAPH_CANVAS_STYLES.EDGE_LABEL_FILL);
         });
     });
 
@@ -551,6 +557,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
             const strokeCalls = ctx.callsOf('stroke');
 
             const nodeIds = nodeIdsPerCall(drawNodeCirclesSpy);
+            const firstStrokeCall = getItemAt(strokeCalls, 0);
 
             expectToEqual(nodeIds, [['_:c'], ['b'], ['a'], ['"x"']]);
             expectSpyCall(drawNodeSquaresSpy, 0);
@@ -558,8 +565,8 @@ describe('ForceGraphCanvasService (DONE)', () => {
                 fillCalls.map(call => call.fillStyle),
                 ['#000', 'rgb(158, 0, 0)', 'rgb(32, 178, 170)', '#ddd']
             );
-            expectToBe(strokeCalls[0].strokeStyle, FORCE_GRAPH_CANVAS_STYLES.NODE_STROKE);
-            expectToBe(strokeCalls[0].lineWidth, FORCE_GRAPH_CANVAS_STYLES.NODE_STROKE_WIDTH);
+            expectToBe(firstStrokeCall.strokeStyle, FORCE_GRAPH_CANVAS_STYLES.NODE_STROKE);
+            expectToBe(firstStrokeCall.lineWidth, FORCE_GRAPH_CANVAS_STYLES.NODE_STROKE_WIDTH);
         });
 
         it('... should draw the nodes from the minimum circle radius as circles and smaller ones as squares', () => {
@@ -622,6 +629,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
             service['_drawNodeLabels'](ctx, forceGraphData.visibleNodes);
 
             const fillTextCalls = ctx.callsOf('fillText');
+            const firstFillTextCall = getItemAt(fillTextCalls, 0);
 
             expectToEqual(
                 fillTextCalls.map(call => call.args),
@@ -632,8 +640,8 @@ describe('ForceGraphCanvasService (DONE)', () => {
                     ['x', 12, 83],
                 ]
             );
-            expectToBe(fillTextCalls[0].font, FORCE_GRAPH_CANVAS_STYLES.NODE_LABEL_FONT);
-            expectToBe(fillTextCalls[0].fillStyle, FORCE_GRAPH_CANVAS_STYLES.NODE_LABEL_FILL);
+            expectToBe(firstFillTextCall.font, FORCE_GRAPH_CANVAS_STYLES.NODE_LABEL_FONT);
+            expectToBe(firstFillTextCall.fillStyle, FORCE_GRAPH_CANVAS_STYLES.NODE_LABEL_FILL);
         });
     });
 
@@ -663,7 +671,8 @@ describe('ForceGraphCanvasService (DONE)', () => {
         it('... should clear the whole backing store', () => {
             service['_prepareCanvas'](ctx, view());
 
-            const [resetCall, clearCall] = ctx.calls;
+            const resetCall = getItemAt(ctx.calls, 0);
+            const clearCall = getItemAt(ctx.calls, 1);
 
             expectToEqual(resetCall.method, 'setTransform');
             expectToEqual(resetCall.args, [1, 0, 0, 1, 0, 0]);
@@ -679,7 +688,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
             };
             service['_prepareCanvas'](fractionalCtx, fractionalView);
 
-            const [clearCall] = fractionalCtx.callsOf('clearRect');
+            const clearCall = getItemAt(fractionalCtx.callsOf('clearRect'), 0);
 
             expectToEqual(clearCall.args, [0, 0, 1004, 502]);
         });
@@ -687,7 +696,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
         it('... should set the origin of the graph in the center of the canvas (scaled by the device pixel ratio)', () => {
             service['_prepareCanvas'](ctx, view());
 
-            const [, drawTransformCall] = ctx.callsOf('setTransform');
+            const drawTransformCall = getItemAt(ctx.callsOf('setTransform'), 1);
 
             expectToEqual(drawTransformCall.args, [2, 0, 0, 2, 400, 200]);
         });
@@ -695,7 +704,7 @@ describe('ForceGraphCanvasService (DONE)', () => {
         it('... should apply the zoom transform around the centered origin', () => {
             service['_prepareCanvas'](ctx, view(D3_ZOOM.zoomIdentity.translate(10, 20).scale(2)));
 
-            const [, drawTransformCall] = ctx.callsOf('setTransform');
+            const drawTransformCall = getItemAt(ctx.callsOf('setTransform'), 1);
 
             // Dpr * (t + k * center)
             expectToEqual(drawTransformCall.args, [4, 0, 0, 4, 820, 440]);

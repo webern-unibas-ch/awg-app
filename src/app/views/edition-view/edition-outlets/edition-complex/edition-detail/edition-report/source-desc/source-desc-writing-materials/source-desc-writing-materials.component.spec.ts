@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -35,7 +36,7 @@ describe('SourceDescWritingMaterialsComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         expectedWritingMaterials = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescListData.sources[2].physDesc.writingMaterials)
+            JSON.stringify(getItemAt(mockEditionData.mockSourceDescListData.sources, 2).physDesc.writingMaterials)
         );
 
         // Create component fixture

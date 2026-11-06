@@ -9,6 +9,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -65,20 +66,23 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
         expectedEditionTypeKey = 'sketchEditions';
         expectedFacetGroupLabel = EDITION_TYPE_LABEL_MAP[expectedEditionTypeKey];
         expectedSvgSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets.sketchEditions);
+        const expectedFirstSvgSheet = getItemAt(expectedSvgSheets, 0);
+        const firstContent = getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0);
         expectedSelection = {
-            id: expectedSvgSheets[0].id,
-            fullId: expectedSvgSheets[0].id,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            id: expectedFirstSvgSheet.id,
+            fullId: expectedFirstSvgSheet.id,
+            content: firstContent,
         };
+        const expectedFourthSvgSheet = getItemAt(expectedSvgSheets, 3);
         expectedNextSelectionInGroup = {
-            id: expectedSvgSheets[3].id,
-            fullId: expectedSvgSheets[3].id,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            id: expectedFourthSvgSheet.id,
+            fullId: expectedFourthSvgSheet.id,
+            content: firstContent,
         };
         expectedSelectionOutsideGroup = {
             id: 'not-in-group',
             fullId: 'not-in-group',
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: firstContent,
         };
 
         // Create component fixture
@@ -384,7 +388,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     scrollDir.visibleRange.set({ first: 2, last: 4 });
                     await detectChangesOnPush(fixture);
 
-                    const rangeEl: HTMLParagraphElement = getRangeDes(1)[0].nativeElement;
+                    const rangeEl: HTMLParagraphElement = getItemAt(getRangeDes(1), 0).nativeElement;
 
                     expectToBe(rangeEl.textContent.trim(), `2–4 von ${expectedSvgSheets.length}`);
                 });

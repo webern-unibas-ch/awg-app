@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -41,7 +42,8 @@ describe('EditionGraphDescriptionComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         expectedComplex = EditionStateHelper.getComplex('op25');
-        expectedEmptyGraph = structuredClone(mockEditionData.mockGraphEmptyData.graph[0]);
+        const mockEmptyGraph = getItemAt(mockEditionData.mockGraphEmptyData.graph, 0);
+        expectedEmptyGraph = structuredClone(mockEmptyGraph);
         expectedDescriptions = ['Description 1', 'Description 2', 'Description 3'];
         expectedGraph = { ...structuredClone(expectedEmptyGraph), description: expectedDescriptions };
 

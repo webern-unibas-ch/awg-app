@@ -15,6 +15,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -58,11 +59,11 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
         router = TestBed.inject(Router);
 
         // Test data
-        expectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
+        expectedConvolute = structuredClone(getItemAt(mockEditionData.mockFolioConvoluteData.convolutes, 0));
         expectedSelection = {
             id: mockEditionData.mockSvgSheet_Sk1.id,
             fullId: mockEditionData.mockSvgSheet_Sk1.id,
-            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+            content: getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0),
         };
         expectedFragment = `source_${expectedConvolute.convoluteId}`;
 
@@ -243,24 +244,27 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                 expectToBe(urlTreeString, expectedRouterLink);
             });
 
             it('... can get correct fragment from template', () => {
-                expectToBe(routerLinks[0].fragment, expectedFragment);
+                const firstRouterLink = getItemAt(routerLinks, 0);
+
+                expectToBe(firstRouterLink.fragment, expectedFragment);
             });
 
             it('... can click all links in template', async () => {
                 const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
 
-                const linkDe = linkDes[0];
+                const linkDe = getItemAt(linkDes, 0);
 
                 await clickAndAwaitChanges(linkDe, fixture);
 
                 expectSpyCall(navigateSpy, 1);
-                const actualUrl = navigateSpy.mock.calls[0][0].toString();
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                const actualUrl = actualUrlTree.toString();
 
                 expectToBe(actualUrl, expectedRouterLink);
 

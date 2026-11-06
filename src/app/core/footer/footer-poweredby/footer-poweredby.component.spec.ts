@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
@@ -174,11 +175,14 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             it('... should pass down logos to LogoComponents (hollow)', () => {
                 const logoDes = getAndExpectDebugElementByDirective(compDe, LogoComponent, 3, 3);
                 const logoCmps = logoDes.map(de => de.injector.get(LogoComponent));
+                const firstLogoCmp = getItemAt(logoCmps, 0);
+                const secondLogoCmp = getItemAt(logoCmps, 1);
+                const thirdLogoCmp = getItemAt(logoCmps, 2);
 
                 expectToBe(logoCmps.length, 3);
-                expectToEqual(logoCmps[0].logoData(), expectedLogosData.github);
-                expectToEqual(logoCmps[1].logoData(), expectedLogosData.angular);
-                expectToEqual(logoCmps[2].logoData(), expectedLogosData.bootstrap);
+                expectToEqual(firstLogoCmp.logoData(), expectedLogosData.github);
+                expectToEqual(secondLogoCmp.logoData(), expectedLogosData.angular);
+                expectToEqual(thirdLogoCmp.logoData(), expectedLogosData.bootstrap);
             });
 
             it('... should have default linkClass on LogoComponents (hollow)', () => {

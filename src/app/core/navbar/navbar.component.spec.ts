@@ -17,6 +17,7 @@ import {
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
@@ -140,9 +141,9 @@ describe('NavbarComponent (DONE)', () => {
         });
 
         it('... should filter out undefined sections from signal `sectionsData`', () => {
-            outlineServiceGetEditionSectionByIdSpy
-                .mockReturnValueOnce(undefined)
-                .mockReturnValueOnce(expectedSections[1]);
+            const secondSection = getItemAt(expectedSections, 1);
+
+            outlineServiceGetEditionSectionByIdSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(secondSection);
 
             const freshFixture = TestBed.createComponent(NavbarComponent);
             const freshComponent = freshFixture.componentInstance;
@@ -278,10 +279,11 @@ describe('NavbarComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            let navItemDes: DebugElement[];
+            let editionNavItemDe: DebugElement;
 
             beforeEach(() => {
-                navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
+                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
+                editionNavItemDe = navItemDes[1];
             });
 
             it('... should pass down logoData to LogoComponents (hollow)', () => {
@@ -312,12 +314,12 @@ describe('NavbarComponent (DONE)', () => {
                 });
 
                 it('... should have a dropdown menu', () => {
-                    getAndExpectDebugElementByCss(navItemDes[1], 'div.dropdown-menu', 1, 1);
+                    getAndExpectDebugElementByCss(editionNavItemDe, 'div.dropdown-menu', 1, 1);
                 });
 
                 it('... should have a dropdown heading `Allgemein` as first child', () => {
                     const hDes = getAndExpectDebugElementByCss(
-                        navItemDes[1],
+                        editionNavItemDe,
                         'div.dropdown-menu > h6.dropdown-header:nth-child(1)',
                         1,
                         1
@@ -358,7 +360,7 @@ describe('NavbarComponent (DONE)', () => {
 
                     generalLinkDes.forEach((linkDe, index) => {
                         const dropdownLinkCmp = linkDe.injector.get(NavbarDropdownLinkComponent);
-                        const expectedLink = expectedGeneralEditionLinks[index];
+                        const expectedLink = getItemAt(expectedGeneralEditionLinks, index);
 
                         expectToBe(dropdownLinkCmp.label(), expectedLink.label);
                         expectToEqual(dropdownLinkCmp.route(), expectedLink.route);
@@ -431,7 +433,7 @@ describe('NavbarComponent (DONE)', () => {
                         const headingSpanDes = getAndExpectDebugElementByCss(hDes[0], 'span', 1, 1);
                         const headingSpanEl: HTMLSpanElement = headingSpanDes[0].nativeElement;
 
-                        const expectedSection = component.sectionsData()[index];
+                        const expectedSection = getItemAt(component.sectionsData(), index);
 
                         const headingSiglum = expectedSection.labeledRoute.label;
                         const headingId = expectedSection.section.full;
@@ -468,7 +470,7 @@ describe('NavbarComponent (DONE)', () => {
                     );
 
                     sectionsDes.forEach((sectionDe, sectionIndex) => {
-                        const section = expectedSections[sectionIndex];
+                        const section = getItemAt(expectedSections, sectionIndex);
                         const dropdownLinkDes = getAndExpectDebugElementByDirective(
                             sectionDe,
                             NavbarDropdownLinkComponent,
@@ -477,7 +479,7 @@ describe('NavbarComponent (DONE)', () => {
                         );
 
                         expectedSectionEditionLinks.forEach((link, linkIndex) => {
-                            const linkDe = dropdownLinkDes[linkIndex];
+                            const linkDe = getItemAt(dropdownLinkDes, linkIndex);
                             const dropdownLinkCmp = linkDe.injector.get(NavbarDropdownLinkComponent);
 
                             const expectedRoute = [...section.labeledRoute.route, ...link.route];

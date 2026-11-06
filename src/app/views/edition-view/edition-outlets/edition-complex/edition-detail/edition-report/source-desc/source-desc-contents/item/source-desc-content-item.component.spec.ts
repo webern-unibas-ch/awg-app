@@ -13,6 +13,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -66,9 +67,9 @@ describe('SourceDescContentItemComponent (DONE)', () => {
         expectedContents = JSON.parse(
             JSON.stringify(mockEditionData.mockSourceDescListData?.sources[1]?.physDesc?.contents)
         );
-        expectedContent = expectedContents[0]; // Item with link and description
-        expectedContentWithoutLink = expectedContents[1]; // Item with description, but without link
-        expectedContentWithoutDescription = expectedContents[2]; // Item with link, but without description
+        expectedContent = getItemAt(expectedContents, 0); // Item with link and description
+        expectedContentWithoutLink = getItemAt(expectedContents, 1); // Item with description, but without link
+        expectedContentWithoutDescription = getItemAt(expectedContents, 2); // Item with link, but without description
         expectedSheetTarget = { complexId: 'testComplex1', sheetId: 'test_item_id_1' };
 
         // Create component fixture
@@ -292,7 +293,7 @@ describe('SourceDescContentItemComponent (DONE)', () => {
                         );
 
                         if (expectedDescription) {
-                            const descriptionEl: HTMLSpanElement = descriptionDes[0].nativeElement;
+                            const descriptionEl: HTMLSpanElement = getItemAt(descriptionDes, 0).nativeElement;
 
                             expectToBe(descriptionEl.textContent.trim(), expectedDescription);
                         }

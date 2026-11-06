@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '../models/edition-complex.model';
@@ -153,7 +153,8 @@ describe('EditionOutlineService (DONE)', () => {
             service['_rawOutlineDataSignal'].set(rawOutlineDataWithUnknownComplex.editionOutline);
 
             const outline = service.editionOutline();
-            const section = outline[0].sections[0];
+            const firstOutline = getItemAt(outline, 0);
+            const section = getItemAt(firstOutline.sections, 0);
 
             expectToEqual(section.content.complexTypes.opus, []);
             expectToEqual(section.content.sectionComplexes, []);
@@ -173,9 +174,11 @@ describe('EditionOutlineService (DONE)', () => {
 
             service['_rawOutlineDataSignal'].set(rawOutlineDataWithParts);
 
-            const { opus: opusItems, mnr: mnrItems } = service.editionOutline()[0].sections[0].content.complexTypes;
-            const partItem = opusItems[0].parts?.[0];
-            const compositeItem = mnrItems[0].compositeComplexes?.[0];
+            const firstSeries = getItemAt(service.editionOutline(), 0);
+            const firstSection = getItemAt(firstSeries.sections, 0);
+            const { opus: opusItems, mnr: mnrItems } = firstSection.content.complexTypes;
+            const partItem = getItemAt(opusItems, 0).parts?.[0];
+            const compositeItem = getItemAt(mnrItems, 0).compositeComplexes?.[0];
 
             expectToBe(partItem?.complex.complexId.route, part.complexId.route);
             expectToBe(compositeItem?.complex.complexId.route, opus.complexId.route);
@@ -252,7 +255,9 @@ describe('EditionOutlineService (DONE)', () => {
             });
 
             it('... should hold the parts of a composite complex with their disabled flags', () => {
-                const opusItem = model.outline[0].sections[0].content.complexTypes.opus[0];
+                const firstOutline = getItemAt(model.outline, 0);
+                const firstSection = getItemAt(firstOutline.sections, 0);
+                const opusItem = getItemAt(firstSection.content.complexTypes.opus, 0);
                 const expectedParts = [
                     { complex: part1, labeledRoute: getLabeledRoute(part1), disabled: false },
                     { complex: part2, labeledRoute: getLabeledRoute(part2), disabled: true },
@@ -262,7 +267,9 @@ describe('EditionOutlineService (DONE)', () => {
             });
 
             it('... should hold the composite complexes of a part with their disabled flags and part numbers', () => {
-                const partItem = model.outline[0].sections[0].content.complexTypes.mnr[0];
+                const firstOutline = getItemAt(model.outline, 0);
+                const firstSection = getItemAt(firstOutline.sections, 0);
+                const partItem = getItemAt(firstSection.content.complexTypes.mnr, 0);
                 const expectedCompositeComplexes = [
                     { complex: opus, labeledRoute: getLabeledRoute(opus), disabled: true, partNumber: 1 },
                 ];
@@ -271,10 +278,13 @@ describe('EditionOutlineService (DONE)', () => {
             });
 
             it('... should hold no parts and composite complexes for complexes without them', () => {
-                const { opus: opusItems, mnr: mnrItems } = model.outline[0].sections[0].content.complexTypes;
+                const firstOutline = getItemAt(model.outline, 0);
+                const { opus: opusItems, mnr: mnrItems } = getItemAt(firstOutline.sections, 0).content.complexTypes;
+                const firstOpusItem = getItemAt(opusItems, 0);
+                const firstMnrItem = getItemAt(mnrItems, 0);
 
-                expect(opusItems[0].compositeComplexes).toBeUndefined();
-                expect(mnrItems[0].parts).toBeUndefined();
+                expect(firstOpusItem.compositeComplexes).toBeUndefined();
+                expect(firstMnrItem.parts).toBeUndefined();
             });
         });
 
@@ -343,7 +353,7 @@ describe('EditionOutlineService (DONE)', () => {
                     editionComplexesService.getEditionComplexById(id)
                 ).outline;
 
-                expectedOutline[0].sections.forEach(section => {
+                getItemAt(expectedOutline, 0).sections.forEach(section => {
                     const expectedSection = section;
 
                     const getSection = service.getEditionSectionById(

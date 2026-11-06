@@ -23,7 +23,7 @@ interface IMockAnalytics {
     /**
      * The getGtag function of the mocked analytics object.
      */
-    getGtag: (index: number) => analyticsType;
+    getGtag: (index: number) => analyticsType | null;
 
     /**
      * The clear function of the mocked analytics object.
@@ -47,7 +47,7 @@ export const mockAnalytics: IMockAnalytics = {
     gtag: (event: string, eventName: string, eventOptions: Record<string, string | boolean>): void => {
         analyticsStore.push([event, eventName, eventOptions]);
     },
-    getGtag: (index: number): analyticsType => analyticsStore[index] || null,
+    getGtag: (index: number): analyticsType | null => analyticsStore[index] ?? null,
     clear: () => {
         analyticsStore = [];
     },

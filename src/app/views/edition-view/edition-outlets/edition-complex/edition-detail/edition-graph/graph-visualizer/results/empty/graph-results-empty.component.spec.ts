@@ -8,6 +8,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
@@ -106,9 +107,10 @@ describe('GraphResultsEmptyComponent (DONE)', () => {
             it('... should pass down `logoData` to LogoComponent (hollow) in 4th paragraph', () => {
                 const logoDes = getAndExpectDebugElementByDirective(getParagraphDes()[3], LogoComponent, 1, 1);
                 const logoCmps = logoDes.map(de => de.injector.get(LogoComponent));
+                const firstLogoCmp = getItemAt(logoCmps, 0);
 
                 expectToBe(logoCmps.length, 1);
-                expectToEqual(logoCmps[0].logoData(), expectedLogosData.sparql);
+                expectToEqual(firstLogoCmp.logoData(), expectedLogosData.sparql);
             });
         });
     });

@@ -10,6 +10,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toInnerHtml } from '@testing/html-helper';
 
@@ -97,7 +98,8 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
                     expectedCompositeComplexes.length,
                     expectedCompositeComplexes.length
                 );
-            const getLinkDes = () => getAndExpectDebugElementByDirective(getPDes()[0], ConditionalLinkComponent, 1, 1);
+            const getLinkDes = () =>
+                getAndExpectDebugElementByDirective(getItemAt(getPDes(), 0), ConditionalLinkComponent, 1, 1);
             const getLinkCmp = (): ConditionalLinkComponent => getLinkDes()[0].injector.get(ConditionalLinkComponent);
 
             it('... should contain one paragraph per composite complex', () => {
@@ -105,7 +107,7 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
             });
 
             it('... should pass down `isClickable` and `targetRoute` to ConditionalLinkComponent (hollow)', () => {
-                const composite = expectedCompositeComplexes[0];
+                const composite = getItemAt(expectedCompositeComplexes, 0);
 
                 const linkCmp = getLinkCmp();
 
@@ -114,7 +116,7 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
             });
 
             it('... should label the composite complex with its full complex id', () => {
-                const expectedId = toInnerHtml(expectedCompositeComplexes[0].complex.complexId.full);
+                const expectedId = toInnerHtml(getItemAt(expectedCompositeComplexes, 0).complex.complexId.full);
 
                 const labelDes = getAndExpectDebugElementByCss(getLinkDes()[0], 'span', 1, 1);
                 const labelEl: HTMLSpanElement = labelDes[0].nativeElement;
@@ -126,7 +128,7 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
                 fixture.componentRef.setInput('isCompact', true);
                 fixture.detectChanges();
 
-                const expectedId = toInnerHtml(expectedCompositeComplexes[0].complex.complexId.short);
+                const expectedId = toInnerHtml(getItemAt(expectedCompositeComplexes, 0).complex.complexId.short);
 
                 const labelDes = getAndExpectDebugElementByCss(getLinkDes()[0], 'span', 1, 1);
                 const labelEl: HTMLSpanElement = labelDes[0].nativeElement;
@@ -135,9 +137,9 @@ describe('EditionComplexPartOfComponent (DONE)', () => {
             });
 
             it('... should display the part number', () => {
-                const expectedPartNumber = `(Nr. ${expectedCompositeComplexes[0].partNumber})`;
+                const expectedPartNumber = `(Nr. ${getItemAt(expectedCompositeComplexes, 0).partNumber})`;
 
-                const pEl: HTMLParagraphElement = getPDes()[0].nativeElement;
+                const pEl: HTMLParagraphElement = getItemAt(getPDes(), 0).nativeElement;
 
                 expectToContain(pEl.textContent, expectedPartNumber);
             });

@@ -14,6 +14,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toTextContent } from '@testing/html-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -25,7 +26,7 @@ import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directiv
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
-import { TKA_TABLE_HEADERS, TkaTableHeaderColumn } from './edition-tka-table.model';
+import { TKA_TABLE_HEADERS } from './edition-tka-table.model';
 
 describe('EditionTkaTableComponent (DONE)', () => {
     let component: EditionTkaTableComponent;
@@ -42,7 +43,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let expectedComplexId: string;
     let expectedSketchId: string;
     let expectedCommentary: TextcriticalCommentary;
-    let expectedTableHeaders: Record<string, TkaTableHeaderColumn[]>;
+    let expectedTableHeaders: typeof TKA_TABLE_HEADERS;
     let expectedTotalCommentRows: number;
     let expectedTotalRows: number;
 
@@ -68,7 +69,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
         // Test data
         expectedComplexId = 'testComplex1';
         expectedSketchId = 'test_Sk1';
-        expectedCommentary = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0].commentary);
+        expectedCommentary = structuredClone(
+            getItemAt(mockEditionData.mockTextcriticsListData.textcritics, 0).commentary
+        );
 
         const totalBlockHeaderRows = expectedCommentary.comments.filter(block => block.blockHeader).length;
         expectedTotalCommentRows = expectedCommentary.comments.reduce(
@@ -125,7 +128,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         it('... should have computed signal `tableHeaders` to hold the expected data', () => {
             expectToBe(isSignal(component.tableHeaders), true);
 
-            expectToEqual(component.tableHeaders(), expectedTableHeaders['default']);
+            expectToEqual(component.tableHeaders(), expectedTableHeaders.default);
         });
 
         describe('VIEW', () => {
@@ -159,7 +162,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         it('... should have computed signal `tableHeaders` to hold the expected data', () => {
-            expectToEqual(component.tableHeaders(), expectedTableHeaders['default']);
+            expectToEqual(component.tableHeaders(), expectedTableHeaders.default);
         });
 
         describe('... should have recomputed signal `tableHeaders` to hold the expected data for ...', () => {
@@ -211,7 +214,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     expectedKey: 'default',
                     shouldAdjustComment: true,
                 },
-            ])(
+            ] as const)(
                 '... isRowtable=$isRowtable, isCorrections=$isCorrections, id=$id',
                 async ({ isRowtable, isCorrections, id, expectedKey, shouldAdjustComment }) => {
                     fixture.componentRef.setInput('isRowtable', isRowtable);
@@ -220,14 +223,14 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     await detectChangesOnPush(fixture);
 
-                    let expected = expectedTableHeaders[expectedKey];
+                    let expectedColumnHeaders = expectedTableHeaders[expectedKey];
                     if (shouldAdjustComment) {
-                        expected = expected.map(item =>
+                        expectedColumnHeaders = expectedColumnHeaders.map(item =>
                             item.ref === 'comment' ? { ...item, label: 'Kommentar' } : item
                         );
                     }
 
-                    expectToEqual(component.tableHeaders(), expected);
+                    expectToEqual(component.tableHeaders(), expectedColumnHeaders);
                 }
             );
         });
@@ -315,7 +318,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     columnDes.forEach((columnDe, index) => {
                         const columnEl: HTMLTableCellElement = columnDe.nativeElement;
-                        expectToBe(columnEl.textContent.trim(), expectedTableHeaders['rowtable'][index].label);
+                        const expectedColumnHeader = getItemAt(expectedTableHeaders.rowtable, index);
+
+                        expectToBe(columnEl.textContent.trim(), expectedColumnHeader.label);
                     });
                 });
 
@@ -328,7 +333,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     columnDes.forEach((columnDe, index) => {
                         const columnEl: HTMLTableCellElement = columnDe.nativeElement;
-                        expectToBe(columnEl.textContent.trim(), expectedTableHeaders['corrections'][index].label);
+                        const expectedColumnHeader = getItemAt(expectedTableHeaders.corrections, index);
+
+                        expectToBe(columnEl.textContent.trim(), expectedColumnHeader.label);
                     });
                 });
 
@@ -338,7 +345,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     columnDes.forEach((columnDe, index) => {
                         const columnEl: HTMLTableCellElement = columnDe.nativeElement;
-                        expectToBe(columnEl.textContent.trim(), expectedTableHeaders['default'][index].label);
+                        const expectedColumnHeader = getItemAt(expectedTableHeaders.default, index);
+
+                        expectToBe(columnEl.textContent.trim(), expectedColumnHeader.label);
                     });
                 });
 
@@ -346,15 +355,17 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     fixture.componentRef.setInput('id', expectedSketchId);
                     await detectChangesOnPush(fixture);
 
-                    const expected = expectedTableHeaders['default'];
-                    expected[3].label = 'Kommentar';
+                    const expectedColumnHeaders = expectedTableHeaders.default;
+                    getItemAt(expectedColumnHeaders, 3).label = 'Kommentar';
 
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
                         const columnEl: HTMLTableCellElement = columnDe.nativeElement;
-                        expectToBe(columnEl.textContent.trim(), expected[index].label);
+                        const expectedColumnHeader = getItemAt(expectedColumnHeaders, index);
+
+                        expectToBe(columnEl.textContent.trim(), expectedColumnHeader.label);
                     });
                 });
             });
@@ -387,7 +398,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         const rowDes = getRowDes();
 
                         if (block.blockHeader) {
-                            const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 1, 1);
+                            const rowDe = getItemAt(rowDes, rowIndex);
+                            const tdDes = getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
                             const tdEl: HTMLTableCellElement = tdDes[0].nativeElement;
 
                             expectToBe(tdEl.getAttribute('colspan'), '4');
@@ -397,7 +409,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         }
 
                         block.blockComments.forEach(() => {
-                            getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
+                            const rowDe = getItemAt(rowDes, rowIndex);
+
+                            getAndExpectDebugElementByCss(rowDe, 'td', 4, 4);
 
                             rowIndex++;
                         });
@@ -410,8 +424,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         const rowDes = getRowDes();
 
                         if (block.blockHeader) {
+                            const rowDe = getItemAt(rowDes, rowIndex);
                             const tdDes = getAndExpectDebugElementByCss(
-                                rowDes[rowIndex],
+                                rowDe,
                                 'td.awg-edition-tka-table-block-header',
                                 1,
                                 1
@@ -424,7 +439,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
                         }
 
                         block.blockComments.forEach((comment, index) => {
-                            const rowCellDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
+                            const rowDe = getItemAt(rowDes, rowIndex);
+                            const rowCellDes = getAndExpectDebugElementByCss(rowDe, 'td', 4, 4);
 
                             const measureCell: HTMLTableCellElement = rowCellDes[0].nativeElement;
                             const systemCell: HTMLTableCellElement = rowCellDes[1].nativeElement;
@@ -467,11 +483,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     });
 
                     rowDes.forEach((rowDe, index) => {
-                        const { totalTds, targetTdIndex } = expectedRowConfig[index];
+                        const { totalTds, targetTdIndex } = getItemAt(expectedRowConfig, index);
 
                         const tdDes = getAndExpectDebugElementByCss(rowDe, 'td', totalTds, totalTds);
+                        const targetTdDe = getItemAt(tdDes, targetTdIndex);
 
-                        getAndExpectDebugElementByDirective(tdDes[targetTdIndex], CompileHtmlDirective, 1, 1);
+                        getAndExpectDebugElementByDirective(targetTdDe, CompileHtmlDirective, 1, 1);
                         getAndExpectDebugElementByDirective(rowDe, CompileHtmlDirective, 1, 1);
                     });
                 });
@@ -508,7 +525,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     let rowIndex = 0;
                     expectedCommentary.comments.forEach(block => {
                         block.blockComments.forEach(comment => {
-                            const trEl: HTMLTableRowElement = trDes[rowIndex].nativeElement;
+                            const trEl: HTMLTableRowElement = getItemAt(trDes, rowIndex).nativeElement;
                             expectToBe(trEl.getAttribute('id'), `${comment.svgGroupId ?? ''}-entry`);
                             rowIndex++;
                         });
@@ -526,7 +543,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     let rowIndex = 0;
                     expectedCommentary.comments.forEach(block => {
                         block.blockComments.forEach(comment => {
-                            const trEl: HTMLTableRowElement = trDes[rowIndex].nativeElement;
+                            const trEl: HTMLTableRowElement = getItemAt(trDes, rowIndex).nativeElement;
                             expectToBe(trEl.getAttribute('data-svg-group-id'), comment.svgGroupId);
                             rowIndex++;
                         });
@@ -545,7 +562,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     expectedCommentary.comments.forEach(block => {
                         block.blockComments.forEach(comment => {
                             // NgbTooltip is on the tr element itself, so get it directly from its injector
-                            const tooltipCmp = trDes[rowIndex].injector.get(NgbTooltip);
+                            const tooltipCmp = getItemAt(trDes, rowIndex).injector.get(NgbTooltip);
 
                             expectToBe(tooltipCmp.ngbTooltip as string, comment.svgGroupId);
                             expectToBe(tooltipCmp.tooltipClass, 'awg-group-id-tooltip');

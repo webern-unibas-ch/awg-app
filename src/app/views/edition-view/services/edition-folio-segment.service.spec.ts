@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import * as D3_SELECTION from 'd3-selection';
 
-import { expectToEqual } from '@testing/expect-helper';
+import { expectToEqual, getItemAt } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { D3Selection } from '../models/d3-selection.model';
@@ -46,7 +46,8 @@ describe('EditionFolioSegmentService (DONE)', () => {
             initialOffsetX: 5,
             initialOffsetY: 5,
         };
-        const folio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
+        const firstConvolute = getItemAt(mockEditionData.mockFolioConvoluteData.convolutes, 0);
+        const folio = structuredClone(getItemAt(firstConvolute.folios, 0));
         expectedFolioSvgData = calculateFolioSvgData(folioSettings, folio, 4);
     });
 
@@ -132,7 +133,7 @@ describe('EditionFolioSegmentService (DONE)', () => {
         });
 
         it('... should set the class `active` on the content segment group with the given id', () => {
-            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetTarget.sheetId;
+            const expectedSegmentId = getItemAt(expectedFolioSvgData.contentSegments, 1).sheetTarget.sheetId;
 
             folioSegmentService.updateActiveContentSegment(rootGroupSelection, expectedSegmentId);
 
@@ -140,10 +141,10 @@ describe('EditionFolioSegmentService (DONE)', () => {
         });
 
         it('... should remove the class `active` from the previously active content segment group', () => {
-            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetTarget.sheetId;
+            const expectedSegmentId = getItemAt(expectedFolioSvgData.contentSegments, 1).sheetTarget.sheetId;
             folioSegmentService.updateActiveContentSegment(
                 rootGroupSelection,
-                expectedFolioSvgData.contentSegments[0].sheetTarget.sheetId
+                getItemAt(expectedFolioSvgData.contentSegments, 0).sheetTarget.sheetId
             );
 
             folioSegmentService.updateActiveContentSegment(rootGroupSelection, expectedSegmentId);

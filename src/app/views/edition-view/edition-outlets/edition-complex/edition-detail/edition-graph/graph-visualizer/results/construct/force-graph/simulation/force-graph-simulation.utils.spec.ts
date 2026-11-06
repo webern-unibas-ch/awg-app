@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from '@testing/expect-helper';
 
 import { ResultGraph } from '@awg-graph/graph-visualizer/models/result-graph.model';
 
@@ -305,15 +305,16 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                         createSimulationInput(FORCE_GRAPH_LARGE_NODE_COUNT),
                         new FakeScheduler(0)
                     );
+                    const firstResult = getItemAt(results, 0);
 
                     expectToBe(results.length, 1);
-                    expectToBe(results[0].isCalm, true);
+                    expectToBe(firstResult.isCalm, true);
                 }
             );
 
             it('... should report finite positions for all nodes', () => {
                 const results = collectProgress(toSimulationInput(forceGraphData));
-                const { positions } = results[results.length - 1];
+                const { positions } = getItemAt(results, results.length - 1);
                 const hasFinitePositions = Array.from(positions).every(Number.isFinite);
 
                 expectToBe(positions.length, forceGraphData.nodes.length * 2);
@@ -348,8 +349,11 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                 input.positions.set([-1000, 0, 1000, 0]);
 
                 const results = collectProgress(input);
-                const { positions } = results[results.length - 1];
-                const distance = Math.hypot(positions[2] - positions[0], positions[3] - positions[1]);
+                const { positions } = getItemAt(results, results.length - 1);
+                const distance = Math.hypot(
+                    getItemAt(positions, 2) - getItemAt(positions, 0),
+                    getItemAt(positions, 3) - getItemAt(positions, 1)
+                );
 
                 expect(distance).toBeLessThan(1000);
             });
@@ -361,8 +365,11 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                 const collisionRadius = 9 + SMALL_GRAPH.COLLISION_PADDING;
 
                 const results = collectProgress(input);
-                const { positions } = results[results.length - 1];
-                const distance = Math.hypot(positions[2] - positions[0], positions[3] - positions[1]);
+                const { positions } = getItemAt(results, results.length - 1);
+                const distance = Math.hypot(
+                    getItemAt(positions, 2) - getItemAt(positions, 0),
+                    getItemAt(positions, 3) - getItemAt(positions, 1)
+                );
 
                 expect(distance).toBeGreaterThanOrEqual(collisionRadius);
             });
@@ -373,12 +380,12 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                 input.positions.set([100, 100, 100, 110]);
 
                 const results = collectProgress(input);
-                const { positions } = results[results.length - 1];
+                const { positions } = getItemAt(results, results.length - 1);
                 // All forces act along the vertical axis, so the nodes stay vertically aligned (centered at the origin)
-                const horizontalOffset = Math.abs(positions[0] - positions[2]);
+                const horizontalOffset = Math.abs(getItemAt(positions, 0) - getItemAt(positions, 2));
 
                 expect(horizontalOffset).toBeLessThan(0.001);
-                expect(positions[3]).toBeGreaterThan(positions[1]);
+                expect(positions[3]).toBeGreaterThan(getItemAt(positions, 1));
             });
 
             it('... should report only one settled result for an empty input', () => {
@@ -457,7 +464,7 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
 
                     simulation.pin(0, pinPoint);
                     scheduler.runStep();
-                    const { positions } = results[results.length - 1];
+                    const { positions } = getItemAt(results, results.length - 1);
                     const pinnedNodePosition = [positions[0], positions[1]];
 
                     expectToEqual(pinnedNodePosition, [pinPoint.x, pinPoint.y]);
@@ -540,12 +547,14 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
 
                     simulation.release(0);
                     scheduler.runUntilSettled();
-                    const { positions, isCalm } = results[results.length - 1];
+                    const { positions, isCalm } = getItemAt(results, results.length - 1);
 
                     expectToBe(isCalm, true);
                     expect(scheduler.pendingStep).toBeUndefined();
                     // The center force pulls the freed node away from the pin point
-                    expect(positions[0]).not.toBe(500);
+                    const firstPosition = getItemAt(positions, 0);
+
+                    expect(firstPosition).not.toBe(500);
                 });
 
                 it('... should cool down within the release ticks after a release', () => {
@@ -596,14 +605,17 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                     const scheduler = new FakeScheduler();
                     const { simulation, results } = startSimulationWith(createSimulationInput(10), scheduler);
                     scheduler.runUntilSettled();
-                    const restPositions = results[results.length - 1].positions;
-                    const restDistanceToPinPoint = Math.hypot(restPositions[0] - 500, restPositions[1] - 600);
+                    const restPositions = getItemAt(results, results.length - 1).positions;
+                    const restDistanceToPinPoint = Math.hypot(
+                        getItemAt(restPositions, 0) - 500,
+                        getItemAt(restPositions, 1) - 600
+                    );
 
                     simulation.pin(0, { x: 500, y: 600 });
                     simulation.release(0);
                     scheduler.runStep();
-                    const { positions } = results[results.length - 1];
-                    const distanceToPinPoint = Math.hypot(positions[0] - 500, positions[1] - 600);
+                    const { positions } = getItemAt(results, results.length - 1);
+                    const distanceToPinPoint = Math.hypot(getItemAt(positions, 0) - 500, getItemAt(positions, 1) - 600);
 
                     // The released node starts from its last pin point (not from its rest position) and moves one tick
                     expect(distanceToPinPoint).toBeLessThan(restDistanceToPinPoint / 2);
@@ -616,7 +628,7 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
 
                     simulation.release(10);
                     scheduler.runStep();
-                    const { positions } = results[results.length - 1];
+                    const { positions } = getItemAt(results, results.length - 1);
                     const pinnedNodePosition = [positions[0], positions[1]];
 
                     expectToEqual(pinnedNodePosition, [500, 600]);

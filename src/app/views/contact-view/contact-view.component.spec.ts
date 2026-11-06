@@ -11,6 +11,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
@@ -170,15 +171,16 @@ describe('ContactViewComponent (DONE)', () => {
             it('... should pass down the correct values to HeadingComponents (hollow) (`id` and `title`)', () => {
                 const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingComponent));
+                const firstHeadingCmp = getItemAt(headingCmps, 0);
+                const secondHeadingCmp = getItemAt(headingCmps, 1);
+                const thirdHeadingCmp = getItemAt(headingCmps, 2);
 
-                expectToBe(headingCmps[0].id(), expectedCitationId);
-                expectToBe(headingCmps[0].title(), expectedCitationTitle);
-
-                expectToBe(headingCmps[1].id(), expectedDocumentationId);
-                expectToBe(headingCmps[1].title(), expectedDocumentationTitle);
-
-                expectToBe(headingCmps[2].id(), expectedImprintId);
-                expectToBe(headingCmps[2].title(), expectedImprintTitle);
+                expectToBe(firstHeadingCmp.id(), expectedCitationId);
+                expectToBe(firstHeadingCmp.title(), expectedCitationTitle);
+                expectToBe(secondHeadingCmp.id(), expectedDocumentationId);
+                expectToBe(secondHeadingCmp.title(), expectedDocumentationTitle);
+                expectToBe(thirdHeadingCmp.id(), expectedImprintId);
+                expectToBe(thirdHeadingCmp.title(), expectedImprintTitle);
             });
 
             it('... should render `version`, `versionReleaseDate` and `today`', () => {
@@ -212,7 +214,9 @@ describe('ContactViewComponent (DONE)', () => {
                 const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesComponent));
 
                 badgeCmps.forEach((badgeCmp, i) => {
-                    expectToEqual(badgeCmp.identifiers(), expectedContactMetaData.developers[i].identifiers);
+                    const developer = getItemAt(expectedContactMetaData.developers, i);
+
+                    expectToEqual(badgeCmp.identifiers(), developer.identifiers);
                 });
             });
         });

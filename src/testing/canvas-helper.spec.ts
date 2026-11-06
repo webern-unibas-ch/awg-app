@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectSpyCall, expectToBe, expectToEqual } from './expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getItemAt } from './expect-helper';
 
 import { createFakeCanvasContext, MockMediaQueryList, stubMatchMedia } from './canvas-helper';
 
@@ -53,12 +53,12 @@ describe('CanvasHelper (DONE)', () => {
             ctx.fillText('a', 0, 0);
             ctx.fillStyle = 'green';
 
-            const [call] = ctx.calls;
+            const firstCall = getItemAt(ctx.calls, 0);
 
-            expectToBe(call.fillStyle, 'red');
-            expectToBe(call.strokeStyle, 'blue');
-            expectToBe(call.lineWidth, 2);
-            expectToBe(call.font, '12px serif');
+            expectToBe(firstCall.fillStyle, 'red');
+            expectToBe(firstCall.strokeStyle, 'blue');
+            expectToBe(firstCall.lineWidth, 2);
+            expectToBe(firstCall.font, '12px serif');
         });
 
         it('... should hold the calls of a given method', () => {
@@ -98,7 +98,8 @@ describe('CanvasHelper (DONE)', () => {
             const mediaQueryList2 = window.matchMedia('(resolution: 2dppx)');
 
             expectToEqual<object[]>(mockMediaQueryLists, [mediaQueryList1, mediaQueryList2]);
-            expectToBe<object>(mockMediaQueryLists[0], mediaQueryList1);
+            const mockFirstMediaQueryList = getItemAt(mockMediaQueryLists, 0);
+            expectToBe<object>(mockFirstMediaQueryList, mediaQueryList1);
         });
 
         it('... should call the added listeners on trigger', () => {
@@ -106,7 +107,9 @@ describe('CanvasHelper (DONE)', () => {
             const listener = vi.fn();
 
             window.matchMedia('(resolution: 1dppx)').addEventListener('change', listener);
-            mockMediaQueryLists[0].trigger();
+            const mockFirstMediaQueryList = getItemAt(mockMediaQueryLists, 0);
+
+            mockFirstMediaQueryList.trigger();
 
             expectSpyCall(listener, 1);
         });
@@ -116,8 +119,9 @@ describe('CanvasHelper (DONE)', () => {
             const listener = vi.fn();
 
             window.matchMedia('(resolution: 1dppx)').addEventListener('change', listener, { once: true });
-            mockMediaQueryLists[0].trigger();
-            mockMediaQueryLists[0].trigger();
+            const mockFirstMediaQueryList = getItemAt(mockMediaQueryLists, 0);
+            mockFirstMediaQueryList.trigger();
+            mockFirstMediaQueryList.trigger();
 
             expectSpyCall(listener, 1);
         });
@@ -129,7 +133,9 @@ describe('CanvasHelper (DONE)', () => {
 
             mediaQueryList.addEventListener('change', listener);
             mediaQueryList.removeEventListener('change', listener);
-            mockMediaQueryLists[0].trigger();
+            const mockFirstMediaQueryList = getItemAt(mockMediaQueryLists, 0);
+
+            mockFirstMediaQueryList.trigger();
 
             expectSpyCall(listener, 0);
         });

@@ -15,6 +15,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { ViewHandle, ViewHandleTypes } from './view-handle.model';
@@ -167,22 +168,29 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
             it('... should set the value of the input elements to the viewHandle types', () => {
                 getInputEls().forEach((inputEl, i) => {
-                    expectToBe(inputEl.value, expectedViewHandles[i].type);
+                    const expectedViewHandle = getItemAt(expectedViewHandles, i);
+
+                    expectToBe(inputEl.value, expectedViewHandle.type);
                 });
             });
 
             it('... should set the id of the input elements to `{groupName}-{viewHandle.type}-view-button`', () => {
                 getInputEls().forEach((inputEl, i) => {
-                    expectToBe(inputEl.id, `${component.groupName}-${expectedViewHandles[i].type}-view-button`);
+                    const expectedViewHandle = getItemAt(expectedViewHandles, i);
+
+                    expectToBe(inputEl.id, `${component.groupName}-${expectedViewHandle.type}-view-button`);
                 });
             });
 
             it('... should check only the radio element of the selected view type', () => {
                 const inputEls = getInputEls();
+                const firstInputEl = getItemAt(inputEls, 0);
+                const secondInputEl = getItemAt(inputEls, 1);
+                const thirdInputEl = getItemAt(inputEls, 2);
 
-                expectToBe(inputEls[0].checked, true);
-                expectToBe(inputEls[1].checked, false);
-                expectToBe(inputEls[2].checked, false);
+                expectToBe(firstInputEl.checked, true);
+                expectToBe(secondInputEl.checked, false);
+                expectToBe(thirdInputEl.checked, false);
             });
 
             it('... should not uncheck the radio elements of another instance', () => {
@@ -195,11 +203,17 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     otherFixture.nativeElement.querySelectorAll('input[type="radio"]')
                 );
 
+                const inputEls = getInputEls();
+                const firstInputEl = getItemAt(inputEls, 0);
+                const secondOtherInputEl = getItemAt(otherInputEls, 1);
+
                 // Both instances keep their own checked radio element
-                expectToBe(getInputEls()[0].checked, true);
-                expectToBe(otherInputEls[1].checked, true);
-                otherInputEls.forEach((inputEl, i) => {
-                    expect(inputEl.id).not.toBe(getInputEls()[i].id);
+                expectToBe(firstInputEl.checked, true);
+                expectToBe(secondOtherInputEl.checked, true);
+                otherInputEls.forEach((otherInputEl, i) => {
+                    const inputEl = getItemAt(inputEls, i);
+
+                    expect(otherInputEl.id).not.toBe(inputEl.id);
                 });
             });
 
@@ -208,10 +222,13 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const inputEls = getInputEls();
+                const firstInputEl = getItemAt(inputEls, 0);
+                const secondInputEl = getItemAt(inputEls, 1);
+                const thirdInputEl = getItemAt(inputEls, 2);
 
-                expectToBe(inputEls[0].checked, false);
-                expectToBe(inputEls[1].checked, true);
-                expectToBe(inputEls[2].checked, false);
+                expectToBe(firstInputEl.checked, false);
+                expectToBe(secondInputEl.checked, true);
+                expectToBe(thirdInputEl.checked, false);
             });
 
             it('... should contain as many label elements in div.btn-group as viewHandles given', () => {
@@ -234,9 +251,11 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
 
                 labelDes.forEach((labelDe, i) => {
+                    const expectedViewHandle = getItemAt(expectedViewHandles, i);
+
                     expectToBe(
                         labelDe.attributes['for'],
-                        `${component.groupName}-${expectedViewHandles[i].type}-view-button`
+                        `${component.groupName}-${expectedViewHandle.type}-view-button`
                     );
                 });
             });
@@ -249,7 +268,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     expectedViewHandles.length
                 );
 
-                (labelDes[1].nativeElement as HTMLLabelElement).click();
+                const secondLabelEl: HTMLLabelElement = getItemAt(labelDes, 1).nativeElement;
+
+                secondLabelEl.click();
 
                 expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.TABLE);
             });
@@ -264,8 +285,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
                 spanDes.forEach((spanDe, i) => {
                     const spanEl: HTMLSpanElement = spanDe.nativeElement;
+                    const expectedViewHandle = getItemAt(expectedViewHandles, i);
 
-                    expectToBe(spanEl.textContent, `${expectedViewHandles[i].type} view`);
+                    expectToBe(spanEl.textContent, `${expectedViewHandle.type} view`);
                 });
             });
 
@@ -280,8 +302,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 labelDes.forEach((labelDe, i) => {
                     const faIconDes = getAndExpectDebugElementByDirective(labelDe, FaIconComponent, 1, 1);
                     const faIconIns = faIconDes[0].injector.get(FaIconComponent);
+                    const expectedViewHandle = getItemAt(expectedViewHandles, i);
 
-                    expectToEqual(faIconIns.icon(), expectedViewHandles[i].icon);
+                    expectToEqual(faIconIns.icon(), expectedViewHandle.icon);
                 });
             });
 
@@ -295,8 +318,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
                 tooltipDes.forEach((tooltipDe, i) => {
                     const tooltipCmp = tooltipDe.injector.get(NgbTooltip);
+                    const expectedViewHandle = getItemAt(expectedViewHandles, i);
 
-                    expectToBe(tooltipCmp.ngbTooltip, `${expectedViewHandles[i].type} view`);
+                    expectToBe(tooltipCmp.ngbTooltip, `${expectedViewHandle.type} view`);
                 });
             });
 
@@ -306,7 +330,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     { desc: 'TABLE', index: 1, viewType: ViewHandleTypes.TABLE },
                     { desc: 'GRID', index: 2, viewType: ViewHandleTypes.GRID },
                 ])('... should emit $desc by change event from $desc radio button', ({ index, viewType }) => {
-                    getInputEls()[index].dispatchEvent(new Event('change'));
+                    const inputEl = getItemAt(getInputEls(), index);
+
+                    inputEl.dispatchEvent(new Event('change'));
 
                     expectSpyCall(viewChangeRequestSpy, 1, viewType);
                 });
@@ -320,12 +346,17 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     expectedViewHandles.length
                 );
 
-                (labelDes[1].nativeElement as HTMLLabelElement).click();
+                const secondLabelEl: HTMLLabelElement = getItemAt(labelDes, 1).nativeElement;
+
+                secondLabelEl.click();
                 await detectChangesOnPush(fixture);
 
                 const inputEls = getInputEls();
-                expectToBe(inputEls[0].checked, true);
-                expectToBe(inputEls[1].checked, false);
+                const firstInputEl = getItemAt(inputEls, 0);
+                const secondInputEl = getItemAt(inputEls, 1);
+
+                expectToBe(firstInputEl.checked, true);
+                expectToBe(secondInputEl.checked, false);
             });
 
             it('... should check the radio element of the new view type if the view change is accepted', async () => {
@@ -339,12 +370,17 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     expectedViewHandles.length
                 );
 
-                (labelDes[1].nativeElement as HTMLLabelElement).click();
+                const secondLabelEl: HTMLLabelElement = getItemAt(labelDes, 1).nativeElement;
+
+                secondLabelEl.click();
                 await detectChangesOnPush(fixture);
 
                 const inputEls = getInputEls();
-                expectToBe(inputEls[0].checked, false);
-                expectToBe(inputEls[1].checked, true);
+                const firstInputEl = getItemAt(inputEls, 0);
+                const secondInputEl = getItemAt(inputEls, 1);
+
+                expectToBe(firstInputEl.checked, false);
+                expectToBe(secondInputEl.checked, true);
             });
         });
 

@@ -12,6 +12,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 import { createTestTkkOverlay, patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
@@ -96,7 +97,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         expectedSvgSheet = structuredClone(
             EDITION_SHEETS_UTILS.toSvgSheetSelection(
                 mockEditionData.mockSvgSheet_Sk1,
-                mockEditionData.mockSvgSheet_Sk1.content[0]
+                getItemAt(mockEditionData.mockSvgSheet_Sk1.content, 0)
             )
         );
 

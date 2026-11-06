@@ -11,6 +11,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link.component';
@@ -131,7 +132,7 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                 expectToBe(urlTreeString, expectedRoute.join('/'));
             });
@@ -141,13 +142,13 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
 
                 navigateSpy.mockClear();
 
-                const linkDe = linkDes[0];
+                const linkDe = getItemAt(linkDes, 0);
 
                 await clickAndAwaitChanges(linkDe, fixture);
 
                 expectSpyCall(navigateSpy, 1);
-                const firstCallArg = navigateSpy.mock.calls[0][0];
-                const actualUrl = firstCallArg.toString();
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                const actualUrl = actualUrlTree.toString();
 
                 expectToBe(actualUrl, expectedRoute.join('/'));
 

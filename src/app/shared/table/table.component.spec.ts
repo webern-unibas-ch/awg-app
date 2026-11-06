@@ -17,13 +17,14 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
 
-import { TableRow } from './table.model';
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
 import { TableComponent } from './table.component';
+import { TableRow } from './table.model';
 import { TABLE_DEFAULT_PAGE_SIZE, TABLE_PAGE_SIZE_OPTIONS } from './table.utils';
 
 /**
@@ -342,7 +343,7 @@ describe('TableComponent (DONE)', () => {
                     const compEl: HTMLElement = compDe.nativeElement;
                     const hostChildren = Array.from(compEl.children);
                     const hostChildClasses = hostChildren.map(
-                        el => el.className.split(' ')[0] || el.tagName.toLowerCase()
+                        el => getItemAt(el.className.split(' '), 0) || el.tagName.toLowerCase()
                     );
 
                     expectToEqual(hostChildClasses, ['form-group', 'awg-pagination', 'table', 'awg-pagination']);
@@ -352,8 +353,9 @@ describe('TableComponent (DONE)', () => {
                     const panelDes = getAndExpectDebugElementByCss(compDe, 'div.awg-pagination', 2, 2);
 
                     ['Top', 'Bottom'].forEach((position, i) => {
-                        getAndExpectDebugElementByCss(panelDes[i], `button#pageSizeDropdownMenu${position}`, 1, 1);
-                        const menuDes = getAndExpectDebugElementByCss(panelDes[i], 'div.dropdown-menu', 1, 1);
+                        const panelDe = getItemAt(panelDes, i);
+                        getAndExpectDebugElementByCss(panelDe, `button#pageSizeDropdownMenu${position}`, 1, 1);
+                        const menuDes = getAndExpectDebugElementByCss(panelDe, 'div.dropdown-menu', 1, 1);
 
                         expectToBe(
                             menuDes[0].nativeElement.getAttribute('aria-labelledby'),
@@ -388,8 +390,10 @@ describe('TableComponent (DONE)', () => {
                         TABLE_PAGE_SIZE_OPTIONS.length * 2,
                         TABLE_PAGE_SIZE_OPTIONS.length * 2
                     );
+                    const firstItemDe = getItemAt(itemDes, 0);
+                    const firstItemEl: HTMLButtonElement = firstItemDe.nativeElement;
 
-                    (itemDes[0].nativeElement as HTMLButtonElement).click();
+                    firstItemEl.click();
 
                     expectSpyCall(onPageSizeChangeSpy, 1, TABLE_PAGE_SIZE_OPTIONS[0]);
                 });
@@ -406,11 +410,16 @@ describe('TableComponent (DONE)', () => {
 
                 it('... should display the sort icon only in the header cell of the sort key', () => {
                     const thDes = getHeaderCellDes();
-                    const iconDes = getAndExpectDebugElementByDirective(thDes[0], FaIconComponent, 1, 1);
+                    const firstThDe = getItemAt(thDes, 0);
+                    const secondThDe = getItemAt(thDes, 1);
+                    const thirdThDe = getItemAt(thDes, 2);
 
-                    expectToBe(iconDes[0].injector.get(FaIconComponent).icon(), faSortDown);
-                    getAndExpectDebugElementByDirective(thDes[1], FaIconComponent, 0, 0);
-                    getAndExpectDebugElementByDirective(thDes[2], FaIconComponent, 0, 0);
+                    const iconDes = getAndExpectDebugElementByDirective(firstThDe, FaIconComponent, 1, 1);
+                    const iconCmp = iconDes[0].injector.get(FaIconComponent);
+
+                    expectToBe(iconCmp.icon(), faSortDown);
+                    getAndExpectDebugElementByDirective(secondThDe, FaIconComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(thirdThDe, FaIconComponent, 0, 0);
                 });
 
                 it('... should have `awgClick` on each header cell', () => {
@@ -420,7 +429,10 @@ describe('TableComponent (DONE)', () => {
                 });
 
                 it('... should trigger `onSort()` with the header label on `awgClick` of a header cell', () => {
-                    getHeaderCellDes()[1].injector.get(ClickDirective).awgClick.emit(new Event('click'));
+                    const secondThDe = getItemAt(getHeaderCellDes(), 1);
+                    const clickDirective = secondThDe.injector.get(ClickDirective);
+
+                    clickDirective.awgClick.emit(new Event('click'));
 
                     expectSpyCall(onSortSpy, 1, 'column2');
                 });
@@ -443,7 +455,8 @@ describe('TableComponent (DONE)', () => {
                 });
 
                 it('... should display uri cells as link, other cells as span', () => {
-                    const tdDes = getAndExpectDebugElementByCss(getBodyRowDes(10)[0], 'td', 3, 3);
+                    const firstRowDe = getItemAt(getBodyRowDes(10), 0);
+                    const tdDes = getAndExpectDebugElementByCss(firstRowDe, 'td', 3, 3);
 
                     getAndExpectDebugElementByCss(tdDes[0], 'a[role="link"]', 1, 1);
                     getAndExpectDebugElementByCss(tdDes[1], 'span', 1, 1);
@@ -454,16 +467,19 @@ describe('TableComponent (DONE)', () => {
 
                 it('... should display an empty span cell if a row has no value for a column (unbound variable)', async () => {
                     const rows = createRows(1);
-                    Reflect.deleteProperty(rows[0], 'column3');
+                    const firstRow = getItemAt(rows, 0);
+                    Reflect.deleteProperty(firstRow, 'column3');
                     fixture.componentRef.setInput('rowInputData', rows);
                     await detectChangesOnPush(fixture);
 
-                    const tdDes = getAndExpectDebugElementByCss(getBodyRowDes(1)[0], 'td', 3, 3);
+                    const rowDe = getItemAt(getBodyRowDes(1), 0);
+                    const tdDes = getAndExpectDebugElementByCss(rowDe, 'td', 3, 3);
                     const tdEl: HTMLTableCellElement = tdDes[2].nativeElement;
                     getAndExpectDebugElementByCss(tdDes[2], 'a', 0, 0);
                     const highlightDes = getAndExpectDebugElementByDirective(tdDes[2], NgbHighlight, 1, 1);
+                    const highlightCmp = highlightDes[0].injector.get(NgbHighlight);
 
-                    expect(highlightDes[0].injector.get(NgbHighlight).result).toBeUndefined();
+                    expect(highlightCmp.result).toBeUndefined();
                     expectToBe(tdEl.textContent.trim(), '');
                 });
 
@@ -502,8 +518,10 @@ describe('TableComponent (DONE)', () => {
 
                 it('... should trigger `onTableRowClick()` with the event on `awgClick` of a row', () => {
                     const event = new Event('click');
+                    const firstRowDe = getItemAt(getBodyRowDes(10), 0);
+                    const clickDirective = firstRowDe.injector.get(ClickDirective);
 
-                    getBodyRowDes(10)[0].injector.get(ClickDirective).awgClick.emit(event);
+                    clickDirective.awgClick.emit(event);
 
                     expectSpyCall(onTableRowClickSpy, 1, event);
                 });

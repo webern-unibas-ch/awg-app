@@ -15,6 +15,7 @@ import {
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
+    getItemAt,
 } from '@testing/expect-helper';
 import { toTextContent } from '@testing/html-helper';
 
@@ -183,7 +184,9 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 const itemDes = getItemDes(3);
-                getAndExpectDebugElementByDirective(itemDes[0], FaIconComponent, 0, 0);
+                const firstItemDe = getItemAt(itemDes, 0);
+
+                getAndExpectDebugElementByDirective(firstItemDe, FaIconComponent, 0, 0);
 
                 const iconDes = itemDes
                     .slice(1)
@@ -221,7 +224,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                        const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString, expectedRootUrl);
@@ -258,7 +261,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                        const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString, expectedRootUrl);
@@ -318,7 +321,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+                        const urlTreeString = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString, expectedRootUrl);
@@ -363,8 +366,8 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
-                        const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
+                        const urlTreeString1 = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
+                        const urlTreeString2 = getItemAt(routerLinks, 1).urlTree?.toString() ?? '';
 
                         expectToEqual(urlTreeString1, expectedRootUrl);
                         expectToEqual(urlTreeString2, expectedSeriesUrl);
@@ -414,9 +417,9 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
-                        const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
-                        const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
+                        const urlTreeString1 = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
+                        const urlTreeString2 = getItemAt(routerLinks, 1).urlTree?.toString() ?? '';
+                        const urlTreeString3 = getItemAt(routerLinks, 2).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString1, expectedRootUrl);
@@ -480,9 +483,9 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
-                        const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
-                        const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
+                        const urlTreeString1 = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
+                        const urlTreeString2 = getItemAt(routerLinks, 1).urlTree?.toString() ?? '';
+                        const urlTreeString3 = getItemAt(routerLinks, 2).urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
                         expectToEqual(urlTreeString1, expectedRootUrl);
@@ -521,7 +524,7 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                     it('... should have a router link to the composite complex as fourth link', () => {
                         const linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 4, 4);
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-                        const urlTreeString = routerLinks[3].urlTree?.toString() ?? '';
+                        const urlTreeString = getItemAt(routerLinks, 3).urlTree?.toString() ?? '';
 
                         expectToBe(urlTreeString, opus.baseRoute);
                     });
@@ -569,9 +572,9 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 const expectedSeriesUrl = [...expectedRootItem.route, series.route].join('/');
                 const expectedSectionUrl = labeledSectionRoute.route.join('/');
 
-                const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
-                const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
-                const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
+                const urlTreeString1 = getItemAt(routerLinks, 0).urlTree?.toString() ?? '';
+                const urlTreeString2 = getItemAt(routerLinks, 1).urlTree?.toString() ?? '';
+                const urlTreeString3 = getItemAt(routerLinks, 2).urlTree?.toString() ?? '';
 
                 expectToBe(urlTreeString1, expectedRootUrl);
                 expectToBe(urlTreeString2, expectedSeriesUrl);
@@ -592,12 +595,13 @@ describe('EditionBreadcrumbComponent (DONE)', () => {
                 const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
                 navigateSpy.mockClear();
 
-                const targetLinkDe = linkDes[index];
+                const targetLinkDe = getItemAt(linkDes, index);
 
                 await clickAndAwaitChanges(targetLinkDe, fixture);
 
                 expectSpyCall(navigateSpy, 1);
-                const actualUrl = navigateSpy.mock.calls[0][0].toString();
+                const [actualUrlTree] = getItemAt(navigateSpy.mock.calls, 0);
+                const actualUrl = actualUrlTree.toString();
 
                 expectToBe(actualUrl, expectedRouterLink());
 
