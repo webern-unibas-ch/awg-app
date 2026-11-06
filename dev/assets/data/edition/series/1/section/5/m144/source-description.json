@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Autograph von <em>Kunfttag I</em> („Dem bist du Kind“) M 144: einzige Textfassung.",
+            "type": "Autograph von <br /><span class=\"tab\"></span><em>Kunfttag I</em> („Dem bist du Kind“) M 144: <a data-complex-id='m144' data-sheet-id='M144_TF1'>einzige Textfassung</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "physDesc": {
                 "conditions": ["1 Bogen (Bl. 1/2). Falz rechts, Bl. 1<sup>v</sup>, 2<sup>r</sup> unbeschriftet."],
@@ -47,7 +47,7 @@
                     }
                 ],
                 "writingInstruments": {
-                    "main": "Tinte",
+                    "main": "schwarze Tinte",
                     "secondary": ["Bleistift", "roter Buntstift"]
                 },
                 "titles": [

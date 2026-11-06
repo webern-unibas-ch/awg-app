@@ -11,7 +11,7 @@
                     "17 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 26<sup>v</sup>–31<sup>r</sup> (S. <em>51</em>–<em>60</em>), Bl. 32<sup>r</sup> (S. <em>62</em>) und Bl. 33<sup>v</sup>–36<sup>r</sup> (S. <em>65</em>–<em>70</em>)."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, quer 270 × 335 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>No. 15 | 16 linig.</em> recto auf Bl. 26–36 unten links (Bl. 26–36)"
+                    "Notenpapier, 16 Systeme, Format: quer 270 × 335 mm, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>No. 15 | 16 linig.</em> recto auf Bl. 26–36 unten links (Bl. 26–36)"
                 ],
                 "writingMaterials": [
                     {
@@ -22,7 +22,7 @@
                             "additionalInfo": ""
                         },
                         "dimensions": {
-                            "orientation": "hoch",
+                            "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
                                 "value": "270"
@@ -1602,7 +1602,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23.",
+            "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23:<br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span><br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span><br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>.<br />Stichvorlage für <a data-complex-id='op23' data-report-fragment-id='source_D'><strong>D</strong></a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.G389 / 115908.",
             "physDesc": {
                 "conditions": [
@@ -1648,7 +1648,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "blauer und roter Buntstift", "violetter Stempelabdruck"]
+                    "secondary": ["Bleistift", "blauer Buntstift", "roter Buntstift", "violetter Stempelabdruck"]
                 },
                 "titles": [
                     "<em>Anton Webern |</em> <sup>?</sup><em><s>Drei</s></em><sup>?</sup> <em>Drei Gesänge | op. 23 | aus | Viae inviae | von | Hildegard Jone</em> auf Bl. 1<sup>r</sup> System 3–10 Mitte, <sup>?</sup><em><s>Drei</s></em><sup>?</sup> rasiert",
@@ -2162,7 +2162,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23.",
+            "type": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23:<br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span><br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span><br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>.",
             "location": "Wien: Universal Edition, 1936.",
             "physDesc": {
                 "conditions": [
