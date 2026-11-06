@@ -42,12 +42,16 @@
  * Kugelschreiber or Stempelabdruck (in any declension), Bleistift and Kopierstift. Text in brackets
  * of a writing instrument (e.g. "rote Tinte [Teile des Titels]") explains it and names no further one.
  *
+ * With --summary, the warnings are only counted, one line per rule (short output for the pre-commit hook);
+ * the errors are always listed one by one.
+ *
  * With --open, an HTML report with all hits (and their context in the text) is written to
  * reports/source-data.html and opened in the default browser.
  *
  * Usage:  node scripts/check-source-data.js
  *         yarn check:source-data
  *         yarn check:source-data --all
+ *         yarn check:source-data --summary
  *         yarn check:source-data --open
  *
  * Exit code 0 = no errors (warnings do not fail the check)
@@ -77,6 +81,7 @@ const SOURCE_LIST_FILE = 'source-list.json';
 const TEXTCRITICS_FILE = 'textcritics.json';
 const REPORT_FILE_NAME = 'source-data.html';
 const LIST_ALL = process.argv.includes('--all');
+const SUMMARY = process.argv.includes('--summary');
 const OPEN = process.argv.includes('--open');
 const CONTEXT_LENGTH = 40;
 
@@ -446,20 +451,25 @@ function formatHit({ message, detail }) {
     return detail ? `${message}: ${detail}` : message;
 }
 
-// The secondary writing instrument warnings outside of the listed volumes are only counted per volume
+// With --summary, no warning is listed one by one; otherwise the secondary writing instrument warnings
+// outside of the listed volumes are only counted
 function isListed(hit) {
-    return hit.rule !== SECONDARY_INSTRUMENTS_RULE || LIST_ALL || LISTED_VOLUMES.has(hit.volume);
+    return !SUMMARY && (hit.rule !== SECONDARY_INSTRUMENTS_RULE || LIST_ALL || LISTED_VOLUMES.has(hit.volume));
 }
 
+// The warnings that are not listed, counted per volume in one line per rule
 function printWarningCounts(warnings) {
     const counts = new Map();
-    for (const { volume } of warnings.filter(hit => !isListed(hit))) {
-        counts.set(volume, (counts.get(volume) ?? 0) + 1);
+    for (const { rule, volume } of warnings.filter(hit => !isListed(hit))) {
+        const volumes = counts.get(rule) ?? new Map();
+        volumes.set(volume, (volumes.get(volume) ?? 0) + 1);
+        counts.set(rule, volumes);
     }
-    for (const [volume, count] of counts) {
-        console.log(
-            `[WARN] rule ${SECONDARY_INSTRUMENTS_RULE}  ${volume}: ${count} source(s) with secondary writing instruments never named in physDesc (--all lists them)`
-        );
+    for (const [rule, volumes] of counts) {
+        const total = [...volumes.values()].reduce((sum, count) => sum + count, 0);
+        const perVolume = [...volumes].map(([volume, count]) => `${volume} (${count})`).join(', ');
+        const hint = !SUMMARY && rule === SECONDARY_INSTRUMENTS_RULE ? ' (--all lists them)' : '';
+        console.log(`[WARN] rule ${rule}  ${total} warning(s) in ${perVolume}: ${RULES[rule].title}${hint}`);
     }
 }
 
@@ -473,6 +483,7 @@ const REPORT_STYLE = `
 tr.topic th { padding-top: 12px; font-size: 1rem; }
 .top { float: right; font-size: .8rem; font-weight: normal; color: var(--muted); text-decoration: none; }
 .top:hover { text-decoration: underline; }
+.overview tr.error td { color: var(--err); font-weight: 600; } .overview tr.warning td { color: var(--drift); font-weight: 600; } .overview tr.clean td { color: var(--ok); }
 .context { color: var(--muted); } mark { background: var(--add); color: inherit; }
 `;
 
@@ -490,9 +501,14 @@ function renderHit({ volume, ref, message, context, diff }) {
     return `<tr><td>${escapeHtml(volume)}</td><td><b>${escapeHtml(ref)}</b></td><td>${escapeHtml(message)}${details}</td></tr>`;
 }
 
+// The kind of a rule: its hits are errors or warnings
+function ruleKind(rule) {
+    return WARNING_RULES.has(rule) ? 'warning' : 'error';
+}
+
 function renderRule(rule, hits) {
     const { title, subject } = RULES[rule];
-    const kind = WARNING_RULES.has(rule) ? 'warning' : 'error';
+    const kind = ruleKind(rule);
     const status = hits.length ? `${hits.length} ${kind === 'warning' ? 'warning(s)' : 'error(s)'}` : 'no hits';
     const table = hits.length
         ? `<div class="overflow"><table class="list"><tr><th>Volume</th><th>${subject}</th><th>Hit</th></tr>${hits.map(renderHit).join('')}</table></div>`
@@ -510,7 +526,8 @@ function renderReport({ hits, descriptionCount, listSourceCount, textSourceCount
     const topics = [...new Set(rules.map(rule => RULES[rule].topic))];
     const overviewRow = rule => {
         const count = hits.filter(hit => hit.rule === rule).length;
-        return `<tr><td><a href="#rule-${rule}">${rule}</a></td><td>${escapeHtml(RULES[rule].title)}</td><td>${WARNING_RULES.has(rule) ? 'warning' : 'error'}</td><td>${count}</td></tr>`;
+        const status = count ? ruleKind(rule) : 'clean';
+        return `<tr class="${status}"><td><a href="#rule-${rule}">${rule}</a></td><td>${escapeHtml(RULES[rule].title)}</td><td>${ruleKind(rule)}</td><td>${count}</td></tr>`;
     };
     const overviewRows = topics
         .map(
@@ -539,7 +556,7 @@ function renderReport({ hits, descriptionCount, listSourceCount, textSourceCount
         title: 'Source data report',
         style: REPORT_STYLE,
         intro: `<p>${descriptionCount} descriptions, ${listSourceCount} list sources and ${textSourceCount} text sources in ${complexCount} edition complexes. Errors fail the check; warnings are open cases or tolerated findings.</p>
-<div class="overflow" id="rules"><table class="list"><tr><th>Rule</th><th>Check</th><th>Kind</th><th>Hits</th></tr>${overviewRows}</table></div>`,
+<div class="overflow" id="rules"><table class="list overview"><tr><th>Rule</th><th>Check</th><th>Kind</th><th>Hits</th></tr>${overviewRows}</table></div>`,
         body: sections,
     });
 }

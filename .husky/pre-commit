@@ -14,5 +14,5 @@ fi
 
 # Check the source data (writing instruments, locations, types), only if source descriptions, source lists, textcritics or the check are staged
 if git diff --cached --name-only | grep -qE '^src/assets/data/edition/series/.+/(source-description|source-list|textcritics)\.json$|^scripts/check-(source-data|utils)\.js$'; then
-    yarn run check:source-data
+    yarn run check:source-data --summary
 fi
