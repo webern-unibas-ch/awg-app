@@ -481,7 +481,7 @@
                         "systems": 12,
                         "orientation": "hoch",
                         "height": "347",
-                        "width": "270",
+                        "width": "266",
                         "trademark": "JE_NO2_LIN12_OP3_J"
                     }
                 ]
@@ -920,7 +920,7 @@
                 "papers": [
                     {
                         "systems": 9,
-                        "orientation": "hoch",
+                        "orientation": "quer",
                         "height": "ca. 173",
                         "width": "264",
                         "trademark": ""
@@ -1058,7 +1058,7 @@
             "location": {
                 "repository": "CH-Bps",
                 "collection": "Sammlung Anton Webern",
-                "shelfmark": "P IV 29"
+                "shelfmark": ""
             },
             "fingerprint": {},
             "usedBy": [
@@ -2263,7 +2263,7 @@
                         "orientation": "hoch",
                         "height": "347",
                         "width": "264",
-                        "trademark": ""
+                        "trademark": "[J.E. & Co.] / No. 9 / 28 linig."
                     }
                 ]
             },
@@ -2321,7 +2321,7 @@
                         "orientation": "hoch",
                         "height": "348",
                         "width": "266",
-                        "trademark": ""
+                        "trademark": "[J.E. & Co.] / No. 5 / 18 linig."
                     }
                 ]
             },
@@ -2443,8 +2443,8 @@
                     {
                         "systems": 18,
                         "orientation": "quer",
-                        "height": "347",
-                        "width": "267",
+                        "height": "267",
+                        "width": "347",
                         "trademark": "[J.E. & Co.] / No. 18 / 18 linig."
                     }
                 ]
@@ -2470,8 +2470,8 @@
                     {
                         "systems": 18,
                         "orientation": "quer",
-                        "height": "348",
-                        "width": "266",
+                        "height": "266",
+                        "width": "348",
                         "trademark": "[J.E. & Co.] / No. 18 / 18 linig."
                     }
                 ]
@@ -2559,8 +2559,8 @@
                     {
                         "systems": 18,
                         "orientation": "quer",
-                        "height": "349",
-                        "width": "266",
+                        "height": "266",
+                        "width": "349",
                         "trademark": "[J.E. & Co.] / No. 18 / 18 linig."
                     }
                 ]
