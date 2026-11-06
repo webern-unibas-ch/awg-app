@@ -1,1 +1,0 @@
-import{R as Ke}from"./chunk-DGBWPIL2.js";var a=(()=>{class t{constructor(){this.animation=!0}static{this.ɵfac=function(i){return new(i||t)}}static{this.ɵprov=Ke({token:t,factory:t.ɵfac})}}return t})();export{a as t};
