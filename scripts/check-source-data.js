@@ -15,31 +15,28 @@
  *   ref                 the source of a hit (op3:E), or the complex if the hit belongs to no single source (op20)
  *   path                the position of a text in the JSON (corrections[0].label)
  *
- * Errors (exit code 1):
+ * Rules (an error fails the check with exit code 1; a hint, a rule listed in HINT_RULES, does not):
  *   Writing instruments
- *   1) A writing instrument names a single instrument: no "und" or "sowie" outside of brackets.
- *   2) The brackets () and [] of a writing instrument are balanced (a split at a comma inside
+ *   1) Error: A writing instrument names a single instrument: no "und" or "sowie" outside of brackets.
+ *   2) Error: The brackets () and [] of a writing instrument are balanced (a split at a comma inside
  *      brackets is a typical break).
- *   3) A writing instrument has more than one word, except Bleistift and Kopierstift
+ *   3) Error: A writing instrument has more than one word, except Bleistift and Kopierstift
  *      (e.g. "schwarze Tinte", not "Tinte").
- *   4) A writing instrument is not empty (only the main one of a print is).
- *   Locations and types
- *   5) A location (of a description, list source or text source) names the Moldenhauer folders as
- *      "Box-Folder 59/10", not "Box-Folder: 59/10".
- *   8) The source list and the source description have the same type and location (compared as text,
- *      without markup such as links). A description without a type is fine if the source is
- *      described by sources with a siglum addendum (A with Aa, Ab, ...).
- *
- * Hints (exit code 0, as long as the rule is listed in HINT_RULES):
- *   Writing instruments
- *   6) A writing instrument named in the physDesc of a description (corrections, titles, annotations,
- *      contents, ...) is declared in the writingInstruments of that description.
- *   7) A writing instrument named in the textcritics of a complex is declared by a description of
- *      the complex.
- *   9) A description has writingInstruments (a print has an empty main one), unless it is a
+ *   4) Error: A writing instrument is not empty (only the main one of a print is).
+ *   5) Hint: A writing instrument named in the physDesc of a description (corrections, titles,
+ *      annotations, contents, ...) is declared in the writingInstruments of that description.
+ *   6) Hint: A writing instrument named in the textcritics of a complex is declared by a description
+ *      of the complex.
+ *   7) Hint: A description has writingInstruments (a print has an empty main one), unless it is a
  *      placeholder for sources that are described elsewhere: its conditions are only a note in brackets.
- *  10) A secondary writing instrument is named in the physDesc of its description. The hits are
+ *   8) Hint: A secondary writing instrument is named in the physDesc of its description. The hits are
  *      listed for the volumes in LISTED_VOLUMES (all with --all) and counted for the others.
+ *   Locations and types
+ *   9) Error: A location (of a description, list source or text source) names the Moldenhauer folders
+ *      as "Box-Folder 59/10", not "Box-Folder: 59/10".
+ *  10) Error: The source list and the source description have the same type and location (compared
+ *      as text, without markup such as links). A description without a type is fine if the source is
+ *      described by sources with a siglum addendum (A with Aa, Ab, ...).
  *
  * Writing instruments are found by their name: a colour (schwarz, rot, ...) with Buntstift, Tinte,
  * Kugelschreiber or Stempelabdruck (in any declension), Bleistift and Kopierstift. Text in brackets
@@ -97,36 +94,36 @@ const RULES = {
         topic: 'Writing instruments',
         subject: 'Source',
     },
-    5: { title: 'Location writes Box-Folder without a colon', topic: 'Locations and types', subject: 'Source' },
-    6: {
+    5: {
         title: 'physDesc names only writing instruments that writingInstruments declares',
         topic: 'Writing instruments',
         subject: 'Source',
     },
-    7: {
+    6: {
         title: 'Textcritics name only writing instruments that a description of the complex declares',
         topic: 'Writing instruments',
         subject: 'Complex',
     },
-    8: {
-        title: 'Type and location are the same in the source list and the source description',
-        topic: 'Locations and types',
-        subject: 'Source',
-    },
-    9: {
+    7: {
         title: 'Description has writingInstruments (except placeholders)',
         topic: 'Writing instruments',
         subject: 'Source',
     },
-    10: {
+    8: {
         title: 'Secondary writing instruments are named in physDesc',
         topic: 'Writing instruments',
         subject: 'Source',
     },
+    9: { title: 'Location writes Box-Folder without a colon', topic: 'Locations and types', subject: 'Source' },
+    10: {
+        title: 'Type and location are the same in the source list and the source description',
+        topic: 'Locations and types',
+        subject: 'Source',
+    },
 };
 // Rules that only report hints, while the data has open cases. Remove a rule to make it an error.
-const HINT_RULES = new Set([6, 7, 9, 10]);
-// Volumes whose hints of rule 10 are listed one by one (the others are counted)
+const HINT_RULES = new Set([5, 6, 7, 8]);
+// Volumes whose hints of rule 8 are listed one by one (the others are counted)
 const LISTED_VOLUMES = new Set(['I/5']);
 const SERIES_NUMERALS = ['I', 'II', 'III', 'IV', 'V', 'VI'];
 const SINGLE_WORD_INSTRUMENTS = new Set(['Bleistift', 'Kopierstift']);
@@ -311,7 +308,7 @@ function checkWritingInstruments(ref, instruments, add) {
 // The origin is the file kind of the location (source description or source list)
 function checkLocation(ref, location, origin, add) {
     if (/Box-Folder:/.test(location ?? '')) {
-        add(5, ref, `location (${origin}): "Box-Folder:" with a colon`);
+        add(9, ref, `location (${origin}): "Box-Folder:" with a colon`);
     }
 }
 
@@ -322,7 +319,7 @@ function checkSourceList(complex, add) {
         const ref = sourceRef(complex, listSource);
         const description = descriptions.get(siglumKey(listSource));
         if (!description) {
-            add(8, ref, 'source list: hasDescription, but no source description');
+            add(10, ref, 'source list: hasDescription, but no source description');
             continue;
         }
         const hasAddendumSources = complex.descriptions.some(
@@ -332,7 +329,7 @@ function checkSourceList(complex, add) {
             const listText = stripTags(listSource[field]);
             const descriptionText = stripTags(description[field]);
             if (listText !== descriptionText && !(field === 'type' && !descriptionText && hasAddendumSources)) {
-                add(8, ref, `${field} differs in the source list and the source description`, {
+                add(10, ref, `${field} differs in the source list and the source description`, {
                     detail: excerptOfDifference(listText, descriptionText),
                     diff: { left: listText, right: descriptionText },
                 });
@@ -355,13 +352,13 @@ function checkDescription(complex, description, add) {
     checkLocation(ref, description.location, 'source description', add);
 
     if (!writingInstruments && !isPlaceholder(description)) {
-        add(9, ref, 'physDesc: no writingInstruments (a print has "main": "")');
+        add(7, ref, 'physDesc: no writingInstruments (a print has "main": "")');
     }
     const declared = declaredKeys(instrumentsOf(writingInstruments));
     const named = findNamedInstruments(textsWithPaths(description.physDesc, '', new Set([WRITING_INSTRUMENTS_KEY])));
     for (const [key, { name, path: textPath, context }] of named) {
         if (!declared.has(key)) {
-            add(6, ref, `physDesc.${textPath} names "${name}", but writingInstruments does not declare it`, {
+            add(5, ref, `physDesc.${textPath} names "${name}", but writingInstruments does not declare it`, {
                 context,
             });
         }
@@ -371,7 +368,7 @@ function checkDescription(complex, description, add) {
     );
     if (unnamed.length) {
         add(
-            10,
+            8,
             ref,
             `writingInstruments.secondary: ${unnamed.map(instrument => `"${instrument}"`).join(', ')} never named in physDesc`
         );
@@ -394,7 +391,7 @@ function checkTextcritics(complex, declared, add) {
     for (const [key, { name, context, ids }] of named) {
         if (!declared.has(key)) {
             add(
-                7,
+                6,
                 complex.id,
                 `textcritics (${ids.join(', ')}) name "${name}", but no description of the complex declares it`,
                 {
@@ -451,9 +448,9 @@ function formatHit({ message, detail }) {
     return detail ? `${message}: ${detail}` : message;
 }
 
-// The hints of rule 10 outside of the listed volumes are only counted per volume
+// The hints of rule 8 outside of the listed volumes are only counted per volume
 function isListed(hit) {
-    return hit.rule !== 10 || LIST_ALL || LISTED_VOLUMES.has(hit.volume);
+    return hit.rule !== 8 || LIST_ALL || LISTED_VOLUMES.has(hit.volume);
 }
 
 function printHintCounts(hints) {
@@ -463,7 +460,7 @@ function printHintCounts(hints) {
     }
     for (const [volume, count] of counts) {
         console.log(
-            `[HINT] rule 10  ${volume}: ${count} source(s) with secondary writing instruments never named in physDesc (--all lists them)`
+            `[HINT] rule 8  ${volume}: ${count} source(s) with secondary writing instruments never named in physDesc (--all lists them)`
         );
     }
 }
@@ -475,6 +472,8 @@ const REPORT_STYLE = `
 .rule.error { border-left-color: var(--err); } .rule.hint { border-left-color: var(--drift); }
 .rule h3 { font-size: 1.05rem; margin: 0 0 4px; } h2.topic { font-size: 1.25rem; margin: 24px 0 0; }
 .error .status { color: var(--err); font-weight: 600; } .hint .status { color: var(--drift); font-weight: 600; } .clean .status { color: var(--ok); font-weight: 600; }
+.top { float: right; font-size: .8rem; font-weight: normal; color: var(--muted); text-decoration: none; }
+.top:hover { text-decoration: underline; }
 .context { color: var(--muted); } mark { background: var(--add); color: inherit; }
 `;
 
@@ -500,8 +499,8 @@ function renderRule(rule, hits) {
         ? `<div class="overflow"><table class="list"><tr><th>Volume</th><th>${subject}</th><th>Hit</th></tr>${hits.map(renderHit).join('')}</table></div>`
         : '';
     return `
-<section class="rule ${hits.length ? kind : 'clean'}">
-<h3>Rule ${rule} · ${escapeHtml(title)}</h3>
+<section class="rule ${hits.length ? kind : 'clean'}" id="rule-${rule}">
+<h3>Rule ${rule} · ${escapeHtml(title)} <a class="top" href="#rules">↑ rules</a></h3>
 <p class="meta"><span class="status">${status}</span></p>
 ${table}
 </section>`;
@@ -513,7 +512,7 @@ function renderReport({ hits, descriptionCount, listSourceCount, textSourceCount
     const overviewRows = rules
         .map(rule => {
             const count = hits.filter(hit => hit.rule === rule).length;
-            return `<tr><td>${rule}</td><td>${escapeHtml(RULES[rule].title)}</td><td>${HINT_RULES.has(rule) ? 'hint' : 'error'}</td><td>${count}</td></tr>`;
+            return `<tr><td><a href="#rule-${rule}">${rule}</a></td><td>${escapeHtml(RULES[rule].title)}</td><td>${HINT_RULES.has(rule) ? 'hint' : 'error'}</td><td>${count}</td></tr>`;
         })
         .join('');
     const sections = topics
@@ -534,7 +533,7 @@ function renderReport({ hits, descriptionCount, listSourceCount, textSourceCount
         title: 'Source data report',
         style: REPORT_STYLE,
         intro: `<p>${descriptionCount} descriptions, ${listSourceCount} list sources and ${textSourceCount} text sources in ${complexCount} edition complexes. Errors fail the check; hints are open cases of rules that are not errors yet.</p>
-<div class="overflow"><table class="list"><tr><th>Rule</th><th>Check</th><th>Kind</th><th>Hits</th></tr>${overviewRows}</table></div>`,
+<div class="overflow" id="rules"><table class="list"><tr><th>Rule</th><th>Check</th><th>Kind</th><th>Hits</th></tr>${overviewRows}</table></div>`,
         body: sections,
     });
 }
