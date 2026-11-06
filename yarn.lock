@@ -4342,7 +4342,7 @@ __metadata:
     d3-fetch: "npm:^3.0.1"
     d3-force: "npm:^3.0.0"
     d3-selection: "npm:^3.0.0"
-    d3-zoom: "npm:^3.0.0"
+    d3-zoom: "npm:^3.0.1"
     esbuild-visualizer: "npm:^0.7.0"
     eslint: "npm:^10.13.0"
     eslint-plugin-jsdoc: "npm:^65.4.2"
@@ -5274,16 +5274,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-zoom@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "d3-zoom@npm:3.0.0"
+"d3-zoom@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "d3-zoom@npm:3.0.1"
   dependencies:
     d3-dispatch: "npm:1 - 3"
     d3-drag: "npm:2 - 3"
     d3-interpolate: "npm:1 - 3"
     d3-selection: "npm:2 - 3"
     d3-transition: "npm:2 - 3"
-  checksum: 10c0/ee2036479049e70d8c783d594c444fe00e398246048e3f11a59755cd0e21de62ece3126181b0d7a31bf37bcf32fd726f83ae7dea4495ff86ec7736ce5ad36fd3
+  checksum: 10c0/0d19ed18cafa08de623ff0a8dd55fe9526a404e652fa70b361d02fd760a6c53659a8c892cdc2ec9196c795595eaab6acbea21fb6033ab44c586c7bb31ca1d09c
   languageName: node
   linkType: hard
 
