@@ -4340,7 +4340,7 @@ __metadata:
     conventional-recommended-bump: "npm:^12.1.0"
     d3-drag: "npm:^3.0.0"
     d3-fetch: "npm:^3.0.1"
-    d3-force: "npm:^3.0.0"
+    d3-force: "npm:^3.0.1"
     d3-selection: "npm:^3.0.0"
     d3-zoom: "npm:^3.0.0"
     esbuild-visualizer: "npm:^0.7.0"
@@ -5218,14 +5218,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-force@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "d3-force@npm:3.0.0"
+"d3-force@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "d3-force@npm:3.0.1"
   dependencies:
     d3-dispatch: "npm:1 - 3"
     d3-quadtree: "npm:1 - 3"
     d3-timer: "npm:1 - 3"
-  checksum: 10c0/220a16a1a1ac62ba56df61028896e4b52be89c81040d20229c876efc8852191482c233f8a52bb5a4e0875c321b8e5cb6413ef3dfa4d8fe79eeb7d52c587f52cf
+  checksum: 10c0/92d0568ea0e1f24bc5a472ee9a9a755fba3558b75bf18c057ebc572c0eded14671338fde3c2bf5c5d5b9fc5a2a0166101fb4d39f1ac48d874be6b1b7a3ac7cc7
   languageName: node
   linkType: hard
 
