@@ -15,7 +15,7 @@
  *   ref                 the source of a hit (op3:E), or the complex if the hit belongs to no single source (op20)
  *   path                the position of a text in the JSON (corrections[0].label)
  *
- * Rules (an error fails the check with exit code 1; a hint, a rule listed in HINT_RULES, does not):
+ * Rules (an error fails the check with exit code 1; a warning, a rule listed in WARNING_RULES, does not):
  *   Writing instruments
  *   1) Error: A writing instrument names a single instrument: no "und" or "sowie" outside of brackets.
  *   2) Error: The brackets () and [] of a writing instrument are balanced (a split at a comma inside
@@ -23,13 +23,13 @@
  *   3) Error: A writing instrument has more than one word, except Bleistift and Kopierstift
  *      (e.g. "schwarze Tinte", not "Tinte").
  *   4) Error: A writing instrument is not empty (only the main one of a print is).
- *   5) Hint: A writing instrument named in the physDesc of a description (corrections, titles,
+ *   5) Warning: A writing instrument named in the physDesc of a description (corrections, titles,
  *      annotations, contents, ...) is declared in the writingInstruments of that description.
- *   6) Hint: A writing instrument named in the textcritics of a complex is declared by a description
+ *   6) Warning: A writing instrument named in the textcritics of a complex is declared by a description
  *      of the complex.
- *   7) Hint: A description has writingInstruments (a print has an empty main one), unless it is a
+ *   7) Warning: A description has writingInstruments (a print has an empty main one), unless it is a
  *      placeholder for sources that are described elsewhere: its conditions are only a note in brackets.
- *   8) Hint: A secondary writing instrument is named in the physDesc of its description. The hits are
+ *   8) Warning: A secondary writing instrument is named in the physDesc of its description. The hits are
  *      listed for the volumes in LISTED_VOLUMES (all with --all) and counted for the others.
  *   Locations and types
  *   9) Error: A location (of a description, list source or text source) names the Moldenhauer folders
@@ -50,7 +50,7 @@
  *         yarn check:source-data --all
  *         yarn check:source-data --open
  *
- * Exit code 0 = no errors (hints do not fail the check)
+ * Exit code 0 = no errors (warnings do not fail the check)
  * Exit code 1 = at least one error was found, or the edition data could not be read
  */
 
@@ -121,9 +121,11 @@ const RULES = {
         subject: 'Source',
     },
 };
-// Rules that only report hints, while the data has open cases. Remove a rule to make it an error.
-const HINT_RULES = new Set([5, 6, 7, 8]);
-// Volumes whose hints of rule 8 are listed one by one (the others are counted)
+// Rules that only report warnings (exit code 0). The rules on named and declared writing instruments are
+// temporary warnings while their open cases are decided: remove them here to make them errors.
+// The secondary writing instruments stay a warning (an instrument is often only in the list).
+const WARNING_RULES = new Set([5, 6, 7, 8]);
+// Volumes whose warnings of rule 8 are listed one by one (the others are counted)
 const LISTED_VOLUMES = new Set(['I/5']);
 const SERIES_NUMERALS = ['I', 'II', 'III', 'IV', 'V', 'VI'];
 const SINGLE_WORD_INSTRUMENTS = new Set(['Bleistift', 'Kopierstift']);
@@ -433,8 +435,8 @@ function check() {
     hits.sort((a, b) => a.rule - b.rule);
     return {
         hits,
-        errors: hits.filter(hit => !HINT_RULES.has(hit.rule)),
-        hints: hits.filter(hit => HINT_RULES.has(hit.rule)),
+        errors: hits.filter(hit => !WARNING_RULES.has(hit.rule)),
+        warnings: hits.filter(hit => WARNING_RULES.has(hit.rule)),
         descriptionCount,
         listSourceCount,
         textSourceCount,
@@ -448,19 +450,19 @@ function formatHit({ message, detail }) {
     return detail ? `${message}: ${detail}` : message;
 }
 
-// The hints of rule 8 outside of the listed volumes are only counted per volume
+// The warnings of rule 8 outside of the listed volumes are only counted per volume
 function isListed(hit) {
     return hit.rule !== 8 || LIST_ALL || LISTED_VOLUMES.has(hit.volume);
 }
 
-function printHintCounts(hints) {
+function printWarningCounts(warnings) {
     const counts = new Map();
-    for (const { volume } of hints.filter(hit => !isListed(hit))) {
+    for (const { volume } of warnings.filter(hit => !isListed(hit))) {
         counts.set(volume, (counts.get(volume) ?? 0) + 1);
     }
     for (const [volume, count] of counts) {
         console.log(
-            `[HINT] rule 8  ${volume}: ${count} source(s) with secondary writing instruments never named in physDesc (--all lists them)`
+            `[WARN] rule 8  ${volume}: ${count} source(s) with secondary writing instruments never named in physDesc (--all lists them)`
         );
     }
 }
@@ -469,9 +471,10 @@ function printHintCounts(hints) {
 
 const REPORT_STYLE = `
 .rule { border: 1px solid var(--line); border-left: 4px solid var(--ok); border-radius: 6px; padding: 12px; margin: 12px 0; }
-.rule.error { border-left-color: var(--err); } .rule.hint { border-left-color: var(--drift); }
+.rule.error { border-left-color: var(--err); } .rule.warning { border-left-color: var(--drift); }
 .rule h3 { font-size: 1.05rem; margin: 0 0 4px; } h2.topic { font-size: 1.25rem; margin: 24px 0 0; }
-.error .status { color: var(--err); font-weight: 600; } .hint .status { color: var(--drift); font-weight: 600; } .clean .status { color: var(--ok); font-weight: 600; }
+.error .status { color: var(--err); font-weight: 600; } .warning .status { color: var(--drift); font-weight: 600; } .clean .status { color: var(--ok); font-weight: 600; }
+tr.topic th { padding-top: 12px; font-size: 1rem; }
 .top { float: right; font-size: .8rem; font-weight: normal; color: var(--muted); text-decoration: none; }
 .top:hover { text-decoration: underline; }
 .context { color: var(--muted); } mark { background: var(--add); color: inherit; }
@@ -493,8 +496,8 @@ function renderHit({ volume, ref, message, context, diff }) {
 
 function renderRule(rule, hits) {
     const { title, subject } = RULES[rule];
-    const kind = HINT_RULES.has(rule) ? 'hint' : 'error';
-    const status = hits.length ? `${hits.length} ${kind === 'hint' ? 'hint(s)' : 'error(s)'}` : 'no hits';
+    const kind = WARNING_RULES.has(rule) ? 'warning' : 'error';
+    const status = hits.length ? `${hits.length} ${kind === 'warning' ? 'warning(s)' : 'error(s)'}` : 'no hits';
     const table = hits.length
         ? `<div class="overflow"><table class="list"><tr><th>Volume</th><th>${subject}</th><th>Hit</th></tr>${hits.map(renderHit).join('')}</table></div>`
         : '';
@@ -509,11 +512,18 @@ ${table}
 function renderReport({ hits, descriptionCount, listSourceCount, textSourceCount, complexCount }) {
     const rules = Object.keys(RULES).map(Number);
     const topics = [...new Set(rules.map(rule => RULES[rule].topic))];
-    const overviewRows = rules
-        .map(rule => {
-            const count = hits.filter(hit => hit.rule === rule).length;
-            return `<tr><td><a href="#rule-${rule}">${rule}</a></td><td>${escapeHtml(RULES[rule].title)}</td><td>${HINT_RULES.has(rule) ? 'hint' : 'error'}</td><td>${count}</td></tr>`;
-        })
+    const overviewRow = rule => {
+        const count = hits.filter(hit => hit.rule === rule).length;
+        return `<tr><td><a href="#rule-${rule}">${rule}</a></td><td>${escapeHtml(RULES[rule].title)}</td><td>${WARNING_RULES.has(rule) ? 'warning' : 'error'}</td><td>${count}</td></tr>`;
+    };
+    const overviewRows = topics
+        .map(
+            topic =>
+                `<tr class="topic"><th colspan="4">${escapeHtml(topic)}</th></tr>${rules
+                    .filter(rule => RULES[rule].topic === topic)
+                    .map(overviewRow)
+                    .join('')}`
+        )
         .join('');
     const sections = topics
         .map(
@@ -532,7 +542,7 @@ function renderReport({ hits, descriptionCount, listSourceCount, textSourceCount
     return renderReportPage({
         title: 'Source data report',
         style: REPORT_STYLE,
-        intro: `<p>${descriptionCount} descriptions, ${listSourceCount} list sources and ${textSourceCount} text sources in ${complexCount} edition complexes. Errors fail the check; hints are open cases of rules that are not errors yet.</p>
+        intro: `<p>${descriptionCount} descriptions, ${listSourceCount} list sources and ${textSourceCount} text sources in ${complexCount} edition complexes. Errors fail the check; warnings are open cases or tolerated findings.</p>
 <div class="overflow" id="rules"><table class="list"><tr><th>Rule</th><th>Check</th><th>Kind</th><th>Hits</th></tr>${overviewRows}</table></div>`,
         body: sections,
     });
@@ -550,15 +560,15 @@ function main() {
         process.exitCode = 1;
         return;
     }
-    const { errors, hints, descriptionCount, listSourceCount, textSourceCount, complexCount } = result;
+    const { errors, warnings, descriptionCount, listSourceCount, textSourceCount, complexCount } = result;
 
     console.log(
         `Source data: ${descriptionCount} descriptions, ${listSourceCount} list sources, ${textSourceCount} text sources in ${complexCount} complexes`
     );
-    for (const hit of hints.filter(isListed)) {
-        console.log(`[HINT] rule ${hit.rule}  ${hit.ref}: ${formatHit(hit)}`);
+    for (const hit of warnings.filter(isListed)) {
+        console.log(`[WARN] rule ${hit.rule}  ${hit.ref}: ${formatHit(hit)}`);
     }
-    printHintCounts(hints);
+    printWarningCounts(warnings);
     for (const hit of errors) {
         console.error(`[ERR ] rule ${hit.rule}  ${hit.ref}: ${formatHit(hit)}`);
     }
