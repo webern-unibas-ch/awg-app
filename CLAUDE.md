@@ -16,6 +16,7 @@ Angular 22 app for the online edition of the Anton Webern Gesamtausgabe (AWG), d
 - `yarn format-files:check` / `yarn format-files:fix`: Prettier for `src/**`
 - `yarn build:prod`: production build to `dist/awg-app`
 - `yarn check:cycles`: madge check for circular imports (incl. path aliases; runs in CI)
+- `yarn dedupe --check`: fails if `yarn.lock` holds duplicates that `yarn dedupe` would merge (e.g. two copies of `d3-selection` break D3 plugins); fix with `yarn dedupe`; runs in CI
 - `yarn check:complexes`: checks the edition complexes against the outline and row tables, and the `parts` of composite complexes against the numbered parts in the source list types; runs in CI and pre-commit
 - `yarn check:glyphs`: checks the glyph chain edition data → `EDITION_GLYPHS_DATA` → glyph font subset (manifest, sha256); runs in CI and pre-commit
 - `yarn check:snippets`: checks that the `##Abbildung##` snippet PNGs referenced in the edition data exist
