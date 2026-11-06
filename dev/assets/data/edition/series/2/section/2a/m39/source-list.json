@@ -1,0 +1,36 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 34, M 35/42, M 36–38 und M* 404.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_A"
+        },
+        {
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39: Textfassung 1→2 (<strong>B<sup>a</sup></strong>), <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39: Textfassung 2 (<strong>B<sup>b</sup></strong>).<br />Skizze zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39: Textfassung 2 (<strong>B<sup>c</sup></strong>).<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 34, M 35/42, M 36–38 und M 41 sowie Skizzen zu Studienkomposition für Klavier M 35/42.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_B"
+        },
+        {
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Skizze zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39: Textfassung 2.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 35/42, M 40–41 und M* 405–406.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_C"
+        },
+        {
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39: Textfassung 2.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 35/42 und M 40.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_D"
+        }
+    ]
+}
