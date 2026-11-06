@@ -101,6 +101,10 @@ jobs:
               run: |
                   yarn run check:complexes
 
+            - name: Check source data
+              run: |
+                  yarn run check:source-data
+
             - name: Check yarn.lock for duplicates
               run: |
                   yarn dedupe --check
