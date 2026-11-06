@@ -1,8 +1,8 @@
 @for (composite of compositeComplexes(); track composite.complex.complexId.route) {
     @let label = isCompact() ? composite.complex.complexId.short : composite.complex.complexId.full;
 
-    <p class="awg-edition-complex-part-of mb-0">
-        Teil von:
+    <p class="awg-edition-complex-part-of mb-0" [class.text-muted]="isDisabled()">
+        Enthalten in:
         <awg-conditional-link [isClickable]="!composite.disabled" [targetRoute]="[composite.complex.baseRoute]">
             <span [innerHTML]="label"></span>
         </awg-conditional-link>

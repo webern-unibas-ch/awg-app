@@ -2,9 +2,75 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.2.0](https://github.com/webern-unibas-ch/awg-app/compare/v2.1.0...v2.2.0) (2026-11-06)
+
+Release developed with the support of [Claude Code](https://claude.com/claude-code) (Opus 5.5 / Sonnet 5.5).
+
+### Features
+
+- **edition:** add work edition data to composite complexes ([bbab9db](https://github.com/webern-unibas-ch/awg-app/commit/bbab9db72f0d400f851ef517be2c14abf2469de9))
+- **edition:** link edition targets via real router link ([5f33f80](https://github.com/webern-unibas-ch/awg-app/commit/5f33f80649b5b33cbcd922a61b06aeebcd15d78a))
+- **edition:** resolve the parts of composite complexes ([f125cda](https://github.com/webern-unibas-ch/awg-app/commit/f125cda6d6163277556f5749188eb981f54aef6b))
+- **scripts:** add check for edition complexes and their parts ([18e265a](https://github.com/webern-unibas-ch/awg-app/commit/18e265a58d20429fff19bdf2977ae0853557ff5c))
+- **scripts:** add check for shared source descriptions ([5a8c216](https://github.com/webern-unibas-ch/awg-app/commit/5a8c21660bd69828ea8146edc11f5b6a8bf70cc7))
+- **scripts:** add check for source data ([ac61f7e](https://github.com/webern-unibas-ch/awg-app/commit/ac61f7e7449ee98a354c32c8e4cc2283e9b1816b))
+
+### Bug Fixes
+
+- **assets:** add missing complex m313 to edition outline ([c48a8c4](https://github.com/webern-unibas-ch/awg-app/commit/c48a8c4ba141462c40df4beb9645af5f4dc3148a))
+- **assets:** correct ontology terms in op25 graph data ([574d16a](https://github.com/webern-unibas-ch/awg-app/commit/574d16aeacd48d002884e130d16ea3f56a8292f2))
+- **assets:** fix data drifts in shared documents (AWG II/2a) ([6753bdf](https://github.com/webern-unibas-ch/awg-app/commit/6753bdf3d028f13260cb5a25cd6abe2cf4564502))
+- **assets:** fix deprecated keys and missing folio positions ([6c59a25](https://github.com/webern-unibas-ch/awg-app/commit/6c59a250f71c84ed036a272c06c521c1af5da41d))
+- **assets:** fix source typos in AWG I/5 ([6b7c07b](https://github.com/webern-unibas-ch/awg-app/commit/6b7c07b0e02f8c17efca22608bab3e6f7d0706f1))
+- **assets:** fix source typos in AWG II/2a ([2359f8a](https://github.com/webern-unibas-ch/awg-app/commit/2359f8a18e7bee49399716184232b672f8d3fa56))
+- **assets:** fix writing instruments of mx465-467 and m112 ([09a9b7e](https://github.com/webern-unibas-ch/awg-app/commit/09a9b7e84a7c03c2b8440bb47e0fc429971ec3a9))
+- **assets:** replace Angular brace escapes and figure dashes ([01e51d7](https://github.com/webern-unibas-ch/awg-app/commit/01e51d75f316f6af9e9791b5f38cdfe4d0797caa))
+
+### Code Refactoring
+
+- **edition:** import rdfstore as ES module ([d846fd0](https://github.com/webern-unibas-ch/awg-app/commit/d846fd0aebec1b136b5aea7b649c28f5c0e29938))
+- **edition:** use no-break space character in complex ids ([65742d9](https://github.com/webern-unibas-ch/awg-app/commit/65742d9ac721959fd1bbde7893662b27944c64b1))
+- **scripts:** share helpers of the check scripts ([489c1fb](https://github.com/webern-unibas-ch/awg-app/commit/489c1fb4819fc4052c2ccd08c9ef4a646caecbc2))
+
+### Tests
+
+- **app:** enable noUncheckedIndexedAccess for specs ([1e398ec](https://github.com/webern-unibas-ch/awg-app/commit/1e398eca0229e6b4e2ea70f124e749b04e94119c))
+
+### Continuous Integration
+
+- **gh-actions:** avoid duplicate workflow runs on pull requests ([7220d89](https://github.com/webern-unibas-ch/awg-app/commit/7220d89d11223ac4e0d6015030cc7b38dde4fb68))
+- **gh-actions:** check yarn.lock for duplicates ([5a0ffce](https://github.com/webern-unibas-ch/awg-app/commit/5a0ffced4478e6f9950c0fae468d8dcd951f0645))
+- **gh-actions:** group all minor and patch action updates ([ca21d3f](https://github.com/webern-unibas-ch/awg-app/commit/ca21d3f88c8993a9e3287b56085ab8c1d570d849))
+- **gh-actions:** group d3 modules in dependabot ([a40be30](https://github.com/webern-unibas-ch/awg-app/commit/a40be303b279739557f307b398c0d90fa027091a))
+
+### Build System
+
+- **app:** enable noUncheckedIndexedAccess for app code ([4053631](https://github.com/webern-unibas-ch/awg-app/commit/4053631cab697c2299661dfcc91d3cda1c0e0850))
+- **deps-dev:** bump eslint from 10.13.0 to 10.14.0 in the eslint group across 1 directory ([a45d359](https://github.com/webern-unibas-ch/awg-app/commit/a45d359eab9dd755df25ea3bda1d691897108bb5))
+- **deps-dev:** bump eslint-plugin-jsdoc from 65.4.0 to 65.4.2 ([2056842](https://github.com/webern-unibas-ch/awg-app/commit/205684254f0171722586de16dfa7ef5ced394803))
+- **deps-dev:** bump the angular-cli-devkit group with 2 updates ([737b79f](https://github.com/webern-unibas-ch/awg-app/commit/737b79fea14ed02fa2bb0391ca3abb1be700a9ee))
+- **deps-dev:** bump the angular-cli-devkit group with 2 updates ([ac2852b](https://github.com/webern-unibas-ch/awg-app/commit/ac2852be4a75affe768ca9c70ffeb9b536e82cdb))
+- **deps-dev:** bump the npm-dev-minor-patch group across 1 directory with 2 updates ([7080772](https://github.com/webern-unibas-ch/awg-app/commit/708077251e04f37a293b2c575c18f5df288c2a3e))
+- **deps-dev:** bump the npm-dev-minor-patch group across 1 directory with 4 updates ([a77c34f](https://github.com/webern-unibas-ch/awg-app/commit/a77c34ffd91ec83b7de1eff7b648428caeb0e878))
+- **deps-dev:** bump the vitest group with 3 updates ([cc20c57](https://github.com/webern-unibas-ch/awg-app/commit/cc20c57ab2ec25291c9a196ea01fcb1f3c28b957))
+- **deps-dev:** bump typescript-eslint from 8.71.2 to 8.72.0 ([cad6abd](https://github.com/webern-unibas-ch/awg-app/commit/cad6abd3ee348dddd3fea372c3e8223910ffb946))
+- **deps-dev:** bump typescript-eslint from 8.72.0 to 8.72.1 ([95702bc](https://github.com/webern-unibas-ch/awg-app/commit/95702bc5a3ea269b97c2e5cb74eb79254e382af0))
+- **deps:** bump @codemirror/view from 6.43.14 to 6.43.15 in the codemirror group across 1 directory ([b4dcd15](https://github.com/webern-unibas-ch/awg-app/commit/b4dcd15d4651fe006f84bfbff7558b77d0a5236d))
+- **deps:** bump body-parser from 2.3.0 to 2.4.0 ([ab448b9](https://github.com/webern-unibas-ch/awg-app/commit/ab448b9ca46415278ca52bcb47efe86bde6adc88))
+- **deps:** bump fast-uri from 3.1.8 to 3.1.9 ([5558803](https://github.com/webern-unibas-ch/awg-app/commit/5558803a74a0b90944fb232c3c289f97235dfd17))
+- **deps:** bump qs from 6.16.0 to 6.16.1 ([e8cb727](https://github.com/webern-unibas-ch/awg-app/commit/e8cb7276c82d53729ead5344504e1f989b7a6978))
+- **deps:** bump SonarSource/sonarqube-scan-action from 8.4.0 to 8.4.1 ([980c677](https://github.com/webern-unibas-ch/awg-app/commit/980c677748323ec596086896494988a199e4b3e7))
+- **deps:** bump step-security/harden-runner from 2.22.1 to 2.22.2 ([bfea99b](https://github.com/webern-unibas-ch/awg-app/commit/bfea99bf9d9ba86a9258ab5f005555877db2f229))
+- **deps:** bump the angular group across 1 directory with 8 updates ([f382a4c](https://github.com/webern-unibas-ch/awg-app/commit/f382a4c736dccca50333ca1ab3e5eea5187c156e))
+- **deps:** bump the d3 group across 1 directory with 5 updates ([60d04b5](https://github.com/webern-unibas-ch/awg-app/commit/60d04b53571814948ebdbb2879f06bae6fd1a552))
+- **deps:** bump the github-actions group across 1 directory with 2 updates ([dff4440](https://github.com/webern-unibas-ch/awg-app/commit/dff44401a1c4b8a7f87f872b4da237a142ca7e8e))
+- **deps:** bump the github-codeql-action group across 1 directory with 4 updates ([10a7871](https://github.com/webern-unibas-ch/awg-app/commit/10a787113e0ac7a524d8d41db16875c2e0cc7c4b))
+- **deps:** bump the github-codeql-action group across 1 directory with 4 updates ([88d8ecf](https://github.com/webern-unibas-ch/awg-app/commit/88d8ecf63922fccec9c3804264998bb1fbeaac6d))
+- **deps:** bump tslib from 2.8.1 to 2.9.1 ([25ab0aa](https://github.com/webern-unibas-ch/awg-app/commit/25ab0aaf516c307a6304a598123922b2fb4a916f))
+
 ## [2.1.0](https://github.com/webern-unibas-ch/awg-app/compare/v2.0.0...v2.1.0) (2026-10-23)
 
-This is the first release developed with the support of [Claude Code](https://claude.com/claude-code).
+This is the first release developed with the support of [Claude Code](https://claude.com/claude-code) (Opus 5.5 / Sonnet 5.5).
 
 ### ⚠ BREAKING CHANGES
 

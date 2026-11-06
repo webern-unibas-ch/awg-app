@@ -155,6 +155,15 @@ describe('EditionComplexPartsComponent (DONE)', () => {
                     expectToBe(partOfCmp.isCompact(), true);
                 });
 
+                it('... should pass down the disabled flag of the complex as `isDisabled` to EditionComplexPartOfComponent (hollow)', () => {
+                    setOutlineComplexItem({ ...expectedPartItem, disabled: true });
+
+                    const partOfDes = getAndExpectDebugElementByDirective(compDe, EditionComplexPartOfComponent, 1, 1);
+                    const partOfCmp = partOfDes[0].injector.get(EditionComplexPartOfComponent);
+
+                    expectToBe(partOfCmp.isDisabled(), true);
+                });
+
                 it('... should contain no label and no EditionComplexPartsListComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex-parts > p', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, EditionComplexPartsListComponent, 0, 0);

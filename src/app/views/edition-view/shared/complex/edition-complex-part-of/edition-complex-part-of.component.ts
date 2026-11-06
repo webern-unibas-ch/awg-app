@@ -7,8 +7,8 @@ import { EditionOutlineCompositeComplexItem } from '@awg-views/edition-view/mode
 /**
  * The EditionComplexPartOf component.
  *
- * It shows which composite edition complexes an edition complex is a part of,
- * with its part number in each (e.g. "Teil von: op. 12 (Nr. 2)"),
+ * It shows which composite edition complexes contain an edition complex,
+ * with its part number in each (e.g. "Enthalten in: op. 12 (Nr. 2)"),
  * and links to the enabled composite complexes.
  */
 @Component({
@@ -33,4 +33,12 @@ export class EditionComplexPartOfComponent {
      * by their short instead of their full complex ids.
      */
     readonly isCompact = input<boolean>(false);
+
+    /**
+     * Readonly input signal: isDisabled.
+     *
+     * It holds the flag whether the edition complex is disabled,
+     * which mutes the whole entry.
+     */
+    readonly isDisabled = input<boolean>(false);
 }
