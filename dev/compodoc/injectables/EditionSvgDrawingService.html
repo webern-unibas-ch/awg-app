@@ -1307,8 +1307,8 @@ export class EditionSvgDrawingService {
         // Get the viewBox attributes from the SVG XML DOM tree
         const svgXMLViewBox: string &#x3D; D3_SELECTION.select(svgXML).attr(&#x27;viewBox&#x27;);
 
-        // The values may be separated by whitespace and/or commas
-        const [, , width &#x3D; 0, height &#x3D; 0] &#x3D; svgXMLViewBox
+        // The values may be separated by whitespace and/or commas, a missing value stays NaN
+        const [, , width &#x3D; Number.NaN, height &#x3D; Number.NaN] &#x3D; svgXMLViewBox
             .trim()
             .split(/[\s,]+/)
             .map(Number);
