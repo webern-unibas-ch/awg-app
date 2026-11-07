@@ -144,11 +144,15 @@ docs(README): add new contributors for data
 
 To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the [Commit Message Schema](#commit-message-schema) described below.
 
+`main` accepts only pull requests with one approval, merged as a merge commit, with signed commits and passing checks. `develop` requires pull requests, passing checks and a review.
+
 For more information about pull requests go check out the GitHub Help [About pull requests](https://help.github.com/en/articles/about-pull-requests).
 
 ### Release Versioning Convention
 
 We use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md) and automate versions by means of [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version). See also [README#releases](README.md#releases).
+
+Major versions follow the edition content. Technical breaking changes (e.g. framework migrations) are listed by hand under BREAKING CHANGES in the CHANGELOG, but don't necessarily raise the major version. commit-and-tag-version derives the version bump from the commit types; entries added by hand don't affect it.
 
 ### Release Process
 
@@ -157,12 +161,12 @@ Releases are prepared on a release branch and merged via pull requests. Both pul
 1. Create the branch `release/vX.Y.Z` from `develop`.
 2. Run `yarn pre-release --skip.commit` to update the version and generate the CHANGELOG. Review and complete the new CHANGELOG section, then commit it as `chore(release): X.Y.Z` and push the branch.
 3. Open a pull request from `release/vX.Y.Z` into `main` and merge it with a merge commit. The push to `main` deploys the app.
-4. Tag the merge commit on `main` with a signed tag and push it. The tag creates the GitHub release:
+4. Tag the merge commit on `main` with a signed tag and push it to the main repository (`webern-unibas-ch/awg-app`). The tag creates the GitHub release. If you work from a fork, push to the remote that points to the main repository (here `upstream`), not to your fork:
 
     ```bash
-    git switch main && git pull
+    git switch main && git pull upstream main
     git tag -s vX.Y.Z -m "vX.Y.Z"
-    git push origin vX.Y.Z
+    git push upstream vX.Y.Z
     ```
 
 5. Open a pull request from `main` into `develop` (back-merge) and merge it with a merge commit, e.g. titled `Merge tag 'vX.Y.Z' into develop`. Don't merge the release branch itself into `develop`: the tag would not be reachable from `develop`, and the next CHANGELOG would contain old commits again.
