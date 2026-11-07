@@ -13,6 +13,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const EDITION_DATA_DIR = path.join(ROOT, 'src', 'assets', 'data', 'edition');
+const OUTLINE_FILE = path.join(EDITION_DATA_DIR, 'edition-outline.json');
 const REPORT_DIR = path.join(ROOT, 'reports');
 const PACKAGE = require(path.join(ROOT, 'package.json'));
 const PROJECT_LABEL = 'Anton Webern Gesamtausgabe · Online Edition';
@@ -191,12 +192,29 @@ function openInBrowser(filePath) {
         .unref();
 }
 
+// The ids of the complexes in edition order (the order of the edition outline)
+function readComplexOrder() {
+    const order = [];
+    for (const series of readJson(OUTLINE_FILE).editionOutline ?? []) {
+        for (const section of series.sections ?? []) {
+            const complexTypes = section.content?.complexTypes ?? {};
+            for (const complexType of ['opus', 'mnr']) {
+                for (const entry of complexTypes[complexType] ?? []) {
+                    order.push(entry.complex);
+                }
+            }
+        }
+    }
+    return order;
+}
+
 module.exports = {
     ROOT,
     EDITION_DATA_DIR,
     relPath,
     editionJsonFiles,
     readJson,
+    readComplexOrder,
     escapeHtml,
     markChangedWords,
     renderReportPage,

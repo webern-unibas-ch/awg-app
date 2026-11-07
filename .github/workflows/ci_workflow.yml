@@ -97,6 +97,10 @@ jobs:
               run: |
                   yarn run check:glyphs
 
+            - name: Check edition sources
+              run: |
+                  yarn run check:sources
+
             - name: Check edition complexes
               run: |
                   yarn run check:complexes
