@@ -83,7 +83,7 @@ To build the app, use the following commands:
 
 ## Releases
 
-Releases for this project are automatically managed via Continuous Integration (CI). The following commands are involved in the release process:
+Releases are prepared on a release branch and merged via pull requests; the steps are described in [CONTRIBUTING#release-process](CONTRIBUTING.md#release-process). The following commands are involved:
 
 - `yarn pre-release`: Updates the app version and creates a changelog from the commit history.
 
