@@ -20,6 +20,13 @@
  * 3) Sigla in shared text: references to a complex-specific siglum (bold sigla, links to report
  *    fragments) in the compared fields are listed as warnings.
  *
+ * 4) Document registry (documents.json): every source list entry refers to a document by its
+ *    documentId, and the document lists the entry in usedBy. Part documents of a convolute
+ *    (descriptions with an addendum, e.g. Aa–Ad of A, without a list entry) refer to the convolute
+ *    by partOf. Copies matched as one group need one document, unless the registry marks the
+ *    documents as distinct (distinctFrom). Errors in these references fail the check; content
+ *    differences between the copies, the source lists and the registry are listed as warnings.
+ *
  * With --since <ref>, the report also lists the changed fields of the descriptions since a git ref
  * (commit, branch or tag), each with the copies of the same document that have the new value.
  *
@@ -31,8 +38,9 @@
  *         yarn check:sources --since develop
  *         yarn check:sources --open
  *
- * Exit code 0 = report written (differences do not fail the check)
- * Exit code 1 = the edition data or the git ref could not be read
+ * Exit code 0 = report written (differences and warnings do not fail the check)
+ * Exit code 1 = errors in the document registry or its references, or the edition data
+ *               or the git ref could not be read
  */
 
 'use strict';
@@ -42,11 +50,10 @@ const fs = require('fs');
 const path = require('path');
 const { pathToFileURL } = require('url');
 
-const { ROOT, EDITION_DATA_DIR, relPath, editionJsonFiles, readJson } = require('./check-utils');
+const { ROOT, EDITION_DATA_DIR, relPath, editionJsonFiles, readComplexOrder, readJson } = require('./check-utils');
 
 const PACKAGE = require(path.join(ROOT, 'package.json'));
 const PROJECT_LABEL = 'Anton Webern Gesamtausgabe · Online Edition';
-const OUTLINE_FILE = path.join(EDITION_DATA_DIR, 'edition-outline.json');
 const REPORT_FILE = path.join(ROOT, 'reports', 'shared-sources.html');
 const SOURCE_DESC_FILE = 'source-description.json';
 const SOURCE_LIST_FILE = 'source-list.json';
@@ -82,6 +89,12 @@ const MAX_WORD_ALIGNMENT = 1_000_000;
 const SIGLUM_REFERENCE_PATTERN =
     /<strong>[A-Z](?:<sup>[^<]*<\/sup>)?<\/strong>|data-report-fragment-id='source_[^']*'/g;
 const MISSING = '<missing>';
+const DOCUMENTS_FILE = path.join(EDITION_DATA_DIR, 'documents.json');
+const DOCUMENT_ID_PATTERN = /^awg_doc_\d{4}$/;
+// An M number with the numbers listed after it (M 36–38, M* 410, 412 und 414–416)
+const MNR_DIGITS = String.raw`\d+(?:/\d+)?(?:–\d+)?`;
+const MNR_LIST_PATTERN = new RegExp(String.raw`(M\*?) (${MNR_DIGITS}(?:(?:, | und )${MNR_DIGITS})*)`, 'g');
+const MNR_ITEM_PATTERN = /^M\*? \d+(?:\/\d+)?/;
 
 function readJsonIfExists(filePath, fallback) {
     return fs.existsSync(filePath) ? readJson(filePath) : fallback;
@@ -105,6 +118,11 @@ function stripTags(text) {
         result = result.replace(/<[^>]*>/g, '');
     } while (result !== previous);
     return result.replace(/\s+/g, ' ').trim();
+}
+
+// The siglum with its addendum (e.g. Aa, EH, FR1), as used in copy keys and convolute ids
+function fullSiglum(source) {
+    return `${source.siglum}${source.siglumAddendum ?? ''}`;
 }
 
 function escapeHtml(text) {
@@ -142,49 +160,35 @@ function normalizeSpace(value) {
     return value;
 }
 
-// ── Read the complexes in edition order ──────────────────────────────────────
-
-function readComplexOrder() {
-    const order = [];
-    for (const series of readJson(OUTLINE_FILE).editionOutline ?? []) {
-        for (const section of series.sections ?? []) {
-            const complexTypes = section.content?.complexTypes ?? {};
-            for (const complexType of ['opus', 'mnr']) {
-                for (const entry of complexTypes[complexType] ?? []) {
-                    order.push(entry.complex);
-                }
-            }
-        }
-    }
-    return order;
-}
-
-// The folders of the complexes with a source description (named by complex id, under series/)
-function findComplexDirs() {
-    return editionJsonFiles()
-        .filter(file => relPath(file, EDITION_DATA_DIR).startsWith('series/'))
-        .filter(file => path.basename(file) === SOURCE_DESC_FILE)
-        .map(file => {
-            const dir = path.dirname(file);
-            return { complexId: path.basename(dir), dir };
-        });
+// The source lists and descriptions of the complexes (folders under series/ named by complex id)
+function readComplexSources() {
+    const dirs = new Set(
+        editionJsonFiles()
+            .filter(file => relPath(file, EDITION_DATA_DIR).startsWith('series/'))
+            .filter(file => [SOURCE_LIST_FILE, SOURCE_DESC_FILE].includes(path.basename(file)))
+            .map(file => path.dirname(file))
+    );
+    return [...dirs].map(dir => ({
+        complexId: path.basename(dir),
+        dir,
+        list: readJsonIfExists(path.join(dir, SOURCE_LIST_FILE), { sources: [] }).sources,
+        descriptions: readJsonIfExists(path.join(dir, SOURCE_DESC_FILE), { sources: [] }).sources,
+    }));
 }
 
 // ── Read all source descriptions as copies (keyed by complex:siglum) ─────────
 
-function readCopies() {
+function readCopies(complexSources) {
     const rank = new Map(readComplexOrder().map((complexId, index) => [complexId, index]));
     const copies = [];
-    for (const { complexId, dir } of findComplexDirs()) {
-        const sourceList = readJsonIfExists(path.join(dir, SOURCE_LIST_FILE), { sources: [] });
-        const sourcesByLink = new Map(sourceList.sources.map(source => [source.linkTo, source]));
+    for (const { complexId, dir, list, descriptions } of complexSources) {
+        const sourcesByLink = new Map(list.map(source => [source.linkTo, source]));
         const convolutes = readJsonIfExists(path.join(dir, FOLIO_CONVOLUTE_FILE), { convolutes: [] }).convolutes;
         const convolutesById = new Map(convolutes.map(convolute => [convolute.convoluteId, convolute]));
 
-        for (const source of readJson(path.join(dir, SOURCE_DESC_FILE)).sources) {
+        for (const source of descriptions) {
             const listEntry = sourcesByLink.get(source.id) ?? source;
-            // The convolute id is the full siglum (with addendum, e.g. Aa, FR1)
-            const siglum = `${source.siglum}${source.siglumAddendum ?? ''}`;
+            const siglum = fullSiglum(source);
             copies.push({
                 key: `${complexId}:${siglum}`,
                 complexId,
@@ -652,7 +656,7 @@ function readChangesSince(ref, groups, find) {
             ? {
                   entries: data => data.sources,
                   id: source => source.id,
-                  key: source => `${complexId}:${source.siglum}${source.siglumAddendum ?? ''}`,
+                  key: source => `${complexId}:${fullSiglum(source)}`,
                   label: '',
                   field: 'physDesc',
                   read: copy => copy.physDesc,
@@ -689,6 +693,237 @@ function readChangesSince(ref, groups, find) {
     return changes;
 }
 
+// ── Check the document registry ──────────────────────────────────────────────
+
+// The copy key of a usedBy entry (complex:siglum)
+function useKey(use) {
+    return `${use.complex}:${use.siglum}`;
+}
+
+// The short form of copies or of a document (the copies that use it), e.g. m43:B = m44:A
+function copiesLabel(keys) {
+    return keys.join(' = ');
+}
+
+function documentLabel(doc) {
+    return copiesLabel((doc.usedBy ?? []).map(useKey));
+}
+
+// The location string of a registry entry, as written in the source lists
+function renderLocation(doc) {
+    if (doc.missing) {
+        return 'Verschollen.';
+    }
+    if (doc.publication) {
+        const { imprints = [], inPublication } = doc.publication;
+        if (inPublication) {
+            return `Beilage in: ${inPublication}.`;
+        }
+        const imprintTexts = imprints.map(
+            ({ place, publisher, year }) => `${place ? `${place}: ` : ''}${publisher}, ${year}`
+        );
+        return `${imprintTexts.join(' / ')}.`;
+    }
+    const { repository, collection, shelfmark } = doc.location ?? {};
+    return `${[repository, collection, shelfmark].filter(Boolean).join(', ')}.`;
+}
+
+// Text for comparing a list entry with its description: without tags and separators
+// (the list breaks lines where the description separates with " / ")
+function comparableText(text) {
+    return stripTags(text).replace(/ \/ /g, ' ');
+}
+
+// The M numbers named in a text, with ranges and lists that share a prefix (M 36–38, M* 410, 412)
+function mnrsInText(text) {
+    const mnrs = new Set();
+    for (const [, prefix, list] of stripTags(text).matchAll(MNR_LIST_PATTERN)) {
+        for (const part of list.split(/, | und /)) {
+            const [from, to] = part.split('–');
+            if (to && !from.includes('/')) {
+                for (let number = Number(from); number <= Number(to); number++) {
+                    mnrs.add(`${prefix} ${number}`);
+                }
+            } else {
+                mnrs.add(`${prefix} ${from}`);
+            }
+        }
+    }
+    return mnrs;
+}
+
+// The M numbers of the contents: from the item, or from its description if the item names none
+function mnrsInContents(physDesc) {
+    const mnrs = new Set();
+    for (const content of physDesc?.contents ?? []) {
+        const mnr = stripTags(content.item).match(MNR_ITEM_PATTERN)?.[0];
+        if (mnr) {
+            mnrs.add(mnr);
+        } else {
+            mnrsInText(content.itemDescription).forEach(descriptionMnr => mnrs.add(descriptionMnr));
+        }
+    }
+    return mnrs;
+}
+
+// Errors in the structure of the registry and its references; warnings for content differences
+function checkRegistry(complexSources, grouping) {
+    const errors = [];
+    const warnings = { drift: [], location: [], listDescription: [], mnrs: [] };
+    const notes = [];
+    const documents = readJson(DOCUMENTS_FILE).documents;
+
+    const byId = new Map();
+    for (const doc of documents) {
+        if (!DOCUMENT_ID_PATTERN.test(doc.id)) {
+            errors.push(`Invalid id ${doc.id}`);
+        }
+        if (byId.has(doc.id)) {
+            errors.push(`Duplicate id ${doc.id}`);
+        }
+        byId.set(doc.id, doc);
+    }
+    // The document of each use (complex:siglum)
+    const idByUse = new Map();
+    for (const doc of documents) {
+        if (doc.partOf && !byId.has(doc.partOf)) {
+            errors.push(`${doc.id}: partOf ${doc.partOf} does not exist`);
+        } else if (doc.partOf && byId.get(doc.partOf).partOf) {
+            errors.push(`${doc.id}: partOf ${doc.partOf}, which is a part itself`);
+        }
+        if (!doc.usedBy?.length) {
+            errors.push(`${doc.id} is not used by any source`);
+        }
+        for (const otherId of doc.distinctFrom ?? []) {
+            if (!byId.has(otherId)) {
+                errors.push(`${doc.id}: distinctFrom ${otherId} does not exist`);
+            }
+        }
+        for (const use of doc.usedBy ?? []) {
+            const key = useKey(use);
+            if (idByUse.has(key)) {
+                errors.push(`${key} is used by ${idByUse.get(key)} and ${doc.id}`);
+            }
+            idByUse.set(key, doc.id);
+        }
+    }
+
+    const referenced = new Set();
+    for (const { complexId, list, descriptions } of complexSources) {
+        const descriptionsById = new Map(descriptions.map(description => [description.id, description]));
+        const linked = new Set(list.map(entry => entry.linkTo));
+
+        for (const entry of list) {
+            const key = `${complexId}:${fullSiglum(entry)}`;
+            if (!entry.documentId) {
+                errors.push(`${key} has no documentId`);
+                continue;
+            }
+            const doc = byId.get(entry.documentId);
+            if (!doc) {
+                errors.push(`${key}: documentId ${entry.documentId} does not exist`);
+                continue;
+            }
+            if (doc.partOf) {
+                errors.push(`${key} refers to ${doc.id}, which is a part of ${doc.partOf}`);
+            }
+            // A use listed by another document stays unreferenced and is reported below
+            if (idByUse.get(key) === doc.id) {
+                referenced.add(key);
+            } else {
+                errors.push(`${key} refers to ${doc.id}, but its usedBy does not list ${key}`);
+            }
+            const registryLocation = renderLocation(doc);
+            if (normalizeSpace(entry.location) !== normalizeSpace(registryLocation)) {
+                warnings.location.push({ copy: key, list: entry.location, registry: registryLocation });
+            }
+
+            const description = entry.hasDescription ? descriptionsById.get(entry.linkTo) : null;
+            if (!description) continue;
+            // An empty field in the description (e.g. a convolute described by its parts) is not compared
+            for (const field of ['type', 'location']) {
+                const descriptionText = comparableText(description[field]);
+                if (descriptionText && comparableText(entry[field]) !== descriptionText) {
+                    warnings.listDescription.push({
+                        copy: key,
+                        field,
+                        list: entry[field],
+                        description: description[field],
+                    });
+                }
+            }
+            // Only types that name M numbers (not e.g. "Reihentabelle."); a convolute with the contents of its parts
+            const parts = descriptions.filter(
+                part => byId.get(idByUse.get(`${complexId}:${fullSiglum(part)}`))?.partOf === doc.id
+            );
+            const contentMnrs = new Set(
+                [description, ...parts].flatMap(({ physDesc }) => [...mnrsInContents(physDesc)])
+            );
+            const typeMnrs = mnrsInText(entry.type);
+            if (contentMnrs.size && typeMnrs.size) {
+                const onlyType = [...typeMnrs].filter(mnr => !contentMnrs.has(mnr));
+                const onlyContents = [...contentMnrs].filter(mnr => !typeMnrs.has(mnr));
+                if (onlyType.length || onlyContents.length) {
+                    warnings.mnrs.push({ copy: key, onlyType, onlyContents });
+                }
+            }
+        }
+
+        // Part documents: descriptions with an addendum that no list entry links to (e.g. Aa–Ad of A)
+        for (const description of descriptions) {
+            if (!description.siglum || linked.has(description.id)) continue;
+            const key = `${complexId}:${fullSiglum(description)}`;
+            const doc = byId.get(idByUse.get(key));
+            // The convolute's full siglum is the part's without the part letter (A for Aa, FR1 for FR1a)
+            const container = list.find(entry => fullSiglum(entry) === fullSiglum(description).slice(0, -1));
+            if (!doc?.partOf) {
+                errors.push(`${key} is neither in the source list nor a registered part`);
+            } else if (doc.partOf !== container?.documentId) {
+                errors.push(`${key}: part of ${doc.partOf}, but the source list refers to ${container?.documentId}`);
+            } else {
+                referenced.add(key);
+            }
+        }
+    }
+    for (const key of idByUse.keys()) {
+        if (!referenced.has(key)) {
+            errors.push(`${idByUse.get(key)} lists ${key}, which does not refer to it`);
+        }
+    }
+
+    // Copies of the same document (matched by content) need one id; one id across copies that are not
+    // matched points to drift
+    const { groups, find } = grouping;
+    // A wrong match is resolved by marking the documents as distinct (distinctFrom, either direction)
+    const isDistinct = (a, b) => byId.get(a).distinctFrom?.includes(b) || byId.get(b).distinctFrom?.includes(a);
+    const groupIds = groups.map(group => {
+        // Unregistered copies are reported above
+        const ids = [...new Set(group.copies.map(copy => idByUse.get(copy.key)).filter(Boolean))];
+        const label = copiesLabel(group.copies.map(copy => copy.key));
+        if (ids.every((a, index) => ids.slice(index + 1).every(b => isDistinct(a, b)))) {
+            if (ids.length > 1) {
+                notes.push(`${label}: matched, but ${ids.join(', ')} are marked as distinct`);
+            }
+        } else {
+            errors.push(`${label} are one document, but refer to ${ids.join(', ')}`);
+        }
+        return ids.join(', ') || undefined;
+    });
+    const copyKeys = new Set(
+        complexSources.flatMap(({ complexId, descriptions }) =>
+            descriptions.map(description => `${complexId}:${fullSiglum(description)}`)
+        )
+    );
+    for (const doc of documents) {
+        const described = (doc.usedBy ?? []).map(useKey).filter(key => copyKeys.has(key));
+        if (new Set(described.map(find)).size > 1) {
+            warnings.drift.push({ id: doc.id, label: documentLabel(doc) });
+        }
+    }
+
+    return { errors, warnings, notes, groupIds, byId };
+}
+
 // ── Render the report ────────────────────────────────────────────────────────
 
 const STYLE = `
@@ -711,7 +946,7 @@ table.diff th { color: var(--muted); font-weight: normal; }
 .overflow { overflow-x: auto; }
 `;
 
-function renderGroup(group, index, result) {
+function renderGroup(group, index, result, documentId) {
     const { differences, formatNotes, siglumWarnings } = result;
     const status = differences.length ? `${differences.length} field(s) with differences` : 'identical';
     const members = group.copies
@@ -743,7 +978,7 @@ function renderGroup(group, index, result) {
 
     return `
 <section class="group ${differences.length ? 'drift' : 'ok'}">
-<h2>${index + 1}. ${escapeHtml(group.copies.map(copy => copy.key).join(' = '))}</h2>
+<h2>${index + 1}. ${escapeHtml(documentId ?? '(no document id)')} (${escapeHtml(copiesLabel(group.copies.map(copy => copy.key)))})</h2>
 <p class="meta">Matched by: ${group.criteria.join(', ')} · <span class="status">${status}</span></p>
 <table class="list"><tr><th>Copy</th><th>Type (complex-specific)</th><th>Location</th></tr>${members}</table>
 ${differenceItems ? `<h3>Content differences</h3>${differenceItems}` : ''}
@@ -766,6 +1001,35 @@ function renderChanges(ref, changes) {
 <div class="overflow"><table class="list"><tr><th>Copy</th><th>Field</th><th>Before</th><th>After</th><th>Same value in</th></tr>${rows || '<tr><td colspan="5">none</td></tr>'}</table></div>`;
 }
 
+function renderRegistry({ errors, warnings, notes }) {
+    const itemList = (items, render) =>
+        items.length
+            ? `<ul>${items.map(item => `<li>${render(item)}</li>`).join('')}</ul>`
+            : '<p class="meta">none</p>';
+    const comparison = (label, otherLabel, listValue, otherValue) =>
+        `<b>${escapeHtml(label)}</b>${renderDiff('Source list', otherLabel, listValue, otherValue)}`;
+    return `
+<h2>Document registry (<code>${relPath(DOCUMENTS_FILE)}</code>)</h2>
+<h3>Errors (${errors.length})</h3>
+${itemList(errors, escapeHtml)}
+<h3>Matched copies of documents marked as distinct (${notes.length})</h3>
+${itemList(notes, escapeHtml)}
+<h3>Copies of one document that are not matched as one group (${warnings.drift.length})</h3>
+${itemList(warnings.drift, ({ id, label }) => `<b>${escapeHtml(id)}</b> (${escapeHtml(label)})`)}
+<h3>Location in the source list differs from the registry (${warnings.location.length})</h3>
+${itemList(warnings.location, ({ copy, list, registry }) => comparison(copy, 'Registry', list, registry))}
+<h3>Source list differs from the source description (${warnings.listDescription.length})</h3>
+${itemList(warnings.listDescription, ({ copy, field, list, description }) =>
+    comparison(`${copy} ${field}`, 'Source description', list, description)
+)}
+<h3>M numbers in the type differ from the contents (${warnings.mnrs.length})</h3>
+${itemList(
+    warnings.mnrs,
+    ({ copy, onlyType, onlyContents }) =>
+        `<b>${escapeHtml(copy)}</b>: only in the type: ${escapeHtml(onlyType.join(', ') || '—')}; only in the contents: ${escapeHtml(onlyContents.join(', ') || '—')}`
+)}`;
+}
+
 // Branch, short commit and whether the edition data has uncommitted changes (null outside git)
 function readGitState() {
     try {
@@ -779,7 +1043,7 @@ function readGitState() {
     }
 }
 
-function renderReport({ groups, results, nearMatches, changes, copyCount }) {
+function renderReport({ groups, results, nearMatches, changes, copyCount, registry }) {
     const identical = results.filter(result => !result.differences.length).length;
     const nearRows = nearMatches
         .map(
@@ -809,8 +1073,9 @@ ${groups.length} groups with ${copyCount} copies; ${identical} identical, ${grou
 For each field that differs, the copies are grouped into variants by value (counts most first, e.g. 4/2/1),
 and every other variant is compared with the most frequent one (on equal counts, the first in edition order).
 Complex-specific fields (siglum, type, corrections) are not compared.</p>
+${renderRegistry(registry)}
 ${changes ? renderChanges(SINCE_REF, changes) : ''}
-${groups.map((group, index) => renderGroup(group, index, results[index])).join('')}
+${groups.map((group, index) => renderGroup(group, index, results[index], registry.groupIds[index])).join('')}
 <h2>Near matches (contents overlap ≥ ${NEAR_MATCH_THRESHOLD * 100} %, not grouped)</h2>
 <div class="overflow"><table class="list"><tr><th>A</th><th>B</th><th>Overlap</th><th>Shared items</th></tr>${nearRows || '<tr><td colspan="4">none</td></tr>'}</table></div>
 </body></html>
@@ -837,11 +1102,14 @@ function openInBrowser(filePath) {
 function main() {
     let changes = null;
     let grouping;
+    let registry;
     try {
         if (SINCE_INDEX !== -1 && !SINCE_REF) {
             throw new Error('--since needs a git ref (commit, branch or tag)');
         }
-        grouping = groupCopies(readCopies());
+        const complexSources = readComplexSources();
+        grouping = groupCopies(readCopies(complexSources));
+        registry = checkRegistry(complexSources, grouping);
         if (SINCE_REF) {
             changes = readChangesSince(SINCE_REF, grouping.groups, grouping.find);
         }
@@ -857,7 +1125,7 @@ function main() {
     const copyCount = groups.reduce((sum, group) => sum + group.copies.length, 0);
 
     fs.mkdirSync(path.dirname(REPORT_FILE), { recursive: true });
-    fs.writeFileSync(REPORT_FILE, renderReport({ groups, results, nearMatches, changes, copyCount }));
+    fs.writeFileSync(REPORT_FILE, renderReport({ groups, results, nearMatches, changes, copyCount, registry }));
 
     const drifting = groups
         .map((group, index) => ({ group, result: results[index], index }))
@@ -871,7 +1139,9 @@ function main() {
         const fields = result.differences
             .map(({ field, variants }) => `${field} ${formatDistribution(variants)}`)
             .join(', ');
-        console.log(`[DIFF] ${index + 1}. ${group.copies.map(copy => copy.key).join(' = ')}  (${fields})`);
+        console.log(
+            `[DIFF] ${index + 1}. ${registry.groupIds[index] ?? '(no document id)'} (${copiesLabel(group.copies.map(copy => copy.key))})  (${fields})`
+        );
     }
     if (formatCopies.length) {
         console.log(`[NOTE] Format differences in ${formatCopies.join(', ')}`);
@@ -884,6 +1154,34 @@ function main() {
     }
     if (changes) {
         console.log(`[INFO] ${changes.length} changed field(s) since ${SINCE_REF}`);
+    }
+
+    const { errors, warnings, notes } = registry;
+    console.log(`\nDocument registry: ${registry.byId.size} document(s)`);
+    for (const { id, label } of warnings.drift) {
+        console.log(`[WARN] ${id} (${label}): copies not matched as one group`);
+    }
+    for (const { copy, list, registry: text } of warnings.location) {
+        console.log(`[WARN] ${copy}: location "${list}" differs from the registry ("${text}")`);
+    }
+    for (const { copy, field } of warnings.listDescription) {
+        console.log(`[WARN] ${copy}: ${field} differs between source list and description`);
+    }
+    for (const { copy, onlyType, onlyContents } of warnings.mnrs) {
+        console.log(
+            `[WARN] ${copy}: M numbers only in the type: ${onlyType.join(', ') || '-'}; only in the contents: ${onlyContents.join(', ') || '-'}`
+        );
+    }
+    for (const note of notes) {
+        console.log(`[NOTE] ${note}`);
+    }
+    for (const error of errors) {
+        console.error(`[ERR ] ${error}`);
+    }
+    if (errors.length) {
+        process.exitCode = 1;
+    } else {
+        console.log('[OK  ] Registry and source lists refer to each other');
     }
     console.log(`\nReport: ${pathToFileURL(REPORT_FILE).href}`);
 
