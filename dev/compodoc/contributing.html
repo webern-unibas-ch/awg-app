@@ -234,9 +234,11 @@ email, or any other method with the owners of this repository before making a ch
 - add path for multipart request
 - adapt handling of resources responder</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none">docs(README): add new contributors for data</code></pre></div><h3>Pull Requests</h3>
 <p>To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the <a href="#commit-message-schema">Commit Message Schema</a> described below.</p>
+<p><code>main</code> accepts only pull requests with one approval, merged as a merge commit, with signed commits and passing checks. <code>develop</code> requires pull requests, passing checks and a review.</p>
 <p>For more information about pull requests go check out the GitHub Help <a href="https://help.github.com/en/articles/about-pull-requests">About pull requests</a>.</p>
 <h3>Release Versioning Convention</h3>
 <p>We use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/absolute-version/commit-and-tag-version">commit-and-tag-version</a>. See also <a href="README.md#releases">README#releases</a>.</p>
+<p>Major versions follow the edition content. Technical breaking changes (e.g. framework migrations) are listed by hand under BREAKING CHANGES in the CHANGELOG, but don&#39;t necessarily raise the major version. commit-and-tag-version derives the version bump from the commit types; entries added by hand don&#39;t affect it.</p>
 <h3>Release Process</h3>
 <p>Releases are prepared on a release branch and merged via pull requests. Both pull requests are merged with <strong>&quot;Create a merge commit&quot;</strong> (no squash), so that <code>main</code> and <code>develop</code> share the release commit and the release tag stays reachable from <code>develop</code>.</p>
 <ol>
@@ -246,10 +248,10 @@ email, or any other method with the owners of this repository before making a ch
 </li>
 <li><p>Open a pull request from <code>release/vX.Y.Z</code> into <code>main</code> and merge it with a merge commit. The push to <code>main</code> deploys the app.</p>
 </li>
-<li><p>Tag the merge commit on <code>main</code> with a signed tag and push it. The tag creates the GitHub release:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">git switch main &amp;&amp; git pull
+<li><p>Tag the merge commit on <code>main</code> with a signed tag and push it to the main repository (<code>webern-unibas-ch/awg-app</code>). The tag creates the GitHub release. If you work from a fork, push to the remote that points to the main repository (here <code>upstream</code>), not to your fork:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">git switch main &amp;&amp; git pull upstream main
 git tag -s vX.Y.Z -m &quot;vX.Y.Z&quot;
-git push origin vX.Y.Z</code></pre></div></li>
+git push upstream vX.Y.Z</code></pre></div></li>
 <li><p>Open a pull request from <code>main</code> into <code>develop</code> (back-merge) and merge it with a merge commit, e.g. titled <code>Merge tag &#39;vX.Y.Z&#39; into develop</code>. Don&#39;t merge the release branch itself into <code>develop</code>: the tag would not be reachable from <code>develop</code>, and the next CHANGELOG would contain old commits again.</p>
 </li>
 <li><p>Delete the release branch.</p>
