@@ -14,8 +14,7 @@
         <p class="awg-citation-text">
             {{ pageMetaData.awgProjectName }}. Projekt-Website:
             <a [href]="pageMetaData.awgProjectUrl"> {{ pageMetaData.awgProjectUrl }} </a>, abgerufen am
-            <span class="awg-citation-date">{{ today() | date: 'longDate' }}</span
-            >.
+            <span class="awg-citation-date">{{ today() | date: 'longDate' }}</span>.
         </p>
 
         <p class="fst-italic">Online-Edition:</p>
@@ -24,10 +23,8 @@
             <span class="awg-citation-version">{{ pageMetaData.awgAppVersion }}</span> vom
             <span class="awg-citation-version-release">{{
                 pageMetaData.awgAppVersionReleaseDate | date: 'longDate'
-            }}</span
-            >): <a [href]="pageMetaData.awgAppUrl"> {{ pageMetaData.awgAppUrl }} </a>, abgerufen am
-            <span class="awg-citation-date">{{ today() | date: 'longDate' }}</span
-            >.
+            }}</span>): <a [href]="pageMetaData.awgAppUrl"> {{ pageMetaData.awgAppUrl }} </a>, abgerufen am
+            <span class="awg-citation-date">{{ today() | date: 'longDate' }}</span>.
         </p>
     </div>
 
