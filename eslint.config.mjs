@@ -243,6 +243,8 @@ export default defineConfig(
             ],
             // Defensive checks are deliberate: the edition data is unvalidated static JSON despite non-nullable types
             '@typescript-eslint/no-unnecessary-condition': 'off',
+            // Data classes without methods (JSON shapes) are filled with object literals by design
+            '@typescript-eslint/no-unsafe-class-instance-assignment': 'off',
             '@typescript-eslint/no-unused-expressions': 'error',
             '@typescript-eslint/no-use-before-define': 'error',
             '@typescript-eslint/prefer-function-type': 'error',
