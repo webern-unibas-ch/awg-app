@@ -137,7 +137,7 @@
         "@vitest/browser-playwright": "^5.1.0",
         "@vitest/coverage-v8": "^5.1.0",
         "angular-cli-ghpages": "^3.1.2",
-        "angular-eslint": "^22.6.0",
+        "angular-eslint": "^22.8.0",
         "commit-and-tag-version": "^13.3.0",
         "conventional-recommended-bump": "^12.1.1",
         "esbuild-visualizer": "^0.7.0",
