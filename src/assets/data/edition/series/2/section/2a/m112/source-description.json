@@ -1213,7 +1213,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": ["Bleistift", "roter Buntstift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1457,7 +1457,7 @@
                     },
                     {
                         "id": "source_Da_corr_2",
-                        "label": "Korrekturen 2 in <strong>D<sup>a</sup></strong> (mit Bleistift)",
+                        "label": "Korrekturen 2 in <strong>D<sup>a</sup></strong> (mit Bleistift und rotem Buntstift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a data-complex-id='m112' data-sheet-id='M112_TF2'>Textfassung 2</a>.",
@@ -1766,7 +1766,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": []
+                    "secondary": ["blauer Kugelschreiber"]
                 },
                 "titles": [],
                 "dates": [],
@@ -2121,7 +2121,7 @@
                     },
                     {
                         "id": "source_FR1_corr_2",
-                        "label": "Korrekturen 2 in <strong>F<sup>R1</sup></strong> (mit Kugelschreiber)",
+                        "label": "Korrekturen 2 in <strong>F<sup>R1</sup></strong> (mit blauem Kugelschreiber)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a>.",
@@ -2292,7 +2292,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "blauer Kugelschreiber"]
+                    "secondary": ["Bleistift", "roter Buntstift (archivalische Paginierung)", "blauer Kugelschreiber"]
                 },
                 "titles": [],
                 "dates": [],
@@ -2647,7 +2647,7 @@
                     },
                     {
                         "id": "source_FR2_corr_2",
-                        "label": "Korrekturen 2 in <strong>F<sup>R2</sup></strong> (mit Kugelschreiber)",
+                        "label": "Korrekturen 2 in <strong>F<sup>R2</sup></strong> (mit blauem Kugelschreiber)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 112: <a data-complex-id='m112' data-sheet-id='M112_TF3'>Textfassung 3</a>.",
