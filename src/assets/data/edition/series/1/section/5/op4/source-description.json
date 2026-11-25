@@ -84,7 +84,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "roter Buntstift", "rote Tinte"]
+                    "secondary": ["Bleistift", "roter Buntstift", "blaue Tinte (Hs. Lehman)", "rote Tinte"]
                 },
                 "titles": [
                     "<em>II.</em> [Mitte] <em>Stefan George | VII. Ring | A. v</em>[.] <em>Webern op</em>[.]<em> 2</em> [rechts] auf Bl. 1<sup>r</sup> oben mit roter Tinte",
@@ -905,7 +905,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "grüner Buntstift", "roter Buntstift"]
+                    "secondary": ["Bleistift", "grüner Buntstift", "roter Buntstift", "blaue Tinte"]
                 },
                 "titles": [
                     "<em><s>Op. 4 Nr.</s></em> [<em><s>x</s></em>] auf Bl. 1<sup>r</sup> oben rechts (Hs.?), radiert",
@@ -1527,7 +1527,7 @@
                     },
                     {
                         "id": "source_Bb_corr",
-                        "label": "Korrekturen in <strong>B<sup>b</sup></strong> (mit Bleistift)",
+                        "label": "Korrekturen in <strong>B<sup>b</sup></strong> (mit Bleistift und blauer Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "Die Beschreibung der Korrekturen bezieht sich auf <a data-complex-id='op4' data-sheet-id='M140_TF1'>„Ja Heil und Dank dir“ M 140: <a data-complex-id='op4' data-sheet-id='M140_TF1'>Textfassung 1</a>.",
@@ -2966,6 +2966,11 @@
                 "conditions": [
                     "Siehe <a data-complex-id='op4' data-report-fragment-id='source_G'><strong>G</strong></a>. Format: hoch 296 × 219 mm. Rissspuren am linken Rand: von Bogen abgetrennt. Papierklebestreifen am rechten Rand von S. 2. Archivalische Eintragung <em>PMM 21</em> auf S. 2 unten Mitte mit Bleistift."
                 ],
+                "writingMaterialStrings": [],
+                "writingInstruments": {
+                    "main": "rote Tinte",
+                    "secondary": ["Bleistift (archivalische Hs.)", "schwarze Tinte"]
+                },
                 "titles": [
                     "<em>&lt;I.&gt; | „Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN &lt;op</em>[.] <em>2&gt;</em> auf S. 1 oben Mitte, <em>&lt;I.&gt;</em> mit schwarzer Tinte, <em>&lt;op</em>[.] <em>2&gt;</em> mit roter Tinte"
                 ],
@@ -3537,7 +3542,14 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "roter Buntstift", "violetter Buntstift", "blaue Tinte", "rote Tinte"]
+                    "secondary": [
+                        "Bleistift",
+                        "blauer Buntstift",
+                        "roter Buntstift",
+                        "violetter Buntstift",
+                        "blaue Tinte",
+                        "rote Tinte"
+                    ]
                 },
                 "titles": [
                     "<em>Fünf Lieder | nach | Gedichten von Stefan George | für eine Singstimme und Klavier | op. 4</em> auf Bl. [a]<sup>r</sup> mit schwarzer Tinte",
@@ -6054,7 +6066,24 @@
             "siglumAddendum": "H",
             "type": "Handexemplar von <a data-complex-id='op4' data-report-fragment-id='source_J'><strong>J</strong></a> mit Eintragungen Weberns.",
             "location": "A-Wst, Musikhandschriften, MHc-14926.",
-            "physDesc": {}
+            "physDesc": {
+                "conditions": [
+                    "Siehe <a data-complex-id='op4' data-report-fragment-id='source_J'><strong>J</strong></a>."
+                ],
+                "writingMaterialStrings": [],
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [],
+                "corrections": []
+            }
         }
     ]
 }

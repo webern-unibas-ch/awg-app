@@ -2440,6 +2440,18 @@
                 "conditions": [
                     "Siehe <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a>."
                 ],
+                "writingMaterialStrings": [],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [],
                 "corrections": [
                     {
                         "id": "source_EH_corr",
@@ -4618,13 +4630,25 @@
                 "conditions": [
                     "Siehe <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>."
                 ],
+                "writingMaterialStrings": [],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
                 "annotations": [
                     "<em>Som̅er, 1925</em> auf S. [1] untere Hälfte links mit Bleistift",
                     "<em>2 1/2 bis 3</em> nach I mit Bleistift",
                     "<em>3’</em> nach II mit Bleistift",
                     "<em>2 1/2</em> nach III mit Bleistift",
                     "<em>2’</em> [eingerahmt] <em><s>3’</s></em> nach IV mit Bleistift, <em><s>3’</s></em> gestrichen"
-                ]
+                ],
+                "contents": [],
+                "corrections": []
             }
         }
     ]
