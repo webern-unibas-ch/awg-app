@@ -745,7 +745,12 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "oranger Buntstift", "roter Buntstift", "blauer Kugelschreiber"]
+                    "secondary": [
+                        "Bleistift",
+                        "oranger Buntstift",
+                        "roter Buntstift",
+                        "blauer Kugelschreiber (archivalische Hs.)"
+                    ]
                 },
                 "titles": [
                     "<em>IV.</em> [roter Buntstift] | &lt;<em>Anton von</em>&gt; [schwarze Tinte] <em>Webern</em> [oranger Buntstift] <em><s>(2)</s></em> [roter Buntstift] auf Bl. 1<sup>r</sup> System 2–5 Mitte, <em>(2)</em> gestrichen mit rotem Buntstift",
@@ -1222,7 +1227,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": []
+                    "secondary": ["Bleistift (archivalische Paginierung)"]
                 },
                 "titles": [],
                 "dates": [],
@@ -1412,6 +1417,7 @@
                     "main": "schwarze Tinte",
                     "secondary": [
                         "Bleistift",
+                        "blauer Buntstift",
                         "grüner Buntstift",
                         "roter Buntstift",
                         "türkiser Buntstift",
@@ -2813,7 +2819,7 @@
                     },
                     {
                         "id": "source_Ee_corr_2",
-                        "label": "Korrekturen 2 in <strong>E<sup>e</sup></strong> (mit türkisem Buntstift)",
+                        "label": "Korrekturen 2 in <strong>E<sup>e</sup></strong> (mit türkisem und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: <a data-complex-id='op3' data-sheet-id='M137_TF2'>Textfassung 2</a>.",
@@ -4820,7 +4826,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift", "roter Buntstift", "rote Tinte"]
+                    "secondary": ["Bleistift", "roter Buntstift", "blaue Tinte (Hs. Lehman)", "rote Tinte"]
                 },
                 "titles": [
                     "<em>II.</em> [Mitte] <em>Stefan George | VII. Ring | A. v</em>[.] <em>Webern op</em>[.]<em> 2</em> [rechts] auf Bl. 1<sup>r</sup> oben mit roter Tinte",
