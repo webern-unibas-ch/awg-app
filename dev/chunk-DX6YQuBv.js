@@ -1,0 +1,1 @@
+import{Mt as Ye}from"./chunk-DQp8tuM9.js";var a=(()=>{class t{constructor(){this.animation=!0}static{this.ɵfac=function(i){return new(i||t)}}static{this.ɵprov=Ye({token:t,factory:t.ɵfac})}}return t})();export{a as t};
