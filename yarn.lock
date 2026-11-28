@@ -1213,20 +1213,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@es-joy/jsdoccomment@npm:^1.1.0":
-  version: 1.2.0
-  resolution: "@es-joy/jsdoccomment@npm:1.2.0"
-  dependencies:
-    "@types/estree": "npm:^1.0.10"
-    "@typescript-eslint/types": "npm:^8.72.2"
-    comment-parser: "npm:1.4.9"
-    esquery: "npm:^1.7.0"
-    jsdoc-type-pratt-parser: "npm:~9.5.0"
-  checksum: 10c0/24863ed0de87943e25e573f893920e2c1de11a17da14aede1549215b6617887c5572efd5e8a33a325bffff84bc6b798f17ed2e5f2a3ce29e676d577850216da5
-  languageName: node
-  linkType: hard
-
-"@es-joy/jsdoccomment@npm:~1.2.1":
+"@es-joy/jsdoccomment@npm:^1.1.0, @es-joy/jsdoccomment@npm:~1.2.1":
   version: 1.2.1
   resolution: "@es-joy/jsdoccomment@npm:1.2.1"
   dependencies:
@@ -3294,16 +3281,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 26.6.6
-  resolution: "@types/node@npm:26.6.6"
-  dependencies:
-    undici-types: "npm:~8.9.0"
-  checksum: 10c0/5cb63f644f6e85a257a9cd2403cbcbe196760e2a35fd3ec9fb8b5cff663e14cc832b198cc17b53f870a2e30900ed45a1fb3f53e6589aba26b8e8c484aa672053
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^26.6.10":
+"@types/node@npm:*, @types/node@npm:^26.6.10":
   version: 26.6.10
   resolution: "@types/node@npm:26.6.10"
   dependencies:
@@ -10363,7 +10341,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:18.1.0, yargs@npm:^18.0.0":
+"yargs@npm:18.1.0":
   version: 18.1.0
   resolution: "yargs@npm:18.1.0"
   dependencies:
@@ -10392,7 +10370,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:^18.2.0":
+"yargs@npm:^18.0.0, yargs@npm:^18.2.0":
   version: 18.2.0
   resolution: "yargs@npm:18.2.0"
   dependencies:
