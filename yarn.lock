@@ -22,7 +22,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-devkit/architect@npm:0.2203.0":
+"@angular-devkit/architect@npm:0.2203.0, @angular-devkit/architect@npm:>= 0.2200.0 < 0.2300.0, @angular-devkit/architect@npm:>=0.1800.0 <0.2300.0":
   version: 0.2203.0
   resolution: "@angular-devkit/architect@npm:0.2203.0"
   dependencies:
@@ -31,18 +31,6 @@ __metadata:
   bin:
     architect: bin/cli.js
   checksum: 10c0/0147dddd415c1f3d84d5cf365e8b0805b61d25afdc49d6de051917f492e7ef327b9eb6fe8e75d7f96e0975555124a0e58a7f2242f3956ff7bb523e7eb3fdf571
-  languageName: node
-  linkType: hard
-
-"@angular-devkit/architect@npm:>= 0.2200.0 < 0.2300.0, @angular-devkit/architect@npm:>=0.1800.0 <0.2300.0":
-  version: 0.2202.7
-  resolution: "@angular-devkit/architect@npm:0.2202.7"
-  dependencies:
-    "@angular-devkit/core": "npm:22.2.7"
-    rxjs: "npm:7.8.2"
-  bin:
-    architect: bin/cli.js
-  checksum: 10c0/3db84743b18e2998f03476a1f5d1f0eddbd84e68215e0aef20186b1639f19cb0654f4fc96744bf73cd80d513fa0358e3ec7f0795149df5c06d7d1dd932a5eca4
   languageName: node
   linkType: hard
 
@@ -65,26 +53,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-devkit/core@npm:22.2.7, @angular-devkit/core@npm:>= 22.0.0 < 23.0.0, @angular-devkit/core@npm:>=18.0.0 <23.0.0":
-  version: 22.2.7
-  resolution: "@angular-devkit/core@npm:22.2.7"
-  dependencies:
-    ajv: "npm:8.20.0"
-    ajv-formats: "npm:3.0.1"
-    jsonc-parser: "npm:3.3.1"
-    picomatch: "npm:4.0.7"
-    rxjs: "npm:7.8.2"
-    source-map: "npm:0.8.0"
-  peerDependencies:
-    chokidar: ^5.0.0
-  peerDependenciesMeta:
-    chokidar:
-      optional: true
-  checksum: 10c0/a9eaa3b84f6226dc4f7ca5a8850797b9b7bdf6b78bdefe1ad04f032f78a42b0f71f278f43e50fd61b2dd426edef40f2d7de05915e06ba221ed545d00d03d06ca
-  languageName: node
-  linkType: hard
-
-"@angular-devkit/core@npm:22.3.0":
+"@angular-devkit/core@npm:22.3.0, @angular-devkit/core@npm:>= 22.0.0 < 23.0.0, @angular-devkit/core@npm:>=18.0.0 <23.0.0":
   version: 22.3.0
   resolution: "@angular-devkit/core@npm:22.3.0"
   dependencies:
@@ -116,7 +85,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-devkit/schematics@npm:22.3.0":
+"@angular-devkit/schematics@npm:22.3.0, @angular-devkit/schematics@npm:>= 22.0.0 < 23.0.0, @angular-devkit/schematics@npm:>=18.0.0 <23.0.0":
   version: 22.3.0
   resolution: "@angular-devkit/schematics@npm:22.3.0"
   dependencies:
@@ -126,19 +95,6 @@ __metadata:
     ora: "npm:10.0.0"
     rxjs: "npm:7.8.2"
   checksum: 10c0/b65c61ce135acb48769dc2780d9e11775a08817764635e687a0185d800a5d35835443c92040b04783ff509e8cd5b87b4081f0f83f26db4e4ec33249344442b92
-  languageName: node
-  linkType: hard
-
-"@angular-devkit/schematics@npm:>= 22.0.0 < 23.0.0, @angular-devkit/schematics@npm:>=18.0.0 <23.0.0":
-  version: 22.2.7
-  resolution: "@angular-devkit/schematics@npm:22.2.7"
-  dependencies:
-    "@angular-devkit/core": "npm:22.2.7"
-    jsonc-parser: "npm:3.3.1"
-    magic-string: "npm:1.4.1"
-    ora: "npm:9.4.1"
-    rxjs: "npm:7.8.2"
-  checksum: 10c0/3d455e5a3cbe9891ad30e20661355bc588e5bb6b4348aa260faf6bb4de82bb484eedc50eace12065f9d409b0bc5b87c5fbdec5a9beb180478dd13ab0da45a1fa
   languageName: node
   linkType: hard
 
@@ -7534,15 +7490,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-string@npm:1.4.1":
-  version: 1.4.1
-  resolution: "magic-string@npm:1.4.1"
-  dependencies:
-    "@jridgewell/sourcemap-codec": "npm:^1.6.0"
-  checksum: 10c0/d5162ed2cef7ffa4ee5bcf44fbaba3a814f65b9919f0f3eba43076fda4223161b1064779da32901c3d1f157e7bbc0b6dd973e06c7856e550424f5e73e9217f0a
-  languageName: node
-  linkType: hard
-
 "magic-string@npm:1.4.5, magic-string@npm:^1.4.5":
   version: 1.4.5
   resolution: "magic-string@npm:1.4.5"
@@ -8139,22 +8086,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ora@npm:9.4.1":
-  version: 9.4.1
-  resolution: "ora@npm:9.4.1"
-  dependencies:
-    chalk: "npm:^5.6.2"
-    cli-cursor: "npm:^5.0.0"
-    cli-spinners: "npm:^3.2.0"
-    is-interactive: "npm:^2.0.0"
-    is-unicode-supported: "npm:^2.1.0"
-    log-symbols: "npm:^7.0.1"
-    stdin-discarder: "npm:^0.3.2"
-    string-width: "npm:^8.1.0"
-  checksum: 10c0/d58003408f3ddee46cd0a8d05e28c8a62e56cddd7ca4bc39adc4455c653d9d4c3d85b6f6b6c9ca78085f7ccbbb202ce8781505cdbebd357537a2b3f3eaa11ec2
-  languageName: node
-  linkType: hard
-
 "ora@npm:^5.4.1":
   version: 5.4.1
   resolution: "ora@npm:5.4.1"
@@ -8621,18 +8552,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.49, postcss@npm:^8.5.14, postcss@npm:^8.5.29":
-  version: 8.5.32
-  resolution: "postcss@npm:8.5.32"
-  dependencies:
-    nanoid: "npm:^3.3.20"
-    picocolors: "npm:^1.1.1"
-    source-map-js: "npm:^1.2.2"
-  checksum: 10c0/5fa6cad84e277c2ced965dc7e8e7c0b8d7e5b76a6835591b57a43fde46e671d0c8428d365e9141c080abaae5441d495ed77ffd7472c5bd41d6c2154bd03c01d7
-  languageName: node
-  linkType: hard
-
-"postcss@npm:^8.5.32":
+"postcss@npm:^8.4.49, postcss@npm:^8.5.14, postcss@npm:^8.5.29, postcss@npm:^8.5.32":
   version: 8.5.33
   resolution: "postcss@npm:8.5.33"
   dependencies:
@@ -10802,16 +10722,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:4.6.7":
+"zod@npm:4.6.7, zod@npm:^4.0.10, zod@npm:^4.2.0":
   version: 4.6.7
   resolution: "zod@npm:4.6.7"
   checksum: 10c0/4ce2eb14034317b7254e347ca37b5ad591cf8333147030cf05b9b5d31692d45073f7f2747aa50cf8c6b29012194d2b22978cecc89969cf34a0d18e89d0ee7d7b
-  languageName: node
-  linkType: hard
-
-"zod@npm:^4.0.10, zod@npm:^4.2.0":
-  version: 4.6.6
-  resolution: "zod@npm:4.6.6"
-  checksum: 10c0/447a3113bb743c54ab839213ff95e9e8c197cc1206f65270c18aac35aa70c47a5c8cab753be911b574df9a8a9801ea74ed6be776575232cae0084e51dab3e970
   languageName: node
   linkType: hard
