@@ -152,7 +152,7 @@
         "madge": "^8.0.0",
         "playwright": "^1.65.1",
         "prettier": "^3.10.1",
-        "typescript": "~6.0.3",
+        "typescript": "~7.0.2",
         "typescript-eslint": "^8.74.0",
         "vitest": "^5.1.1"
     },
