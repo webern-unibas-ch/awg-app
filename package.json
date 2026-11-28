@@ -123,8 +123,8 @@
         "tslib": "^2.9.1"
     },
     "devDependencies": {
-        "@angular/build": "^22.2.7",
-        "@angular/cli": "^22.2.7",
+        "@angular/build": "^22.3.0",
+        "@angular/cli": "^22.3.0",
         "@angular/compiler-cli": "^22.3.0",
         "@commitlint/cli": "^21.2.4",
         "@commitlint/config-angular": "^21.2.4",
